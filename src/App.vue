@@ -37,16 +37,10 @@ import Draggable from '@/components/draggable/Draggable.vue';
 import { closeWindow, windowList } from '@/global/config/window';
 import { ConfigProvider } from 'ant-design-vue';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
-import { login } from './api/modules/auth/user';
 import { pageStore } from './store/page/utils';
 
 const locale = ref(zhCN);
 const store = pageStore();
-
-onMounted(async () => {
-  const data = await login();
-  console.log(data);
-});
 
 const theme = computed(() => {
   return {

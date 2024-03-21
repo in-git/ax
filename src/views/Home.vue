@@ -1,9 +1,9 @@
 <template>
   <div>
-    <Layout></Layout>
+    <Desktop />
   </div>
 </template>
 
 <script setup lang="ts">
-import Layout from './layout/Layout.vue';
+import Desktop from './desktop/Desktop.vue';
 </script>

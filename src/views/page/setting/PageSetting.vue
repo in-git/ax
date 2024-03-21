@@ -45,10 +45,7 @@ const nav: Nav[] = [
   },
 ];
 
-const x = ref(window.innerWidth / 2 - 400);
-const y = ref(window.innerHeight / 2 - 300);
 const current = ref<Nav>(nav[0]);
-const maxHeight = window.innerHeight;
 
 interface Nav {
   title: string;
@@ -83,7 +80,7 @@ $hh: 42px;
     column-gap: 8px;
     .sidebar {
       width: 200px;
-      background: #dadada;
+      background: #ececec;
       ul {
         li {
           line-height: $hh;
@@ -91,9 +88,14 @@ $hh: 42px;
           border-radius: var(--radius);
           cursor: pointer;
           user-select: none;
+          margin-bottom: 8px;
+          &:hover {
+            background: #f8f8f8;
+          }
         }
         li.active {
           background: var(--primary);
+          color: wheat;
         }
       }
       .icon {

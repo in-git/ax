@@ -1,13 +1,11 @@
 <template>
-  <div class="system py-8">系统设置</div>
+  <div class="apps flex-1"></div>
 </template>
 
 <script setup lang="ts"></script>
 
 <style lang="scss" scoped>
-.system {
-  width: 100%;
+.apps {
   background: white;
-  height: 100%;
 }
 </style>

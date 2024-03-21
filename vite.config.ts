@@ -77,6 +77,7 @@ export default defineConfig(() => {
           rewrite: path => path.replace(/^\/api/, ''),
         },
       },
+      open: true,
     },
   };
 });
