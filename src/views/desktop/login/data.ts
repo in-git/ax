@@ -8,4 +8,5 @@ export const loginForm = ref({
   lang: 'en',
   captchaId: '',
 });
+
 export const loginLoading = ref<boolean>(false);
