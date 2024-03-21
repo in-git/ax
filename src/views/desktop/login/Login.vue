@@ -1,33 +1,33 @@
 <template>
   <div class="login flex-1">
     <div class="login-container">
-      <div class="welcome p-12 flex flex-col">
-        <h1 class="text-32">Welcome</h1>
-        <div class="desc">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi ex deserunt corporis in
-          atque qui, laboriosam ipsam quis, ad expedita libero ab, vel rerum quos a inventore rem
-          sapiente explicabo.
-        </div>
-        <div class="media flex-1"></div>
-      </div>
+      <Welcome />
       <div class="form">
         <div class="form-container p-24">
           <a-space direction="vertical">
             <h1 class="mb-24">Login in</h1>
-            <a-form layout="vertical" size="large">
-              <a-form-item label="User name" required>
-                <a-input allow-clear placeholder="Please enter username"></a-input>
+            <a-form layout="vertical" size="large" @finish="finish" :model="loginForm">
+              <a-form-item label="Username" required name="name">
+                <a-input
+                  v-model:value="loginForm.name"
+                  allow-clear
+                  placeholder="Please enter username"
+                ></a-input>
               </a-form-item>
-              <a-form-item label="Password" required>
+              <a-form-item label="Password" required name="password">
                 <a-input-password
                   allow-clear
+                  v-model:value="loginForm.password"
                   placeholder="Please enter password"
                 ></a-input-password>
               </a-form-item>
-              <a-form-item>
-                <a-radio-group :options="langOptions"></a-radio-group>
+              <a-form-item name="lang">
+                <a-radio-group
+                  v-model:value="loginForm.lang"
+                  :options="langOptions"
+                ></a-radio-group>
               </a-form-item>
-              <a-button type="primary" block>Login</a-button>
+              <a-button type="primary" html-type="submit" block>Login</a-button>
             </a-form>
             <a-card class="mt-24">
               <a-descriptions title="Tips" :column="1">
@@ -43,10 +43,44 @@
 </template>
 
 <script setup lang="ts">
-const langOptions = [
-  { label: 'English', value: 'en' },
-  { label: 'Chinese', value: 'zh' },
-];
+import { captcha, issafety, login } from '@/api/modules/user/user';
+import Welcome from './Welcome.vue';
+import { langOptions, loginForm, loginLoading } from './data';
+
+const getCaptcha = async () => {
+  const { data } = await captcha();
+  if (data.data) {
+    loginForm.value.captchaId = data.data.captchaID;
+  }
+};
+const verify = async () => {
+  const { data } = await issafety('0703ecf7d3');
+};
+onMounted(() => {
+  getCaptcha();
+  verify();
+});
+
+const finish = async () => {
+  loginLoading.value = true;
+  try {
+    const { data } = await login({
+      name: loginForm.value.name,
+      password: loginForm.value.password,
+      ignoreCaptcha: true,
+      captcha: '',
+      captchaID: '',
+      authMethod: 'session',
+      language: loginForm.value.lang,
+    });
+
+    console.log(data);
+
+    loginLoading.value = false;
+  } catch (error) {
+    loginLoading.value = false;
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -55,26 +89,10 @@ const langOptions = [
   .login-container {
     display: flex;
     height: 100%;
-    .welcome {
-      flex-basis: 70%;
-      background: #f8f8f8;
-      border-right: 1px solid #ddd;
-      .desc {
-        width: 500px;
-        margin: 24px 0;
-        color: #333;
-      }
-      .media {
-        background: url('./assets/background.webp');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        border-radius: var(--radius);
-        overflow: hidden;
-      }
-    }
+
     .form {
       padding: 12px;
+      min-width: 400px;
       width: 30%;
       .form-container {
         background: white;

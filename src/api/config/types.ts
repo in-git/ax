@@ -42,7 +42,7 @@ export interface IDataResponse<T> {
 }
 
 /* 统一反馈 */
-export interface Feedback<T = undefined> {
+export interface Response<T = undefined> {
   msg: string;
   code: number;
   data?: T;
