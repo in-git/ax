@@ -22,6 +22,7 @@ import { InfoCircleOutlined, PoweroffOutlined, SettingOutlined } from '@ant-desi
 <style lang="scss" scoped>
 .top-toolbar {
   background: #f8f8f8;
+  border-bottom: 1px solid #ddd;
   .power-off {
     color: #fa2727da;
   }
