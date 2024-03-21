@@ -1,0 +1,21 @@
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/reset.css';
+import 'in-less';
+import { createPinia } from 'pinia';
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
+import { createApp } from 'vue';
+import App from './App.vue';
+import './api/config/interceptor';
+import directive from './directive';
+import './mock/mock';
+import router from './router';
+import './style/index.scss';
+
+const app = createApp(App);
+const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate);
+app.use(router);
+app.use(Antd);
+app.use(pinia);
+app.use(directive);
+app.mount('#app');
