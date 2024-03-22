@@ -1,11 +1,12 @@
 .apps {
 	background: white;
+	$app-width: 84px;
 	ul {
-		width: 100%;
-		flex-direction: column;
+		display: grid;
+		grid-template-columns: repeat(3, $app-width);
+		grid-template-rows: repeat(8, 1fr);
+		gap: 10px;
 		height: 100%;
-		gap: 8px;
-		display: flex;
 	}
 	%selected {
 		border: 1px solid #8db1e4;
@@ -13,7 +14,7 @@
 	}
 	li {
 		height: fit-content;
-		width: 84px;
+		width: $app-width;
 		border: 1px solid transparent;
 		text-align: center;
 		cursor: pointer;

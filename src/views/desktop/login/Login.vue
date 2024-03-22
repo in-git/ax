@@ -50,7 +50,9 @@
                   <a-button type="link" class="px-0">forget password?</a-button>
                 </a-flex>
               </a-form-item>
-              <a-button type="primary" html-type="submit" block>Login</a-button>
+              <a-button type="primary" html-type="submit" :loading="loginLoading" block>
+                Login
+              </a-button>
             </a-form>
             <a-divider>The others</a-divider>
             <a-flex justify="center" gap="12">
@@ -107,7 +109,6 @@ const finish = async () => {
     message.success('Success');
 
     const store = useUserStore();
-    console.log(data.token);
 
     store.$state.token = data.token;
   } catch (error) {

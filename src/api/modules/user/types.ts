@@ -16,3 +16,20 @@ export interface LoginResponse {
   code: number;
   token: string;
 }
+export interface Routers {
+  name: string;
+  path: string;
+  hidden: boolean;
+  redirect?: string;
+  component: string;
+  alwaysShow?: boolean;
+  meta: Meta;
+  children?: Routers[];
+}
+
+export interface Meta {
+  title: string;
+  icon: string;
+  noCache: boolean;
+  link?: string;
+}

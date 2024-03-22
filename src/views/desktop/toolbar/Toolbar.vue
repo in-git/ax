@@ -8,7 +8,7 @@
       <div class="system-icon">
         <InfoCircleOutlined />
       </div>
-      <div class="system-icon power-off">
+      <div class="system-icon power-off" @click="logOff">
         <PoweroffOutlined />
       </div>
     </div>
@@ -16,7 +16,15 @@
 </template>
 
 <script setup lang="ts">
+import { logout } from '@/api/modules/user/user';
+import useUserStore from '@/store/user';
 import { InfoCircleOutlined, PoweroffOutlined, SettingOutlined } from '@ant-design/icons-vue';
+
+const logOff = async () => {
+  await logout();
+  const store = useUserStore();
+  store.$state.token = '';
+};
 </script>
 
 <style lang="scss" scoped>

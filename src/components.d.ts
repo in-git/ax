@@ -42,6 +42,7 @@ declare module 'vue' {
     GithubFilled: typeof import('@ant-design/icons-vue')['GithubFilled']
     GoogleOutlined: typeof import('@ant-design/icons-vue')['GoogleOutlined']
     Icon: typeof import('./components/icon/Icon.vue')['default']
+    Loading: typeof import('./components/loading/Loading.vue')['default']
     QqOutlined: typeof import('@ant-design/icons-vue')['QqOutlined']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

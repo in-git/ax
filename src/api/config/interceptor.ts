@@ -32,11 +32,13 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (response: AxiosResponse) => {
     const res = response.data;
+    const userStore = useUserStore();
     if (res.code === 500) {
       message.warn(res.msg || 'System Error');
       throw new Error(res.msg || 'System Error');
     }
     if (res.code === 401) {
+      userStore.$state.token = '';
       message.warn(res.msg || 'Permission Denied');
     }
     return response;
