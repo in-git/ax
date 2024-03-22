@@ -3,10 +3,10 @@ export const langOptions = [
   { label: 'Chinese', value: 'zh' },
 ];
 export const loginForm = ref({
-  name: '444891953',
-  password: 'qq444891953',
-  lang: 'en',
-  captchaId: '',
+  name: 'admin',
+  password: 'admin123',
+  uuid: '',
+  code: '',
 });
 
 export const loginLoading = ref<boolean>(false);

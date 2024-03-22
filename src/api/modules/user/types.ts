@@ -1,18 +1,16 @@
 export interface LoginParams {
-  name: string;
+  username: string;
   password: string;
-  ignoreCaptcha: boolean;
-  captcha: string;
-  captchaID: string;
-  authMethod: 'session';
-  language: 'zh' | 'en' | string;
+  code: string;
+  uuid: string;
 }
 export interface CaptchaResponse {
-  captchaID: string;
-  imagePath: string;
+  msg: string;
+  img: string;
+  code: number;
+  captchaEnabled: boolean;
+  uuid: string;
 }
 export interface LoginResponse {
-  name: string;
   token: string;
-  mfaStatus: string;
 }

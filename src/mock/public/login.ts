@@ -8,3 +8,9 @@ Mock.mock('/public/login', 'post', options => {
     token: nanoid(18),
   });
 });
+
+Mock.mock('/public/captchaImage', 'get', options => {
+  return result({
+    image: Mock.mock('@string("number", 4)'),
+  });
+});

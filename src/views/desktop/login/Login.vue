@@ -14,6 +14,7 @@
                   placeholder="Please enter username"
                 ></a-input>
               </a-form-item>
+
               <a-form-item label="Password" required name="password">
                 <a-input-password
                   allow-clear
@@ -21,11 +22,26 @@
                   placeholder="Please enter password"
                 ></a-input-password>
               </a-form-item>
+
               <a-form-item name="lang">
                 <a-radio-group
-                  v-model:value="loginForm.lang"
+                  v-model:value="pageStore.$state.locale"
                   :options="langOptions"
                 ></a-radio-group>
+              </a-form-item>
+
+              <a-form-item label="Captcha" name="code" required>
+                <div class="flex gc-12">
+                  <a-input placeholder="Please enter captcha" v-model:value="loginForm.code" />
+                  <a-image
+                    @click="getCaptcha"
+                    :preview="false"
+                    loading="lazy"
+                    class="cursor-pointer"
+                    :src="captchaImage"
+                    width="100"
+                  />
+                </div>
               </a-form-item>
 
               <a-form-item>
@@ -60,15 +76,20 @@
 
 <script setup lang="ts">
 import { captcha, login } from '@/api/modules/user/user';
+import usePageStore from '@/store/page';
+import useUserStore from '@/store/user';
+import { message } from 'ant-design-vue';
 import Welcome from './Welcome.vue';
 import { langOptions, loginForm, loginLoading } from './data';
+const pageStore = usePageStore();
+const captchaImage = ref();
 
 const getCaptcha = async () => {
   const { data } = await captcha();
-  if (data.data) {
-    loginForm.value.captchaId = data.data.captchaID;
-  }
+  captchaImage.value = `data:image/gif;base64,${data.img}`;
+  loginForm.value.uuid = data.uuid;
 };
+
 onMounted(() => {
   getCaptcha();
 });
@@ -77,18 +98,18 @@ const finish = async () => {
   loginLoading.value = true;
   try {
     const { data } = await login({
-      name: loginForm.value.name,
+      username: loginForm.value.name,
       password: loginForm.value.password,
-      ignoreCaptcha: true,
-      captcha: '',
-      captchaID: '',
-      authMethod: 'session',
-      language: loginForm.value.lang,
+      code: loginForm.value.code,
+      uuid: loginForm.value.uuid,
     });
-
-    console.log(data);
-
     loginLoading.value = false;
+    message.success('Success');
+
+    const store = useUserStore();
+    if (data.data) {
+      store.token = data.data.token;
+    }
   } catch (error) {
     loginLoading.value = false;
   }

@@ -12,7 +12,7 @@ interface PageSettings {
 const usePageStore = defineStore('user', {
   state: (): PageSettings => ({
     theme: '',
-    locale: '',
+    locale: 'en',
     size: 'small',
     direction: 'ltr',
     wave: true,

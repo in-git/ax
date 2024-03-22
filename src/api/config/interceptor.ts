@@ -1,4 +1,3 @@
-import router from '@/router';
 import { message } from 'ant-design-vue';
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
@@ -33,9 +32,6 @@ axios.interceptors.response.use(
       throw new Error(res.msg || 'System Error');
     }
     if (res.code === 401) {
-      router.push({
-        name: 'login',
-      });
       message.warn(res.msg || 'Permission Denied');
     }
     return response;

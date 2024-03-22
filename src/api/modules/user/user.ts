@@ -3,13 +3,9 @@ import axios from 'axios';
 import type { CaptchaResponse, LoginParams, LoginResponse } from './types';
 
 export const login = (data: LoginParams) => {
-  return axios.post<Response<LoginResponse>>('/public/login', data);
+  return axios.post<Response<LoginResponse>>('/login', data);
 };
 
 export const captcha = () => {
-  return axios.get<Response<CaptchaResponse>>('/captcha/captchaImage', {
-    params: {
-      type: 'math',
-    },
-  });
+  return axios.get<Response & CaptchaResponse>('/captchaImage');
 };
