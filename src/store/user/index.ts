@@ -3,7 +3,7 @@ import type { UserState } from './types';
 
 const useUserStore = defineStore('user', {
   state: (): UserState => ({
-    name: undefined,
+    name: '',
     token: '',
   }),
   persist: true,

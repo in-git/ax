@@ -1,3 +1,4 @@
+import useUserStore from '@/store/user';
 import { message } from 'ant-design-vue';
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
@@ -15,7 +16,11 @@ export interface HttpResponse<T = unknown> {
 
 axios.interceptors.request.use(
   (config: AxiosRequestConfig | any) => {
-    // config.headers.Authorization = `Bearer ${your token}`;
+    if (config.headers) {
+      const userStore = useUserStore();
+      config.headers.Authorization = `Bearer ${userStore.$state.token}`;
+    }
+
     return config;
   },
   error => {

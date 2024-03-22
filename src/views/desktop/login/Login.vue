@@ -107,9 +107,9 @@ const finish = async () => {
     message.success('Success');
 
     const store = useUserStore();
-    if (data.data) {
-      store.token = data.data.token;
-    }
+    console.log(data.token);
+
+    store.$state.token = data.token;
   } catch (error) {
     loginLoading.value = false;
   }

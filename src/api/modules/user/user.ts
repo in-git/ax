@@ -3,7 +3,7 @@ import axios from 'axios';
 import type { CaptchaResponse, LoginParams, LoginResponse } from './types';
 
 export const login = (data: LoginParams) => {
-  return axios.post<Response<LoginResponse>>('/login', data);
+  return axios.post<LoginResponse>('/login', data);
 };
 
 export const captcha = () => {

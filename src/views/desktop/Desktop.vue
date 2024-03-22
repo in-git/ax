@@ -1,19 +1,17 @@
 <template>
   <div class="flex flex-col desktop">
-    <Transition>
-      <Toolbar v-if="!!tokens" />
-    </Transition>
-    <!-- <Apps /> -->
-    <Login />
-    <Transition>
-      <Missions v-if="!!tokens" />
-    </Transition>
+    <template v-if="tokens">
+      <Toolbar />
+      <Apps />
+      <Missions />
+    </template>
+    <Login v-else />
   </div>
 </template>
 
 <script setup lang="ts">
-// import Apps from './apps/Apps.vue';
 import useUserStore from '@/store/user';
+import Apps from './apps/Apps.vue';
 import Login from './login/Login.vue';
 import Missions from './missions/Missions.vue';
 import Toolbar from './toolbar/Toolbar.vue';

@@ -12,5 +12,7 @@ export interface CaptchaResponse {
   uuid: string;
 }
 export interface LoginResponse {
+  msg: string;
+  code: number;
   token: string;
 }
