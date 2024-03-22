@@ -11,7 +11,9 @@ export const flattenTree = (tree: Routers[], flattened: Routers[] = []): Routers
     const newNode = { ...node };
     if (newNode.children) {
       delete newNode.children;
-      flattened.push(newNode);
+      if (!newNode.redirect) {
+        flattened.push(newNode);
+      }
       flattenTree(node.children || [], flattened);
     } else {
       flattened.push(newNode);

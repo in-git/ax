@@ -3,8 +3,8 @@
 	$app-width: 84px;
 	ul {
 		display: grid;
-		grid-template-columns: repeat(3, $app-width);
-		grid-template-rows: repeat(8, 1fr);
+		grid-template-columns: repeat(2, $app-width);
+		grid-template-rows: repeat(8, 72px);
 		gap: 10px;
 		height: 100%;
 	}

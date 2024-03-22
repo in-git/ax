@@ -9,7 +9,7 @@
           @click="select(item)"
         >
           <div class="logo">
-            <img :src="getIconByName(item.name) || logoPng" :draggable="false" width="48" />
+            <img :src="getIconByName(item) || logoPng" :draggable="false" width="48" />
           </div>
           <div class="title">{{ item.meta.title }}</div>
         </li>
@@ -38,10 +38,11 @@ onMounted(async () => {
       animation: 200,
     });
   });
-  getIconByName('');
 });
 
 const select = (item: MenuItem) => {
+  console.log(item);
+
   selected.value = item.path;
 };
 </script>
