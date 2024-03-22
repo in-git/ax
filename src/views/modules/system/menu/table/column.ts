@@ -8,6 +8,7 @@ export const menuColumns: TableColumnProps[] = [
   {
     title: 'Order',
     dataIndex: 'orderNum',
+    width: 100,
   },
   {
     title: 'Is frame',

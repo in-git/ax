@@ -1,5 +1,5 @@
 <template>
-  <div class="menu system-module">
+  <div class="system-module">
     <MenuHead></MenuHead>
     <MenuTable></MenuTable>
   </div>

@@ -1,11 +1,11 @@
 <template>
-  <div class="menu-table p-8">
+  <div class="menu-table">
     <a-table
       :columns="columns"
       :dataSource="menuConfig.data"
-      :scroll="{ y: '420px' }"
       :loading="menuConfig.loading"
       @change="pageChange"
+      sticky
       :row-selection="{
         selectedRowKeys: menuConfig.selectedKeys,
         onChange,
@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SystemMenu } from '@/api/modules/menu/types';
+import type { SystemMenu } from '@/api/modules/system/menu/types';
 import { CheckOutlined, type EditOutlined } from '@ant-design/icons-vue';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
@@ -78,5 +78,8 @@ const columns = menuColumns.map(e => {
 .text-red {
   color: #ff7676;
 }
+.menu-table {
+  height: calc(100% - 100px);
+  overflow-y: auto;
+}
 </style>
-@/api/modules/system/menu/types

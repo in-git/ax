@@ -50,7 +50,7 @@ const theme = computed(() => {
   return {
     token: {
       colorPrimary: store.$state.theme,
-      borderRadius: 2,
+      borderRadius: 4,
     },
   };
 });

@@ -88,15 +88,14 @@ onMounted(() => {
 <style lang="scss" scoped>
 $hh: 42px;
 .drv {
-  border: 1px solid #eee;
-  box-shadow: 0 0 25px #a0a0a065;
-  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 0 4px #a0a0a065;
   overflow: hidden;
 }
 .drag-header {
   cursor: move;
   background: #f8f8f8;
-  height: 40px !important;
+  height: 40px;
   border-bottom: 1px solid #ddd;
 }
 .drag-content {
@@ -106,8 +105,8 @@ $hh: 42px;
 }
 
 %icon {
-  width: 40px !important;
-  height: 39px;
+  width: 40px;
+  height: 40px;
   border-radius: 0;
   &:hover {
     background: #ddd;
