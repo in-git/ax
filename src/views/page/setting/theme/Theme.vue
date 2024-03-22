@@ -92,7 +92,7 @@
 </template>
 
 <script setup lang="ts">
-import { pageStore } from '@/store/page/utils';
+import usePageStore from '@/store/page';
 import { CheckCircleFilled } from '@ant-design/icons-vue';
 import { useCssVar } from '@vueuse/core';
 
@@ -100,7 +100,7 @@ const colorList = ['#AD2AFD', '#FDB52A', '#09B678', '#3785FA', '#E82626', '#C6C6
 
 const current = ref('#3785FA');
 
-const store = pageStore();
+const store = usePageStore();
 
 const selectItem = (item: string) => {
   current.value = item;

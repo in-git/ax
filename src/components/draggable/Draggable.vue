@@ -14,9 +14,9 @@
       <div class="drag-header flex justify-between align-center">
         <div>{{ title }}</div>
         <div>
-          <Icon @click="close">
+          <div class="system-icon" @click="close">
             <CloseOutlined />
-          </Icon>
+          </div>
         </div>
       </div>
     </slot>
@@ -27,7 +27,6 @@
 </template>
 
 <script setup lang="ts">
-import Icon from '@/components/icon/Icon.vue';
 import { windowList } from '@/global/config/window';
 import VueDraggable from 'draggable-resizable-vue3';
 
@@ -86,7 +85,7 @@ $hh: 42px;
 .drag-header {
   padding: 0 12px;
   cursor: move;
-  background: #fff;
+  background: #131313;
   height: 40px !important;
   color: rgb(255, 183, 50);
 }
@@ -94,5 +93,12 @@ $hh: 42px;
   height: calc(100% - 40px);
   line-height: initial;
   position: relative;
+}
+.system-icon {
+  color: white;
+  &:hover {
+    color: white;
+    background-color: #222;
+  }
 }
 </style>

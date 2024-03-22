@@ -4,12 +4,12 @@
       <ul ref="appRef">
         <li
           v-for="(item, key) in menuList"
-          :key="key"
+          :key="item.name"
           :class="{ selected: item.path === selected }"
           @click="select(item)"
         >
           <div class="logo">
-            <img :src="logo" :draggable="false" width="48" />
+            <img :src="getIconByName(item.name) || logoPng" :draggable="false" width="48" />
           </div>
           <div class="title">{{ item.meta.title }}</div>
         </li>
@@ -21,26 +21,26 @@
 
 <script setup lang="ts">
 import type { Routers } from '@/api/modules/user/types';
-import logo from '@/assets/logo.png';
+import logoPng from '@/assets/logo.png';
 import Loading from '@/components/loading/Loading.vue';
 import type { MenuItem } from '@/types/system';
 import { useSortable } from '@vueuse/integrations/useSortable';
-import { getUserRouters } from './data';
+import { getIconByName, getUserRouters } from './data';
 const selected = ref<string>('');
 const appRef = ref();
 
 const menuList = ref<Routers[]>([]);
 onMounted(async () => {
   const data = await getUserRouters();
-  console.log(data);
   menuList.value = data;
+  nextTick(() => {
+    useSortable(appRef, menuList, {
+      animation: 200,
+    });
+  });
+  getIconByName('');
 });
 
-nextTick(() => {
-  useSortable(appRef, menuList, {
-    animation: 200,
-  });
-});
 const select = (item: MenuItem) => {
   selected.value = item.path;
 };
