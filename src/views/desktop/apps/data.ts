@@ -1,8 +1,9 @@
 import type { Routers } from '@/api/modules/user/types';
 import { getRouters } from '@/api/modules/user/user';
 import google from '@/assets/system/google.png';
+import { openWindow } from '@/global/config/window';
+import { systemComponents } from '@/initialization';
 import { flattenTree } from '@/utils/common/format';
-
 export const getUserRouters = async () => {
   const { data } = await getRouters();
   let newArr: Routers[] = [];
@@ -23,4 +24,23 @@ export const getIconByName = (item: Routers) => {
     return google;
   }
   return undefined;
+};
+export const openApp = (item: Routers) => {
+  systemComponents.value.forEach(e => {
+    console.log(e.component);
+
+    if (e.path.includes(item.path)) {
+      openWindow({
+        title: item.meta.title,
+        component: e.component,
+      });
+    }
+  });
+  // if (path.includes(item.component)) {
+  //   console.log(import(`../../modules/${item.component}.vue`));
+  //   openWindow({
+  //     title: item.meta.title,
+  //     component: () => import(`../../modules/${item.component}.vue`),
+  //   });
+  // }
 };

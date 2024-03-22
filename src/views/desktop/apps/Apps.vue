@@ -7,6 +7,7 @@
           :key="item.name"
           :class="{ selected: item.path === selected }"
           @click="select(item)"
+          @dblclick="openApp(item)"
         >
           <div class="logo">
             <img :src="getIconByName(item) || logoPng" :draggable="false" width="48" />
@@ -23,9 +24,8 @@
 import type { Routers } from '@/api/modules/user/types';
 import logoPng from '@/assets/logo.png';
 import Loading from '@/components/loading/Loading.vue';
-import type { MenuItem } from '@/types/system';
 import { useSortable } from '@vueuse/integrations/useSortable';
-import { getIconByName, getUserRouters } from './data';
+import { getIconByName, getUserRouters, openApp } from './data';
 const selected = ref<string>('');
 const appRef = ref();
 
@@ -39,10 +39,7 @@ onMounted(async () => {
     });
   });
 });
-
-const select = (item: MenuItem) => {
-  console.log(item);
-
+const select = (item: Routers) => {
   selected.value = item.path;
 };
 </script>

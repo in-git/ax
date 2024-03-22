@@ -15,13 +15,12 @@
     <!--  -->
     <div class="windows">
       <Draggable
-        v-for="(item, key) in windowList"
-        :key="key"
+        v-for="item in windowList"
+        :key="item.id"
         :w="item.w"
         :h="item.h"
         :z="item.z"
         :title="item.title"
-        :component="item.component"
         :show="item.show"
         :id="item.id"
         @close="closeWindow(item.id || '')"
@@ -37,14 +36,15 @@ import Draggable from '@/components/draggable/Draggable.vue';
 import { closeWindow, windowList } from '@/global/config/window';
 import { ConfigProvider } from 'ant-design-vue';
 import en_US from 'ant-design-vue/es/locale/en_US';
-import { loadSystemIcons } from './initialization';
+import { loadSystemComponents, loadSystemIcons } from './initialization';
 import usePageStore from './store/page';
 import Desktop from './views/desktop/Desktop.vue';
 
 const locale = ref(en_US);
 const store = usePageStore();
-onMounted(() => {
+nextTick(() => {
   loadSystemIcons();
+  loadSystemComponents();
 });
 const theme = computed(() => {
   return {

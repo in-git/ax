@@ -17,6 +17,7 @@
 		width: $app-width;
 		border: 1px solid transparent;
 		text-align: center;
+
 		cursor: pointer;
 		user-select: none;
 		border-radius: 2px;
@@ -24,11 +25,12 @@
 			@extend %selected;
 		}
 		.logo {
+			padding: 2px 0;
 			width: 100%;
 			height: 42px;
 			img {
-				width: 42px;
-				height: 42px;
+				width: 36px;
+				height: 36px;
 			}
 		}
 		.title {

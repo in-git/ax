@@ -41,7 +41,7 @@ export const clearWindow = () => {
 };
 
 export const closeWindow = (id: string) => {
-  console.log('===');
+  console.log(id);
 
   windowList.value = windowList.value.filter(e => {
     if (e.id !== id) {

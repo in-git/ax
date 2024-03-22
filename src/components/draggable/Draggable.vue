@@ -56,9 +56,7 @@ const toTop = () => {
   });
 };
 const close = () => {
-  console.log('==1');
-
-  emit('close');
+  emit('close', props.id);
 };
 const x = ref(window.innerWidth / 2 - props.w / 2);
 const y = ref(window.innerHeight / 2 - props.h / 2);
@@ -85,9 +83,9 @@ $hh: 42px;
 .drag-header {
   padding: 0 12px;
   cursor: move;
-  background: #131313;
+  background: #f8f8f8;
   height: 40px !important;
-  color: rgb(255, 183, 50);
+  border-bottom: 1px solid #ddd;
 }
 .drag-content {
   height: calc(100% - 40px);
@@ -95,10 +93,9 @@ $hh: 42px;
   position: relative;
 }
 .system-icon {
-  color: white;
+  color: #333;
   &:hover {
-    color: white;
-    background-color: #222;
+    color: #111;
   }
 }
 </style>
