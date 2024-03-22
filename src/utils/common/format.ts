@@ -21,3 +21,22 @@ export const flattenTree = (tree: Routers[], flattened: Routers[] = []): Routers
   });
   return flattened;
 };
+
+export const convertToTree = (data: SystemMenu[]): SystemMenu[] => {
+  const map = new Map<number, SystemMenu>();
+  const result: SystemMenu[] = [];
+
+  data.forEach(menu => {
+    map.set(menu.menuId, { ...menu, children: [] });
+  });
+
+  data.forEach(menu => {
+    if (menu.parentId && map.has(menu.parentId)) {
+      map.get(menu.parentId)!.children.push(map.get(menu.menuId)!);
+    } else {
+      result.push(map.get(menu.menuId)!);
+    }
+  });
+
+  return result;
+};

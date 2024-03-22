@@ -19,6 +19,7 @@ export const openWindow = (config: Window) => {
   const isExist = windowList.value.find(e => {
     return e.component === config.component;
   });
+
   config.show = true;
   config.z = windowList.value.length;
   if (!config.id) {

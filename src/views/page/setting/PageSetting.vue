@@ -1,5 +1,5 @@
 <template>
-  <div class="page-setting w-100 h-100">
+  <div class="page-setting w-100 h-100 system-module">
     <div class="settings flex h-100 w-100">
       <div class="sidebar p-4">
         <ul>
@@ -13,7 +13,9 @@
             <div class="icon">
               <component :is="item.icon"></component>
             </div>
-            {{ item.title }}
+            <span>
+              {{ item.title }}
+            </span>
           </li>
         </ul>
       </div>
@@ -77,10 +79,9 @@ $hh: 42px;
 .page-setting {
   .settings {
     height: calc(100%);
-    column-gap: 8px;
     .sidebar {
       width: 200px;
-      background: #ececec;
+      background: #f8f8f8;
       ul {
         li {
           line-height: $hh;
@@ -95,7 +96,7 @@ $hh: 42px;
         }
         li.active {
           background: var(--primary);
-          color: wheat;
+          color: white;
         }
       }
       .icon {

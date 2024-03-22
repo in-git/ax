@@ -41,8 +41,8 @@ const props = withDefaults(
     resizable?: boolean;
   }>(),
   {
-    w: 800,
-    h: 600,
+    w: 1000,
+    h: 700,
     resizable: false,
   },
 );

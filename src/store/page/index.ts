@@ -9,7 +9,7 @@ interface PageSettings {
   autoInsertSpaceInButton: boolean;
   baseURL: string;
 }
-const usePageStore = defineStore('user', {
+const usePageStore = defineStore('page', {
   state: (): PageSettings => ({
     theme: '',
     locale: 'en',

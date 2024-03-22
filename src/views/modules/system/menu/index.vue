@@ -1,11 +1,13 @@
 <template>
   <div class="menu system-module">
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta quidem accusamus sapiente
-    consequuntur nam expedita, aperiam similique maxime minima minus unde! Eos expedita cupiditate
-    laboriosam veniam quisquam, animi impedit totam?
+    <MenuHead></MenuHead>
+    <MenuTable></MenuTable>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import MenuHead from './head/MenuHead.vue';
+import MenuTable from './table/MenuTable.vue';
+</script>
 
 <style lang="scss" scoped></style>

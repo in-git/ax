@@ -4,6 +4,7 @@ import google from '@/assets/system/google.png';
 import { openWindow } from '@/global/config/window';
 import { systemComponents } from '@/initialization';
 import { flattenTree } from '@/utils/common/format';
+
 export const getUserRouters = async () => {
   const { data } = await getRouters();
   let newArr: Routers[] = [];
@@ -12,6 +13,7 @@ export const getUserRouters = async () => {
   }
   return newArr;
 };
+
 export const getIconByName = (item: Routers) => {
   const image = new URL(
     `../../../assets/system/${item.name.toLocaleLowerCase()}.png`,
@@ -25,10 +27,9 @@ export const getIconByName = (item: Routers) => {
   }
   return undefined;
 };
+
 export const openApp = (item: Routers) => {
   systemComponents.value.forEach(e => {
-    console.log(e.component);
-
     if (e.path.includes(item.path)) {
       openWindow({
         title: item.meta.title,
@@ -36,11 +37,4 @@ export const openApp = (item: Routers) => {
       });
     }
   });
-  // if (path.includes(item.component)) {
-  //   console.log(import(`../../modules/${item.component}.vue`));
-  //   openWindow({
-  //     title: item.meta.title,
-  //     component: () => import(`../../modules/${item.component}.vue`),
-  //   });
-  // }
 };
