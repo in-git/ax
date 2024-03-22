@@ -1,6 +1,6 @@
 <template>
   <div class="top-toolbar system-head px-12">
-    <div>1Panel Plus</div>
+    <div>Win</div>
     <div class="flex gc-4">
       <div class="system-icon">
         <SettingOutlined />

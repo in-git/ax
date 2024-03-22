@@ -10,7 +10,7 @@
     :virtual="store.$state.virtual"
     :autoInsertSpaceInButton="store.$state.autoInsertSpaceInButton"
   >
-    <router-view />
+    <Desktop />
 
     <!--  -->
     <div class="windows">
@@ -37,10 +37,11 @@ import Draggable from '@/components/draggable/Draggable.vue';
 import { closeWindow, windowList } from '@/global/config/window';
 import { ConfigProvider } from 'ant-design-vue';
 import en_US from 'ant-design-vue/es/locale/en_US';
-import { pageStore } from './store/page/utils';
+import usePageStore from './store/page';
+import Desktop from './views/desktop/Desktop.vue';
 
 const locale = ref(en_US);
-const store = pageStore();
+const store = usePageStore();
 
 const theme = computed(() => {
   return {

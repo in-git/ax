@@ -3,17 +3,13 @@ import axios from 'axios';
 import type { CaptchaResponse, LoginParams, LoginResponse } from './types';
 
 export const login = (data: LoginParams) => {
-  return axios.post<Response<LoginResponse>>('/auth/login', data);
+  return axios.post<Response<LoginResponse>>('/public/login', data);
 };
 
 export const captcha = () => {
-  return axios.get<Response<CaptchaResponse>>('/auth/captcha');
-};
-
-export const issafety = (code: string) => {
-  return axios.get<Response<CaptchaResponse>>(`/auth/issafety`, {
+  return axios.get<Response<CaptchaResponse>>('/captcha/captchaImage', {
     params: {
-      code,
+      type: 'math',
     },
   });
 };

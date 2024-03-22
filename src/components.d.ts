@@ -12,6 +12,7 @@ declare module 'vue' {
     ABreadcrumbItem: typeof import('ant-design-vue/es')['BreadcrumbItem']
     AButton: typeof import('ant-design-vue/es')['Button']
     ACard: typeof import('ant-design-vue/es')['Card']
+    ACheckbox: typeof import('ant-design-vue/es')['Checkbox']
     ACol: typeof import('ant-design-vue/es')['Col']
     ADescriptions: typeof import('ant-design-vue/es')['Descriptions']
     ADescriptionsItem: typeof import('ant-design-vue/es')['DescriptionsItem']
@@ -37,8 +38,13 @@ declare module 'vue' {
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
     CloseOutlined: typeof import('@ant-design/icons-vue')['CloseOutlined']
     Draggable: typeof import('./components/draggable/Draggable.vue')['default']
+    GithubFilled: typeof import('@ant-design/icons-vue')['GithubFilled']
+    GoogleOutlined: typeof import('@ant-design/icons-vue')['GoogleOutlined']
     Icon: typeof import('./components/icon/Icon.vue')['default']
+    QqOutlined: typeof import('@ant-design/icons-vue')['QqOutlined']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    WechatFilled: typeof import('@ant-design/icons-vue')['WechatFilled']
+    WechatOutlined: typeof import('@ant-design/icons-vue')['WechatOutlined']
   }
 }

@@ -3,8 +3,8 @@
     <div class="login-container">
       <Welcome />
       <div class="form">
-        <div class="form-container p-24">
-          <a-space direction="vertical">
+        <div class="form-container p-32">
+          <a-space direction="vertical" class="w-100">
             <h1 class="mb-24">Login in</h1>
             <a-form layout="vertical" size="large" @finish="finish" :model="loginForm">
               <a-form-item label="Username" required name="name">
@@ -27,14 +27,30 @@
                   :options="langOptions"
                 ></a-radio-group>
               </a-form-item>
+
+              <a-form-item>
+                <a-flex :align="'center'" justify="space-between">
+                  <a-checkbox>user agreement</a-checkbox>
+                  <a-button type="link" class="px-0">forget password?</a-button>
+                </a-flex>
+              </a-form-item>
               <a-button type="primary" html-type="submit" block>Login</a-button>
             </a-form>
-            <a-card class="mt-24">
-              <a-descriptions title="Tips" :column="1">
-                <a-descriptions-item label="UserName">Demo</a-descriptions-item>
-                <a-descriptions-item label="Password">1panel</a-descriptions-item>
-              </a-descriptions>
-            </a-card>
+            <a-divider>The others</a-divider>
+            <a-flex justify="center" gap="12">
+              <div class="system-icon">
+                <WechatOutlined />
+              </div>
+              <div class="system-icon">
+                <QqOutlined />
+              </div>
+              <div class="system-icon">
+                <GoogleOutlined />
+              </div>
+              <div class="system-icon">
+                <GithubFilled />
+              </div>
+            </a-flex>
           </a-space>
         </div>
       </div>
@@ -43,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import { captcha, issafety, login } from '@/api/modules/user/user';
+import { captcha, login } from '@/api/modules/user/user';
 import Welcome from './Welcome.vue';
 import { langOptions, loginForm, loginLoading } from './data';
 
@@ -53,12 +69,8 @@ const getCaptcha = async () => {
     loginForm.value.captchaId = data.data.captchaID;
   }
 };
-const verify = async () => {
-  const { data } = await issafety('0703ecf7d3');
-};
 onMounted(() => {
   getCaptcha();
-  verify();
 });
 
 const finish = async () => {
@@ -91,7 +103,7 @@ const finish = async () => {
     height: 100%;
 
     .form {
-      padding: 12px;
+      padding: 24px;
       min-width: 400px;
       width: 30%;
       .form-container {
