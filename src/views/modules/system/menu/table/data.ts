@@ -1,6 +1,6 @@
 import type { IQuery } from '@/api/config/types';
-import { menuList } from '@/api/modules/menu/menu';
-import type { SystemMenu } from '@/api/modules/menu/types';
+import { menuList } from '@/api/modules/system/menu/menu';
+import type { SystemMenu } from '@/api/modules/system/menu/types';
 import { convertToTree } from '@/utils/common/format';
 import type { Key } from 'ant-design-vue/es/_util/type';
 

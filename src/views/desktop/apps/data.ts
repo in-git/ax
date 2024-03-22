@@ -1,5 +1,5 @@
-import type { Routers } from '@/api/modules/user/types';
-import { getRouters } from '@/api/modules/user/user';
+import type { Routers } from '@/api/modules/system/user/types';
+import { getRouters } from '@/api/modules/system/user/user';
 import google from '@/assets/system/google.png';
 import { openWindow } from '@/global/config/window';
 import { systemComponents } from '@/initialization';

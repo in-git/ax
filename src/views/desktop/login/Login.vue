@@ -77,7 +77,7 @@
 </template>
 
 <script setup lang="ts">
-import { captcha, login } from '@/api/modules/user/user';
+import { captcha, login } from '@/api/modules/system/user/user';
 import usePageStore from '@/store/page';
 import useUserStore from '@/store/user';
 import { message } from 'ant-design-vue';

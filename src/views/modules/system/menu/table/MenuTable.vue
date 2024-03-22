@@ -79,3 +79,4 @@ const columns = menuColumns.map(e => {
   color: #ff7676;
 }
 </style>
+@/api/modules/system/menu/types

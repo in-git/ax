@@ -1,4 +1,5 @@
-import type { Routers } from '@/api/modules/user/types';
+import type { SystemMenu } from '@/api/modules/system/menu/types';
+import type { Routers } from '@/api/modules/system/user/types';
 
 export function bytesToSize(bytes: number): string {
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
