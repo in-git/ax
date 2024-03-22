@@ -1,26 +1,15 @@
+import type { SystemWindow } from '@/types/system';
 import { nanoid } from 'nanoid';
 
-interface Window {
-  title: string;
-  w?: number;
-  h?: number;
-  z?: number;
-  component: any;
-  id?: string;
-  show?: boolean;
-  /* Extra data */
-  data?: any;
-}
-
 /*    */
-export const windowList = ref<Window[]>([]);
+export const windowList = ref<SystemWindow[]>([]);
 
-export const openWindow = (config: Window) => {
+export const openWindow = (config: SystemWindow) => {
   const isExist = windowList.value.find(e => {
     return e.component === config.component;
   });
 
-  config.show = true;
+  config.hidden = false;
   config.z = windowList.value.length;
   if (!config.id) {
     config.id = nanoid();
@@ -29,7 +18,7 @@ export const openWindow = (config: Window) => {
   if (!isExist) {
     windowList.value.push(config);
   } else {
-    isExist.show = !isExist.show;
+    isExist.hidden = !isExist.hidden;
   }
 };
 
@@ -49,4 +38,31 @@ export const closeWindow = (id: string) => {
       return e;
     }
   });
+};
+export const currentWindow = ref<SystemWindow>();
+
+export const toTop = (id: string) => {
+  windowList.value.filter(e => {
+    e.z = 0;
+    if (e.id === id) {
+      e.z = 100;
+    }
+  });
+};
+export const setCurrentWindow = (id: string) => {
+  windowList.value.forEach(e => {
+    if (e.id === id) {
+      currentWindow.value = e;
+    }
+  });
+};
+export const setAttr = (id: string, key: string, value: any) => {
+  windowList.value.forEach(e => {
+    if (e.id === id) {
+      (currentWindow.value as any)[key] = value;
+    }
+  });
+};
+export const hiddenWindow = (id: string, flag = true) => {
+  setAttr(id, 'hidden', flag);
 };

@@ -3,7 +3,7 @@
     <template v-if="menuList.length > 0">
       <ul ref="appRef">
         <li
-          v-for="(item, key) in menuList"
+          v-for="item in menuList"
           :key="item.name"
           :class="{ selected: item.path === selected }"
           @click="select(item)"
@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Routers } from '@/api/modules/user/types';
+import type { Routers } from '@/api/modules/system/user/types';
 import logoPng from '@/assets/logo.png';
 import Loading from '@/components/loading/Loading.vue';
 import { useSortable } from '@vueuse/integrations/useSortable';

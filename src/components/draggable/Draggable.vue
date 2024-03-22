@@ -8,13 +8,16 @@
     :resizable="resizable"
     drag-handle=".drag-header"
     @dragstop="dragstop"
-    @mousedown="toTop"
+    @mousedown="moveTop"
   >
     <slot name="head">
       <div class="drag-header flex justify-between align-center">
-        <div>{{ title }}</div>
-        <div>
-          <div class="system-icon" @click="close">
+        <div class="px-12">{{ title }}</div>
+        <div class="flex">
+          <div class="system-icon minus" @mousedown.stop="" @click="hidden">
+            <MinusOutlined />
+          </div>
+          <div class="system-icon close" @click="close">
             <CloseOutlined />
           </div>
         </div>
@@ -27,10 +30,12 @@
 </template>
 
 <script setup lang="ts">
-import { windowList } from '@/global/config/window';
+import { hiddenWindow, setCurrentWindow, toTop } from '@/global/config/window';
+import { MinusOutlined } from '@ant-design/icons-vue';
 import VueDraggable from 'draggable-resizable-vue3';
 
 const emit = defineEmits(['close']);
+
 const props = withDefaults(
   defineProps<{
     w?: number;
@@ -47,21 +52,25 @@ const props = withDefaults(
   },
 );
 
-const toTop = () => {
-  windowList.value.filter(e => {
-    e.z = 0;
-    if (e.id === props.id) {
-      e.z = 100;
-    }
-  });
+const moveTop = () => {
+  if (props.id) {
+    setCurrentWindow(props.id);
+    toTop(props.id);
+  }
 };
 const close = () => {
   emit('close', props.id);
 };
+
 const x = ref(window.innerWidth / 2 - props.w / 2);
 const y = ref(window.innerHeight / 2 - props.h / 2);
 const maxHeight = window.innerHeight;
 
+const hidden = () => {
+  if (props.id) {
+    hiddenWindow(props.id);
+  }
+};
 const dragstop = () => {
   if (y.value < 0) {
     y.value = 0;
@@ -70,6 +79,10 @@ const dragstop = () => {
     y.value = maxHeight - 100;
   }
 };
+
+onMounted(() => {
+  if (props.id) setCurrentWindow(props.id);
+});
 </script>
 
 <style lang="scss" scoped>
@@ -81,7 +94,6 @@ $hh: 42px;
   overflow: hidden;
 }
 .drag-header {
-  padding: 0 12px;
   cursor: move;
   background: #f8f8f8;
   height: 40px !important;
@@ -92,10 +104,22 @@ $hh: 42px;
   line-height: initial;
   position: relative;
 }
-.system-icon {
-  color: #333;
+
+%icon {
+  width: 40px !important;
+  height: 39px;
+  border-radius: 0;
   &:hover {
-    color: #111;
+    background: #ddd;
   }
+}
+.close {
+  @extend %icon;
+  &:hover {
+    background-color: #f74545;
+  }
+}
+.minus {
+  @extend %icon;
 }
 </style>

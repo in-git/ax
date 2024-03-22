@@ -21,7 +21,7 @@
         :h="item.h"
         :z="item.z"
         :title="item.title"
-        :show="item.show"
+        v-show="!item.hidden"
         :id="item.id"
         @close="closeWindow(item.id || '')"
       >

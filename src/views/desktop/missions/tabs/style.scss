@@ -1,0 +1,27 @@
+.bottom-tabs {
+	flex: 1;
+	height: 100%;
+	ul {
+		li {
+			width: 48px;
+			height: 48px;
+			cursor: pointer;
+			border-bottom: 1px solid transparent;
+			&:hover {
+				background: white;
+			}
+			img {
+				width: 28px;
+				height: 28px;
+			}
+		}
+		li.active {
+			background: white;
+			border-left: 1px solid #ddd;
+			border-right: 1px solid #ddd;
+		}
+	}
+}
+.hidden {
+	border-bottom: 2px solid var(--primary) !important;
+}

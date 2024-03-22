@@ -11,3 +11,14 @@ interface Meta {
   icon: string;
   title: string;
 }
+export interface SystemWindow {
+  title: string;
+  w?: number;
+  h?: number;
+  z?: number;
+  component: any;
+  id?: string;
+  /* Extra data */
+  data?: any;
+  hidden: boolean;
+}

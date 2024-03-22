@@ -34,6 +34,7 @@ export const openApp = (item: Routers) => {
       openWindow({
         title: item.meta.title,
         component: e.component,
+        id: item.name,
       });
     }
   });

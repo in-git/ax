@@ -17,7 +17,7 @@ import Tabs from './tabs/Tabs.vue';
 <style lang="scss" scoped>
 .missions {
   height: 48px;
-  background: #f8f8f8;
+  background: #ddd;
   border-top: 1px solid #ddd;
   .window {
     width: 48px;

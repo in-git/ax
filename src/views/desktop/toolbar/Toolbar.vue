@@ -14,32 +14,17 @@
 </template>
 
 <script setup lang="ts">
-import { logout, profile } from '@/api/modules/system/user/user';
+import { profile } from '@/api/modules/system/user/user';
 import { openWindow } from '@/global/config/window';
-import useUserStore from '@/store/user';
 import PageSetting from '@/views/page/setting/PageSetting.vue';
 import { InfoCircleOutlined, SettingOutlined } from '@ant-design/icons-vue';
-import { Modal } from 'ant-design-vue';
 import Profile from './profile/Profile.vue';
 
-const popoverVisible = ref(false);
-const userProfile = ref();
 const getProfile = async () => {
   const { data } = await profile();
   console.log(data);
 };
-const logOff = async () => {
-  popoverVisible.value = false;
-  Modal.confirm({
-    title: 'warning',
-    async onOk() {
-      await logout();
-      const store = useUserStore();
-      store.$state.token = '';
-    },
-    centered: true,
-  });
-};
+
 onMounted(() => {
   getProfile();
 });
