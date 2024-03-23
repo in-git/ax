@@ -4,7 +4,7 @@
       <h3>菜单管理</h3>
       <div class="mt-12 flex align-center justify-between">
         <div>
-          <a-button>Create</a-button>
+          <a-button @click="edit">Create</a-button>
         </div>
         <div class="flex gc-4 align-center">
           <a-input-search
@@ -30,7 +30,12 @@
 
 <script setup lang="ts">
 import { statusOptions } from '@/global/options/system';
+import { editMenuForm } from '../table/curd';
 import { loadMenuData, menuConfig } from '../table/data';
+
+const edit = () => {
+  editMenuForm();
+};
 </script>
 
 <style lang="scss" scoped></style>
