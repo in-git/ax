@@ -31,8 +31,6 @@ export const clearWindow = () => {
 };
 
 export const closeWindow = (id: string) => {
-  console.log(id);
-
   windowList.value = windowList.value.filter(e => {
     if (e.id !== id) {
       return e;
@@ -49,6 +47,7 @@ export const toTop = (id: string) => {
     }
   });
 };
+
 export const setCurrentWindow = (id: string) => {
   windowList.value.forEach(e => {
     if (e.id === id) {
@@ -56,6 +55,7 @@ export const setCurrentWindow = (id: string) => {
     }
   });
 };
+
 export const setAttr = (id: string, key: string, value: any) => {
   windowList.value.forEach(e => {
     if (e.id === id) {
@@ -63,6 +63,7 @@ export const setAttr = (id: string, key: string, value: any) => {
     }
   });
 };
+
 export const hiddenWindow = (id: string, flag = true) => {
   setAttr(id, 'hidden', flag);
 };

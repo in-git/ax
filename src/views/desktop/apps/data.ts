@@ -4,6 +4,7 @@ import google from '@/assets/system/google.png';
 import { openWindow } from '@/global/config/window';
 import { systemComponents } from '@/initialization';
 import { flattenTree } from '@/utils/common/format';
+import { openLink } from '@/utils/common/utils';
 
 export const getUserRouters = async () => {
   const { data } = await getRouters();
@@ -29,6 +30,10 @@ export const getIconByName = (item: Routers) => {
 };
 
 export const openApp = (item: Routers) => {
+  if (item.meta.link) {
+    openLink(item.meta.link);
+    return;
+  }
   systemComponents.value.forEach(e => {
     if (e.path.includes(item.path)) {
       openWindow({

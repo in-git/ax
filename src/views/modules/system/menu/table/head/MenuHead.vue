@@ -23,7 +23,7 @@
           </a-tooltip>
 
           <a-tooltip title="Delete ">
-            <a-button @click="delMenu" danger :disabled="menuConfig.selectedKeys.length === 0">
+            <a-button @click="delMenu()" danger :disabled="menuConfig.selectedKeys.length === 0">
               <DeleteOutlined />
             </a-button>
           </a-tooltip>

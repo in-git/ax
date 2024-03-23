@@ -20,5 +20,5 @@ export interface SystemWindow {
   id?: string;
   /* Extra data */
   data?: any;
-  hidden: boolean;
+  hidden?: boolean;
 }

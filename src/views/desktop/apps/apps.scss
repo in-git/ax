@@ -1,6 +1,7 @@
 .apps {
 	background: white;
 	$app-width: 74px;
+	height: calc(100vh - 48px * 2);
 	ul {
 		display: grid;
 		grid-template-columns: repeat(2, $app-width);

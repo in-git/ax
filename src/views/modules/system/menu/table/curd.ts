@@ -29,13 +29,15 @@ export const delMenu = (id?: string) => {
     content: 'This may have an impact on the system',
     centered: true,
     async onOk() {
-      let targetIds: string[] = [];
+      let targetIds: string = '';
       if (id) {
-        targetIds = [id];
+        targetIds = id;
       } else {
-        targetIds = menuConfig.value.selectedKeys.map(e => `${e}`);
+        targetIds = `${menuConfig.value.selectedKeys[0]}`;
       }
       try {
+        console.log(targetIds, id);
+
         const { data } = await deleteMenu(targetIds);
         message.success(data.msg);
       } catch (error) {}

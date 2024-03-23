@@ -1,7 +1,7 @@
 <template>
-  <div class="apps flex-1 p-12">
+  <div class="apps flex-1 p-12" ref="apps">
     <template v-if="menuList.length > 0">
-      <ul ref="appRef">
+      <ul ref="appRef" :style="style">
         <li
           v-for="item in menuList"
           :key="item.name"
@@ -24,12 +24,17 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import logoPng from '@/assets/logo.png';
 import Loading from '@/components/loading/Loading.vue';
+import { useElementBounding } from '@vueuse/core';
 import { useSortable } from '@vueuse/integrations/useSortable';
+import type { CSSProperties } from 'vue';
 import { getIconByName, getUserRouters, openApp } from './data';
+
 const selected = ref<string>('');
 const appRef = ref();
-
 const menuList = ref<Routers[]>([]);
+const apps = ref();
+const maxHeight = ref(0);
+
 onMounted(async () => {
   const data = await getUserRouters();
   menuList.value = data;
@@ -37,11 +42,20 @@ onMounted(async () => {
     useSortable(appRef, menuList, {
       animation: 200,
     });
+    const { height } = useElementBounding(apps);
+    maxHeight.value = height.value;
   });
 });
 const select = (item: Routers) => {
   selected.value = item.path;
 };
+
+const style = computed((): CSSProperties => {
+  const cols = Math.floor(74 / menuList.value.length);
+  return {
+    gridTemplateColumns: `repeat(${cols}, 74px)`,
+  };
+});
 </script>
 
 <style lang="scss" scoped>

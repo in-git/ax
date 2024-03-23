@@ -1,0 +1,29 @@
+.menu-form {
+	height: 100%;
+	overflow-y: auto;
+	.page-header {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+		background-color: white;
+	}
+}
+.footer {
+	position: sticky;
+	bottom: 0;
+	height: 48px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f8f8f8;
+	margin-top: 24px;
+	gap: 12px;
+	padding: 0 12px;
+}
+.root {
+	height: 100px;
+	border: 1px dashed #ddd;
+}
+::v-deep(.ant-card) {
+	box-shadow: none !important;
+}

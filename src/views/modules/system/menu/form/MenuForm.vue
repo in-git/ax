@@ -13,6 +13,7 @@
           span: 16,
         }"
         label-align="left"
+        @finish="submit"
       >
         <a-card>
           <a-row :gutter="12" class="px-12">
@@ -96,8 +97,9 @@ import { menuConfig } from '../table/data';
 import { editMenu, menuForm } from './data';
 import ParamVue from './Params.vue';
 
+import { createMenu, updateMenu } from '@/api/modules/system/menu/menu';
 import { HomeOutlined } from '@ant-design/icons-vue';
-import { Form } from 'ant-design-vue';
+import { Form, message } from 'ant-design-vue';
 
 const mode = ref(false);
 const useForm = Form.useForm;
@@ -113,6 +115,19 @@ const select = (checked: Key[]) => {
   menuForm.value.parentId = `${checked[0] || '1'}`;
 };
 
+const submit = async () => {
+  let msg = '';
+  /* update */
+  if (menuForm.value.menuId) {
+    const { data } = await updateMenu(menuForm.value);
+    msg = data.msg;
+  } else {
+    const { data } = await createMenu(menuForm.value);
+    msg = data.msg;
+  }
+  message.success(msg);
+  editMenu.value = !editMenu.value;
+};
 watch(
   menuForm,
   () => {
@@ -126,33 +141,5 @@ watch(
 </script>
 
 <style lang="scss" scoped>
-.menu-form {
-  height: 100%;
-  overflow-y: auto;
-  .page-header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background-color: white;
-  }
-}
-.footer {
-  position: sticky;
-  bottom: 0;
-  height: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f8f8f8;
-  margin-top: 24px;
-  gap: 12px;
-  padding: 0 12px;
-}
-.root {
-  height: 100px;
-  border: 1px dashed #ddd;
-}
-::v-deep(.ant-card) {
-  box-shadow: none !important;
-}
+@import './style';
 </style>

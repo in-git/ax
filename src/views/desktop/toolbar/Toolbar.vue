@@ -32,6 +32,7 @@ const setting = () => {
   openWindow({
     title: 'System setting',
     component: markRaw(PageSetting),
+
     id: 'system_setting',
   });
 };

@@ -9,8 +9,8 @@
       sticky
       :row-selection="{
         selectedRowKeys: menuConfig.selectedKeys,
-        onChange,
       }"
+      :customRow="customRow"
       rowKey="menuId"
     >
       <template #bodyCell="{ column, record }">
@@ -39,7 +39,6 @@
 import type { SystemMenu } from '@/api/modules/system/menu/types';
 import { CheckOutlined, type EditOutlined } from '@ant-design/icons-vue';
 import type { TablePaginationConfig } from 'ant-design-vue';
-import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { menuColumns } from './column';
 import { delMenu, editMenuForm } from './curd';
@@ -65,10 +64,13 @@ const pageChange = (
   }
   loadMenuData();
 };
-const onChange = (keys: Key[]) => {
-  menuConfig.value.selectedKeys = keys;
+const customRow = (record: SystemMenu) => {
+  return {
+    onClick() {
+      menuConfig.value.selectedKeys = [record.menuId];
+    },
+  };
 };
-
 const columns = menuColumns.map(e => {
   e.ellipsis = true;
   e.key = `${e.dataIndex}`;
