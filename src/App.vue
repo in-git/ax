@@ -38,11 +38,9 @@ import { ConfigProvider } from 'ant-design-vue';
 import en_US from 'ant-design-vue/es/locale/en_US';
 import axios from 'axios';
 import { loadSystemComponents, loadSystemIcons } from './initialization';
+import useDeveloperStore from './store/developer';
 import usePageStore from './store/page';
 import Desktop from './views/desktop/Desktop.vue';
-
-import useDeveloperStore from './store/developer';
-
 const devStore = useDeveloperStore();
 axios.defaults.baseURL = devStore.$state.baseURL;
 

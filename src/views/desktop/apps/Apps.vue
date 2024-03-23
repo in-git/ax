@@ -19,6 +19,7 @@
       </ul>
     </template>
     <Loading v-else></Loading>
+    <NoticeVue></NoticeVue>
   </div>
 </template>
 
@@ -30,6 +31,7 @@ import { useElementBounding } from '@vueuse/core';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import type { CSSProperties } from 'vue';
 import { getIconByName, getUserRouters, openApp } from './data';
+import NoticeVue from './notice/Notice.vue';
 
 const selected = ref<string>('');
 const appRef = ref();

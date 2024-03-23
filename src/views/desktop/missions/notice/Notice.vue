@@ -1,6 +1,6 @@
 <template>
   <div class="notice flex gc-4">
-    <div class="system-icon">
+    <div class="system-icon" @click="showNotice = true">
       <BellOutlined />
     </div>
   </div>
@@ -8,6 +8,7 @@
 
 <script setup lang="ts">
 import { BellOutlined } from '@ant-design/icons-vue';
+import { showNotice } from '../../apps/notice/data';
 </script>
 
 <style lang="scss" scoped>

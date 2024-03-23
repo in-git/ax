@@ -1,6 +1,11 @@
 <template>
   <div class="top-toolbar system-head px-12">
-    <div>Win</div>
+    <div>
+      <div class="flex align-center gc-4">
+        <img :src="logo" width="28" style="object-fit: contain" />
+        Win
+      </div>
+    </div>
     <div class="flex gc-4">
       <div class="system-icon" @click="setting">
         <SettingOutlined />
@@ -15,6 +20,7 @@
 
 <script setup lang="ts">
 import { profile } from '@/api/modules/system/user/user';
+import logo from '@/assets/logo.png';
 import { openWindow } from '@/global/config/window';
 import PageSetting from '@/views/page/setting/PageSetting.vue';
 import { InfoCircleOutlined, SettingOutlined } from '@ant-design/icons-vue';
