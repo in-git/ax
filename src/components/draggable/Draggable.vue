@@ -121,5 +121,8 @@ $hh: 42px;
 }
 .minus {
   @extend %icon;
+  &:hover {
+    background-color: #666;
+  }
 }
 </style>

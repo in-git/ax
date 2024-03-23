@@ -9,21 +9,12 @@
           @click="select(item)"
           @dblclick="openApp(item)"
         >
-          <a-dropdown :trigger="['contextmenu']">
-            <div>
-              <div class="logo">
-                <img :src="getIconByName(item) || logoPng" :draggable="false" width="48" />
-              </div>
-              <div class="title">{{ item.meta.title }}</div>
+          <div>
+            <div class="logo">
+              <img :src="getIconByName(item) || logoPng" :draggable="false" width="48" />
             </div>
-            <template #overlay>
-              <a-menu>
-                <a-menu-item key="1">1st</a-menu-item>
-                <a-menu-item key="2">2nd</a-menu-item>
-                <a-menu-item key="3">3rd menu item</a-menu-item>
-              </a-menu>
-            </template>
-          </a-dropdown>
+            <div class="title">{{ item.meta.title }}</div>
+          </div>
         </li>
       </ul>
     </template>

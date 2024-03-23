@@ -62,7 +62,7 @@ export interface UserProfileData {
   delFlag: string;
   loginIp: string;
   loginDate: string;
-  dept: Dept;
+  dept?: Dept;
   roles: Role[];
   roleIds?: any;
   postIds?: any;

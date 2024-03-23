@@ -28,3 +28,13 @@ export const visibleOptions = [
     value: '1',
   },
 ];
+export const sexOptions = [
+  {
+    label: 'Boy',
+    value: '0',
+  },
+  {
+    label: 'Girl',
+    value: '1',
+  },
+];

@@ -23,8 +23,8 @@ import type { SystemWindow } from '@/types/system';
 import { useSortable } from '@vueuse/integrations/useSortable';
 
 const tabRef = ref();
-const getIcon = (name: string) => {
-  return new URL(`../../../../assets/system/${name.toLocaleLowerCase()}.png`, import.meta.url).href;
+const getIcon = (id: string) => {
+  return new URL(`../../../../assets/system/${id.toLocaleLowerCase()}.png`, import.meta.url).href;
 };
 
 const selectItem = (item: SystemWindow) => {
