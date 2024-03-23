@@ -2,7 +2,7 @@ import type { SystemMenu } from '@/api/modules/system/menu/types';
 
 let object: SystemMenu = {
   createTime: '',
-  menuId: 0,
+  menuId: '0',
   menuName: '',
   parentId: '0',
   orderNum: 0,

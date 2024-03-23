@@ -34,7 +34,6 @@ export const loadMenuData = async () => {
   const { data } = await menuList(menuConfig.value.query);
   if (data.data) {
     menuConfig.value.data = convertToTree(data.data);
-    console.log(menuConfig.value.data);
   }
   menuConfig.value.loading = false;
 };

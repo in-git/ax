@@ -2,6 +2,7 @@
   <div class="menu-table">
     <MenuHead></MenuHead>
     <a-table
+      class="px-12"
       :columns="columns"
       :dataSource="menuConfig.data"
       :loading="menuConfig.loading"
@@ -9,6 +10,7 @@
       sticky
       :row-selection="{
         selectedRowKeys: menuConfig.selectedKeys,
+        onChange,
       }"
       :customRow="customRow"
       rowKey="menuId"
@@ -39,6 +41,7 @@
 import type { SystemMenu } from '@/api/modules/system/menu/types';
 import { CheckOutlined, type EditOutlined } from '@ant-design/icons-vue';
 import type { TablePaginationConfig } from 'ant-design-vue';
+import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { menuColumns } from './column';
 import { delMenu, editMenuForm } from './curd';
@@ -63,6 +66,11 @@ const pageChange = (
     menuConfig.value.query.orderByColumn = `${sorter.columnKey}`;
   }
   loadMenuData();
+};
+
+const onChange = (keys: Key[]) => {
+  const lastValue = keys[keys.length - 1];
+  if (lastValue) menuConfig.value.selectedKeys = [lastValue];
 };
 const customRow = (record: SystemMenu) => {
   return {

@@ -1,7 +1,7 @@
 import { deleteMenu, getMenu } from '@/api/modules/system/menu/menu';
 import { message, Modal } from 'ant-design-vue';
 import { editMenu, menuForm, resetMenuForm } from '../form/data';
-import { menuConfig } from './data';
+import { loadMenuData, menuConfig } from './data';
 
 export const editMenuForm = async (id?: string) => {
   let menuId = '';
@@ -40,6 +40,7 @@ export const delMenu = (id?: string) => {
 
         const { data } = await deleteMenu(targetIds);
         message.success(data.msg);
+        loadMenuData();
       } catch (error) {}
     },
   });

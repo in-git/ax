@@ -4,7 +4,7 @@ export interface SystemMenu {
   updateBy?: any;
   updateTime?: any;
   remark?: any;
-  menuId: number;
+  menuId: string;
   menuName: string;
   parentName?: any;
   parentId: string;

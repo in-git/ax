@@ -24,7 +24,7 @@ export const flattenTree = (tree: Routers[], flattened: Routers[] = []): Routers
 };
 
 export const convertToTree = (data: SystemMenu[]): SystemMenu[] => {
-  const map = new Map<number, SystemMenu>();
+  const map = new Map<string, SystemMenu>();
   const result: SystemMenu[] = [];
 
   data.forEach(menu => {

@@ -2,6 +2,11 @@
 	background: white;
 	$app-width: 74px;
 	height: calc(100vh - 48px * 2);
+	background: url("../assets/background.png");
+	background: url("../assets/taylor.webp");
+	background-size: cover;
+	background-position: center;
+
 	ul {
 		display: grid;
 		grid-template-columns: repeat(2, $app-width);
@@ -22,6 +27,7 @@
 		cursor: pointer;
 		user-select: none;
 		border-radius: 2px;
+
 		&:hover {
 			@extend %selected;
 		}
@@ -36,8 +42,10 @@
 		}
 		.title {
 			line-height: 16px;
+			color: rgb(250, 250, 250);
 			overflow: hidden;
-			text-shadow: 0 0 5px #80808094;
+			text-shadow: 0 0 2px #494949;
+			mix-blend-mode: difference;
 		}
 	}
 	li.selected {

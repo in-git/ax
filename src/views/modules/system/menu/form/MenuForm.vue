@@ -26,7 +26,7 @@
                 <a-input-number class="w-100" v-model:value="menuForm.orderNum"></a-input-number>
               </a-form-item>
 
-              <a-form-item label="Menu type" name="menuName" required>
+              <a-form-item label="Menu type" name="menuType" required>
                 <a-radio-group v-model:value="menuForm.menuType" buttonStyle="solid">
                   <a-radio-button value="C">Control</a-radio-button>
                   <a-radio-button value="M">Menu</a-radio-button>
@@ -93,7 +93,7 @@
 <script setup lang="ts">
 import { statusOptions, visibleOptions } from '@/global/options/system';
 import type { Key } from 'ant-design-vue/es/vc-tree/interface';
-import { menuConfig } from '../table/data';
+import { loadMenuData, menuConfig } from '../table/data';
 import { editMenu, menuForm } from './data';
 import ParamVue from './Params.vue';
 
@@ -127,6 +127,7 @@ const submit = async () => {
   }
   message.success(msg);
   editMenu.value = !editMenu.value;
+  loadMenuData();
 };
 watch(
   menuForm,
@@ -136,6 +137,7 @@ watch(
   },
   {
     deep: true,
+    immediate: true,
   },
 );
 </script>

@@ -1,12 +1,8 @@
-import { windowList } from '@/global/config/window';
 import useUserStore from '@/store/user';
 import { message } from 'ant-design-vue';
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
-
-if (import.meta.env.VITE_BASEURL) {
-  axios.defaults.baseURL = import.meta.env.VITE_BASEURL;
-}
+import { userLogout } from '../modules/system/user/utils';
 
 export interface HttpResponse<T = unknown> {
   status: number;
@@ -33,14 +29,12 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (response: AxiosResponse) => {
     const res = response.data;
-    const userStore = useUserStore();
     if (res.code === 500) {
       message.warn(res.msg || 'System Error');
       throw new Error(res.msg || 'System Error');
     }
     if (res.code === 401) {
-      userStore.$state.token = '';
-      windowList.value = [];
+      userLogout();
       message.warn(res.msg || 'Permission Denied');
     }
     return response;

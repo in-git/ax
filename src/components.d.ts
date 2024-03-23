@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AAutoComplete: typeof import('ant-design-vue/es')['AutoComplete']
     AAvatar: typeof import('ant-design-vue/es')['Avatar']
     ABreadcrumb: typeof import('ant-design-vue/es')['Breadcrumb']
     ABreadcrumbItem: typeof import('ant-design-vue/es')['BreadcrumbItem']
@@ -51,6 +52,7 @@ declare module 'vue' {
     ATree: typeof import('ant-design-vue/es')['Tree']
     CaretDownOutlined: typeof import('@ant-design/icons-vue')['CaretDownOutlined']
     CloseOutlined: typeof import('@ant-design/icons-vue')['CloseOutlined']
+    Contextmenu: typeof import('./components/contextmenu/Contextmenu.vue')['default']
     DownOutlined: typeof import('@ant-design/icons-vue')['DownOutlined']
     Draggable: typeof import('./components/draggable/Draggable.vue')['default']
     EditOutlined: typeof import('@ant-design/icons-vue')['EditOutlined']
