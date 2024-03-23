@@ -86,17 +86,18 @@ $hh: 42px;
         li {
           line-height: $hh;
           padding: 0 12px;
-          border-radius: var(--radius);
           cursor: pointer;
           user-select: none;
           margin-bottom: 8px;
+          font-size: 14px;
+          border-left: 2px solid transparent;
           &:hover {
             background: #f8f8f8;
           }
         }
         li.active {
-          background: var(--primary);
-          color: white;
+          color: var(--primary);
+          border-left: 2px solid var(--primary);
         }
       }
       .icon {
