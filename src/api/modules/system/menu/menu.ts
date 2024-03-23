@@ -11,3 +11,7 @@ export const menuList = (query: IQuery) => {
 export const getMenu = (id: string) => {
   return axios.get<Response<SystemMenu>>(`system/menu/${id}`);
 };
+
+export const deleteMenu = (id: string[]) => {
+  return axios.delete<Response>(`system/menu/${id.join(',')}`);
+};

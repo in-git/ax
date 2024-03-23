@@ -3,7 +3,7 @@
     <div class="page-header">
       <a-page-header title="Go back" sub-title="Edit form" @back="back" />
     </div>
-    <div class="p-12">
+    <div>
       <a-form
         :model="menuForm"
         :label-col="{
@@ -15,7 +15,7 @@
         label-align="left"
       >
         <a-card>
-          <a-row :gutter="12">
+          <a-row :gutter="12" class="px-12">
             <a-col :span="14">
               <a-form-item label="Menu name" name="menuName" required>
                 <a-input v-model:value="menuForm.menuName"></a-input>
@@ -51,12 +51,10 @@
             </a-col>
 
             <a-col :span="10">
-              <a-form-item label="Parent" name="parentId" required>
+              <a-form-item label="Parent" name="parentId">
                 <div>
                   <a-switch
-                    v-model:checked="menuForm.parentId"
-                    :un-checked-value="'0'"
-                    :checked-value="''"
+                    v-model:checked="mode"
                     checked-children="Root"
                     size="default"
                     un-checked-children="Select"
@@ -65,20 +63,26 @@
               </a-form-item>
               <a-card :body-style="{ maxHeight: '450px', overflow: 'auto' }" title="Select parent">
                 <a-tree
+                  v-if="!mode"
                   :field-names="{
                     title: 'menuName',
                     key: 'menuId',
                   }"
+                  v-model:selected-keys="treeSelected"
                   @select="select"
                   :tree-data="treeData"
                 ></a-tree>
+                <div v-else class="flex flex-s root flex-col">
+                  <div class="text-24"><HomeOutlined /></div>
+                  <div>Root</div>
+                </div>
               </a-card>
             </a-col>
           </a-row>
         </a-card>
         <div class="footer">
-          <a-button danger>Clear</a-button>
-          <a-button type="primary">Submit</a-button>
+          <a-button danger @click="resetFields">Clear</a-button>
+          <a-button type="primary" htmlType="submit">Submit</a-button>
         </div>
       </a-form>
     </div>
@@ -92,14 +96,33 @@ import { menuConfig } from '../table/data';
 import { editMenu, menuForm } from './data';
 import ParamVue from './Params.vue';
 
+import { HomeOutlined } from '@ant-design/icons-vue';
+import { Form } from 'ant-design-vue';
+
+const mode = ref(false);
+const useForm = Form.useForm;
+const { resetFields } = useForm(menuForm);
 const treeData: any = menuConfig.value.data;
+const treeSelected = ref<string[]>([]);
+
 const back = () => {
   editMenu.value = !editMenu.value;
 };
+
 const select = (checked: Key[]) => {
-  console.log(checked);
   menuForm.value.parentId = `${checked[0] || '1'}`;
 };
+
+watch(
+  menuForm,
+  () => {
+    treeSelected.value = [menuForm.value.parentId];
+    mode.value = menuForm.value.parentId === '0';
+  },
+  {
+    deep: true,
+  },
+);
 </script>
 
 <style lang="scss" scoped>
@@ -120,10 +143,14 @@ const select = (checked: Key[]) => {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: #f8f8f8;
   margin-top: 24px;
   gap: 12px;
   padding: 0 12px;
+}
+.root {
+  height: 100px;
+  border: 1px dashed #ddd;
 }
 ::v-deep(.ant-card) {
   box-shadow: none !important;

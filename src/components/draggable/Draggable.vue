@@ -15,10 +15,10 @@
         <div class="px-12">{{ title }}</div>
         <div class="flex">
           <div class="system-icon minus" @mousedown.stop="" @click="hidden">
-            <MinusOutlined />
+            <MinusOutlined class="text-white" />
           </div>
           <div class="system-icon close" @click="close">
-            <CloseOutlined />
+            <CloseOutlined class="text-white" />
           </div>
         </div>
       </div>
@@ -94,7 +94,8 @@ $hh: 42px;
 }
 .drag-header {
   cursor: move;
-  background: #f8f8f8;
+  background: #222222;
+  color: white;
   height: 40px;
   border-bottom: 1px solid #ddd;
 }

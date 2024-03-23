@@ -1,3 +1,4 @@
+import { windowList } from '@/global/config/window';
 import useUserStore from '@/store/user';
 import { message } from 'ant-design-vue';
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -39,13 +40,12 @@ axios.interceptors.response.use(
     }
     if (res.code === 401) {
       userStore.$state.token = '';
+      windowList.value = [];
       message.warn(res.msg || 'Permission Denied');
     }
     return response;
   },
   error => {
-    console.log(error);
-
     if (error.toString().includes('Network Error')) {
       message.warn('Network Error');
     } else {

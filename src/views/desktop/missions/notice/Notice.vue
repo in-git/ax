@@ -13,6 +13,8 @@ import { BellOutlined } from '@ant-design/icons-vue';
 <style lang="scss" scoped>
 .system-icon {
   width: 48px;
+  color: white;
   height: 48px;
+  border-radius: 0;
 }
 </style>
