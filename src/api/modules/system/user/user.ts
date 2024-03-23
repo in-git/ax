@@ -21,3 +21,18 @@ export const getRouters = () => {
 export const profile = () => {
   return axios.get<UserProfileRes>('/system/user/profile');
 };
+
+interface UpdateProfileData {
+  nickName: string;
+  phonenumber: string;
+  email: string;
+  sex: string;
+}
+export const updateProfile = (data: UpdateProfileData) => {
+  return axios.put<Response>(`/system/user/profile`, data);
+};
+export const updatePassword = (newPassword: string, oldPassword: string) => {
+  return axios.put<Response>(
+    `/system/user/profile/updatePwd?oldPassword=${oldPassword}&newPassword=${newPassword}`,
+  );
+};
