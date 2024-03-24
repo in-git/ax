@@ -2,28 +2,32 @@ import type { TableColumnProps } from 'ant-design-vue';
 
 const columns: TableColumnProps[] = [
   {
-    title: 'userName',
+    title: 'Username',
     dataIndex: 'userName',
   },
   {
-    title: 'nickName',
+    title: 'Nickname',
     dataIndex: 'nickName',
   },
   {
-    title: 'email',
+    title: 'Email',
     dataIndex: 'email',
   },
   {
-    title: 'loginIp',
+    title: 'Login ip',
     dataIndex: 'loginIp',
   },
   {
-    title: 'phonenumber',
+    title: 'Phone',
     dataIndex: 'phonenumber',
   },
   {
     title: 'remark',
     dataIndex: 'remark',
+  },
+  {
+    title: 'Operation',
+    dataIndex: 'operation',
   },
 ];
 

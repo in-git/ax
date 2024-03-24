@@ -15,9 +15,11 @@ export const getMenu = (id: string) => {
 export const deleteMenu = (id: string) => {
   return axios.delete<Response>(`system/menu/${id}`);
 };
+
 export const updateMenu = (data: SystemMenu) => {
   return axios.put<Response>(`system/menu`, data);
 };
+
 export const createMenu = (data: SystemMenu) => {
   return axios.post<Response>(`system/menu`, data);
 };

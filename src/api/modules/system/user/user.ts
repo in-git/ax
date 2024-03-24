@@ -52,3 +52,11 @@ export const userList = (query: IQuery) => {
     params: query,
   });
 };
+
+export const deleteUsers = (ids: number[]) => {
+  return axios.delete<Response>(`system/user/${ids.join(',')}`);
+};
+
+export const exportExcel = (data: IQuery) => {
+  return axios.post<Response>(`system/user/export`, data);
+};
