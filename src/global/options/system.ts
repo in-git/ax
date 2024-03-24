@@ -48,3 +48,15 @@ export const successStatus = [
     value: '1',
   },
 ];
+export const setOptions = (v1: string, v2: string) => {
+  return [
+    {
+      label: v1,
+      value: '0',
+    },
+    {
+      label: v2,
+      value: '1',
+    },
+  ];
+};

@@ -7,22 +7,29 @@ interface UserConfig {
   loading: boolean;
   selectedKeys: number[];
 }
-
+interface UserQuery {
+  userName: string;
+  phonenumber: string;
+}
 export const userConfig = ref<UserConfig>({
   data: [],
   loading: false,
   selectedKeys: [],
 });
 
-export const userQuery = ref<IQuery>({
+export const userQuery = ref<IQuery<UserQuery>>({
   pageNum: 1,
   pageSize: 20,
   total: 0,
-  orderByColumn: '',
+  status: '',
+  userName: '',
+  phonenumber: '',
 });
 
 export const loadUserData = async () => {
+  userConfig.value.loading = true;
   const { data } = await userList(userQuery.value);
   userConfig.value.data = data.rows;
   userQuery.value.total = data.total;
+  userConfig.value.loading = false;
 };
