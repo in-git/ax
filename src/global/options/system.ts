@@ -38,3 +38,13 @@ export const sexOptions = [
     value: '1',
   },
 ];
+export const successStatus = [
+  {
+    label: 'Success',
+    value: '0',
+  },
+  {
+    label: 'Error',
+    value: '1',
+  },
+];

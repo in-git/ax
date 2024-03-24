@@ -27,7 +27,7 @@ export type IQuery<T = Record<string, any> | undefined> = {
   total?: number;
 } & T;
 /* 带分页数据列表的返回 */
-export interface ITableResponse<T> {
+export interface TableResponse<T> {
   total: number;
   rows: T[];
   code: number;

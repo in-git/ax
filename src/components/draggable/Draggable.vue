@@ -101,7 +101,6 @@ $hh: 42px;
 }
 .drag-content {
   height: calc(100% - 40px);
-  line-height: initial;
   position: relative;
 }
 

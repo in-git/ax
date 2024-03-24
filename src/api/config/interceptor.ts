@@ -1,5 +1,5 @@
 import useUserStore from '@/store/user';
-import { message } from 'ant-design-vue';
+import { message, Modal } from 'ant-design-vue';
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
 import { userLogout } from '../modules/system/user/utils';
@@ -34,12 +34,20 @@ axios.interceptors.response.use(
       throw new Error(res.msg || 'System Error');
     }
     if (res.code === 401) {
+      //
       userLogout();
-      message.warn(res.msg || 'Permission Denied');
     }
     return response;
   },
   error => {
+    Modal.confirm({
+      title: 'Log out',
+      content: 'Login expired',
+      onOk() {
+        userLogout();
+        message.warn('Permission Denied');
+      },
+    });
     if (error.toString().includes('Network Error')) {
       message.warn('Network Error');
     } else {

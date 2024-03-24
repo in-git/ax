@@ -14,9 +14,7 @@
               <div>
                 <img :src="serverPng" width="48" />
               </div>
-              <div class="url">
-                {{ item.value }}
-              </div>
+
               <div class="text-14">
                 {{ item.label }}
               </div>
@@ -31,6 +29,9 @@
                     <span class="text-12 text-999">未连接</span>
                   </template>
                 </a-badge>
+              </div>
+              <div class="url">
+                {{ item.value }}
               </div>
               <a-divider class="my-6"></a-divider>
               <div>
