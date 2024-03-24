@@ -1,4 +1,4 @@
-import type { Response } from '@/api/config/types';
+import type { IQuery, Response, TableResponse } from '@/api/config/types';
 import axios from 'axios';
 import type {
   CaptchaResponse,
@@ -6,6 +6,7 @@ import type {
   LoginResponse,
   Routers,
   UserDept,
+  UserProfileData,
   UserProfileRes,
 } from './types';
 
@@ -44,5 +45,10 @@ export const updatePassword = (newPassword: string, oldPassword: string) => {
   );
 };
 export const deptTree = () => {
-  return axios.get<Response<UserDept>>(`system/user/deptTree`);
+  return axios.get<Response<UserDept[]>>(`system/user/deptTree`);
+};
+export const userList = (query: IQuery) => {
+  return axios.get<TableResponse<UserProfileData>>(`system/user/list`, {
+    params: query,
+  });
 };

@@ -49,7 +49,7 @@ export interface UserProfileData {
   updateBy?: any;
   updateTime?: any;
   remark: string;
-  userId: number;
+  userId: string;
   deptId: number;
   userName: string;
   nickName: string;
