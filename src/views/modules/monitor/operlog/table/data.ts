@@ -12,6 +12,7 @@ export const logQuery = ref<IQuery<logQuery>>({
   pageSize: 25,
   businessType: '',
   status: '',
+  total: 0,
 });
 interface OperLogConf {
   data: Operlog[];
@@ -28,4 +29,5 @@ export const getLogs = async () => {
   const { data } = await listOperLog(logQuery.value);
   operLogConf.value.data = data.rows;
   operLogConf.value.loading = false;
+  logQuery.value.total = data.total;
 };

@@ -8,13 +8,13 @@ import App from './App.vue';
 import './api/config/interceptor';
 import directive from './directive';
 import './mock/mock';
-import router from './router';
+// import router from './router';
 import './style/index.scss';
 
 const app = createApp(App);
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
-app.use(router);
+// app.use(router);
 app.use(Antd);
 app.use(pinia);
 app.use(directive);

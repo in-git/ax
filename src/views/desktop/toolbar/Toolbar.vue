@@ -19,21 +19,20 @@
 </template>
 
 <script setup lang="ts">
-import { profile } from '@/api/modules/system/user/user';
 import logo from '@/assets/logo.png';
 import { openWindow } from '@/global/config/window';
 import PageSetting from '@/views/page/setting/PageSetting.vue';
 import { InfoCircleOutlined, SettingOutlined } from '@ant-design/icons-vue';
 import Profile from './profile/Profile.vue';
 
-const getProfile = async () => {
-  const { data } = await profile();
-  console.log(data);
-};
+// const getProfile = async () => {
+//   const { data } = await profile();
+//   console.log(data);
+// };
 
-onMounted(() => {
-  getProfile();
-});
+// onMounted(() => {
+//   getProfile();
+// });
 const setting = () => {
   openWindow({
     title: 'System setting',

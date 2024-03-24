@@ -1,7 +1,7 @@
 <template>
-  <div class="operlog-table h-100">
+  <div class="operlog-table h-100 flex flex-col px-8">
     <OperlogHead />
-    <div class="data p-8">
+    <div class="data p-8 flex-1">
       <template v-if="!operLogConf.loading">
         <ul v-if="operLogConf.data.length > 0">
           <li
@@ -49,6 +49,14 @@
 
       <Loading v-else class="w-100 h-100" />
     </div>
+    <div class="footer">
+      <a-pagination
+        @change="change"
+        v-model:current="logQuery.pageNum"
+        :total="logQuery.total"
+        show-less-items
+      />
+    </div>
   </div>
 </template>
 
@@ -57,11 +65,15 @@ import type { Operlog } from '@/api/modules/monitor/operlog/types';
 import Loading from '@/components/loading/Loading.vue';
 import logError from '../../assets/log-error.png';
 import logSuccess from '../../assets/log-success.png';
-import { getLogs, operLogConf } from './data';
+import { getLogs, logQuery, operLogConf } from './data';
 import OperlogHead from './head/OperlogHead.vue';
-
 const current = ref<Operlog>();
 
+const change = (page: number, pageSize: number) => {
+  logQuery.value.pageNum = page;
+  logQuery.value.pageSize = pageSize;
+  getLogs();
+};
 onMounted(async () => {
   await getLogs();
 });
@@ -85,7 +97,6 @@ const getStatus = (status: string) => {
 .operlog-table {
   $width: 180px;
   .data {
-    height: calc(100% - 80px);
     background: #f0f6f8;
     overflow-y: auto;
     ul {
@@ -118,5 +129,11 @@ const getStatus = (status: string) => {
       text-shadow: 0 0 1px #00000056;
     }
   }
+}
+.footer {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #ddd;
 }
 </style>

@@ -1,6 +1,13 @@
 import type { Response } from '@/api/config/types';
 import axios from 'axios';
-import type { CaptchaResponse, LoginParams, LoginResponse, Routers, UserProfileRes } from './types';
+import type {
+  CaptchaResponse,
+  LoginParams,
+  LoginResponse,
+  Routers,
+  UserDept,
+  UserProfileRes,
+} from './types';
 
 export const login = (data: LoginParams) => {
   return axios.post<LoginResponse>('/login', data);
@@ -35,4 +42,7 @@ export const updatePassword = (newPassword: string, oldPassword: string) => {
   return axios.put<Response>(
     `/system/user/profile/updatePwd?oldPassword=${oldPassword}&newPassword=${newPassword}`,
   );
+};
+export const deptTree = () => {
+  return axios.get<Response<UserDept>>(`system/user/deptTree`);
 };

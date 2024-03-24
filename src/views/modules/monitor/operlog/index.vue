@@ -1,5 +1,5 @@
 <template>
-  <div class="system-module p-8">
+  <div class="system-module">
     <OperlogTable />
   </div>
 </template>

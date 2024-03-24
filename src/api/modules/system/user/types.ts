@@ -89,3 +89,9 @@ export interface Dept {
   parentName?: any;
   children: any[];
 }
+
+export interface UserDept {
+  id: number;
+  label: string;
+  children: UserDept[];
+}

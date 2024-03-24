@@ -1,5 +1,5 @@
 <template>
-  <div class="test"></div>
+  <div class="flex-1"></div>
 </template>
 
 <script setup lang="ts"></script>

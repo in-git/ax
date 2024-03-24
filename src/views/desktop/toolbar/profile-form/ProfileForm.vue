@@ -109,7 +109,6 @@ const resetPassword = async () => {
     passwordForm.value.newPassword,
     passwordForm.value.oldPassword,
   );
-  console.log(data);
 };
 </script>
 

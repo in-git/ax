@@ -1,6 +1,6 @@
 <template>
-  <div class="operlog-head">
-    <h3 class="text-16 mb-24">操作日志</h3>
+  <div class="operlog-head pt-8">
+    <h3 class="text-16 mb-12">操作日志</h3>
     <div class="flex justify-between align-center">
       <a-flex :gap="8">
         <a-select
@@ -15,9 +15,11 @@
         <a-range-picker allowClear style="width: 240px" />
         <a-button type="primary" :loading="operLogConf.loading" @click="getLogs">Search</a-button>
       </a-flex>
-      <a-popconfirm title="Will be clear all logs" @confirm="clear" placement="bottomLeft">
-        <a-button danger>Clear</a-button>
-      </a-popconfirm>
+      <div class="flex gc-4">
+        <a-popconfirm title="Will be clear all logs" @confirm="clear" placement="bottomRight">
+          <a-button danger>Clear</a-button>
+        </a-popconfirm>
+      </div>
     </div>
   </div>
 </template>
