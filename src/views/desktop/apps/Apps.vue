@@ -52,6 +52,7 @@ onMounted(async () => {
 });
 const select = (item: Routers) => {
   selected.value = item.path;
+  console.log(item.component);
 };
 
 const style = computed((): CSSProperties => {

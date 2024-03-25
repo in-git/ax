@@ -1,5 +1,5 @@
 <template>
-  <div class="table__head">
+  <div class="table__head p-8">
     <h3 class="text-16 text-bold mb-12">{{ title }}</h3>
     <slot></slot>
   </div>

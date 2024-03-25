@@ -10,3 +10,4 @@ interface ImportMetaEnv {
   readonly VITE_API_BASE_URL: string;
 }
 declare module 'draggable-resizable-vue3';
+declare module 'splitpanes';
