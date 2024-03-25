@@ -66,15 +66,25 @@
 </template>
 
 <script setup lang="ts">
+import { createRole, updateRole } from '@/api/modules/system/role/role';
 import FormFooter from '@/components/table/form/FormFooter.vue';
 import { statusOptions } from '@/global/options/system';
+import { message } from 'ant-design-vue';
 import { currentRole, roleData } from '../../card/data';
 
 const treeData = ref<any[]>([]);
 const checkStrictly = ref(true);
 
-const submit = () => {
-  console.log('=');
+const submit = async () => {
+  if (currentRole.value) {
+    if (currentRole.value.roleId) {
+      const { data } = await updateRole(currentRole.value);
+      message.success(data.msg);
+    } else {
+      const { data } = await createRole(currentRole.value);
+      message.success(data.msg);
+    }
+  }
 };
 watch(
   roleData,
