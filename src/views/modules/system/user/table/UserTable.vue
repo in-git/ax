@@ -41,7 +41,6 @@ onMounted(() => {
 const onChange = (keys: Key[]) => {
   // userConfig.value.selectedKeys = keys.map(e => `${e}`);
   userConfig.value.selectedKeys = keys.map(e => Number(e));
-  console.log(keys.map(e => `${e}`));
 };
 const customRow = (record: UserProfileData) => {
   return {

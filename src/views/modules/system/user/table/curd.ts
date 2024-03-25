@@ -19,6 +19,8 @@ export const editUserConfig = async (id: string) => {
     userForm.value = data.data;
     userRoles.value = data.roles;
     userPosts.value = data.posts;
+    userForm.value.roleIds = data.roleIds;
+    userForm.value.postIds = data.postIds;
   }
   userMode.value = 'form';
 };

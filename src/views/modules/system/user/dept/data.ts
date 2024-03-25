@@ -8,3 +8,38 @@ export const loadDeptTree = async () => {
     deptTreeData.value = data.data;
   }
 };
+export const getFullPath = (
+  targetId: number,
+  node: UserDept[],
+  path: number[] = [],
+): number[] | null => {
+  for (const item of node) {
+    if (item.id === targetId) {
+      return [...path, item.id];
+    }
+    if (item.children) {
+      const newPath = getFullPath(targetId, item.children, [...path, item.id]);
+      if (newPath) {
+        return newPath;
+      }
+    }
+  }
+  return path;
+};
+export const findInTree = (targetId: number, node: UserDept[]): UserDept[] | null => {
+  for (const item of node) {
+    if (item.id === targetId) {
+      return [item];
+    }
+
+    if (item.children) {
+      const result = findInTree(targetId, item.children);
+
+      if (result) {
+        return result;
+      }
+    }
+  }
+
+  return null;
+};

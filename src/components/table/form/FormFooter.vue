@@ -28,5 +28,6 @@ withDefaults(
   justify-content: v-bind(position);
   align-items: center;
   padding: 0 12px;
+  min-height: 48px;
 }
 </style>

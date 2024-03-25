@@ -22,6 +22,9 @@ export const userForm = ref<UserProfileData>({
   loginDate: '',
   roles: [],
   admin: false,
+  roleId: [],
+  postIds: [],
+  roleIds: [],
 });
 export const userRoles = ref<Role[]>([]);
 export const userPosts = ref<SystemPost[]>([]);

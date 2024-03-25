@@ -36,8 +36,6 @@ export const delMenu = (id?: string) => {
         targetIds = `${menuConfig.value.selectedKeys[0]}`;
       }
       try {
-        console.log(targetIds, id);
-
         const { data } = await deleteMenu(targetIds);
         message.success(data.msg);
         loadMenuData();

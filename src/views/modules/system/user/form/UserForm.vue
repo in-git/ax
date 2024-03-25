@@ -2,14 +2,9 @@
   <div class="user-form flex-1 system-form">
     <a-form
       :model="userForm"
-      :wrapper-col="{
-        span: 16,
-      }"
+      layout="vertical"
       label-align="left"
-      :label-col="{
-        span: 8,
-      }"
-      class="flex flex-col flex-1"
+      class="flex flex-col flex-1 form"
     >
       <a-page-header
         title="User form"
@@ -63,8 +58,18 @@ import RightVue from './right/Right.vue';
 <style lang="scss" scoped>
 .page-head {
   border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
 }
 ::v-deep(.ant-card) {
   box-shadow: none;
+}
+.form {
+  overflow-y: auto;
+}
+.ant-form-item {
+  margin-bottom: 18px;
 }
 </style>

@@ -1,3 +1,4 @@
+import type { SystemPost } from '../post/types';
 import type { Role } from '../role/types';
 
 export interface LoginParams {
@@ -64,8 +65,8 @@ export interface UserProfileData {
   loginDate: string;
   dept?: Dept;
   roles: Role[];
-  roleIds?: any;
-  postIds?: any;
+  roleIds: number[];
+  postIds: number[];
   roleId?: any;
   admin: boolean;
 }
@@ -103,5 +104,5 @@ export interface UserInfoData {
   data: UserProfileData;
   postIds: number[];
   roles: Role[];
-  posts: Post[];
+  posts: SystemPost[];
 }
