@@ -95,3 +95,13 @@ export interface UserDept {
   label: string;
   children: UserDept[];
 }
+
+export interface UserInfoData {
+  msg: string;
+  code: number;
+  roleIds: number[];
+  data: UserProfileData;
+  postIds: number[];
+  roles: Role[];
+  posts: Post[];
+}

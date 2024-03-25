@@ -17,6 +17,7 @@ import Missions from './missions/Missions.vue';
 import Toolbar from './toolbar/Toolbar.vue';
 
 const store = useUserStore();
+
 const tokens = computed(() => {
   return store.$state.token;
 });

@@ -11,6 +11,7 @@ interface UserQuery {
   userName: string;
   phonenumber: string;
 }
+
 export const userConfig = ref<UserConfig>({
   data: [],
   loading: false,

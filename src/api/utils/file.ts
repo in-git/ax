@@ -1,5 +1,6 @@
 import useDeveloperStore from '@/store/developer/index';
 import useUserStore from '@/store/user';
+import { message } from 'ant-design-vue';
 
 // 批量绑定模板接口
 export const exportFile = async (url: string, data?: any, fileName = 'file') => {
@@ -24,7 +25,7 @@ export const exportFile = async (url: string, data?: any, fileName = 'file') => 
     link.click();
 
     window.URL.revokeObjectURL(href);
-  } catch (error) {
-    console.error('Error exporting file:', error);
+  } catch (error: any) {
+    message.warning('Error exporting file!');
   }
 };

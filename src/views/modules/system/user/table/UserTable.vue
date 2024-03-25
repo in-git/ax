@@ -14,7 +14,13 @@
       }"
       :customRow="customRow"
       rowKey="userId"
-    ></a-table>
+    >
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.dataIndex === 'operation'">
+          <a-dropdown-button @click="editUserConfig(record.userId)">Edit</a-dropdown-button>
+        </template>
+      </template>
+    </a-table>
   </div>
 </template>
 
@@ -25,6 +31,7 @@ import type { TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import userColumns from './columns';
+import { editUserConfig } from './curd';
 import { loadUserData, userConfig, userQuery } from './data';
 import UserTableHead from './UserTableHead.vue';
 

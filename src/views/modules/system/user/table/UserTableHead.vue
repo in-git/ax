@@ -37,7 +37,6 @@
 
 <script setup lang="ts">
 import { exportFile } from '@/api/utils/file';
-import TableHead from '@/components/table-head/TableHead.vue';
 import { setOptions } from '@/global/options/system';
 import { ExportOutlined } from '@ant-design/icons-vue';
 import { delUser } from '../table/curd';

@@ -6,6 +6,7 @@ import type {
   LoginResponse,
   Routers,
   UserDept,
+  UserInfoData,
   UserProfileData,
   UserProfileRes,
 } from './types';
@@ -59,4 +60,8 @@ export const deleteUsers = (ids: number[]) => {
 
 export const exportExcel = (data: IQuery) => {
   return axios.post<Response>(`system/user/export`, data);
+};
+
+export const updateUser = (id: string) => {
+  return axios.get<UserInfoData>(`system/user/${id}`);
 };
