@@ -2,7 +2,7 @@
   <div class="theme p-4">
     <a-space direction="vertical" class="w-100">
       <a-card>
-        <h5>设置主题颜色</h5>
+        <div>设置主题颜色</div>
         <a-divider class="my-18"></a-divider>
         <div class="color-palette">
           <ul class="flex gc-4">
@@ -28,7 +28,7 @@
 
       <a-card>
         <a-flex class="w-100" justify="space-between">
-          <h5>控件大小</h5>
+          <div>控件大小</div>
           <a-radio-group v-model:value="store.$state.size">
             <a-radio value="small">小</a-radio>
             <a-radio value="medium">中</a-radio>
@@ -39,7 +39,7 @@
 
       <a-card>
         <a-flex class="w-100" justify="space-between">
-          <h5>文字方向</h5>
+          <div>文字方向</div>
           <div>
             <a-radio-group v-model:value="store.$state.direction">
               <a-radio value="ltr">LTR</a-radio>
@@ -51,7 +51,7 @@
 
       <a-card>
         <a-flex class="w-100" justify="space-between">
-          <h5>水波纹特效</h5>
+          <div>水波纹特效</div>
           <a-switch
             v-model:checked="store.$state.wave"
             checked-children="开"
@@ -62,7 +62,7 @@
 
       <a-card>
         <a-flex class="w-100" justify="space-between">
-          <h5>虚拟滚动</h5>
+          <div>虚拟滚动</div>
           <a-switch
             v-model:checked="store.$state.virtual"
             checked-children="开"
@@ -73,7 +73,7 @@
 
       <a-card>
         <a-flex class="w-100" justify="space-between">
-          <h5>移除按钮中的空格</h5>
+          <div>移除按钮中的空格</div>
           <a-flex :gap="8" :align="'center'">
             <a-switch
               v-model:checked="store.$state.autoInsertSpaceInButton"
@@ -143,7 +143,7 @@ const setTheme = () => {
       cursor: pointer;
     }
   }
-  h5 {
+  div {
     font-weight: bold;
   }
 }

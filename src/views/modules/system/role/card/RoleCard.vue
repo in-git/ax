@@ -1,7 +1,14 @@
 <template>
   <div class="role-card">
     <TableHead title="Role list">
-      <a-button type="primary">Create</a-button>
+      <div class="flex justify-between">
+        <a-button type="primary">Create</a-button>
+        <div>
+          <a-button type="link">
+            <span class="text-12">分配权限</span>
+          </a-button>
+        </div>
+      </div>
     </TableHead>
     <div class="card-list">
       <ul>
@@ -33,12 +40,14 @@
 import type { Role } from '@/api/modules/system/role/types';
 import rolePng from '@/assets/system/role.png';
 import { useCloned } from '@vueuse/core';
-import { selectRole } from './curd';
+import { getDeptTree, selectRole } from './curd';
 import { currentRole, getRoles, roleData } from './data';
 
 const select = async (item: Role) => {
-  await selectRole(item.roleId);
   currentRole.value = useCloned(item).cloned.value;
+
+  await selectRole(item.roleId);
+  await getDeptTree(item.roleId);
 };
 onMounted(async () => {
   await getRoles();

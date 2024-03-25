@@ -1,81 +1,65 @@
 <template>
   <div class="role-info p-8 flex flex-col">
-    <a-card v-if="!currentRole">
-      <a-empty description="Please select a role to preview"></a-empty>
-    </a-card>
-
-    <a-form
-      v-else
-      :model="currentRole"
-      layout="vertical"
-      @finish="submit"
-      class="flex-1 relative h-100"
+    <a-segmented
+      v-model:value="currentModule"
+      :options="modules"
+      @change="change"
+      size="small"
+      :disabled="!currentRole"
     >
-      <a-tabs>
-        <a-tab-pane tab="Info" key="info">
-          <a-form-item label="Role name" name="roleName" required>
-            <a-input v-model:value="currentRole.roleName"></a-input>
-          </a-form-item>
-
-          <a-form-item label="Sort" name="roleSort" required>
-            <a-input-number class="w-100" v-model:value="currentRole.roleSort"></a-input-number>
-          </a-form-item>
-
-          <a-form-item label="Perms" name="roleKey" required>
-            <a-input class="w-100" v-model:value="currentRole.roleKey"></a-input>
-          </a-form-item>
-
-          <a-form-item label="Role name" name="remark" required>
-            <a-textarea
-              :autoSize="{ minRows: 2, maxRows: 4 }"
-              v-model:value="currentRole.remark"
-            ></a-textarea>
-          </a-form-item>
-          <a-form-item label="Status">
-            <a-radio-group
-              class="w-100"
-              :options="statusOptions"
-              v-model:value="currentRole.status"
-            />
-          </a-form-item>
-        </a-tab-pane>
-        <a-tab-pane tab="Menu" key="menu">
-          <a-tree
-            :treeData="treeData"
-            :fieldNames="{
-              key: 'id',
-              title: 'label',
-            }"
-          ></a-tree>
-        </a-tab-pane>
-        <a-tab-pane tab="User" key="user"></a-tab-pane>
-      </a-tabs>
-
-      <FormFooter></FormFooter>
-    </a-form>
+      <template #label="{ value: val, payload }">
+        <div style="padding: 4px 4px" class="flex gc-4">
+          <div>
+            <img :src="payload.image" width="16" alt="" />
+          </div>
+          <div>{{ payload.title }}</div>
+        </div>
+      </template>
+    </a-segmented>
+    <RoleInfo v-if="currentModule === 'info'" />
+    <RoleResource v-else-if="currentModule === 'resource'" />
+    <RoleUsers v-else-if="currentModule === 'users'" />
   </div>
 </template>
 
 <script setup lang="ts">
-import FormFooter from '@/components/table/form/FormFooter.vue';
-import { statusOptions } from '@/global/options/system';
-import { currentRole, roleData } from '../card/data';
+import type { SegmentedValue } from 'ant-design-vue/es/segmented/src/segmented';
+import { currentRole } from '../card/data';
+import resourcePng from './assets/resource.png';
+import rolePng from './assets/role.png';
+import usersPng from './assets/users.png';
+import RoleInfo from './info/RoleInfo.vue';
+import RoleResource from './resource/RoleResource.vue';
+import RoleUsers from './users/RoleUsers.vue';
 
-const treeData = ref<any[]>([]);
+const currentModule = ref<string>('info');
 
-const submit = () => {
-  console.log('=');
+const change = (value: SegmentedValue) => {
+  currentModule.value = value.toString();
 };
-watch(
-  roleData,
-  () => {
-    treeData.value = roleData.value.roleMenus;
+const modules = ref([
+  {
+    value: 'info',
+    payload: {
+      title: 'Info',
+      image: rolePng,
+    },
   },
   {
-    deep: true,
-    immediate: true,
+    value: 'resource',
+    payload: {
+      title: 'Resource',
+      image: resourcePng,
+    },
   },
-);
+  {
+    value: 'user',
+    payload: {
+      title: 'User',
+      image: usersPng,
+    },
+  },
+]);
 </script>
 
 <style lang="scss" scoped>
