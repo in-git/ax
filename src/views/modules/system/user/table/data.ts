@@ -10,7 +10,7 @@ interface UserConfig {
 interface UserQuery {
   userName: string;
   phonenumber: string;
-  deptId: number;
+  deptId: number | undefined;
 }
 
 export const userConfig = ref<UserConfig>({
@@ -26,7 +26,7 @@ export const userQuery = ref<IQuery<UserQuery>>({
   status: '',
   userName: '',
   phonenumber: '',
-  deptId: -1,
+  deptId: undefined,
 });
 
 export const loadUserData = async () => {

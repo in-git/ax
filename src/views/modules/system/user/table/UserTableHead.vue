@@ -3,9 +3,9 @@
     <TableHead title="User list">
       <div class="flex justify-between">
         <div class="flex gc-4">
-          <a-button type="primary">Create</a-button>
+          <a-button type="primary" @click="createUser">Create</a-button>
           <a-button @click="loadUserData">Reload</a-button>
-          <a-button @click="delUser" danger>Delete</a-button>
+          <a-button @click="delUser()" danger>Delete</a-button>
           <a-button @click="exportExcel">
             <ExportOutlined />
             Export
@@ -39,9 +39,8 @@
 import { exportFile } from '@/api/utils/file';
 import { setOptions } from '@/global/options/system';
 import { ExportOutlined } from '@ant-design/icons-vue';
-import { delUser } from '../table/curd';
+import { createUser, delUser } from '../table/curd';
 import { loadUserData, userQuery } from './data';
-
 const exportExcel = async () => {
   await exportFile(`system/user/export`, {
     pageNum: userQuery.value.pageNum,

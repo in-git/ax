@@ -26,14 +26,14 @@ export const getFullPath = (
   }
   return path;
 };
-export const findInTree = (targetId: number, node: UserDept[]): UserDept[] | null => {
+export const findInTree = (name: string, node: UserDept[]): UserDept[] | null => {
   for (const item of node) {
-    if (item.id === targetId) {
+    if (item.label.includes(name)) {
       return [item];
     }
 
     if (item.children) {
-      const result = findInTree(targetId, item.children);
+      const result = findInTree(name, item.children);
 
       if (result) {
         return result;

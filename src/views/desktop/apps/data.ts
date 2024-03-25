@@ -1,7 +1,7 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import { getRouters } from '@/api/modules/system/user/user';
 import google from '@/assets/system/google.png';
-import { openWindow } from '@/global/config/window';
+import { openWindow, setCurrentWindow } from '@/global/config/window';
 import { systemComponents } from '@/initialization';
 import { flattenTree } from '@/utils/common/format';
 import { openLink } from '@/utils/common/utils';
@@ -43,4 +43,5 @@ export const openApp = (item: Routers) => {
       });
     }
   });
+  setCurrentWindow(item.name);
 };

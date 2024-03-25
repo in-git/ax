@@ -17,13 +17,16 @@
           <a-col :span="12">
             <a-card title="Base info">
               <a-form-item label="Username" name="userName" required>
-                <a-input v-model:value="userForm.userName" />
+                <a-input v-model:value="userForm.userName" placeholder="Please enter username" />
               </a-form-item>
               <a-form-item label="Phone" name="phonenumber" required>
-                <a-input v-model:value="userForm.phonenumber" />
+                <a-input
+                  v-model:value="userForm.phonenumber"
+                  placeholder="Please enter phone number"
+                />
               </a-form-item>
               <a-form-item label="Email" name="email" required>
-                <a-input v-model:value="userForm.email" />
+                <a-input v-model:value="userForm.email" placeholder="Please enter email" />
               </a-form-item>
               <a-form-item label="Sex" name="sex" required>
                 <a-radio-group v-model:value="userForm.sex" :options="sexOptions" />

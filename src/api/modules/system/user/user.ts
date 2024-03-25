@@ -62,6 +62,6 @@ export const exportExcel = (data: IQuery) => {
   return axios.post<Response>(`system/user/export`, data);
 };
 
-export const updateUser = (id: string) => {
+export const getUser = (id: string) => {
   return axios.get<UserInfoData>(`system/user/${id}`);
 };

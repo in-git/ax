@@ -3,7 +3,7 @@
     <a-card title="Role" :body-style="{ padding: 0 }">
       <a-form-item :wrapper-col="{ span: 24 }" class="mb-0">
         <div class="right-list">
-          <ul>
+          <ul v-if="userRoles.length > 0">
             <li
               v-for="(item, key) in userRoles"
               :key="key"
@@ -16,6 +16,7 @@
               </div>
             </li>
           </ul>
+          <a-empty v-else></a-empty>
         </div>
       </a-form-item>
     </a-card>
@@ -23,7 +24,7 @@
     <a-card title="Post" :body-style="{ padding: 0 }" class="mt-8">
       <a-form-item :wrapper-col="{ span: 24 }" class="mb-0">
         <div class="right-list post">
-          <ul>
+          <ul v-if="userPosts.length > 0">
             <li
               v-for="(item, key) in userPosts"
               :key="key"
@@ -36,6 +37,8 @@
               </div>
             </li>
           </ul>
+
+          <a-empty v-else></a-empty>
         </div>
       </a-form-item>
     </a-card>
