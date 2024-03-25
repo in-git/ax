@@ -22,3 +22,9 @@ export interface SystemWindow {
   data?: any;
   hidden?: boolean;
 }
+
+export interface TreeNode {
+  id: number;
+  label: string;
+  children: TreeNode[];
+}

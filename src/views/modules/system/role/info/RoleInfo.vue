@@ -27,7 +27,7 @@
 
           <a-form-item label="Role name" name="remark" required>
             <a-textarea
-              :autosize="{ minRows: 2, maxRows: 4 }"
+              :autoSize="{ minRows: 2, maxRows: 4 }"
               v-model:value="currentRole.remark"
             ></a-textarea>
           </a-form-item>
@@ -40,7 +40,13 @@
           </a-form-item>
         </a-tab-pane>
         <a-tab-pane tab="Menu" key="menu">
-          <a-tree></a-tree>
+          <a-tree
+            :treeData="treeData"
+            :fieldNames="{
+              key: 'id',
+              title: 'label',
+            }"
+          ></a-tree>
         </a-tab-pane>
         <a-tab-pane tab="User" key="user"></a-tab-pane>
       </a-tabs>
@@ -53,11 +59,23 @@
 <script setup lang="ts">
 import FormFooter from '@/components/table/form/FormFooter.vue';
 import { statusOptions } from '@/global/options/system';
-import { currentRole } from '../card/data';
+import { currentRole, roleData } from '../card/data';
+
+const treeData = ref<any[]>([]);
 
 const submit = () => {
   console.log('=');
 };
+watch(
+  roleData,
+  () => {
+    treeData.value = roleData.value.roleMenus;
+  },
+  {
+    deep: true,
+    immediate: true,
+  },
+);
 </script>
 
 <style lang="scss" scoped>

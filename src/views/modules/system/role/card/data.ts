@@ -1,12 +1,15 @@
 import type { IQuery } from '@/api/config/types';
 import { roleList } from '@/api/modules/system/role/role';
 import type { Role } from '@/api/modules/system/role/types';
+import type { TreeNode } from '@/types/system';
 interface RoleData {
   data: Role[];
+  roleMenus: TreeNode[];
 }
 
 export const roleData = ref<RoleData>({
   data: [],
+  roleMenus: [],
 });
 
 export const roleQuery = ref<IQuery>({

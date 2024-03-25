@@ -8,7 +8,7 @@
         <li
           v-for="item in roleData.data"
           :class="{ active: currentRole?.roleId === item.roleId }"
-          @click="selectRole(item)"
+          @click="select(item)"
           class="flex gc-12"
         >
           <img :src="rolePng" width="24" height="24" />
@@ -32,10 +32,13 @@
 <script setup lang="ts">
 import type { Role } from '@/api/modules/system/role/types';
 import rolePng from '@/assets/system/role.png';
+import { useCloned } from '@vueuse/core';
+import { selectRole } from './curd';
 import { currentRole, getRoles, roleData } from './data';
 
-const selectRole = (item: Role) => {
-  currentRole.value = item;
+const select = async (item: Role) => {
+  await selectRole(item.roleId);
+  currentRole.value = useCloned(item).cloned.value;
 };
 onMounted(async () => {
   await getRoles();
