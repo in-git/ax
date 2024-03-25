@@ -14,7 +14,7 @@
       <div class="drag-header flex justify-between align-center">
         <div class="px-12">{{ title }}</div>
         <div class="flex">
-          <div class="system-icon minus" @mousedown.stop="" @click="hidden">
+          <div class="system-icon minus" @click="hidden">
             <MinusOutlined class="text-white" />
           </div>
           <div class="system-icon close" @click="close">
@@ -94,7 +94,13 @@ $hh: 42px;
 }
 .drag-header {
   cursor: move;
-  background: #222222;
+  background: rgb(34, 33, 54);
+  background: linear-gradient(
+    90deg,
+    rgba(34, 33, 54, 1) 0%,
+    rgba(7, 7, 68, 1) 41%,
+    rgba(0, 114, 138, 1) 100%
+  );
   color: white;
   height: 40px;
   border-bottom: 1px solid #ddd;
@@ -109,7 +115,7 @@ $hh: 42px;
   height: 40px;
   border-radius: 0;
   &:hover {
-    background: #ddd;
+    background: #dddddd70;
   }
 }
 .close {
@@ -121,7 +127,7 @@ $hh: 42px;
 .minus {
   @extend %icon;
   &:hover {
-    background-color: #666;
+    background-color: #dddddd70;
   }
 }
 </style>

@@ -17,7 +17,13 @@ import Tabs from './tabs/Tabs.vue';
 <style lang="scss" scoped>
 .missions {
   height: 42px;
-  background: #222222;
+  background: #222136;
+  background: linear-gradient(
+    90deg,
+    rgba(34, 33, 54, 1) 0%,
+    rgba(7, 7, 68, 1) 41%,
+    rgba(0, 114, 138, 1) 100%
+  );
   border-top: 1px solid #ddd;
   position: sticky;
   bottom: 0;
@@ -25,7 +31,7 @@ import Tabs from './tabs/Tabs.vue';
     width: 42px;
     height: 42px;
     &:hover {
-      background: white;
+      background: #ffffff5e;
       filter: grayscale(0%);
     }
   }

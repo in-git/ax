@@ -65,5 +65,7 @@ export const setAttr = (id: string, key: string, value: any) => {
 };
 
 export const hiddenWindow = (id: string, flag = true) => {
+  console.log(id);
+
   setAttr(id, 'hidden', flag);
 };

@@ -17,7 +17,6 @@ axios.interceptors.request.use(
       const userStore = useUserStore();
       config.headers.Authorization = `Bearer ${userStore.$state.token}`;
     }
-
     return config;
   },
   error => {
@@ -34,20 +33,19 @@ axios.interceptors.response.use(
       throw new Error(res.msg || 'System Error');
     }
     if (res.code === 401) {
-      //
+      Modal.confirm({
+        title: 'Log out',
+        content: 'Login expired',
+        onOk() {
+          userLogout();
+          message.warn('Permission Denied');
+        },
+      });
       userLogout();
     }
     return response;
   },
   error => {
-    Modal.confirm({
-      title: 'Log out',
-      content: 'Login expired',
-      onOk() {
-        userLogout();
-        message.warn('Permission Denied');
-      },
-    });
     if (error.toString().includes('Network Error')) {
       message.warn('Network Error');
     } else {
