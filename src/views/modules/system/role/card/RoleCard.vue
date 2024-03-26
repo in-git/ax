@@ -9,7 +9,7 @@
             :class="{ active: currentRole?.roleId === item.roleId }"
             @click="select(item)"
             class="flex gc-12"
-            @dblclick="open"
+            @dblclick="selectRole(item.roleId)"
           >
             <img :src="rolePng" width="32" height="32" />
             <div>
@@ -35,18 +35,11 @@
 import type { Role } from '@/api/modules/system/role/types';
 import rolePng from '@/assets/system/role.png';
 import { useCloned } from '@vueuse/core';
-import { roleModule, showRoleForm } from '../info/data';
 import CardHead from './card-head/CardHead.vue';
-import { getDeptTree, getRoles, selectRole } from './curd';
+import { getRoles, selectRole } from './curd';
 import { currentRole, roleData, roleSpinning } from './data';
-const select = async (item: Role) => {
+const select = (item: Role) => {
   currentRole.value = useCloned(item).cloned.value;
-  roleModule.value = 'info';
-  await selectRole(item.roleId);
-  await getDeptTree(item.roleId);
-};
-const open = () => {
-  showRoleForm.value = true;
 };
 onMounted(async () => {
   await getRoles();

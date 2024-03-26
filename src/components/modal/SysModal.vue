@@ -1,7 +1,7 @@
 <template>
   <Transition
-    enter-active-class="animate__animated animate__slideInDown"
-    leave-active-class="animate__animated animate__slideOutDown"
+    enter-active-class="animate__animated animate__zoomIn"
+    leave-active-class="animate__animated animate__zoomOut"
   >
     <div class="system__modal" v-if="visible">
       <div class="modal__container" :style="style">

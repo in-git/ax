@@ -1,6 +1,18 @@
 <template>
   <div>
     <TableHead title="User list">
+      <div class="mb-8 flex gc-8 text-999">
+        <div>
+          Username
+          <a-input allow-clear style="width: 180px" v-model:value="userQuery.userName"></a-input>
+        </div>
+        <div>
+          Phone
+          <a-input allow-clear style="width: 180px" v-model:value="userQuery.phonenumber" />
+        </div>
+        <a-button type="primary" @click="loadUserData">Search</a-button>
+      </div>
+
       <div class="flex justify-between">
         <div class="flex gc-4">
           <a-tooltip title="Create">
@@ -31,18 +43,6 @@
             <DeleteOutlined />
           </a-button>
         </div>
-      </div>
-
-      <div class="mt-8 flex gc-8 text-999">
-        <div>
-          Username
-          <a-input allow-clear style="width: 180px" v-model:value="userQuery.userName"></a-input>
-        </div>
-        <div>
-          Phone
-          <a-input allow-clear style="width: 180px" v-model:value="userQuery.phonenumber" />
-        </div>
-        <a-button type="primary" @click="loadUserData">Search</a-button>
       </div>
     </TableHead>
   </div>

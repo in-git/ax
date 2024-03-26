@@ -2,8 +2,8 @@
   <div class="system-module">
     <MenuTable></MenuTable>
     <Transition
-      enter-active-class="animate__animated animate__slideInDown"
-      leave-active-class="animate__animated animate__slideOutDown"
+      enter-active-class="animate__animated animate__zoomIn"
+      leave-active-class="animate__animated animate__zoomOut"
     >
       <MenuForm v-if="showMenuForm"></MenuForm>
     </Transition>
