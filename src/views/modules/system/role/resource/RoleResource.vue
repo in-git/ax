@@ -50,7 +50,7 @@
 <script setup lang="ts">
 import { roleDataScope } from '@/api/modules/system/role/role';
 import { message } from 'ant-design-vue';
-import { currentRole, roleData } from '../../card/data';
+import { currentRole, roleData } from '../card/data';
 
 const treeData = ref<any>();
 const treeRef = ref();
