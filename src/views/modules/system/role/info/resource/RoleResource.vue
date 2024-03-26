@@ -5,38 +5,42 @@
       title="Select Department"
       :body-style="{ height: '600px', overflowY: 'auto' }"
     >
-      <a-form :model="currentRole" @finish="submit">
+      <a-form
+        :model="currentRole"
+        @finish="submit"
+        :label-col="{
+          span: 8,
+        }"
+        :wrapper-col="{
+          span: 14,
+          offset: 2,
+        }"
+      >
         <a-form-item label="Role name" name="roleName" required>
           <a-input v-model:value="currentRole.roleName" disabled />
         </a-form-item>
-        <a-form-item label="Role name" name="roleKey" required>
+        <a-form-item label="Role perms" name="roleKey" required>
           <a-input v-model:value="currentRole.roleKey" disabled />
         </a-form-item>
-        <a-form-item label="Role name" name="dataScope" required>
+        <a-form-item label="Scoped" name="dataScope" required>
           <a-select v-model:value="currentRole.dataScope" :options="scopedOptions" />
         </a-form-item>
-        <div class="mb-8 flex gc-8">
-          <div class="flex align-center text-12 text-999 gc-4">
-            <span>父子关联</span>
-            <a-switch v-model:checked="checkStrictly"></a-switch>
-          </div>
-        </div>
-        <a-directory-tree
-          multiple
-          :tree-data="treeData"
-          :field-names="{
-            key: 'id',
-            title: 'label',
-          }"
-          :height="360"
-          :check-strictly="!checkStrictly"
-          checkable
-          :selectable="false"
-          autoExpandParent
-          :default-expand-all="true"
-          v-model:checked-keys="currentRole.deptIds"
-          @check="check"
-        ></a-directory-tree>
+
+        <a-form-item name="deptIds" required :wrapper-col="{ span: 24 }">
+          <a-directory-tree
+            :tree-data="treeData"
+            :field-names="{
+              key: 'id',
+              title: 'label',
+            }"
+            :height="360"
+            selectable
+            autoExpandParent
+            :default-expand-all="true"
+            v-model:selected-keys="currentRole.deptIds"
+            ref="treeRef"
+          ></a-directory-tree>
+        </a-form-item>
         <FormFooter />
       </a-form>
     </a-card>
@@ -49,15 +53,18 @@ import { message } from 'ant-design-vue';
 import { currentRole, roleData } from '../../card/data';
 
 const treeData = ref<any>();
+const treeRef = ref();
 
 const submit = async () => {
-  const { data } = await roleDataScope(currentRole.value!);
+  if (!currentRole.value) return;
+  const treeSelectData: any = currentRole.value.deptIds;
+  if (!(currentRole.value.deptIds instanceof Array)) {
+    currentRole.value.deptIds = treeSelectData.checked.concat(treeSelectData.halfChecked);
+  }
+  const { data } = await roleDataScope(currentRole.value);
   message.success(data.msg);
 };
-const check = (_: any, data: any) => {
-  console.log(data.halfCheckedKeys);
-};
-const checkStrictly = ref(true);
+
 const scopedOptions = [
   {
     value: '1',

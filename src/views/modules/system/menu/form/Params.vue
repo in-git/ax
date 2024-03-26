@@ -5,7 +5,7 @@
       <a-form-item label="Is frame" name="isFrame">
         <a-radio-group v-model:value="menuForm.isFrame" :options="isOptions"></a-radio-group>
       </a-form-item>
-      <a-form-item :label="menuForm.isFrame === '1' ? 'Router' : 'Link'" name="path">
+      <a-form-item :label="menuForm.isFrame === '0' ? 'Router' : 'Link'" name="path">
         <a-input v-model:value="menuForm.path"></a-input>
         <div class="text-999 text-12">
           <InfoCircleFilled />
@@ -22,7 +22,7 @@
           v-model:checked="menuForm.isCache"
         ></a-switch>
         <div class="text-12 text-999">
-          Whether the page content is cached and still valid when the route is switche
+          Whether the page content is cached and still valid when the route is switch
         </div>
       </a-form-item>
       <!--  -->

@@ -24,7 +24,7 @@ let userFormObj: UserProfileData = {
   loginDate: '',
   roles: [],
   admin: false,
-  roleId: [],
+  roleId: undefined,
   postIds: [],
   roleIds: [],
 };

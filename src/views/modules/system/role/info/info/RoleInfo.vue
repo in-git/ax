@@ -94,8 +94,6 @@ const submit = async () => {
     }
 
     menuIds = Array.from(new Set(menuIds));
-    console.log(halfCheckedKeys, menuIds);
-    console.log('menuIds=', menuIds);
 
     if (currentRole.value.roleId) {
       const { data } = await updateRole({
@@ -112,7 +110,6 @@ const submit = async () => {
 watch(
   roleData,
   () => {
-    console.log(currentRole.value?.menuIds);
     treeData.value = roleData.value.roleMenus;
   },
   {

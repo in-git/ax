@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-card title="Role" :body-style="{ padding: 0 }">
-      <a-form-item :wrapper-col="{ span: 24 }" class="mb-0">
+      <a-form-item :wrapper-col="{ span: 24 }" class="mb-0" required name="roleIds">
         <div class="right-list">
           <ul v-if="userRoles.length > 0">
             <li
@@ -22,7 +22,7 @@
     </a-card>
 
     <a-card title="Post" :body-style="{ padding: 0 }" class="mt-8">
-      <a-form-item :wrapper-col="{ span: 24 }" class="mb-0">
+      <a-form-item :wrapper-col="{ span: 24 }" class="mb-0" required name="postIds">
         <div class="right-list post">
           <ul v-if="userPosts.length > 0">
             <li
@@ -96,11 +96,10 @@ const selectPost = (item: SystemPost) => {
 };
 
 watch(
-  userForm,
+  deptTreeData,
   () => {
     dept.value = [userForm.value.deptId];
     fullPath.value = getFullPath(userForm.value.deptId, treeData.value, []) || [];
-    console.log(fullPath.value);
   },
   {
     deep: true,

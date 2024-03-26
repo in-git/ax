@@ -1,7 +1,7 @@
 import { deleteUsers, getUser } from '@/api/modules/system/user/user';
 import { message, Modal } from 'ant-design-vue';
 import { resetUserForm, userForm, userMode, userPosts, userRoles } from '../form/data';
-import { userConfig } from './data';
+import { loadUserData, userConfig } from './data';
 
 export const delUser = (id?: number) => {
   Modal.confirm({
@@ -15,6 +15,8 @@ export const delUser = (id?: number) => {
         ids = userConfig.value.selectedKeys;
       }
       const { data } = await deleteUsers(ids);
+
+      await loadUserData();
       message.success(data.msg);
     },
   });

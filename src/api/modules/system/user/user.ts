@@ -65,3 +65,11 @@ export const exportExcel = (data: IQuery) => {
 export const getUser = (id: string) => {
   return axios.get<UserInfoData>(`system/user/${id}`);
 };
+
+export const createUser = (data: UserProfileData) => {
+  return axios.post<Response>(`system/user`, data);
+};
+
+export const updateUser = (data: UserProfileData) => {
+  return axios.put<Response>(`system/user`, data);
+};
