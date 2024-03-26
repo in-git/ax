@@ -4,12 +4,13 @@
       <h3>菜单管理</h3>
       <div class="mt-12 flex align-center justify-between">
         <div class="flex gc-4">
-          <a-button @click="create" type="primary">
-            <template #icon>
-              <PlusOutlined />
-            </template>
-            Create
-          </a-button>
+          <a-tooltip title="Create">
+            <a-button @click="create" type="primary">
+              <template #icon>
+                <PlusOutlined />
+              </template>
+            </a-button>
+          </a-tooltip>
           <a-tooltip title="Edit">
             <a-button @click="edit" :disabled="menuConfig.selectedKeys.length === 0">
               <EditOutlined />

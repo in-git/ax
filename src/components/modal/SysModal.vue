@@ -3,7 +3,7 @@
     enter-active-class="animate__animated animate__zoomIn"
     leave-active-class="animate__animated animate__zoomOut"
   >
-    <div class="system__modal" v-if="visible">
+    <div class="system__modal" v-show="visible">
       <div class="modal__container" :style="style">
         <div class="system-head px-8">
           <slot name="title">{{ title }}</slot>
@@ -17,6 +17,9 @@
 
         <div class="modal__content">
           <slot></slot>
+        </div>
+        <div>
+          <slot name="footer"></slot>
         </div>
       </div>
     </div>
@@ -61,6 +64,12 @@ const style = computed((): CSSProperties => {
   .modal__container {
     border-radius: var(--radius);
     background-color: white;
+    display: flex;
+    flex-direction: column;
+  }
+  .modal__content {
+    flex: 1;
+    overflow-y: auto;
   }
 }
 </style>

@@ -1,27 +1,19 @@
 <template>
-  <Transition
-    enter-active-class="animate__animated animate__zoomIn"
-    leave-active-class="animate__animated animate__zoomOut"
+  <SystemModal
+    w="90%"
+    h="90%"
+    v-model:visible="showRoleForm"
+    title="Role config"
+    @update:visible="showRoleForm = false"
   >
-    <div class="role-info" v-if="showRoleForm && currentRole">
+    <div v-if="showRoleForm && currentRole">
       <div class="info-container">
         <a-form
           :model="currentRole"
           @finish="submit"
           layout="vertical"
-          class="flex-1 relative h-100 form"
+          class="flex-1 relative h-100 w-100 h-100"
         >
-          <a-page-header
-            title="Edit role"
-            sub-title="This is a subtitle"
-            class="sticky page-head py-8"
-          >
-            <template #extra>
-              <div class="system-icon" @click="showRoleForm = false">
-                <CloseOutlined />
-              </div>
-            </template>
-          </a-page-header>
           <a-row>
             <a-col :span="12">
               <a-card :bordered="false">
@@ -83,11 +75,12 @@
         </a-form>
       </div>
     </div>
-  </Transition>
+  </SystemModal>
 </template>
 
 <script setup lang="ts">
 import { createRole, updateRole } from '@/api/modules/system/role/role';
+import SystemModal from '@/components/modal/SysModal.vue';
 import FormFooter from '@/components/table/form/FormFooter.vue';
 import { statusOptions } from '@/global/options/system';
 import { message } from 'ant-design-vue';

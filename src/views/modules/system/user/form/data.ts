@@ -3,13 +3,13 @@ import type { Role } from '@/api/modules/system/role/types';
 import type { UserProfileData } from '@/api/modules/system/user/types';
 import { editUserConfig } from '../table/curd';
 
-export const userMode = ref<'table' | 'form'>('table');
+export const showUserForm = ref<boolean>(false);
 
 let userFormObj: UserProfileData = {
   createBy: '',
   createTime: '',
   remark: '',
-  userId: '',
+  userId: undefined,
   deptId: 0,
   userName: '',
   nickName: '',
