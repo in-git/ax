@@ -9,6 +9,7 @@ import './api/config/interceptor';
 import directive from './directive';
 import './mock/mock';
 // import router from './router';
+import 'animate.css';
 import './style/index.scss';
 
 const app = createApp(App);

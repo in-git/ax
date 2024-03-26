@@ -9,6 +9,7 @@
             :class="{ active: currentRole?.roleId === item.roleId }"
             @click="select(item)"
             class="flex gc-12"
+            @dblclick="open"
           >
             <img :src="rolePng" width="24" height="24" />
             <div>
@@ -43,9 +44,10 @@ const select = async (item: Role) => {
   roleModule.value = 'info';
   await selectRole(item.roleId);
   await getDeptTree(item.roleId);
+};
+const open = () => {
   showRoleForm.value = true;
 };
-
 onMounted(async () => {
   await getRoles();
 });

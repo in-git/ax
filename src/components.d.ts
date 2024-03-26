@@ -79,6 +79,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TableHead: typeof import('./components/table/table-head/TableHead.vue')['default']
+    UserAddOutlined: typeof import('@ant-design/icons-vue')['UserAddOutlined']
     WechatFilled: typeof import('@ant-design/icons-vue')['WechatFilled']
     WechatOutlined: typeof import('@ant-design/icons-vue')['WechatOutlined']
   }

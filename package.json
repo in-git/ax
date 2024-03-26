@@ -17,6 +17,7 @@
     "@ant-design/icons-vue": "^7.0.1",
     "@vueuse/core": "^10.9.0",
     "@vueuse/integrations": "^10.9.0",
+    "animate.css": "^4.1.1",
     "ant-design-vue": "^4.1.2",
     "axios": "^1.6.8",
     "babel-plugin-import": "^1.13.8",

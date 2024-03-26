@@ -1,23 +1,13 @@
 <template>
   <div class="role system-module flex">
     <RoleCard />
-    <a-drawer
-      :bodyStyle="{ padding: '0' }"
-      :headerStyle="{ padding: '8px 4px' }"
-      v-model:open="showRoleForm"
-      :getContainer="false"
-      closable
-      title="Role config"
-    >
-      <RoleInfo />
-    </a-drawer>
+    <RoleInfo />
   </div>
 </template>
 
 <script setup lang="ts">
 import 'splitpanes/dist/splitpanes.css';
 import RoleCard from './card/RoleCard.vue';
-import { showRoleForm } from './info/data';
 import RoleInfo from './info/RoleInfo.vue';
 </script>
 

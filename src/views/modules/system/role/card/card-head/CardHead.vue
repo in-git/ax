@@ -18,11 +18,15 @@
             allow-clear
           ></a-input-search>
           <a-divider type="vertical"></a-divider>
-          <a-button type="link">
-            <ClusterOutlined />
-            分配资源
+          <a-button type="link" @click="showRoleForm = true" :disabled="!currentRole">
+            <EditOutlined />
+            编辑
           </a-button>
-          <a-button type="link">
+          <a-button type="link" style="color: orange">
+            <ClusterOutlined />
+            资源
+          </a-button>
+          <a-button type="link" style="color: #333">
             <UserAddOutlined />
             分配人员
           </a-button>
@@ -46,12 +50,7 @@
 <script setup lang="ts">
 import { roleTreeSelect } from '@/api/modules/system/role/role';
 import type { Role } from '@/api/modules/system/role/types';
-import {
-  ClusterOutlined,
-  DeleteOutlined,
-  ReloadOutlined,
-  UserAddOutlined,
-} from '@ant-design/icons-vue';
+import { ClusterOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { useCloned } from '@vueuse/core';
 import { roleModule, showRoleForm } from '../../info/data';
 import { delRoles, getDeptTree, getRoles, resetRoleForm, selectRole } from '../curd';
