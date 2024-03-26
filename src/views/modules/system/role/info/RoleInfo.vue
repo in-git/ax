@@ -1,75 +1,123 @@
 <template>
-  <div class="role-info p-8 flex flex-col">
-    <a-segmented
-      v-model:value="currentModule"
-      :options="modules"
-      @change="change"
-      size="small"
-      :disabled="!currentRole"
+  <div>
+    <a-form
+      :model="currentRole"
+      v-if="currentRole"
+      @finish="submit"
+      layout="vertical"
+      class="flex-1 relative h-100 form"
     >
-      <template #label="{ value, payload }">
-        <div style="padding: 4px 4px" class="flex gc-4">
-          <div>
-            <img :src="payload.image" width="16" alt="" />
+      <a-card :bordered="false">
+        <a-form-item label="Role name" name="roleName" required>
+          <a-input v-model:value="currentRole.roleName"></a-input>
+        </a-form-item>
+
+        <a-form-item label="Sort" name="roleSort" required>
+          <a-input-number class="w-100" v-model:value="currentRole.roleSort"></a-input-number>
+        </a-form-item>
+
+        <a-form-item label="Perms" name="roleKey" required>
+          <a-input class="w-100" v-model:value="currentRole.roleKey"></a-input>
+        </a-form-item>
+
+        <a-form-item label="Role name" name="remark" required>
+          <a-textarea
+            :autoSize="{ minRows: 2, maxRows: 4 }"
+            v-model:value="currentRole.remark"
+          ></a-textarea>
+        </a-form-item>
+        <a-form-item label="Status">
+          <a-segmented :options="statusOptions" v-model:value="currentRole.status" />
+        </a-form-item>
+      </a-card>
+
+      <a-card class="mt-8" :bordered="false">
+        <a-form-item label="分配菜单" :label-col="{ span: 24 }">
+          <div class="flex align-center mb-8">
+            <span class="text-12 text-999 mr-4">父子关联</span>
+            <a-switch v-model:checked="checkStrictly"></a-switch>
           </div>
-          <div>{{ payload.title }}</div>
-        </div>
-      </template>
-    </a-segmented>
-    <RoleInfo v-if="currentModule === 'info'" />
-    <RoleResource v-else-if="currentModule === 'resource'" />
-    <RoleUsers v-else-if="currentModule === 'users'" />
+          <a-card :body-style="{ maxHeight: '450px', overflowY: 'auto' }">
+            <a-tree
+              :treeData="treeData"
+              checkable
+              block-node
+              :selectable="false"
+              v-model:checked-keys="currentRole.menuIds"
+              :fieldNames="{
+                key: 'id',
+                title: 'label',
+              }"
+              default-expand-parent
+              :check-strictly="!checkStrictly"
+              ref="treeRef"
+            ></a-tree>
+          </a-card>
+        </a-form-item>
+      </a-card>
+
+      <FormFooter class="px-12"></FormFooter>
+    </a-form>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { SegmentedValue } from 'ant-design-vue/es/segmented/src/segmented';
-import { currentRole } from '../card/data';
-import RoleInfo from './info/RoleInfo.vue';
-import RoleResource from './resource/RoleResource.vue';
-import RoleUsers from './users/RoleUsers.vue';
+import { createRole, updateRole } from '@/api/modules/system/role/role';
+import FormFooter from '@/components/table/form/FormFooter.vue';
+import { statusOptions } from '@/global/options/system';
+import { message } from 'ant-design-vue';
+import { getRoles, resetRoleForm } from '../card/curd';
+import { currentRole, roleData } from '../card/data';
 
-import resourcePng from './assets/resource.png';
-import rolePng from './assets/role.png';
-import usersPng from './assets/users.png';
+const treeData = ref<any[]>([]);
 
-const currentModule = ref<string>('info');
+const treeRef = ref();
+const checkStrictly = ref(true);
 
-const change = (value: SegmentedValue) => {
-  currentModule.value = value.toString();
+const submit = async () => {
+  if (currentRole.value) {
+    let data: any = currentRole.value.menuIds;
+    const halfCheckedKeys: number[] = treeRef.value.halfCheckedKeys;
+    let menuIds: number[] = [];
+    if (data.checked) {
+      menuIds = data.checked.concat(data.halfCheckedKeys || []);
+    } else {
+      menuIds = currentRole.value.menuIds;
+    }
+    if (halfCheckedKeys && halfCheckedKeys.length > 0) {
+      menuIds = menuIds.concat(halfCheckedKeys);
+    }
+
+    menuIds = Array.from(new Set(menuIds));
+
+    if (currentRole.value.roleId) {
+      const { data } = await updateRole({
+        ...currentRole.value,
+        menuIds,
+      });
+      message.success(data.msg);
+    } else {
+      const { data } = await createRole(currentRole.value);
+      message.success(data.msg);
+    }
+
+    await getRoles();
+    resetRoleForm();
+  }
 };
-const modules = ref([
-  {
-    value: 'info',
-    payload: {
-      title: 'Info',
-      image: rolePng,
-    },
+watch(
+  roleData,
+  () => {
+    treeData.value = roleData.value.roleMenus;
   },
   {
-    value: 'resource',
-    payload: {
-      title: 'Resource',
-      image: resourcePng,
-    },
+    deep: true,
+    immediate: true,
   },
-  {
-    value: 'user',
-    payload: {
-      title: 'User',
-      image: usersPng,
-    },
-  },
-]);
+);
 </script>
 
 <style lang="scss" scoped>
-.role-info {
-  flex-basis: 200px;
-  height: 100%;
-  background: #f7fafc;
-}
-::v-deep(.ant-form-item) {
-  margin-bottom: 18px;
+.form {
 }
 </style>

@@ -7,9 +7,7 @@
       v-else
       :model="currentRole"
       @finish="submit"
-      :label-col="{
-        span: 8,
-      }"
+      layout="vertical"
       class="flex-1 relative h-100 form"
     >
       <a-card title="Base config" class="mt-8">
@@ -71,7 +69,7 @@ import { createRole, updateRole } from '@/api/modules/system/role/role';
 import FormFooter from '@/components/table/form/FormFooter.vue';
 import { statusOptions } from '@/global/options/system';
 import { message } from 'ant-design-vue';
-import { getRoles } from '../../card/curd';
+import { getRoles, resetRoleForm } from '../../card/curd';
 import { currentRole, roleData } from '../../card/data';
 
 const treeData = ref<any[]>([]);
@@ -105,7 +103,9 @@ const submit = async () => {
       const { data } = await createRole(currentRole.value);
       message.success(data.msg);
     }
-    getRoles();
+
+    await getRoles();
+    resetRoleForm();
   }
 };
 watch(
@@ -122,7 +122,7 @@ watch(
 
 <style lang="scss" scoped>
 .form {
-  height: 610px;
+  height: 650px;
   overflow-y: auto;
 }
 </style>

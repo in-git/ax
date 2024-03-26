@@ -1,22 +1,24 @@
 <template>
   <div class="role system-module flex">
-    <splitpanes vertical style="height: 100%">
-      <pane min-size="20" size="70">
-        <RoleCard />
-      </pane>
-      <pane size="30" minSize="30" maxSize="50">
-        <RoleInfo />
-      </pane>
-    </splitpanes>
+    <RoleCard />
+    <a-drawer
+      :bodyStyle="{ padding: '0' }"
+      :headerStyle="{ padding: '8px 4px' }"
+      v-model:open="showRoleForm"
+      :getContainer="false"
+      closable
+      title="Role config"
+    >
+      <RoleInfo />
+    </a-drawer>
   </div>
 </template>
 
 <script setup lang="ts">
-import RoleCard from './card/RoleCard.vue';
-import RoleInfo from './info/RoleInfo.vue';
-
-import { Pane, Splitpanes } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
+import RoleCard from './card/RoleCard.vue';
+import { showRoleForm } from './info/data';
+import RoleInfo from './info/RoleInfo.vue';
 </script>
 
 <style lang="scss" scoped>

@@ -8,16 +8,19 @@ interface RoleData {
   roleMenus: TreeNode[];
   deptList: Dept[];
 }
-
+export const roleSpinning = ref(true);
 export const roleData = ref<RoleData>({
   data: [],
   roleMenus: [],
   deptList: [],
 });
-
-export const roleQuery = ref<IQuery>({
+interface RoleQuery {
+  roleName: string;
+}
+export const roleQuery = ref<IQuery<RoleQuery>>({
   pageNum: 1,
   pageSize: 10,
+  roleName: '',
 });
 
 export const currentRole = ref<Role>();

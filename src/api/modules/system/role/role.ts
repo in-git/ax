@@ -1,6 +1,7 @@
 import type { IQuery, Response, TableResponse } from '@/api/config/types';
 import type { TreeNode } from '@/types/system';
 import axios from 'axios';
+import type { UserProfileData } from '../user/types';
 import type { Role, RoleDeptTreeData } from './types';
 
 export const roleList = (query: IQuery) => {
@@ -42,4 +43,8 @@ export const createRole = (data: Role) => {
 
 export const delRole = (id: number) => {
   return axios.delete<Response>(`system/role/${id}`);
+};
+
+export const allocatedList = (query: IQuery) => {
+  return axios.get<TableResponse<UserProfileData>>(`system/role/authUser/allocatedList`, query);
 };
