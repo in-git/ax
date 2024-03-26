@@ -1,6 +1,7 @@
 <template>
   <div>
     <a-input-search
+      v-if="allowSelect"
       allow-clear
       v-model:value="keyword"
       placeholder="Please enter department name"
@@ -32,7 +33,8 @@ const selectedKeys = ref<number[]>([]);
 const emit = defineEmits(['search', 'select']);
 
 const props = defineProps<{
-  id: number;
+  id: number | null;
+  allowSelect?: boolean;
 }>();
 const search = () => {
   let result = findInTree(keyword.value, deptTreeData.value) || [];
@@ -44,7 +46,7 @@ const onSelect = (keys: Key[]) => {
   emit('select', keys);
 };
 onMounted(() => {
-  selectedKeys.value = [props.id];
+  if (props.id) selectedKeys.value = [props.id];
 });
 watch(
   deptTreeData,
@@ -54,6 +56,7 @@ watch(
     }
 
     treeData.value = deptTreeData.value;
+    if (!props.id) return;
     fullPath.value = getFullPath(props.id, deptTreeData.value) || [];
   },
   {

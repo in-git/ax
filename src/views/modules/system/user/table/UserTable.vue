@@ -17,9 +17,8 @@
     >
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'operation'">
-          <a-dropdown-button @click="editUserConfig(record.userId)">
+          <a-dropdown-button @click="editUserConfig(record.userId)" trigger="click">
             Edit
-
             <template #overlay>
               <a-menu>
                 <a-menu-item class="text-danger" @click="delUser(record.userId)">

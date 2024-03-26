@@ -12,7 +12,7 @@
       <a-page-header
         title="User form"
         sub-title="edit user config"
-        class="page-head py-8"
+        class="page-head py-0"
         @back="back"
       />
       <div class="flex-1 p-8">
