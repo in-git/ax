@@ -5,7 +5,7 @@
       <a-form-item label="Is frame" name="isFrame">
         <a-radio-group v-model:value="menuForm.isFrame" :options="isOptions"></a-radio-group>
       </a-form-item>
-      <a-form-item label="Router" name="path">
+      <a-form-item :label="menuForm.isFrame === '1' ? 'Router' : 'Link'" name="path">
         <a-input v-model:value="menuForm.path"></a-input>
         <div class="text-999 text-12">
           <InfoCircleFilled />
@@ -35,12 +35,15 @@
       </a-form-item>
     </template>
     <template v-if="menuForm.menuType === 'C'">
-      <a-form-item label="Router" name="path">
+      <a-form-item :label="menuForm.isFrame === '0' ? 'Router' : 'Link'" name="path">
         <a-input v-model:value="menuForm.path"></a-input>
         <div class="text-999 text-12">
           <InfoCircleFilled />
           Address of the route that accesses the component
         </div>
+      </a-form-item>
+      <a-form-item label="Is frame" name="isFrame">
+        <a-radio-group v-model:value="menuForm.isFrame" :options="isOptions"></a-radio-group>
       </a-form-item>
     </template>
     <template v-if="menuForm.menuType === 'F'">

@@ -39,6 +39,7 @@ axios.interceptors.response.use(
         onOk() {
           userLogout();
           message.warn('Permission Denied');
+          window.location.reload();
         },
       });
       userLogout();

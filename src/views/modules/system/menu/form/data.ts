@@ -8,7 +8,7 @@ let object: SystemMenu = {
   orderNum: 0,
   path: '',
   query: '',
-  isFrame: '',
+  isFrame: '1',
   isCache: '',
   menuType: 'C',
   visible: '0',

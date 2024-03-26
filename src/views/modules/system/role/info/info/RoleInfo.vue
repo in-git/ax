@@ -10,7 +10,31 @@
       @finish="submit"
       class="flex-1 relative h-100"
     >
-      <a-tabs>
+      <a-tabs default-active-key="menu">
+        <a-tab-pane tab="Menu" key="menu">
+          <a-form-item label="分配菜单" :wrapper-col="{ span: 24 }">
+            <div class="flex align-center mb-8">
+              <span class="text-12 text-999 mr-4">父子关联</span>
+              <a-switch v-model:checked="checkStrictly"></a-switch>
+            </div>
+            <a-card :body-style="{ maxHeight: '450px', overflowY: 'auto' }">
+              <a-tree
+                :treeData="treeData"
+                checkable
+                block-node
+                :selectable="false"
+                v-model:checked-keys="currentRole.menuIds"
+                :fieldNames="{
+                  key: 'id',
+                  title: 'label',
+                }"
+                default-expand-parent
+                :check-strictly="!checkStrictly"
+                ref="treeRef"
+              ></a-tree>
+            </a-card>
+          </a-form-item>
+        </a-tab-pane>
         <a-tab-pane tab="Config" key="info">
           <a-form-item label="Role name" name="roleName" required>
             <a-input v-model:value="currentRole.roleName"></a-input>
@@ -38,27 +62,6 @@
             />
           </a-form-item>
         </a-tab-pane>
-        <a-tab-pane tab="Menu" key="menu">
-          <a-form-item label="分配菜单" :wrapper-col="{ span: 24 }">
-            <div class="flex align-center mb-8">
-              <span class="text-12 text-999 mr-4">父子关联</span>
-              <a-switch v-model:checked="checkStrictly"></a-switch>
-            </div>
-            <a-card :body-style="{ maxHeight: '450px', overflowY: 'auto' }">
-              <a-tree
-                :treeData="treeData"
-                checkable
-                v-model:checked-keys="roleData.menuKeys"
-                :fieldNames="{
-                  key: 'id',
-                  title: 'label',
-                }"
-                default-expand-all
-                :check-strictly="!checkStrictly"
-              ></a-tree>
-            </a-card>
-          </a-form-item>
-        </a-tab-pane>
       </a-tabs>
       <FormFooter class="px-0"></FormFooter>
     </a-form>
@@ -73,12 +76,32 @@ import { message } from 'ant-design-vue';
 import { currentRole, roleData } from '../../card/data';
 
 const treeData = ref<any[]>([]);
-const checkStrictly = ref(true);
 
+const treeRef = ref();
+const checkStrictly = ref(true);
 const submit = async () => {
   if (currentRole.value) {
+    let data: any = currentRole.value.menuIds;
+    const halfCheckedKeys: number[] = treeRef.value.halfCheckedKeys;
+    let menuIds: number[] = [];
+    if (data.checked) {
+      menuIds = data.checked.concat(data.halfCheckedKeys || []);
+    } else {
+      menuIds = currentRole.value.menuIds;
+    }
+    if (halfCheckedKeys && halfCheckedKeys.length > 0) {
+      menuIds = menuIds.concat(halfCheckedKeys);
+    }
+
+    menuIds = Array.from(new Set(menuIds));
+    console.log(halfCheckedKeys, menuIds);
+    console.log('menuIds=', menuIds);
+
     if (currentRole.value.roleId) {
-      const { data } = await updateRole(currentRole.value);
+      const { data } = await updateRole({
+        ...currentRole.value,
+        menuIds,
+      });
       message.success(data.msg);
     } else {
       const { data } = await createRole(currentRole.value);
@@ -89,6 +112,7 @@ const submit = async () => {
 watch(
   roleData,
   () => {
+    console.log(currentRole.value?.menuIds);
     treeData.value = roleData.value.roleMenus;
   },
   {

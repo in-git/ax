@@ -1,6 +1,10 @@
 <template>
   <div class="mt-8">
-    <a-card v-if="!!currentRole" title="Select Department">
+    <a-card
+      v-if="!!currentRole"
+      title="Select Department"
+      :body-style="{ height: '600px', overflowY: 'auto' }"
+    >
       <a-form :model="currentRole" @finish="submit">
         <a-form-item label="Role name" name="roleName" required>
           <a-input v-model:value="currentRole.roleName" disabled />
@@ -17,13 +21,14 @@
             <a-switch v-model:checked="checkStrictly"></a-switch>
           </div>
         </div>
-        <a-tree
+        <a-directory-tree
           multiple
           :tree-data="treeData"
           :field-names="{
             key: 'id',
             title: 'label',
           }"
+          :height="360"
           :check-strictly="!checkStrictly"
           checkable
           :selectable="false"
@@ -31,7 +36,7 @@
           :default-expand-all="true"
           v-model:checked-keys="currentRole.deptIds"
           @check="check"
-        ></a-tree>
+        ></a-directory-tree>
         <FormFooter />
       </a-form>
     </a-card>
@@ -45,7 +50,6 @@ import { currentRole, roleData } from '../../card/data';
 
 const treeData = ref<any>();
 
-const halfExpands = ref<number[]>([]);
 const submit = async () => {
   const { data } = await roleDataScope(currentRole.value!);
   message.success(data.msg);

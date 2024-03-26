@@ -16,7 +16,7 @@ export interface Role {
   status: string;
   delFlag?: any;
   flag: boolean;
-  menuIds?: any;
+  menuIds: number[];
   deptIds?: any;
   permissions?: any;
   admin: boolean;

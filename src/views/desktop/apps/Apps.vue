@@ -8,6 +8,7 @@
           :class="{ selected: item.path === selected }"
           @click="select(item)"
           @dblclick="openApp(item)"
+          v-show="!item.hidden"
         >
           <div>
             <div class="logo">

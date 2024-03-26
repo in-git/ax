@@ -27,9 +27,11 @@ export const deptTree = (id: number) => {
 export const roleDataScope = (data: Role) => {
   return axios.put<Response>(`system/role/dataScope`, data);
 };
+
 export const updateRole = (data: Role) => {
   return axios.put<Response>(`system/role`, data);
 };
+
 export const createRole = (data: Role) => {
   return axios.post<Response>(`system/role`, data);
 };

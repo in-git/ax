@@ -6,7 +6,7 @@ export const selectRole = async (id: number) => {
   if (currentRole.value) {
     roleData.value.roleMenus = data.menus;
     roleData.value.menuKeys = data.checkedKeys;
-    currentRole.value.menuIds = roleData.value.roleMenus;
+    currentRole.value.menuIds = data.checkedKeys;
   }
 };
 export const getDeptTree = async (id: number) => {
