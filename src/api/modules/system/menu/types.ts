@@ -7,7 +7,7 @@ export interface SystemMenu {
   menuId: string;
   menuName: string;
   parentName?: any;
-  parentId: string;
+  parentId: number;
   orderNum: number;
   path: string;
   component?: string;

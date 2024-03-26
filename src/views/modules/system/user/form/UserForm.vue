@@ -1,82 +1,88 @@
 <template>
-  <div class="user-form flex-1 system-form">
-    <a-form
-      :model="userForm"
-      label-align="left"
-      class="flex flex-col flex-1 form"
-      @finish="submit"
-      :label-col="{
-        span: 8,
-      }"
-    >
-      <a-page-header
-        title="User form"
-        sub-title="edit user config"
-        class="page-head py-0"
-        @back="back"
-      />
-      <div class="flex-1 p-8">
-        <a-row :gutter="12" class="role">
-          <a-col :span="12">
-            <a-card title="Base info" :body-style="{ height: '510px' }">
-              <a-form-item label="Nickname" name="nickName" required>
-                <a-input
-                  v-model:value="userForm.nickName"
-                  focused
-                  placeholder="Please enter nickname"
-                />
-              </a-form-item>
-              <a-form-item label="Username" name="userName" required>
-                <a-input
-                  v-model:value="userForm.userName"
-                  focused
-                  placeholder="Please enter username"
-                />
-              </a-form-item>
-              <a-form-item label="Password" name="password" required v-if="!userForm.userId">
-                <a-input
-                  type="password"
-                  v-model:value="userForm.password"
-                  focused
-                  placeholder="Please enter password"
-                />
-              </a-form-item>
-              <a-form-item label="Phone" name="phonenumber" required :rules="{ len: 11 }">
-                <a-input
-                  :maxlength="11"
-                  v-model:value="userForm.phonenumber"
-                  placeholder="Please enter phone number"
-                />
-              </a-form-item>
-              <a-form-item label="Email" name="email" required>
-                <a-input
-                  v-model:value="userForm.email"
-                  type="email"
-                  placeholder="Please enter email"
-                />
-              </a-form-item>
-              <a-form-item label="Sex" name="sex" required>
-                <a-radio-group v-model:value="userForm.sex" :options="sexOptions" />
-              </a-form-item>
-              <a-form-item label="Status" name="status" required>
-                <a-radio-group v-model:value="userForm.status" :options="statusOptions" />
-              </a-form-item>
-              <a-form-item label="Remark" name="remark">
-                <a-textarea
-                  :auto-size="{ minRows: 2, maxRows: 6 }"
-                  v-model:value="userForm.remark"
-                ></a-textarea>
-              </a-form-item>
-            </a-card>
-          </a-col>
-          <a-col :span="12">
-            <RightVue></RightVue>
-          </a-col>
-        </a-row>
+  <Transition
+    enter-active-class="animate__animated animate__slideInDown"
+    leave-active-class="animate__animated animate__slideOutDown"
+  >
+    <div class="system-form-modal" v-if="userMode === 'form'">
+      <div class="modal-container">
+        <a-form
+          :model="userForm"
+          label-align="left"
+          @finish="submit"
+          :label-col="{
+            span: 8,
+          }"
+        >
+          <div class="system-head px-12">
+            <div>UserInfo</div>
+            <div class="system-icon system-close" @click="userMode = 'table'">
+              <CloseOutlined />
+            </div>
+          </div>
+          <div class="flex-1 p-8 form">
+            <a-row :gutter="12" class="role">
+              <a-col :span="12">
+                <a-card title="Base info" :body-style="{ height: '510px' }">
+                  <a-form-item label="Nickname" name="nickName" required>
+                    <a-input
+                      v-model:value="userForm.nickName"
+                      focused
+                      placeholder="Please enter nickname"
+                    />
+                  </a-form-item>
+                  <a-form-item label="Username" name="userName" required>
+                    <a-input
+                      v-model:value="userForm.userName"
+                      focused
+                      placeholder="Please enter username"
+                    />
+                  </a-form-item>
+                  <a-form-item label="Password" name="password" required v-if="!userForm.userId">
+                    <a-input
+                      type="password"
+                      v-model:value="userForm.password"
+                      focused
+                      placeholder="Please enter password"
+                    />
+                  </a-form-item>
+                  <a-form-item label="Phone" name="phonenumber" required :rules="{ len: 11 }">
+                    <a-input
+                      :maxlength="11"
+                      v-model:value="userForm.phonenumber"
+                      placeholder="Please enter phone number"
+                    />
+                  </a-form-item>
+                  <a-form-item label="Email" name="email" required>
+                    <a-input
+                      v-model:value="userForm.email"
+                      type="email"
+                      placeholder="Please enter email"
+                    />
+                  </a-form-item>
+                  <a-form-item label="Sex" name="sex" required>
+                    <a-radio-group v-model:value="userForm.sex" :options="sexOptions" />
+                  </a-form-item>
+                  <a-form-item label="Status" name="status" required>
+                    <a-radio-group v-model:value="userForm.status" :options="statusOptions" />
+                  </a-form-item>
+                  <a-form-item label="Remark" name="remark">
+                    <a-textarea
+                      :auto-size="{ minRows: 2, maxRows: 6 }"
+                      v-model:value="userForm.remark"
+                    ></a-textarea>
+                  </a-form-item>
+                </a-card>
+              </a-col>
+              <a-col :span="12">
+                <RightVue></RightVue>
+              </a-col>
+            </a-row>
+          </div>
+          <FormFooter></FormFooter>
+        </a-form>
       </div>
-      <FormFooter></FormFooter>
-    </a-form>
-  </div>
+    </div>
+  </Transition>
 </template>
 
 <script setup lang="ts">

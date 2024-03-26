@@ -73,3 +73,7 @@ export const createUser = (data: UserProfileData) => {
 export const updateUser = (data: UserProfileData) => {
   return axios.put<Response>(`system/user`, data);
 };
+
+export const resetPwd = (password: string, userId: number) => {
+  return axios.put<Response>(`system/user/resetPwd`, { password, userId });
+};

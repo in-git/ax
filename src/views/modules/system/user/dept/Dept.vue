@@ -11,11 +11,6 @@ import type { Key } from 'ant-design-vue/es/vc-tree/interface';
 import { userForm } from '../form/data';
 import { loadUserData, userQuery } from '../table/data';
 
-const fullPath = ref<number[]>([]);
-const selectedKeys = ref<number[]>([]);
-
-const treeData = ref();
-
 const select = (keys: Key[]) => {
   userQuery.value.deptId = Number(keys[0]);
   loadUserData();
@@ -24,7 +19,7 @@ const select = (keys: Key[]) => {
 
 <style lang="scss" scoped>
 .dept {
-  width: 200px;
+  flex-basis: 200px;
   background: #f8f8f8;
   border-right: 1px solid #ddd;
 }

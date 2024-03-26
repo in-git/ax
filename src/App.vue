@@ -50,6 +50,7 @@ nextTick(() => {
   loadSystemIcons();
   loadSystemComponents();
 });
+document.addEventListener('wheel', e => {});
 const theme = computed(() => {
   return {
     token: {

@@ -3,6 +3,7 @@
 	justify-content: space-between;
 	align-items: center;
 	height: 42px;
+	border-bottom: 1px solid #ddd;
 }
 .system-module {
 	width: 100%;
@@ -54,6 +55,17 @@
 	.modal-container {
 		width: 90%;
 		height: 90%;
+		background: white;
 		border-radius: var(--radius);
+	}
+	.form {
+		height: 510px;
+		overflow-y: auto;
+	}
+}
+.system-close {
+	&:hover {
+		background-color: #fc3333;
+		color: white;
 	}
 }

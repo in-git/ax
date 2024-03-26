@@ -50,7 +50,7 @@ export interface UserProfileData {
   updateBy?: any;
   updateTime?: any;
   remark: string;
-  userId: string;
+  userId: number;
   deptId: number;
   userName: string;
   nickName: string;

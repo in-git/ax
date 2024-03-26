@@ -3,20 +3,33 @@
     <TableHead title="User list">
       <div class="flex justify-between">
         <div class="flex gc-4">
-          <a-button type="primary" @click="createUser">Create</a-button>
-          <a-button @click="loadUserData">Reload</a-button>
-          <a-button @click="delUser()" danger>Delete</a-button>
-          <a-button @click="exportExcel">
-            <ExportOutlined />
-            Export
-          </a-button>
+          <a-tooltip title="Create">
+            <a-button type="primary" @click="createUser">
+              <PlusOutlined />
+            </a-button>
+          </a-tooltip>
+
+          <a-tooltip title="Refresh">
+            <a-button @click="loadUserData">
+              <ReloadOutlined />
+            </a-button>
+          </a-tooltip>
+
+          <a-tooltip title="Export">
+            <a-button @click="exportExcel">
+              <ExportOutlined />
+            </a-button>
+          </a-tooltip>
         </div>
-        <div>
+        <div class="flex gc-4">
           <a-segmented
             :options="setOptions('Normal', 'Disabled')"
             v-model:value="userQuery.status"
             @change="loadUserData"
           ></a-segmented>
+          <a-button @click="delUser()" danger>
+            <DeleteOutlined />
+          </a-button>
         </div>
       </div>
 
@@ -38,7 +51,7 @@
 <script setup lang="ts">
 import { exportFile } from '@/api/utils/file';
 import { setOptions } from '@/global/options/system';
-import { ExportOutlined } from '@ant-design/icons-vue';
+import { DeleteOutlined, ExportOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { createUser, delUser } from '../table/curd';
 import { loadUserData, userQuery } from './data';
 const exportExcel = async () => {

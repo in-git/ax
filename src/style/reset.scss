@@ -1,6 +1,8 @@
 * {
   box-sizing: border-box !important;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 *::selection {
   background-color: var(--primary, #00a6fb);

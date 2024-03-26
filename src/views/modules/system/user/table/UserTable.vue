@@ -18,14 +18,20 @@
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'operation'">
           <a-dropdown-button @click="editUserConfig(record.userId)" trigger="click">
-            Edit
+            <EditOutlined />
             <template #overlay>
               <a-menu>
-                <a-menu-item class="text-danger" @click="delUser(record.userId)">
+                <a-menu-item @click="delUser(record.userId)">
                   <template #icon>
                     <DeleteOutlined />
                   </template>
                   Delete
+                </a-menu-item>
+                <a-menu-item @click="passwordModal = true">
+                  <template #icon>
+                    <LockOutlined />
+                  </template>
+                  Change password
                 </a-menu-item>
               </a-menu>
             </template>
@@ -33,6 +39,9 @@
         </template>
       </template>
     </a-table>
+
+    <!--  -->
+    <ChangePassword />
   </div>
 </template>
 
@@ -43,6 +52,8 @@ import { DeleteOutlined } from '@ant-design/icons-vue';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
+import ChangePassword from './change-password/ChangePassword.vue';
+import { passwordModal } from './change-password/data';
 import userColumns from './columns';
 import { delUser, editUserConfig } from './curd';
 import { loadUserData, userConfig, userQuery } from './data';

@@ -19,7 +19,7 @@
         @finish="submit"
         class="flex-1 flex flex-col"
       >
-        <a-card class="flex-1">
+        <a-card class="flex-1" :body-style="{ height: `500px`, overflowY: 'auto' }">
           <a-row :gutter="12" class="px-12">
             <a-col :span="14">
               <a-form-item label="Menu name" name="menuName" required>
@@ -62,22 +62,25 @@
                 </div>
               </a-form-item>
               <a-card :body-style="{ maxHeight: '450px', overflow: 'auto' }" title="Select parent">
-                <a-tree
-                  v-if="mode === 'other'"
-                  :field-names="{
-                    title: 'menuName',
-                    key: 'menuId',
-                  }"
-                  v-model:selected-keys="treeSelected"
-                  @select="select"
-                  :tree-data="treeData"
-                  block-node
-                ></a-tree>
-                <div v-else class="flex flex-s root flex-col">
-                  <div class="text-24">
-                    <img :src="homePage" width="48" alt="" />
+                <div>
+                  <a-tree
+                    v-if="mode === 'other'"
+                    :field-names="{
+                      title: 'menuName',
+                      key: 'menuId',
+                    }"
+                    v-model:selected-keys="treeSelected"
+                    @select="select"
+                    selectable
+                    :tree-data="treeData"
+                    block-node
+                  ></a-tree>
+                  <div v-else class="flex flex-s root flex-col">
+                    <div class="text-24">
+                      <img :src="homePage" width="48" alt="" />
+                    </div>
+                    <div>Root</div>
                   </div>
-                  <div>Root</div>
                 </div>
               </a-card>
             </a-col>
@@ -98,7 +101,7 @@ import homePage from './homepage.png';
 import ParamVue from './Params.vue';
 
 import { createMenu, updateMenu } from '@/api/modules/system/menu/menu';
-import { Form, message } from 'ant-design-vue';
+import { message } from 'ant-design-vue';
 
 const mode = ref<'home' | 'other'>('home');
 
@@ -112,17 +115,13 @@ const modeOptions = [
     value: 'other',
   },
 ];
-const useForm = Form.useForm;
-const { resetFields } = useForm(menuForm);
 const treeData: any = menuConfig.value.data;
-const treeSelected = ref<string[]>([]);
-
-const back = () => {
-  showMenuForm.value = !showMenuForm.value;
-};
+const treeSelected = ref<number[]>([]);
 
 const select = (checked: Key[]) => {
-  menuForm.value.parentId = `${checked[0] || '1'}`;
+  console.log(checked[0]);
+
+  menuForm.value.parentId = Number(checked[0]);
 };
 
 const submit = async () => {
@@ -143,7 +142,7 @@ watch(
   menuForm,
   () => {
     treeSelected.value = [menuForm.value.parentId];
-    mode.value = menuForm.value.parentId === '0' ? 'home' : 'other';
+    mode.value = menuForm.value.parentId === 0 ? 'home' : 'other';
   },
   {
     deep: true,
