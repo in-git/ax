@@ -40,7 +40,7 @@
                   <a-input class="w-100" v-model:value="currentRole.roleKey"></a-input>
                 </a-form-item>
 
-                <a-form-item label="Role name" name="remark" required>
+                <a-form-item label="Role mark" name="remark">
                   <a-textarea
                     :autoSize="{ minRows: 2, maxRows: 4 }"
                     v-model:value="currentRole.remark"

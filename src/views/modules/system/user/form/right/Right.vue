@@ -11,7 +11,7 @@
               @click="selectRole(item)"
             >
               <img :src="rolePng" width="32" />
-              <div class="text-12">
+              <div class="text-12 title">
                 {{ item.roleName }}
               </div>
             </li>
@@ -32,7 +32,7 @@
               @click="selectPost(item)"
             >
               <img :src="deptPng" width="32" />
-              <div class="text-12">
+              <div class="text-12 title">
                 {{ item.postName }}
               </div>
             </li>
@@ -45,7 +45,7 @@
 
     <a-card
       title="Department"
-      :body-style="{ padding: 0, maxHeight: '160px', overflowY: 'auto' }"
+      :body-style="{ padding: 0, height: '250px', overflowY: 'auto' }"
       class="mt-8"
     >
       <a-form-item :wrapper-col="{ span: 24 }" class="mb-0">
@@ -96,6 +96,7 @@ const select = () => {};
     gap: 8px;
     overflow-x: auto;
     max-height: 160px;
+    flex-wrap: wrap;
   }
   li {
     text-align: center;
@@ -103,9 +104,12 @@ const select = () => {};
     width: fit-content;
     padding: 8px 12px;
     height: fit-content;
-    flex-shrink: 0;
+    max-width: 64px;
     &:hover {
       background: #eee;
+    }
+    .title {
+      white-space: nowrap;
     }
   }
   li.active {
@@ -114,8 +118,11 @@ const select = () => {};
 }
 .post {
   ul {
+    overflow-x: auto;
     flex-wrap: wrap;
-    justify-content: space-between;
+    li {
+      flex: 1;
+    }
   }
 }
 </style>

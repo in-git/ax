@@ -18,7 +18,7 @@
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'operation'">
           <div class="text-center">
-            <a-dropdown-button @click="editMenuForm(record.menuId)" trigger="click">
+            <a-dropdown-button @click="showMenuFormForm(record.menuId)" trigger="click">
               <template #overlay>
                 <a-menu>
                   <a-menu-item key="delete" @click="delMenu(record.menuId)">Delete</a-menu-item>
@@ -44,7 +44,7 @@ import type { TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { menuColumns } from './column';
-import { delMenu, editMenuForm } from './curd';
+import { delMenu, showMenuFormForm } from './curd';
 import { loadMenuData, menuConfig } from './data';
 import MenuHead from './head/MenuHead.vue';
 

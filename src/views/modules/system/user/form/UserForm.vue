@@ -18,7 +18,7 @@
       <div class="flex-1 p-8">
         <a-row :gutter="12" class="role">
           <a-col :span="12">
-            <a-card title="Base info">
+            <a-card title="Base info" :body-style="{ height: '510px' }">
               <a-form-item label="Nickname" name="nickName" required>
                 <a-input
                   v-model:value="userForm.nickName"
@@ -117,7 +117,5 @@ const back = () => {
 }
 .form {
   overflow-y: auto;
-}
-.ant-form-item {
 }
 </style>

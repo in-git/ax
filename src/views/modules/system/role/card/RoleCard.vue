@@ -11,12 +11,12 @@
             class="flex gc-12"
             @dblclick="open"
           >
-            <img :src="rolePng" width="24" height="24" />
+            <img :src="rolePng" width="32" height="32" />
             <div>
               <div class="text-14">
                 {{ item.roleName }}
               </div>
-              <div class="desc mt-8">
+              <div class="desc mt-8 text-12">
                 {{ item.remark }}
               </div>
             </div>

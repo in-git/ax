@@ -21,7 +21,7 @@ export const menuForm = ref<SystemMenu>({
   ...object,
 });
 
-export const editMenu = ref(false);
+export const showMenuForm = ref(false);
 export const resetMenuForm = () => {
   menuForm.value = {
     ...object,

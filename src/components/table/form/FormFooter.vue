@@ -29,5 +29,6 @@ withDefaults(
   align-items: center;
   padding: 0 12px;
   min-height: 48px;
+  z-index: 100;
 }
 </style>

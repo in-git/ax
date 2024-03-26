@@ -52,10 +52,10 @@
 <script setup lang="ts">
 import { statusOptions } from '@/global/options/system';
 import { DeleteOutlined, EditOutlined, ReloadOutlined } from '@ant-design/icons-vue';
-import { createMenuData, delMenu, editMenuForm } from '../../table/curd';
+import { createMenuData, delMenu, showMenuFormForm } from '../../table/curd';
 import { loadMenuData, menuConfig } from '../../table/data';
 const edit = () => {
-  editMenuForm();
+  showMenuFormForm();
 };
 const create = () => {
   createMenuData();

@@ -1,9 +1,12 @@
 <template>
-  <div class="menu-form">
-    <div class="page-header">
-      <a-page-header title="Go back" sub-title="Edit form" @back="back" />
-    </div>
-    <div>
+  <div class="system-form-modal">
+    <div class="menu-form modal-container flex flex-col">
+      <div class="system-form-head px-12">
+        <div>Menu info</div>
+        <div class="system-icon" @click="showMenuForm = false">
+          <CloseOutlined />
+        </div>
+      </div>
       <a-form
         :model="menuForm"
         :label-col="{
@@ -14,8 +17,9 @@
         }"
         label-align="left"
         @finish="submit"
+        class="flex-1 flex flex-col"
       >
-        <a-card>
+        <a-card class="flex-1">
           <a-row :gutter="12" class="px-12">
             <a-col :span="14">
               <a-form-item label="Menu name" name="menuName" required>
@@ -53,18 +57,13 @@
 
             <a-col :span="10">
               <a-form-item label="Parent" name="parentId">
-                <div>
-                  <a-switch
-                    v-model:checked="mode"
-                    checked-children="Root"
-                    size="default"
-                    un-checked-children="Select"
-                  ></a-switch>
+                <div class="flex justify-right">
+                  <a-segmented v-model:value="mode" :options="modeOptions"></a-segmented>
                 </div>
               </a-form-item>
               <a-card :body-style="{ maxHeight: '450px', overflow: 'auto' }" title="Select parent">
                 <a-tree
-                  v-if="!mode"
+                  v-if="mode === 'other'"
                   :field-names="{
                     title: 'menuName',
                     key: 'menuId',
@@ -72,19 +71,19 @@
                   v-model:selected-keys="treeSelected"
                   @select="select"
                   :tree-data="treeData"
+                  block-node
                 ></a-tree>
                 <div v-else class="flex flex-s root flex-col">
-                  <div class="text-24"><HomeOutlined /></div>
+                  <div class="text-24">
+                    <img :src="homePage" width="48" alt="" />
+                  </div>
                   <div>Root</div>
                 </div>
               </a-card>
             </a-col>
           </a-row>
         </a-card>
-        <div class="footer">
-          <a-button danger @click="resetFields">Clear</a-button>
-          <a-button type="primary" htmlType="submit">Submit</a-button>
-        </div>
+        <FormFooter position="center"></FormFooter>
       </a-form>
     </div>
   </div>
@@ -94,21 +93,32 @@
 import { statusOptions, visibleOptions } from '@/global/options/system';
 import type { Key } from 'ant-design-vue/es/vc-tree/interface';
 import { loadMenuData, menuConfig } from '../table/data';
-import { editMenu, menuForm } from './data';
+import { menuForm, showMenuForm } from './data';
+import homePage from './homepage.png';
 import ParamVue from './Params.vue';
 
 import { createMenu, updateMenu } from '@/api/modules/system/menu/menu';
-import { HomeOutlined } from '@ant-design/icons-vue';
 import { Form, message } from 'ant-design-vue';
 
-const mode = ref(false);
+const mode = ref<'home' | 'other'>('home');
+
+const modeOptions = [
+  {
+    label: 'Home',
+    value: 'home',
+  },
+  {
+    label: 'Others',
+    value: 'other',
+  },
+];
 const useForm = Form.useForm;
 const { resetFields } = useForm(menuForm);
 const treeData: any = menuConfig.value.data;
 const treeSelected = ref<string[]>([]);
 
 const back = () => {
-  editMenu.value = !editMenu.value;
+  showMenuForm.value = !showMenuForm.value;
 };
 
 const select = (checked: Key[]) => {
@@ -126,14 +136,14 @@ const submit = async () => {
     msg = data.msg;
   }
   message.success(msg);
-  editMenu.value = !editMenu.value;
+  showMenuForm.value = !showMenuForm.value;
   loadMenuData();
 };
 watch(
   menuForm,
   () => {
     treeSelected.value = [menuForm.value.parentId];
-    mode.value = menuForm.value.parentId === '0';
+    mode.value = menuForm.value.parentId === '0' ? 'home' : 'other';
   },
   {
     deep: true,

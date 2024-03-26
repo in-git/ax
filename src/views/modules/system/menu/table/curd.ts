@@ -1,9 +1,9 @@
 import { deleteMenu, getMenu } from '@/api/modules/system/menu/menu';
 import { message, Modal } from 'ant-design-vue';
-import { editMenu, menuForm, resetMenuForm } from '../form/data';
+import { menuForm, resetMenuForm, showMenuForm } from '../form/data';
 import { loadMenuData, menuConfig } from './data';
 
-export const editMenuForm = async (id?: string) => {
+export const showMenuFormForm = async (id?: string) => {
   let menuId = '';
   if (id) {
     menuId = id;
@@ -15,12 +15,12 @@ export const editMenuForm = async (id?: string) => {
   if (data.data) {
     menuForm.value = data.data;
   }
-  editMenu.value = !editMenu.value;
+  showMenuForm.value = !showMenuForm.value;
 };
 
 export const createMenuData = () => {
   resetMenuForm();
-  editMenu.value = !editMenu.value;
+  showMenuForm.value = !showMenuForm.value;
 };
 
 export const delMenu = (id?: string) => {
