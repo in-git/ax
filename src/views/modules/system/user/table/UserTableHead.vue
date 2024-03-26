@@ -26,6 +26,11 @@
               <ReloadOutlined />
             </a-button>
           </a-tooltip>
+          <a-tooltip title="Edit">
+            <a-button @click="editUserConfig()" :disabled="userConfig.selectedKeys.length !== 1">
+              <EditOutlined />
+            </a-button>
+          </a-tooltip>
 
           <a-tooltip title="Export">
             <a-button @click="exportExcel">
@@ -33,12 +38,13 @@
             </a-button>
           </a-tooltip>
         </div>
-        <div class="flex gc-4">
+        <div class="flex gc-4 align-center">
           <a-segmented
             :options="setOptions('Normal', 'Disabled')"
             v-model:value="userQuery.status"
             @change="loadUserData"
           ></a-segmented>
+          <a-divider type="vertical"></a-divider>
           <a-button @click="delUser()" danger>
             <DeleteOutlined />
           </a-button>
@@ -52,8 +58,8 @@
 import { exportFile } from '@/api/utils/file';
 import { setOptions } from '@/global/options/system';
 import { DeleteOutlined, ExportOutlined, ReloadOutlined } from '@ant-design/icons-vue';
-import { createUser, delUser } from '../table/curd';
-import { loadUserData, userQuery } from './data';
+import { createUser, delUser, editUserConfig } from '../table/curd';
+import { loadUserData, userConfig, userQuery } from './data';
 const exportExcel = async () => {
   await exportFile(`system/user/export`, {
     pageNum: userQuery.value.pageNum,

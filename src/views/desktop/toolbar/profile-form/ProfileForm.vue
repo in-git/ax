@@ -42,37 +42,33 @@
           </a-form>
         </a-tab-pane>
         <a-tab-pane key="auth" tab="Password">
-          <a-form
-            :model="passwordForm"
-            :wrapper-col="{
-              span: 8,
-            }"
-            :label-col="{
-              span: 4,
-            }"
-            @finish="resetPassword"
-          >
-            <a-row>
-              <a-col :span="8" :offset="4">
+          <a-row>
+            <a-col :span="8" :offset="8">
+              <a-form size="middle" :model="passwordForm" layout="vertical" @finish="resetPassword">
                 <div class="text-center">
                   <img :src="authPng" width="64" />
                   <div class="text-24 text-999 text-bold">Update password</div>
                 </div>
-              </a-col>
-            </a-row>
-            <a-divider />
-            <a-form-item required label="New password" name="newPassword">
-              <a-input v-model:value="passwordForm.newPassword"></a-input>
-            </a-form-item>
-            <a-form-item required label="Old password" name="oldPassword">
-              <a-input v-model:value="passwordForm.oldPassword"></a-input>
-            </a-form-item>
-            <a-row>
-              <a-col :span="8" :offset="4">
-                <a-button :loading="loading" html-type="submit" type="primary">Submit</a-button>
-              </a-col>
-            </a-row>
-          </a-form>
+                <a-divider />
+                <a-form-item required label="New password" name="newPassword">
+                  <a-input-password
+                    allow-clear
+                    v-model:value.trim="passwordForm.newPassword"
+                  ></a-input-password>
+                </a-form-item>
+                <a-form-item required label="Old password" name="oldPassword">
+                  <a-input-password
+                    type="password"
+                    allow-clear
+                    v-model:value.trim="passwordForm.oldPassword"
+                  ></a-input-password>
+                </a-form-item>
+                <a-button block :loading="loading" html-type="submit" type="primary" class="mt-12">
+                  Submit
+                </a-button>
+              </a-form>
+            </a-col>
+          </a-row>
         </a-tab-pane>
       </a-tabs>
     </div>
@@ -82,7 +78,7 @@
 <script setup lang="ts">
 import { updatePassword, updateProfile } from '@/api/modules/system/user/user';
 import { sexOptions } from '@/global/options/system';
-import { message } from 'ant-design-vue';
+import { message, Modal } from 'ant-design-vue';
 import { userProfile } from '../profile/data';
 import authPng from './auth.png';
 
@@ -109,6 +105,15 @@ const resetPassword = async () => {
     passwordForm.value.newPassword,
     passwordForm.value.oldPassword,
   );
+  message.success(data.msg);
+  Modal.confirm({
+    title: 'Warning',
+    content: '是否刷新页面',
+
+    onOk() {
+      window.location.reload();
+    },
+  });
 };
 </script>
 

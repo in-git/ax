@@ -113,6 +113,7 @@ const finish = async () => {
     store.$state.token = data.token;
   } catch (error) {
     loginLoading.value = false;
+    getCaptcha();
   }
 };
 </script>
