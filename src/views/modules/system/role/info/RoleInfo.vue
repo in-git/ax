@@ -7,7 +7,7 @@
       size="small"
       :disabled="!currentRole"
     >
-      <template #label="{ value: val, payload }">
+      <template #label="{ value, payload }">
         <div style="padding: 4px 4px" class="flex gc-4">
           <div>
             <img :src="payload.image" width="16" alt="" />
@@ -25,12 +25,13 @@
 <script setup lang="ts">
 import type { SegmentedValue } from 'ant-design-vue/es/segmented/src/segmented';
 import { currentRole } from '../card/data';
-import resourcePng from './assets/resource.png';
-import rolePng from './assets/role.png';
-import usersPng from './assets/users.png';
 import RoleInfo from './info/RoleInfo.vue';
 import RoleResource from './resource/RoleResource.vue';
 import RoleUsers from './users/RoleUsers.vue';
+
+import resourcePng from './assets/resource.png';
+import rolePng from './assets/role.png';
+import usersPng from './assets/users.png';
 
 const currentModule = ref<string>('info');
 

@@ -2,10 +2,10 @@
   <div class="role-card">
     <TableHead title="Role list">
       <div class="flex justify-between">
-        <a-button type="primary">Create</a-button>
+        <a-button type="primary" @click="create">Create</a-button>
         <div>
-          <a-button type="link">
-            <span class="text-12">分配权限</span>
+          <a-button type="link" danger @click="delRoles">
+            <span class="text-12">Delete</span>
           </a-button>
         </div>
       </div>
@@ -37,17 +37,27 @@
 </template>
 
 <script setup lang="ts">
+import { roleTreeSelect } from '@/api/modules/system/role/role';
 import type { Role } from '@/api/modules/system/role/types';
 import rolePng from '@/assets/system/role.png';
 import { useCloned } from '@vueuse/core';
-import { getDeptTree, selectRole } from './curd';
-import { currentRole, getRoles, roleData } from './data';
-
+import { delRoles, getDeptTree, getRoles, selectRole } from './curd';
+import { currentRole, roleData, roleObject } from './data';
 const select = async (item: Role) => {
   currentRole.value = useCloned(item).cloned.value;
-
   await selectRole(item.roleId);
   await getDeptTree(item.roleId);
+};
+
+const create = async () => {
+  const { data } = await roleTreeSelect();
+  if (data.data) {
+    roleData.value.roleMenus = data.data;
+  }
+
+  currentRole.value = {
+    ...roleObject,
+  };
 };
 onMounted(async () => {
   await getRoles();

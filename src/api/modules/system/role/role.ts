@@ -20,6 +20,10 @@ export const roleMenuTreeSelect = (id: number) => {
   return axios.get<RoleMenuTree>(`system/menu/roleMenuTreeselect/${id}`);
 };
 
+export const roleTreeSelect = () => {
+  return axios.get<Response<TreeNode[]>>(`system/menu/treeselect`);
+};
+
 export const deptTree = (id: number) => {
   return axios.get<RoleDeptTreeData>(`system/role/deptTree/${id}`);
 };
@@ -34,4 +38,8 @@ export const updateRole = (data: Role) => {
 
 export const createRole = (data: Role) => {
   return axios.post<Response>(`system/role`, data);
+};
+
+export const delRole = (id: number) => {
+  return axios.delete<Response>(`system/role/${id}`);
 };
