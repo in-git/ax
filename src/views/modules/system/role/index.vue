@@ -3,11 +3,13 @@
     <RoleCard />
     <RoleInfo />
     <RoleResource />
+    <RoleAssign />
   </div>
 </template>
 
 <script setup lang="ts">
 import 'splitpanes/dist/splitpanes.css';
+import RoleAssign from './assign/RoleAssign.vue';
 import RoleCard from './card/RoleCard.vue';
 import RoleInfo from './info/RoleInfo.vue';
 import RoleResource from './resource/RoleResource.vue';

@@ -3,7 +3,7 @@ import { getRouters } from '@/api/modules/system/user/user';
 import google from '@/assets/system/google.png';
 import { openWindow, setCurrentWindow } from '@/global/config/window';
 import { systemComponents } from '@/initialization';
-import { flattenTree } from '@/utils/common/format';
+import { flattenTree } from '@/utils/common/tree';
 import { openLink } from '@/utils/common/utils';
 
 export const getUserRouters = async () => {

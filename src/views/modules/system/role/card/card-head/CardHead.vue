@@ -22,7 +22,11 @@
 
           <a-divider type="vertical"></a-divider>
 
-          <div class="flex gc-2" :class="[!isActive() ? 'active' : 'gray']">
+          <div
+            class="flex gc-2 text-nowrap align-center"
+            :class="[!isActive() ? 'active' : 'gray']"
+          >
+            <span class="text-999">编辑/权限:</span>
             <a-tooltip title="编辑">
               <a-button type="text" @click="selectRole()" :disabled="!currentRole">
                 <EditOutlined class="icon" />
@@ -34,8 +38,13 @@
               </a-button>
             </a-tooltip>
             <a-tooltip title="分配人员">
-              <a-button type="text" :disabled="!currentRole">
+              <a-button type="text" :disabled="!currentRole" @click="allocateUsers">
                 <UserAddOutlined class="icon" />
+              </a-button>
+            </a-tooltip>
+            <a-tooltip title="取消分配">
+              <a-button type="text" :disabled="!currentRole" @click="unassignUsers">
+                <UserDeleteOutlined class="text-danger" />
               </a-button>
             </a-tooltip>
           </div>
@@ -53,7 +62,13 @@
 
 <script setup lang="ts">
 import { roleTreeSelect } from '@/api/modules/system/role/role';
-import { ClusterOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
+import {
+  ClusterOutlined,
+  DeleteOutlined,
+  ReloadOutlined,
+  UserDeleteOutlined,
+} from '@ant-design/icons-vue';
+import { allocateUsers, unassignUsers } from '../../assign/data';
 import { showRoleForm } from '../../info/data';
 import { allocatingResource } from '../../resource/data';
 import { delRoles, getRoles, resetRoleForm, selectRole } from '../curd';
@@ -86,3 +101,4 @@ const isActive = () => {
   }
 }
 </style>
+../../assign/data

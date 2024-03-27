@@ -37,6 +37,7 @@ const props = defineProps<{
   w: string;
   h: string;
 }>();
+
 const close = () => {
   emit('update:visible', false);
 };

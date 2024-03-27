@@ -12,7 +12,7 @@
   >
     <slot name="head">
       <div class="drag-header flex justify-between align-center">
-        <div class="px-12">{{ title }}</div>
+        <div class="px-12 text-16">{{ title }}</div>
         <div class="flex">
           <div class="system-icon minus" @click="hidden">
             <MinusOutlined class="text-white" />

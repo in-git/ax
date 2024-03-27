@@ -46,5 +46,26 @@ export const delRole = (id: number) => {
 };
 
 export const allocatedList = (query: IQuery) => {
-  return axios.get<TableResponse<UserProfileData>>(`system/role/authUser/allocatedList`, query);
+  return axios.get<TableResponse<UserProfileData>>(`system/role/authUser/allocatedList`, {
+    params: query,
+  });
+};
+
+export const unallocatedList = (query: IQuery) => {
+  return axios.get<TableResponse<UserProfileData>>(`system/role/authUser/unallocatedList`, {
+    params: query,
+  });
+};
+
+export const authUserCancel = (roleId: number, userId: number) => {
+  return axios.put(`system/role/authUser/cancel`, {
+    roleId,
+    userId,
+  });
+};
+export const assignAuthUser = (roleId: number, userId: number) => {
+  return axios.put(`system/role/authUser/selectAll`, {
+    roleId,
+    userId,
+  });
 };

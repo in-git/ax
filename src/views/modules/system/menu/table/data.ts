@@ -1,7 +1,7 @@
 import type { IQuery } from '@/api/config/types';
 import { menuList } from '@/api/modules/system/menu/menu';
 import type { SystemMenu } from '@/api/modules/system/menu/types';
-import { convertToTree } from '@/utils/common/format';
+import { convertToTree } from '@/utils/common/tree';
 import type { Key } from 'ant-design-vue/es/_util/type';
 
 export const menuData = ref();
