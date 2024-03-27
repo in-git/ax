@@ -3,10 +3,11 @@
     <MenuHead></MenuHead>
     <a-table
       class="px-12"
-      :columns="columns"
+      :columns="formatColumns(columns)"
       :dataSource="menuConfig.data"
       :loading="menuConfig.loading"
       @change="pageChange"
+      table-layout="fixed"
       sticky
       :row-selection="{
         selectedRowKeys: menuConfig.selectedKeys,
@@ -39,6 +40,7 @@
 
 <script setup lang="ts">
 import type { SystemMenu } from '@/api/modules/system/menu/types';
+import { formatColumns } from '@/utils/common/format';
 import { CheckOutlined, type EditOutlined } from '@ant-design/icons-vue';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';

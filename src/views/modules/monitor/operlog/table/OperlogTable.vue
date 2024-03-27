@@ -49,7 +49,7 @@
 
       <Loading v-else class="w-100 h-100" />
     </div>
-    <div class="footer">
+    <div class="footer flex justify-right">
       <a-pagination
         @change="change"
         v-model:current="logQuery.pageNum"

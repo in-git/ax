@@ -28,14 +28,14 @@
       <!--  -->
       <a-form-item label="Auth" name="perms">
         <a-input v-model:value="menuForm.perms"></a-input>
-        <div class="text-999 text-12">
+        <div class="text-999 text-12 mt-4">
           <InfoCircleFilled />
           Only users with this permission can access the path
         </div>
       </a-form-item>
     </template>
     <template v-if="menuForm.menuType === 'C'">
-      <a-form-item :label="menuForm.isFrame === '0' ? 'Router' : 'Link'" name="path">
+      <a-form-item :label="menuForm.isFrame !== '0' ? 'Router' : 'Link'" name="path">
         <a-input v-model:value="menuForm.path"></a-input>
         <div class="text-999 text-12">
           <InfoCircleFilled />
@@ -49,7 +49,7 @@
     <template v-if="menuForm.menuType === 'F'">
       <a-form-item label="Auth" name="perms">
         <a-input v-model:value="menuForm.perms"></a-input>
-        <div class="text-999 text-12">
+        <div class="text-999 text-12 mt-4">
           <InfoCircleFilled />
           Only users with this permission can access the path
         </div>
