@@ -12,11 +12,16 @@ export const loginLogData = ref<LoginLogData>({
   selectedKeys: [],
   loading: false,
 });
-
-export const loginLogQuery = ref<IQuery>({
+interface LogQuery {
+  ipaddr: string;
+  userName: string;
+}
+export const loginLogQuery = ref<IQuery<LogQuery>>({
   pageSize: 50,
   pageNum: 1,
   total: 0,
+  ipaddr: '',
+  userName: '',
 });
 
 export const loadLoginList = async () => {

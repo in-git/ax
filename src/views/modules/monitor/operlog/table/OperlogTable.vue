@@ -11,11 +11,14 @@
             @click="selectItem(item)"
             :class="{ active: item === current }"
           >
-            <a-space class="w-100" direction="vertical">
-              <div class="flex">
-                <img width="32" height="32" :src="logSuccess" v-if="`${item.status}` === '0'" />
-                <img width="32" height="32" :src="logError" v-else />
-                <div class="flex flex-col justify-between ml-8">
+            <a-space class="w-100 text-center" direction="vertical">
+              <div>
+                <ImageType :type="item.businessType" />
+                <!-- <img width="32" height="32" :src="logSuccess" v-if="`${item.status}` === '0'" />
+                <img width="32" height="32" :src="logError" v-else /> -->
+              </div>
+              <div>
+                <div class="flex flex-col justify-between">
                   <div class="text-16 mb-4 title">{{ item.title }}</div>
                   <div class="text-999 text-12">{{ item.operTime }}</div>
                 </div>
@@ -55,6 +58,7 @@
         v-model:current="logQuery.pageNum"
         :total="logQuery.total"
         show-less-items
+        :page-size="logQuery.pageSize"
       />
     </div>
   </div>
@@ -63,10 +67,9 @@
 <script setup lang="ts">
 import type { Operlog } from '@/api/modules/monitor/operlog/types';
 import Loading from '@/components/loading/Loading.vue';
-import logError from '../../assets/log-error.png';
-import logSuccess from '../../assets/log-success.png';
 import { getLogs, logQuery, operLogConf } from './data';
 import OperlogHead from './head/OperlogHead.vue';
+import ImageType from './ImageType.vue';
 const current = ref<Operlog>();
 
 const change = (page: number, pageSize: number) => {
@@ -104,8 +107,9 @@ const getStatus = (status: string) => {
       grid-template-columns: repeat(auto-fit, minmax($width, 1fr));
       gap: 8px;
       li {
+        cursor: pointer;
         width: 100%;
-        border-bottom: 2px solid transparent;
+        border: 1px solid transparent;
       }
     }
   }
@@ -124,7 +128,7 @@ const getStatus = (status: string) => {
     }
   }
   .active {
-    border-bottom: 2px solid var(--primary) !important;
+    border: 1px solid var(--primary) !important;
     .title {
       text-shadow: 0 0 1px #00000056;
     }
