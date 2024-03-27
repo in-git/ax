@@ -63,6 +63,8 @@ declare module 'vue' {
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
     ATree: typeof import('ant-design-vue/es')['Tree']
     CaretDownOutlined: typeof import('@ant-design/icons-vue')['CaretDownOutlined']
+    CheckCircleFilled: typeof import('@ant-design/icons-vue')['CheckCircleFilled']
+    CheckOutlined: typeof import('@ant-design/icons-vue')['CheckOutlined']
     CloseOutlined: typeof import('@ant-design/icons-vue')['CloseOutlined']
     Contextmenu: typeof import('./components/contextmenu/Contextmenu.vue')['default']
     DownOutlined: typeof import('@ant-design/icons-vue')['DownOutlined']

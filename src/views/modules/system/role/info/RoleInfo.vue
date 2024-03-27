@@ -1,19 +1,14 @@
 <template>
-  <SystemModal
-    w="90%"
-    h="90%"
-    v-model:visible="showRoleForm"
-    title="Role config"
-    @update:visible="showRoleForm = false"
-  >
-    <div v-if="showRoleForm && currentRole">
-      <div class="info-container">
-        <a-form
-          :model="currentRole"
-          @finish="submit"
-          layout="vertical"
-          class="flex-1 relative h-100 w-100 h-100"
-        >
+  <a-form :model="currentRole" @finish="submit" layout="vertical">
+    <SystemModal
+      w="90%"
+      h="90%"
+      v-model:visible="showRoleForm"
+      title="Role config"
+      @update:visible="showRoleForm = false"
+    >
+      <div v-if="showRoleForm && currentRole" class="h-100 flex flex-col">
+        <div class="flex-1">
           <a-row>
             <a-col :span="12">
               <a-card :bordered="false">
@@ -70,12 +65,11 @@
               </a-card>
             </a-col>
           </a-row>
-
-          <FormFooter class="px-12"></FormFooter>
-        </a-form>
+        </div>
+        <FormFooter class="px-12"></FormFooter>
       </div>
-    </div>
-  </SystemModal>
+    </SystemModal>
+  </a-form>
 </template>
 
 <script setup lang="ts">

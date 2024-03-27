@@ -1,24 +1,24 @@
 <template>
-  <SystemModal
-    w="90%"
-    h="90%"
-    v-model:visible="showUserForm"
-    title="Menu config"
-    @update:visible="showUserForm = false"
+  <a-form
+    :model="userForm"
+    label-align="left"
+    class="form"
+    @finish="submit"
+    :label-col="{
+      span: 8,
+    }"
   >
-    <a-form
-      :model="userForm"
-      label-align="left"
-      class="form"
-      @finish="submit"
-      :label-col="{
-        span: 8,
-      }"
+    <SystemModal
+      w="90%"
+      h="90%"
+      v-model:visible="showUserForm"
+      title="Menu config"
+      @update:visible="showUserForm = false"
     >
-      <div class="flex-1 p-8">
-        <a-row :gutter="12" class="role">
+      <div class="flex-1 p-8 h-100 flex flex-col">
+        <a-row :gutter="12" class="flex-1">
           <a-col :span="12">
-            <a-card title="Base info" :body-style="{ height: '510px' }">
+            <a-card title="Base info">
               <a-form-item label="Nickname" name="nickName" required>
                 <a-input
                   v-model:value="userForm.nickName"
@@ -73,10 +73,10 @@
             <RightVue></RightVue>
           </a-col>
         </a-row>
+        <FormFooter></FormFooter>
       </div>
-      <FormFooter></FormFooter>
-    </a-form>
-  </SystemModal>
+    </SystemModal>
+  </a-form>
 </template>
 
 <script setup lang="ts">

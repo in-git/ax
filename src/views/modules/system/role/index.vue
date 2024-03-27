@@ -2,6 +2,7 @@
   <div class="role system-module flex">
     <RoleCard />
     <RoleInfo />
+    <RoleResource />
   </div>
 </template>
 
@@ -9,6 +10,7 @@
 import 'splitpanes/dist/splitpanes.css';
 import RoleCard from './card/RoleCard.vue';
 import RoleInfo from './info/RoleInfo.vue';
+import RoleResource from './resource/RoleResource.vue';
 </script>
 
 <style lang="scss" scoped>

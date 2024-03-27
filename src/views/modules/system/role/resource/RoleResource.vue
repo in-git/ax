@@ -1,56 +1,56 @@
 <template>
-  <div class="mt-8">
-    <a-card
-      v-if="!!currentRole"
-      title="Select Department"
-      :body-style="{ height: '600px', overflowY: 'auto' }"
+  <a-form :model="currentRole" @finish="submit" :wrapper-col="{ span: 8 }" :label-col="{ span: 4 }">
+    <SystemModal
+      w="90%"
+      h="90%"
+      v-model:visible="resourceModal"
+      title="Role config"
+      @update:visible="resourceModal = false"
     >
-      <a-form
-        :model="currentRole"
-        @finish="submit"
-        :label-col="{
-          span: 8,
-        }"
-        :wrapper-col="{
-          span: 14,
-          offset: 2,
-        }"
-      >
-        <a-form-item label="Role name" name="roleName" required>
-          <a-input v-model:value="currentRole.roleName" disabled />
-        </a-form-item>
-        <a-form-item label="Role perms" name="roleKey" required>
-          <a-input v-model:value="currentRole.roleKey" disabled />
-        </a-form-item>
-        <a-form-item label="Scoped" name="dataScope" required>
-          <a-select v-model:value="currentRole.dataScope" :options="scopedOptions" />
-        </a-form-item>
+      <div v-if="resourceModal && !!currentRole" class="h-100 flex flex-col">
+        <a-card
+          title="Select Department"
+          :body-style="{ maxHeight: '430px', overflowY: 'auto' }"
+          class="flex-1 p-8"
+        >
+          <a-form-item label="Role name" name="roleName" required>
+            <a-input v-model:value="currentRole.roleName" disabled />
+          </a-form-item>
 
-        <a-form-item name="deptIds" required :wrapper-col="{ span: 24 }">
-          <a-directory-tree
-            :tree-data="treeData"
-            :field-names="{
-              key: 'id',
-              title: 'label',
-            }"
-            :height="360"
-            selectable
-            autoExpandParent
-            :default-expand-all="true"
-            v-model:selected-keys="currentRole.deptIds"
-            ref="treeRef"
-          ></a-directory-tree>
-        </a-form-item>
+          <a-form-item label="Role perms" name="roleKey" required>
+            <a-input v-model:value="currentRole.roleKey" disabled />
+          </a-form-item>
+
+          <a-form-item label="Scoped" name="dataScope" required>
+            <a-select v-model:value="currentRole.dataScope" :options="scopedOptions" />
+          </a-form-item>
+
+          <a-form-item name="deptIds" required label="Select department">
+            <a-directory-tree
+              :tree-data="treeData"
+              :field-names="{
+                key: 'id',
+                title: 'label',
+              }"
+              selectable
+              v-model:selected-keys="currentRole.deptIds"
+              ref="treeRef"
+            ></a-directory-tree>
+          </a-form-item>
+        </a-card>
+
         <FormFooter />
-      </a-form>
-    </a-card>
-  </div>
+      </div>
+    </SystemModal>
+  </a-form>
 </template>
 
 <script setup lang="ts">
 import { roleDataScope } from '@/api/modules/system/role/role';
+import SystemModal from '@/components/modal/SysModal.vue';
 import { message } from 'ant-design-vue';
 import { currentRole, roleData } from '../card/data';
+import { resourceModal } from './data';
 
 const treeData = ref<any>();
 const treeRef = ref();

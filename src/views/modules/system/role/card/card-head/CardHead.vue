@@ -19,21 +19,22 @@
             @search="getRoles"
             allow-clear
           ></a-input-search>
+
           <a-divider type="vertical"></a-divider>
 
           <div class="flex gc-2" :class="[!isActive() ? 'active' : 'gray']">
             <a-tooltip title="编辑">
-              <a-button type="text" @click="selectRole()">
+              <a-button type="text" @click="selectRole()" :disabled="!currentRole">
                 <EditOutlined class="icon" />
               </a-button>
             </a-tooltip>
-            <a-tooltip title="资源">
-              <a-button type="text">
+            <a-tooltip title="资源" @click="allocatingResource">
+              <a-button type="text" :disabled="!currentRole">
                 <ClusterOutlined class="icon" />
               </a-button>
             </a-tooltip>
             <a-tooltip title="分配人员">
-              <a-button type="text">
+              <a-button type="text" :disabled="!currentRole">
                 <UserAddOutlined class="icon" />
               </a-button>
             </a-tooltip>
@@ -54,6 +55,7 @@
 import { roleTreeSelect } from '@/api/modules/system/role/role';
 import { ClusterOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { showRoleForm } from '../../info/data';
+import { allocatingResource } from '../../resource/data';
 import { delRoles, getRoles, resetRoleForm, selectRole } from '../curd';
 import { currentRole, roleData, roleQuery } from '../data';
 
@@ -80,7 +82,7 @@ const isActive = () => {
 }
 .active {
   .icon {
-    color: rgb(157, 42, 224);
+    color: rgb(29, 110, 18);
   }
 }
 </style>

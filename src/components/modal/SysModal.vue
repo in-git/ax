@@ -5,7 +5,7 @@
   >
     <div class="system__modal" v-show="visible">
       <div class="modal__container" :style="style">
-        <div class="system-head px-8">
+        <div class="system-head px-8 text-bold">
           <slot name="title">{{ title }}</slot>
           <div>
             <slot name="extra"></slot>
