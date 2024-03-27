@@ -1,9 +1,6 @@
 /* 请求钩子函数方法 */
-export type ApiMethod = 'afterEdit' | 'beforeCreate' | 'beforeEdit' | 'init';
 
-export interface ApiHooks {
-  [key: string]: () => any;
-}
+import type { TableColumnProps } from 'ant-design-vue';
 
 export type IOption = {
   label: string;
@@ -26,6 +23,7 @@ export type IQuery<T = Record<string, any> | undefined> = {
   orderByColumn?: string;
   total?: number;
 } & T;
+
 /* 带分页数据列表的返回 */
 export interface TableResponse<T> {
   total: number;
@@ -53,9 +51,10 @@ export type FormEvent = {
   errors: Record<string, any> | undefined;
 };
 
-export type ConfigFilter = {
-  /* 是否允许用时间进行搜索 */
-  allowTimeQuery?: boolean;
-  /* 是否开启状态筛选 */
-  status?: boolean;
-};
+export interface TableConfig {
+  rowKey: string;
+  columns: TableColumnProps[];
+  data: any[];
+  loading: boolean;
+  list: (arg?: any) => any;
+}

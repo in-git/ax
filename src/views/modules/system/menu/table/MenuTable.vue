@@ -3,7 +3,7 @@
     <MenuHead></MenuHead>
     <a-table
       class="px-12"
-      :columns="formatColumns(columns)"
+      :columns="formatColumns(menuColumns)"
       :dataSource="menuConfig.data"
       :loading="menuConfig.loading"
       @change="pageChange"
@@ -81,12 +81,6 @@ const customRow = (record: SystemMenu) => {
     },
   };
 };
-const columns = menuColumns.map(e => {
-  e.ellipsis = true;
-  e.key = `${e.dataIndex}`;
-  e.align = 'center';
-  return e;
-});
 </script>
 
 <style lang="scss" scoped>
