@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import type { SystemMenu } from '@/api/modules/system/menu/types';
-import { formatColumns } from '@/utils/common/format';
+import { formatColumns } from '@/utils/table/table';
 import { CheckOutlined, type EditOutlined } from '@ant-design/icons-vue';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
@@ -49,7 +49,6 @@ import { menuColumns } from './column';
 import { delMenu, showMenuFormForm } from './curd';
 import { loadMenuData, menuConfig } from './data';
 import MenuHead from './head/MenuHead.vue';
-
 onMounted(() => {
   loadMenuData();
 });
@@ -59,8 +58,8 @@ const pageChange = (
   filters: Record<string, FilterValue>,
   sorter: SorterResult<SystemMenu> | SorterResult<SystemMenu>[],
 ) => {
-  menuConfig.value.query.pageNum = pagination.current;
-  menuConfig.value.query.pageSize = pagination.pageSize;
+  menuConfig.value.query.pageNum = pagination.current!;
+  menuConfig.value.query.pageSize = pagination.pageSize!;
   if (sorter instanceof Array) {
     return;
   }

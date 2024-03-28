@@ -38,11 +38,10 @@
 <script setup lang="ts">
 import type { IQuery, TableConfig } from '@/api/config/types';
 import type { SystemMenu } from '@/api/modules/system/menu/types';
-import { formatColumns } from '@/utils/common/format';
+import { formatColumns } from '@/utils/table/table';
 import type { TableColumnProps, TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
-
 const emit = defineEmits(['update:selectedKeys']);
 const selectedKeys = ref();
 

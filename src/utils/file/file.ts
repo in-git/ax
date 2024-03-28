@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 
 export interface UploadType {
   accept?: string;
-  muitiple?: boolean;
+  multiple?: boolean;
   size?: number;
   isFolder?: boolean;
 }
@@ -16,7 +16,7 @@ const createInput = (config: UploadType) => {
     input.webkitdirectory = config.isFolder;
     input.multiple = true;
   } else {
-    input.multiple = config.muitiple ?? false;
+    input.multiple = config.multiple ?? false;
     input.accept = config.accept ?? '';
   }
   input.click();

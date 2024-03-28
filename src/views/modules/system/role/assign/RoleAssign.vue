@@ -63,7 +63,7 @@
 
 <script setup lang="ts">
 import SystemModal from '@/components/modal/SysModal.vue';
-import { formatColumns } from '@/utils/common/format';
+import { formatColumns } from '@/utils/table/table';
 import assignPng from './assign.png';
 import { userColumns } from './columns';
 import {

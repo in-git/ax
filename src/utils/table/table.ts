@@ -1,4 +1,4 @@
-import { message, Modal } from 'ant-design-vue';
+import { message, Modal, type TableColumnProps } from 'ant-design-vue';
 
 export const confirm = (onOk: any) => {
   Modal.confirm({
@@ -19,4 +19,22 @@ export const response = async (request: (...arg: any) => any, ...arg: any) => {
   } else {
     message.warning(data.msg);
   }
+};
+export const formatColumns = (data: TableColumnProps[]) => {
+  let operation: TableColumnProps = {
+    title: '操作',
+    dataIndex: 'operation',
+    key: 'operation',
+    fixed: 'right',
+  };
+  if (data.findIndex(e => e.key === operation.key) <= -1) {
+    data.push(operation);
+  }
+  console.log(data);
+
+  return data.map(e => {
+    e.align = 'center';
+    e.ellipsis = true;
+    return e;
+  });
 };
