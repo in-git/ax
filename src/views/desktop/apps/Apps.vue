@@ -58,13 +58,12 @@ const select = (item: Routers) => {
 };
 
 const style = computed((): CSSProperties => {
-  // const cols = Math.floor(74 / menuList.value.length);
-
-  const rows = Math.floor(maxHeight.value / 74);
+  const itemHeight = 84;
+  const rows = Math.floor(maxHeight.value / itemHeight);
   const cols = Math.ceil(menuList.value.length / rows);
   return {
-    gridTemplateColumns: `repeat(${cols}, 74px)`,
-    gridTemplateRows: `repeat(${rows}, 74px)`,
+    gridTemplateColumns: `repeat(${cols}, ${itemHeight}px)`,
+    gridTemplateRows: `repeat(${rows}, ${itemHeight}px)`,
   };
 });
 </script>
