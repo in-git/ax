@@ -2,7 +2,7 @@
   <div>
     <TableHead title="岗位管理">
       <div class="flex gc-4">
-        <a-button type="primary">
+        <a-button type="primary" @click="createPost">
           <PlusOutlined />
         </a-button>
         <a-button :disabled="postKeys.length !== 1" @click="editPost()">
@@ -10,7 +10,7 @@
         </a-button>
       </div>
     </TableHead>
-    <Table :table="postTable" :query="postQuery" v-model:selected-keys="postKeys">
+    <SystemTable :table="postTable" :query="postQuery" v-model:selected-keys="postKeys">
       <template v-slot:default="{ value }">
         <template v-if="value.column.key === 'operation'">
           <a-dropdown-button trigger="click" @click="editPost(value.record.postId)">
@@ -23,15 +23,15 @@
           </a-dropdown-button>
         </template>
       </template>
-    </Table>
+    </SystemTable>
   </div>
 </template>
 
 <script setup lang="ts">
 import TableHead from '@/components/table/table-head/TableHead.vue';
-import Table from '@/views/components/table/Table.vue';
-import { delPost, editPost, loadPostList } from './curd';
-import { postKeys, postQuery, postTable } from './data';
+import SystemTable from '@/views/components/table/SystemTable.vue';
+import { createPost, delPost, editPost, loadPostList } from '../data/curd';
+import { postKeys, postQuery, postTable } from '../data/table';
 
 onMounted(async () => {
   await loadPostList();
@@ -39,3 +39,4 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped></style>
+../data/curd ../data/data

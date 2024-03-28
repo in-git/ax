@@ -3,21 +3,11 @@
     <div class="p-12">
       <a-row>
         <a-col :span="12" :offset="6">
-          <a-row>
-            <a-col :span="14" :offset="10">
-              <div class="text-center mb-24">
-                <img :src="postPng" width="48" />
-              </div>
-            </a-col>
-          </a-row>
+          <div class="text-center">
+            <img :src="postPng" width="48" />
+          </div>
 
-          <a-form
-            :model="postForm"
-            :wrapper-col="{ span: 16, offset: 2 }"
-            :label-col="{
-              span: 8,
-            }"
-          >
+          <a-form :model="postForm" layout="vertical" @finish="submit">
             <a-form-item label="Post name" name="postName" required>
               <a-input
                 v-model:value="postForm.postName"
@@ -50,24 +40,30 @@
                 :options="statusOptions"
               ></a-radio-group>
             </a-form-item>
-            <a-row>
-              <a-col :span="14" :offset="10">
-                <a-button type="primary" block>Submit</a-button>
-              </a-col>
-            </a-row>
+            <a-button type="primary" htmlType="submit">Submit</a-button>
           </a-form>
         </a-col>
       </a-row>
     </div>
   </SystemModal>
-  <div class="post-form"></div>
 </template>
 
 <script setup lang="ts">
+import { addPost, updatePost } from '@/api/modules/system/post/post';
 import postPng from '@/assets/system/post.png';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { statusOptions } from '@/global/options/system';
-import { postForm, showPostForm } from './data';
+import { response } from '@/utils/table/table';
+import { postForm, showPostForm } from '../data/form';
+
+const submit = () => {
+  if (!postForm.value.postId) {
+    response(addPost, postForm.value);
+  } else {
+    response(updatePost, postForm.value);
+  }
+};
 </script>
 
 <style lang="scss" scoped></style>
+./form

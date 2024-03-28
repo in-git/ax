@@ -2,6 +2,16 @@ import type { TableColumnProps } from 'ant-design-vue';
 
 export const postColumns: TableColumnProps[] = [
   {
+    title: '岗位名称',
+    dataIndex: 'postName',
+    key: 'postName',
+  },
+  {
+    title: '岗位编码',
+    dataIndex: 'postCode',
+    key: 'postCode',
+  },
+  {
     title: '创建人',
     dataIndex: 'createBy',
     key: 'createBy',
@@ -21,16 +31,7 @@ export const postColumns: TableColumnProps[] = [
     dataIndex: 'remark',
     key: 'remark',
   },
-  {
-    title: '岗位编码',
-    dataIndex: 'postCode',
-    key: 'postCode',
-  },
-  {
-    title: '岗位名称',
-    dataIndex: 'postName',
-    key: 'postName',
-  },
+
   {
     title: '状态',
     dataIndex: 'status',

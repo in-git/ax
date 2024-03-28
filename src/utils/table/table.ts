@@ -1,4 +1,4 @@
-import { Modal } from 'ant-design-vue';
+import { message, Modal } from 'ant-design-vue';
 
 export const confirm = (onOk: any) => {
   Modal.confirm({
@@ -7,4 +7,15 @@ export const confirm = (onOk: any) => {
     onOk,
     centered: true,
   });
+};
+export const response = async (request: any, ...arg: any) => {
+  const { data } = await request(...arg);
+  if (!data) {
+    return;
+  }
+  if (data.code === 200) {
+    message.success(data);
+  } else {
+    message.warning(data);
+  }
 };

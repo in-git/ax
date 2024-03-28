@@ -9,9 +9,11 @@ export const postTable = ref<TableConfig>({
   list: postList,
   loading: false,
 });
+
 export const postQuery = ref<IQuery>({
   total: 0,
   pageSize: 20,
   pageNum: 1,
 });
+
 export const postKeys = ref<number[]>([]);

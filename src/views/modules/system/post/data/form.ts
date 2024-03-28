@@ -2,7 +2,7 @@ import type { SystemPost } from '@/api/modules/system/post/types';
 
 export const showPostForm = ref(false);
 
-export const postForm = ref<SystemPost>({
+let form: SystemPost = {
   createBy: '',
   createTime: '',
   remark: '',
@@ -12,4 +12,12 @@ export const postForm = ref<SystemPost>({
   postSort: 0,
   status: '0',
   flag: false,
+};
+export const postForm = ref<SystemPost>({
+  ...form,
 });
+export const resetPostForm = () => {
+  postForm.value = {
+    ...form,
+  };
+};

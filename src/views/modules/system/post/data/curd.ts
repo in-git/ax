@@ -1,8 +1,8 @@
 import { deletePost, getPost, postList } from '@/api/modules/system/post/post';
 import { confirm } from '@/utils/table/table';
 import { message } from 'ant-design-vue';
-import { postForm, showPostForm } from '../form/data';
-import { postKeys, postQuery, postTable } from './data';
+import { postForm, resetPostForm, showPostForm } from './form';
+import { postKeys, postQuery, postTable } from './table';
 
 export const loadPostList = async () => {
   postTable.value.loading = true;
@@ -20,6 +20,7 @@ export const delPost = (id?: number) => {
     message.success(data.msg);
   });
 };
+
 export const editPost = async (id?: number) => {
   let targetId = -1;
   targetId = !!id ? id : postKeys.value[0];
@@ -28,4 +29,8 @@ export const editPost = async (id?: number) => {
     postForm.value = data.data;
     showPostForm.value = true;
   }
+};
+export const createPost = () => {
+  resetPostForm();
+  showPostForm.value = true;
 };

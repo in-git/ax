@@ -15,3 +15,10 @@ export const deletePost = (ids: number[]) => {
 export const getPost = (id: number) => {
   return axios.get<Response<SystemPost>>(`system/post/${id}`);
 };
+
+export const addPost = (data: SystemPost) => {
+  return axios.post(`system/post`, data);
+};
+export const updatePost = (data: SystemPost) => {
+  return axios.put(`system/post`, data);
+};
