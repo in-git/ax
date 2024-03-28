@@ -14,7 +14,11 @@
       :rowKey="table.rowKey"
       :columns="formatColumns(table.columns)"
       :data-source="table.data"
-    ></a-table>
+    >
+      <template #bodyCell="{ column, record }">
+        <slot :value="{ column, record }"></slot>
+      </template>
+    </a-table>
   </div>
 </template>
 

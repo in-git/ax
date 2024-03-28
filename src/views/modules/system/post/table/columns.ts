@@ -36,6 +36,11 @@ export const postColumns: TableColumnProps[] = [
     dataIndex: 'status',
     key: 'status',
   },
+  {
+    title: '操作',
+    dataIndex: 'operational',
+    key: 'operation',
+  },
 ];
 
 export default {

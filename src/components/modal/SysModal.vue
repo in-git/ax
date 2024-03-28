@@ -31,12 +31,18 @@ import type { CSSProperties } from 'vue';
 
 const emit = defineEmits(['update:visible']);
 
-const props = defineProps<{
-  visible: boolean;
-  title: string;
-  w: string;
-  h: string;
-}>();
+const props = withDefaults(
+  defineProps<{
+    visible: boolean;
+    title: string;
+    w?: string;
+    h?: string;
+  }>(),
+  {
+    w: '90%',
+    h: '90%',
+  },
+);
 
 const close = () => {
   emit('update:visible', false);
