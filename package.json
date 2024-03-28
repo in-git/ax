@@ -15,6 +15,7 @@
   "dependencies": {
     "@ant-design-vue/pro-layout": "^3.2.5",
     "@ant-design/icons-vue": "^7.0.1",
+    "@vueup/vue-quill": "latest",
     "@vueuse/core": "^10.9.0",
     "@vueuse/integrations": "^10.9.0",
     "animate.css": "^4.1.1",

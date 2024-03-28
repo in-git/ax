@@ -1,5 +1,5 @@
 <template>
-  <a-form :wrapper-col="{ span: 24 }" :model="noticeForm">
+  <a-form size="middle" :wrapper-col="{ span: 24 }" :model="noticeForm">
     <SystemModal v-model:visible="showNoticeForm" title="Notice config">
       <div class="notice-form p-8 h-100">
         <div class="border-bottom">
@@ -7,7 +7,11 @@
             <div class="flex align-center justify-between">
               <div class="flex gc-12">
                 <div class="flex-1">
-                  <a-input placeholder="Please enter title"></a-input>
+                  <a-input
+                    placeholder="Please enter title"
+                    v-model:value="noticeForm.noticeTitle"
+                    style="width: 400px"
+                  ></a-input>
                 </div>
 
                 <a-radio-group v-model:value="noticeForm.status">
@@ -22,13 +26,20 @@
                 </a-radio-group>
               </div>
               <div>
-                <a-button type="primary">保存</a-button>
+                <a-button type="primary" htmlType="submit">保存</a-button>
               </div>
             </div>
           </a-form-item>
         </div>
 
-        <div></div>
+        <div>
+          <quill-editor
+            contentType="html"
+            theme="snow"
+            v-model:content="noticeForm.noticeContent"
+            style="height: 430px"
+          />
+        </div>
       </div>
     </SystemModal>
   </a-form>
@@ -37,8 +48,12 @@
 <script setup lang="ts">
 import SystemModal from '@/components/modal/SysModal.vue';
 import { statusOptions } from '@/global/options/system';
+import { QuillEditor } from '@vueup/vue-quill';
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { noticeForm, showNoticeForm } from '../data/form';
 import { noticeTypeOptions } from '../data/options';
+
+console.log(noticeForm.value.noticeContent);
 </script>
 
 <style lang="scss" scoped>

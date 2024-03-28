@@ -1,5 +1,5 @@
 import { getNotice, listNotice } from '@/api/modules/system/notice/notice';
-import { showNoticeForm } from './form';
+import { noticeForm, showNoticeForm } from './form';
 import { noticeKeys, noticeQuery, noticeTable } from './table';
 
 export const noticeList = async () => {
@@ -12,6 +12,9 @@ export const noticeList = async () => {
 
 export const editNotice = async (id: number) => {
   let targetId = id ? id : noticeKeys.value[0];
-  await getNotice(targetId);
-  showNoticeForm.value = true;
+  const { data } = await getNotice(targetId);
+  if (data.data) {
+    noticeForm.value = data.data;
+    showNoticeForm.value = true;
+  }
 };
