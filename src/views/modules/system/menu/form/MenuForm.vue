@@ -1,11 +1,5 @@
 <template>
-  <SystemModal
-    w="90%"
-    h="90%"
-    v-model:visible="showMenuForm"
-    title="Menu config"
-    @update:visible="showMenuForm = false"
-  >
+  <SystemModal v-model:visible="showMenuForm" title="Menu config">
     <a-form
       :model="menuForm"
       :label-col="{

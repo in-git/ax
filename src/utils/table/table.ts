@@ -8,14 +8,15 @@ export const confirm = (onOk: any) => {
     centered: true,
   });
 };
-export const response = async (request: any, ...arg: any) => {
+export const response = async (request: (...arg: any) => any, ...arg: any) => {
   const { data } = await request(...arg);
+
   if (!data) {
     return;
   }
   if (data.code === 200) {
-    message.success(data);
+    message.success(data.msg);
   } else {
-    message.warning(data);
+    message.warning(data.msg);
   }
 };

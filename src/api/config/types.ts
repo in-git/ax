@@ -1,7 +1,5 @@
 /* 请求钩子函数方法 */
 
-import type { TableColumnProps } from 'ant-design-vue';
-
 export type IOption = {
   label: string;
   value: string | number;
@@ -9,8 +7,8 @@ export type IOption = {
 
 /* 查询条件 */
 export type IQuery<T = Record<string, any> | undefined> = {
-  pageNum?: number;
-  pageSize?: number;
+  pageNum: number;
+  pageSize: number;
   /* 创建时间 */
   createTime?: string;
   isAsc?: 'asc' | 'desc';
@@ -21,7 +19,7 @@ export type IQuery<T = Record<string, any> | undefined> = {
     endTime?: string;
   };
   orderByColumn?: string;
-  total?: number;
+  total: number;
 } & T;
 
 /* 带分页数据列表的返回 */
@@ -53,7 +51,7 @@ export type FormEvent = {
 
 export interface TableConfig {
   rowKey: string;
-  columns: TableColumnProps[];
+
   data: any[];
   loading: boolean;
   list: (arg?: any) => any;

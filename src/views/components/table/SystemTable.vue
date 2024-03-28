@@ -12,11 +12,24 @@
       }"
       :customRow="customRow"
       :rowKey="table.rowKey"
-      :columns="formatColumns(table.columns)"
+      :columns="formatColumns(columns)"
       :data-source="table.data"
     >
       <template #bodyCell="{ column, record }">
         <slot :value="{ column, record }"></slot>
+        <template v-if="column.key === 'status'">
+          <!-- <slot name="status"></slot> -->
+          <span class="text-12 text-999">
+            <span v-if="record.status === '1'">
+              未生效
+              <a-badge color="red"></a-badge>
+            </span>
+            <span v-else-if="record.status === '0'">
+              生效
+              <a-badge color="green"></a-badge>
+            </span>
+          </span>
+        </template>
       </template>
     </a-table>
   </div>
@@ -26,7 +39,7 @@
 import type { IQuery, TableConfig } from '@/api/config/types';
 import type { SystemMenu } from '@/api/modules/system/menu/types';
 import { formatColumns } from '@/utils/common/format';
-import type { TablePaginationConfig } from 'ant-design-vue';
+import type { TableColumnProps, TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 
@@ -36,6 +49,8 @@ const selectedKeys = ref();
 const props = defineProps<{
   table: TableConfig;
   query: IQuery;
+  columns: TableColumnProps[];
+  selectedKeys: number[];
 }>();
 
 const onChange = (keys: Key[]) => {
