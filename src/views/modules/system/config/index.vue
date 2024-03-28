@@ -1,7 +1,13 @@
 <template>
-  <div></div>
+  <div class="system-module">
+    <TableVue />
+    <FormVue />
+  </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import FormVue from './form/form.vue';
+import TableVue from './table/table.vue';
+</script>
 
 <style lang="scss" scoped></style>

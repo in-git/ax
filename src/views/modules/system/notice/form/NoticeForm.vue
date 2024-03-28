@@ -52,8 +52,6 @@ import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { noticeForm, showNoticeForm } from '../data/form';
 import { noticeTypeOptions } from '../data/options';
-
-console.log(noticeForm.value.noticeContent);
 </script>
 
 <style lang="scss" scoped>

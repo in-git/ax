@@ -9,5 +9,3 @@
 import NoticeForm from './form/NoticeForm.vue';
 import NoticeTable from './table/NoticeTable.vue';
 </script>
-
-<style lang="scss" scoped></style>

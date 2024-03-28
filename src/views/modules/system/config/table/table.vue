@@ -2,10 +2,10 @@
   <div>
     <TableHeadVue />
     <SystemTable
-      :columns="__columns"
-      :table="__table"
-      :query="__query"
-      v-model:selected-keys="__keys"
+      :columns="configColumns"
+      :table="configTable"
+      :query="configQuery"
+      v-model:selected-keys="configKeys"
     ></SystemTable>
   </div>
 </template>
@@ -14,8 +14,8 @@
 import SystemTable from '@/views/components/table/SystemTable.vue';
 import TableHeadVue from './table-head/head.vue';
 
-import { __columns } from '../data/column';
-import { __keys, __query, __table } from '../data/table';
+import { configColumns } from '../data/column';
+import { configKeys, configQuery, configTable } from '../data/table';
 </script>
 
 <style lang="scss" scoped></style>

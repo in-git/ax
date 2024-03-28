@@ -11,8 +11,10 @@
 	ul {
 		display: grid;
 		grid-template-columns: repeat(2, $app-width);
-		grid-template-rows: repeat(auto-fit, 1fr);
-		gap: 10px;
+		// grid-template-rows: repeat(auto-fit, 84px);
+		place-items: start;
+		gap: 8px;
+		flex-direction: column;
 		height: 100%;
 	}
 	%selected {

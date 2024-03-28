@@ -30,7 +30,6 @@ export const formatColumns = (data: TableColumnProps[]) => {
   if (data.findIndex(e => e.key === operation.key) <= -1) {
     data.push(operation);
   }
-  console.log(data);
 
   return data.map(e => {
     e.align = 'center';
