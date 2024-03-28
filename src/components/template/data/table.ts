@@ -3,7 +3,7 @@ import { DeleteOutlined } from '@ant-design/icons-vue';
 import type { ItemType } from 'ant-design-vue';
 
 export const __table = ref<TableConfig>({
-  rowKey: 'noticeId',
+  rowKey: '',
   data: [],
   loading: false,
   list: undefined as any,

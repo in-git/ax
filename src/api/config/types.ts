@@ -51,7 +51,6 @@ export type FormEvent = {
 
 export interface TableConfig {
   rowKey: string;
-
   data: any[];
   loading: boolean;
   list: (arg?: any) => any;

@@ -15,7 +15,12 @@ import SystemTable from '@/views/components/table/SystemTable.vue';
 import TableHeadVue from './table-head/head.vue';
 
 import { configColumns } from '../data/column';
+import { configList } from '../data/curd';
 import { configKeys, configQuery, configTable } from '../data/table';
+
+onMounted(() => {
+  configList();
+});
 </script>
 
 <style lang="scss" scoped></style>

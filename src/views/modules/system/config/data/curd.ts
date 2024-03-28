@@ -5,7 +5,7 @@ import { configQuery, configTable } from './table';
 export const configList = async () => {
   configTable.value.loading = true;
   const { data } = await listConfig(configQuery.value);
-  configTable.value.data = data;
+  configTable.value.data = data.rows;
   configTable.value.loading = false;
 };
 
