@@ -19,7 +19,7 @@
             </a-button>
           </a-tooltip>
           <a-divider type="vertical" />
-          <a-input-search allow-clear @search="__list"></a-input-search>
+          <a-input-search allow-clear @search="dictList"></a-input-search>
         </div>
       </div>
       <div>
@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
-import { __list } from '../../data/curd';
+import { dictList } from '../../data/curd';
 </script>
 
 <style lang="scss" scoped></style>

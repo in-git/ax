@@ -2,14 +2,14 @@
   <div>
     <TableHeadVue />
     <SystemTable
-      :columns="__Columns"
-      :table="__Table"
-      :query="__Query"
-      v-model:selected-keys="__Keys"
+      :columns="dictColumns"
+      :table="dictTable"
+      :query="dictQuery"
+      v-model:selected-keys="dictKeys"
     >
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">
-          <Operation @edit="__edit" :items="__OperationList" />
+          <Operation @edit="dictEdit" :items="dictOperationList" />
         </template>
       </template>
     </SystemTable>
@@ -21,9 +21,9 @@ import SystemTable from '@/views/components/table/SystemTable.vue';
 import TableHeadVue from './table-head/head.vue';
 
 import Operation from '@/views/components/table/Operation.vue';
-import { __Columns } from '../data/column';
-import { __edit } from '../data/curd';
-import { __Keys, __OperationList, __Query, __Table } from '../data/table';
+import { dictColumns } from '../data/column';
+import { dictEdit } from '../data/curd';
+import { dictKeys, dictOperationList, dictQuery, dictTable } from '../data/table';
 </script>
 
 <style lang="scss" scoped></style>
