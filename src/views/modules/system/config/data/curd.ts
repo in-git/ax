@@ -1,6 +1,6 @@
-import { listConfig } from '@/api/modules/system/config/config';
+import { listConfig, selectConfig } from '@/api/modules/system/config/config';
 import { configForm, resetConfigForm, showConfigForm } from './form';
-import { configQuery, configTable } from './table';
+import { configKeys, configQuery, configTable } from './table';
 
 export const configList = async () => {
   configTable.value.loading = true;
@@ -9,13 +9,18 @@ export const configList = async () => {
   configTable.value.loading = false;
 };
 
-export const editConfig = async (id: number) => {
-  configForm.value = true;
+export const editConfig = async (id?: number) => {
+  let targetId = id ? id : configKeys.value[0];
+  const { data } = await selectConfig(targetId);
+  if (data.data) {
+    configForm.value = data.data;
+    showConfigForm.value = true;
+  }
 };
 
 export const deleteConfig = async (id: number) => {};
 
-export const updateConfig = async (id: number) => {};
+export const updateConfig = async (data: number) => {};
 
 export const createConfig = async () => {
   resetConfigForm();

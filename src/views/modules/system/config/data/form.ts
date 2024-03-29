@@ -1,8 +1,20 @@
+import type { SystemConfig } from '@/api/modules/system/config/types';
+
 export const showConfigForm = ref(false);
 
-const form: any = {};
+const form: SystemConfig = {
+  createBy: '',
+  createTime: '',
+  updateBy: '',
+  remark: '',
+  configId: 0,
+  configName: '',
+  configKey: '',
+  configValue: '',
+  configType: 'Y',
+};
 
-export const configForm = ref<any>({
+export const configForm = ref<SystemConfig>({
   ...form,
 });
 

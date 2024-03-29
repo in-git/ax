@@ -9,7 +9,7 @@
             </a-button>
           </a-tooltip>
           <a-tooltip title="编辑">
-            <a-button type="link">
+            <a-button type="link" @click="editConfig()">
               <EditOutlined />
             </a-button>
           </a-tooltip>
@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
-import { configList, createConfig } from '../../data/curd';
+import { configList, createConfig, editConfig } from '../../data/curd';
 </script>
 
 <style lang="scss" scoped></style>

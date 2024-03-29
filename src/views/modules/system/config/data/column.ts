@@ -4,6 +4,7 @@ const configColumns: TableColumnProps[] = [
   {
     title: '配置名称',
     dataIndex: 'configName',
+    width: 120,
   },
   {
     title: '创建时间',
