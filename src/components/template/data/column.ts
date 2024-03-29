@@ -1,5 +1,5 @@
 import type { TableColumnProps } from 'ant-design-vue';
 
-const __columns: TableColumnProps[] = [];
+const __Columns: TableColumnProps[] = [];
 
-export { __columns };
+export { __Columns };

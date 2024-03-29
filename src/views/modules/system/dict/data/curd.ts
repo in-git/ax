@@ -1,17 +1,17 @@
-import { __ShowForm } from './form';
-import { __Keys, __Table } from './table';
+import { showDictFormForm } from './form';
+import { dictKeys, dictTable } from './table';
 
 export const __list = async () => {
-  __Table.value.loading = true;
+  dictTable.value.loading = true;
   /* GET LIST */
-  __Table.value.loading = false;
+  dictTable.value.loading = false;
 };
 
 export const __edit = async (id: number) => {
-  __ShowForm.value = true;
+  showDictFormForm.value = true;
 };
 export const __delete = async (id?: number) => {
-  let ids = id ? [id] : __Keys.value;
+  let ids = id ? [id] : dictKeys.value;
   /* Delete ids */
 };
 export const __update = async (id: number) => {};

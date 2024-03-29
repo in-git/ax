@@ -1,13 +1,13 @@
-export const __showForm = ref(false);
+export const __ShowForm = ref(false);
 
 const form: any = {};
 
-export const __form = ref<any>({
+export const __Form = ref<any>({
   ...form,
 });
 
-export const reset__form = () => {
-  __form.value = {
+export const __resetForm = () => {
+  __Form.value = {
     ...form,
   };
 };

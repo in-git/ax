@@ -89,7 +89,7 @@ declare module 'vue' {
     SysModal: typeof import('./components/modal/SysModal.vue')['default']
     Table: typeof import('./components/template/table/table.vue')['default']
     TableHead: typeof import('./components/table/table-head/TableHead.vue')['default']
-    Template: typeof import('./components/template/template.vue')['default']
+    Template: typeof import('./components/template/index.vue')['default']
     UserAddOutlined: typeof import('@ant-design/icons-vue')['UserAddOutlined']
     WechatFilled: typeof import('@ant-design/icons-vue')['WechatFilled']
     WechatOutlined: typeof import('@ant-design/icons-vue')['WechatOutlined']
