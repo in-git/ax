@@ -9,13 +9,15 @@
 	position: relative;
 
 	ul {
-		display: grid;
-		grid-template-columns: repeat(2, $app-width);
+		display: flex;
+		// display: grid;
+		// grid-template-columns: repeat(2, $app-width);
 		// grid-template-rows: repeat(auto-fit, 84px);
 		place-items: start;
 		gap: 8px;
 		flex-direction: column;
 		height: 100%;
+		flex-wrap: wrap;
 	}
 	%selected {
 		border: 1px solid #8db1e4;

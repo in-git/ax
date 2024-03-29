@@ -2,7 +2,7 @@
   <div class="apps flex-1 p-12" ref="apps">
     <template v-if="menuList.length > 0">
       <div class="flex h-100">
-        <ul ref="appRef" :style="style" id="ulEl">
+        <ul>
           <li
             v-for="item in menuList"
             :key="item.name"
@@ -30,9 +30,7 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import logoPng from '@/assets/logo.png';
 import Loading from '@/components/loading/Loading.vue';
-import { useElementBounding } from '@vueuse/core';
 import { useSortable } from '@vueuse/integrations/useSortable';
-import type { CSSProperties } from 'vue';
 import { getIconByName, getUserRouters, openApp } from './data';
 import NoticeVue from './notice/Notice.vue';
 
@@ -40,7 +38,6 @@ const selected = ref<string>('');
 const appRef = ref();
 const menuList = ref<Routers[]>([]);
 const apps = ref();
-const maxHeight = ref(0);
 
 onMounted(async () => {
   const data = await getUserRouters();
@@ -49,25 +46,11 @@ onMounted(async () => {
     useSortable(appRef, menuList, {
       animation: 200,
     });
-    const { height } = useElementBounding(apps);
-    maxHeight.value = height.value;
   });
 });
 const select = (item: Routers) => {
-  console.log(item.component);
-
   selected.value = item.path;
 };
-
-const style = computed((): CSSProperties => {
-  const itemHeight = 84;
-  const rows = Math.floor(maxHeight.value / itemHeight);
-  const cols = Math.ceil(menuList.value.length / rows);
-  return {
-    gridTemplateColumns: `repeat(${cols}, ${itemHeight}px)`,
-    gridTemplateRows: `repeat(${rows}, ${itemHeight}px)`,
-  };
-});
 </script>
 
 <style lang="scss" scoped>

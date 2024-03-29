@@ -1,25 +1,25 @@
-import { listDict } from '@/api/modules/system/dict/dict';
-import { dictShowForm } from './form';
-import { dictKeys, dictQuery, dictTable } from './table';
+import { __ShowForm } from './form';
+import { __Keys, __Query, __Table } from './table';
 
-export const dictList = async () => {
-  dictTable.value.loading = true;
+export const __List = async () => {
+  __Table.value.loading = true;
   /* GET LIST */
-  const { data } = await listDict(dictQuery.value);
-  dictTable.value.data = data.rows;
-  dictQuery.value.total = data.total;
-  dictTable.value.loading = false;
+  let test: any = () => {};
+  const { data } = await test(__Query.value);
+  __Table.value.data = data.rows;
+  __Query.value.total = data.total;
+  __Table.value.loading = false;
 };
 
-export const dictEdit = async (id: number) => {
-  dictShowForm.value = true;
+export const __Edit = async (id: number) => {
+  __ShowForm.value = true;
 };
-export const dictDelete = async (id?: number) => {
-  let ids = id ? [id] : dictKeys.value;
+export const __Delete = async (id?: number) => {
+  let ids = id ? [id] : __Keys.value;
   /* Delete ids */
 };
-export const dictUpdate = async (id: number) => {};
-export const dictMenus = [
+export const __Update = async (id: number) => {};
+export const __Menus = [
   {
     label: '',
   },

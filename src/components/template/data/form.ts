@@ -1,13 +1,13 @@
-export const dictShowForm = ref(false);
+export const __ShowForm = ref(false);
 
 const form: any = {};
 
-export const dictForm = ref<any>({
+export const __Form = ref<any>({
   ...form,
 });
 
-export const dictResetForm = () => {
-  dictForm.value = {
+export const __ResetForm = () => {
+  __Form.value = {
     ...form,
   };
 };

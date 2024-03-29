@@ -1,6 +1,6 @@
 <template>
-  <a-form :model="dictForm">
-    <SystemModal title="Untitled" v-model:visible="dictShowForm">
+  <a-form :model="__Form">
+    <SystemModal title="Untitled" v-model:visible="__ShowForm">
       <div class="h-100 flex flex-col">
         <div class="flex-1 p-8">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque excepturi nesciunt
@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import SystemModal from '@/components/modal/SysModal.vue';
-import { dictForm, dictShowForm } from '../data/form';
+import { __Form, __ShowForm } from '../data/form';
 </script>
 
 <style lang="scss" scoped></style>
