@@ -14,7 +14,7 @@
             </a-button>
           </a-tooltip>
           <a-tooltip title="刷新">
-            <a-button type="link">
+            <a-button type="link" @click="dictList">
               <ReloadOutlined />
             </a-button>
           </a-tooltip>

@@ -41,14 +41,14 @@
                 <template v-if="modeConfig.mode === 'unassign'">
                   <a-tooltip title="取消授权">
                     <a-button type="link" style="color: #fc6d6d" @click="assign(record.userId)">
-                      <img :src="assignPng" width="16" height="16" />
+                      <img :src="unassignPng" width="16" height="16" />
                     </a-button>
                   </a-tooltip>
                 </template>
                 <template v-else>
                   <a-tooltip title="授权">
                     <a-button type="link" style="color: #fc6d6d" @click="unassign(record.userId)">
-                      <img :src="unassignPng" width="16" height="16" />
+                      <img :src="assignPng" width="16" height="16" />
                     </a-button>
                   </a-tooltip>
                 </template>

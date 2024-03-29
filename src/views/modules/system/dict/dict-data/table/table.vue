@@ -2,14 +2,14 @@
   <div>
     <TableHeadVue />
     <SystemTable
-      :columns="dicDataColumns"
-      :table="dicDataTable"
-      :query="dicDataQuery"
-      v-model:selected-keys="dicDataKeys"
+      :columns="dictDataColumns"
+      :table="dictDataTable"
+      :query="dictDataQuery"
+      v-model:selected-keys="dictDataKeys"
     >
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">
-          <Operation @edit="dicDataEdit" :items="dicDataOperationList" />
+          <Operation @edit="dictDataEdit(value.record.dictCode)" :items="dictDataOperationList" />
         </template>
       </template>
     </SystemTable>
@@ -21,12 +21,12 @@ import SystemTable from '@/views/components/table/SystemTable.vue';
 import TableHeadVue from './table-head/head.vue';
 
 import Operation from '@/views/components/table/Operation.vue';
-import { dicDataColumns } from '../data/column';
-import { dicDataEdit, dicDataList } from '../data/curd';
-import { dicDataKeys, dicDataOperationList, dicDataQuery, dicDataTable } from '../data/table';
+import { dictDataColumns } from '../data/column';
+import { dictDataEdit, listDictData } from '../data/curd';
+import { dictDataKeys, dictDataOperationList, dictDataQuery, dictDataTable } from '../data/table';
 
 onMounted(() => {
-  dicDataList();
+  listDictData();
 });
 </script>
 

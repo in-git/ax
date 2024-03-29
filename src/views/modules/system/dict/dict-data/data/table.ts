@@ -2,24 +2,26 @@ import type { IQuery, TableConfig } from '@/api/config/types';
 import { DeleteOutlined } from '@ant-design/icons-vue';
 import type { ItemType } from 'ant-design-vue';
 
-export const dicDataTable = ref<TableConfig>({
-  rowKey: '',
+export const dictDataTable = ref<TableConfig>({
+  rowKey: 'dictCode',
   data: [],
   loading: false,
-  list: undefined as any,
 });
-interface dicDataQuery {
+
+interface dictDataQuery {
   dictType: string;
 }
-export const dicDataQuery = ref<IQuery<dicDataQuery>>({
+
+export const dictDataQuery = ref<IQuery<dictDataQuery>>({
   pageNum: 1,
   pageSize: 10,
   total: 0,
   dictType: '',
 });
-export const dicDataKeys = ref<number[]>([]);
 
-export const dicDataOperationList: ItemType[] = [
+export const dictDataKeys = ref<number[]>([]);
+
+export const dictDataOperationList: ItemType[] = [
   {
     label: '删除',
     key: 'delete',

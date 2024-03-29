@@ -1,6 +1,6 @@
 import type { TableColumnProps } from 'ant-design-vue';
 
-const dicDataColumns: TableColumnProps[] = [
+const dictDataColumns: TableColumnProps[] = [
   {
     title: '字典标签',
     dataIndex: 'dictLabel',
@@ -47,4 +47,4 @@ const dicDataColumns: TableColumnProps[] = [
   },
 ];
 
-export { dicDataColumns };
+export { dictDataColumns };

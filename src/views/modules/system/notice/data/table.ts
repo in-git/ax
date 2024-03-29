@@ -1,5 +1,4 @@
 import type { IQuery, TableConfig } from '@/api/config/types';
-import { listNotice } from '@/api/modules/system/notice/notice';
 import { DeleteOutlined } from '@ant-design/icons-vue';
 import type { ItemType } from 'ant-design-vue';
 
@@ -7,7 +6,6 @@ export const noticeTable = ref<TableConfig>({
   rowKey: 'noticeId',
   data: [],
   loading: false,
-  list: listNotice,
 });
 export const noticeQuery = ref<IQuery>({
   pageNum: 1,

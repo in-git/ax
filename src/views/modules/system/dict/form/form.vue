@@ -1,15 +1,15 @@
 <template>
   <a-form
     :model="dictForm"
-    :wrapper-col="{ span: 8 }"
+    :wrapper-col="{ span: 8, offset: 1 }"
     :label-col="{ span: 4, offset: 4 }"
-    label-align="left"
+    label-align="right"
     @finish="submit"
   >
     <SystemModal title="字典配置/新增" v-model:visible="showDictForm">
       <div class="h-100 flex flex-col">
         <a-row>
-          <a-col :span="8" :offset="8">
+          <a-col :span="8" :offset="9">
             <div class="py-12 text-center">
               <img :src="TeamWork" width="160" />
             </div>
@@ -29,7 +29,7 @@
             <a-textarea v-model:value="dictForm.remark"></a-textarea>
           </a-form-item>
           <a-row>
-            <a-col :span="8" :offset="8">
+            <a-col :span="8" :offset="9">
               <a-button type="primary" htmlType="submit" block>提交</a-button>
             </a-col>
           </a-row>

@@ -17,10 +17,6 @@ export const userColumns: TableColumnProps[] = [
     title: 'Remark',
     dataIndex: 'remark',
   },
-  {
-    title: 'Operation',
-    dataIndex: 'operation',
-  },
 ];
 export default {
   userColumns,

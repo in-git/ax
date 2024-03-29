@@ -1,4 +1,4 @@
-export const dicDataShowForm = ref(false);
+export const dictDataShowForm = ref(false);
 
 const form: SystemDictData = {
   createBy: '',
@@ -16,12 +16,12 @@ const form: SystemDictData = {
   default: false,
 };
 
-export const dicDataForm = ref<SystemDictData>({
+export const dictDataForm = ref<SystemDictData>({
   ...form,
 });
 
-export const dicDataResetForm = () => {
-  dicDataForm.value = {
+export const dictDataResetForm = () => {
+  dictDataForm.value = {
     ...form,
   };
 };
