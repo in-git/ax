@@ -15,6 +15,8 @@
         current: query.pageNum,
         showSizeChanger: true,
         pageSize: query.pageSize,
+        showQuickJumper: true,
+        showLessItems: true,
       }"
       :customRow="customRow"
       :rowKey="table.rowKey"

@@ -6,7 +6,7 @@ export const __Form = ref<any>({
   ...form,
 });
 
-export const __ResetForm = () => {
+export const reset__Form = () => {
   __Form.value = {
     ...form,
   };

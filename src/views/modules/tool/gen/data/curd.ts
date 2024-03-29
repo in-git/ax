@@ -1,22 +1,30 @@
-import { fetchGenList } from '@/api/modules/tool/gen/gen';
-import { codeShowForm } from './form';
+import { deleteCodeByIds, fetchCodeById, fetchCodeList } from '@/api/modules/tool/gen/gen';
+import { response } from '@/utils/table/table';
+import { codeFormData, codeShowForm } from './form';
 import { codeKeys, codeQuery, codeTable } from './table';
 
 export const codeList = async () => {
   codeTable.value.loading = true;
   /* GET LIST */
-  const { data } = await fetchGenList(codeQuery.value);
+  const { data } = await fetchCodeList(codeQuery.value);
   codeTable.value.data = data.rows;
   codeQuery.value.total = data.total;
   codeTable.value.loading = false;
 };
 
-export const codeEdit = async (id?: number) => {
-  let targetId = id ? id : codeKeys.value;
+export const editCode = async (id?: number) => {
+  let targetId = id ? id : codeKeys.value[0];
+  const { data } = await fetchCodeById(targetId);
+  codeFormData.value = data;
   codeShowForm.value = true;
 };
 export const codeDelete = async (id?: number) => {
   let ids = id ? [id] : codeKeys.value;
   /* Delete ids */
+  await response(deleteCodeByIds, ids);
+  codeList();
 };
 export const codeUpdate = async (id: number) => {};
+export const createCode = () => {
+  codeShowForm.value = true;
+};

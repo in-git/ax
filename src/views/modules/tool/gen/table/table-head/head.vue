@@ -1,15 +1,15 @@
 <template>
-  <TableHead title="Untitled">
+  <TableHead title="数据表列表">
     <div class="flex justify-between">
       <div class="flex justify-between">
         <div class="flex gc-4 align-center">
           <a-tooltip title="新建">
-            <a-button type="primary">
+            <a-button type="primary" @click="createCode">
               <PlusOutlined />
             </a-button>
           </a-tooltip>
           <a-tooltip title="编辑">
-            <a-button type="link" @click="codeEdit()" :disabled="codeKeys.length !== 1">
+            <a-button type="link" @click="editCode()" :disabled="codeKeys.length !== 1">
               <EditOutlined />
             </a-button>
           </a-tooltip>
@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
-import { codeDelete, codeEdit, codeList } from '../../data/curd';
+import { codeDelete, codeList, createCode, editCode } from '../../data/curd';
 import { codeKeys } from '../../data/table';
 </script>
 
