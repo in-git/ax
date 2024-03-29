@@ -1,4 +1,5 @@
-import { listConfig, selectConfig } from '@/api/modules/system/config/config';
+import { deleteConfig, listConfig, selectConfig } from '@/api/modules/system/config/config';
+import { response } from '@/utils/table/table';
 import { configForm, resetConfigForm, showConfigForm } from './form';
 import { configKeys, configQuery, configTable } from './table';
 
@@ -18,7 +19,10 @@ export const editConfig = async (id?: number) => {
   }
 };
 
-export const deleteConfig = async (id: number) => {};
+export const delConfig = async (id?: number) => {
+  const ids = id ? [id] : configKeys.value;
+  response(deleteConfig, ids);
+};
 
 export const updateConfig = async (data: number) => {};
 

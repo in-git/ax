@@ -36,6 +36,7 @@ export const formatColumns = (data: TableColumnProps[]) => {
   return data.map(e => {
     e.align = 'center';
     e.ellipsis = true;
+    e.key = `${e.dataIndex}`;
     return e;
   });
 };

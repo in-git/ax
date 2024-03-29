@@ -13,17 +13,27 @@
               <EditOutlined />
             </a-button>
           </a-tooltip>
-          <a-tooltip title="刷新">
+          <a-tooltip title="刷新" @click="configList">
             <a-button type="link">
               <ReloadOutlined />
             </a-button>
           </a-tooltip>
           <a-divider type="vertical" />
-          <a-input-search allow-clear @search="configList"></a-input-search>
+          <a-input-search
+            placeholder="请输入参数名"
+            allow-clear
+            v-model:value="configQuery.configName"
+            @search="configList"
+          ></a-input-search>
+          <a-segmented
+            v-model:value="configQuery.configType"
+            :options="systemTypeOptions"
+            @change="configList"
+          ></a-segmented>
         </div>
       </div>
       <div>
-        <a-popconfirm title="确定要删除吗" placement="bottomRight">
+        <a-popconfirm title="确定要删除吗" placement="bottomRight" @confirm="delConfig()">
           <a-button danger type="link">
             <DeleteOutlined />
           </a-button>
@@ -35,7 +45,9 @@
 
 <script setup lang="ts">
 import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
-import { configList, createConfig, editConfig } from '../../data/curd';
+import { configList, createConfig, delConfig, editConfig } from '../../data/curd';
+import { systemTypeOptions } from '../../data/options';
+import { configQuery } from '../../data/table';
 </script>
 
 <style lang="scss" scoped></style>

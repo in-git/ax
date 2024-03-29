@@ -18,17 +18,18 @@
       <template #bodyCell="{ column, record }">
         <slot :value="{ column, record }"></slot>
         <template v-if="column.key === 'status'">
-          <!-- <slot name="status"></slot> -->
-          <span class="text-12 text-999">
-            <span v-if="record.status === '1'">
-              未生效
-              <a-badge color="red"></a-badge>
+          <slot name="status">
+            <span class="text-12 text-999">
+              <span v-if="record.status === '1'">
+                失效
+                <a-badge color="red"></a-badge>
+              </span>
+              <span v-else-if="record.status === '0'">
+                生效
+                <a-badge color="green"></a-badge>
+              </span>
             </span>
-            <span v-else-if="record.status === '0'">
-              生效
-              <a-badge color="green"></a-badge>
-            </span>
-          </span>
+          </slot>
         </template>
       </template>
     </a-table>

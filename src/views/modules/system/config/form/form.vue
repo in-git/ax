@@ -33,7 +33,14 @@
             </a-form-item>
 
             <a-form-item label="参数备注">
-              <a-textarea v-model:value="configForm.remark" placeholder="请输入备注"></a-textarea>
+              <a-textarea
+                :autoSize="{
+                  minRows: 2,
+                  maxRows: 6,
+                }"
+                v-model:value="configForm.remark"
+                placeholder="请输入备注"
+              ></a-textarea>
             </a-form-item>
 
             <a-col :span="12" :offset="5">

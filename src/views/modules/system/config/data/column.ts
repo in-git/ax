@@ -7,14 +7,6 @@ const configColumns: TableColumnProps[] = [
     width: 120,
   },
   {
-    title: '创建时间',
-    dataIndex: 'createTime',
-  },
-  {
-    title: '更新时间',
-    dataIndex: 'updateTime',
-  },
-  {
     title: '备注',
     dataIndex: 'remark',
   },
@@ -30,6 +22,14 @@ const configColumns: TableColumnProps[] = [
   {
     title: '配置类型',
     dataIndex: 'configType',
+  },
+  {
+    title: '创建时间',
+    dataIndex: 'createTime',
+  },
+  {
+    title: '更新时间',
+    dataIndex: 'updateTime',
   },
 ];
 export { configColumns };
