@@ -11,7 +11,8 @@ export const __List = async () => {
   __Table.value.loading = false;
 };
 
-export const __Edit = async (id: number) => {
+export const __Edit = async (id?: number) => {
+  let targetId = id ? id : __Keys.value;
   __ShowForm.value = true;
 };
 export const __Delete = async (id?: number) => {

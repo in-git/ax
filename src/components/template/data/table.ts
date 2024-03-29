@@ -8,8 +8,8 @@ export const __Table = ref<TableConfig>({
   loading: false,
   list: undefined as any,
 });
-
-export const __Query = ref<IQuery>({
+interface __Query {}
+export const __Query = ref<IQuery<__Query>>({
   pageNum: 1,
   pageSize: 10,
   total: 0,

@@ -1,5 +1,5 @@
 <template>
-  <TableHead title="Untitled">
+  <TableHead title="字典列表">
     <div class="flex justify-between">
       <div class="flex justify-between">
         <div class="flex gc-4 align-center">
@@ -9,7 +9,7 @@
             </a-button>
           </a-tooltip>
           <a-tooltip title="编辑">
-            <a-button type="link">
+            <a-button type="link" @click="dictEdit()" :disabled="dictKeys.length !== 1">
               <EditOutlined />
             </a-button>
           </a-tooltip>
@@ -19,12 +19,17 @@
             </a-button>
           </a-tooltip>
           <a-divider type="vertical" />
-          <a-input-search allow-clear @search="dictList"></a-input-search>
+          <a-input-search
+            v-model:value="dictQuery.dictName"
+            placeholder="请输入字典名称"
+            allow-clear
+            @search="dictList"
+          ></a-input-search>
         </div>
       </div>
       <div>
-        <a-popconfirm title="确定要删除吗" placement="bottomRight">
-          <a-button danger type="link">
+        <a-popconfirm title="确定要删除吗" placement="bottomRight" @confirm="dictDelete()">
+          <a-button danger type="link" :disabled="dictKeys.length === 0">
             <DeleteOutlined />
           </a-button>
         </a-popconfirm>
@@ -35,7 +40,8 @@
 
 <script setup lang="ts">
 import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
-import { dictList } from '../../data/curd';
+import { dictDelete, dictEdit, dictList } from '../../data/curd';
+import { dictKeys, dictQuery } from '../../data/table';
 </script>
 
 <style lang="scss" scoped></style>

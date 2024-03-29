@@ -3,16 +3,20 @@ import { DeleteOutlined } from '@ant-design/icons-vue';
 import type { ItemType } from 'ant-design-vue';
 
 export const dictTable = ref<TableConfig>({
-  rowKey: '',
+  rowKey: 'dictId',
   data: [],
   loading: false,
   list: undefined as any,
 });
 
-export const dictQuery = ref<IQuery>({
+interface DictQuery {
+  dictName: string;
+}
+export const dictQuery = ref<IQuery<DictQuery>>({
   pageNum: 1,
   pageSize: 10,
   total: 0,
+  dictName: '',
 });
 export const dictKeys = ref<number[]>([]);
 

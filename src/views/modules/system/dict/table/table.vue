@@ -9,7 +9,7 @@
     >
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">
-          <Operation @edit="dictEdit" :items="dictOperationList" />
+          <Operation @edit="dictEdit(value.record.dictId)" :items="dictOperationList" />
         </template>
       </template>
     </SystemTable>

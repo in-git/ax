@@ -14,7 +14,7 @@ export const dictForm = ref<SystemDict>({
   ...form,
 });
 
-export const reset__form = () => {
+export const resetDictForm = () => {
   dictForm.value = {
     ...form,
   };
