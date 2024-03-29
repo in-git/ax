@@ -8,6 +8,7 @@ export const confirm = (onOk: any) => {
     centered: true,
   });
 };
+
 export const response = async (request: (...arg: any) => any, ...arg: any) => {
   const { data } = await request(...arg);
 
@@ -20,6 +21,7 @@ export const response = async (request: (...arg: any) => any, ...arg: any) => {
     message.warning(data.msg);
   }
 };
+
 export const formatColumns = (data: TableColumnProps[]) => {
   let operation: TableColumnProps = {
     title: '操作',
@@ -30,7 +32,6 @@ export const formatColumns = (data: TableColumnProps[]) => {
   if (data.findIndex(e => e.key === operation.key) <= -1) {
     data.push(operation);
   }
-  console.log(data);
 
   return data.map(e => {
     e.align = 'center';

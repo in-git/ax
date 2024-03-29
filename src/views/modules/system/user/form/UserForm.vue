@@ -27,20 +27,18 @@
                 />
               </a-form-item>
               <a-form-item label="Username" name="userName" required>
-                <a-input
-                  v-model:value="userForm.userName"
-                  focused
-                  placeholder="Please enter username"
-                />
+                <a-input v-model:value="userForm.userName" placeholder="Please enter username" />
               </a-form-item>
-              <a-form-item label="Password" name="password" required v-if="!userForm.userId">
-                <a-input
-                  type="password"
-                  v-model:value="userForm.password"
-                  focused
-                  placeholder="Please enter password"
-                />
-              </a-form-item>
+              <template v-if="!userForm.userId">
+                <a-form-item label="Password" name="password" required>
+                  <a-input
+                    type="password"
+                    v-model:value="userForm.password"
+                    placeholder="Please enter password"
+                  />
+                </a-form-item>
+              </template>
+
               <a-form-item label="Phone" name="phonenumber" required :rules="{ len: 11 }">
                 <a-input
                   :maxlength="11"
