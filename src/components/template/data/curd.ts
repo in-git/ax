@@ -1,4 +1,4 @@
-import { __ShowForm } from './form';
+import { __ResetForm, __ShowForm } from './form';
 import { __Keys, __Query, __Table } from './table';
 
 export const __List = async () => {
@@ -15,8 +15,11 @@ export const __Edit = async (id?: number) => {
   let targetId = id ? id : __Keys.value;
   __ShowForm.value = true;
 };
+export const __Create = async () => {
+  __ResetForm();
+  __ShowForm.value = true;
+};
 export const __Delete = async (id?: number) => {
   let ids = id ? [id] : __Keys.value;
   /* Delete ids */
 };
-export const __Update = async (id: number) => {};

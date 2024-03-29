@@ -2,14 +2,14 @@
   <div>
     <TableHeadVue />
     <SystemTable
-      :columns="__Columns"
-      :table="__Table"
-      :query="__Query"
-      v-model:selected-keys="__Keys"
+      :columns="codeColumns"
+      :table="codeTable"
+      :query="codeQuery"
+      v-model:selected-keys="codeKeys"
     >
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">
-          <Operation @edit="__Edit" :items="__OperationList" />
+          <Operation @edit="codeEdit" :items="codeOperationList" />
         </template>
       </template>
     </SystemTable>
@@ -21,12 +21,12 @@ import SystemTable from '@/views/components/table/SystemTable.vue';
 import TableHeadVue from './table-head/head.vue';
 
 import Operation from '@/views/components/table/Operation.vue';
-import { __Columns } from '../data/column';
-import { __Edit, __List } from '../data/curd';
-import { __Keys, __OperationList, __Query, __Table } from '../data/table';
+import { codeColumns } from '../data/column';
+import { codeEdit, codeList } from '../data/curd';
+import { codeKeys, codeOperationList, codeQuery, codeTable } from '../data/table';
 
 onMounted(() => {
-  __List();
+  codeList();
 });
 </script>
 
