@@ -18,9 +18,4 @@ export const menuColumns: TableColumnProps[] = [
     title: 'Component path',
     dataIndex: 'component',
   },
-  {
-    title: 'Operation',
-    dataIndex: 'operation',
-    fixed: 'right',
-  },
 ];

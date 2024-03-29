@@ -25,19 +25,10 @@ import PageSetting from '@/views/page/setting/PageSetting.vue';
 import { InfoCircleOutlined, SettingOutlined } from '@ant-design/icons-vue';
 import Profile from './profile/Profile.vue';
 
-// const getProfile = async () => {
-//   const { data } = await profile();
-//   console.log(data);
-// };
-
-// onMounted(() => {
-//   getProfile();
-// });
 const setting = () => {
   openWindow({
     title: 'System setting',
     component: markRaw(PageSetting),
-
     id: 'system_setting',
   });
 };

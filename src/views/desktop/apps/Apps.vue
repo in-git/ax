@@ -1,23 +1,25 @@
 <template>
   <div class="apps flex-1 p-12" ref="apps">
     <template v-if="menuList.length > 0">
-      <ul ref="appRef" :style="style">
-        <li
-          v-for="item in menuList"
-          :key="item.name"
-          :class="{ selected: item.path === selected }"
-          @click="select(item)"
-          @dblclick="openApp(item)"
-          v-show="!item.hidden"
-        >
-          <div>
-            <div class="logo">
-              <img :src="getIconByName(item) || logoPng" :draggable="false" width="48" />
+      <div class="flex h-100">
+        <ul ref="appRef" :style="style" id="ulEl">
+          <li
+            v-for="item in menuList"
+            :key="item.name"
+            :class="{ selected: item.path === selected }"
+            @click="select(item)"
+            @dblclick="openApp(item)"
+            v-show="!item.hidden"
+          >
+            <div>
+              <div class="logo">
+                <img :src="getIconByName(item) || logoPng" :draggable="false" width="48" />
+              </div>
+              <div class="title">{{ item.meta.title }}</div>
             </div>
-            <div class="title">{{ item.meta.title }}</div>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </template>
     <Loading v-else></Loading>
     <NoticeVue></NoticeVue>
@@ -53,13 +55,15 @@ onMounted(async () => {
 });
 const select = (item: Routers) => {
   selected.value = item.path;
-  console.log(item.component);
 };
 
 const style = computed((): CSSProperties => {
-  const cols = Math.floor(74 / menuList.value.length);
+  const itemHeight = 84;
+  const rows = Math.floor(maxHeight.value / itemHeight);
+  const cols = Math.ceil(menuList.value.length / rows);
   return {
-    gridTemplateColumns: `repeat(${cols}, 74px)`,
+    gridTemplateColumns: `repeat(${cols}, ${itemHeight}px)`,
+    gridTemplateRows: `repeat(${rows}, ${itemHeight}px)`,
   };
 });
 </script>

@@ -13,9 +13,13 @@ import { showNotice } from '../../apps/notice/data';
 
 <style lang="scss" scoped>
 .system-icon {
-  width: 48px;
+  width: 40px;
   color: white;
-  height: 48px;
+  height: 40px;
   border-radius: 0;
+  &:hover {
+    background: #727281c5;
+    color: white !important;
+  }
 }
 </style>
