@@ -6,7 +6,6 @@ export const dictTable = ref<TableConfig>({
   rowKey: 'dictId',
   data: [],
   loading: false,
-  list: undefined as any,
 });
 
 interface DictQuery {
@@ -14,7 +13,7 @@ interface DictQuery {
 }
 export const dictQuery = ref<IQuery<DictQuery>>({
   pageNum: 1,
-  pageSize: 10,
+  pageSize: 5,
   total: 0,
   dictName: '',
 });

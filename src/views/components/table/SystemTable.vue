@@ -9,6 +9,13 @@
         selectedRowKeys: selectedKeys,
         onChange,
       }"
+      class="px-12 py-8"
+      :pagination="{
+        total: query.total,
+        current: query.pageNum,
+        showSizeChanger: true,
+        pageSize: query.pageSize,
+      }"
       :customRow="customRow"
       :rowKey="table.rowKey"
       :columns="formatColumns(columns)"
@@ -42,7 +49,7 @@ import { formatColumns } from '@/utils/table/table';
 import type { TableColumnProps, TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
-const emit = defineEmits(['update:selectedKeys']);
+const emit = defineEmits(['update:selectedKeys', 'update:query', 'reload']);
 const selectedKeys = ref();
 
 const props = defineProps<{
@@ -68,7 +75,14 @@ const pageChange = (
   pagination: TablePaginationConfig,
   filters: Record<string, FilterValue>,
   sorter: SorterResult<SystemMenu> | SorterResult<SystemMenu>[],
-) => {};
+) => {
+  emit('update:query', {
+    ...props.query,
+    pageNum: pagination.current,
+    pageSize: pagination.pageSize,
+  });
+  emit('reload');
+};
 
 watch(selectedKeys, () => {
   emit('update:selectedKeys', selectedKeys.value);

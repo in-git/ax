@@ -4,8 +4,9 @@
     <SystemTable
       :columns="dictColumns"
       :table="dictTable"
-      :query="dictQuery"
+      v-model:query="dictQuery"
       v-model:selected-keys="dictKeys"
+      @reload="dictList"
     >
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">

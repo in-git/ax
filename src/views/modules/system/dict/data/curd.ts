@@ -19,6 +19,7 @@ export const dictEdit = async (id?: number) => {
     showDictForm.value = true;
   }
 };
+
 export const dictDelete = async (id?: number) => {
   let ids = id ? [id] : dictKeys.value;
   await response(deleteDict, ids);
