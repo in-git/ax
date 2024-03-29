@@ -22,3 +22,7 @@ export const updateDict = (data: SystemDict) => {
 export const createDict = (data: SystemDict) => {
   return axios.post<Response>(`system/dict/type`, data);
 };
+
+export const selectDictData = (id: number) => {
+  return axios.get(`system/dict/type/${id}`);
+};

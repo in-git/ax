@@ -1,6 +1,6 @@
-import { deleteDict, listDict, selectDict, updateDict } from '@/api/modules/system/dict/dict';
+import { deleteDict, listDict, selectDict } from '@/api/modules/system/dict/dict';
 import { response } from '@/utils/table/table';
-import { dictForm, showDictFormForm } from './form';
+import { dictForm, editDictConfig, showDictForm } from './form';
 import { dictKeys, dictQuery, dictTable } from './table';
 
 export const dictList = async () => {
@@ -16,7 +16,7 @@ export const dictEdit = async (id?: number) => {
   const { data } = await selectDict(targetId);
   if (data.data) {
     dictForm.value = data.data;
-    showDictFormForm.value = true;
+    showDictForm.value = true;
   }
 };
 export const dictDelete = async (id?: number) => {
@@ -25,11 +25,7 @@ export const dictDelete = async (id?: number) => {
   dictList();
   /* Delete ids */
 };
-export const dictUpdate = async (id: number) => {
-  updateDict(dictForm.value);
+
+export const selectDictConfig = () => {
+  editDictConfig.value = !editDictConfig.value;
 };
-export const dictMenus = [
-  {
-    label: '',
-  },
-];

@@ -1,4 +1,4 @@
-export const showDictFormForm = ref(false);
+export const showDictForm = ref(false);
 
 const form: SystemDict = {
   createBy: '',
@@ -19,3 +19,5 @@ export const resetDictForm = () => {
     ...form,
   };
 };
+
+export const editDictConfig = ref(false);

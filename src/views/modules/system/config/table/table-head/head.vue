@@ -25,6 +25,8 @@
             v-model:value="configQuery.configName"
             @search="configList"
           ></a-input-search>
+          <a-divider type="vertical"></a-divider>
+          <div class="text-999 text-nowrap">状态</div>
           <a-segmented
             v-model:value="configQuery.configType"
             :options="systemTypeOptions"

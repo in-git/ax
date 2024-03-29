@@ -20,8 +20,3 @@ export const __Delete = async (id?: number) => {
   /* Delete ids */
 };
 export const __Update = async (id: number) => {};
-export const __Menus = [
-  {
-    label: '',
-  },
-];

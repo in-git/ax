@@ -6,7 +6,7 @@
     label-align="left"
     @finish="submit"
   >
-    <SystemModal title="字典配置/新增" v-model:visible="showDictFormForm">
+    <SystemModal title="字典配置/新增" v-model:visible="showDictForm">
       <div class="h-100 flex flex-col">
         <a-row>
           <a-col :span="8" :offset="8">
@@ -45,7 +45,7 @@ import SystemModal from '@/components/modal/SysModal.vue';
 import { statusOptions } from '@/global/options/system';
 import { response } from '@/utils/table/table';
 import TeamWork from '../assets/TeamWork.png';
-import { dictForm, showDictFormForm } from '../data/form';
+import { dictForm, showDictForm } from '../data/form';
 
 const submit = async () => {
   if (dictForm.value.dictId) {
@@ -53,7 +53,7 @@ const submit = async () => {
   } else {
     await response(createDict, dictForm.value);
   }
-  showDictFormForm.value = false;
+  showDictForm.value = false;
 };
 </script>
 

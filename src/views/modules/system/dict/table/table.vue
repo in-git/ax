@@ -11,6 +11,9 @@
         <template v-if="value.column.dataIndex === 'operation'">
           <Operation @edit="dictEdit(value.record.dictId)" :items="dictOperationList" />
         </template>
+        <template v-else-if="value.column.dataIndex === 'dictType'">
+          <a-button @click="selectDictConfig" type="link">{{ value.record.dictName }}</a-button>
+        </template>
       </template>
     </SystemTable>
   </div>
@@ -22,7 +25,7 @@ import TableHeadVue from './table-head/head.vue';
 
 import Operation from '@/views/components/table/Operation.vue';
 import { dictColumns } from '../data/column';
-import { dictEdit, dictList } from '../data/curd';
+import { dictEdit, dictList, selectDictConfig } from '../data/curd';
 import { dictKeys, dictOperationList, dictQuery, dictTable } from '../data/table';
 
 onMounted(() => {

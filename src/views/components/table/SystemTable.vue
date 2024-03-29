@@ -1,7 +1,6 @@
 <template>
   <div>
     <a-table
-      class="px-12"
       :loading="table.loading"
       @change="pageChange"
       table-layout="fixed"
