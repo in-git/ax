@@ -1,21 +1,24 @@
+import { listDict } from '@/api/modules/system/dict/dict';
 import { showDictFormForm } from './form';
-import { dictKeys, dictTable } from './table';
+import { dictKeys, dictQuery, dictTable } from './table';
 
-export const __list = async () => {
+export const dictList = async () => {
   dictTable.value.loading = true;
-  /* GET LIST */
+  const { data } = await listDict(dictQuery.value);
+  dictTable.value.data = data.rows;
+  dictQuery.value.total = data.total;
   dictTable.value.loading = false;
 };
 
-export const __edit = async (id: number) => {
+export const dictEdit = async (id: number) => {
   showDictFormForm.value = true;
 };
-export const __delete = async (id?: number) => {
+export const dictDelete = async (id?: number) => {
   let ids = id ? [id] : dictKeys.value;
   /* Delete ids */
 };
-export const __update = async (id: number) => {};
-export const __menus = [
+export const dictUpdate = async (id: number) => {};
+export const dictMenus = [
   {
     label: '',
   },
