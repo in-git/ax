@@ -3,6 +3,7 @@
     <h3 class="text-16 mb-12">操作日志</h3>
     <div class="flex justify-between align-center">
       <a-flex :gap="8">
+        <a-button @click="getLogs">刷新</a-button>
         <a-select
           style="width: 120px"
           :options="operationType"
