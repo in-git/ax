@@ -1,14 +1,14 @@
 <template>
   <div class="system-module">
     <Transition
-      enter-active-class="animate__animated animate__slideInRight"
-      leave-active-class="animate__animated animate__zoomOutRight"
+      enter-active-class="animate__animated animate__fadeInLeft"
+      leave-active-class="animate__animated animate__fadeOutRight"
     >
       <TableVue v-if="!editDictConfig"></TableVue>
     </Transition>
     <Transition
-      enter-active-class="animate__animated animate__slideInRight"
-      leave-active-class="animate__animated animate__zoomOutRight"
+      enter-active-class="animate__animated animate__fadeInLeft"
+      leave-active-class="animate__animated animate__fadeOutRight"
     >
       <DictData v-if="editDictConfig"></DictData>
     </Transition>

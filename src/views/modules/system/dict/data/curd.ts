@@ -23,9 +23,9 @@ export const dictDelete = async (id?: number) => {
   let ids = id ? [id] : dictKeys.value;
   await response(deleteDict, ids);
   dictList();
-  /* Delete ids */
 };
 
-export const selectDictConfig = () => {
+export const selectDictConfig = (dictType: string) => {
   editDictConfig.value = !editDictConfig.value;
+  dictForm.value.dictType = dictType;
 };

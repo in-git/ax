@@ -12,7 +12,9 @@
           <Operation @edit="dictEdit(value.record.dictId)" :items="dictOperationList" />
         </template>
         <template v-else-if="value.column.dataIndex === 'dictType'">
-          <a-button @click="selectDictConfig" type="link">{{ value.record.dictName }}</a-button>
+          <a-button @click="selectDictConfig(value.record.dictType)" type="link">
+            {{ value.record.dictName }}
+          </a-button>
         </template>
       </template>
     </SystemTable>
