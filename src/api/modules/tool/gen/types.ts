@@ -70,79 +70,8 @@ interface CodeColumn {
 }
 interface CodeResponse {
   tables: Table[];
-  rows: Row[];
-  info: CodeInfo;
-}
-
-interface CodeInfo {
-  createBy?: any;
-  createTime?: any;
-  updateBy?: any;
-  updateTime?: any;
-  remark?: any;
-  tableId: number;
-  tableName: string;
-  tableComment: string;
-  subTableName?: any;
-  subTableFkName?: any;
-  className: string;
-  tplCategory: string;
-  tplWebType: string;
-  packageName: string;
-  moduleName: string;
-  businessName: string;
-  functionName: string;
-  functionAuthor: string;
-  genType: string;
-  genPath: string;
-  pkColumn?: any;
-  subTable?: any;
-  columns: CodeColumn[];
-  options?: any;
-  treeCode?: any;
-  treeParentCode?: any;
-  treeName?: any;
-  parentMenuId?: any;
-  parentMenuName?: any;
-  sub: boolean;
-  tree: boolean;
-  crud: boolean;
-}
-
-interface Row {
-  createBy: string;
-  createTime: string;
-  updateBy: string;
-  updateTime?: any;
-  remark?: any;
-  columnId: number;
-  tableId: number;
-  columnName: string;
-  columnComment: string;
-  columnType: string;
-  javaType: string;
-  javaField: string;
-  isPk: string;
-  isIncrement: string;
-  isRequired: string;
-  isInsert: string;
-  isEdit?: string;
-  isList?: string;
-  isQuery?: string;
-  queryType: string;
-  htmlType: string;
-  dictType: string;
-  sort: number;
-  list: boolean;
-  required: boolean;
-  pk: boolean;
-  insert: boolean;
-  edit: boolean;
-  usableColumn: boolean;
-  superColumn: boolean;
-  increment: boolean;
-  query: boolean;
-  capJavaField: string;
+  rows: CodeColumn[];
+  info: SystemCode;
 }
 
 interface Table {
