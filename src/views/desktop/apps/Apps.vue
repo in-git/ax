@@ -2,7 +2,7 @@
   <div class="apps flex-1 p-12" ref="apps">
     <template v-if="menuList.length > 0">
       <div class="flex h-100">
-        <ul>
+        <ul ref="appRef">
           <li
             v-for="item in menuList"
             :key="item.name"
