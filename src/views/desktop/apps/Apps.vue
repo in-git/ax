@@ -17,7 +17,7 @@
                 <div class="logo">
                   <img :src="getIconByName(item) || logoPng" :draggable="false" width="48" />
                 </div>
-                <div class="title">{{ item.meta.title }}</div>
+                <div class="title">{{ item.meta?.title || 'Untitled' }}</div>
               </div>
             </li>
           </ul>

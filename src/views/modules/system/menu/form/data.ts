@@ -9,7 +9,7 @@ let object: SystemMenu = {
   path: '',
   query: '',
   isFrame: '1',
-  isCache: '',
+  isCache: '1',
   menuType: 'C',
   visible: '0',
   status: '0',

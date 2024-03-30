@@ -1,6 +1,6 @@
 .apps {
 	background: white;
-	$app-width: 74px;
+	$app-width: 84px;
 	height: calc(100vh - 48px * 2);
 	background: url("../assets/background.png");
 	background: url("../assets/taylor.webp");
@@ -51,6 +51,11 @@
 			overflow: hidden;
 			text-shadow: 0 0 2px #494949;
 			mix-blend-mode: difference;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			width: 100%;
+			padding: 0 4px;
 		}
 	}
 	li.selected {

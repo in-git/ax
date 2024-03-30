@@ -25,22 +25,21 @@ export const getIconByName = (item: Routers) => {
     image = new URL(`../../../assets/system/${item.name.toLocaleLowerCase()}.png`, import.meta.url)
       .href;
   }
-
-  if (!image.includes('undefined')) {
+  if (item.children) {
+    return folderPng;
+  } else if (!image.includes('undefined')) {
     return image;
   } else if (item.meta.link) {
     return google;
-  } else if (item.children) {
-    return folderPng;
   }
-  return undefined;
+  return folderPng;
 };
 
 export const openApp = (item: Routers) => {
   if (item.children && item.children.length > 0) {
     openWindow({
       component: markRaw(FolderVue),
-      title: `文件夹|${item.meta.title}`,
+      title: `文件夹|${item.meta.title || 'Untitled'}`,
       data: item.children,
       id: item.name,
     });

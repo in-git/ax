@@ -13,7 +13,7 @@ export interface SystemMenu {
   component?: string;
   query: string;
   isFrame: '0' | '1';
-  isCache: string;
+  isCache: '0' | '1';
   menuType: string;
   visible: string;
   status: string;

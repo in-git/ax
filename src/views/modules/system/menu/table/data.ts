@@ -25,6 +25,7 @@ export const menuConfig = ref<MenuConf>({
     pageSize: 10,
     menuName: '',
     status: '',
+    total: 0,
   },
   selectedKeys: [],
 });
