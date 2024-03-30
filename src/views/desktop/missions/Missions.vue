@@ -1,8 +1,9 @@
 <template>
   <div class="missions system-head">
-    <div class="window flex flex-s">
+    <div class="window flex flex-s" @click.ca="openMenu">
       <img :src="logo" width="32" alt="" />
     </div>
+    <MenuVue></MenuVue>
     <Tabs />
     <Notice />
   </div>
@@ -10,8 +11,14 @@
 
 <script setup lang="ts">
 import logo from '@/assets/logo.png';
+import { showWindowMenu } from './menu/data';
+import MenuVue from './menu/Menu.vue';
 import Notice from './notice/Notice.vue';
 import Tabs from './tabs/Tabs.vue';
+
+const openMenu = () => {
+  showWindowMenu.value = !showWindowMenu.value;
+};
 </script>
 
 <style lang="scss" scoped>

@@ -14,9 +14,15 @@ import { contextMenu } from './data';
 
 const contextMenuRef = ref();
 const style = computed(() => {
+  let top = contextMenu.value.y || 0;
+
+  const maxY = window.innerHeight - contextMenu.value.items.length * 50;
+  if (top > maxY) {
+    top = maxY;
+  }
   return {
     left: contextMenu.value.x + 'px',
-    top: contextMenu.value.y + 'px',
+    top: `${top}px`,
   };
 });
 

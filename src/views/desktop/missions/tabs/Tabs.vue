@@ -5,6 +5,7 @@
         <a-tooltip :title="item.title">
           <li
             class="flex flex-s"
+            @contextmenu="tabContextmenu(item)"
             :class="[
               { active: currentWindow && currentWindow.id === item.id },
               item.hidden ? 'hidden' : '',
@@ -24,6 +25,8 @@ import folder from '@/assets/system/folder.png';
 import { currentWindow, toTop, windowList } from '@/global/config/window';
 import type { SystemWindow } from '@/types/system';
 import { useSortable } from '@vueuse/integrations/useSortable';
+import { tabContextmenu } from './data';
+
 const tabRef = ref();
 const getIcon = (id: string) => {
   const href = new URL(`../../../../assets/system/${id.toLocaleLowerCase()}.png`, import.meta.url)
