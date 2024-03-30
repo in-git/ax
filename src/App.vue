@@ -34,8 +34,8 @@
 </template>
 
 <script setup lang="ts">
-import Draggable from '@/components/draggable/Draggable.vue';
 import { closeWindow, windowList } from '@/global/config/window';
+import Draggable from '@/views/page/draggable/Draggable.vue';
 import { ConfigProvider } from 'ant-design-vue';
 import en_US from 'ant-design-vue/es/locale/en_US';
 import axios from 'axios';

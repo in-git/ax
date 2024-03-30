@@ -8,8 +8,8 @@
             v-for="item in roleData.data"
             :class="{ active: currentRole?.roleId === item.roleId }"
             @click="select(item)"
-            class="flex gc-12"
             @dblclick="selectRole(item.roleId)"
+            class="text-center"
           >
             <img :src="rolePng" width="32" height="32" />
             <div>

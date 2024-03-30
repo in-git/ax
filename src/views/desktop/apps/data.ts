@@ -39,7 +39,7 @@ export const openApp = (item: Routers) => {
   if (item.children && item.children.length > 0) {
     openWindow({
       component: markRaw(FolderVue),
-      title: `文件夹|${item.meta.title || 'Untitled'}`,
+      title: `${item.meta.title || 'Untitled'}`,
       data: item.children,
       id: item.name,
     });

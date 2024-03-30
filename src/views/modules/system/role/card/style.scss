@@ -8,9 +8,7 @@
 		padding: 8px;
 		display: grid;
 		gap: 8px;
-		grid-template-columns:
-			minmax($wh, max-content)
-			repeat(auto-fill, $wh);
+		grid-template-columns: repeat(auto-fill, minmax($wh, 1fr));
 	}
 	.card-list {
 		li {
@@ -29,7 +27,6 @@
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
-			max-width: 80px;
 			color: #999;
 		}
 	}

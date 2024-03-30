@@ -32,6 +32,7 @@ nextTick(() => {
   height: 650px;
   left: 0;
   width: 550px;
-  background: #232323ee;
+  z-index: 1000;
+  background: #07071bef;
 }
 </style>

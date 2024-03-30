@@ -1,9 +1,8 @@
 <template>
   <div>
-    <a-card title="开发者设置">
+    <a-page-header title=" 开发者设置" class="py-0 px-8" />
+    <a-card title="选择服务器">
       <div>
-        <h3>选择服务器</h3>
-
         <div class="p-8 server-list">
           <ul class="flex">
             <li

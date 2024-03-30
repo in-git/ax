@@ -32,8 +32,8 @@ const openMenu = () => {
     rgba(0, 114, 138, 1) 100%
   );
   border-top: 1px solid #ddd;
-  position: sticky;
-  bottom: 0;
+
+  z-index: 1000;
   .window {
     width: 42px;
     height: 42px;

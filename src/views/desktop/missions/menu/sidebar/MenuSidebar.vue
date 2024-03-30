@@ -1,6 +1,20 @@
 <template>
   <div class="menu-sidebar">
-    <div>
+    <div class="flex flex-col">
+      <template v-if="!isFullscreen">
+        <a-tooltip title="全屏" placement="right" @click="enter">
+          <div class="icons flex flex-s">
+            <FullscreenOutlined />
+          </div>
+        </a-tooltip>
+      </template>
+      <template v-else>
+        <a-tooltip title="退出全屏" placement="right" @click="exit">
+          <div class="icons flex flex-s">
+            <FullscreenExitOutlined />
+          </div>
+        </a-tooltip>
+      </template>
       <a-tooltip title="关闭网页" placement="right">
         <div class="icons flex flex-s">
           <PoweroffOutlined />
@@ -11,13 +25,23 @@
 </template>
 
 <script setup lang="ts">
-import type { PoweroffOutlined } from '@ant-design/icons-vue';
+import {
+  FullscreenExitOutlined,
+  FullscreenOutlined,
+  type PoweroffOutlined,
+} from '@ant-design/icons-vue';
+import { useFullscreen } from '@vueuse/core';
+
+const { enter, isFullscreen, exit } = useFullscreen();
+const fullscreen = () => {
+  enter();
+};
 </script>
 
 <style lang="scss" scoped>
 .menu-sidebar {
   width: 48px;
-  background: #1f1f1fec;
+  background: #0c0c22;
   height: 100%;
   display: flex;
   flex-direction: column-reverse;
