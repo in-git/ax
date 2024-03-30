@@ -44,21 +44,19 @@ export const openApp = (item: Routers) => {
       data: item.children,
       id: item.name,
     });
-    return;
+  } else if (item.meta.link) {
+    openLink(item.meta.link);
+  } else {
+    systemComponents.value.forEach(e => {
+      if (e.path.includes(item.path)) {
+        openWindow({
+          title: item.meta.title,
+          component: e.component,
+          id: item.name,
+        });
+      }
+    });
   }
 
-  if (item.meta.link) {
-    openLink(item.meta.link);
-    return;
-  }
-  systemComponents.value.forEach(e => {
-    if (e.path.includes(item.path)) {
-      openWindow({
-        title: item.meta.title,
-        component: e.component,
-        id: item.name,
-      });
-    }
-  });
   setCurrentWindow(item.name);
 };
