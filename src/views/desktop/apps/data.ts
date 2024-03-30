@@ -6,14 +6,16 @@ import { openWindow, setCurrentWindow } from '@/global/config/window';
 import { systemComponents } from '@/initialization';
 import { openLink } from '@/utils/common/utils';
 import FolderVue from '../../page/folder/Folder.vue';
+
+export const appLoading = ref(false);
 export const getUserRouters = async () => {
+  appLoading.value = true;
   const { data } = await getRouters();
-  let newArr: Routers[] = [];
+  // let newArr: Routers[] = [];
   // if (data.data) {
   //   flattenTree(data.data, newArr);
   // }
-  console.log(data.data);
-
+  appLoading.value = false;
   return data.data || [];
 };
 

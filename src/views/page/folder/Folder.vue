@@ -7,7 +7,7 @@
         <a-tag>{{ data.length }}</a-tag>
       </div>
     </div>
-    <ul class="p-12">
+    <ul class="p-12" ref="ulRef">
       <li
         v-for="(item, key) in data"
         :key="key"
@@ -31,16 +31,24 @@ import { getIconByName, openApp } from '@/views/desktop/apps/data';
 import { useSortable } from '@vueuse/integrations/useSortable';
 
 const current = ref<Routers>();
+const ulRef = ref();
+
+const routers = ref<Routers[]>([]);
+
 const selectItem = (item: Routers) => {
   current.value = item;
 };
+
 const props = defineProps<{
   data: Routers[];
 }>();
 
-const ulRef = ref();
+watch(props, () => {
+  routers.value = props.data;
+});
+
 nextTick(() => {
-  useSortable(ulRef, props.data);
+  useSortable(ulRef, routers);
 });
 </script>
 
@@ -59,15 +67,14 @@ nextTick(() => {
     flex-direction: column;
     justify-content: space-evenly;
     border: 1px solid transparent;
+    user-select: none !important;
     &:hover {
       background: #eee;
     }
     .title {
       line-height: 16px;
-      color: rgb(250, 250, 250);
+      color: black;
       overflow: hidden;
-      text-shadow: 0 0 2px #494949;
-      mix-blend-mode: difference;
     }
   }
   li.active {

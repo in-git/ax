@@ -29,6 +29,8 @@
       </Draggable>
     </div>
   </ConfigProvider>
+
+  <Contextmenu />
 </template>
 
 <script setup lang="ts">
@@ -41,6 +43,8 @@ import { loadSystemComponents, loadSystemIcons } from './initialization';
 import useDeveloperStore from './store/developer';
 import usePageStore from './store/page';
 import Desktop from './views/desktop/Desktop.vue';
+import Contextmenu from './views/page/contextmenu/Contextmenu.vue';
+
 const devStore = useDeveloperStore();
 axios.defaults.baseURL = devStore.$state.baseURL;
 
