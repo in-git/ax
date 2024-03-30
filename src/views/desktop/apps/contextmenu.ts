@@ -1,6 +1,6 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import { response } from '@/utils/table/table';
-import { setContextMenu } from '@/views/page/contextmenu/data';
+import { setContextMenu } from '@/views/components/contextmenu/data';
 import { AppstoreOutlined, FolderFilled, ReloadOutlined } from '@ant-design/icons-vue';
 import { getUserRouters, openApp } from './data';
 

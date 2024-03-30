@@ -5,7 +5,7 @@ import google from '@/assets/system/google.png';
 import { openWindow, setCurrentWindow } from '@/global/config/window';
 import { systemComponents } from '@/initialization';
 import { openLink } from '@/utils/common/utils';
-import FolderVue from '../../page/folder/Folder.vue';
+import FolderVue from '../../components/folder/Folder.vue';
 
 export const appLoading = ref(false);
 export const getUserRouters = async () => {

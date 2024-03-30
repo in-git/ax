@@ -1,6 +1,6 @@
 import { closeWindow, setCurrentWindow, windowList } from '@/global/config/window';
 import type { SystemWindow } from '@/types/system';
-import { setContextMenu } from '@/views/page/contextmenu/data';
+import { setContextMenu } from '@/views/components/contextmenu/data';
 import { CloseOutlined, DeleteOutlined } from '@ant-design/icons-vue';
 
 export const tabContextmenu = (data: SystemWindow) => {

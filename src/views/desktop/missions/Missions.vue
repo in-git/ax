@@ -33,7 +33,7 @@ const openMenu = () => {
   );
   border-top: 1px solid #ddd;
 
-  z-index: 1000;
+  z-index: 100;
   .window {
     width: 42px;
     height: 42px;

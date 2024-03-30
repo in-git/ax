@@ -35,15 +35,15 @@
 
 <script setup lang="ts">
 import { closeWindow, windowList } from '@/global/config/window';
-import Draggable from '@/views/page/draggable/Draggable.vue';
 import { ConfigProvider } from 'ant-design-vue';
 import en_US from 'ant-design-vue/es/locale/en_US';
 import axios from 'axios';
 import { loadSystemComponents, loadSystemIcons } from './initialization';
 import useDeveloperStore from './store/developer';
 import usePageStore from './store/page';
+import Contextmenu from './views/components/contextmenu/Contextmenu.vue';
+import Draggable from './views/components/draggable/Draggable.vue';
 import Desktop from './views/desktop/Desktop.vue';
-import Contextmenu from './views/page/contextmenu/Contextmenu.vue';
 
 const devStore = useDeveloperStore();
 axios.defaults.baseURL = devStore.$state.baseURL;

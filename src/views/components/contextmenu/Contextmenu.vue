@@ -36,6 +36,7 @@ onClickOutside(contextMenuRef, () => {
   border: 1px solid #eee;
   position: fixed;
   overflow-y: hidden;
+  z-index: 120;
   ::v-deep(.ant-menu-item) {
     &::-webkit-scrollbar {
       display: none;

@@ -18,7 +18,6 @@ export const contextMenu = ref<SystemContextMenu>({
   data: undefined,
 });
 export const setContextMenu = (data: SystemContextMenu) => {
-  console.log(data);
   contextMenu.value = data;
   /* 当传入dom时，挂到dom上 */
   if (data.element) {

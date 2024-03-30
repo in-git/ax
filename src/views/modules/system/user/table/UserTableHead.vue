@@ -66,7 +66,6 @@ const exportExcel = async () => {
     pageSize: userQuery.value.pageSize,
   });
   // const { data } = await exportExcel(userQuery.value);
-  // console.log(data);
 };
 </script>
 
