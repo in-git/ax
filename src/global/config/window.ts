@@ -6,7 +6,7 @@ export const windowList = ref<SystemWindow[]>([]);
 
 export const openWindow = (config: SystemWindow) => {
   const isExist = windowList.value.find(e => {
-    return e.component === config.component;
+    return e.id === config.id;
   });
 
   config.hidden = false;
@@ -18,7 +18,7 @@ export const openWindow = (config: SystemWindow) => {
   if (!isExist) {
     windowList.value.push(config);
   } else {
-    isExist.hidden = !isExist.hidden;
+    isExist.hidden = false;
   }
 };
 

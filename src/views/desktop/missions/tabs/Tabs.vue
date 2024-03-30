@@ -18,13 +18,15 @@
 </template>
 
 <script setup lang="ts">
+import folder from '@/assets/system/folder.png';
 import { currentWindow, toTop, windowList } from '@/global/config/window';
 import type { SystemWindow } from '@/types/system';
 import { useSortable } from '@vueuse/integrations/useSortable';
-
 const tabRef = ref();
 const getIcon = (id: string) => {
-  return new URL(`../../../../assets/system/${id.toLocaleLowerCase()}.png`, import.meta.url).href;
+  const href = new URL(`../../../../assets/system/${id.toLocaleLowerCase()}.png`, import.meta.url)
+    .href;
+  return !href.includes('undefined') ? href : folder;
 };
 
 const selectItem = (item: SystemWindow) => {

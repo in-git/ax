@@ -49,8 +49,6 @@ onMounted(async () => {
   });
 });
 const select = (item: Routers) => {
-  console.log(item.component);
-
   selected.value = item.path;
 };
 </script>
