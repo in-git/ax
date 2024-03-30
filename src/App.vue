@@ -46,15 +46,26 @@ import Draggable from './views/components/draggable/Draggable.vue';
 import Desktop from './views/desktop/Desktop.vue';
 
 const devStore = useDeveloperStore();
+/*  */
 axios.defaults.baseURL = devStore.$state.baseURL;
-
+axios.defaults.timeout = devStore.$state.timeout;
+/*  */
 const locale = ref(en_US);
+
 const store = usePageStore();
+
 nextTick(() => {
   loadSystemIcons();
   loadSystemComponents();
 });
-document.addEventListener('wheel', e => {});
+
+document.addEventListener(
+  'wheel',
+  e => {
+    e.preventDefault();
+  },
+  { passive: false },
+);
 const theme = computed(() => {
   return {
     token: {
@@ -70,6 +81,6 @@ const theme = computed(() => {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 60;
 }
 </style>

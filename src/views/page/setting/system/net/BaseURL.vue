@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-page-header title=" 开发者设置" class="py-0 px-8" />
+    <a-page-header title=" 开发者设置" class="p-8" />
     <a-card title="选择服务器">
       <div>
         <div class="p-8 server-list">
@@ -91,7 +91,7 @@ import { Modal } from 'ant-design-vue';
 import type { SegmentedOption } from 'ant-design-vue/es/segmented/src/segmented';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
-import serverPng from './assets/server.png';
+import serverPng from '../assets/server.png';
 
 const open = ref(false);
 

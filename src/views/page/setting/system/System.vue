@@ -1,11 +1,11 @@
 <template>
-  <div class="system relative">
-    <BaseUrl></BaseUrl>
+  <div class="system relative px-8">
+    <NetVue></NetVue>
   </div>
 </template>
 
 <script setup lang="ts">
-import BaseUrl from './BaseUrl.vue';
+import NetVue from './net/Net.vue';
 </script>
 
 <style lang="scss" scoped>

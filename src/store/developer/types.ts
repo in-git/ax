@@ -5,5 +5,6 @@ export interface URLSelection {
 }
 export interface Developer {
   baseURL: string;
+  timeout: number;
   urlSelection: URLSelection[];
 }

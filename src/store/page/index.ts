@@ -7,7 +7,6 @@ interface PageSettings {
   virtual: boolean;
   size?: 'small' | 'middle' | 'large' | undefined;
   autoInsertSpaceInButton: boolean;
-  baseURL: string;
 }
 const usePageStore = defineStore('page', {
   state: (): PageSettings => ({
@@ -18,7 +17,6 @@ const usePageStore = defineStore('page', {
     wave: true,
     virtual: true,
     autoInsertSpaceInButton: true,
-    baseURL: 'http://150.158.14.110:16060/api/v1/',
   }),
   persist: true,
 });
