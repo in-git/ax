@@ -20,10 +20,11 @@ export const getUserRouters = async () => {
 };
 
 export const getIconByName = (item: Routers) => {
-  const image = new URL(
-    `../../../assets/system/${item.name.toLocaleLowerCase()}.png`,
-    import.meta.url,
-  ).href;
+  let image = '';
+  if (item.name) {
+    image = new URL(`../../../assets/system/${item.name.toLocaleLowerCase()}.png`, import.meta.url)
+      .href;
+  }
 
   if (!image.includes('undefined')) {
     return image;
@@ -45,6 +46,7 @@ export const openApp = (item: Routers) => {
     });
     return;
   }
+
   if (item.meta.link) {
     openLink(item.meta.link);
     return;

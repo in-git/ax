@@ -87,7 +87,7 @@ const customRow = (record: SystemMenu) => {
   color: #ff7676;
 }
 .menu-table {
-  height: calc(100% - 100px);
+  height: calc(100%);
   overflow-y: auto;
 }
 </style>

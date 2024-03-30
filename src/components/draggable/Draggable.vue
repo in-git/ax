@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { hiddenWindow, setCurrentWindow, toTop } from '@/global/config/window';
+import { hiddenWindow, setCurrentWindow, toTop, windowList } from '@/global/config/window';
 import { MinusOutlined } from '@ant-design/icons-vue';
 import VueDraggable from 'draggable-resizable-vue3';
 
@@ -62,8 +62,8 @@ const close = () => {
   emit('close', props.id);
 };
 
-const x = ref(window.innerWidth / 2 - props.w / 2);
-const y = ref(window.innerHeight / 2 - props.h / 2);
+const x = ref(window.innerWidth / 2 - props.w / 2 + windowList.value.length * 8);
+const y = ref(window.innerHeight / 2 - props.h / 2 + windowList.value.length * 8);
 const maxHeight = window.innerHeight;
 
 const hidden = () => {

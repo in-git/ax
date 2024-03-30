@@ -1,18 +1,20 @@
 <template>
   <div class="bottom-tabs flex align-center">
     <ul ref="tabRef" class="flex">
-      <li
-        v-for="item in windowList"
-        :key="item.id"
-        class="flex flex-s"
-        :class="[
-          { active: currentWindow && currentWindow.id === item.id },
-          item.hidden ? 'hidden' : '',
-        ]"
-        @click="selectItem(item)"
-      >
-        <img :draggable="false" :src="getIcon(`${item.id}`)" />
-      </li>
+      <template v-for="item in windowList" :key="item.id">
+        <a-tooltip :title="item.title">
+          <li
+            class="flex flex-s"
+            :class="[
+              { active: currentWindow && currentWindow.id === item.id },
+              item.hidden ? 'hidden' : '',
+            ]"
+            @click="selectItem(item)"
+          >
+            <img :draggable="false" :src="getIcon(`${item.id}`)" />
+          </li>
+        </a-tooltip>
+      </template>
     </ul>
   </div>
 </template>

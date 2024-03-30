@@ -54,6 +54,7 @@ export const setCurrentWindow = (id: string) => {
       currentWindow.value = e;
     }
   });
+  toTop(id);
 };
 
 export const setAttr = (id: string, key: string, value: any) => {
