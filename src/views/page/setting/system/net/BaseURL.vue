@@ -92,7 +92,7 @@ import type { SegmentedOption } from 'ant-design-vue/es/segmented/src/segmented'
 import axios from 'axios';
 import { nanoid } from 'nanoid';
 import serverPng from '../assets/server.png';
-
+import { baseUrlOptions } from './data';
 const open = ref(false);
 
 const serverForm = ref<URLSelection>({
@@ -101,16 +101,7 @@ const serverForm = ref<URLSelection>({
   id: '',
 });
 const developer = useDeveloperStore();
-const baseUrlOptions: SegmentedOption[] = [
-  {
-    label: '测试',
-    value: 'http://150.158.14.110:8081/',
-  },
-  {
-    label: '若依官网',
-    value: 'http://vue.ruoyi.vip/prod-api/',
-  },
-];
+
 const create = () => {
   open.value = true;
   serverForm.value = {
@@ -129,7 +120,7 @@ const edit = (item: SegmentedOption) => {
 };
 const submit = () => {
   const index = developer.$state.urlSelection.findIndex(e => e.id === serverForm.value.id);
-  if (index > -1) {
+  if (index > 0) {
     developer.$state.urlSelection[index] = serverForm.value;
   } else {
     developer.$state.urlSelection.push(useCloned(serverForm.value).cloned.value);

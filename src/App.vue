@@ -48,7 +48,7 @@ import Desktop from './views/desktop/Desktop.vue';
 const devStore = useDeveloperStore();
 /*  */
 axios.defaults.baseURL = devStore.$state.baseURL;
-axios.defaults.timeout = devStore.$state.timeout;
+axios.defaults.timeout = devStore.$state.timeout * 1000;
 /*  */
 const locale = ref(en_US);
 
