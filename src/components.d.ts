@@ -78,6 +78,7 @@ declare module 'vue' {
     GithubFilled: typeof import('@ant-design/icons-vue')['GithubFilled']
     GoogleOutlined: typeof import('@ant-design/icons-vue')['GoogleOutlined']
     Head: typeof import('./components/template/table/table-head/head.vue')['default']
+    HistoryOutlined: typeof import('@ant-design/icons-vue')['HistoryOutlined']
     Icon: typeof import('./components/icon/Icon.vue')['default']
     Loading: typeof import('./components/loading/Loading.vue')['default']
     LockOutlined: typeof import('@ant-design/icons-vue')['LockOutlined']

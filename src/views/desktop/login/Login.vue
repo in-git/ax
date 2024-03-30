@@ -7,13 +7,7 @@
           <a-space direction="vertical" class="w-100">
             <h1 class="mb-24">Login in</h1>
             <a-form layout="vertical" size="large" @finish="finish" :model="loginForm">
-              <a-form-item label="Username" required name="name">
-                <a-input
-                  v-model:value="loginForm.name"
-                  allow-clear
-                  placeholder="Please enter username"
-                ></a-input>
-              </a-form-item>
+              <LoginHistory />
 
               <a-form-item label="Password" required name="password">
                 <a-input-password
@@ -80,9 +74,12 @@
 import { captcha, login } from '@/api/modules/system/user/user';
 import usePageStore from '@/store/page';
 import useUserStore from '@/store/user';
+
 import { message } from 'ant-design-vue';
 import Welcome from './Welcome.vue';
 import { langOptions, loginForm, loginLoading } from './data';
+import LoginHistory from './history/LoginHistory.vue';
+
 const pageStore = usePageStore();
 const captchaImage = ref();
 
@@ -100,7 +97,7 @@ const finish = async () => {
   loginLoading.value = true;
   try {
     const { data } = await login({
-      username: loginForm.value.name,
+      username: loginForm.value.username,
       password: loginForm.value.password,
       code: loginForm.value.code,
       uuid: loginForm.value.uuid,
@@ -110,9 +107,21 @@ const finish = async () => {
 
     const store = useUserStore();
 
+    /* 创建历史记录 */
+    const index = store.$state.history.findIndex(e => {
+      return e.username === loginForm.value.username && loginForm.value.password === e.password;
+    });
+
+    if (index === -1 || store.$state.history.length === 0) {
+      store.$state.history.push({
+        username: loginForm.value.username,
+        password: loginForm.value.password,
+      });
+    }
     store.$state.token = data.token;
   } catch (error) {
     loginLoading.value = false;
+    loginForm.value.code = '';
     getCaptcha();
   }
 };

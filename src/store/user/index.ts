@@ -5,6 +5,7 @@ const useUserStore = defineStore('user', {
   state: (): UserState => ({
     name: '',
     token: '',
+    history: [],
   }),
   persist: true,
 });
