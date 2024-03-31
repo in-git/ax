@@ -1,0 +1,29 @@
+{
+  "include": [
+    "./src/**/*.ts",
+    "./express.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "types": [
+      "node",
+    ],
+    "target": "ESNext",
+    "module": "commonjs",
+    "allowArbitraryExtensions": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  }
+}
