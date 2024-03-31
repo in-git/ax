@@ -1,5 +1,3 @@
-import type { App } from 'vue';
-
 const images = import.meta.glob('./assets/system/*.*');
 let modules = import.meta.glob('./views/modules/**/index.vue');
 
@@ -26,17 +24,6 @@ export const loadSystemComponents = () => {
         component: markRaw(defineAsyncComponent(component)),
         path,
       });
-    }
-  }
-};
-
-export const registerGlobalAsyncComponents = (app: App) => {
-  for (const path in modules) {
-    const result = path.match(/.*\/(.+).vue$/);
-    if (result) {
-      const name = result[1];
-      const component: any = modules[path];
-      app.component(name, defineAsyncComponent(component));
     }
   }
 };

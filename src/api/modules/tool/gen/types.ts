@@ -69,12 +69,12 @@ interface CodeColumn {
   capJavaField?: any;
 }
 interface CodeResponse {
-  tables: Table[];
+  tables: SystemDb[];
   rows: CodeColumn[];
   info: SystemCode;
 }
 
-interface Table {
+interface SystemDb {
   createBy?: any;
   createTime?: any;
   updateBy?: any;

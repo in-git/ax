@@ -2,9 +2,9 @@
   <TableHead title="数据表列表">
     <div class="flex justify-between">
       <div class="flex gc-4 align-center">
-        <a-tooltip title="新建">
-          <a-button type="primary" @click="createCode">
-            <PlusOutlined />
+        <a-tooltip title="导入">
+          <a-button type="primary" @click="showDbForm = true">
+            <DownloadOutlined />
           </a-button>
         </a-tooltip>
         <a-tooltip title="编辑">
@@ -41,7 +41,8 @@
 import FieldVue from '@/views/components/table/Field.vue';
 import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { codeColumns } from '../../data/column';
-import { codeDelete, codeList, createCode, editCode } from '../../data/curd';
+import { codeDelete, codeList, editCode } from '../../data/curd';
+import { showDbForm } from '../../data/form';
 import { codeKeys, codeTable } from '../../data/table';
 </script>
 

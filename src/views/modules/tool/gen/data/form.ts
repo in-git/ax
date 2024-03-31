@@ -27,3 +27,5 @@ export const codeFormData = ref<CodeResponse>({
   },
 });
 export const currentCode = ref<SystemCode>();
+
+export const showDbForm = ref(false);

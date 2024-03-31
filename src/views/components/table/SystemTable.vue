@@ -59,7 +59,7 @@ const props = defineProps<{
   table: TableConfig;
   query: IQuery;
   columns: TableColumnProps[];
-  selectedKeys: number[];
+  selectedKeys: number[] | string[];
 }>();
 
 const onChange = (keys: Key[]) => {

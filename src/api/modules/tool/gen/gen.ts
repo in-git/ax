@@ -18,7 +18,7 @@ export const updateCode = (data: any) => {
 };
 
 export const deleteCodeByIds = (ids: number[]) => {
-  return axios.delete<Response>(`tool/gen`, { data: ids });
+  return axios.delete<Response>(`tool/gen/${ids.join(',')}`);
 };
 // 同步代码
 export const synchDb = (db: string) => {
@@ -29,4 +29,9 @@ export const fetchGenDbList = (query: IQuery) => {
   return axios.get(`tool/gen/db/list`, {
     params: query,
   });
+};
+
+/* 导入表的数据 */
+export const importDbByDbs = (dbs: string[]) => {
+  return axios.post(`tool/gen/importTable?tables=${dbs.join(',')}`);
 };
