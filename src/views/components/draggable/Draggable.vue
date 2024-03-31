@@ -88,7 +88,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 $hh: 42px;
 .drv {
-  border: 1px solid transparent;
+  border: none;
   box-shadow: 0 0 4px #a0a0a065;
   overflow: hidden;
 }

@@ -1,12 +1,12 @@
 <template>
   <div class="notice-table">
     <TableHead title="Notice management">
-      <div class="flex justify-between align-center">
-        <a-button @click="createNotice">
+      <a-tooltip title="新建">
+        <a-button @click="createNotice" type="link">
           <PlusOutlined />
         </a-button>
-        <FiledVue v-model:columns="noticeColumns" :module-name="noticeTable.moduleName" />
-      </div>
+      </a-tooltip>
+      <FiledVue v-model:columns="noticeColumns" :module-name="noticeTable.moduleName" />
     </TableHead>
     <SystemTable
       :columns="noticeColumns"
@@ -31,10 +31,9 @@ import { getLabel } from '@/utils/common/utils';
 import FiledVue from '@/views/components/table/Field.vue';
 import Operation from '@/views/components/table/Operation.vue';
 import SystemTable from '@/views/components/table/SystemTable.vue';
-import { resetMenuForm } from '../../menu/form/data';
 import { noticeColumns } from '../data/column';
 import { editNotice, noticeList } from '../data/curd';
-import { showNoticeForm } from '../data/form';
+import { resetNoticeForm, showNoticeForm } from '../data/form';
 import { noticeTypeOptions } from '../data/options';
 import { noticeKeys, noticeQuery, noticeTable, operationList } from '../data/table';
 
@@ -43,7 +42,7 @@ onMounted(() => {
 });
 
 const createNotice = () => {
-  resetMenuForm();
+  resetNoticeForm();
   showNoticeForm.value = true;
 };
 </script>

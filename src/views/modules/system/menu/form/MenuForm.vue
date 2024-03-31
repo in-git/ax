@@ -73,7 +73,7 @@ import SystemModal from '@/components/modal/SysModal.vue';
 import { statusOptions, visibleOptions } from '@/global/options/system';
 import { message } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/vc-tree/interface';
-import { loadMenuData, menuConfig } from '../table/data';
+import { loadMenuData, menuQuery } from '../table/data';
 import { menuForm, showMenuForm } from './data';
 import ParamVue from './Params.vue';
 
@@ -101,12 +101,12 @@ const submit = async () => {
   loadMenuData();
 };
 watch(
-  menuConfig,
+  menuQuery,
   () => {
     treeSelected.value = [menuForm.value.parentId];
 
     treeData.value = [
-      ...menuConfig.value.data,
+      ...menuQuery.value.data,
       {
         menuId: 0,
         menuName: '主目录',

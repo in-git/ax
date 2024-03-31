@@ -2,7 +2,8 @@
 	background: white;
 	$app-width: 84px;
 	height: calc(100vh - 48px * 2);
-	background: url("../assets/background.png");
+	// background: url("../assets/background.png");
+	background: url("../assets/background.webp");
 	background: url("../assets/taylor.webp");
 	background-size: cover;
 	background-position: center;
@@ -47,9 +48,9 @@
 		}
 		.title {
 			line-height: 16px;
-			color: #f0f0f0;
+			color: #aac4f3;
 			overflow: hidden;
-			text-shadow: 0 0 1px 1px #494949;
+			text-shadow: 0 0 1px #bdbaba;
 			mix-blend-mode: difference;
 			white-space: nowrap;
 			overflow: hidden;

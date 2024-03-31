@@ -12,7 +12,7 @@
             </a-button>
           </a-tooltip>
           <a-tooltip title="Edit">
-            <a-button @click="edit" :disabled="menuConfig.selectedKeys.length === 0">
+            <a-button @click="edit" :disabled="menuQuery.selectedKeys.length === 0">
               <EditOutlined />
             </a-button>
           </a-tooltip>
@@ -24,7 +24,7 @@
           </a-tooltip>
 
           <a-tooltip title="Delete ">
-            <a-button @click="delMenu()" danger :disabled="menuConfig.selectedKeys.length === 0">
+            <a-button @click="delMenu()" danger :disabled="menuQuery.selectedKeys.length === 0">
               <DeleteOutlined />
             </a-button>
           </a-tooltip>
@@ -32,7 +32,7 @@
         <div class="flex gc-4 align-center">
           <a-input-search
             allow-clear
-            v-model:value="menuConfig.query.menuName"
+            v-model:value="menuQuery.query.menuName"
             placeholder="Please enter menu name"
             style="width: 200px"
             @search="loadMenuData"
@@ -41,7 +41,7 @@
           <a-segmented
             :options="statusOptions"
             @change="loadMenuData"
-            v-model:value="menuConfig.query.status"
+            v-model:value="menuQuery.query.status"
             placeholder="Status"
           ></a-segmented>
         </div>
@@ -54,7 +54,7 @@
 import { statusOptions } from '@/global/options/system';
 import { DeleteOutlined, EditOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { createMenuData, delMenu, showMenuFormForm } from '../../table/curd';
-import { loadMenuData, menuConfig } from '../../table/data';
+import { loadMenuData, menuQuery } from '../../table/data';
 const edit = () => {
   showMenuFormForm();
 };

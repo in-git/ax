@@ -26,5 +26,5 @@ export const resetMenuForm = () => {
   menuForm.value = {
     ...object,
   };
-  console.log(menuForm.value);
+  console.log(object);
 };

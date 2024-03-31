@@ -43,9 +43,9 @@
           <a-flex class="w-100" justify="space-between">
             <div>控件大小</div>
             <a-radio-group v-model:value="store.$state.size">
-              <a-radio value="small">小</a-radio>
-              <a-radio value="medium">中</a-radio>
-              <a-radio value="large">大</a-radio>
+              <a-radio-button value="small">小</a-radio-button>
+              <a-radio-button value="medium">中</a-radio-button>
+              <a-radio-button value="large">大</a-radio-button>
             </a-radio-group>
           </a-flex>
           <a-flex class="w-100" justify="space-between">
@@ -63,7 +63,7 @@
           </a-flex>
 
           <a-flex class="w-100" justify="space-between">
-            <div>虚拟滚动</div>
+            虚拟滚动
             <a-switch
               v-model:checked="store.$state.virtual"
               checked-children="开"

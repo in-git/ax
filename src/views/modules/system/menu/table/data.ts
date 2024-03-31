@@ -17,7 +17,7 @@ interface MenuConf {
   query: IQuery<MenuQuery>;
 }
 
-export const menuConfig = ref<MenuConf>({
+export const menuQuery = ref<MenuConf>({
   loading: false,
   data: [],
   query: {
@@ -31,10 +31,10 @@ export const menuConfig = ref<MenuConf>({
 });
 
 export const loadMenuData = async () => {
-  menuConfig.value.loading = true;
-  const { data } = await menuList(menuConfig.value.query);
+  menuQuery.value.loading = true;
+  const { data } = await menuList(menuQuery.value.query);
   if (data.data) {
-    menuConfig.value.data = convertToTree(data.data);
+    menuQuery.value.data = convertToTree(data.data);
   }
-  menuConfig.value.loading = false;
+  menuQuery.value.loading = false;
 };
