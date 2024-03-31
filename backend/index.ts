@@ -2,12 +2,11 @@ import cors from 'cors';
 import express, { Response } from 'express';
 import { Server } from 'socket.io';
 import { auth } from './src/auth/verify';
-import { connect } from './src/config/mysql';
 import { connectWs } from './src/config/ws';
 import publicRouter from './src/modules/public/controller/PublicController';
 
 const app = express();
-const expressServer = app.listen(3000);
+const expressServer = app.listen(8888);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -16,7 +15,6 @@ const corsOptions = {
   charset: 'utf-8',
 };
 
-connect();
 app.use(cors(corsOptions));
 app.use(auth);
 

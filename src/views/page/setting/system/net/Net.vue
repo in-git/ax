@@ -16,17 +16,24 @@
           </div>
         </div>
       </a-flex>
+      <a-button type="primary" @click="test">测试</a-button>
     </a-card>
   </div>
 </template>
 
 <script setup lang="ts">
+import { testNode } from '@/api/modules/node/test';
 import useDeveloperStore from '@/store/developer';
 import type { InfoCircleFilled } from '@ant-design/icons-vue';
 import BaseURL from './base-url/BaseURL.vue';
 import { timeoutOptions } from './data';
 
 const devStore = useDeveloperStore();
+
+const test = async () => {
+  const data = await testNode();
+  console.log(data);
+};
 </script>
 
 <style lang="scss" scoped>
