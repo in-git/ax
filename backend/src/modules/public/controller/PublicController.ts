@@ -1,17 +1,10 @@
-import { Router } from 'express';
 import { successHandler } from '@/config/response';
-import { UserService } from '../service/PublicService';
-import { Users } from '@/modules/user/bean/users';
+import { Router } from 'express';
 
 const router = Router();
 
-router.get('/login', async (req, res) => {
-  const { name } = req.query
-  const modal = new Users()
-  modal.name = `${name}`
-  modal.ip = `${(req.headers['x-forwarded-for']) || req.connection.remoteAddress}` ;
-  await UserService.setUser(modal)
-  successHandler(res, "成功添加");
+router.get('/test', async (req, res) => {
+  successHandler(res, 'test');
 });
 
 export default router;
