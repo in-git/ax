@@ -61,7 +61,7 @@
 <script setup lang="ts">
 import { isOptions } from '@/global/options/system';
 import { InfoCircleFilled } from '@ant-design/icons-vue';
-import { menuForm } from './data';
+import { menuForm } from '../data/form';
 </script>
 
 <style lang="scss" scoped></style>

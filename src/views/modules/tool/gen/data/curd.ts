@@ -15,7 +15,9 @@ export const codeList = async () => {
 export const editCode = async (id?: number) => {
   let targetId = id ? id : codeKeys.value[0];
   const { data } = await fetchCodeById(targetId);
-  codeFormData.value = data;
+  if (data.data) codeFormData.value = data.data;
+  console.log(data);
+
   codeShowForm.value = true;
 };
 export const codeDelete = async (id?: number) => {

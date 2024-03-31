@@ -6,7 +6,7 @@ export const fetchCodeList = (query: IQuery) => {
 };
 
 export const fetchCodeById = (id: number) => {
-  return axios.get<CodeResponse>(`tool/gen/${id}`);
+  return axios.get<Response<CodeResponse>>(`tool/gen/${id}`);
 };
 
 export const createCode = (data: any) => {

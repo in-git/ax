@@ -4,13 +4,13 @@
     <a-table
       class="px-12"
       :columns="formatColumns(menuColumns)"
-      :dataSource="menuQuery.data"
+      :dataSource="listMenu"
       :loading="menuQuery.loading"
       @change="pageChange"
       table-layout="fixed"
       sticky
       :row-selection="{
-        selectedRowKeys: menuQuery.selectedKeys,
+        selectedRowKeys: menuKeys,
         onChange,
       }"
       :customRow="customRow"
@@ -45,9 +45,9 @@ import { CheckOutlined, type EditOutlined } from '@ant-design/icons-vue';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
+import { delMenu, showMenuFormForm } from '../data/curd';
+import { listMenu, loadMenuData, menuKeys, menuQuery } from '../data/data';
 import { menuColumns } from './column';
-import { delMenu, showMenuFormForm } from './curd';
-import { loadMenuData, menuQuery } from './data';
 import MenuHead from './head/MenuHead.vue';
 onMounted(() => {
   loadMenuData();
@@ -71,12 +71,12 @@ const pageChange = (
 
 const onChange = (keys: Key[]) => {
   const lastValue = keys[keys.length - 1];
-  if (lastValue) menuQuery.value.selectedKeys = [lastValue];
+  if (lastValue) menuKeys.value = [Number(lastValue)];
 };
 const customRow = (record: SystemMenu) => {
   return {
     onClick() {
-      menuQuery.value.selectedKeys = [record.menuId];
+      menuKeys.value = [record.menuId];
     },
   };
 };
@@ -91,3 +91,4 @@ const customRow = (record: SystemMenu) => {
   overflow-y: auto;
 }
 </style>
+../data/data ../data/curd

@@ -9,7 +9,7 @@
     <SystemModal title="生成信息编辑" v-model:visible="codeShowForm">
       <div class="h-100 flex flex-col">
         <div class="flex-1 p-8">
-          <a-tabs>
+          <a-tabs tab-position="left" class="h-100">
             <a-tab-pane key="base-info" tab="基础信息">
               <BaseInfo></BaseInfo>
             </a-tab-pane>

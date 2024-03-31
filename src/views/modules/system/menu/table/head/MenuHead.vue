@@ -12,7 +12,7 @@
             </a-button>
           </a-tooltip>
           <a-tooltip title="Edit">
-            <a-button @click="edit" :disabled="menuQuery.selectedKeys.length === 0">
+            <a-button @click="edit" :disabled="menuKeys.length === 0">
               <EditOutlined />
             </a-button>
           </a-tooltip>
@@ -24,7 +24,7 @@
           </a-tooltip>
 
           <a-tooltip title="Delete ">
-            <a-button @click="delMenu()" danger :disabled="menuQuery.selectedKeys.length === 0">
+            <a-button @click="delMenu()" danger :disabled="menuKeys.length === 0">
               <DeleteOutlined />
             </a-button>
           </a-tooltip>
@@ -53,8 +53,8 @@
 <script setup lang="ts">
 import { statusOptions } from '@/global/options/system';
 import { DeleteOutlined, EditOutlined, ReloadOutlined } from '@ant-design/icons-vue';
-import { createMenuData, delMenu, showMenuFormForm } from '../../table/curd';
-import { loadMenuData, menuQuery } from '../../table/data';
+import { createMenuData, delMenu, showMenuFormForm } from '../../data/curd';
+import { loadMenuData, menuKeys, menuQuery } from '../../data/data';
 const edit = () => {
   showMenuFormForm();
 };
@@ -64,3 +64,4 @@ const create = () => {
 </script>
 
 <style lang="scss" scoped></style>
+../../data/data ../../data/curd

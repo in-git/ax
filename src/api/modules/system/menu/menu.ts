@@ -1,11 +1,9 @@
-import type { IQuery, Response } from '@/api/config/types';
+import type { Response } from '@/api/config/types';
 import axios from 'axios';
 import type { SystemMenu } from './types';
 
-export const menuList = (query: IQuery) => {
-  return axios.get<Response<SystemMenu[]>>(`system/menu/list`, {
-    params: query,
-  });
+export const menuList = () => {
+  return axios.get<Response<SystemMenu[]>>(`system/menu/list`);
 };
 
 export const getMenu = (id: string) => {

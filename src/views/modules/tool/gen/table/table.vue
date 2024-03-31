@@ -33,6 +33,7 @@ import { codeKeys, codeOperationList, codeQuery, codeTable } from '../data/table
 const openChange = (data: SystemCode) => {
   currentCode.value = data;
 };
+
 onMounted(() => {
   codeList();
 });

@@ -62,7 +62,7 @@
           </a-col>
         </a-row>
       </a-card>
-      <FormFooter position="center"></FormFooter>
+      <FormFooter justify="center"></FormFooter>
     </a-form>
   </SystemModal>
 </template>
@@ -72,19 +72,13 @@ import { createMenu, updateMenu } from '@/api/modules/system/menu/menu';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { statusOptions, visibleOptions } from '@/global/options/system';
 import { message } from 'ant-design-vue';
-import type { Key } from 'ant-design-vue/es/vc-tree/interface';
-import { loadMenuData, menuQuery } from '../table/data';
-import { menuForm, showMenuForm } from './data';
+import { listMenu, loadMenuData } from '../data/data';
+import { menuForm, showMenuForm } from '../data/form';
 import ParamVue from './Params.vue';
 
 const treeSelected = ref<number[]>([]);
 
 const treeData = ref<any[]>([]);
-const select = (checked: Key[]) => {
-  console.log(checked[0]);
-
-  menuForm.value.parentId = Number(checked[0]);
-};
 
 const submit = async () => {
   let msg = '';
@@ -101,12 +95,12 @@ const submit = async () => {
   loadMenuData();
 };
 watch(
-  menuQuery,
+  listMenu,
   () => {
     treeSelected.value = [menuForm.value.parentId];
 
     treeData.value = [
-      ...menuQuery.value.data,
+      ...listMenu.value,
       {
         menuId: 0,
         menuName: '主目录',
@@ -124,3 +118,4 @@ watch(
 <style lang="scss" scoped>
 @import './style';
 </style>
+../data/data ./form

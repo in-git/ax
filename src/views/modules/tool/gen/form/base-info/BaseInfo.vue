@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="codeFormData?.info" class="mt-12">
     <a-form-item name="tableName" required label="表名">
       <a-input v-model:value="codeFormData.info.tableName"></a-input>
     </a-form-item>

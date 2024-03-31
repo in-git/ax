@@ -11,10 +11,11 @@
 </template>
 
 <script setup lang="ts">
-import { showMenuForm } from './form/data';
+import { showMenuForm } from './data/form';
 import MenuForm from './form/MenuForm.vue';
 
 import MenuTable from './table/MenuTable.vue';
 </script>
 
 <style lang="scss" scoped></style>
+./form/form

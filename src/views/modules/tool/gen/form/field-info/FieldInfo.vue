@@ -1,5 +1,5 @@
 <template>
-  <div>field-info</div>
+  <div class="mt-12"></div>
 </template>
 
 <script setup lang="ts"></script>
