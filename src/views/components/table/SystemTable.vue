@@ -5,6 +5,7 @@
       @change="pageChange"
       table-layout="fixed"
       sticky
+      :scroll="{ y: 467 }"
       :row-selection="{
         selectedRowKeys: selectedKeys,
         onChange,

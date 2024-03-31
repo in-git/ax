@@ -33,13 +33,16 @@
             <DeleteOutlined />
           </a-button>
         </a-popconfirm>
+        <FieldVue :columns="__Columns" module-name="test" />
       </div>
     </div>
   </TableHead>
 </template>
 
 <script setup lang="ts">
+import FieldVue from '@/views/components/table/Field.vue';
 import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
+import { __Columns } from '../../data/column';
 import { __Create, __Delete, __Edit, __List } from '../../data/curd';
 import { __Keys } from '../../data/table';
 </script>

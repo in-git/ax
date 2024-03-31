@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-popover trigger="click" title="字段筛选" placement="bottomLeft">
+    <a-popover trigger="click" title="字段筛选" placement="bottomRight">
       <a-tooltip title="字段筛选">
         <div class="system-icon">
           <AppstoreAddOutlined />
@@ -9,15 +9,12 @@
       <template #content>
         <div class="pop-content">
           <ul class="w-100">
-            <li v-for="item in cols">
+            <li v-for="item in computedColumns">
               <div>
                 {{ item.title }}
               </div>
               <div>
-                <a-checkbox
-                  v-model:checked="item.show"
-                  @change="emit('update:columns', cols)"
-                ></a-checkbox>
+                <a-checkbox v-model:checked="item.show" @change="onChange"></a-checkbox>
               </div>
             </li>
           </ul>
@@ -28,25 +25,47 @@
 </template>
 
 <script setup lang="ts">
+import useColumnsStore from '@/store/columns/index';
 import type { ColumnProps } from '@/types/system';
 import { AppstoreAddOutlined } from '@ant-design/icons-vue';
 
 const emit = defineEmits(['update:columns']);
-const cols = ref<any[]>([]);
+const cols = ref();
 
+const store = useColumnsStore();
 const props = defineProps<{
   columns: ColumnProps[];
+  /* 模块名，必须，用于区分本地存储的列 */
+  moduleName: string;
 }>();
+const onChange = () => {
+  const target = store.$state.find(e => {
+    if (e.moduleName === props.moduleName) {
+      return e;
+    }
+    return null;
+  });
 
-watch(
-  props.columns,
-  () => {
-    cols.value = props.columns;
-  },
-  {
-    immediate: true,
-  },
-);
+  emit('update:columns', cols.value);
+};
+const computedColumns = computed(() => {
+  const target = store.$state.find(e => {
+    if (e.moduleName === props.moduleName) {
+      return e;
+    }
+    return null;
+  });
+  if (!target) {
+    store.$state.push({
+      moduleName: props.moduleName,
+      columns: props.columns as any,
+    });
+  } else {
+    cols.value = target.columns;
+  }
+
+  return cols.value;
+});
 </script>
 
 <style lang="scss" scoped>

@@ -22,7 +22,7 @@
         ></a-input-search>
       </div>
 
-      <TableField :columns="onlineColumns" />
+      <TableField module-name="online" v-model:columns="onlineColumns" />
     </div>
   </TableHead>
 </template>
