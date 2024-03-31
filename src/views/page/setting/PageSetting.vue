@@ -80,24 +80,25 @@ $hh: 42px;
   .settings {
     height: calc(100%);
     .sidebar {
-      width: 200px;
+      min-width: 160px;
       background: #f8f8f8;
+      border-right: 1px solid #ddd;
       ul {
         li {
           line-height: $hh;
-          padding: 0 12px;
+          padding: 0 var(--padding);
           cursor: pointer;
           user-select: none;
           font-size: 14px;
-          border-bottom: 2px solid transparent;
+          color: #999;
           &:hover {
             background: #eee;
+            color: #666;
           }
         }
         li.active {
-          // color: var(--primary);
-          color: var(--pro-ant-color-primary);
-          border-bottom: 2px solid var(--primary);
+          color: #333;
+          font-weight: bold;
         }
       }
       .icon {

@@ -1,66 +1,68 @@
 <template>
-  <div class="h-100 base-url">
-    <a-page-header title=" 开发者设置" class="p-8" />
-    <a-card title="选择服务器" :body-style="{ maxHeight: '400px', overflowY: 'auto' }">
-      <div class="p-8 server-list">
-        <ul class="flex flex-wrap">
-          <li
-            v-for="item in developer.$state.urlSelection"
-            :key="item.value"
-            class="text-center flex flex-col gr-4"
-            :class="[{ 'breathing-light': developer.$state.baseURL === item.value }]"
-          >
-            <div>
-              <img :src="serverPng" width="48" />
-            </div>
+  <div>
+    <a-page-header title="网络设置" class="px-0 py-8" />
+    <div>
+      <div class="mb-12 text-999">选择服务器</div>
+      <a-card :body-style="{ maxHeight: '400px', overflowY: 'auto' }">
+        <div class="p-8 server-list">
+          <ul class="flex flex-wrap">
+            <li
+              v-for="item in developer.$state.urlSelection"
+              :key="item.value"
+              class="text-center flex flex-col gr-4"
+              :class="[{ 'breathing-light': developer.$state.baseURL === item.value }]"
+            >
+              <div>
+                <img :src="serverPng" width="48" />
+              </div>
 
-            <div class="text-14 text-bold">
-              {{ item.label }}
-            </div>
-            <div :class="[developer.$state.baseURL == item.value ? 'selected' : 'unselected']">
-              <a-badge color="green" v-if="developer.$state.baseURL === item.value">
-                <template #text>
-                  <span class="text-12 text-999">当前连接</span>
-                </template>
-              </a-badge>
-              <a-badge v-else color="red">
-                <template #text>
-                  <span class="text-12 text-999">未连接</span>
-                </template>
-              </a-badge>
-            </div>
-            <div class="url">
-              {{ item.value }}
-            </div>
-            <a-divider class="my-6"></a-divider>
-            <div class="text-center">
-              <a-tooltip title="切换">
-                <a-button type="link" @click="setBaseurl(item.value)">
-                  <NodeExpandOutlined />
-                </a-button>
-              </a-tooltip>
-              <a-tooltip title="编辑">
-                <a-button type="text" @click="edit(item)">
-                  <EditOutlined />
-                </a-button>
-              </a-tooltip>
-              <a-popconfirm @confirm="deleteUrl(item.id)" title="确定删除吗">
-                <a-button type="link" danger>
-                  <DeleteOutlined />
-                </a-button>
-              </a-popconfirm>
-            </div>
-          </li>
-          <li class="create flex flex-s" @click="create">
-            <div class="text-16 text-center">
-              <PlusOutlined class="text-24" />
-              <div>新建</div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </a-card>
-
+              <div class="text-14 text-bold">
+                {{ item.label }}
+              </div>
+              <div :class="[developer.$state.baseURL == item.value ? 'selected' : 'unselected']">
+                <a-badge color="green" v-if="developer.$state.baseURL === item.value">
+                  <template #text>
+                    <span class="text-12 text-999">当前连接</span>
+                  </template>
+                </a-badge>
+                <a-badge v-else color="red">
+                  <template #text>
+                    <span class="text-12 text-999">未连接</span>
+                  </template>
+                </a-badge>
+              </div>
+              <div class="url">
+                {{ item.value }}
+              </div>
+              <a-divider class="my-6"></a-divider>
+              <div class="text-center">
+                <a-tooltip title="切换">
+                  <a-button type="link" @click="setBaseurl(item.value)">
+                    <NodeExpandOutlined />
+                  </a-button>
+                </a-tooltip>
+                <a-tooltip title="编辑">
+                  <a-button type="text" @click="edit(item)">
+                    <EditOutlined />
+                  </a-button>
+                </a-tooltip>
+                <a-popconfirm @confirm="deleteUrl(item.id)" title="确定删除吗">
+                  <a-button type="link" danger>
+                    <DeleteOutlined />
+                  </a-button>
+                </a-popconfirm>
+              </div>
+            </li>
+            <li class="create flex flex-s" @click="create">
+              <div class="text-16 text-center">
+                <PlusOutlined class="text-24" />
+                <div>新建</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </a-card>
+    </div>
     <a-drawer
       title="Create server"
       placement="right"

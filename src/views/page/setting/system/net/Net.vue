@@ -1,5 +1,5 @@
 <template>
-  <div class="px-8">
+  <div class="system-net px-8">
     <BaseURL />
     <a-card class="mt-12">
       <a-flex justify="space-between">
@@ -10,6 +10,10 @@
             v-model:value="devStore.$state.timeout"
             :options="timeoutOptions"
           ></a-auto-complete>
+          <div class="text-12 text-999 mt-8">
+            <InfoCircleFilled />
+            当请求超时则放弃请求
+          </div>
         </div>
       </a-flex>
     </a-card>
@@ -18,6 +22,7 @@
 
 <script setup lang="ts">
 import useDeveloperStore from '@/store/developer';
+import type { InfoCircleFilled } from '@ant-design/icons-vue';
 import BaseURL from './base-url/BaseURL.vue';
 import { timeoutOptions } from './data';
 
@@ -25,6 +30,10 @@ const devStore = useDeveloperStore();
 </script>
 
 <style lang="scss" scoped>
+.system-net {
+  background: #f1f0f5;
+  height: 100%;
+}
 .timeout-list {
   display: flex;
   gap: 12px;

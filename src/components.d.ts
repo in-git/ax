@@ -80,6 +80,7 @@ declare module 'vue' {
     Head: typeof import('./components/template/table/table-head/head.vue')['default']
     HistoryOutlined: typeof import('@ant-design/icons-vue')['HistoryOutlined']
     Icon: typeof import('./components/icon/Icon.vue')['default']
+    InfoCircleFilled: typeof import('@ant-design/icons-vue')['InfoCircleFilled']
     Loading: typeof import('./components/loading/Loading.vue')['default']
     LockOutlined: typeof import('@ant-design/icons-vue')['LockOutlined']
     LogoutOutlined: typeof import('@ant-design/icons-vue')['LogoutOutlined']

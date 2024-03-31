@@ -1,7 +1,7 @@
 <template>
-  <div class="theme p-4">
-    <a-page-header title=" 设置主题颜色" class="p-8" />
-    <a-space direction="vertical" class="w-100">
+  <div class="theme">
+    <a-page-header title="设置主题颜色" class="px-8 py-8" />
+    <a-space direction="vertical" class="w-100 px-8">
       <a-card>
         <div class="color-palette">
           <ul class="flex gc-4">
@@ -13,7 +13,7 @@
               @click="selectItem(item)"
               :class="{ active: item === current }"
             >
-              <CheckCircleFilled v-if="item === current" />
+              <CheckOutlined class="text-12" v-if="item === current" />
             </li>
             <a-divider type="vertical" class="h-100" :style="{ color: store.$state.theme }">
               <label class="flex flex-s gc-4">
@@ -25,66 +25,58 @@
         </div>
       </a-card>
 
+      <div class="px-12">内置属性</div>
       <a-card>
-        <a-flex class="w-100" justify="space-between">
-          <div>控件大小</div>
-          <a-radio-group v-model:value="store.$state.size">
-            <a-radio value="small">小</a-radio>
-            <a-radio value="medium">中</a-radio>
-            <a-radio value="large">大</a-radio>
-          </a-radio-group>
-        </a-flex>
-      </a-card>
-
-      <a-card>
-        <a-flex class="w-100" justify="space-between">
-          <div>文字方向</div>
-          <div>
-            <a-radio-group v-model:value="store.$state.direction">
-              <a-radio value="ltr">LTR</a-radio>
-              <a-radio value="rtl">RTL</a-radio>
+        <a-space class="w-100" direction="vertical" :size="16">
+          <a-flex class="w-100" justify="space-between">
+            <div>文字方向</div>
+            <div>
+              <a-radio-group v-model:value="store.$state.direction">
+                <a-radio value="ltr">LTR</a-radio>
+                <a-radio value="rtl">RTL</a-radio>
+              </a-radio-group>
+            </div>
+          </a-flex>
+          <a-flex class="w-100" justify="space-between">
+            <div>控件大小</div>
+            <a-radio-group v-model:value="store.$state.size">
+              <a-radio value="small">小</a-radio>
+              <a-radio value="medium">中</a-radio>
+              <a-radio value="large">大</a-radio>
             </a-radio-group>
-          </div>
-        </a-flex>
-      </a-card>
-
-      <a-card>
-        <a-flex class="w-100" justify="space-between">
-          <div>水波纹特效</div>
-          <a-switch
-            v-model:checked="store.$state.wave"
-            checked-children="开"
-            un-checked-children="关"
-          ></a-switch>
-        </a-flex>
-      </a-card>
-
-      <a-card>
-        <a-flex class="w-100" justify="space-between">
-          <div>虚拟滚动</div>
-          <a-switch
-            v-model:checked="store.$state.virtual"
-            checked-children="开"
-            un-checked-children="关"
-          ></a-switch>
-        </a-flex>
-      </a-card>
-
-      <a-card>
-        <a-flex class="w-100" justify="space-between">
-          <div>移除按钮中的空格</div>
-          <a-flex :gap="8" :align="'center'">
+          </a-flex>
+          <a-flex class="w-100" justify="space-between">
+            <div>水波纹特效</div>
             <a-switch
-              v-model:checked="store.$state.autoInsertSpaceInButton"
+              v-model:checked="store.$state.wave"
               checked-children="开"
               un-checked-children="关"
             ></a-switch>
-            <a-divider type="vertical"></a-divider>
-            <a-tooltip title="仅当只有两个字的时候生效">
-              <a-button>提交</a-button>
-            </a-tooltip>
           </a-flex>
-        </a-flex>
+
+          <a-flex class="w-100" justify="space-between">
+            <div>虚拟滚动</div>
+            <a-switch
+              v-model:checked="store.$state.virtual"
+              checked-children="开"
+              un-checked-children="关"
+            ></a-switch>
+          </a-flex>
+          <a-flex class="w-100" justify="space-between">
+            <div>移除按钮中的空格</div>
+            <a-flex :gap="8" :align="'center'">
+              <a-switch
+                v-model:checked="store.$state.autoInsertSpaceInButton"
+                checked-children="开"
+                un-checked-children="关"
+              ></a-switch>
+              <a-divider type="vertical"></a-divider>
+              <a-tooltip title="仅当只有两个字的时候生效">
+                <a-button>提交</a-button>
+              </a-tooltip>
+            </a-flex>
+          </a-flex>
+        </a-space>
       </a-card>
     </a-space>
   </div>
@@ -92,7 +84,6 @@
 
 <script setup lang="ts">
 import usePageStore from '@/store/page';
-import { CheckCircleFilled } from '@ant-design/icons-vue';
 import { useCssVar } from '@vueuse/core';
 
 const colorList = ['#AD2AFD', '#FDB52A', '#09B678', '#3785FA', '#E82626', '#C6C6C6', '#131313'];
@@ -116,13 +107,13 @@ const setTheme = () => {
 
 <style lang="scss" scoped>
 .theme {
-  background: white;
+  background: #f1f0f5;
   height: 100%;
   .color-palette {
     li {
       width: 24px;
       height: 24px;
-      border-radius: 4px;
+      border-radius: 12px;
       border: 2px solid #c2c2c2;
       cursor: pointer;
       color: white;
@@ -141,9 +132,6 @@ const setTheme = () => {
       padding: 0;
       cursor: pointer;
     }
-  }
-  div {
-    font-weight: bold;
   }
 }
 </style>

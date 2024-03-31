@@ -30,6 +30,8 @@ const setting = () => {
     title: 'System setting',
     component: markRaw(PageSetting),
     id: 'system_setting',
+    w: 800,
+    h: 600,
   });
 };
 </script>
