@@ -4,7 +4,7 @@
     <SystemTable
       :columns="__Columns"
       :table="__Table"
-      :query="__Query"
+      v-model:query="__Query"
       v-model:selected-keys="__Keys"
     >
       <template v-slot="{ value }">

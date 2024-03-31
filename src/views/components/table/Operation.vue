@@ -23,5 +23,3 @@ const onSelect = (info: SelectInfo) => {
   console.log(info.item);
 };
 </script>
-
-<style lang="scss" scoped></style>

@@ -36,6 +36,8 @@ export const getIconByName = (item: Routers) => {
 };
 
 export const openApp = (item: Routers) => {
+  console.log(item.component);
+
   if (item.children && item.children.length > 0) {
     openWindow({
       component: markRaw(FolderVue),
