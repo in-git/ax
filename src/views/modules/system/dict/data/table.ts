@@ -6,6 +6,7 @@ export const dictTable = ref<TableConfig>({
   rowKey: 'dictId',
   data: [],
   loading: false,
+  moduleName: 'dict',
 });
 
 interface DictQuery {

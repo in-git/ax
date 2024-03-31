@@ -2,9 +2,7 @@
   <div>
     <a-popover trigger="click" title="字段筛选" placement="bottomRight">
       <a-tooltip title="字段筛选">
-        <div class="system-icon">
-          <AppstoreAddOutlined />
-        </div>
+        <AppstoreAddOutlined />
       </a-tooltip>
       <template #content>
         <div class="pop-content">
@@ -39,16 +37,16 @@ const props = defineProps<{
   moduleName: string;
 }>();
 const onChange = () => {
-  const target = store.$state.find(e => {
-    if (e.moduleName === props.moduleName) {
-      return e;
-    }
-    return null;
-  });
-
   emit('update:columns', cols.value);
 };
 const computedColumns = computed(() => {
+  const colArr = props.columns.map(e => {
+    if (typeof e.show === 'undefined') {
+      e.show = true;
+    }
+    return e;
+  });
+
   const target = store.$state.find(e => {
     if (e.moduleName === props.moduleName) {
       return e;
@@ -58,7 +56,7 @@ const computedColumns = computed(() => {
   if (!target) {
     store.$state.push({
       moduleName: props.moduleName,
-      columns: props.columns as any,
+      columns: colArr as any,
     });
   } else {
     cols.value = target.columns;

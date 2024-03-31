@@ -6,6 +6,7 @@ export const noticeTable = ref<TableConfig>({
   rowKey: 'noticeId',
   data: [],
   loading: false,
+  moduleName: 'notice',
 });
 export const noticeQuery = ref<IQuery>({
   pageNum: 1,

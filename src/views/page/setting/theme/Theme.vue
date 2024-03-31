@@ -29,7 +29,10 @@
       <a-card>
         <a-space class="w-100" direction="vertical" :size="16">
           <a-flex class="w-100" justify="space-between">
-            <div>文字方向</div>
+            <div class="flex align-center">
+              <div>文字方向</div>
+              <div class="desc">反转文字显示</div>
+            </div>
             <div>
               <a-radio-group v-model:value="store.$state.direction">
                 <a-radio value="ltr">LTR</a-radio>
@@ -46,12 +49,17 @@
             </a-radio-group>
           </a-flex>
           <a-flex class="w-100" justify="space-between">
-            <div>水波纹特效</div>
-            <a-switch
-              v-model:checked="store.$state.wave"
-              checked-children="开"
-              un-checked-children="关"
-            ></a-switch>
+            <div class="flex">
+              水波纹特效
+              <div class="desc">按钮上的水波纹特效</div>
+            </div>
+            <div class="text-right">
+              <a-switch
+                v-model:checked="store.$state.wave"
+                checked-children="开"
+                un-checked-children="关"
+              ></a-switch>
+            </div>
           </a-flex>
 
           <a-flex class="w-100" justify="space-between">
@@ -132,6 +140,11 @@ const setTheme = () => {
       padding: 0;
       cursor: pointer;
     }
+  }
+  .desc {
+    color: #999;
+    font-size: 12px;
+    margin-left: 16px;
   }
 }
 </style>

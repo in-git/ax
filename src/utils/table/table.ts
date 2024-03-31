@@ -36,6 +36,9 @@ export const formatColumns = (data: ColumnProps[]) => {
   }
 
   return data.filter(e => {
+    if (typeof e.show === 'undefined') {
+      e.show = true;
+    }
     if (!e.show) return;
     e.align = 'center';
     e.ellipsis = true;

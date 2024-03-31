@@ -53,4 +53,6 @@ export interface TableConfig {
   rowKey: string;
   data: any[];
   loading: boolean;
+  /* 模块名，用于存储表头，必须唯一 */
+  moduleName: string;
 }

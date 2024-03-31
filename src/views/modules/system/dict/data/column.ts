@@ -1,6 +1,6 @@
-import type { TableColumnProps } from 'ant-design-vue';
+import type { ColumnProps } from '@/types/system';
 
-const dictColumns: TableColumnProps[] = [
+const dictColumns = ref<ColumnProps[]>([
   {
     title: '字典名称',
     dataIndex: 'dictName',
@@ -27,6 +27,6 @@ const dictColumns: TableColumnProps[] = [
     title: '创建时间',
     dataIndex: 'createTime',
   },
-];
+]);
 
 export { dictColumns };

@@ -34,22 +34,25 @@
           ></a-segmented>
         </div>
       </div>
-      <div>
+      <div class="flex align-center">
         <a-popconfirm title="确定要删除吗" placement="bottomRight" @confirm="delConfig()">
           <a-button danger type="link">
             <DeleteOutlined />
           </a-button>
         </a-popconfirm>
+        <FiledVue v-model:columns="configColumns" :module-name="configTable.moduleName" />
       </div>
     </div>
   </TableHead>
 </template>
 
 <script setup lang="ts">
+import FiledVue from '@/views/components/table/Field.vue';
 import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
+import { configColumns } from '../../data/column';
 import { configList, createConfig, delConfig, editConfig } from '../../data/curd';
 import { systemTypeOptions } from '../../data/options';
-import { configQuery } from '../../data/table';
+import { configQuery, configTable } from '../../data/table';
 </script>
 
 <style lang="scss" scoped></style>
