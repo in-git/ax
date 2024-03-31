@@ -63,7 +63,7 @@ const props = defineProps<{
 }>();
 
 const onChange = (keys: Key[]) => {
-  selectedKeys.value = keys.map(e => Number(e));
+  selectedKeys.value = keys;
 };
 
 const customRow = (record: any) => {

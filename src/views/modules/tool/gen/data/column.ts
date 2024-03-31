@@ -1,6 +1,6 @@
-import type { TableColumnProps } from 'ant-design-vue';
+import type { ColumnProps } from '@/types/system';
 
-const codeColumns: TableColumnProps[] = [
+const codeColumns = ref<ColumnProps[]>([
   { title: '创建者', dataIndex: 'createBy' },
   { title: '更新时间', dataIndex: 'updateTime' },
   { title: '类名', dataIndex: 'className' },
@@ -12,6 +12,6 @@ const codeColumns: TableColumnProps[] = [
   { title: '函数作者', dataIndex: 'functionAuthor' },
   { title: '生成类型', dataIndex: 'genType' },
   { title: '生成路径', dataIndex: 'genPath' },
-];
+]);
 
 export { codeColumns };

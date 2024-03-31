@@ -10,8 +10,11 @@ export const codeTable = ref<TableConfig>({
   rowKey: 'tableId',
   data: [],
   loading: false,
+  moduleName: 'code',
 });
+
 interface codeQuery {}
+
 export const codeQuery = ref<IQuery<codeQuery>>({
   pageNum: 1,
   pageSize: 10,

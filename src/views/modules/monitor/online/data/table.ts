@@ -6,6 +6,7 @@ export const onlineTable = ref<TableConfig>({
   rowKey: 'tokenId',
   data: [],
   loading: false,
+  moduleName: 'menu',
 });
 
 interface onlineQuery {
