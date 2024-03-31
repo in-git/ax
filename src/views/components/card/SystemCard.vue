@@ -1,10 +1,6 @@
 <template>
-  <div>
-    <ul>
-      <li v-for="(item, key) in data" :key="key">
-        {{ item }}
-      </li>
-    </ul>
+  <div class="system-card">
+    <ul></ul>
   </div>
 </template>
 
@@ -14,4 +10,8 @@ defineProps<{
 }>();
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.system-card {
+  display: grid;
+}
+</style>

@@ -1,3 +1,5 @@
+import type { TableColumnProps } from 'ant-design-vue';
+
 export interface MenuItem {
   path: string;
   meta: Meta;
@@ -27,4 +29,9 @@ export interface TreeNode {
   id: number;
   label: string;
   children: TreeNode[];
+}
+
+/* 系统表格 */
+export interface ColumnProps extends TableColumnProps {
+  show?: boolean;
 }
