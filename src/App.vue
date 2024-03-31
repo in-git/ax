@@ -62,7 +62,9 @@ nextTick(() => {
 document.addEventListener(
   'wheel',
   e => {
-    e.preventDefault();
+    if (e.ctrlKey) {
+      e.preventDefault();
+    }
   },
   { passive: false },
 );

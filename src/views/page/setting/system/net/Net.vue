@@ -1,29 +1,24 @@
 <template>
-  <div>
+  <div class="px-8">
     <BaseURL />
-    <a-card class="mt-12" title="超时">
-      <div>
-        <div class="flex align-center gc-12 text-999">
-          短
-          <a-slider
-            tooltipOpen
+    <a-card class="mt-12">
+      <a-flex justify="space-between">
+        <div>超时</div>
+        <div>
+          <a-auto-complete
+            style="width: 200px"
             v-model:value="devStore.$state.timeout"
             :options="timeoutOptions"
-            :min="3"
-            class="flex-1"
-            :max="20"
-            :tip-formatter="v => v + 's'"
-          ></a-slider>
-          长
+          ></a-auto-complete>
         </div>
-      </div>
+      </a-flex>
     </a-card>
   </div>
 </template>
 
 <script setup lang="ts">
 import useDeveloperStore from '@/store/developer';
-import BaseURL from './BaseURL.vue';
+import BaseURL from './base-url/BaseURL.vue';
 import { timeoutOptions } from './data';
 
 const devStore = useDeveloperStore();

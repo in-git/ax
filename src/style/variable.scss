@@ -12,7 +12,19 @@
   /* 主题样式 */
   --primary: #64cbff;
   --secondary: #ece9ea;
-  --animate-duration: 0.2s;
+
   --radius: 4px;
   --box-shadow: 0 0 5px #575757a1;
+
+  /* 间距 */
+  --padding: 8px;
+  --margin: 8px;
+
+  /* 动画效果 */
+  --animate-duration: 0.2s;
+
+  /* 文本 */
+  --title: 14px;
+  --subtitle: 12px;
+  --desc: 12px;
 }

@@ -11,7 +11,7 @@
     @mousedown="moveTop"
   >
     <slot name="head">
-      <div class="drag-header flex justify-between align-center">
+      <div class="drag-header linear-gradient-background flex justify-between align-center">
         <div class="px-12 text-16">{{ title }}</div>
         <div class="flex">
           <div class="system-icon minus" @click="hidden">
@@ -94,13 +94,6 @@ $hh: 42px;
 }
 .drag-header {
   cursor: move;
-  background: rgb(34, 33, 54);
-  background: linear-gradient(
-    90deg,
-    rgba(34, 33, 54, 1) 0%,
-    rgba(7, 7, 68, 1) 41%,
-    rgba(0, 114, 138, 1) 100%
-  );
   color: white;
   height: 40px;
   border-bottom: 1px solid #ddd;

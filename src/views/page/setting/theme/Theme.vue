@@ -1,9 +1,8 @@
 <template>
   <div class="theme p-4">
+    <a-page-header title=" 设置主题颜色" class="p-8" />
     <a-space direction="vertical" class="w-100">
       <a-card>
-        <div>设置主题颜色</div>
-        <a-divider class="my-18"></a-divider>
         <div class="color-palette">
           <ul class="flex gc-4">
             <li
@@ -117,7 +116,7 @@ const setTheme = () => {
 
 <style lang="scss" scoped>
 .theme {
-  background: #f2f2f2;
+  background: white;
   height: 100%;
   .color-palette {
     li {

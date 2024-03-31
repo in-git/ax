@@ -1,6 +1,6 @@
 export interface URLSelection {
-  name: string;
-  url: string;
+  label: string;
+  value: string;
   id: string;
 }
 export interface Developer {

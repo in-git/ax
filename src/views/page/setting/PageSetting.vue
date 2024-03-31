@@ -1,7 +1,7 @@
 <template>
   <div class="page-setting w-100 h-100 system-module">
     <div class="settings flex h-100 w-100">
-      <div class="sidebar p-4">
+      <div class="sidebar">
         <ul>
           <li
             v-for="(item, key) in nav"
@@ -27,9 +27,9 @@
 </template>
 
 <script setup lang="ts">
-import { BgColorsOutlined, SettingOutlined } from '@ant-design/icons-vue';
+import { BgColorsOutlined, GlobalOutlined } from '@ant-design/icons-vue';
 import { nanoid } from 'nanoid';
-import SystemVue from './system/System.vue';
+import Net from './system/net/Net.vue';
 import ThemeVue from './theme/Theme.vue';
 
 const nav: Nav[] = [
@@ -40,10 +40,10 @@ const nav: Nav[] = [
     component: markRaw(ThemeVue),
   },
   {
-    title: '系统设置',
-    icon: markRaw(SettingOutlined),
+    title: '网络设置',
+    icon: markRaw(GlobalOutlined),
     id: nanoid(),
-    component: markRaw(SystemVue),
+    component: markRaw(Net),
   },
 ];
 
@@ -88,16 +88,16 @@ $hh: 42px;
           padding: 0 12px;
           cursor: pointer;
           user-select: none;
-          margin-bottom: 8px;
           font-size: 14px;
-          border-left: 2px solid transparent;
+          border-bottom: 2px solid transparent;
           &:hover {
-            background: #f8f8f8;
+            background: #eee;
           }
         }
         li.active {
-          color: var(--primary);
-          border-left: 2px solid var(--primary);
+          // color: var(--primary);
+          color: var(--pro-ant-color-primary);
+          border-bottom: 2px solid var(--primary);
         }
       }
       .icon {
