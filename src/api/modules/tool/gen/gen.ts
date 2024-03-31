@@ -24,3 +24,9 @@ export const deleteCodeByIds = (ids: number[]) => {
 export const synchDb = (db: string) => {
   return axios.get(`tool/gen/synchDb/${db}`);
 };
+
+export const fetchGenDbList = (query: IQuery) => {
+  return axios.get(`tool/gen/db/list`, {
+    params: query,
+  });
+};

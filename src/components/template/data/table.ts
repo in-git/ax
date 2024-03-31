@@ -6,6 +6,7 @@ export const __Table = ref<TableConfig>({
   rowKey: '',
   data: [],
   loading: false,
+  moduleName: '',
 });
 interface __Query {}
 export const __Query = ref<IQuery<__Query>>({

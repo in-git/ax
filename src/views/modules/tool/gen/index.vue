@@ -1,7 +1,7 @@
 <template>
   <div class="system-module">
-    <TableVue></TableVue>
-    <FormVue></FormVue>
+    <TableVue />
+    <FormVue />
   </div>
 </template>
 
