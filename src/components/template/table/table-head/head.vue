@@ -29,9 +29,13 @@
           @confirm="__Delete()"
           :disabled="__Keys.length === 0"
         >
-          <a-button danger type="link" :disabled="__Keys.length === 0">
-            <DeleteOutlined />
-          </a-button>
+          <a-popconfirm title="确定要删除吗" placement="bottomRight" @confirm="__Delete()">
+            <a-tooltip title="批量删除">
+              <a-button danger type="link" :disabled="__Keys.length === 0">
+                <DeleteOutlined />
+              </a-button>
+            </a-tooltip>
+          </a-popconfirm>
         </a-popconfirm>
         <FieldVue :columns="__Columns" module-name="test" />
       </div>

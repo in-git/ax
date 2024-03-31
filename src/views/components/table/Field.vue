@@ -2,7 +2,9 @@
   <div>
     <a-popover trigger="click" title="字段筛选" placement="bottomRight">
       <a-tooltip title="字段筛选">
-        <AppstoreAddOutlined />
+        <a-button type="link">
+          <AppstoreAddOutlined />
+        </a-button>
       </a-tooltip>
       <template #content>
         <div class="pop-content">

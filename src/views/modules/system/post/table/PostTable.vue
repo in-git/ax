@@ -9,6 +9,10 @@
           <EditOutlined />
         </a-button>
       </div>
+
+      <div>
+        <FiledVue v-model:columns="postColumns" :module-name="postTable.moduleName" />
+      </div>
     </TableHead>
     <SystemTable
       :table="postTable"
@@ -34,6 +38,7 @@
 
 <script setup lang="ts">
 import TableHead from '@/components/table/table-head/TableHead.vue';
+import FiledVue from '@/views/components/table/Field.vue';
 import SystemTable from '@/views/components/table/SystemTable.vue';
 import { postColumns } from '../data/columns';
 import { createPost, delPost, editPost, loadPostList } from '../data/curd';

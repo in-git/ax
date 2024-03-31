@@ -1,11 +1,10 @@
 import type { IQuery, TableConfig } from '@/api/config/types';
-import { postList } from '@/api/modules/system/post/post';
 
 export const postTable = ref<TableConfig>({
   rowKey: 'postId',
   data: [],
-  list: postList,
   loading: false,
+  moduleName: 'post',
 });
 
 export const postQuery = ref<IQuery>({

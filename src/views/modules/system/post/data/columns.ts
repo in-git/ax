@@ -1,6 +1,6 @@
-import type { TableColumnProps } from 'ant-design-vue';
+import type { ColumnProps } from '@/types/system';
 
-export const postColumns: TableColumnProps[] = [
+export const postColumns = ref<ColumnProps[]>([
   {
     title: '岗位名称',
     dataIndex: 'postName',
@@ -37,7 +37,7 @@ export const postColumns: TableColumnProps[] = [
     dataIndex: 'status',
     key: 'status',
   },
-];
+]);
 
 export default {
   postColumns,

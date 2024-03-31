@@ -1,60 +1,54 @@
 <template>
   <div>
     <TableHead title="Role list">
-      <div class="flex justify-between">
-        <div class="flex gc-4 align-center">
-          <a-button type="primary" @click="create">
-            <PlusOutlined />
-          </a-button>
+      <div class="flex gc-4 align-center">
+        <a-button type="primary" @click="create">
+          <PlusOutlined />
+        </a-button>
 
-          <a-tooltip title="Reload">
-            <a-button type="link" @click="getRoles">
-              <ReloadOutlined />
+        <a-tooltip title="Reload">
+          <a-button type="link" @click="getRoles">
+            <ReloadOutlined />
+          </a-button>
+        </a-tooltip>
+
+        <a-input-search
+          placeholder="Please enter role name"
+          v-model:value="roleQuery.roleName"
+          @search="getRoles"
+          allow-clear
+        ></a-input-search>
+
+        <a-divider type="vertical"></a-divider>
+
+        <div class="flex gc-2 text-nowrap align-center" :class="[!isActive() ? 'active' : 'gray']">
+          <span class="text-999">编辑/权限:</span>
+          <a-tooltip title="编辑">
+            <a-button type="text" @click="selectRole()" :disabled="!currentRole">
+              <EditOutlined class="icon" />
             </a-button>
           </a-tooltip>
-
-          <a-input-search
-            placeholder="Please enter role name"
-            v-model:value="roleQuery.roleName"
-            @search="getRoles"
-            allow-clear
-          ></a-input-search>
-
-          <a-divider type="vertical"></a-divider>
-
-          <div
-            class="flex gc-2 text-nowrap align-center"
-            :class="[!isActive() ? 'active' : 'gray']"
-          >
-            <span class="text-999">编辑/权限:</span>
-            <a-tooltip title="编辑">
-              <a-button type="text" @click="selectRole()" :disabled="!currentRole">
-                <EditOutlined class="icon" />
-              </a-button>
-            </a-tooltip>
-            <a-tooltip title="资源" @click="allocatingResource">
-              <a-button type="text" :disabled="!currentRole">
-                <ClusterOutlined class="icon" />
-              </a-button>
-            </a-tooltip>
-            <a-tooltip title="分配人员">
-              <a-button type="text" :disabled="!currentRole" @click="allocateUsers">
-                <UserAddOutlined class="icon" />
-              </a-button>
-            </a-tooltip>
-            <a-tooltip title="取消分配">
-              <a-button type="text" :disabled="!currentRole" @click="unassignUsers">
-                <UserDeleteOutlined class="text-danger" />
-              </a-button>
-            </a-tooltip>
-          </div>
+          <a-tooltip title="资源" @click="allocatingResource">
+            <a-button type="text" :disabled="!currentRole">
+              <ClusterOutlined class="icon" />
+            </a-button>
+          </a-tooltip>
+          <a-tooltip title="分配人员">
+            <a-button type="text" :disabled="!currentRole" @click="allocateUsers">
+              <UserAddOutlined class="icon" />
+            </a-button>
+          </a-tooltip>
+          <a-tooltip title="取消分配">
+            <a-button type="text" :disabled="!currentRole" @click="unassignUsers">
+              <UserDeleteOutlined class="text-danger" />
+            </a-button>
+          </a-tooltip>
         </div>
-        <div>
-          <a-button type="link" danger @click="delRoles" :disabled="isActive()">
-            <DeleteOutlined />
-            <span class="text-12">Delete</span>
-          </a-button>
-        </div>
+      </div>
+      <div>
+        <a-button type="link" danger @click="delRoles" :disabled="isActive()">
+          <DeleteOutlined />
+        </a-button>
       </div>
     </TableHead>
   </div>

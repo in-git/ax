@@ -1,7 +1,9 @@
 <template>
   <div class="table__head py-8 px-12">
     <h3 class="text-16 text-bold mb-12">{{ title }}</h3>
-    <slot></slot>
+    <div class="flex justify-between align-center">
+      <slot></slot>
+    </div>
   </div>
 </template>
 

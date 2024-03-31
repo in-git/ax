@@ -10,9 +10,11 @@
     >
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">
-          <a-button type="text" danger @click="logout(value.record.tokenId)">
-            <LogoutOutlined />
-          </a-button>
+          <a-tooltip title="强制下线">
+            <a-button type="text" danger @click="logout(value.record.tokenId)">
+              <LogoutOutlined />
+            </a-button>
+          </a-tooltip>
         </template>
         <template v-else-if="value.column.dataIndex === 'loginTime'">
           {{ useDateFormat(value.record.loginTime, 'YYYY-MM-DD HH:mm:ss').value }}
