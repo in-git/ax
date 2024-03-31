@@ -54,7 +54,7 @@ const locale = ref(en_US);
 
 const store = usePageStore();
 
-nextTick(() => {
+nextTick(async () => {
   loadSystemIcons();
   loadSystemComponents();
 });
