@@ -6,6 +6,7 @@
       :table="dbTable"
       v-model:query="dbQuery"
       v-model:selected-keys="dbKeys"
+      @reload="dbList"
     >
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">

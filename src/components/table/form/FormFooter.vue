@@ -9,23 +9,25 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    position?: 'left' | 'right' | 'center';
+    justify?: 'left' | 'right' | 'center';
+    position?: 'absolute' | 'sticky';
   }>(),
   {
-    position: 'left',
+    justify: 'left',
+    position: 'sticky',
   },
 );
 </script>
 
 <style lang="scss" scoped>
 .form__footer {
-  position: sticky;
+  position: v-bind(position);
   bottom: 0;
   width: 100%;
   height: 48px;
   background: #f8f8f8;
   border-top: 1px solid #ddd;
-  justify-content: v-bind(position);
+  justify-content: v-bind(justify);
   align-items: center;
   padding: 0 12px;
   min-height: 48px;

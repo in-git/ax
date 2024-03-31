@@ -1,8 +1,8 @@
 <template>
   <SystemModal title="导入表" v-model:visible="showDbForm">
-    <div class="h-100 flex flex-col">
+    <div class="h-100 flex flex-col relative">
       <TableVue></TableVue>
-      <FormFooter position="right">
+      <FormFooter justify="right">
         <a-button type="primary" @click="importDb()">导入</a-button>
       </FormFooter>
     </div>
