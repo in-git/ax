@@ -25,7 +25,7 @@ const qrModal = ref(false);
 const notepadId = inject<string>('data')!;
 
 const text = computed(() => {
-  return getData(notepadId);
+  return getData(notepadId) || '';
 });
 const items: ItemType[] = [
   {
