@@ -7,19 +7,34 @@
           <img src="https://www.baidu.com/favicon.ico" :draggable="false" width="48" height="48" />
           <div class="mt-8">百度</div>
         </li>
+        <li class="flex flex-col justify-center align-center" @click="openGpt">
+          <img :src="gptPng" :draggable="false" width="48" height="48" />
+          <div class="mt-8">CHATGPT</div>
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { openWindow } from '@/global/config/window';
+import GptIndex from '@/views/page/gpt/GptIndex.vue';
+import gptPng from '../../assets/gpt.png';
+
+const openGpt = () => {
+  openWindow({
+    component: markRaw(GptIndex),
+    title: 'gpt',
+    id: 'gpt',
+  });
+};
+</script>
 
 <style lang="scss" scoped>
 .menu-body {
   color: white;
   ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+    display: flex;
     li {
       width: 84px;
       padding: 8px 0;

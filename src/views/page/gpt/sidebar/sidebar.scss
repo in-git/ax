@@ -1,0 +1,77 @@
+.gpt-sidebar {
+	width: 250px;
+	height: 100%;
+	border-right: 1px solid #ddd;
+	li {
+		cursor: pointer;
+		color: #333;
+		&:hover {
+			background: #eee;
+			.actions,
+			.handle {
+				opacity: 1;
+			}
+		}
+	}
+	.index {
+		width: 32px;
+		height: 32px;
+		background: #ddd9dd;
+		border-radius: 50%;
+		overflow: hidden;
+		color: #333;
+	}
+	.time {
+		color: #999;
+		zoom: 0.8;
+	}
+	.handle,
+	.actions {
+		opacity: 0;
+		transition: opacity var(--transition);
+	}
+	li.active {
+		background: var(--primary);
+		color: white;
+		.time {
+			color: white;
+		}
+		.handle,
+		.actions {
+			opacity: 1;
+		}
+		.index {
+			border: 1px solid white;
+		}
+	}
+	ul.list {
+		height: calc(100% - 32px);
+		overflow-y: auto;
+	}
+	input {
+		outline: none;
+		border: 1px solid #eee;
+		padding: 0;
+		margin: 0;
+		background: transparent;
+		line-height: 20px;
+		height: 20px;
+	}
+}
+.create {
+	&:hover {
+		background: #f2f3f6;
+	}
+}
+.session-name {
+	max-width: 160px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	height: 20px;
+	line-height: 20px;
+}
+.system-icon {
+	width: 24px !important;
+	height: 24px !important;
+}
