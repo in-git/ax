@@ -20,11 +20,11 @@
 
 <script setup lang="ts">
 import logo from '@/assets/logo.png';
+import settingPng from '@/assets/system/system_setting.png';
 import { openWindow } from '@/global/config/window';
 import PageSetting from '@/views/page/setting/PageSetting.vue';
 import { InfoCircleOutlined, SettingOutlined } from '@ant-design/icons-vue';
 import Profile from './profile/Profile.vue';
-
 const setting = () => {
   openWindow({
     title: 'System setting',
@@ -32,6 +32,7 @@ const setting = () => {
     id: 'system_setting',
     w: 800,
     h: 600,
+    icon: settingPng,
   });
 };
 </script>

@@ -14,23 +14,12 @@
         </li>
       </ul>
     </div>
+    <div></div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { openWindow } from '@/global/config/window';
-import GptIndex from '@/views/page/gpt/GptIndex.vue';
-import { showWindowMenu } from '../data';
 import { functionList } from './data';
-
-const openGpt = () => {
-  openWindow({
-    component: markRaw(GptIndex),
-    title: 'gpt',
-    id: 'gpt',
-  });
-  showWindowMenu.value = false;
-};
 </script>
 
 <style lang="scss" scoped>

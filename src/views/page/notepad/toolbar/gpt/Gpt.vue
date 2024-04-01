@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-tooltip title="使用AI处理" placement="bottom">
+    <a-tooltip title="使用AI处理" placement="bottom" :mouseLeaveDelay="0">
       <div class="menu-button flex gc-2" @click="ai()" accesskey="c">
         <div>
           AI

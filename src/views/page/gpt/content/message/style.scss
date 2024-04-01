@@ -20,6 +20,10 @@
 		border-radius: 50%;
 		overflow: hidden;
 		border: 2px solid white;
+		padding: 0;
+		img {
+			padding: 2px;
+		}
 	}
 	.msg {
 		background: white;

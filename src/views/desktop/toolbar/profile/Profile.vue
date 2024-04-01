@@ -41,12 +41,12 @@
 
 <script setup lang="ts">
 import { logout, profile } from '@/api/modules/system/user/user';
+import userCenterPng from '@/assets/system/user-center.png';
 import { openWindow } from '@/global/config/window';
 import useUserStore from '@/store/user';
 import { Modal } from 'ant-design-vue';
 import ProFileForm from '../profile-form/ProfileForm.vue';
 import { userProfile } from './data';
-
 const popoverVisible = ref(false);
 const userData = ref();
 const loading = ref(false);
@@ -68,6 +68,7 @@ const editProfile = () => {
     title: 'User center',
     component: markRaw(ProFileForm),
     id: 'user-center',
+    icon: userCenterPng,
   });
 };
 
