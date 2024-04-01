@@ -1,5 +1,5 @@
 <template>
-  <div class="toolbar flex align-center">
+  <div class="flex align-center">
     <a-dropdown trigger="click">
       <div class="menu">文件(F)</div>
       <template #overlay>
@@ -14,6 +14,7 @@ import notepadPng from '@/assets/system/notepad.png';
 import { openWindow, windowList } from '@/global/config/window';
 import { toText } from '@/utils/file/file';
 import { useFileSystemAccess } from '@vueuse/core';
+import { message } from 'ant-design-vue';
 import { nanoid } from 'nanoid';
 import NotepadVue from '../../Notepad.vue';
 
@@ -46,6 +47,14 @@ const {
   ],
   excludeAcceptAllOption: true,
 });
+
+const supported = () => {
+  if (!isSupported.value) {
+    message.warn('当前环境不支持FileSystemAccessAPI,只能在本地或https环境下运行');
+    return false;
+  }
+  return true;
+};
 const menuList = [
   {
     key: '1-1',
@@ -64,6 +73,9 @@ const menuList = [
     key: '2',
     label: '打开(O)',
     onClick: async () => {
+      if (!supported()) {
+        return;
+      }
       await open();
       if (file.value) {
         const data = await toText(file.value);
@@ -85,6 +97,9 @@ const menuList = [
     key: '3',
     label: '保存 (S)',
     async onClick() {
+      if (!supported()) {
+        return;
+      }
       await save({
         suggestedName: 'Untitled.txt',
       });
@@ -95,6 +110,9 @@ const menuList = [
     key: '4',
     label: '另存为(A)',
     async onClick() {
+      if (!supported()) {
+        return;
+      }
       await saveAs({
         suggestedName: 'Untitled.txt',
       });
@@ -104,21 +122,15 @@ const menuList = [
 </script>
 
 <style lang="scss" scoped>
-.toolbar {
-  $hh: 32px;
-  height: $hh;
-  background: #f8f8f8;
-  .menu {
-    border: 1px solid transparent;
-    width: fit-content;
-    cursor: default;
-    padding: 4px;
-    user-select: none;
-    &:hover {
-      border: 1px solid #7ba4da;
-      background: #7ba4da15;
-    }
+.menu {
+  border: 1px solid transparent;
+  width: fit-content;
+  cursor: default;
+  padding: 4px;
+  user-select: none;
+  &:hover {
+    border-bottom: 1px solid #7ba4da;
+    background: #7ba4da15;
   }
 }
 </style>
-../types

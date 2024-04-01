@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex toolbar">
     <FileVue />
   </div>
 </template>
@@ -8,4 +8,10 @@
 import FileVue from './file/File.vue';
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.toolbar {
+  $hh: 24px;
+  height: $hh;
+  background: #f8f8f8;
+}
+</style>
