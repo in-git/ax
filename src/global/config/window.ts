@@ -73,6 +73,13 @@ export const getData = (id: string) => {
   });
   return result;
 };
+export const setData = (id: string, data: any) => {
+  windowList.value.forEach(e => {
+    if (e.id === id) {
+      e.data = data;
+    }
+  });
+};
 export const hiddenWindow = (id: string, flag = true) => {
   setAttr(id, 'hidden', flag);
 };

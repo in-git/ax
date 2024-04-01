@@ -2,12 +2,14 @@
   <div class="flex toolbar gc-4">
     <FileVue />
     <GptVue />
+    <Tool />
   </div>
 </template>
 
 <script setup lang="ts">
 import FileVue from './file/File.vue';
 import GptVue from './gpt/Gpt.vue';
+import Tool from './tool/Tool.vue';
 </script>
 
 <style lang="scss" scoped>
