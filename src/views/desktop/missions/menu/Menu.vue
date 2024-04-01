@@ -3,7 +3,7 @@
     enter-active-class="animate__animated animate__fadeInUp"
     leave-active-class="animate__animated animate__fadeOutDown"
   >
-    <div class="system-menu" v-if="showWindowMenu" ref="menuRef">
+    <div class="system-menu flex" v-if="showWindowMenu" ref="menuRef">
       <MenuSidebar />
       <MenuBody />
     </div>

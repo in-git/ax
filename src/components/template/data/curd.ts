@@ -1,4 +1,4 @@
-import { __ShowForm, reset__Form } from './form';
+import { __ResetForm, __ShowForm } from './form';
 import { __Keys, __Query, __Table } from './table';
 
 export const __List = async () => {
@@ -16,7 +16,7 @@ export const __Edit = async (id?: number) => {
   __ShowForm.value = true;
 };
 export const __Create = async () => {
-  reset__Form();
+  __ResetForm();
   __ShowForm.value = true;
 };
 export const __Delete = async (id?: number) => {
