@@ -5,6 +5,4 @@ export interface Notepad {
 }
 export interface NotepadInjectData {
   id: string;
-  editorType: string;
-  content: string;
 }

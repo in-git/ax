@@ -2,12 +2,13 @@
   <div class="notepad system-module">
     <ToolbarVue v-bind:data="notepad" />
     <div style="height: calc(100% - 40px)">
-      <textarea v-model="notepad.content" v-focus></textarea>
+      <textarea v-model="notepad.content" v-focus @input="onChange"></textarea>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { setAttr } from '@/global/config/window';
 import ToolbarVue from './toolbar/Toolbar.vue';
 import { type Notepad } from './types';
 
@@ -19,7 +20,6 @@ const props = defineProps<{
 const notepad = ref<Notepad>({
   editorType: 'textarea',
   content: '',
-  id: '',
 });
 provide('data', {
   id: props.id,
@@ -38,6 +38,14 @@ watch(
     immediate: true,
   },
 );
+
+const onChange = () => {
+  console.log(props.id, notepad.value);
+
+  setAttr(props.id, 'data', {
+    ...notepad.value,
+  });
+};
 </script>
 
 <style lang="scss" scoped>

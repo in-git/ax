@@ -18,6 +18,7 @@ import { message } from 'ant-design-vue';
 import { nanoid } from 'nanoid';
 import NotepadVue from '../../Notepad.vue';
 import type { NotepadInjectData } from '../../types';
+import { supportSuffix } from './data';
 
 const parentData = inject<NotepadInjectData>('data')!;
 const {
@@ -38,11 +39,11 @@ const {
     {
       description: 'text',
       accept: {
-        'text/plain': ['.txt', '.html'],
+        'text/plain': supportSuffix,
       },
     },
   ],
-  excludeAcceptAllOption: true,
+  excludeAcceptAllOption: false,
 });
 
 const supported = () => {
@@ -67,7 +68,7 @@ const menuList = [
   },
   /* 打开 */
   {
-    key: '2',
+    key: '1-2',
     label: '打开(O)',
     onClick: async () => {
       if (!supported()) {
@@ -76,32 +77,31 @@ const menuList = [
       await open();
       if (file.value) {
         const data = await toText(file.value);
+        console.log(data);
+
         if (!parentData) return;
         setAttr(parentData.id, 'data', {
           content: data,
-          editorType: parentData.editorType,
         });
       }
     },
   },
   /* 保存 */
   {
-    key: '3',
+    key: '1-3',
     label: '保存 (S)',
     async onClick() {
       if (!supported()) {
         return;
       }
       const textData = getData(parentData.id);
-      console.log(parentData);
-
       data.value = textData.content;
       await save();
     },
   },
   /* 另存为 */
   {
-    key: '4',
+    key: '1-4',
     label: '另存为(A)',
     async onClick() {
       if (!supported()) {
@@ -109,6 +109,17 @@ const menuList = [
       }
       await saveAs({
         suggestedName: 'Untitled.txt',
+      });
+    },
+  },
+  /* 清空 */
+  {
+    key: '1-5',
+    label: '清空(L)',
+    onClick() {
+      if (!parentData) return;
+      setAttr(parentData.id, 'data', {
+        content: '',
       });
     },
   },
