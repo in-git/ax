@@ -1,12 +1,12 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import { getRouters } from '@/api/modules/system/user/user';
+import logo from '@/assets/logo.png';
 import folderPng from '@/assets/system/folder.png';
 import google from '@/assets/system/google.png';
 import { openWindow, setCurrentWindow } from '@/global/config/window';
 import { systemComponents } from '@/initialization';
 import { openLink } from '@/utils/common/utils';
 import FolderVue from '../../components/folder/Folder.vue';
-
 export const appLoading = ref(false);
 export const getUserRouters = async () => {
   appLoading.value = true;
@@ -32,7 +32,7 @@ export const getIconByName = (item: Routers) => {
   } else if (item.meta.link) {
     return google;
   }
-  return folderPng;
+  return logo;
 };
 
 export const openApp = (item: Routers) => {
