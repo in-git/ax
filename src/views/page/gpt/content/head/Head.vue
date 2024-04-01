@@ -56,6 +56,8 @@ const options = [
   border-bottom: 1px solid #ddd;
 
   .system-icon {
+    width: 24px;
+    height: 24px;
     &:hover {
       background: #e7e7e7;
     }

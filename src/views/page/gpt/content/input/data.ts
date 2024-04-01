@@ -18,14 +18,14 @@ interface GptParams {
 
 export const sendMsg = (data: GptParams) => {
   const gptStore = useGptStore();
+  const baseUrl = gptStore.$state.config.baseUrl;
   const http = axios.create({
-    baseURL: `${gptStore.$state.config.baseUrl}`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${gptStore.$state.config.token}`,
     },
   });
-  return http.post('/', data);
+  return http.post(`${baseUrl}`, data);
 };
 /* 发送消息 */
 export const send = async (inputEl?: Ref<HTMLElement | undefined>) => {
@@ -93,8 +93,6 @@ export const send = async (inputEl?: Ref<HTMLElement | undefined>) => {
         return;
       }
     }
-    console.log(response);
-
     message.warn('Unknown error');
   }
 };

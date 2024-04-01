@@ -13,7 +13,7 @@
         </a-tooltip>
       </a-popconfirm>
       <!--  -->
-      <a-popover title="开启/关闭记忆">
+      <a-popover title="开启/关闭记忆" placement="topRight">
         <a-switch size="small" v-model:checked="gptStore.$state.config.memory"></a-switch>
         <template #content>
           <div class="text-999" style="width: 200px">
@@ -72,6 +72,8 @@ watch(
   line-height: 32px;
   height: 32px;
   .system-icon {
+    width: 24px;
+    height: 24px;
     &:hover {
       background: #fff;
     }

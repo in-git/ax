@@ -15,11 +15,8 @@
 </template>
 
 <script setup lang="ts">
-import usePageStore from '@/store/page';
 import { InfoCircleFilled } from '@ant-design/icons-vue';
 import { urlOptions } from './data';
-
-const page = usePageStore();
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gc-4">
+  <div class="flex gc-4 align-center">
     <a-popover title="历史消息" trigger="click">
       <div class="system-icon">
         <HistoryOutlined />
@@ -95,6 +95,10 @@ const del = (id: string) => {
   .delete {
     opacity: 0;
   }
+}
+.system-icon {
+  width: 24px;
+  height: 24px;
 }
 .text-primary {
   color: var(--primary);

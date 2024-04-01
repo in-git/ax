@@ -70,13 +70,13 @@ export default defineConfig(() => {
       include: ['@ant-design/icons-vue', 'ant-design-vue', 'vue-use'],
     },
     server: {
-      proxy: {
-        '/api': {
-          target: 'http://localhost:5173',
-          changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, ''),
-        },
-      },
+      // proxy: {
+      //   '/api': {
+      //     target: 'http://localhost:5173',
+      //     changeOrigin: true,
+      //     rewrite: path => path.replace(/^\/api/, ''),
+      //   },
+      // },
       open: true,
     },
   };
