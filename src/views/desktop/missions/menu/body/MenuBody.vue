@@ -19,9 +19,9 @@
   color: white;
   ul {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
     li {
-      width: 100px;
+      width: 84px;
       padding: 8px 0;
       border-radius: 2px;
       &:hover {
