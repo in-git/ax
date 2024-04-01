@@ -1,10 +1,6 @@
 <template>
   <div class="contextmenu" v-if="contextMenu.show" :style="style" ref="contextMenuRef">
-    <a-menu
-      @select="contextMenu.show = false"
-      :items="contextMenu.items"
-      style="width: 140px"
-    ></a-menu>
+    <a-menu @select="contextMenu.show = false" :items="contextMenu.items"></a-menu>
   </div>
 </template>
 
@@ -38,6 +34,8 @@ onClickOutside(contextMenuRef, () => {
   overflow-y: hidden;
   z-index: 120;
   ::v-deep(.ant-menu-item) {
+    height: 32px;
+    line-height: 32px;
     &::-webkit-scrollbar {
       display: none;
     }

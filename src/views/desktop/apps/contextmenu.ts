@@ -1,7 +1,13 @@
 import type { Routers } from '@/api/modules/system/user/types';
+import { minWindow } from '@/global/config/window';
 import { response } from '@/utils/table/table';
 import { setContextMenu } from '@/views/components/contextmenu/data';
-import { AppstoreOutlined, FolderFilled, ReloadOutlined } from '@ant-design/icons-vue';
+import {
+  AppstoreOutlined,
+  DesktopOutlined,
+  FolderFilled,
+  ReloadOutlined,
+} from '@ant-design/icons-vue';
 import { getUserRouters, openApp } from './data';
 
 export const appContextMenu = (item: Routers) => {
@@ -42,6 +48,14 @@ export const openContextMenu = (e: MouseEvent) => {
         icon: h(AppstoreOutlined),
         onClick() {
           response(getUserRouters);
+        },
+      },
+      {
+        label: '显示桌面',
+        key: 'refreshPage',
+        icon: h(DesktopOutlined),
+        onClick() {
+          minWindow();
         },
       },
     ],

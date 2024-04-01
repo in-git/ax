@@ -12,7 +12,7 @@
             ]"
             @click="selectItem(item)"
           >
-            <img :draggable="false" :src="getIcon(`${item.id}`)" />
+            <img :draggable="false" :src="item.icon" />
             <div class="title px-4">{{ item.title }}</div>
             <close-outlined class="close" @click="closeWindow(item.id || '')" />
           </li>

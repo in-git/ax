@@ -8,18 +8,11 @@
 </template>
 
 <script setup lang="ts">
-interface Notepad {
-  editorType: 'textarea';
-  content: string;
-}
-const notepad = ref<Notepad>({
-  editorType: 'textarea',
-  content: '',
-});
+import { notepad, type Notepad } from './notepad';
+import ToolbarVue from './toolbar/Toolbar.vue';
 const props = defineProps<{
   data?: Notepad;
 }>();
-import ToolbarVue from './toolbar/Toolbar.vue';
 watch(props, () => {
   if (props.data) {
     notepad.value = props.data;

@@ -6,10 +6,30 @@
   <link rel="icon" href="./win.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Win</title>
+  <style>
+    body {
+      overflow: hidden;
+    }
+
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #999;
+      width: 100vw;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <div class="loading">loading...</div>
+
+  </div>
   <script type="module" src="/src/main.ts"></script>
 </body>
 
