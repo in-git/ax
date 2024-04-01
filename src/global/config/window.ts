@@ -64,10 +64,19 @@ export const setAttr = (id: string, key: string, value: any) => {
     }
   });
 };
-
+export const getData = (id: string) => {
+  let result: any;
+  windowList.value.forEach(e => {
+    if (e.id === id) {
+      result = e.data;
+    }
+  });
+  return result;
+};
 export const hiddenWindow = (id: string, flag = true) => {
   setAttr(id, 'hidden', flag);
 };
+
 /* 所有窗口最小化 */
 export const minWindow = () => {
   windowList.value.forEach(e => {

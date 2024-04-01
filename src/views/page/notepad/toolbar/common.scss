@@ -1,0 +1,11 @@
+.menu-button {
+	border: 1px solid transparent;
+	width: fit-content;
+	cursor: default;
+	padding: 4px;
+	user-select: none;
+	&:hover {
+		border-bottom: 1px solid #7ba4da;
+		background: #7ba4da15;
+	}
+}

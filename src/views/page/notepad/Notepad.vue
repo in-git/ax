@@ -1,6 +1,6 @@
 <template>
   <div class="notepad system-module">
-    <ToolbarVue :data="props.data" :id="props.id" />
+    <ToolbarVue v-bind:data="notepad" />
     <div style="height: calc(100% - 40px)">
       <textarea v-model="notepad.content" v-focus></textarea>
     </div>
@@ -15,12 +15,15 @@ const props = defineProps<{
   data?: Notepad;
   id: string;
 }>();
+
 const notepad = ref<Notepad>({
   editorType: 'textarea',
   content: '',
+  id: '',
 });
 provide('data', {
   id: props.id,
+  content: props.data?.content,
   editorType: props.data?.editorType,
 });
 watch(

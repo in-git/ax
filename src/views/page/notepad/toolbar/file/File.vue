@@ -1,7 +1,7 @@
 <template>
   <div class="flex align-center">
     <a-dropdown trigger="click">
-      <div class="menu">文件(F)</div>
+      <div class="menu-button">文件(F)</div>
       <template #overlay>
         <a-menu :items="menuList"></a-menu>
       </template>
@@ -11,18 +11,15 @@
 
 <script setup lang="ts">
 import notepadPng from '@/assets/system/notepad.png';
-import { openWindow, windowList } from '@/global/config/window';
+import { getData, openWindow, setAttr } from '@/global/config/window';
 import { toText } from '@/utils/file/file';
 import { useFileSystemAccess } from '@vueuse/core';
 import { message } from 'ant-design-vue';
 import { nanoid } from 'nanoid';
 import NotepadVue from '../../Notepad.vue';
+import type { NotepadInjectData } from '../../types';
 
-interface InjectData {
-  id: string;
-  editorType: string;
-}
-const parentData = inject<InjectData>('data');
+const parentData = inject<NotepadInjectData>('data')!;
 const {
   isSupported,
   data,
@@ -80,14 +77,9 @@ const menuList = [
       if (file.value) {
         const data = await toText(file.value);
         if (!parentData) return;
-        windowList.value = windowList.value.map(e => {
-          if (e.id === parentData.id) {
-            e.data = {
-              content: data,
-              editorType: parentData.editorType,
-            };
-          }
-          return e;
+        setAttr(parentData.id, 'data', {
+          content: data,
+          editorType: parentData.editorType,
         });
       }
     },
@@ -100,9 +92,11 @@ const menuList = [
       if (!supported()) {
         return;
       }
-      await save({
-        suggestedName: 'Untitled.txt',
-      });
+      const textData = getData(parentData.id);
+      console.log(parentData);
+
+      data.value = textData.content;
+      await save();
     },
   },
   /* 另存为 */
@@ -122,15 +116,5 @@ const menuList = [
 </script>
 
 <style lang="scss" scoped>
-.menu {
-  border: 1px solid transparent;
-  width: fit-content;
-  cursor: default;
-  padding: 4px;
-  user-select: none;
-  &:hover {
-    border-bottom: 1px solid #7ba4da;
-    background: #7ba4da15;
-  }
-}
+@import '../common';
 </style>

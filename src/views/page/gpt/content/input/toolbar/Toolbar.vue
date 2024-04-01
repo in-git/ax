@@ -5,8 +5,8 @@
     </div>
     <!--  -->
     <div class="flex gc-4 align-center">
-      <a-popconfirm title="清空当前聊天记录" @confirm="clear" placement="bottom">
-        <a-tooltip title="清空当前会话的聊天记录">
+      <a-popconfirm title="清空当前聊天记录" @confirm="clear" placement="top">
+        <a-tooltip title="清空当前会话的聊天记录" placement="bottom">
           <a-button type="text" danger>
             <DeleteOutlined />
           </a-button>

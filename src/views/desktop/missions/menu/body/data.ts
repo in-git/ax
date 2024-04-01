@@ -1,4 +1,4 @@
-import gptPng from '@/assets/system/gpt.png';
+import gptPng from '@/assets/apps/gpt.png';
 import notepad from '@/assets/system/notepad.png';
 import { openWindow } from '@/global/config/window';
 import GptIndex from '@/views/page/gpt/GptIndex.vue';

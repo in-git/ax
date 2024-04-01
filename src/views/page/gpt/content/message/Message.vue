@@ -25,7 +25,7 @@
                 </template>
               </div>
             </div>
-            <div class="msg">
+            <div class="msg" style="max-width: 600px">
               <div v-if="!isSystem(item.role) || !item.content.includes('```')">
                 {{ item.content.trim() }}
               </div>
