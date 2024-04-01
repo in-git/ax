@@ -52,7 +52,7 @@ import { formatColumns } from '@/utils/table/table';
 import type { TableColumnProps, TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
-const emit = defineEmits(['update:selectedKeys', 'update:query', 'reload']);
+const emit = defineEmits(['update:selectedKeys', 'update:query', 'reload', 'update:form']);
 const selectedKeys = ref();
 
 const props = defineProps<{
@@ -60,6 +60,7 @@ const props = defineProps<{
   query: IQuery;
   columns: TableColumnProps[];
   selectedKeys: number[] | string[];
+  form?: any;
 }>();
 
 const onChange = (keys: Key[]) => {
@@ -69,6 +70,7 @@ const onChange = (keys: Key[]) => {
 const customRow = (record: any) => {
   return {
     onClick() {
+      emit('update:form', record);
       selectedKeys.value = [record[props.table.rowKey]];
     },
   };

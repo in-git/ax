@@ -2,15 +2,15 @@
   <div>
     <TableHeadVue />
     <SystemTable
-      :columns="__Columns"
-      :table="__Table"
-      v-model:query="__Query"
-      v-model:selected-keys="__Keys"
-      v-model:form="__Form"
+      :columns="jobColumns"
+      :table="jobTable"
+      v-model:query="jobQuery"
+      v-model:selected-keys="jobKeys"
+      v-model:form="jobForm"
     >
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">
-          <Operation @edit="__Edit" :items="__OperationList" />
+          <Operation @edit="jobEdit" :items="jobOperationList" />
         </template>
       </template>
     </SystemTable>
@@ -22,13 +22,13 @@ import SystemTable from '@/views/components/table/SystemTable.vue';
 import TableHeadVue from './table-head/head.vue';
 
 import Operation from '@/views/components/table/Operation.vue';
-import { __Columns } from '../data/column';
-import { __Edit, __List } from '../data/curd';
-import { __Form } from '../data/form';
-import { __Keys, __OperationList, __Query, __Table } from '../data/table';
+import { jobColumns } from '../data/column';
+import { jobEdit, jobList } from '../data/curd';
+import { jobForm } from '../data/form';
+import { jobKeys, jobOperationList, jobQuery, jobTable } from '../data/table';
 
 onMounted(() => {
-  __List();
+  jobList();
 });
 </script>
 

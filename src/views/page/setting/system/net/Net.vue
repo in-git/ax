@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { testNode } from '@/api/modules/node/test';
+import { testNode } from '@/api/node/test';
 import useDeveloperStore from '@/store/developer';
 import type { InfoCircleFilled } from '@ant-design/icons-vue';
 import BaseURL from './base-url/BaseURL.vue';
@@ -65,3 +65,4 @@ const test = async () => {
   }
 }
 </style>
+@/api/node/test
