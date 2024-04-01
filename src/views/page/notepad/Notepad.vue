@@ -1,6 +1,6 @@
 <template>
   <div class="notepad system-module">
-    <ToolbarVue />
+    <ToolbarVue :data="props.data" :id="props.id" />
     <div style="height: calc(100% - 40px)">
       <textarea v-model="notepad.content" v-focus></textarea>
     </div>
@@ -8,16 +8,33 @@
 </template>
 
 <script setup lang="ts">
-import { notepad, type Notepad } from './notepad';
 import ToolbarVue from './toolbar/Toolbar.vue';
+import { type Notepad } from './types';
+
 const props = defineProps<{
   data?: Notepad;
+  id: string;
 }>();
-watch(props, () => {
-  if (props.data) {
-    notepad.value = props.data;
-  }
+const notepad = ref<Notepad>({
+  editorType: 'textarea',
+  content: '',
 });
+provide('data', {
+  id: props.id,
+  editorType: props.data?.editorType,
+});
+watch(
+  props,
+  () => {
+    if (props.data) {
+      notepad.value = props.data;
+    }
+  },
+  {
+    deep: true,
+    immediate: true,
+  },
+);
 </script>
 
 <style lang="scss" scoped>
@@ -39,3 +56,4 @@ textarea {
   overflow-x: hidden;
 }
 </style>
+./types

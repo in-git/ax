@@ -26,7 +26,7 @@
         @close="closeWindow(item.id || '')"
         :icon="item.icon"
       >
-        <component :data="item.data" :is="item.component"></component>
+        <component :data="item.data" :id="item.id" :is="item.component"></component>
       </Draggable>
     </div>
   </ConfigProvider>
