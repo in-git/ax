@@ -3,13 +3,14 @@
     <div class="title">辅助工具</div>
     <div>
       <ul class="p-12">
-        <li class="flex flex-col justify-center align-center">
-          <img src="https://www.baidu.com/favicon.ico" :draggable="false" width="48" height="48" />
-          <div class="mt-8">百度</div>
-        </li>
-        <li class="flex flex-col justify-center align-center" @click="openGpt">
-          <img :src="gptPng" :draggable="false" width="48" height="48" />
-          <div class="mt-8">CHATGPT</div>
+        <li
+          class="flex flex-col justify-center align-center"
+          @click="item.action(item)"
+          v-for="(item, key) in functionList"
+          :key="key"
+        >
+          <img :src="item.icon" :draggable="false" width="48" height="48" />
+          <div class="mt-8">{{ item.title }}</div>
         </li>
       </ul>
     </div>
@@ -19,8 +20,8 @@
 <script setup lang="ts">
 import { openWindow } from '@/global/config/window';
 import GptIndex from '@/views/page/gpt/GptIndex.vue';
-import gptPng from '../../assets/gpt.png';
 import { showWindowMenu } from '../data';
+import { functionList } from './data';
 
 const openGpt = () => {
   openWindow({

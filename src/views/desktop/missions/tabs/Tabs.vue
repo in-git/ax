@@ -13,7 +13,7 @@
             @click="selectItem(item)"
           >
             <img :draggable="false" :src="getIcon(`${item.id}`)" />
-            <span class="title px-4">{{ item.title }}</span>
+            <div class="title px-4">{{ item.title }}</div>
             <close-outlined class="close" @click="closeWindow(item.id || '')" />
           </li>
         </a-tooltip>
@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import folder from '@/assets/system/folder.png';
+import folder from '@/assets/logo.png';
 import { closeWindow, currentWindow, toTop, windowList } from '@/global/config/window';
 import type { SystemWindow } from '@/types/system';
 import { useSortable } from '@vueuse/integrations/useSortable';

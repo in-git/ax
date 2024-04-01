@@ -31,7 +31,6 @@ import SidebarHead from './sidebar/SidebarHead.vue';
   .core {
     transition: var(--transition);
     background: #fff;
-    border-radius: var(--radius);
   }
 }
 </style>

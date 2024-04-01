@@ -44,6 +44,7 @@ export const openApp = (item: Routers) => {
       title: `${item.meta.title || 'Untitled'}`,
       data: item.children,
       id: item.name,
+      icon: getIconByName(item),
     });
   } else if (item.meta.link) {
     openLink(item.meta.link);
@@ -54,6 +55,7 @@ export const openApp = (item: Routers) => {
           title: item.meta.title,
           component: e.component,
           id: item.name,
+          icon: getIconByName(item),
         });
       }
     });

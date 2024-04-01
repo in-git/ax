@@ -3,7 +3,7 @@
     <div class="window flex flex-s" @click.ca="openMenu">
       <img :src="logo" width="32" alt="" />
     </div>
-    <MenuVue></MenuVue>
+    <MenuVue />
     <Tabs />
     <Notice />
   </div>

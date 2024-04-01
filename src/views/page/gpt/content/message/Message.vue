@@ -26,7 +26,10 @@
               </div>
             </div>
             <div class="msg">
-              {{ item.content.trim() }}
+              <div v-if="!isSystem(item.role) || !item.content.includes('```')">
+                {{ item.content.trim() }}
+              </div>
+              <MdPreview previewTheme="default" v-else :modelValue="item.content" />
             </div>
           </div>
         </div>
@@ -38,7 +41,8 @@
 <script setup lang="ts">
 import logoPng from '@/assets/logo.png';
 import userPng from '@/assets/system/user.png';
-
+import { MdPreview } from 'md-editor-v3';
+import 'md-editor-v3/lib/style.css';
 import { conversation } from '../../sidebar/sidebar';
 import { messageActions } from './data';
 

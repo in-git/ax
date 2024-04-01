@@ -30,6 +30,12 @@
 			zoom: 0.8;
 			opacity: 0;
 		}
+		.title {
+			max-width: 64px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
 	}
 }
 .hidden {

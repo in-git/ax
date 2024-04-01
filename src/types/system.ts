@@ -23,6 +23,7 @@ export interface SystemWindow {
   /* Extra data */
   data?: any;
   hidden?: boolean;
+  icon?: string;
 }
 
 export interface TreeNode {

@@ -12,7 +12,13 @@
   >
     <slot name="head">
       <div class="drag-header linear-gradient-background flex justify-between align-center">
-        <div class="px-12 text-16">{{ title }}</div>
+        <div class="flex align-center">
+          <div class="win-icon flex flex-s">
+            <img :src="icon" width="20" height="20" v-if="icon" />
+          </div>
+
+          <div class="text-14">{{ title }}</div>
+        </div>
         <div class="flex">
           <div class="system-icon minus" @click="hidden">
             <MinusOutlined class="text-white" />
@@ -44,6 +50,7 @@ const props = withDefaults(
     z?: number;
     id?: string;
     resizable?: boolean;
+    icon?: string;
   }>(),
   {
     w: 1000,
@@ -122,5 +129,9 @@ $hh: 42px;
   &:hover {
     background-color: #dddddd70;
   }
+}
+.win-icon {
+  width: 40px;
+  height: 38px;
 }
 </style>

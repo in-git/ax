@@ -24,6 +24,7 @@
         v-show="!item.hidden"
         :id="item.id"
         @close="closeWindow(item.id || '')"
+        :icon="item.icon"
       >
         <component :data="item.data" :is="item.component"></component>
       </Draggable>
