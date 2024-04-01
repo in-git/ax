@@ -15,18 +15,16 @@
 import chatgptPng from '@/assets/apps/gpt.png';
 import { getData, openWindow } from '@/global/config/window';
 import GptIndex from '../../../gpt/GptIndex.vue';
-import type { NotepadInjectData } from '../../types';
-const parentData = inject<NotepadInjectData>('data')!;
+const parentData = inject<string>('data')!;
 const ai = () => {
-  const { content } = getData(parentData.id);
-  if (content) {
+  const data = getData(parentData);
+  if (data)
     openWindow({
       component: markRaw(GptIndex),
       title: 'ChatGpt',
       icon: chatgptPng,
-      data: content,
+      data,
     });
-  }
 };
 </script>
 

@@ -17,10 +17,9 @@ import { useFileSystemAccess } from '@vueuse/core';
 import { message } from 'ant-design-vue';
 import { nanoid } from 'nanoid';
 import NotepadVue from '../../Notepad.vue';
-import type { NotepadInjectData } from '../../types';
 import { supportSuffix } from './data';
 
-const parentData = inject<NotepadInjectData>('data')!;
+const notepadId = inject<string>('data')!;
 const {
   isSupported,
   data,
@@ -77,12 +76,9 @@ const menuList = [
       await open();
       if (file.value) {
         const data = await toText(file.value);
-        console.log(data);
 
-        if (!parentData) return;
-        setAttr(parentData.id, 'data', {
-          content: data,
-        });
+        if (!notepadId) return;
+        setAttr(notepadId, 'data', data);
       }
     },
   },
@@ -94,8 +90,8 @@ const menuList = [
       if (!supported()) {
         return;
       }
-      const textData = getData(parentData.id);
-      data.value = textData.content;
+      const text = getData(notepadId);
+      data.value = text;
       await save();
     },
   },
@@ -117,10 +113,8 @@ const menuList = [
     key: '1-5',
     label: '清空(L)',
     onClick() {
-      if (!parentData) return;
-      setAttr(parentData.id, 'data', {
-        content: '',
-      });
+      if (!notepadId) return;
+      setAttr(notepadId, 'data', '');
     },
   },
 ];

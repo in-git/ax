@@ -6,13 +6,8 @@
 </template>
 
 <script setup lang="ts">
-import type { Notepad } from '../types';
 import FileVue from './file/File.vue';
 import GptVue from './gpt/Gpt.vue';
-
-const props = defineProps<{
-  data: Notepad;
-}>();
 </script>
 
 <style lang="scss" scoped>

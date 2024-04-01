@@ -3,6 +3,3 @@ export interface Notepad {
   content: string;
   id?: string;
 }
-export interface NotepadInjectData {
-  id: string;
-}
