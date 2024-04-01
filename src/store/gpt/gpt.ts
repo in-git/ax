@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import type { Conversation } from './types';
+
 interface Config {
   token: string;
   temperature: number;

@@ -7,10 +7,10 @@
         <div class="p-8 server-list">
           <ul class="flex flex-wrap">
             <li
-              v-for="item in developer.$state.urlSelection"
+              v-for="item in developer.$state.developer.urlSelection"
               :key="item.value"
               class="text-center flex flex-col gr-4"
-              :class="[{ 'breathing-light': developer.$state.baseURL === item.value }]"
+              :class="[{ 'breathing-light': developer.$state.developer.baseURL === item.value }]"
             >
               <div>
                 <img :src="serverPng" width="48" />
@@ -19,8 +19,12 @@
               <div class="text-14 text-bold">
                 {{ item.label }}
               </div>
-              <div :class="[developer.$state.baseURL == item.value ? 'selected' : 'unselected']">
-                <a-badge color="green" v-if="developer.$state.baseURL === item.value">
+              <div
+                :class="[
+                  developer.$state.developer.baseURL == item.value ? 'selected' : 'unselected',
+                ]"
+              >
+                <a-badge color="green" v-if="developer.$state.developer.baseURL === item.value">
                   <template #text>
                     <span class="text-12 text-999">当前连接</span>
                   </template>
@@ -98,8 +102,8 @@
 
 <script setup lang="ts">
 import { logout } from '@/api/modules/system/user/user';
-import useDeveloperStore from '@/store/developer/index';
-import type { URLSelection } from '@/store/developer/types';
+import usePageStore from '@/store/page';
+import type { URLSelection } from '@/store/page/types';
 import { NodeExpandOutlined } from '@ant-design/icons-vue';
 import { useCloned } from '@vueuse/core';
 import { Modal } from 'ant-design-vue';
@@ -112,7 +116,7 @@ const serverForm = ref<URLSelection>({
   value: '',
   id: '',
 });
-const developer = useDeveloperStore();
+const developer = usePageStore();
 
 const create = () => {
   open.value = true;
@@ -132,11 +136,13 @@ const edit = (item: URLSelection) => {
 };
 
 const submit = () => {
-  const index = developer.$state.urlSelection.findIndex(e => e.id === serverForm.value.id);
+  const index = developer.$state.developer.urlSelection.findIndex(
+    e => e.id === serverForm.value.id,
+  );
   if (index >= 0) {
-    developer.$state.urlSelection[index] = serverForm.value;
+    developer.$state.developer.urlSelection[index] = serverForm.value;
   } else {
-    developer.$state.urlSelection.push(useCloned(serverForm.value).cloned.value);
+    developer.$state.developer.urlSelection.push(useCloned(serverForm.value).cloned.value);
   }
   open.value = false;
 };
@@ -146,7 +152,7 @@ const setBaseurl = (url: string) => {
     title: 'Server switched',
     content: 'Whether to refresh the page immediately',
     onOk() {
-      developer.$state.baseURL = url;
+      developer.$state.developer.baseURL = url;
       axios.defaults.baseURL = `${url}`;
       window.location.reload();
       logout();
@@ -155,7 +161,9 @@ const setBaseurl = (url: string) => {
 };
 
 const deleteUrl = (id: string) => {
-  developer.$state.urlSelection = developer.$state.urlSelection.filter(e => e.id !== id);
+  developer.$state.developer.urlSelection = developer.$state.developer.urlSelection.filter(
+    e => e.id !== id,
+  );
 };
 </script>
 

@@ -20,6 +20,7 @@
 import { openWindow } from '@/global/config/window';
 import GptIndex from '@/views/page/gpt/GptIndex.vue';
 import gptPng from '../../assets/gpt.png';
+import { showWindowMenu } from '../data';
 
 const openGpt = () => {
   openWindow({
@@ -27,6 +28,7 @@ const openGpt = () => {
     title: 'gpt',
     id: 'gpt',
   });
+  showWindowMenu.value = false;
 };
 </script>
 
@@ -41,6 +43,10 @@ const openGpt = () => {
       border-radius: 2px;
       &:hover {
         background: #333;
+      }
+      cursor: pointer;
+      img {
+        border-radius: 8px;
       }
     }
   }

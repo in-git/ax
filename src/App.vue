@@ -2,13 +2,13 @@
   <ConfigProvider
     :theme="theme"
     :locale="locale"
-    :componentSize="store.$state.size"
-    :direction="store.$state.direction"
+    :componentSize="store.$state.theme.size"
+    :direction="store.$state.theme.direction"
     :wave="{
-      disabled: !store.$state.wave,
+      disabled: !store.$state.theme.wave,
     }"
-    :virtual="store.$state.virtual"
-    :autoInsertSpaceInButton="store.$state.autoInsertSpaceInButton"
+    :virtual="store.$state.theme.virtual"
+    :autoInsertSpaceInButton="store.$state.theme.autoInsertSpaceInButton"
   >
     <Desktop />
 
@@ -39,21 +39,18 @@ import { ConfigProvider } from 'ant-design-vue';
 import en_US from 'ant-design-vue/es/locale/en_US';
 import axios from 'axios';
 import { loadSystemComponents, loadSystemIcons } from './initialization';
-import useDeveloperStore from './store/developer';
 import usePageStore from './store/page';
 import Contextmenu from './views/components/contextmenu/Contextmenu.vue';
 import Draggable from './views/components/draggable/Draggable.vue';
 import Desktop from './views/desktop/Desktop.vue';
 
-const devStore = useDeveloperStore();
-/*  */
-axios.defaults.baseURL = devStore.$state.baseURL;
-axios.defaults.timeout = devStore.$state.timeout * 1000;
-/*  */
 const locale = ref(en_US);
 
 const store = usePageStore();
-
+/*  */
+axios.defaults.baseURL = store.$state.developer.baseURL;
+axios.defaults.timeout = store.$state.developer.timeout * 1000;
+/*  */
 nextTick(async () => {
   loadSystemIcons();
   loadSystemComponents();
@@ -71,7 +68,7 @@ document.addEventListener(
 const theme = computed(() => {
   return {
     token: {
-      colorPrimary: store.$state.theme,
+      colorPrimary: store.$state.theme.theme,
       borderRadius: 4,
     },
   };

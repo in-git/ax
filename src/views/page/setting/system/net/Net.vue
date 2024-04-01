@@ -7,7 +7,7 @@
         <div>
           <a-auto-complete
             style="width: 200px"
-            v-model:value="devStore.$state.timeout"
+            v-model:value="devStore.$state.developer.timeout"
             :options="timeoutOptions"
           ></a-auto-complete>
           <div class="text-12 text-999 mt-8">
@@ -23,12 +23,12 @@
 
 <script setup lang="ts">
 import { testNode } from '@/api/node/test';
-import useDeveloperStore from '@/store/developer';
+import usePageStore from '@/store/page';
 import type { InfoCircleFilled } from '@ant-design/icons-vue';
 import BaseURL from './base-url/BaseURL.vue';
 import { timeoutOptions } from './data';
 
-const devStore = useDeveloperStore();
+const devStore = usePageStore();
 
 const test = async () => {
   const data = await testNode();

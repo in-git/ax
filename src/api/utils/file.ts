@@ -1,14 +1,14 @@
-import useDeveloperStore from '@/store/developer/index';
+import usePageStore from '@/store/page';
 import useUserStore from '@/store/user';
 import { message } from 'ant-design-vue';
 
 // 批量绑定模板接口
 export const exportFile = async (url: string, data?: any, fileName = 'file') => {
-  const dev = useDeveloperStore();
+  const dev = usePageStore();
   const userStore = useUserStore();
 
   try {
-    const response = await fetch(dev.$state.baseURL + url, {
+    const response = await fetch(dev.$state.developer.baseURL + url, {
       method: 'POST',
       body: data,
       headers: {

@@ -15,10 +15,10 @@
             >
               <CheckOutlined class="text-12" v-if="item === current" />
             </li>
-            <a-divider type="vertical" class="h-100" :style="{ color: store.$state.theme }">
+            <a-divider type="vertical" class="h-100" :style="{ color: store.$state.theme.theme }">
               <label class="flex flex-s gc-4">
                 自定义
-                <input type="color" v-model="store.$state.theme" @change="setTheme" />
+                <input type="color" v-model="store.$state.theme.theme" @change="setTheme" />
               </label>
             </a-divider>
           </ul>
@@ -34,7 +34,7 @@
               <div class="desc">反转文字显示</div>
             </div>
             <div>
-              <a-radio-group v-model:value="store.$state.direction">
+              <a-radio-group v-model:value="store.$state.theme.direction">
                 <a-radio value="ltr">LTR</a-radio>
                 <a-radio value="rtl">RTL</a-radio>
               </a-radio-group>
@@ -42,7 +42,7 @@
           </a-flex>
           <a-flex class="w-100" justify="space-between">
             <div>控件大小</div>
-            <a-radio-group v-model:value="store.$state.size">
+            <a-radio-group v-model:value="store.$state.theme.size">
               <a-radio-button value="small">小</a-radio-button>
               <a-radio-button value="medium">中</a-radio-button>
               <a-radio-button value="large">大</a-radio-button>
@@ -55,7 +55,7 @@
             </div>
             <div class="text-right">
               <a-switch
-                v-model:checked="store.$state.wave"
+                v-model:checked="store.$state.theme.wave"
                 checked-children="开"
                 un-checked-children="关"
               ></a-switch>
@@ -65,7 +65,7 @@
           <a-flex class="w-100" justify="space-between">
             虚拟滚动
             <a-switch
-              v-model:checked="store.$state.virtual"
+              v-model:checked="store.$state.theme.virtual"
               checked-children="开"
               un-checked-children="关"
             ></a-switch>
@@ -74,7 +74,7 @@
             <div>移除按钮中的空格</div>
             <a-flex :gap="8" :align="'center'">
               <a-switch
-                v-model:checked="store.$state.autoInsertSpaceInButton"
+                v-model:checked="store.$state.theme.autoInsertSpaceInButton"
                 checked-children="开"
                 un-checked-children="关"
               ></a-switch>
@@ -102,14 +102,14 @@ const store = usePageStore();
 
 const selectItem = (item: string) => {
   current.value = item;
-  store.$state.theme = item;
+  store.$state.theme.theme = item;
   const color = useCssVar('--primary', document.body);
   color.value = item;
 };
 const setTheme = () => {
   const color = useCssVar('--primary', document.body);
-  color.value = store.$state.theme;
-  current.value = store.$state.theme;
+  color.value = store.$state.theme.theme;
+  current.value = store.$state.theme.theme;
 };
 </script>
 
