@@ -99,13 +99,13 @@
 <script setup lang="ts">
 import useGptStore from '@/store/gpt/gpt';
 import { InfoCircleFilled } from '@ant-design/icons-vue';
+import { getBalance } from '../../input/data';
 
 const gptStore = useGptStore();
 const loading = ref(false);
 const balance = ref<number>(0);
 const totalAmount = ref<number>(0);
 
-const getBalance: any = null;
 /* 订阅查询 */
 const subscription = async () => {
   loading.value = true;

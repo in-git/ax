@@ -1,6 +1,6 @@
 <template>
   <div class="gpt-sidebar">
-    <ul class="list" ref="listRef" v-show="list.length > 0">
+    <ul class="list" v-show="list.length > 0">
       <li
         class="flex align-center p-8 justify-between"
         v-for="(item, key) in list"
@@ -28,9 +28,6 @@
           </div>
         </div>
         <div class="flex gc-4">
-          <div class="system-icon handle">
-            <DragOutlined />
-          </div>
           <a-dropdown trigger="click" placement="bottomLeft">
             <div class="actions system-icon" @click.stop>
               <EllipsisOutlined />
@@ -54,14 +51,12 @@
 <script setup lang="ts">
 import useGptStore from '@/store/gpt/gpt';
 import type { Conversation } from '@/store/gpt/types';
-import { DragOutlined, EllipsisOutlined } from '@ant-design/icons-vue';
-import { moveArrayElement, useSortable } from '@vueuse/integrations/useSortable';
+import { EllipsisOutlined } from '@ant-design/icons-vue';
 import type { MenuInfo } from 'ant-design-vue/es/menu/src/interface';
 import { conversation, menus } from './sidebar';
 
 const store = useGptStore();
 
-const listRef = ref();
 const itemRef = ref<HTMLElement[] | null>();
 const setTitle = (item: Conversation) => {
   if (!item.title) {
@@ -77,16 +72,6 @@ const selectMenu = (info: MenuInfo) => {
     info.item.action();
   }
 };
-
-nextTick(() => {
-  useSortable(listRef, store.$state.conversation.list, {
-    animation: 200,
-    handle: '.handle',
-    onUpdate: (e: { oldIndex: number; newIndex: number }) => {
-      moveArrayElement(list.value, e.oldIndex, e.newIndex);
-    },
-  });
-});
 
 const list = computed(() => store.$state.conversation.list);
 

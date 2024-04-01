@@ -1,5 +1,5 @@
 <template>
-  <div class="settings" v-draggable>
+  <div class="settings">
     <div class="setting-head system-head px-8" data-drag>
       <div>设置中心</div>
       <div class="system-icon" @click="showSetting = false">
@@ -11,8 +11,7 @@
       <a-segmented v-model:value="current" :options="data"></a-segmented>
       <div class="mt-8">
         <GptVue v-if="current === 'gpt'" />
-        <AdvanceVue v-else-if="current === 'advance'" />
-        <Developer v-else-if="current === 'developer'" />
+        <Developer v-else="current === 'developer'" />
       </div>
     </div>
   </div>
@@ -20,7 +19,6 @@
 
 <script setup lang="ts">
 import type { SegmentedOption } from 'ant-design-vue/es/segmented/src/segmented';
-import AdvanceVue from './advance/Advance.vue';
 import Developer from './developer/Developer.vue';
 import GptVue from './gpt/Gpt.vue';
 import { showSetting } from './setting';
@@ -30,11 +28,6 @@ const data: SegmentedOption[] = [
     title: 'Gpt设置',
     label: 'Gpt设置',
     value: 'gpt',
-  },
-  {
-    label: '高级设置',
-    title: '高级设置',
-    value: 'advance',
   },
   {
     label: '开发者中心',

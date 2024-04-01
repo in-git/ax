@@ -2,13 +2,35 @@ import useGptStore from '@/store/gpt/gpt';
 import type { GptMessage } from '@/store/gpt/types';
 import { message } from 'ant-design-vue';
 import type { AxiosError } from 'axios';
+import axios from 'axios';
 import { conversation } from '../../sidebar/sidebar';
 
 export const msg = ref<string>('');
 export const dataLoading = ref();
-export const send = async (inputEl?: Ref<HTMLElement | undefined>) => {
+
+interface GptParams {
+  messages: GptMessage[];
+  model: 'gpt-3.5-turbo';
+  stream: boolean;
+  temperature: number;
+  top_p: number;
+}
+
+export const sendMsg = (data: GptParams) => {
   const gptStore = useGptStore();
+  const http = axios.create({
+    baseURL: `${gptStore.$state.config.baseUrl}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${gptStore.$state.config.token}`,
+    },
+  });
+  return http.post('/', data);
+};
+/* 发送消息 */
+export const send = async (inputEl?: Ref<HTMLElement | undefined>) => {
   const event = window.event as MouseEvent;
+  const gptStore = useGptStore();
   if (!msg.value) {
     return;
   }
@@ -63,7 +85,7 @@ export const send = async (inputEl?: Ref<HTMLElement | undefined>) => {
     }
     const err = error as AxiosError;
     const response = err.response as any;
-    if (response.data) {
+    if (response?.data) {
       console.log(response.data.error);
 
       if (response.data.error.type === 'one_api_error') {
@@ -71,15 +93,34 @@ export const send = async (inputEl?: Ref<HTMLElement | undefined>) => {
         return;
       }
     }
+    console.log(response);
+
     message.warn('Unknown error');
   }
 };
-function sendMsg(arg0: {
-  messages: { role: 'user' | 'system' | 'assistant'; content: string; time?: string | undefined }[];
-  model: 'gpt-3.5-turbo';
-  stream: boolean;
-  temperature: number;
-  top_p: number;
-}): { data: any } | PromiseLike<{ data: any }> {
-  throw new Error('Function not implemented.');
+interface Balance {
+  total: number;
+  balanceData: number;
 }
+export const getBalance = async (): Promise<Balance> => {
+  const subscription = `https://openkey.cloud/v1/dashboard/billing/subscription`;
+  const usage = `https://openkey.cloud/v1/dashboard/billing/usage`;
+  const configStore = useGptStore();
+
+  const data = {
+    headers: {
+      Authorization: `Bearer ${configStore.$state.config.token}`,
+    },
+    data: {
+      api_key: configStore.$state.config.token,
+    },
+  };
+  /* 获取总量 */
+  const { data: subscriptionData } = await axios.get(`${subscription}`, data);
+  /* 获取已使用了的 */
+  const { data: usageData } = await axios.get(`${usage}`, data);
+  return {
+    total: usageData.total_usage,
+    balanceData: subscriptionData.hard_limit_usd,
+  };
+};

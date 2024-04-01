@@ -10,6 +10,7 @@ interface Config {
   max_tokens: number;
   frequency_penalty: number;
   stream: boolean;
+  baseUrl: string;
 }
 
 export interface History {
@@ -38,6 +39,7 @@ const useGptStore = defineStore('gpt', {
       max_tokens: 10,
       frequency_penalty: 0,
       stream: false,
+      baseUrl: 'https://openkey.cloud/v1/chat/completions',
     },
     conversation: {
       list: [],

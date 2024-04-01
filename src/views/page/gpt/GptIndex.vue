@@ -14,8 +14,6 @@
       </Transition>
     </div>
   </div>
-
-  <Phone />
 </template>
 
 <script setup lang="ts">
@@ -29,7 +27,6 @@ import SidebarHead from './sidebar/SidebarHead.vue';
 .gpt-home {
   width: 100%;
   height: 100%;
-  background: url('../assets/background.webp');
 
   .core {
     transition: var(--transition);
