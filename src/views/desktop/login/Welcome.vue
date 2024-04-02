@@ -8,17 +8,25 @@
       <a-divider></a-divider>
     </div>
     <div class="media flex-1 flex flex-s">
-      <video
+      <!-- <video
         autoplay
         muted
         src="https://mylivewallpapers.com/wp-content/uploads/Cute/PREVIEW-Beach-Cat.mp4"
         loop
-      ></video>
+      ></video> -->
+      <video-background
+        :poster="posterImg"
+        src="https://mylivewallpapers.com/wp-content/uploads/Cute/PREVIEW-Beach-Cat.mp4"
+        class="w-100 h-100"
+      ></video-background>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import VideoBackground from 'vue-responsive-video-background-player';
+import posterImg from './assets/welcome.webp';
+</script>
 
 <style lang="scss" scoped>
 .welcome {

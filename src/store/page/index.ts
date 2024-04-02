@@ -4,6 +4,9 @@ import type { Developer, Theme } from './types';
 interface PageSettings {
   developer: Developer;
   theme: Theme;
+  config: {
+    locale: string;
+  };
 }
 const baseUrlOptions = [
   {
@@ -32,6 +35,9 @@ const usePageStore = defineStore('page', {
       baseURL: 'http://150.158.14.110:8081/',
       urlSelection: baseUrlOptions,
       timeout: 8000,
+    },
+    config: {
+      locale: '',
     },
   }),
   persist: true,

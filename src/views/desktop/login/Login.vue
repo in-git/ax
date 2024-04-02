@@ -19,7 +19,7 @@
 
               <a-form-item name="lang">
                 <a-radio-group
-                  v-model:value="pageStore.$state.locale"
+                  v-model:value="pageStore.$state.config.locale"
                   :options="langOptions"
                 ></a-radio-group>
               </a-form-item>
