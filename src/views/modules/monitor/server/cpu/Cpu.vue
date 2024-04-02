@@ -76,4 +76,5 @@ watch(
 
 <style lang="scss" scoped>
 @import './style';
+@import '../loading';
 </style>
