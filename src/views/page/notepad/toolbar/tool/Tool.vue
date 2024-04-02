@@ -7,7 +7,7 @@
       </template>
     </a-dropdown>
 
-    <SystemModal w="400px" h="300px" title="二维码" v-model:visible="qrModal">
+    <SystemModal w="400px" h="300px" title="二维码" v-model:visible="qrModal" v-if="qrModal">
       <div class="w-100 h-100 flex flex-s">
         <a-qrcode :value="text" />
       </div>
@@ -51,7 +51,6 @@ const items: ItemType[] = [
         message.warn('二维码内容过长');
         return;
       }
-
       qrModal.value = true;
     },
     icon: h(QrcodeOutlined),

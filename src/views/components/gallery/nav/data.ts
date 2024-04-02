@@ -28,3 +28,7 @@ export const currentGalleryNav = ref<GalleryNav>(galleryNavList[0]);
 export const selectGallery = (item: GalleryNav) => {
   currentGalleryNav.value = item;
 };
+export const currentPhoto = ref({
+  id: '',
+  src: '',
+});

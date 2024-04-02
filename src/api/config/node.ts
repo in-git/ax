@@ -1,14 +1,10 @@
-import { message } from 'ant-design-vue';
 import axios from 'axios';
 
-export const http = axios.create({
+export const node = axios.create({
   baseURL: 'http://localhost:8888/',
 });
-http.interceptors.response.use(
+node.interceptors.response.use(
   response => {
-    if (response.data.code !== 200) {
-      message.warn('Nodejs出了点问题');
-    }
     return response.data;
   },
   error => {
@@ -16,4 +12,4 @@ http.interceptors.response.use(
   },
 );
 
-export default http;
+export default node;

@@ -11,41 +11,29 @@
 </template>
 
 <script setup lang="ts">
-import { useDebounceFn } from '@vueuse/core';
 import CpuVue from './cpu/Cpu.vue';
 import { getServerInfo, serverInfo, serverLoading } from './data';
 import Info from './info/Info.vue';
 import Memory from './memory/Memory.vue';
-import { navIndex, navList, selectNav } from './nav/data';
 import NavVue from './nav/Nav.vue';
 
-const serverRef = ref();
-
-const debouncedFn = useDebounceFn((e: WheelEvent) => {
-  if (e.deltaY > 0) {
-    if (navIndex.value >= navList.length - 1) {
-      navIndex.value = 0;
-    } else {
-      navIndex.value++;
-    }
-  } else {
-    if (navIndex.value <= 0) {
-      navIndex.value = navList.length - 1;
-    } else {
-      navIndex.value--;
-    }
-  }
-  selectNav(navIndex.value);
-}, 100);
+const serverRef = ref<HTMLElement>();
 
 onMounted(() => {
   getServerInfo();
 });
 
 nextTick(() => {
-  serverRef.value.addEventListener('wheel', debouncedFn, {
-    passive: true,
-  });
+  if (serverRef.value)
+    serverRef.value.addEventListener(
+      'wheel',
+      e => {
+        e.preventDefault();
+      },
+      {
+        passive: false,
+      },
+    );
 });
 onUnmounted(() => {
   serverInfo.value = undefined;

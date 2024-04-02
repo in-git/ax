@@ -1,35 +1,33 @@
 <template>
-  <Teleport to="body" :disabled="toBody">
-    <Transition
-      enter-active-class="animate__animated animate__zoomIn"
-      leave-active-class="animate__animated animate__zoomOut"
+  <Transition
+    enter-active-class="animate__animated animate__zoomIn"
+    leave-active-class="animate__animated animate__zoomOut"
+  >
+    <div
+      class="system__modal"
+      v-show="visible"
+      :class="[boolValue(showMask, 'model__mask', 'model__mask__none')]"
     >
-      <div
-        class="system__modal"
-        v-show="visible"
-        :class="[boolValue(showMask, 'model__mask', 'model__mask__none')]"
-      >
-        <div class="modal__container" :style="style">
-          <div class="system-head px-8 text-bold">
-            <slot name="title">{{ title }}</slot>
-            <div>
-              <slot name="extra"></slot>
-              <div class="system-icon" @click="close">
-                <CloseOutlined class="text-12" />
-              </div>
+      <div class="modal__container" :style="style">
+        <div class="system-head px-8 text-bold">
+          <slot name="title">{{ title }}</slot>
+          <div>
+            <slot name="extra"></slot>
+            <div class="system-icon" @click="close">
+              <CloseOutlined class="text-12" />
             </div>
           </div>
+        </div>
 
-          <div class="modal__content">
-            <slot></slot>
-          </div>
-          <div>
-            <slot name="footer"></slot>
-          </div>
+        <div class="modal__content">
+          <slot></slot>
+        </div>
+        <div>
+          <slot name="footer"></slot>
         </div>
       </div>
-    </Transition>
-  </Teleport>
+    </div>
+  </Transition>
 </template>
 
 <script setup lang="ts">

@@ -18,6 +18,7 @@ import GalleryHead from './head/GalleryHead.vue';
   flex-direction: column;
   .dynamic-component {
     flex: 1;
+    overflow-y: auto;
   }
 }
 </style>

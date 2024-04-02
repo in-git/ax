@@ -11,7 +11,7 @@
     @mousedown="moveTop"
   >
     <slot name="head">
-      <div class="drag-header linear-gradient-background flex justify-between align-center">
+      <div class="drag-header flex justify-between align-center">
         <div class="flex align-center">
           <div class="win-icon flex flex-s">
             <img :src="icon" width="20" height="20" v-if="icon" />
@@ -21,10 +21,10 @@
         </div>
         <div class="flex">
           <div class="system-icon minus" @click="hidden">
-            <MinusOutlined class="text-white" />
+            <MinusOutlined />
           </div>
           <div class="system-icon close" @click="close">
-            <CloseOutlined class="text-white" />
+            <CloseOutlined />
           </div>
         </div>
       </div>
@@ -101,7 +101,7 @@ $hh: 42px;
 }
 .drag-header {
   cursor: move;
-  color: white;
+  background: #f5f2f3;
   height: 40px;
   border-bottom: 1px solid #ddd;
 }
@@ -114,6 +114,7 @@ $hh: 42px;
   width: 40px;
   height: 40px;
   border-radius: 0;
+
   &:hover {
     background: #dddddd70;
   }
@@ -122,6 +123,7 @@ $hh: 42px;
   @extend %icon;
   &:hover {
     background-color: #f74545;
+    color: white;
   }
 }
 .minus {

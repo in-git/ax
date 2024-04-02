@@ -39,7 +39,4 @@ const close = () => {
 };
 </script>
 
-<style lang="scss" scoped>
-.gallery {
-}
-</style>
+<style lang="scss" scoped></style>

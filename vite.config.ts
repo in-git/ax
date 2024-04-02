@@ -6,6 +6,7 @@ import AutoImport from 'unplugin-auto-import/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
 import { defineConfig } from 'vite';
+import { viteMockServe } from 'vite-plugin-mock';
 import OptimizationPersist from 'vite-plugin-optimize-persist';
 import PkgConfig from 'vite-plugin-package-config';
 
@@ -16,6 +17,11 @@ export default defineConfig(() => {
   return {
     plugins: [
       vue(),
+      viteMockServe({
+        mockPath: './src/mock/mock',
+        enable: true,
+        logger: true,
+      }),
       AutoImport({
         dts: 'src/auto-imports.d.ts',
         imports: ['vue', 'vue-router'],
@@ -70,13 +76,13 @@ export default defineConfig(() => {
       include: ['@ant-design/icons-vue', 'ant-design-vue', 'vue-use'],
     },
     server: {
-      // proxy: {
-      //   '/api': {
-      //     target: 'http://localhost:5173',
-      //     changeOrigin: true,
-      //     rewrite: path => path.replace(/^\/api/, ''),
-      //   },
-      // },
+      proxy: {
+        '/api': {
+          target: 'http://localhost:5173/',
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\/api/, ''),
+        },
+      },
       open: true,
     },
   };

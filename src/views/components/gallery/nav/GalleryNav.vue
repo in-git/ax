@@ -26,11 +26,12 @@ import { currentGalleryNav, galleryNavList, selectGallery } from './data';
   border-right: 1px solid #ddd;
   li {
     padding: 8px 12px;
-
     display: flex;
     align-items: center;
+    filter: grayscale(100%);
     &:hover {
       background-color: #f0f0f0;
+      filter: initial;
     }
     .icon {
       width: 24px;
@@ -46,6 +47,7 @@ import { currentGalleryNav, galleryNavList, selectGallery } from './data';
     color: var(--primary);
     font-weight: bold;
     background-color: #eff6fc;
+    filter: initial;
   }
 }
 </style>
