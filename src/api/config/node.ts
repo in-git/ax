@@ -9,7 +9,7 @@ http.interceptors.response.use(
     if (response.data.code !== 200) {
       message.warn('Nodejs出了点问题');
     }
-    return response;
+    return response.data;
   },
   error => {
     return Promise.reject(error);

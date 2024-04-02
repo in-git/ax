@@ -8,7 +8,7 @@
     position="fixed"
     to-body
   >
-    <div class="system-module gallery flex">
+    <div class="system-module gallery flex" v-if="show">
       <GalleryNav />
       <GalleryBody />
     </div>
