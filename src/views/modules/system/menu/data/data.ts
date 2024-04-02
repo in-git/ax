@@ -1,8 +1,9 @@
 import type { IQuery, TableConfig } from '@/api/config/types';
 import { response } from '@/utils/table/table';
-import { DeleteOutlined } from '@ant-design/icons-vue';
+import { DeleteOutlined, PlusOutlined } from '@ant-design/icons-vue';
 import type { ItemType } from 'ant-design-vue';
 import { delMenu } from './curd';
+import { menuForm, resetMenuForm, showMenuForm } from './form';
 
 interface MenuQuery {
   menuName: string;
@@ -27,6 +28,18 @@ export const menuQuery = ref<IQuery<MenuQuery>>({
 });
 
 export const menuItems: ItemType[] = [
+  {
+    label: '添加子目录',
+    key: 'create',
+    icon: h(PlusOutlined),
+    onClick() {
+      let parentId = menuForm.value.menuId;
+      resetMenuForm();
+      menuForm.value.parentId = parentId;
+      console.log(menuForm.value);
+      showMenuForm.value = true;
+    },
+  },
   {
     label: '删除',
     key: 'delete',

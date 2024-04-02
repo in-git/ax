@@ -24,7 +24,7 @@ const form = ref({
   password: '',
 });
 const submit = async () => {
-  const { data } = await resetPwd(form.value.password, userForm.value.userId);
+  const { data } = await resetPwd(form.value.password, userForm.value.userId!);
   message.success(data.msg);
 };
 const rules: RuleObject = {

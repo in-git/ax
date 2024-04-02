@@ -51,7 +51,8 @@
           </a-col>
 
           <a-col :span="10">
-            <a-form-item label="Menu type" name="menuType" required>
+            <!-- 菜单类型（M目录 C菜单 F按钮） -->
+            <a-form-item label="按钮类型" name="menuType" required>
               <a-radio-group v-model:value="menuForm.menuType" buttonStyle="solid">
                 <a-radio-button value="C">菜单</a-radio-button>
                 <a-radio-button value="M">目录</a-radio-button>

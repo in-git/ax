@@ -9,7 +9,8 @@
 import Department from '@/views/components/department/Department.vue';
 import type { Key } from 'ant-design-vue/es/vc-tree/interface';
 import { userForm } from '../form/data';
-import { loadUserData, userQuery } from '../table/data';
+import { loadUserData } from '../table/curd';
+import { userQuery } from '../table/data';
 
 const select = (keys: Key[]) => {
   userQuery.value.deptId = Number(keys[0]);

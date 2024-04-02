@@ -59,8 +59,9 @@
 import { exportFile } from '@/api/utils/file';
 import { setOptions } from '@/global/options/system';
 import { DeleteOutlined, ExportOutlined, ReloadOutlined } from '@ant-design/icons-vue';
-import { createUser, delUser, editUserConfig } from '../table/curd';
-import { loadUserData, userConfig, userQuery } from './data';
+import { createUser, delUser, editUserConfig, loadUserData } from '../table/curd';
+import { userConfig, userQuery } from './data';
+
 const exportExcel = async () => {
   await exportFile(`system/user/export`, {
     pageNum: userQuery.value.pageNum,

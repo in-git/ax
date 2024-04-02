@@ -55,8 +55,8 @@ import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interfac
 import ChangePassword from './change-password/ChangePassword.vue';
 import { passwordModal } from './change-password/data';
 import userColumns from './columns';
-import { delUser, editUserConfig } from './curd';
-import { loadUserData, userConfig, userQuery } from './data';
+import { delUser, editUserConfig, loadUserData } from './curd';
+import { userConfig, userQuery } from './data';
 import UserTableHead from './UserTableHead.vue';
 
 onMounted(() => {
@@ -78,8 +78,8 @@ const pageChange = (
   filters: Record<string, FilterValue>,
   sorter: SorterResult<SystemMenu> | SorterResult<SystemMenu>[],
 ) => {
-  userQuery.value.pageNum = pagination.current;
-  userQuery.value.pageSize = pagination.pageSize;
+  userQuery.value.pageNum = pagination.current || 0;
+  userQuery.value.pageSize = pagination.pageSize || 0;
   if (sorter instanceof Array) {
     return;
   }
