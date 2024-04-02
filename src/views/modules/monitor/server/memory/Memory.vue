@@ -2,7 +2,11 @@
   <div class="server-memory relative" v-if="serverInfo" id="server-memory">
     <div class="container">
       <div class="loading">
-        <div id="loadingMask" :style="{ top: `${100 - process}%` }" class="loading-mask"></div>
+        <div
+          id="loadingMask"
+          :style="{ top: `${100 - serverInfo.mem.usage}%` }"
+          class="loading-mask"
+        ></div>
         <div id="loading" class="loading-text text-center">
           <div>{{ serverInfo.mem.usage }}%</div>
           <div class="text-12">内存占用率</div>
@@ -35,21 +39,6 @@
 
 <script setup lang="ts">
 import { serverInfo } from '../data';
-
-const process = ref(50);
-
-watch(
-  serverInfo,
-  () => {
-    if (serverInfo.value) {
-      process.value = serverInfo.value.cpu.used;
-    }
-  },
-  {
-    deep: true,
-    immediate: true,
-  },
-);
 </script>
 
 <style lang="scss" scoped>

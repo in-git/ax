@@ -11,6 +11,10 @@ export const navList: ServerNav[] = [
     title: '内存信息',
     id: 'server-memory',
   },
+  {
+    title: '系统信息',
+    id: 'server-info',
+  },
 ];
 export const navIndex = ref<number>(0);
 

@@ -5,6 +5,7 @@
       <CpuVue />
       <Memory />
       <NavVue />
+      <Info />
     </div>
   </div>
 </template>
@@ -13,9 +14,10 @@
 import { useDebounceFn } from '@vueuse/core';
 import CpuVue from './cpu/Cpu.vue';
 import { getServerInfo, serverInfo, serverLoading } from './data';
+import Info from './info/Info.vue';
 import Memory from './memory/Memory.vue';
-import NavVue from './nav/Nav.vue';
 import { navIndex, navList, selectNav } from './nav/data';
+import NavVue from './nav/Nav.vue';
 
 const serverRef = ref();
 

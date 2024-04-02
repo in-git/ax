@@ -1,0 +1,23 @@
+.server-info {
+	height: 100%;
+	background: url("../assets/info.jpg");
+	background-repeat: no-repeat;
+	width: 100%;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+}
+.info-container {
+	width: fit-content;
+	height: fit-content;
+	color: white;
+	border: 1px solid #fff;
+	padding: 10px;
+	white-space: pre-wrap;
+	font-size: 24px;
+	padding: 12px;
+	background: rgba(0, 0, 0, 0.452);
+	backdrop-filter: blur(12px);
+	letter-spacing: 2px;
+	line-height: 42px;
+}

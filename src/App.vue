@@ -51,10 +51,19 @@ const store = usePageStore();
 /*  */
 axios.defaults.baseURL = store.$state.developer.baseURL;
 axios.defaults.timeout = store.$state.developer.timeout * 1000;
+
+const loadGoogleFont = () => {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href =
+    'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap';
+  document.head.appendChild(link);
+};
 /*  */
 nextTick(async () => {
   loadSystemIcons();
   loadSystemComponents();
+  loadGoogleFont();
 });
 
 document.addEventListener(

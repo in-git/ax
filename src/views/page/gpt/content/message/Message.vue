@@ -58,7 +58,7 @@ watch(
       if (msgRef.value) {
         msgRef.value.scrollTo({
           top: msgRef.value.scrollHeight,
-          behavior: 'smooth',
+          behavior: 'auto',
         });
       }
     });
