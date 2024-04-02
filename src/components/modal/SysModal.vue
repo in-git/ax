@@ -1,32 +1,39 @@
 <template>
-  <Transition
-    enter-active-class="animate__animated animate__zoomIn"
-    leave-active-class="animate__animated animate__zoomOut"
-  >
-    <div class="system__modal" v-show="visible">
-      <div class="modal__container" :style="style">
-        <div class="system-head px-8 text-bold">
-          <slot name="title">{{ title }}</slot>
-          <div>
-            <slot name="extra"></slot>
-            <div class="system-icon" @click="close">
-              <CloseOutlined class="text-12" />
+  <Teleport to="body" :disabled="toBody">
+    <Transition
+      enter-active-class="animate__animated animate__zoomIn"
+      leave-active-class="animate__animated animate__zoomOut"
+    >
+      <div
+        class="system__modal"
+        v-show="visible"
+        :class="[boolValue(showMask, 'model__mask', 'model__mask__none')]"
+      >
+        <div class="modal__container" :style="style">
+          <div class="system-head px-8 text-bold">
+            <slot name="title">{{ title }}</slot>
+            <div>
+              <slot name="extra"></slot>
+              <div class="system-icon" @click="close">
+                <CloseOutlined class="text-12" />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="modal__content">
-          <slot></slot>
-        </div>
-        <div>
-          <slot name="footer"></slot>
+          <div class="modal__content">
+            <slot></slot>
+          </div>
+          <div>
+            <slot name="footer"></slot>
+          </div>
         </div>
       </div>
-    </div>
-  </Transition>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
+import { boolValue } from '@/utils/common/utils';
 import type { CSSProperties } from 'vue';
 
 const emit = defineEmits(['update:visible']);
@@ -37,10 +44,16 @@ const props = withDefaults(
     title: string;
     w?: string;
     h?: string;
+    showMask?: boolean;
+    position?: 'absolute' | 'fixed';
+    toBody?: boolean;
   }>(),
   {
     w: '90%',
     h: '90%',
+    showMask: true,
+    position: 'absolute',
+    toBody: false,
   },
 );
 
@@ -56,23 +69,35 @@ const style = computed((): CSSProperties => {
 </script>
 
 <style lang="scss" scoped>
+.model__mask__none {
+  pointer-events: none;
+  background: none;
+  * {
+    pointer-events: initial !important;
+  }
+}
+.model__mask {
+  background-color: #3333336b;
+  pointer-events: initial;
+}
 .system__modal {
-  position: absolute;
+  position: v-bind(position);
   width: 100%;
   height: 100%;
-  background-color: #3333336b;
+
   left: 0;
   top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 1000;
 
   .modal__container {
     border-radius: var(--radius);
     background-color: white;
     display: flex;
     flex-direction: column;
+    border: 1px solid #ddd;
   }
   .modal__content {
     flex: 1;

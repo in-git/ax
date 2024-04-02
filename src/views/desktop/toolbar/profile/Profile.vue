@@ -9,7 +9,7 @@
         <div class="profile">
           <a-card :loading="loading" :bordered="false" :body-style="{ padding: '0' }">
             <div v-if="!!userProfile">
-              <div class="flex align-center gc-12">
+              <div class="flex align-center gc-12" @click="selectPhoto">
                 <a-avatar :imageSrc="userProfile.avatar"></a-avatar>
                 {{ userProfile.userName }}
               </div>
@@ -36,6 +36,7 @@
         </div>
       </template>
     </a-popover>
+    <Gallery v-model:visible="visible" />
   </div>
 </template>
 
@@ -44,9 +45,16 @@ import { logout, profile } from '@/api/modules/system/user/user';
 import userCenterPng from '@/assets/system/user-center.png';
 import { openWindow } from '@/global/config/window';
 import useUserStore from '@/store/user';
+import Gallery from '@/views/components/gallery/Gallery.vue';
 import { Modal } from 'ant-design-vue';
 import ProFileForm from '../profile-form/ProfileForm.vue';
 import { userProfile } from './data';
+
+const visible = ref(false);
+const selectPhoto = () => {
+  visible.value = true;
+};
+
 const popoverVisible = ref(false);
 const userData = ref();
 const loading = ref(false);
