@@ -13,9 +13,10 @@ export const navList: ServerNav[] = [
   },
 ];
 export const navIndex = ref<number>(0);
-export const selectNav = (item: ServerNav, index: number) => {
+
+export const selectNav = (index: number) => {
   navIndex.value = index;
-  const el = document.getElementById(item.id);
+  const el = document.getElementById(navList[index].id);
   if (!el) return;
   el.scrollIntoView({
     behavior: 'smooth',
