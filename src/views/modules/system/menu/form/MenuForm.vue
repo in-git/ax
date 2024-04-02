@@ -72,7 +72,8 @@ import { createMenu, updateMenu } from '@/api/modules/system/menu/menu';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { statusOptions, visibleOptions } from '@/global/options/system';
 import { message } from 'ant-design-vue';
-import { listMenu, loadMenuData } from '../data/data';
+import { loadMenuData } from '../data/curd';
+import { listMenu, menuTableConfig } from '../data/data';
 import { menuForm, showMenuForm } from '../data/form';
 import ParamVue from './Params.vue';
 
@@ -98,14 +99,13 @@ watch(
   listMenu,
   () => {
     treeSelected.value = [menuForm.value.parentId];
-
     treeData.value = [
-      ...listMenu.value,
       {
         menuId: 0,
         menuName: '主目录',
         path: '',
       },
+      ...menuTableConfig.value.data,
     ];
   },
   {

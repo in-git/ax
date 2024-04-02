@@ -32,7 +32,7 @@
         <div class="flex gc-4 align-center">
           <a-input-search
             allow-clear
-            v-model:value="menuQuery.query.menuName"
+            v-model:value="menuQuery.menuName"
             placeholder="Please enter menu name"
             style="width: 200px"
             @search="loadMenuData"
@@ -41,7 +41,7 @@
           <a-segmented
             :options="statusOptions"
             @change="loadMenuData"
-            v-model:value="menuQuery.query.status"
+            v-model:value="menuQuery.status"
             placeholder="Status"
           ></a-segmented>
         </div>
@@ -53,10 +53,10 @@
 <script setup lang="ts">
 import { statusOptions } from '@/global/options/system';
 import { DeleteOutlined, EditOutlined, ReloadOutlined } from '@ant-design/icons-vue';
-import { createMenuData, delMenu, showMenuFormForm } from '../../data/curd';
-import { loadMenuData, menuKeys, menuQuery } from '../../data/data';
+import { createMenuData, delMenu, editMenu, loadMenuData } from '../../data/curd';
+import { menuKeys, menuQuery } from '../../data/data';
 const edit = () => {
-  showMenuFormForm();
+  editMenu();
 };
 const create = () => {
   createMenuData();

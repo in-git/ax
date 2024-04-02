@@ -1,37 +1,38 @@
-import type { IQuery } from '@/api/config/types';
-import { menuList } from '@/api/modules/system/menu/menu';
-import { convertToTree } from '@/utils/common/tree';
-
-export const menuData = ref();
+import type { IQuery, TableConfig } from '@/api/config/types';
+import { response } from '@/utils/table/table';
+import { DeleteOutlined } from '@ant-design/icons-vue';
+import type { ItemType } from 'ant-design-vue';
+import { delMenu } from './curd';
 
 interface MenuQuery {
   menuName: string;
 }
-
-interface MenuConf {
-  loading: boolean;
-  query: IQuery<MenuQuery>;
-}
-export const menuTableConfig = ref({});
-
-export const menuKeys = ref<number[]>([]);
 export const listMenu = ref();
-export const menuQuery = ref<MenuConf>({
+
+export const menuTableConfig = ref<TableConfig>({
+  rowKey: 'menuId',
+  data: [],
   loading: false,
-  query: {
-    pageNum: 1,
-    pageSize: 10,
-    menuName: '',
-    status: '',
-    total: 0,
-  },
+  moduleName: 'menu',
 });
 
-export const loadMenuData = async () => {
-  menuQuery.value.loading = true;
-  const { data } = await menuList();
-  if (data.data) {
-    listMenu.value = convertToTree(data.data);
-  }
-  menuQuery.value.loading = false;
-};
+export const menuKeys = ref<number[]>([]);
+
+export const menuQuery = ref<IQuery<MenuQuery>>({
+  pageNum: 1,
+  pageSize: 10,
+  menuName: '',
+  status: '',
+  total: 0,
+});
+
+export const menuItems: ItemType[] = [
+  {
+    label: '删除',
+    key: 'delete',
+    icon: h(DeleteOutlined),
+    onClick() {
+      response(delMenu, menuKeys.value);
+    },
+  },
+];

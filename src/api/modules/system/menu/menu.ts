@@ -6,7 +6,7 @@ export const menuList = () => {
   return axios.get<Response<SystemMenu[]>>(`system/menu/list`);
 };
 
-export const getMenu = (id: string) => {
+export const getMenu = (id: number) => {
   return axios.get<Response<SystemMenu>>(`system/menu/${id}`);
 };
 

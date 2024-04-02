@@ -1,53 +1,38 @@
 <template>
   <div class="menu-table">
     <MenuHead></MenuHead>
-    <a-table
-      class="px-12"
-      :columns="formatColumns(menuColumns)"
-      :dataSource="listMenu"
-      :loading="menuQuery.loading"
-      @change="pageChange"
-      table-layout="fixed"
-      sticky
-      :row-selection="{
-        selectedRowKeys: menuKeys,
-        onChange,
-      }"
-      :customRow="customRow"
-      rowKey="menuId"
+    <SystemTable
+      :table="menuTableConfig"
+      :columns="menuColumns"
+      v-model:query="menuQuery"
+      v-model:form="menuForm"
+      v-model:selected-keys="menuKeys"
     >
-      <template #bodyCell="{ column, record }">
-        <template v-if="column.dataIndex === 'operation'">
-          <div class="text-center">
-            <a-dropdown-button @click="showMenuFormForm(record.menuId)" trigger="click">
-              <template #overlay>
-                <a-menu>
-                  <a-menu-item key="delete" @click="delMenu(record.menuId)">Delete</a-menu-item>
-                </a-menu>
-              </template>
-              <EditOutlined />
-            </a-dropdown-button>
-          </div>
+      <template v-slot="{ value }">
+        <template v-if="value.column.dataIndex === 'operation'">
+          <Operation @edit="editMenu(value.record as any)" :items="menuItems" />
         </template>
-        <template v-if="column.dataIndex === 'isFrame'">
-          <CheckOutlined v-if="record.isFrame === '0'" class="text-green" />
+        <template v-if="value.column.dataIndex === 'isFrame'">
+          <CheckOutlined v-if="value.record.isFrame === '0'" class="text-green" />
           <CloseOutlined v-else class="text-red" />
         </template>
       </template>
-    </a-table>
+    </SystemTable>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { SystemMenu } from '@/api/modules/system/menu/types';
-import { formatColumns } from '@/utils/table/table';
-import { CheckOutlined, type EditOutlined } from '@ant-design/icons-vue';
+import Operation from '@/views/components/table/Operation.vue';
+import SystemTable from '@/views/components/table/SystemTable.vue';
+import { CheckOutlined } from '@ant-design/icons-vue';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
-import { delMenu, showMenuFormForm } from '../data/curd';
-import { listMenu, loadMenuData, menuKeys, menuQuery } from '../data/data';
-import { menuColumns } from './column';
+import { menuColumns } from '../data/column';
+import { editMenu, loadMenuData } from '../data/curd';
+import { menuItems, menuKeys, menuQuery, menuTableConfig } from '../data/data';
+import { menuForm } from '../data/form';
 import MenuHead from './head/MenuHead.vue';
 onMounted(() => {
   loadMenuData();
@@ -58,13 +43,13 @@ const pageChange = (
   filters: Record<string, FilterValue>,
   sorter: SorterResult<SystemMenu> | SorterResult<SystemMenu>[],
 ) => {
-  menuQuery.value.query.pageNum = pagination.current!;
-  menuQuery.value.query.pageSize = pagination.pageSize!;
+  menuQuery.value.pageNum = pagination.current!;
+  menuQuery.value.pageSize = pagination.pageSize!;
   if (sorter instanceof Array) {
     return;
   }
   if (sorter.columnKey) {
-    menuQuery.value.query.orderByColumn = `${sorter.columnKey}`;
+    menuQuery.value.orderByColumn = `${sorter.columnKey}`;
   }
   loadMenuData();
 };
@@ -91,4 +76,4 @@ const customRow = (record: SystemMenu) => {
   overflow-y: auto;
 }
 </style>
-../data/data ../data/curd
+../data/data ../data/curd ../data/column
