@@ -9,31 +9,191 @@
 
 <style lang="scss" scoped>
 /* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
 .loader {
-  width: 50px;
-  aspect-ratio: 1;
-  --c: no-repeat radial-gradient(farthest-side, #514b82 92%, #0000);
-  background:
-    var(--c) 50% 0,
-    var(--c) 50% 100%,
-    var(--c) 100% 50%,
-    var(--c) 0 50%;
-  background-size: 10px 10px;
-  animation: l18 1s infinite;
-  position: relative;
+  width: 80px;
+  aspect-ratio: 2;
+  --c: no-repeat linear-gradient(#046d8b 0 0);
+  background: var(--c), var(--c), var(--c), var(--c), var(--c), var(--c), var(--c);
+  animation:
+    l4-1 1.5s infinite,
+    l4-2 1.5s infinite;
 }
-.loader::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  margin: 3px;
-  background: repeating-conic-gradient(#0000 0 35deg, #514b82 0 90deg);
-  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 3px), #000 0);
-  border-radius: 50%;
-}
-@keyframes l18 {
+@keyframes l4-1 {
+  0% {
+    background-size:
+      0 4px,
+      4px 0,
+      0 4px,
+      4px 0,
+      0 4px,
+      4px 0,
+      0 4px;
+  }
+  7.14% {
+    background-size:
+      25% 4px,
+      4px 0,
+      0 4px,
+      4px 0,
+      0 4px,
+      4px 0,
+      0 4px;
+  }
+  14.29% {
+    background-size:
+      25% 4px,
+      4px 50%,
+      0 4px,
+      4px 0,
+      0 4px,
+      4px 0,
+      0 4px;
+  }
+  21.43% {
+    background-size:
+      25% 4px,
+      4px 50%,
+      25% 4px,
+      4px 0,
+      0 4px,
+      4px 0,
+      0 4px;
+  }
+  28.57% {
+    background-size:
+      25% 4px,
+      4px 50%,
+      25% 4px,
+      4px 100%,
+      0 4px,
+      4px 0,
+      0 4px;
+  }
+  35.71% {
+    background-size:
+      25% 4px,
+      4px 50%,
+      25% 4px,
+      4px 100%,
+      25% 4px,
+      4px 0,
+      0 4px;
+  }
+  42.86% {
+    background-size:
+      25% 4px,
+      4px 50%,
+      25% 4px,
+      4px 100%,
+      25% 4px,
+      4px 50%,
+      0 4px;
+  }
+  49%,
+  51% {
+    background-size:
+      25% 4px,
+      4px 50%,
+      25% 4px,
+      4px 100%,
+      25% 4px,
+      4px 50%,
+      25% 4px;
+  }
+  57.14% {
+    background-size:
+      0 4px,
+      4px 50%,
+      25% 4px,
+      4px 100%,
+      25% 4px,
+      4px 50%,
+      25% 4px;
+  }
+  64.29% {
+    background-size:
+      0 4px,
+      4px 0,
+      25% 4px,
+      4px 100%,
+      25% 4px,
+      4px 50%,
+      25% 4px;
+  }
+  71.43% {
+    background-size:
+      0 4px,
+      4px 0,
+      0 4px,
+      4px 100%,
+      25% 4px,
+      4px 50%,
+      25% 4px;
+  }
+  78.57% {
+    background-size:
+      0 4px,
+      4px 0,
+      0 4px,
+      4px 0,
+      25% 4px,
+      4px 50%,
+      25% 4px;
+  }
+  85.71% {
+    background-size:
+      0 4px,
+      4px 0,
+      0 4px,
+      4px 0,
+      0 4px,
+      4px 50%,
+      25% 4px;
+  }
+  92.86% {
+    background-size:
+      0 4px,
+      4px 0,
+      0 4px,
+      4px 0,
+      0 4px,
+      4px 0,
+      25% 4px;
+  }
   100% {
-    transform: rotate(0.5turn);
+    background-size:
+      0 4px,
+      4px 0,
+      0 4px,
+      4px 0,
+      0 4px,
+      4px 0,
+      0 4px;
+  }
+}
+@keyframes l4-2 {
+  0%,
+  49.9% {
+    background-position:
+      0 50%,
+      bottom 20px left 16px,
+      20px 0,
+      50% 0,
+      40px 100%,
+      bottom 0 right 16px,
+      60px 50%;
+  }
+  50%,
+  100% {
+    background-position:
+      right 60px top 50%,
+      16px 0,
+      right 40px top 0,
+      50% 100%,
+      right 20px bottom 0,
+      right 16px top 20px,
+      100% 50%;
   }
 }
 </style>

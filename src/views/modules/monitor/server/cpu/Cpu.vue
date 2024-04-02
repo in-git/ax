@@ -1,5 +1,5 @@
 <template>
-  <div class="server-memory relative" v-if="serverInfo" id="server-memory">
+  <div class="server-memory relative" v-if="serverInfo" id="server-cpu">
     <div class="container">
       <div class="loading">
         <div id="loadingMask" :style="{ top: `${100 - process}%` }" class="loading-mask"></div>
