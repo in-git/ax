@@ -1,32 +1,31 @@
 <template>
   <div class="apps flex-1 p-12" ref="apps" @contextmenu="openContextMenu">
     <template v-if="menuList.length >= 0">
-      <a-spin :spinning="appLoading" class="w-100 h-100">
-        <div class="flex h-100">
-          <ul ref="appRef">
-            <li
-              v-for="item in menuList"
-              :key="item.name"
-              :class="{ selected: item.path === selected }"
-              @click="select(item)"
-              @dblclick="openApp(item)"
-              v-show="!item.hidden"
-              @contextmenu.stop="appContextMenu(item)"
-            >
-              <div>
-                <div class="logo">
-                  <img :src="getIconByName(item) || logoPng" :draggable="false" width="48" />
-                </div>
-                <div class="title">{{ item.meta?.title || 'Untitled' }}</div>
+      <div class="flex h-100">
+        <ul ref="appRef">
+          <li
+            v-for="item in menuList"
+            :key="item.name"
+            :class="{ selected: item.path === selected }"
+            @click="select(item)"
+            @dblclick="openApp(item)"
+            v-show="!item.hidden"
+            @contextmenu.stop="appContextMenu(item)"
+          >
+            <div>
+              <div class="logo">
+                <img :src="getIconByName(item) || logoPng" :draggable="false" width="48" />
               </div>
-            </li>
-          </ul>
-        </div>
-      </a-spin>
+              <div class="title">{{ item.meta?.title || 'Untitled' }}</div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </template>
     <Loading v-else></Loading>
     <NoticeVue></NoticeVue>
   </div>
+  <BackgroundVue />
 </template>
 
 <script setup lang="ts">
@@ -34,8 +33,9 @@ import type { Routers } from '@/api/modules/system/user/types';
 import logoPng from '@/assets/logo.png';
 import Loading from '@/components/loading/Loading.vue';
 import { useSortable } from '@vueuse/integrations/useSortable';
+import BackgroundVue from './background/Background.vue';
 import { appContextMenu, openContextMenu } from './contextmenu';
-import { appLoading, getIconByName, getUserRouters, openApp } from './data';
+import { getIconByName, getUserRouters, openApp } from './data';
 import NoticeVue from './notice/Notice.vue';
 
 const selected = ref<string>('');

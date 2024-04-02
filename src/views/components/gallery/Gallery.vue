@@ -1,22 +1,15 @@
 <template>
-  <SystemModal
-    w="800px"
-    h="600px"
-    v-model:visible="show"
-    title="图库"
-    @update:visible="close"
-    position="fixed"
-    to-body
-  >
+  <Teleport to="body">
     <div class="system-module gallery flex" v-if="show">
-      <GalleryNav />
-      <GalleryBody />
+      <div class="gallery-container flex">
+        <GalleryNav />
+        <GalleryBody />
+      </div>
     </div>
-  </SystemModal>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
-import SystemModal from '@/components/modal/SysModal.vue';
 import GalleryBody from './body/GalleryBody.vue';
 import GalleryNav from './nav/GalleryNav.vue';
 
@@ -39,4 +32,17 @@ const close = () => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.gallery {
+  position: fixed;
+  width: 800px;
+  height: 600px;
+  z-index: 100;
+  left: calc(50% - 400px);
+  top: calc(50% - 300px);
+  .gallery-container {
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>

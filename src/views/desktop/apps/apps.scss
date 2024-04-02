@@ -1,13 +1,7 @@
 .apps {
-	background: white;
 	$app-width: 84px;
 	height: calc(100vh - 48px * 2);
-	// background: url("../assets/background.png");
-	background: url("../assets/background.webp");
-	background: url("../assets/taylor.webp");
-	background-size: cover;
-	background-position: center;
-	position: relative;
+	z-index: 10;
 
 	ul {
 		display: flex;

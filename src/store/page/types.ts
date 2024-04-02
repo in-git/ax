@@ -22,3 +22,17 @@ export interface Theme {
   size?: 'small' | 'middle' | 'large' | undefined;
   autoInsertSpaceInButton: boolean;
 }
+export interface DesktopBackground {
+  type: 'image' | 'video';
+  src: string;
+}
+export interface PageSettings {
+  developer: Developer;
+  theme: Theme;
+  config: {
+    locale: string;
+  };
+  desktop: {
+    background: DesktopBackground;
+  };
+}

@@ -1,13 +1,6 @@
 import { defineStore } from 'pinia';
-import type { Developer, Theme } from './types';
+import type { PageSettings } from './types';
 
-interface PageSettings {
-  developer: Developer;
-  theme: Theme;
-  config: {
-    locale: string;
-  };
-}
 const baseUrlOptions = [
   {
     label: '测试',
@@ -38,6 +31,12 @@ const usePageStore = defineStore('page', {
     },
     config: {
       locale: '',
+    },
+    desktop: {
+      background: {
+        type: 'image',
+        src: '',
+      },
     },
   }),
   persist: true,
