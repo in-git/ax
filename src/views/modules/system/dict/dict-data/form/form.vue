@@ -46,7 +46,7 @@
             ></a-textarea>
           </a-form-item>
 
-          <FormFooter position="center"></FormFooter>
+          <FormFooter justify="center"></FormFooter>
         </div>
       </div>
     </SystemModal>

@@ -15,7 +15,10 @@
         @click="selectItem(item)"
         :class="{ active: item.name === current?.name }"
       >
-        <div class="logo">
+        <div v-if="item.meta.link">
+          <img :src="`https://favicon.qqsuu.cn/${item.meta.link}`" :draggable="false" width="36" />
+        </div>
+        <div class="logo" v-else>
           <img :src="getIconByName(item) || logoPng" :draggable="false" width="36" />
         </div>
         <div class="title">{{ item.meta.title }}</div>

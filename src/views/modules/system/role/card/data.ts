@@ -21,6 +21,7 @@ export const roleQuery = ref<IQuery<RoleQuery>>({
   pageNum: 1,
   pageSize: 10,
   roleName: '',
+  total: 0,
 });
 
 export const currentRole = ref<Role>();
