@@ -85,7 +85,7 @@ import { showRoleForm } from './data';
 const treeData = ref<any[]>([]);
 
 const treeRef = ref();
-const checkStrictly = ref(true);
+const checkStrictly = ref(false);
 
 const submit = async () => {
   if (currentRole.value) {

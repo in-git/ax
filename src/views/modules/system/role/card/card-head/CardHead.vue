@@ -23,12 +23,12 @@
 
         <div class="flex gc-2 text-nowrap align-center" :class="[!isActive() ? 'active' : 'gray']">
           <span class="text-999">编辑/权限:</span>
-          <a-tooltip title="编辑">
+          <a-tooltip title="编辑基础信息">
             <a-button type="text" @click="selectRole()" :disabled="!currentRole">
               <EditOutlined class="icon" />
             </a-button>
           </a-tooltip>
-          <a-tooltip title="资源" @click="allocatingResource">
+          <a-tooltip title="分配资源" @click="allocatingResource">
             <a-button type="text" :disabled="!currentRole">
               <ClusterOutlined class="icon" />
             </a-button>

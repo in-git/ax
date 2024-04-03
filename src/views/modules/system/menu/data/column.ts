@@ -15,6 +15,10 @@ export const menuColumns: TableColumnProps[] = [
     dataIndex: 'isFrame',
   },
   {
+    title: 'Menu type',
+    dataIndex: 'menuType',
+  },
+  {
     title: 'Component path',
     dataIndex: 'component',
   },

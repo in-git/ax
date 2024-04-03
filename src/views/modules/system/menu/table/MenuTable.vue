@@ -16,6 +16,9 @@
           <CheckOutlined v-if="value.record.isFrame === '0'" class="text-green" />
           <CloseOutlined v-else class="text-red" />
         </template>
+        <template v-else-if="value.column.dataIndex === 'menuType'">
+          <a-tag>{{ getLabel(menuTypeOptions, value.record.menuType) }}</a-tag>
+        </template>
       </template>
     </SystemTable>
   </div>
@@ -23,6 +26,7 @@
 
 <script setup lang="ts">
 import type { SystemMenu } from '@/api/modules/system/menu/types';
+import { getLabel } from '@/utils/common/utils';
 import Operation from '@/views/components/table/Operation.vue';
 import SystemTable from '@/views/components/table/SystemTable.vue';
 import { CheckOutlined } from '@ant-design/icons-vue';
@@ -33,7 +37,9 @@ import { menuColumns } from '../data/column';
 import { editMenu, loadMenuData } from '../data/curd';
 import { menuItems, menuKeys, menuQuery, menuTableConfig } from '../data/data';
 import { menuForm } from '../data/form';
+import { menuTypeOptions } from '../data/options';
 import MenuHead from './head/MenuHead.vue';
+
 onMounted(() => {
   loadMenuData();
 });

@@ -54,9 +54,9 @@
             <!-- 菜单类型（M目录 C菜单 F按钮） -->
             <a-form-item label="按钮类型" name="menuType" required>
               <a-radio-group v-model:value="menuForm.menuType" buttonStyle="solid">
-                <a-radio-button value="C">菜单</a-radio-button>
-                <a-radio-button value="M">目录</a-radio-button>
-                <a-radio-button value="F">按钮</a-radio-button>
+                <a-radio-button :value="item.value" v-for="item in menuTypeOptions">
+                  {{ item.label }}
+                </a-radio-button>
               </a-radio-group>
             </a-form-item>
             <ParamVue />
@@ -76,6 +76,7 @@ import { message } from 'ant-design-vue';
 import { loadMenuData } from '../data/curd';
 import { listMenu, menuTableConfig } from '../data/data';
 import { menuForm, showMenuForm } from '../data/form';
+import { menuTypeOptions } from '../data/options';
 import ParamVue from './Params.vue';
 
 const treeSelected = ref<number[]>([]);
