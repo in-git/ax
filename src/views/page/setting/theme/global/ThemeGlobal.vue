@@ -7,6 +7,7 @@
           <div>字体大小</div>
           <div>
             <a-select
+              @change="setCssVar"
               style="width: 120px"
               v-model:value="pageStore.$state.theme.fontSize"
               :options="fontSizeOptions"
@@ -30,6 +31,7 @@
 </template>
 
 <script setup lang="ts">
+import { setCssVar } from '@/initialization';
 import usePageStore from '@/store/page';
 import { borderRadiusOptions, fontSizeOptions } from './options';
 const pageStore = usePageStore();

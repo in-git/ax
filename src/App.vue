@@ -38,8 +38,14 @@
 import { closeWindow, windowList } from '@/global/config/window';
 import { ConfigProvider } from 'ant-design-vue';
 import en_US from 'ant-design-vue/es/locale/en_US';
-import axios from 'axios';
-import { loadSystemComponents, loadSystemIcons } from './initialization';
+import {
+  loadGoogleFont,
+  loadSystemComponents,
+  loadSystemIcons,
+  setAxios,
+  setCssVar,
+  setEvent,
+} from './initialization';
 import usePageStore from './store/page';
 import Contextmenu from './views/components/contextmenu/Contextmenu.vue';
 import Draggable from './views/components/draggable/Draggable.vue';
@@ -48,33 +54,23 @@ import Desktop from './views/desktop/Desktop.vue';
 const locale = ref(en_US);
 
 const store = usePageStore();
-/*  */
-axios.defaults.baseURL = store.$state.developer.baseURL;
-axios.defaults.timeout = store.$state.developer.timeout * 1000;
 
-const loadGoogleFont = () => {
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href =
-    'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap';
-  document.head.appendChild(link);
-};
 /*  */
 nextTick(async () => {
+  /* 加载本地图标，与下面组件配合使用 */
   loadSystemIcons();
+  /* 初始化系统本地组件 */
   loadSystemComponents();
+  /* 初始化字体 */
   loadGoogleFont();
+  /* 初始化请求 */
+  setAxios();
+  /* 初始化事件 */
+  setEvent();
+  /* 设置主题变量 */
+  setCssVar();
 });
 
-document.addEventListener(
-  'wheel',
-  e => {
-    if (e.ctrlKey) {
-      e.preventDefault();
-    }
-  },
-  { passive: false },
-);
 const theme = computed(() => {
   return {
     token: {

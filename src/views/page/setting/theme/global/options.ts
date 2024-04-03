@@ -26,7 +26,7 @@ export const borderRadiusOptions = [
     value: 2,
   },
   {
-    label: ' 小 [4px]',
+    label: '较小 [4px]',
     value: 4,
   },
   {
@@ -34,7 +34,7 @@ export const borderRadiusOptions = [
     value: 6,
   },
   {
-    label: ' 大 [8px]',
+    label: '较大 [8px]',
     value: 8,
   },
   {

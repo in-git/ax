@@ -1,3 +1,7 @@
+import { useCssVar } from '@vueuse/core';
+import axios from 'axios';
+import usePageStore from './store/page';
+
 const images = import.meta.glob('./assets/system/*.*');
 let modules = import.meta.glob('./views/modules/**/index.vue');
 
@@ -15,6 +19,7 @@ export const loadSystemIcons = () => {
   });
 };
 
+/* 加载系统组件 */
 export const loadSystemComponents = () => {
   for (const path in modules) {
     const result = path.match(/.*\/(.+).vue$/);
@@ -26,4 +31,38 @@ export const loadSystemComponents = () => {
       });
     }
   }
+};
+
+/* 加载谷歌字体 */
+export const loadGoogleFont = () => {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href =
+    'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap';
+  document.head.appendChild(link);
+};
+
+/* 设置请求 */
+export const setAxios = () => {
+  const store = usePageStore();
+  /*  */
+  axios.defaults.baseURL = store.$state.developer.baseURL;
+  axios.defaults.timeout = store.$state.developer.timeout * 1000;
+};
+
+/* 设置事件 */
+export const setEvent = () => {
+  /* 禁止鼠标滚动缩放页面 */
+  const wheelEvent = (e: WheelEvent) => {
+    if (e.ctrlKey) {
+      e.preventDefault();
+    }
+  };
+  document.addEventListener('wheel', wheelEvent, { passive: false });
+};
+/* 设置主题变量 */
+export const setCssVar = () => {
+  const store = usePageStore();
+  const cssVar = useCssVar('--font-size', document.body);
+  cssVar.value = `${store.$state.theme.fontSize}px`;
 };
