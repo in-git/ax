@@ -1,6 +1,5 @@
 <template>
   <div>
-    <a-divider></a-divider>
     <!-- 菜单类型（M目录 C菜单 F按钮） -->
 
     <!-- 公共选项 -->

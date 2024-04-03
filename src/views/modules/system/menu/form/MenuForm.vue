@@ -51,14 +51,21 @@
           </a-col>
 
           <a-col :span="10">
+            <a-tabs v-model:active-key="menuForm.menuType">
+              <a-tab-pane
+                :key="item.value"
+                :tab="item.label"
+                v-for="item in menuTypeOptions"
+              ></a-tab-pane>
+            </a-tabs>
             <!-- 菜单类型（M目录 C菜单 F按钮） -->
-            <a-form-item label="按钮类型" name="menuType" required>
+            <!-- <a-form-item label="按钮类型" name="menuType" required>
               <a-radio-group v-model:value="menuForm.menuType" buttonStyle="solid">
                 <a-radio-button :value="item.value" v-for="item in menuTypeOptions">
                   {{ item.label }}
                 </a-radio-button>
               </a-radio-group>
-            </a-form-item>
+            </a-form-item> -->
             <ParamVue />
           </a-col>
         </a-row>

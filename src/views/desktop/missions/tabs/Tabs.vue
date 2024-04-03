@@ -19,22 +19,19 @@
         </a-tooltip>
       </template>
     </ul>
+    <div class="text-white">
+      {{ $t('hi') }}
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import folder from '@/assets/logo.png';
 import { closeWindow, currentWindow, toTop, windowList } from '@/global/config/window';
 import type { SystemWindow } from '@/types/system';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import { tabContextmenu } from './data';
 
 const tabRef = ref();
-const getIcon = (id: string) => {
-  const href = new URL(`../../../../assets/system/${id.toLocaleLowerCase()}.png`, import.meta.url)
-    .href;
-  return !href.includes('undefined') ? href : folder;
-};
 
 const selectItem = (item: SystemWindow) => {
   currentWindow.value = item;
