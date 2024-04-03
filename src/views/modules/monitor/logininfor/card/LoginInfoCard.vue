@@ -58,7 +58,6 @@ ul.list {
     text-align: center;
     padding: 8px 0;
     color: #999;
-    font-size: 12px;
   }
 }
 .log-card {

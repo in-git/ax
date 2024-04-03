@@ -77,7 +77,9 @@ nextTick(() => {
     .title {
       line-height: 16px;
       color: black;
+      white-space: nowrap;
       overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
   li.active {

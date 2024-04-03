@@ -84,12 +84,12 @@ watch(
   flex-direction: column;
   gap: 4px;
   border: 1px solid #eee;
-  border-radius: 4px;
+  border-radius: var(--radius);
   padding: 8px !important;
   li {
     line-height: 28px;
     padding: 0 8px;
-    border-radius: 4px;
+    border-radius: var(--radius);
     cursor: pointer;
     &:hover {
       background: var(--primary);

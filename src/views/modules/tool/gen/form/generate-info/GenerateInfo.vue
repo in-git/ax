@@ -54,10 +54,9 @@ import { codeFormData } from '../../data/form';
 const menuData = ref();
 const getMenuList = async () => {
   const { data } = await menuList();
-  if(data.data){
-     menuData.value =convertToTree(data.data) ;
+  if (data.data) {
+    menuData.value = convertToTree(data.data);
   }
- 
 };
 
 onMounted(() => {

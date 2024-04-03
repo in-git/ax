@@ -98,6 +98,11 @@ $hh: 42px;
   border: none;
   box-shadow: 0 0 4px #a0a0a065;
   overflow: hidden;
+
+  overflow: hidden;
+}
+.drv-draggable {
+  border-radius: var(--radius) !important;
 }
 .drag-header {
   cursor: move;
@@ -113,7 +118,7 @@ $hh: 42px;
 %icon {
   width: 40px;
   height: 40px;
-  border-radius: 0;
+  border-radius: var(--radius);
 
   &:hover {
     background: #dddddd70;

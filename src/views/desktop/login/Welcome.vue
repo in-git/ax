@@ -47,7 +47,6 @@ import posterImg from './assets/welcome.webp';
     padding-left: 20px;
     li {
       margin-bottom: 12px;
-      font-size: 14px;
     }
     span {
       font-weight: bold;
@@ -57,9 +56,9 @@ import posterImg from './assets/welcome.webp';
     overflow: hidden;
     width: 100%;
     height: 100%;
-    border-radius: 12px;
+    border-radius: var(--radius);
     video {
-      border-radius: 12px;
+      border-radius: var(--radius);
       width: 100%;
       height: 100%;
       object-fit: cover;

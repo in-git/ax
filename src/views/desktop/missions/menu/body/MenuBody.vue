@@ -29,13 +29,13 @@ import { functionList } from './data';
     li {
       width: 84px;
       padding: 8px 0;
-      border-radius: 2px;
+      border-radius: var(--radius);
       &:hover {
         background: #333;
       }
       cursor: pointer;
       img {
-        border-radius: 8px;
+        border-radius: var(--radius);
       }
     }
   }

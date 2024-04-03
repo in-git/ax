@@ -80,7 +80,7 @@ $hh: 42px;
 .drv {
   border: 1px solid #eee;
   box-shadow: 0 0 25px #a0a0a065;
-  border-radius: 4px;
+  border-radius: var(--radius);
   overflow: hidden;
 }
 .page-setting {

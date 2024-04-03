@@ -16,7 +16,7 @@ import { showNotice } from '../../apps/notice/data';
   width: 40px;
   color: white;
   height: 40px;
-  border-radius: 0;
+  border-radius: var(--radius);
   &:hover {
     background: #727281c5;
     color: white !important;

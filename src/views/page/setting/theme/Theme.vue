@@ -64,7 +64,7 @@ const setTheme = () => {
     li {
       width: 24px;
       height: 24px;
-      border-radius: 12px;
+      border-radius: var(--radius);
       border: 2px solid #c2c2c2;
       cursor: pointer;
       color: white;

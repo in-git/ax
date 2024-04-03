@@ -54,7 +54,8 @@ import Desktop from './views/desktop/Desktop.vue';
 const locale = ref(en_US);
 
 const store = usePageStore();
-
+/* 初始化请求 */
+setAxios();
 /*  */
 nextTick(async () => {
   /* 加载本地图标，与下面组件配合使用 */
@@ -63,14 +64,12 @@ nextTick(async () => {
   loadSystemComponents();
   /* 初始化字体 */
   loadGoogleFont();
-  /* 初始化请求 */
-  setAxios();
+
   /* 初始化事件 */
   setEvent();
   /* 设置主题变量 */
   setCssVar();
 });
-
 const theme = computed(() => {
   return {
     token: {

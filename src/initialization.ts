@@ -63,6 +63,8 @@ export const setEvent = () => {
 /* 设置主题变量 */
 export const setCssVar = () => {
   const store = usePageStore();
-  const cssVar = useCssVar('--font-size', document.body);
-  cssVar.value = `${store.$state.theme.fontSize}px`;
+  const fontSize = useCssVar('--font-size', document.body);
+  const radius = useCssVar('--radius', document.body);
+  fontSize.value = `${store.$state.theme.fontSize}px`;
+  radius.value = `${store.$state.theme.borderRadius}px`;
 };
