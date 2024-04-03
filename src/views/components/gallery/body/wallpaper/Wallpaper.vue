@@ -1,14 +1,16 @@
 <template>
   <div class="wallpaper">
-    <div class="tags">
-      <a-tabs>
-        <a-tab-pane :key="item.cid" :tab="item.title" v-for="item in tags"></a-tab-pane>
-      </a-tabs>
-    </div>
-    <a-spin wrapperClassName="w-100 h-100" :spinning="loading">
+    <div></div>
+    <a-spin wrapperClassName="w-100 h-100" :spinning="galleryConfig.loading">
       <div class="images">
         <ul>
-          <li v-for="(item, key) in images" :key="key" @click="selectPhoto(item.download_url)">
+          <li
+            class="li-background"
+            v-for="(item, key) in galleryConfig.data"
+            :key="key"
+            @click="selectPhoto(item.download_url)"
+            :class="{ active: currentPhoto === item.download_url }"
+          >
             <img class="w-100 h-100" :preview="false" :src="item.download_url" />
           </li>
         </ul>
@@ -18,59 +20,14 @@
 </template>
 
 <script setup lang="ts">
-import { type MockWallpaperTag } from '@/api/mock/wallpaper/types';
-import { mockTags } from '@/api/mock/wallpaper/wallpaper';
-import { setBackground } from '@/store/page/utils';
-import axios from 'axios';
-interface PicsumPhoto {
-  id: string;
-  author: string;
-  width: number;
-  height: number;
-  url: string;
-  download_url: string;
-}
-
-const loading = ref();
-const http = axios.create({
-  baseURL: '',
-});
-
-const getPhotos = async () => {
-  const { data } = await http.get<PicsumPhoto[]>(`https://picsum.photos/v2/list?page=2&limit=30`);
-  return data;
-};
-const images = ref<PicsumPhoto[]>([]);
-
-const tags = ref<MockWallpaperTag[]>([]);
-
-const getTags = async () => {
-  const { data } = await mockTags();
-  if (data.data) {
-    tags.value = data.data;
-  }
-};
+import { currentPhoto, galleryConfig, getPhotos } from './data';
 
 const selectPhoto = (src: string) => {
-  setBackground({
-    type: 'image',
-    src,
-  });
-};
-const getWallpaper = async () => {
-  loading.value = true;
-  const data = await getPhotos();
-  console.log(data);
-
-  if (data) {
-    images.value = data;
-  }
-  loading.value = false;
+  currentPhoto.value = src;
 };
 
 onMounted(async () => {
-  getWallpaper();
-  getTags();
+  getPhotos();
 });
 </script>
 
@@ -93,6 +50,10 @@ onMounted(async () => {
     img {
       object-fit: contain;
     }
+    background: url('../../assets/loading.png');
+    background-size: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
   }
   .tags {
     position: sticky;
@@ -100,6 +61,9 @@ onMounted(async () => {
     background: white;
     padding: 4px;
     z-index: 10;
+  }
+  .active {
+    border: 2px solid var(--primary);
   }
 }
 </style>

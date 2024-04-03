@@ -10,14 +10,17 @@
 </template>
 
 <script setup lang="ts">
+import { useEventBus } from '@vueuse/core';
 import GalleryBody from './body/GalleryBody.vue';
 import GalleryNav from './nav/GalleryNav.vue';
 
+const bus = useEventBus('gallery');
 const show = ref(false);
 const emit = defineEmits(['update:visible']);
 const props = defineProps<{
   visible: boolean;
 }>();
+
 watch(
   props,
   () => {
@@ -28,8 +31,12 @@ watch(
   },
 );
 const close = () => {
-  emit('update:visible', show.value);
+  emit('update:visible', false);
 };
+
+bus.on(() => {
+  close();
+});
 </script>
 
 <style lang="scss" scoped>
