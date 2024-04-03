@@ -1,6 +1,5 @@
 <template>
   <div>
-    <a-page-header title="网络设置" class="px-0 py-8" />
     <div>
       <div class="mb-12 text-999">选择服务器</div>
       <a-card :body-style="{ maxHeight: '400px', overflowY: 'auto' }">

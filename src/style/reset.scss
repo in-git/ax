@@ -19,7 +19,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   overflow: hidden;
-  font-size: 12px;
+  font-size: var(--font-size);
 
   *::-webkit-scrollbar {
     width: 8px;

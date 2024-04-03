@@ -33,6 +33,7 @@ nextTick(() => {
   left: 0;
   width: 550px;
   z-index: 1000;
-  background: #07071bef;
+  background: #07071bde;
+  backdrop-filter: blur(4px);
 }
 </style>

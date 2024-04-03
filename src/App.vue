@@ -79,7 +79,8 @@ const theme = computed(() => {
   return {
     token: {
       colorPrimary: store.$state.theme.theme,
-      borderRadius: 4,
+      borderRadius: store.$state.theme.borderRadius,
+      fontSize: store.$state.theme.fontSize,
     },
   };
 });

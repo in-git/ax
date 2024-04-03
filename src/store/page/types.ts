@@ -15,7 +15,8 @@ export interface Developer {
 }
 export interface Theme {
   theme: string;
-  locale: string;
+  fontSize: number;
+  borderRadius: number;
   direction: 'ltr' | 'rtl';
   wave: boolean;
   virtual: boolean;
@@ -32,6 +33,7 @@ export interface PageSettings {
   config: {
     locale: string;
   };
+  locale: string;
   desktop: {
     background: DesktopBackground;
   };

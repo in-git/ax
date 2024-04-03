@@ -17,13 +17,15 @@ const usePageStore = defineStore('page', {
   state: (): PageSettings => ({
     theme: {
       theme: '#64cbff',
-      locale: 'en',
       size: 'small',
       direction: 'ltr',
       wave: true,
       virtual: true,
       autoInsertSpaceInButton: true,
+      fontSize: 14,
+      borderRadius: 4,
     },
+    locale: 'en',
     developer: {
       baseURL: 'http://150.158.14.110:8081/',
       urlSelection: baseUrlOptions,

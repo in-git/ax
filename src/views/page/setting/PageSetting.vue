@@ -27,8 +27,9 @@
 </template>
 
 <script setup lang="ts">
-import { BgColorsOutlined, GlobalOutlined } from '@ant-design/icons-vue';
+import { BgColorsOutlined, DesktopOutlined, GlobalOutlined } from '@ant-design/icons-vue';
 import { nanoid } from 'nanoid';
+import DesktopSetting from './desktop/DesktopSetting.vue';
 import Net from './system/net/Net.vue';
 import ThemeVue from './theme/Theme.vue';
 
@@ -44,6 +45,12 @@ const nav: Nav[] = [
     icon: markRaw(GlobalOutlined),
     id: nanoid(),
     component: markRaw(Net),
+  },
+  {
+    title: '桌面设置',
+    icon: markRaw(DesktopOutlined),
+    id: nanoid(),
+    component: markRaw(DesktopSetting),
   },
 ];
 
@@ -89,7 +96,6 @@ $hh: 42px;
           padding: 0 var(--padding);
           cursor: pointer;
           user-select: none;
-          font-size: 14px;
           color: #999;
           &:hover {
             background: #eee;

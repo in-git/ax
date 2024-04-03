@@ -1,5 +1,5 @@
 <template>
-  <div class="system-net px-8">
+  <PageContainer title="网络设置">
     <BaseURL />
     <a-card class="mt-12">
       <a-flex justify="space-between">
@@ -18,12 +18,13 @@
       </a-flex>
       <a-button type="primary" @click="test">测试</a-button>
     </a-card>
-  </div>
+  </PageContainer>
 </template>
 
 <script setup lang="ts">
 import { testNode } from '@/api/node/test';
 import usePageStore from '@/store/page';
+import PageContainer from '@/views/page/components/PageContainer.vue';
 import type { InfoCircleFilled } from '@ant-design/icons-vue';
 import BaseURL from './base-url/BaseURL.vue';
 import { timeoutOptions } from './data';

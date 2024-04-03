@@ -47,6 +47,8 @@ declare module 'vue' {
     ARow: typeof import('ant-design-vue/es')['Row']
     ASegmented: typeof import('ant-design-vue/es')['Segmented']
     ASelect: typeof import('ant-design-vue/es')['Select']
+    ASkeleton: typeof import('ant-design-vue/es')['Skeleton']
+    ASkeletonInput: typeof import('ant-design-vue/es')['SkeletonInput']
     ASlider: typeof import('ant-design-vue/es')['Slider']
     ASpace: typeof import('ant-design-vue/es')['Space']
     ASpin: typeof import('ant-design-vue/es')['Spin']

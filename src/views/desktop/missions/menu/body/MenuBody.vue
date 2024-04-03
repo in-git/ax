@@ -9,12 +9,11 @@
           v-for="(item, key) in functionList"
           :key="key"
         >
-          <img :src="item.icon" :draggable="false" width="48" height="48" />
+          <img :src="item.icon" :draggable="false" width="36" height="36" />
           <div class="mt-8">{{ item.title }}</div>
         </li>
       </ul>
     </div>
-    <div></div>
   </div>
 </template>
 

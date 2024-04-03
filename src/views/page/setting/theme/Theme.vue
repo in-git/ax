@@ -1,7 +1,6 @@
 <template>
-  <div class="theme">
-    <a-page-header title="设置主题颜色" class="px-8 py-8" />
-    <a-space direction="vertical" class="w-100 px-8">
+  <PageContainer title="外观设置" class="theme">
+    <a-space direction="vertical" class="w-100">
       <a-card>
         <div class="color-palette">
           <ul class="flex gc-4">
@@ -25,77 +24,19 @@
         </div>
       </a-card>
 
-      <div class="px-12">内置属性</div>
-      <a-card>
-        <a-space class="w-100" direction="vertical" :size="16">
-          <a-flex class="w-100" justify="space-between">
-            <div class="flex align-center">
-              <div>文字方向</div>
-              <div class="desc">反转文字显示</div>
-            </div>
-            <div>
-              <a-radio-group v-model:value="store.$state.theme.direction">
-                <a-radio value="ltr">LTR</a-radio>
-                <a-radio value="rtl">RTL</a-radio>
-              </a-radio-group>
-            </div>
-          </a-flex>
-          <a-flex class="w-100" justify="space-between">
-            <div>控件大小</div>
-            <a-radio-group v-model:value="store.$state.theme.size">
-              <a-radio-button value="small">小</a-radio-button>
-              <a-radio-button value="medium">中</a-radio-button>
-              <a-radio-button value="large">大</a-radio-button>
-            </a-radio-group>
-          </a-flex>
-          <a-flex class="w-100" justify="space-between">
-            <div class="flex">
-              水波纹特效
-              <div class="desc">按钮上的水波纹特效</div>
-            </div>
-            <div class="text-right">
-              <a-switch
-                v-model:checked="store.$state.theme.wave"
-                checked-children="开"
-                un-checked-children="关"
-              ></a-switch>
-            </div>
-          </a-flex>
-
-          <a-flex class="w-100" justify="space-between">
-            虚拟滚动
-            <a-switch
-              v-model:checked="store.$state.theme.virtual"
-              checked-children="开"
-              un-checked-children="关"
-            ></a-switch>
-          </a-flex>
-          <a-flex class="w-100" justify="space-between">
-            <div>移除按钮中的空格</div>
-            <a-flex :gap="8" :align="'center'">
-              <a-switch
-                v-model:checked="store.$state.theme.autoInsertSpaceInButton"
-                checked-children="开"
-                un-checked-children="关"
-              ></a-switch>
-              <a-divider type="vertical"></a-divider>
-              <a-tooltip title="仅当只有两个字的时候生效">
-                <a-button>提交</a-button>
-              </a-tooltip>
-            </a-flex>
-          </a-flex>
-        </a-space>
-      </a-card>
+      <ThemeControl />
+      <ThemeGlobal />
     </a-space>
-  </div>
+  </PageContainer>
 </template>
 
 <script setup lang="ts">
 import usePageStore from '@/store/page';
 import { useCssVar } from '@vueuse/core';
-
+import PageContainer from '../../components/PageContainer.vue';
+import ThemeControl from './controls/ThemeControl.vue';
+import ThemeGlobal from './global/ThemeGlobal.vue';
 const colorList = ['#AD2AFD', '#FDB52A', '#09B678', '#3785FA', '#E82626', '#C6C6C6', '#131313'];
-
 const current = ref('#3785FA');
 
 const store = usePageStore();
@@ -116,7 +57,9 @@ const setTheme = () => {
 <style lang="scss" scoped>
 .theme {
   background: #f1f0f5;
+  overflow-y: auto;
   height: 100%;
+  padding-bottom: 12px;
   .color-palette {
     li {
       width: 24px;
