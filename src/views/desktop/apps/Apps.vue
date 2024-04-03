@@ -25,7 +25,6 @@
     <Loading v-else></Loading>
     <NoticeVue></NoticeVue>
   </div>
-  <BackgroundVue />
 </template>
 
 <script setup lang="ts">
@@ -33,7 +32,6 @@ import type { Routers } from '@/api/modules/system/user/types';
 import logoPng from '@/assets/logo.png';
 import Loading from '@/components/loading/Loading.vue';
 import { useSortable } from '@vueuse/integrations/useSortable';
-import BackgroundVue from './background/Background.vue';
 import { appContextMenu, openContextMenu } from './contextmenu';
 import { getIconByName, getUserRouters, openApp } from './data';
 import NoticeVue from './notice/Notice.vue';

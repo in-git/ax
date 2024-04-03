@@ -1,13 +1,8 @@
 .apps {
 	$app-width: 84px;
-	height: calc(100vh - 48px * 2);
 	z-index: 10;
-
 	ul {
 		display: flex;
-		// display: grid;
-		// grid-template-columns: repeat(2, $app-width);
-		// grid-template-rows: repeat(auto-fit, 84px);
 		place-items: start;
 		gap: 8px;
 		flex-direction: column;
@@ -42,16 +37,16 @@
 		}
 		.title {
 			line-height: 16px;
-			color: #aac4f3;
+			color: #8dacb4;
 			overflow: hidden;
-			text-shadow: 0 0 1px #bdbaba;
-			mix-blend-mode: difference;
+			text-shadow: 1px 1px 1px #0c0c0c;
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
 			width: 100%;
 			padding: 0 4px;
 			font-size: 12px;
+			mix-blend-mode: difference;
 		}
 	}
 	li.selected {

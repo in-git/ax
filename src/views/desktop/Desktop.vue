@@ -1,21 +1,23 @@
 <template>
-  <div class="flex flex-col desktop">
-    <template v-if="tokens">
-      <Toolbar />
-      <Apps />
-      <Missions />
-    </template>
-    <Login v-else />
-  </div>
+  <Background>
+    <div class="flex flex-col desktop">
+      <template v-if="tokens">
+        <Toolbar />
+        <Apps />
+        <Missions />
+      </template>
+      <Login v-else />
+    </div>
+  </Background>
 </template>
 
 <script setup lang="ts">
 import useUserStore from '@/store/user';
 import Apps from './apps/Apps.vue';
+import Background from './background/Background.vue';
 import Login from './login/Login.vue';
 import Missions from './missions/Missions.vue';
 import Toolbar from './toolbar/Toolbar.vue';
-
 const store = useUserStore();
 
 const tokens = computed(() => {

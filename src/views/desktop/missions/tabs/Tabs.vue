@@ -19,9 +19,6 @@
         </a-tooltip>
       </template>
     </ul>
-    <div class="text-white">
-      {{ $t('hi') }}
-    </div>
   </div>
 </template>
 

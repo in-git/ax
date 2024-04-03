@@ -1,4 +1,5 @@
 import avatarPng from '../assets/avatar.png';
+import iconPng from '../assets/icon.png';
 import wallpaperPng from '../assets/wallpaper.png';
 /*  */
 import WallpaperVue from '../body/wallpaper/Wallpaper.vue';
@@ -21,6 +22,12 @@ export const galleryNavList: GalleryNav[] = [
     icon: avatarPng,
     component: markRaw(WallpaperVue),
     id: 'avatar',
+  },
+  {
+    title: '图标',
+    icon: iconPng,
+    component: markRaw(WallpaperVue),
+    id: 'icon',
   },
 ];
 

@@ -22,14 +22,6 @@
               <ReloadOutlined />
             </a-button>
           </a-tooltip>
-
-          <a-tooltip title="Delete ">
-            <a-button @click="delMenu()" danger :disabled="menuKeys.length === 0">
-              <DeleteOutlined />
-            </a-button>
-          </a-tooltip>
-        </div>
-        <div class="flex gc-4 align-center">
           <a-input-search
             allow-clear
             v-model:value="menuQuery.menuName"
@@ -37,13 +29,13 @@
             style="width: 200px"
             @search="loadMenuData"
           ></a-input-search>
-          <a-divider type="vertical" />
-          <a-segmented
-            :options="statusOptions"
-            @change="loadMenuData"
-            v-model:value="menuQuery.status"
-            placeholder="Status"
-          ></a-segmented>
+        </div>
+        <div class="flex gc-4 align-center">
+          <a-tooltip title="Delete ">
+            <a-button @click="delMenu()" danger :disabled="menuKeys.length === 0">
+              <DeleteOutlined />
+            </a-button>
+          </a-tooltip>
         </div>
       </div>
     </a-card>
@@ -51,7 +43,6 @@
 </template>
 
 <script setup lang="ts">
-import { statusOptions } from '@/global/options/system';
 import { DeleteOutlined, EditOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { createMenuData, delMenu, editMenu, loadMenuData } from '../../data/curd';
 import { menuKeys, menuQuery } from '../../data/data';

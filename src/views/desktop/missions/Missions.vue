@@ -27,10 +27,11 @@ const openMenu = () => {
   background: #222136;
   background: linear-gradient(
     90deg,
-    rgba(34, 33, 54, 1) 0%,
-    rgba(7, 7, 68, 1) 41%,
-    rgba(0, 114, 138, 1) 100%
+    rgba(34, 33, 54, 0.459) 0%,
+    rgba(7, 7, 68, 0.555) 41%,
+    rgba(0, 115, 138, 0.438) 100%
   );
+  backdrop-filter: blur(2px);
   border-top: 1px solid #ddd;
 
   z-index: 100;
