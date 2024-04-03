@@ -19,6 +19,7 @@
           <div>圆角</div>
           <div>
             <a-select
+              @change="setCssVar"
               v-model:value="pageStore.$state.theme.borderRadius"
               style="width: 120px"
               :options="borderRadiusOptions"

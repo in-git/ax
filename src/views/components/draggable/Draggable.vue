@@ -118,7 +118,7 @@ $hh: 42px;
 %icon {
   width: 40px;
   height: 40px;
-  border-radius: var(--radius);
+  border-radius: 0;
 
   &:hover {
     background: #dddddd70;
