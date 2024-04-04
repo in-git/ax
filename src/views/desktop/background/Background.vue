@@ -14,7 +14,7 @@
 import usePageStore from '@/store/page';
 import type { CSSProperties } from 'vue';
 import VideoBackground from 'vue-responsive-video-background-player';
-import defaultBackground from '../assets/background.png';
+import defaultBackground from '../assets/background.webp';
 
 const pageStore = usePageStore();
 const style = computed((): CSSProperties => {

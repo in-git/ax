@@ -66,4 +66,3 @@ const test = async () => {
   }
 }
 </style>
-@/api/node/test

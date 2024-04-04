@@ -17,7 +17,7 @@
             <img :src="icon" width="20" height="20" v-if="icon" />
           </div>
 
-          <div class="text-14">{{ title }}</div>
+          <div>{{ title }}</div>
         </div>
         <div class="flex">
           <div class="system-icon minus" @click="hidden">
@@ -69,8 +69,9 @@ const close = () => {
   emit('close', props.id);
 };
 
-const x = ref(window.innerWidth / 2 - props.w / 2 + windowList.value.length * 8);
-const y = ref(window.innerHeight / 2 - props.h / 2 + windowList.value.length * 8);
+const offset = windowList.value.length * 40;
+const x = ref(window.innerWidth / 2 - props.w / 2 + offset - 32);
+const y = ref(window.innerHeight / 2 - props.h / 2 + offset);
 const maxHeight = window.innerHeight;
 
 const hidden = () => {

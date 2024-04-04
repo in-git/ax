@@ -1,5 +1,5 @@
 <template>
-  <a-form size="middle" :wrapper-col="{ span: 24 }" :model="noticeForm">
+  <a-form size="middle" :wrapper-col="{ span: 24 }" :model="noticeForm" @finish="submit">
     <SystemModal v-model:visible="showNoticeForm" title="Notice config">
       <div class="notice-form p-8 h-100">
         <div class="border-bottom">
@@ -46,12 +46,25 @@
 </template>
 
 <script setup lang="ts">
+import { createNotice, updateNotice } from '@/api/modules/system/notice/notice';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { statusOptions } from '@/global/options/system';
+import { response } from '@/utils/table/table';
 import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import { noticeList } from '../data/curd';
 import { noticeForm, showNoticeForm } from '../data/form';
 import { noticeTypeOptions } from '../data/options';
+
+const submit = async () => {
+  if (noticeForm.value.noticeId) {
+    await response(updateNotice, noticeForm.value);
+  } else {
+    await response(createNotice, noticeForm.value);
+  }
+  await noticeList();
+  showNoticeForm.value = false;
+};
 </script>
 
 <style lang="scss" scoped>

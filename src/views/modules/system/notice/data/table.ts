@@ -1,6 +1,10 @@
 import type { IQuery, TableConfig } from '@/api/config/types';
+import { deleteNotice } from '@/api/modules/system/notice/notice';
+import { response } from '@/utils/table/table';
 import { DeleteOutlined } from '@ant-design/icons-vue';
 import type { ItemType } from 'ant-design-vue';
+import { noticeList } from './curd';
+import { noticeForm } from './form';
 
 export const noticeTable = ref<TableConfig>({
   rowKey: 'noticeId',
@@ -20,5 +24,9 @@ export const operationList: ItemType[] = [
     label: '删除',
     key: 'delete',
     icon: h(DeleteOutlined),
+    onClick() {
+      response(deleteNotice, noticeForm.value.noticeId);
+      noticeList();
+    },
   },
 ];

@@ -17,7 +17,7 @@
             <a-divider type="vertical" class="h-100" :style="{ color: store.$state.theme.theme }">
               <label class="flex flex-s gc-4">
                 自定义
-                <input type="color" v-model="store.$state.theme.theme" @change="setTheme" />
+                <input type="color" v-model.lazy="store.$state.theme.theme" @change="setTheme" />
               </label>
             </a-divider>
           </ul>

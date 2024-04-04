@@ -5,8 +5,13 @@
         <a-button type="primary" @click="createPost">
           <PlusOutlined />
         </a-button>
+
         <a-button :disabled="postKeys.length !== 1" @click="editPost()">
           <EditOutlined />
+        </a-button>
+
+        <a-button @click="loadPostList">
+          <ReloadOutlined />
         </a-button>
       </div>
 

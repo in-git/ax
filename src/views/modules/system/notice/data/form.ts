@@ -7,9 +7,9 @@ const form: SystemNotice = {
   remark: '',
   noticeId: 0,
   noticeTitle: '',
-  noticeType: '',
+  noticeType: '1',
   noticeContent: '',
-  status: '',
+  status: '0',
 };
 
 export const noticeForm = ref<SystemNotice>({

@@ -6,7 +6,7 @@ interface SystemNotice {
   remark: string;
   noticeId: number;
   noticeTitle: string;
-  noticeType: string;
+  noticeType: '1' | '2';
   noticeContent: string;
   status: string;
 }

@@ -10,8 +10,12 @@ export const noticeList = async () => {
   noticeQuery.value.total = data.total;
 };
 
-export const editNotice = async (id: number) => {
+export const editNotice = async (item: SystemNotice, id: number) => {
   let targetId = id ? id : noticeKeys.value[0];
+  noticeForm.value = item;
+
+  console.log(item.noticeId);
+
   const { data } = await getNotice(targetId);
   if (data.data) {
     noticeForm.value = data.data;

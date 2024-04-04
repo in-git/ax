@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-dropdown-button @click="onClick" trigger="click" v-bind="$attrs">
+    <a-dropdown-button @click="onClick" trigger="click" v-bind="$attrs" @open-change="openChange">
       <EditOutlined />
       <template #overlay>
         <a-menu :items="items" @select="onSelect"></a-menu>
@@ -12,12 +12,14 @@
 <script setup lang="ts">
 import type { SelectInfo } from 'ant-design-vue/es/menu/src/interface';
 
-const emit = defineEmits(['edit']);
-
+const emit = defineEmits(['edit', 'openChange']);
+const openChange = () => {
+  emit('openChange');
+};
 const onClick = () => {
   emit('edit');
 };
-const props = defineProps<{ items: any }>();
+defineProps<{ items: any }>();
 
 const onSelect = (info: SelectInfo) => {
   console.log(info.item);
