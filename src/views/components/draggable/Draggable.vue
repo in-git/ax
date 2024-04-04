@@ -99,8 +99,6 @@ $hh: 42px;
   border: none;
   box-shadow: 0 0 4px #a0a0a065;
   overflow: hidden;
-
-  overflow: hidden;
 }
 .drv-draggable {
   border-radius: var(--radius) !important;

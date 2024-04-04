@@ -86,5 +86,8 @@ nextTick(() => {
     border: 1px solid #8db1e4;
     background: #8db1e423;
   }
+  .system-head {
+    background-color: #f8f8f8;
+  }
 }
 </style>
