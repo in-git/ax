@@ -12,7 +12,7 @@
             ]"
             @click="selectItem(item)"
           >
-            <img :draggable="false" :src="item.icon" />
+            <img :draggable="false" :src="item.icon" @error="onError(item)" />
             <div class="title px-4">{{ item.title }}</div>
             <close-outlined class="close" @click="closeWindow(item.id || '')" />
           </li>
@@ -23,11 +23,11 @@
 </template>
 
 <script setup lang="ts">
+import logoPng from '@/assets/logo.png';
 import { closeWindow, currentWindow, toTop, windowList } from '@/global/config/window';
 import type { SystemWindow } from '@/types/system';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import { tabContextmenu } from './data';
-
 const tabRef = ref();
 
 const selectItem = (item: SystemWindow) => {
@@ -35,11 +35,15 @@ const selectItem = (item: SystemWindow) => {
   toTop(item.id!);
   item.hidden = !item.hidden;
 };
+
 nextTick(() => {
   useSortable(tabRef, windowList, {
     animation: 200,
   });
 });
+const onError = (item: SystemWindow) => {
+  item.icon = logoPng;
+};
 </script>
 
 <style lang="scss" scoped>

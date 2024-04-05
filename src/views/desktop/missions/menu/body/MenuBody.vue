@@ -14,35 +14,16 @@
         </li>
       </ul>
     </div>
+
+    <Nodejs></Nodejs>
   </div>
 </template>
 
 <script setup lang="ts">
 import { functionList } from './data';
+import Nodejs from './nodejs/Nodejs.vue';
 </script>
 
 <style lang="scss" scoped>
-.menu-body {
-  color: white;
-  ul {
-    display: flex;
-    li {
-      width: 84px;
-      padding: 8px 0;
-      border-radius: var(--radius);
-      &:hover {
-        background: #333;
-      }
-      cursor: pointer;
-      img {
-        border-radius: var(--radius);
-      }
-    }
-  }
-  .title {
-    line-height: 42px;
-    padding: 0 12px;
-    border-bottom: 1px solid #999;
-  }
-}
+@import './body.scss';
 </style>
