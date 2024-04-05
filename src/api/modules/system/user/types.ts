@@ -63,32 +63,12 @@ export interface UserProfileData {
   delFlag: string;
   loginIp: string;
   loginDate: string;
-  dept?: Dept;
+  dept?: SystemDept;
   roles: Role[];
   roleIds: number[];
   postIds: number[];
   roleId?: any;
   admin: boolean;
-}
-
-export interface Dept {
-  createBy?: any;
-  createTime?: any;
-  updateBy?: any;
-  updateTime?: any;
-  remark?: any;
-  deptId: number;
-  parentId: number;
-  ancestors: string;
-  deptName: string;
-  orderNum: number;
-  leader: string;
-  phone?: any;
-  email?: any;
-  status: string;
-  delFlag?: any;
-  parentName?: any;
-  children: any[];
 }
 
 export interface UserDept {

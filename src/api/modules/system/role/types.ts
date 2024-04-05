@@ -1,5 +1,3 @@
-import type { Dept } from '../user/types';
-
 export interface Role {
   createBy?: any;
   createTime?: any;
@@ -24,6 +22,6 @@ export interface Role {
 export interface RoleDeptTreeData {
   msg: string;
   code: number;
-  depts: Dept[];
+  depts: SystemDept[];
   checkedKeys: number[];
 }

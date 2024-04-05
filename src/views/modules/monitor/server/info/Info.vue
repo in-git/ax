@@ -30,12 +30,12 @@ nextTick(() => {
     targetIsVisible.value = isIntersecting;
     if (isIntersecting) {
       clearFlag = setInterval(() => {
-        if (index < raw.value.length - 2) {
+        if (index <= raw.value.length - 1) {
+          text.value += raw.value[index];
           index++;
         } else {
           clearInterval(clearFlag);
         }
-        text.value += raw.value[index];
       }, 50);
     } else {
       index = 0;

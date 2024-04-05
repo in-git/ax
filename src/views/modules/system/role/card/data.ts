@@ -1,12 +1,11 @@
 import type { IQuery } from '@/api/config/types';
 import type { Role } from '@/api/modules/system/role/types';
-import type { Dept } from '@/api/modules/system/user/types';
 import type { TreeNode } from '@/types/system';
 
 interface RoleData {
   data: Role[];
   roleMenus: TreeNode[];
-  deptList: Dept[];
+  deptList: SystemDept[];
 }
 export const roleSpinning = ref(true);
 export const roleData = ref<RoleData>({
