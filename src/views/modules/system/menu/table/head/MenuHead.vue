@@ -11,13 +11,13 @@
               </template>
             </a-button>
           </a-tooltip>
-          <a-tooltip title="Edit">
+          <a-tooltip title="编辑">
             <a-button @click="edit" :disabled="menuKeys.length === 0">
               <EditOutlined />
             </a-button>
           </a-tooltip>
 
-          <a-tooltip title="Reload">
+          <a-tooltip title="重新加载">
             <a-button @click="loadMenuData">
               <ReloadOutlined />
             </a-button>
@@ -25,7 +25,7 @@
           <a-input-search
             allow-clear
             v-model:value="menuQuery.menuName"
-            placeholder="Please enter menu name"
+            placeholder="请输入菜单名"
             style="width: 200px"
             @search="loadMenuData"
           ></a-input-search>
@@ -55,4 +55,3 @@ const create = () => {
 </script>
 
 <style lang="scss" scoped></style>
-../../data/data ../../data/curd

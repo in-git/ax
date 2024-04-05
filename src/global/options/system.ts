@@ -1,10 +1,10 @@
 export const statusOptions = [
   {
-    label: 'Normal',
+    label: '启用',
     value: '0',
   },
   {
-    label: 'Disabled',
+    label: '禁用',
     value: '1',
   },
 ];
@@ -30,11 +30,11 @@ export const visibleOptions = [
 ];
 export const sexOptions = [
   {
-    label: 'Boy',
+    label: '男',
     value: '0',
   },
   {
-    label: 'Girl',
+    label: '女',
     value: '1',
   },
 ];

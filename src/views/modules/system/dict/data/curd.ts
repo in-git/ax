@@ -1,6 +1,6 @@
 import { deleteDict, listDict, selectDict } from '@/api/modules/system/dict/dict';
 import { response } from '@/utils/table/table';
-import { dictForm, editDictConfig, showDictForm } from './form';
+import { dictForm, editDictConfig, resetDictForm, showDictForm } from './form';
 import { dictKeys, dictQuery, dictTable } from './table';
 
 export const dictList = async () => {
@@ -29,4 +29,8 @@ export const dictDelete = async (id?: number) => {
 export const selectDictConfig = (dictType: string) => {
   editDictConfig.value = !editDictConfig.value;
   dictForm.value.dictType = dictType;
+};
+export const dictCreate = () => {
+  resetDictForm();
+  showDictForm.value = true;
 };

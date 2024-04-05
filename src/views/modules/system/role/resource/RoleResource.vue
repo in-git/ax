@@ -4,28 +4,28 @@
       w="90%"
       h="90%"
       v-model:visible="resourceModal"
-      title="Role config"
+      title="身份资源分配"
       @update:visible="resourceModal = false"
     >
       <div v-if="resourceModal && !!currentRole" class="h-100 flex flex-col">
         <a-card
-          title="Select Department"
+          title="配置"
           :body-style="{ maxHeight: '430px', overflowY: 'auto' }"
           class="flex-1 p-8"
         >
-          <a-form-item label="Role name" name="roleName" required>
+          <a-form-item label="身份名" name="roleName" required>
             <a-input v-model:value="currentRole.roleName" disabled />
           </a-form-item>
 
-          <a-form-item label="Role perms" name="roleKey" required>
+          <a-form-item label="身份标识" name="roleKey" required>
             <a-input v-model:value="currentRole.roleKey" disabled />
           </a-form-item>
 
-          <a-form-item label="Scoped" name="dataScope" required>
+          <a-form-item label="范围" name="dataScope" required>
             <a-select v-model:value="currentRole.dataScope" :options="scopedOptions" />
           </a-form-item>
 
-          <a-form-item name="deptIds" required label="Select department">
+          <a-form-item name="deptIds" required label="选择部门">
             <a-directory-tree
               :tree-data="treeData"
               :field-names="{

@@ -1,34 +1,13 @@
 import type { TableColumnProps } from 'ant-design-vue';
 
 const columns: TableColumnProps[] = [
-  {
-    title: 'Username',
-    dataIndex: 'userName',
-  },
-  {
-    title: 'Nickname',
-    dataIndex: 'nickName',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'email',
-  },
-  {
-    title: 'Login ip',
-    dataIndex: 'loginIp',
-  },
-  {
-    title: 'Phone',
-    dataIndex: 'phonenumber',
-  },
-  {
-    title: 'remark',
-    dataIndex: 'remark',
-  },
-  {
-    title: 'Operation',
-    dataIndex: 'operation',
-  },
+  { title: '用户名', dataIndex: 'userName' },
+  { title: '昵称', dataIndex: 'nickName' },
+  { title: '邮箱', dataIndex: 'email' },
+  { title: '登录IP', dataIndex: 'loginIp' },
+  { title: '电话', dataIndex: 'phonenumber' },
+  { title: '备注', dataIndex: 'remark' },
+  { title: '操作', dataIndex: 'operation' },
 ];
 
 export default columns;

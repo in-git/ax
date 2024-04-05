@@ -1,17 +1,17 @@
 <template>
   <div>
-    <TableHead title="User list">
+    <TableHead title="用户列表">
       <div class="flex-1">
         <div class="mb-8 flex gc-8 text-999">
           <div>
-            Username
+            用户名
             <a-input allow-clear style="width: 180px" v-model:value="userQuery.userName"></a-input>
           </div>
           <div>
-            Phone
+            手机号
             <a-input allow-clear style="width: 180px" v-model:value="userQuery.phonenumber" />
           </div>
-          <a-button type="primary" @click="loadUserData">Search</a-button>
+          <a-button type="primary" @click="loadUserData">搜索</a-button>
         </div>
         <div class="flex justify-between">
           <div class="flex gc-4">
@@ -40,7 +40,7 @@
           </div>
           <div class="flex gc-4 align-center">
             <a-segmented
-              :options="setOptions('Normal', 'Disabled')"
+              :options="setOptions('启用', '禁用')"
               v-model:value="userQuery.status"
               @change="loadUserData"
             ></a-segmented>

@@ -1,6 +1,6 @@
 <template>
   <a-form size="middle" :wrapper-col="{ span: 24 }" :model="noticeForm" @finish="submit">
-    <SystemModal v-model:visible="showNoticeForm" title="Notice config">
+    <SystemModal v-model:visible="showNoticeForm" title="通知配置">
       <div class="notice-form p-8 h-100">
         <div class="border-bottom">
           <a-form-item>

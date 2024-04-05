@@ -1,6 +1,6 @@
 <template>
   <div class="dept p-8">
-    <h3 class="text-16 text-bold mb-8">Department</h3>
+    <h3 class="text-16 text-bold mb-8">用户部门</h3>
     <Department allow-select @select="select" :id="userForm.deptId" />
   </div>
 </template>

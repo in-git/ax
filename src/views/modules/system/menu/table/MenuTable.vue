@@ -25,14 +25,10 @@
 </template>
 
 <script setup lang="ts">
-import type { SystemMenu } from '@/api/modules/system/menu/types';
 import { getLabel } from '@/utils/common/utils';
 import Operation from '@/views/components/table/Operation.vue';
 import SystemTable from '@/views/components/table/SystemTable.vue';
 import { CheckOutlined } from '@ant-design/icons-vue';
-import type { TablePaginationConfig } from 'ant-design-vue';
-import type { Key } from 'ant-design-vue/es/_util/type';
-import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { menuColumns } from '../data/column';
 import { editMenu, loadMenuData } from '../data/curd';
 import { menuItems, menuKeys, menuQuery, menuTableConfig } from '../data/data';
@@ -43,34 +39,6 @@ import MenuHead from './head/MenuHead.vue';
 onMounted(() => {
   loadMenuData();
 });
-
-const pageChange = (
-  pagination: TablePaginationConfig,
-  filters: Record<string, FilterValue>,
-  sorter: SorterResult<SystemMenu> | SorterResult<SystemMenu>[],
-) => {
-  menuQuery.value.pageNum = pagination.current!;
-  menuQuery.value.pageSize = pagination.pageSize!;
-  if (sorter instanceof Array) {
-    return;
-  }
-  if (sorter.columnKey) {
-    menuQuery.value.orderByColumn = `${sorter.columnKey}`;
-  }
-  loadMenuData();
-};
-
-const onChange = (keys: Key[]) => {
-  const lastValue = keys[keys.length - 1];
-  if (lastValue) menuKeys.value = [Number(lastValue)];
-};
-const customRow = (record: SystemMenu) => {
-  return {
-    onClick() {
-      menuKeys.value = [record.menuId];
-    },
-  };
-};
 </script>
 
 <style lang="scss" scoped>
@@ -82,4 +50,3 @@ const customRow = (record: SystemMenu) => {
   overflow-y: auto;
 }
 </style>
-../data/data ../data/curd ../data/column

@@ -1,5 +1,5 @@
 <template>
-  <SystemModal v-model:visible="showPostForm" title="Post config">
+  <SystemModal v-model:visible="showPostForm" title="岗位配置">
     <div class="p-12">
       <a-row>
         <a-col :span="12" :offset="6">
@@ -8,39 +8,32 @@
           </div>
 
           <a-form :model="postForm" layout="vertical" @finish="submit">
-            <a-form-item label="Post name" name="postName" required>
-              <a-input
-                v-model:value="postForm.postName"
-                placeholder="Please enter post name"
-              ></a-input>
+            <a-form-item label="岗位名称" name="postName" required>
+              <a-input v-model:value="postForm.postName" placeholder="请输入岗位名称"></a-input>
             </a-form-item>
-            <a-form-item label="Post code" name="postCode" required>
-              <a-input
-                v-model:value="postForm.postCode"
-                placeholder="Please enter post code"
-              ></a-input>
+            <a-form-item label="岗位编码" name="postCode" required>
+              <a-input v-model:value="postForm.postCode" placeholder="请输入岗位编码"></a-input>
             </a-form-item>
-            <a-form-item label="Sort" name="postSort" required>
+            <a-form-item label="排序" name="postSort" required>
               <a-input-number
                 :min="0"
                 class="w-100"
                 placeholder="Sort"
+                :max="99"
                 v-model:value="postForm.postSort"
               ></a-input-number>
+              <div>排序越小越靠前</div>
             </a-form-item>
-            <a-form-item label="Remark" name="remark" required>
-              <a-textarea
-                v-model:value="postForm.remark"
-                placeholder="Please enter remark"
-              ></a-textarea>
+            <a-form-item label="备注" name="remark" required>
+              <a-textarea v-model:value="postForm.remark" placeholder="请输入备注信息"></a-textarea>
             </a-form-item>
-            <a-form-item label="Status" name="status" required>
+            <a-form-item label="状态" name="status" required>
               <a-radio-group
                 v-model:value="postForm.status"
                 :options="statusOptions"
               ></a-radio-group>
             </a-form-item>
-            <a-button type="primary" htmlType="submit">Submit</a-button>
+            <a-button type="primary" htmlType="submit">保存</a-button>
           </a-form>
         </a-col>
       </a-row>

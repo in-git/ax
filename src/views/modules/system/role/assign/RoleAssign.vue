@@ -4,14 +4,14 @@
       w="90%"
       h="90%"
       v-model:visible="allocateUserModal"
-      title="Role config"
+      title="【新增|取消】授权"
       @update:visible="allocateUserModal = false"
     >
       <div>
         <a-page-header :title="modeConfig.title" class="py-0 page-border px-12" />
         <div class="py-8 px-12 flex justify-between">
           <div>
-            <a-input-search placeholder="Please enter name"></a-input-search>
+            <a-input-search placeholder="请输入身份名"></a-input-search>
           </div>
           <template v-if="modeConfig.mode === 'unassign'">
             <a-button type="primary" danger>批量授权</a-button>

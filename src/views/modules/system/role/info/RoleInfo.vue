@@ -4,7 +4,7 @@
       w="90%"
       h="90%"
       v-model:visible="showRoleForm"
-      title="Role config"
+      title="管理身份"
       @update:visible="showRoleForm = false"
     >
       <div v-if="showRoleForm && currentRole" class="h-100 flex flex-col">
@@ -12,29 +12,37 @@
           <a-row>
             <a-col :span="12">
               <a-card :bordered="false">
-                <a-form-item label="Role name" name="roleName" required>
+                <a-form-item label="身份名" name="roleName" required>
                   <a-input v-model:value="currentRole.roleName"></a-input>
                 </a-form-item>
 
-                <a-form-item label="Sort" name="roleSort" required>
+                <a-form-item label="排序" name="roleSort" required>
                   <a-input-number
                     class="w-100"
                     v-model:value="currentRole.roleSort"
                   ></a-input-number>
+                  <div class="text-12 text-999">
+                    <InfoCircleFilled />
+                    数字越小，排序靠前
+                  </div>
                 </a-form-item>
 
-                <a-form-item label="Perms" name="roleKey" required>
+                <a-form-item label="身份标识" name="roleKey" required>
                   <a-input class="w-100" v-model:value="currentRole.roleKey"></a-input>
                 </a-form-item>
 
-                <a-form-item label="Role mark" name="remark">
+                <a-form-item label="身份描叙" name="remark">
                   <a-textarea
                     :autoSize="{ minRows: 2, maxRows: 4 }"
                     v-model:value="currentRole.remark"
+                    placeholder="用于描述该身份的作用"
                   ></a-textarea>
                 </a-form-item>
-                <a-form-item label="Status">
-                  <a-segmented :options="statusOptions" v-model:value="currentRole.status" />
+                <a-form-item label="状态" required>
+                  <a-segmented
+                    :options="setOptions('启用', '禁用')"
+                    v-model:value="currentRole.status"
+                  />
                 </a-form-item>
               </a-card>
             </a-col>
@@ -76,7 +84,7 @@
 import { createRole, updateRole } from '@/api/modules/system/role/role';
 import SystemModal from '@/components/modal/SysModal.vue';
 import FormFooter from '@/components/table/form/FormFooter.vue';
-import { statusOptions } from '@/global/options/system';
+import { setOptions } from '@/global/options/system';
 import { message } from 'ant-design-vue';
 import { getRoles, resetRoleForm } from '../card/curd';
 import { currentRole, roleData } from '../card/data';

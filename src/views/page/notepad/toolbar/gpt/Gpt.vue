@@ -12,7 +12,7 @@
       <div class="flex flex-col gy-4 h-100 px-4">
         <div class="count">
           字数:
-          <a-tag>{{ inputValue.length }}</a-tag>
+          <a-tag>{{ inputValue?.length }}</a-tag>
         </div>
         <div class="text-content flex-1 relative">
           {{ inputValue }}

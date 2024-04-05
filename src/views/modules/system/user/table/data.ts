@@ -22,7 +22,7 @@ export const userQuery = ref<IQuery<UserQuery>>({
   pageNum: 1,
   pageSize: 20,
   total: 0,
-  status: '',
+  status: '0',
   userName: '',
   phonenumber: '',
   deptId: undefined,

@@ -2,7 +2,7 @@
   <div>
     <a-popover trigger="click" placement="bottomRight" v-model:open="popoverVisible">
       <div class="system-icon px-12">
-        <span class="text-12">User center</span>
+        <span class="text-12">用户中心</span>
         <DownOutlined class="text-12 ml-8" />
       </div>
       <template #content>
@@ -15,22 +15,22 @@
               </div>
               <a-divider class="my-12"></a-divider>
               <a-descriptions :column="1" size="small">
-                <a-descriptions-item label="Nickname">
+                <a-descriptions-item label="用户昵称">
                   {{ userProfile.nickName }}
                 </a-descriptions-item>
-                <a-descriptions-item label="Email">
+                <a-descriptions-item label="用户邮箱">
                   {{ userProfile.email }}
                 </a-descriptions-item>
-                <a-descriptions-item label="Gender">{{ userProfile.sex }}</a-descriptions-item>
-                <a-descriptions-item label="Role">{{ userData.roleGroup }}</a-descriptions-item>
-                <a-descriptions-item label="Department">
+                <a-descriptions-item label="用户性别">{{ userProfile.sex }}</a-descriptions-item>
+                <a-descriptions-item label="用户角色">{{ userData.roleGroup }}</a-descriptions-item>
+                <a-descriptions-item label="用户部门">
                   {{ userData.postGroup }}
                 </a-descriptions-item>
               </a-descriptions>
               <a-divider class="my-12"></a-divider>
-              <a-button block @click="editProfile" class="mb-12">User center</a-button>
+              <a-button block @click="editProfile" class="mb-12">编辑信息</a-button>
 
-              <a-button type="primary" danger block @click="logOff">Logout</a-button>
+              <a-button type="primary" danger block @click="logout">退出登录</a-button>
             </div>
           </a-card>
         </div>
@@ -41,10 +41,10 @@
 </template>
 
 <script setup lang="ts">
-import { logout, profile } from '@/api/modules/system/user/user';
+import { profile } from '@/api/modules/system/user/user';
+import { logoff } from '@/api/utils/auth';
 import userCenterPng from '@/assets/system/user-center.png';
 import { openWindow } from '@/global/config/window';
-import useUserStore from '@/store/user';
 import Gallery from '@/views/components/gallery/Gallery.vue';
 import { Modal } from 'ant-design-vue';
 import ProFileForm from '../profile-form/ProfileForm.vue';
@@ -73,24 +73,22 @@ onMounted(() => {
 
 const editProfile = () => {
   openWindow({
-    title: 'User center',
+    title: '用户中心',
     component: markRaw(ProFileForm),
     id: 'user-center',
     icon: userCenterPng,
   });
 };
 
-const logOff = async () => {
+const logout = async () => {
   popoverVisible.value = false;
   Modal.confirm({
-    title: 'warning',
+    title: '警告',
     async onOk() {
-      await logout();
-      const store = useUserStore();
-      store.$state.token = '';
+      logoff();
     },
     centered: true,
-    content: 'Will be out',
+    content: '将会退出登录',
   });
 };
 </script>

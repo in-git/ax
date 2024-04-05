@@ -1,6 +1,6 @@
 <template>
   <div class="notice-table">
-    <TableHead title="Notice management">
+    <TableHead title="通知管理">
       <div class="flex gc-4">
         <a-tooltip title="新建">
           <a-button @click="createNotice" type="primary">

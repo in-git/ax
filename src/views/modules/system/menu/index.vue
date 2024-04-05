@@ -18,4 +18,3 @@ import MenuTable from './table/MenuTable.vue';
 </script>
 
 <style lang="scss" scoped></style>
-./form/form

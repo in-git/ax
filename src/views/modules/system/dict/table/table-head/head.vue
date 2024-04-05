@@ -3,7 +3,7 @@
     <div class="flex justify-between">
       <div class="flex justify-between">
         <div class="flex gc-4 align-center">
-          <a-tooltip title="新建">
+          <a-tooltip title="新建" @click="dictCreate">
             <a-button type="primary">
               <PlusOutlined />
             </a-button>
@@ -44,7 +44,7 @@
 import FiledVue from '@/views/components/table/Field.vue';
 import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { dictColumns } from '../../data/column';
-import { dictDelete, dictEdit, dictList } from '../../data/curd';
+import { dictCreate, dictDelete, dictEdit, dictList } from '../../data/curd';
 import { dictKeys, dictQuery, dictTable } from '../../data/table';
 </script>
 

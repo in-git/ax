@@ -1,19 +1,19 @@
 <template>
   <div>
-    <TableHead title="Role list">
+    <TableHead title="身份列表展示">
       <div class="flex gc-4 align-center">
         <a-button type="primary" @click="create">
           <PlusOutlined />
         </a-button>
 
-        <a-tooltip title="Reload">
+        <a-tooltip title="重新加载">
           <a-button type="link" @click="getRoles">
             <ReloadOutlined />
           </a-button>
         </a-tooltip>
 
         <a-input-search
-          placeholder="Please enter role name"
+          placeholder="请输入角色名"
           v-model:value="roleQuery.roleName"
           @search="getRoles"
           allow-clear

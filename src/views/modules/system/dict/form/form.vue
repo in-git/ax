@@ -17,10 +17,10 @@
         </a-row>
         <div class="flex-1 p-8">
           <a-form-item label="字典名称" name="dictName" required>
-            <a-input v-model:value="dictForm.dictName"></a-input>
+            <a-input v-model:value="dictForm.dictName" placeholder="请输入字典名称"></a-input>
           </a-form-item>
           <a-form-item label="字典类型" required name="dictType">
-            <a-input v-model:value="dictForm.dictType"></a-input>
+            <a-input v-model:value="dictForm.dictType" 请输入字典类型></a-input>
           </a-form-item>
           <a-form-item label="状态" required name="status">
             <a-radio-group v-model:value="dictForm.status" :options="statusOptions"></a-radio-group>

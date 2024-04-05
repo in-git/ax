@@ -4,7 +4,7 @@
       v-if="allowSelect"
       allow-clear
       v-model:value="keyword"
-      placeholder="Please enter department name"
+      placeholder="请输入部门名称"
       @search="search"
     ></a-input-search>
     <a-directory-tree
