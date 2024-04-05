@@ -48,7 +48,7 @@ const items: ItemType[] = [
       const text = getData(notepadId);
       if (!text) return;
       if (text.length > 300) {
-        message.warn('二维码内容过长');
+        message.warn('文本内容过长');
         return;
       }
       qrModal.value = true;

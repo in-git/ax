@@ -1,8 +1,11 @@
 <template>
   <div class="flex toolbar gc-4">
-    <FileVue />
+    <div class="flex align-center">
+      <FileVue />
+      <Tool />
+    </div>
+
     <GptVue />
-    <Tool />
   </div>
 </template>
 
@@ -17,5 +20,7 @@ import Tool from './tool/Tool.vue';
   $hh: 24px;
   height: $hh;
   background: #f8f8f8;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
