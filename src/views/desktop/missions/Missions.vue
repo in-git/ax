@@ -24,15 +24,9 @@ const openMenu = () => {
 <style lang="scss" scoped>
 .missions {
   height: 42px;
-  background: #222136;
-  background: linear-gradient(
-    90deg,
-    rgba(34, 33, 54, 0.459) 0%,
-    rgba(7, 7, 68, 0.555) 41%,
-    rgba(0, 115, 138, 0.438) 100%
-  );
+  background: #2221365b;
   backdrop-filter: blur(2px);
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #dddddd79;
 
   z-index: 100;
   .window {

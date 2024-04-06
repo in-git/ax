@@ -11,10 +11,6 @@ export const appLoading = ref(false);
 export const getUserRouters = async () => {
   appLoading.value = true;
   const { data } = await getRouters();
-  // let newArr: Routers[] = [];
-  // if (data.data) {
-  //   flattenTree(data.data, newArr);
-  // }
   appLoading.value = false;
   return data.data || [];
 };

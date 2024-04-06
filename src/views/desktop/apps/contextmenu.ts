@@ -1,6 +1,5 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import { minWindow } from '@/global/config/window';
-import { response } from '@/utils/table/table';
 import { setContextMenu } from '@/views/components/contextmenu/data';
 import {
   AppstoreOutlined,
@@ -47,7 +46,7 @@ export const openContextMenu = (e: MouseEvent) => {
         key: 'refreshPage',
         icon: h(AppstoreOutlined),
         onClick() {
-          response(getUserRouters);
+          getUserRouters();
         },
       },
       {

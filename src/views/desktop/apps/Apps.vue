@@ -1,5 +1,5 @@
 <template>
-  <div class="apps flex-1 p-12" ref="apps" @contextmenu="openContextMenu">
+  <div class="apps flex-1 p-4" ref="apps" @contextmenu="openContextMenu">
     <template v-if="menuList.length >= 0">
       <div class="flex h-100">
         <ul ref="appRef">
@@ -35,7 +35,6 @@ import { useSortable } from '@vueuse/integrations/useSortable';
 import { appContextMenu, openContextMenu } from './contextmenu';
 import { getIconByName, getUserRouters, openApp } from './data';
 import NoticeVue from './notice/Notice.vue';
-
 const selected = ref<string>('');
 const appRef = ref();
 const menuList = ref<Routers[]>([]);

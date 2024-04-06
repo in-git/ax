@@ -7,7 +7,7 @@ import { codeDelete } from './curd';
 import { currentCode } from './form';
 
 export const codeTable = ref<TableConfig>({
-  rowKey: 'tableId',
+  rowKey: 'tableName',
   data: [],
   loading: false,
   moduleName: 'code',

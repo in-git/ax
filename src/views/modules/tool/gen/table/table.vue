@@ -4,7 +4,7 @@
     <SystemTable
       :columns="codeColumns"
       :table="codeTable"
-      :query="codeQuery"
+      v-model:query="codeQuery"
       v-model:selected-keys="codeKeys"
     >
       <template v-slot="{ value }">

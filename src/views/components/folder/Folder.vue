@@ -1,6 +1,6 @@
 <template>
   <div class="folder system-module">
-    <div class="system-head px-12">
+    <div class="folder-head px-12">
       <a-button type="primary" :disabled="!current" @click="openApp(current!)">打开</a-button>
       <div class="text-999">
         数量:
@@ -61,6 +61,7 @@ nextTick(() => {
     display: flex;
     gap: 12px;
   }
+  background: #f8f8f8f3;
   li {
     text-align: center;
     cursor: pointer;
@@ -86,8 +87,12 @@ nextTick(() => {
     border: 1px solid #8db1e4;
     background: #8db1e423;
   }
-  .system-head {
+  .folder-head {
     background-color: #f8f8f8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 36px;
   }
 }
 </style>

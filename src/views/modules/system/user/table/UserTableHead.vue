@@ -63,9 +63,14 @@ import { createUser, delUser, editUserConfig, loadUserData } from '../table/curd
 import { userConfig, userQuery } from './data';
 
 const exportExcel = async () => {
-  await exportFile(`system/user/export`, {
-    pageNum: userQuery.value.pageNum,
-    pageSize: userQuery.value.pageSize,
+  await exportFile({
+    url: `system/user/export`,
+    data: {
+      pageNum: userQuery.value.pageNum,
+      pageSize: userQuery.value.pageSize,
+    },
+    fileName: '用户表',
+    method: 'POST',
   });
   // const { data } = await exportExcel(userQuery.value);
 };

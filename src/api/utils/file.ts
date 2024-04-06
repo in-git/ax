@@ -2,15 +2,21 @@ import usePageStore from '@/store/page';
 import useUserStore from '@/store/user';
 import { message } from 'ant-design-vue';
 
+interface ExportData {
+  url: string;
+  data: any;
+  fileName: string;
+  method: 'POST' | 'GET';
+}
 // 批量绑定模板接口
-export const exportFile = async (url: string, data?: any, fileName = 'file') => {
+export const exportFile = async (config: ExportData) => {
   const dev = usePageStore();
   const userStore = useUserStore();
 
   try {
-    const response = await fetch(dev.$state.developer.baseURL + url, {
-      method: 'POST',
-      body: data,
+    const response = await fetch(dev.$state.developer.baseURL + config.url, {
+      method: config.method || 'GET',
+      body: config.data,
       headers: {
         Authorization: `Bearer ${userStore.$state.token}`,
       },
@@ -21,7 +27,7 @@ export const exportFile = async (url: string, data?: any, fileName = 'file') => 
 
     const link = document.createElement('a');
     link.href = href;
-    link.download = fileName;
+    link.download = config.fileName;
     link.click();
 
     window.URL.revokeObjectURL(href);
