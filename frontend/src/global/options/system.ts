@@ -20,11 +20,11 @@ export const isOptions = [
 ];
 export const visibleOptions = [
   {
-    label: 'Visible',
+    label: '显示',
     value: '0',
   },
   {
-    label: 'Hidden',
+    label: '隐藏',
     value: '1',
   },
 ];

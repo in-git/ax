@@ -61,6 +61,7 @@ declare module 'vue' {
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
     ATree: typeof import('ant-design-vue/es')['Tree']
     ATreeSelect: typeof import('ant-design-vue/es')['TreeSelect']
+    ATypographyParagraph: typeof import('ant-design-vue/es')['TypographyParagraph']
     CaretRightFilled: typeof import('@ant-design/icons-vue')['CaretRightFilled']
     CheckCircleFilled: typeof import('@ant-design/icons-vue')['CheckCircleFilled']
     CheckOutlined: typeof import('@ant-design/icons-vue')['CheckOutlined']

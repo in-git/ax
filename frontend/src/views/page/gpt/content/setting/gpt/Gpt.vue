@@ -25,6 +25,19 @@
             <a-button type="link" href="https://faucet.openkey.cloud/" target="_blank">
               推荐获取
             </a-button>
+            <div>
+              从
+              <a-popover trigger="click" placement="right" v-model:open="popVisible">
+                <a-button type="link">备忘录</a-button>
+                <template #content>
+                  <Memo
+                    @update:value="popVisible = false"
+                    v-model:value="gptStore.$state.config.token"
+                  />
+                </template>
+              </a-popover>
+              获取
+            </div>
           </div>
         </a-form-item>
         <a-divider class="my-8" />
@@ -97,6 +110,7 @@
 </template>
 
 <script setup lang="ts">
+import Memo from '@/views/components/memo/Memo.vue';
 import useGptStore from '@/views/page/gpt/store/gpt';
 import { InfoCircleFilled } from '@ant-design/icons-vue';
 import { getBalance } from '../../input/data';
@@ -105,6 +119,8 @@ const gptStore = useGptStore();
 const loading = ref(false);
 const balance = ref<number>(0);
 const totalAmount = ref<number>(0);
+
+const popVisible = ref(false);
 
 /* 订阅查询 */
 const subscription = async () => {

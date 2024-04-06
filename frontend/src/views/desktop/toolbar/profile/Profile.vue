@@ -21,7 +21,9 @@
                 <a-descriptions-item label="用户邮箱">
                   {{ userProfile.email }}
                 </a-descriptions-item>
-                <a-descriptions-item label="用户性别">{{ userProfile.sex }}</a-descriptions-item>
+                <a-descriptions-item label="用户性别">
+                  {{ getLabel(sexOptions, userProfile.sex) }}
+                </a-descriptions-item>
                 <a-descriptions-item label="用户角色">{{ userData.roleGroup }}</a-descriptions-item>
                 <a-descriptions-item label="用户部门">
                   {{ userData.postGroup }}
@@ -44,6 +46,8 @@ import { profile } from '@/api/modules/system/user/user';
 import { logoff } from '@/api/utils/auth';
 import userCenterPng from '@/assets/system/user-center.png';
 import { openWindow } from '@/global/config/window';
+import { sexOptions } from '@/global/options/system';
+import { getLabel } from '@/utils/common/utils';
 import { Modal } from 'ant-design-vue';
 import ProFileForm from '../profile-form/ProfileForm.vue';
 import { userProfile } from './data';
