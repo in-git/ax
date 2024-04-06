@@ -3,10 +3,8 @@ import { createI18n } from 'vue-i18n';
 
 const messages = {
   zh: {
-    system: {},
-    common: {
-      warning: '是否要执行，这可能影响系统运行',
-    },
+    warning: '是否要执行，这可能影响系统运行',
+    test: '测试',
   },
 };
 

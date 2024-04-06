@@ -97,7 +97,7 @@
 </template>
 
 <script setup lang="ts">
-import useGptStore from '@/store/gpt/gpt';
+import useGptStore from '@/views/page/gpt/store/gpt';
 import { InfoCircleFilled } from '@ant-design/icons-vue';
 import { getBalance } from '../../input/data';
 
@@ -128,3 +128,4 @@ const subscription = async () => {
   color: var(--primary);
 }
 </style>
+@/views/page/gpt/gpt/gpt

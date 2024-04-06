@@ -33,7 +33,7 @@
 <script setup lang="ts">
 import usePageStore from '@/store/page';
 import { useCssVar } from '@vueuse/core';
-import PageContainer from '../../components/PageContainer.vue';
+import PageContainer from '../components/PageContainer.vue';
 import ThemeControl from './controls/ThemeControl.vue';
 import ThemeGlobal from './global/ThemeGlobal.vue';
 const colorList = ['#AD2AFD', '#FDB52A', '#09B678', '#3785FA', '#E82626', '#C6C6C6', '#131313'];

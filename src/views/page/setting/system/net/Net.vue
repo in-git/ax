@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import { testNode } from '@/api/node/test';
 import usePageStore from '@/store/page';
-import PageContainer from '@/views/page/components/PageContainer.vue';
+import PageContainer from '@/views/page/setting/components/PageContainer.vue';
 import type { InfoCircleFilled } from '@ant-design/icons-vue';
 import BaseURL from './base-url/BaseURL.vue';
 import { timeoutOptions } from './data';

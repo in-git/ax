@@ -1,5 +1,5 @@
-import useGptStore from '@/store/gpt/gpt';
-import type { Conversation } from '@/store/gpt/types';
+import useGptStore from '@/views/page/gpt/store/gpt';
+import type { Conversation } from '@/views/page/gpt/store/types';
 import { ClearOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons-vue';
 import { useDateFormat, useNow } from '@vueuse/core';
 import { Modal } from 'ant-design-vue';

@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import PageContainer from '../../components/PageContainer.vue';
+import PageContainer from '../components/PageContainer.vue';
 </script>
 
 <style lang="scss" scoped>

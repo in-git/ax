@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import useGptStore from '@/store/gpt/gpt';
+import useGptStore from '@/views/page/gpt/store/gpt';
 import { HistoryOutlined, SaveOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
 import { nanoid } from 'nanoid';
@@ -104,3 +104,4 @@ const del = (id: string) => {
   color: var(--primary);
 }
 </style>
+@/views/page/gpt/gpt/gpt

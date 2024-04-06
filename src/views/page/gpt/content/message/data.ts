@@ -1,5 +1,5 @@
-import type { GptMessage } from '@/store/gpt/types';
 import { copyText } from '@/utils/common/utils';
+import type { GptMessage } from '@/views/page/gpt/store/types';
 import { CopyOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
 import { conversation } from '../../sidebar/sidebar';

@@ -49,8 +49,8 @@
 </template>
 
 <script setup lang="ts">
-import useGptStore from '@/store/gpt/gpt';
 import type { Conversation } from '@/store/gpt/types';
+import useGptStore from '@/views/page/gpt/store/gpt';
 import { EllipsisOutlined } from '@ant-design/icons-vue';
 import type { MenuInfo } from 'ant-design-vue/es/menu/src/interface';
 import { conversation, menus } from './sidebar';
@@ -102,3 +102,4 @@ watch(
 <style lang="scss" scoped>
 @import './sidebar';
 </style>
+@/views/page/gpt/gpt/gpt@/views/page/gpt/gpt/types

@@ -1,5 +1,5 @@
-import useGptStore from '@/store/gpt/gpt';
-import type { GptMessage } from '@/store/gpt/types';
+import useGptStore from '@/views/page/gpt/store/gpt';
+import type { GptMessage } from '@/views/page/gpt/store/types';
 import { message } from 'ant-design-vue';
 import type { AxiosError } from 'axios';
 import axios from 'axios';

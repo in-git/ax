@@ -5,7 +5,7 @@ interface SystemDept {
   updateTime?: any;
   remark?: any;
   deptId: number;
-  parentId: number;
+  parentId: number | undefined;
   ancestors: string;
   deptName: string;
   orderNum: number;

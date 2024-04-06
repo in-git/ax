@@ -28,14 +28,12 @@
 </template>
 
 <script setup lang="ts">
-import useGptStore from '@/store/gpt/gpt';
-import usePageStore from '@/store/page';
+import useGptStore from '@/views/page/gpt/store/gpt';
 import { SettingOutlined } from '@ant-design/icons-vue';
 import { conversation } from '../../sidebar/sidebar';
 import { modelList } from '../setting/gpt/data';
 import { showSetting } from '../setting/setting';
 const gptStore = useGptStore();
-const pageStore = usePageStore();
 
 const options = [
   {
@@ -64,3 +62,4 @@ const options = [
   }
 }
 </style>
+@/views/page/gpt/gpt/gpt
