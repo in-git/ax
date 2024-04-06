@@ -39,10 +39,12 @@ const setting = () => {
 
 <style lang="scss" scoped>
 .top-toolbar {
-  background: #ffffff3b;
+  background: #afafaf;
+  opacity: 0.6;
   border-bottom: 1px solid #ddd;
   backdrop-filter: blur(3px);
   position: relative;
+  color: white;
   z-index: 10;
   .power-off {
     color: #fa2727da;

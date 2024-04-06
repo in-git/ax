@@ -48,7 +48,6 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import logoPng from '@/assets/logo.png';
 import { getIconByName, openApp } from '@/views/desktop/apps/data';
-import { useSortable } from '@vueuse/integrations/useSortable';
 import type { CSSProperties } from 'vue';
 import useFolderStore from './store/folder';
 
@@ -79,14 +78,6 @@ const props = defineProps<{
   data: Routers[];
 }>();
 
-nextTick(() => {
-  console.log(ulRef.value);
-
-  useSortable(ulRef.value, props.data, {
-    animation: 200,
-  });
-});
-
 const style = computed((): CSSProperties => {
   return {
     width: `${folderStore.$state.size}px`,
@@ -113,6 +104,7 @@ const style = computed((): CSSProperties => {
     border: 1px solid transparent;
     user-select: none !important;
     border-radius: var(--radius);
+    background-color: #f8f8f8;
     &:hover {
       background: #eee;
     }
@@ -128,7 +120,6 @@ const style = computed((): CSSProperties => {
     background: #8db1e423;
   }
   .folder-head {
-    background-color: #f8f8f8;
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -104,7 +104,7 @@ onMounted(() => {
 $hh: 42px;
 .drv {
   border: none;
-  box-shadow: 0 0 4px #a0a0a065;
+  box-shadow: 0 0 6px #707070b4;
 }
 .drv-draggable {
   border-radius: var(--radius) !important;
