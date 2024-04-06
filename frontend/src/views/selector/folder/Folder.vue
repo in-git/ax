@@ -33,7 +33,13 @@
         :style="style"
       >
         <div v-if="item.meta.link">
-          <img :src="`https://favicon.qqsuu.cn/${item.meta.link}`" :draggable="false" width="36" />
+          <img
+            ref="imageRef"
+            :src="`https://favicon.qqsuu.cn/${item.meta.link}`"
+            @error="onError(key)"
+            :draggable="false"
+            width="36"
+          />
         </div>
         <div class="logo" v-else>
           <img :src="getIconByName(item) || logoPng" :draggable="false" width="36" />
@@ -51,6 +57,7 @@ import { getIconByName, openApp } from '@/views/desktop/apps/data';
 import type { CSSProperties } from 'vue';
 import useFolderStore from './store/folder';
 
+const imageRef = ref<HTMLImageElement[]>();
 const sizeOptions = [
   {
     value: 74,
@@ -65,6 +72,13 @@ const sizeOptions = [
     label: '大',
   },
 ];
+
+const onError = (key: number) => {
+  nextTick(() => {
+    if (!imageRef.value) return;
+    imageRef.value[key].src = logoPng;
+  });
+};
 const current = ref<Routers>();
 const ulRef = ref();
 

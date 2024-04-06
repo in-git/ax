@@ -21,7 +21,7 @@
 	position: relative;
 	overflow: auto;
 }
-.system-icon {
+%icon {
 	height: 32px;
 	padding: 0 8px;
 	cursor: pointer;
@@ -31,12 +31,25 @@
 	align-content: center;
 	font-size: 16px;
 	border-radius: var(--radius);
+}
+.system-icon {
+	@extend %icon;
 	color: #333;
 	&:hover {
 		background: white;
 		color: #111;
 	}
 }
+
+.system-icon-dark {
+	@extend %icon;
+	color: #fff;
+	&:hover {
+		color: white;
+		background: #77777791;
+	}
+}
+
 .system-form {
 	display: flex;
 	flex-direction: column;

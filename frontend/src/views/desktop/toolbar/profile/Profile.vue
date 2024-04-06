@@ -1,8 +1,8 @@
 <template>
   <div>
     <a-popover trigger="click" placement="bottomRight" v-model:open="popoverVisible">
-      <div class="system-icon px-12">
-        <span>用户中心</span>
+      <div class="system-icon-dark px-12">
+        <span class="text-12">用户中心</span>
         <DownOutlined class="text-12 ml-8" />
       </div>
       <template #content>

@@ -5,12 +5,17 @@ export type IOption = {
   value: string | number;
 };
 
+export type CreateTime = {
+  beginTime: string;
+  endTime: string;
+};
+
 /* 查询条件 */
 export type IQuery<T = Record<string, any> | undefined> = {
   pageNum: number;
   pageSize: number;
   /* 创建时间 */
-  createTime?: string;
+  createTime?: string | CreateTime;
   isAsc?: 'asc' | 'desc';
   /* 筛选状态 */
   status?: '0' | '1' | string;

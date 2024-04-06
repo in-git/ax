@@ -7,10 +7,10 @@
       </div>
     </div>
     <div class="flex gc-4">
-      <div class="system-icon" @click="setting">
+      <div class="system-icon-dark" @click="setting">
         <SettingOutlined />
       </div>
-      <div class="system-icon">
+      <div class="system-icon-dark">
         <InfoCircleOutlined />
       </div>
       <Profile />

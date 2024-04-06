@@ -6,7 +6,7 @@ import folderPng from '@/assets/system/folder.png';
 import { openWindow, setCurrentWindow } from '@/global/config/window';
 import { systemComponents } from '@/initialization';
 import { openLink } from '@/utils/common/utils';
-import FolderVue from '../../components/folder/Folder.vue';
+import FolderVue from '@/views/selector/folder/Folder.vue';
 export const appLoading = ref(false);
 export const getUserRouters = async () => {
   appLoading.value = true;

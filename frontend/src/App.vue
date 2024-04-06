@@ -40,7 +40,7 @@
 import { closeWindow, windowList } from '@/global/config/window';
 import Gallery from '@/views/selector/gallery/Gallery.vue';
 import { ConfigProvider } from 'ant-design-vue';
-import en_US from 'ant-design-vue/es/locale/en_US';
+import zh_CN from 'ant-design-vue/es/locale/zh_CN';
 import {
   loadGoogleFont,
   loadSystemComponents,
@@ -54,7 +54,7 @@ import Contextmenu from './views/components/contextmenu/Contextmenu.vue';
 import Draggable from './views/components/draggable/Draggable.vue';
 import Desktop from './views/desktop/Desktop.vue';
 
-const locale = ref(en_US);
+const locale = ref(zh_CN);
 
 const store = usePageStore();
 /* 初始化请求 */

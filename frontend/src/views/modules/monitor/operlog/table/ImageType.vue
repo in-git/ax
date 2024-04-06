@@ -7,7 +7,7 @@
 <script setup lang="ts">
 const resource = import.meta.glob('../../assets/*.png');
 
-import errorPng from './error.png';
+import errorPng from '../assets/error.png';
 const regex: RegExp = /\((\d+)\)\.png/;
 
 interface PathObject {

@@ -1,5 +1,9 @@
 export const operationType = [
   {
+    label: '选择操作类型',
+    value: '',
+  },
+  {
     label: '新增',
     value: '1',
   },

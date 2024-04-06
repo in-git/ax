@@ -10,7 +10,7 @@
       <div>
         <a-pagination />
       </div>
-      <div class="flex gc-4">
+      <div class="flex gc-4 align-center">
         <div>
           <a-button @click="getPhotos">刷新</a-button>
         </div>

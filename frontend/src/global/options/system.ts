@@ -40,11 +40,11 @@ export const sexOptions = [
 ];
 export const successStatus = [
   {
-    label: 'Success',
+    label: '成功',
     value: '0',
   },
   {
-    label: 'Error',
+    label: '失败',
     value: '1',
   },
 ];

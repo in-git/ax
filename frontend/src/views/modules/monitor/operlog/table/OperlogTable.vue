@@ -67,7 +67,8 @@
 <script setup lang="ts">
 import type { Operlog } from '@/api/modules/monitor/operlog/types';
 import Loading from '@/components/loading/Loading.vue';
-import { getLogs, logQuery, operLogConf } from './data';
+import { getLogs } from '../data/curd';
+import { logQuery, operLogConf } from '../data/data';
 import OperlogHead from './head/OperlogHead.vue';
 import ImageType from './ImageType.vue';
 const current = ref<Operlog>();
@@ -141,3 +142,4 @@ const getStatus = (status: string) => {
   border-top: 1px solid #ddd;
 }
 </style>
+../data/data
