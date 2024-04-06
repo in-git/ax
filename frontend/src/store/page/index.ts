@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia';
 import type { PageSettings } from './types';
+/* 从vite环境变量中读取 `默认后端地址` */
+const baseURL = import.meta.env.VITE_BASEURL || '';
 
 const baseUrlOptions = [
   {
@@ -27,7 +29,7 @@ const usePageStore = defineStore('page', {
     },
     locale: 'en',
     developer: {
-      baseURL: 'http://150.158.14.110:8081/',
+      baseURL,
       urlSelection: baseUrlOptions,
       timeout: 8000,
     },

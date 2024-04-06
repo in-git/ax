@@ -42,7 +42,6 @@ axios.interceptors.response.use(
           window.location.reload();
         },
       });
-      userLogout();
     }
     return response;
   },

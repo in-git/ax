@@ -1,14 +1,16 @@
 <template>
   <VueDraggable
-    :w="w"
-    :h="h"
+    v-model:w="width"
+    v-model:h="height"
     :z="z"
     v-model:x="x"
     v-model:y="y"
-    :resizable="resizable"
     drag-handle=".drag-header"
     @dragstop="dragstop"
     @mousedown="moveTop"
+    handles-type="borders"
+    :minWidth="600"
+    :minHeight="600"
   >
     <slot name="head">
       <div class="drag-header flex justify-between align-center">
@@ -74,6 +76,9 @@ const x = ref(window.innerWidth / 2 - props.w / 2 + offset - 32);
 const y = ref(window.innerHeight / 2 - props.h / 2 + offset);
 const maxHeight = window.innerHeight;
 
+const width = ref();
+const height = ref();
+
 const hidden = () => {
   if (props.id) {
     hiddenWindow(props.id);
@@ -90,6 +95,8 @@ const dragstop = () => {
 
 onMounted(() => {
   if (props.id) setCurrentWindow(props.id);
+  width.value = props.w;
+  height.value = props.h;
 });
 </script>
 
@@ -98,7 +105,6 @@ $hh: 42px;
 .drv {
   border: none;
   box-shadow: 0 0 4px #a0a0a065;
-  overflow: hidden;
 }
 .drv-draggable {
   border-radius: var(--radius) !important;
@@ -108,6 +114,8 @@ $hh: 42px;
   background: #f5f2f3;
   height: 40px;
   border-bottom: 1px solid #ddd;
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
 }
 .drag-content {
   height: calc(100% - 40px);

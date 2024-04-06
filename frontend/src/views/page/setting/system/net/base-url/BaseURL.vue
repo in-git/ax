@@ -67,7 +67,7 @@
       </a-card>
     </div>
     <a-drawer
-      title="Create server"
+      title="创建服务器"
       placement="right"
       :open="open"
       :get-container="false"
@@ -75,24 +75,14 @@
       @close="open = false"
     >
       <a-card>
-        <a-form
-          :label-col="{
-            span: 6,
-          }"
-          @finish="submit"
-          :model="serverForm"
-        >
-          <a-form-item label="Name" name="label" required>
-            <a-input v-model:value="serverForm.label" placeholder="Please enter name"></a-input>
+        <a-form layout="vertical" @finish="submit" :model="serverForm">
+          <a-form-item label="服务器名" name="label" required>
+            <a-input v-model:value="serverForm.label" placeholder="请输入名字"></a-input>
           </a-form-item>
-          <a-form-item label="Address" required name="value">
-            <a-input v-model:value="serverForm.value" placeholder="Please enter url"></a-input>
+          <a-form-item label="IP地址" required name="value">
+            <a-input v-model:value="serverForm.value" placeholder="请输入IP地址"></a-input>
           </a-form-item>
-          <a-row>
-            <a-col :span="18" :offset="6">
-              <a-button type="primary" htmlType="submit">确定</a-button>
-            </a-col>
-          </a-row>
+          <a-button type="primary" htmlType="submit" block>确定</a-button>
         </a-form>
       </a-card>
     </a-drawer>

@@ -17,8 +17,9 @@
 .system-module {
 	width: 100%;
 	height: 100%;
-	background: white;
+	background: #f7fafc;
 	position: relative;
+	overflow: auto;
 }
 .system-icon {
 	height: 32px;
@@ -27,6 +28,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	align-content: center;
 	font-size: 16px;
 	border-radius: var(--radius);
 	color: #333;
