@@ -36,5 +36,9 @@ export interface PageSettings {
   locale: string;
   desktop: {
     background: DesktopBackground;
+    topNavigationBar: {
+      blur: number;
+      opacity: number;
+    };
   };
 }

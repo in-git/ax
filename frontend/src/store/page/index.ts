@@ -41,6 +41,10 @@ const usePageStore = defineStore('page', {
         type: 'image',
         src: '',
       },
+      topNavigationBar: {
+        blur: 1,
+        opacity: 0.5,
+      },
     },
   }),
   persist: true,

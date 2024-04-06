@@ -1,6 +1,7 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import { minWindow } from '@/global/config/window';
 import { setContextMenu } from '@/views/components/contextmenu/data';
+import { setGallery } from '@/views/selector/gallery/data';
 import {
   AppstoreOutlined,
   DesktopOutlined,
@@ -55,6 +56,16 @@ export const openContextMenu = (e: MouseEvent) => {
         icon: h(DesktopOutlined),
         onClick() {
           minWindow();
+        },
+      },
+      {
+        label: '选择壁纸',
+        key: 'refreshPage',
+        icon: h(DesktopOutlined),
+        onClick() {
+          setGallery({
+            show: true,
+          });
         },
       },
     ],

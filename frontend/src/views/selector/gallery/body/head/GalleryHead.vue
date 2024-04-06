@@ -8,10 +8,15 @@
     </div>
     <div class="system-head px-12">
       <div>
-        <a-button @click="getPhotos">刷新</a-button>
+        <a-pagination />
       </div>
-      <div>
-        <a-button type="primary" @click="use">使用</a-button>
+      <div class="flex gc-4">
+        <div>
+          <a-button @click="getPhotos">刷新</a-button>
+        </div>
+        <div>
+          <a-button type="primary" @click="use">使用</a-button>
+        </div>
       </div>
     </div>
   </div>
@@ -19,12 +24,13 @@
 
 <script setup lang="ts">
 import { setBackground } from '@/store/page/utils';
-import { useEventBus } from '@vueuse/core';
+import { setGallery } from '../../data';
 import { currentPhoto, getPhotos } from '../wallpaper/data';
 
-const emit = useEventBus('gallery');
 const close = () => {
-  emit.emit('close');
+  setGallery({
+    show: false,
+  });
 };
 
 const use = () => {
@@ -37,7 +43,6 @@ const use = () => {
 
 <style lang="scss" scoped>
 .gallery-head {
-  line-height: 42px;
   background-color: #f2f3f3;
 }
 </style>
