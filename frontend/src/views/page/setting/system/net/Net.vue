@@ -16,13 +16,11 @@
           </div>
         </div>
       </a-flex>
-      <a-button type="primary" @click="test">测试</a-button>
     </a-card>
   </PageContainer>
 </template>
 
 <script setup lang="ts">
-import { testNode } from '@/api/node/test';
 import usePageStore from '@/store/page';
 import PageContainer from '@/views/page/setting/components/PageContainer.vue';
 import type { InfoCircleFilled } from '@ant-design/icons-vue';
@@ -30,11 +28,6 @@ import BaseURL from './base-url/BaseURL.vue';
 import { timeoutOptions } from './data';
 
 const devStore = usePageStore();
-
-const test = async () => {
-  const data = await testNode();
-  console.log(data);
-};
 </script>
 
 <style lang="scss" scoped>

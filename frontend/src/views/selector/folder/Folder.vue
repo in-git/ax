@@ -101,44 +101,5 @@ const style = computed((): CSSProperties => {
 </script>
 
 <style lang="scss" scoped>
-.folder {
-  background-color: #f0f2f5;
-  ul {
-    display: flex;
-    gap: 12px;
-  }
-  li {
-    text-align: center;
-    cursor: pointer;
-    width: 74px;
-    height: 74px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    border: 1px solid transparent;
-    user-select: none !important;
-    border-radius: var(--radius);
-    background-color: white;
-    &:hover {
-      background: #f5f7fa;
-    }
-    .title {
-      color: black;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-  li.active {
-    border: 1px solid #8db1e4;
-    background: white;
-  }
-  .folder-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px;
-    background: #f8f8f8;
-  }
-}
+@import './style';
 </style>

@@ -4,6 +4,7 @@ import { setContextMenu } from '@/views/components/contextmenu/data';
 import { setGallery } from '@/views/selector/gallery/data';
 import {
   AppstoreOutlined,
+  BgColorsOutlined,
   DesktopOutlined,
   FolderFilled,
   ReloadOutlined,
@@ -61,7 +62,7 @@ export const openContextMenu = (e: MouseEvent) => {
       {
         label: '选择壁纸',
         key: 'refreshPage',
-        icon: h(DesktopOutlined),
+        icon: h(BgColorsOutlined),
         onClick() {
           setGallery({
             show: true,
