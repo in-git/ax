@@ -6,6 +6,7 @@ const useUserStore = defineStore('user', {
     name: '',
     token: '',
     history: [],
+    userInfo: undefined,
   }),
   persist: true,
 });

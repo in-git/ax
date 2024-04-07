@@ -76,6 +76,7 @@ import usePageStore from '@/store/page';
 import useUserStore from '@/store/user';
 
 import { message } from 'ant-design-vue';
+import { getProfile } from '../toolbar/profile/data';
 import Welcome from './Welcome.vue';
 import { langOptions, loginForm, loginLoading } from './data';
 import LoginHistory from './history/LoginHistory.vue';
@@ -118,6 +119,7 @@ const finish = async () => {
         password: loginForm.value.password,
       });
     }
+    getProfile();
     store.$state.token = data.token;
   } catch (error) {
     loginLoading.value = false;

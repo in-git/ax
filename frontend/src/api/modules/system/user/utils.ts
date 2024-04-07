@@ -5,6 +5,7 @@ import { logout } from './user';
 export const userLogout = () => {
   const userStore = useUserStore();
   userStore.$state.token = '';
+  userStore.$state.userInfo = undefined;
   windowList.value = [];
   logout();
 };

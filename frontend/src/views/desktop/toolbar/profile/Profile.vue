@@ -42,7 +42,6 @@
 </template>
 
 <script setup lang="ts">
-import { profile } from '@/api/modules/system/user/user';
 import { logoff } from '@/api/utils/auth';
 import userCenterPng from '@/assets/system/user-center.png';
 import { openWindow } from '@/global/config/window';
@@ -50,22 +49,16 @@ import { sexOptions } from '@/global/options/system';
 import { getLabel } from '@/utils/common/utils';
 import { Modal } from 'ant-design-vue';
 import ProFileForm from '../profile-form/ProfileForm.vue';
-import { userProfile } from './data';
+import { getProfile, userProfile } from './data';
 
 const popoverVisible = ref(false);
 const userData = ref();
 const loading = ref(false);
 
-const getProfile = async () => {
+onMounted(async () => {
   loading.value = true;
-  const { data } = await profile();
-  userProfile.value = data.data;
-  userData.value = data;
+  userData.value = await getProfile();
   loading.value = false;
-};
-
-onMounted(() => {
-  getProfile();
 });
 
 const editProfile = () => {
