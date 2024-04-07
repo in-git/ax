@@ -2,46 +2,70 @@
   <div>
     <div class="mb-12 flex align-center justify-right gc-12">
       <div>
-        <a-button type="link" @click="test">根目录</a-button>
+        <a-button type="link">根目录</a-button>
       </div>
-      <a-button type="primary" @click="gpt">生成代码</a-button>
+      <a-popover trigger="click" placement="bottomRight">
+        <a-button type="primary">生成代码</a-button>
+        <template #content>
+          <div>
+            <div class="text-999 mb-12">根据选中的字段生成接口</div>
+            <ul class="generate">
+              <li @click="genInterface">生成接口</li>
+              <li @click="genFiles">生成文件</li>
+            </ul>
+          </div>
+        </template>
+      </a-popover>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { sendMsg } from '@/api/modules/external/chatgpt/chatgpt';
+import { generateFiles, generateInterface } from '@/api/node/system/gen';
+import useGptStore from '@/store/gpt/gpt';
 import { codeFormData } from '../../../data/form';
-import { generateInterface } from '../data/presupposition';
-import { fieldTable } from '../data/table';
 
-const root = ref('');
-
-const onChange = (keys: any[]) => {
-  fieldTable.value.selectedKeys = keys;
-};
-const test = async () => {};
-const gpt = async () => {
-  const messages = generateInterface({
+const gpt = useGptStore();
+const params = {
+  gptConfig: {
+    model: gpt.$state.config.model,
+    stream: false,
+    temperature: gpt.$state.config.temperature,
+    top_p: gpt.$state.config.top_p,
+    token: gpt.$state.config.token,
+    baseUrl: gpt.$state.config.baseUrl,
+  },
+  tableConfig: {
     tableName: codeFormData.value.info.tableName,
+    moduleName: codeFormData.value.info.moduleName,
+    serviceName: codeFormData.value.info.businessName,
     columns: codeFormData.value.info.columns.map(e => {
       return {
         columnName: e.columnName,
         columnType: e.columnType,
       };
     }),
-  });
-  const { data } = await sendMsg([
-    {
-      role: 'user',
-      content: messages,
-    },
-  ]);
+  },
+};
+const genInterface = async () => {
+  const { data } = await generateInterface(params);
+  console.log(data);
+};
 
-  const response = data.choices[0];
-  const content = response.message.content;
-  console.log(content);
+const genFiles = () => {
+  generateFiles(params);
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.generate {
+  width: 200px;
+  li {
+    padding: 4px 8px;
+    cursor: pointer;
+    &:hover {
+      background-color: #f8f8f8;
+    }
+  }
+}
+</style>

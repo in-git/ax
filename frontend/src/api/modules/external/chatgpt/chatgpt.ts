@@ -2,13 +2,6 @@ import useGptStore from '@/store/gpt/gpt';
 
 import type { GptMessage } from '@/store/gpt/types';
 import axios from 'axios';
-interface GptParams {
-  messages: GptMessage[];
-  model: 'gpt-3.5-turbo';
-  stream: boolean;
-  temperature: number;
-  top_p: number;
-}
 
 interface GptResponse {
   id: string;

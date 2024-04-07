@@ -75,3 +75,4 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+nodejs/src/assets/
