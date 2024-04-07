@@ -42,3 +42,13 @@ export const borderRadiusOptions = [
     value: 10,
   },
 ];
+export const darkOptions = [
+  {
+    label: '黑暗',
+    value: 'dark',
+  },
+  {
+    label: '亮色',
+    value: 'dark',
+  },
+];

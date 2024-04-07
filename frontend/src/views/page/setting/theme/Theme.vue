@@ -1,29 +1,39 @@
 <template>
   <PageContainer title="外观设置" class="theme">
     <a-space direction="vertical" class="w-100">
+      <div class="subtitle">主题颜色</div>
       <a-card>
         <div class="color-palette">
-          <ul class="flex gc-4">
+          <ul class="flex gc-4 align-center">
             <li
               class="flex flex-s align-center"
               v-for="(item, key) in colorList"
               :key="key"
               :style="{ background: item }"
               @click="selectItem(item)"
-              :class="{ active: item === current }"
+              :class="{ active: item === store.$state.theme.theme }"
             >
-              <CheckOutlined class="text-12" v-if="item === current" />
+              <CheckOutlined class="text-12" v-if="item === store.$state.theme.theme" />
             </li>
-            <a-divider type="vertical" class="h-100" :style="{ color: store.$state.theme.theme }">
-              <label class="flex flex-s gc-4">
-                自定义
-                <input type="color" v-model.lazy="store.$state.theme.theme" @change="setTheme" />
-              </label>
-            </a-divider>
+            <a-divider type="vertical"></a-divider>
+            <a-popover title="自定颜色" trigger="click">
+              <div class="system-icon text-999">
+                <BgColorsOutlined />
+                <span class="text-12 mx-8">自定义</span>
+                <div class="custom-color" :style="{ background: store.$state.theme.theme }"></div>
+              </div>
+              <template #content>
+                <Vue3ColorPicker
+                  mode="solid"
+                  :showColorList="false"
+                  :showEyeDrop="false"
+                  @update:model-value="setColor"
+                />
+              </template>
+            </a-popover>
           </ul>
         </div>
       </a-card>
-
       <ThemeControl />
       <ThemeGlobal />
     </a-space>
@@ -32,26 +42,25 @@
 
 <script setup lang="ts">
 import usePageStore from '@/store/page';
+import { BgColorsOutlined } from '@ant-design/icons-vue';
+import { Vue3ColorPicker } from '@cyhnkckali/vue3-color-picker';
+import '@cyhnkckali/vue3-color-picker/dist/style.css';
 import { useCssVar } from '@vueuse/core';
 import PageContainer from '../components/PageContainer.vue';
 import ThemeControl from './controls/ThemeControl.vue';
 import ThemeGlobal from './global/ThemeGlobal.vue';
-
-const colorList = ['#AD2AFD', '#FDB52A', '#09B678', '#3785FA', '#E82626', '#C6C6C6', '#131313'];
-const current = ref('#3785FA');
+const colorList = ['#3785fa', '#6954F0', '#FDB52A', '#09B678', '#E82626', '#C6C6C6'];
 
 const store = usePageStore();
+const setColor = (data: string) => {
+  store.$state.theme.theme = data;
+};
 
 const selectItem = (item: string) => {
-  current.value = item;
+  store.$state.theme.theme = '';
   store.$state.theme.theme = item;
   const color = useCssVar('--primary', document.body);
   color.value = item;
-};
-const setTheme = () => {
-  const color = useCssVar('--primary', document.body);
-  color.value = store.$state.theme.theme;
-  current.value = store.$state.theme.theme;
 };
 </script>
 
@@ -72,8 +81,8 @@ const setTheme = () => {
     }
     li.active {
       $active-color: #e9e9e9;
-      border-color: #cecece;
-      color: $active-color;
+      border-color: var(--primary);
+      color: white;
     }
     input[type='color'] {
       width: 24px;
@@ -90,5 +99,11 @@ const setTheme = () => {
     font-size: 12px;
     margin-left: 16px;
   }
+}
+.custom-color {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #c2c2c2;
+  border-radius: var(--radius);
 }
 </style>

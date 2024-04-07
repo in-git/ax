@@ -4,10 +4,10 @@
       <a-button type="primary" :disabled="!current" @click="openApp(current!)">打开</a-button>
       <div class="flex gc-12 align-center">
         <a-popover trigger="click" title="图标大小调整" placement="bottom">
-          <div class="system-icon">
-            <SettingOutlined class="m-4" />
+          <a-button>
+            <SettingOutlined />
             设置
-          </div>
+          </a-button>
 
           <template #content>
             <a-segmented
@@ -17,7 +17,7 @@
             ></a-segmented>
           </template>
         </a-popover>
-        <div class="text-999 text-16">
+        <div class="text-999">
           数量:
           <a-tag>{{ data.length }}</a-tag>
         </div>
@@ -102,7 +102,7 @@ const style = computed((): CSSProperties => {
 
 <style lang="scss" scoped>
 .folder {
-  background-color: white;
+  background-color: #f0f2f5;
   ul {
     display: flex;
     gap: 12px;
@@ -118,9 +118,9 @@ const style = computed((): CSSProperties => {
     border: 1px solid transparent;
     user-select: none !important;
     border-radius: var(--radius);
-    background-color: #f8f8f8;
+    background-color: white;
     &:hover {
-      background: #eee;
+      background: #f5f7fa;
     }
     .title {
       color: black;
@@ -131,13 +131,14 @@ const style = computed((): CSSProperties => {
   }
   li.active {
     border: 1px solid #8db1e4;
-    background: #8db1e423;
+    background: white;
   }
   .folder-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 8px;
+    background: #f8f8f8;
   }
 }
 </style>

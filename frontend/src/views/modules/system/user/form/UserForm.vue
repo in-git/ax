@@ -12,13 +12,13 @@
       w="90%"
       h="90%"
       v-model:visible="showUserForm"
-      title="Menu config"
+      title="用户中心"
       @update:visible="showUserForm = false"
     >
       <div class="flex-1 p-8 h-100 flex flex-col">
         <a-row :gutter="12" class="flex-1">
           <a-col :span="12">
-            <a-card title="Base info">
+            <a-card title="基础信息">
               <a-form-item label="Nickname" name="nickName" required>
                 <a-input
                   v-model:value="userForm.nickName"

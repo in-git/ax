@@ -4,9 +4,8 @@
       <a-tabs>
         <a-tab-pane key="mission" tab="顶部导航">
           <div class="blur-card mb-12">
-            <div class="top-bar flex align-center justify-between px-12">
-              <a-skeleton-input />
-              <a-skeleton-input />
+            <div class="fade-background">
+              <div :style="style" class="text-white px-12 w-100 h-100 flex flex-s">Win</div>
             </div>
             <div class="flex align-center gc-12">
               背景模糊
@@ -39,16 +38,32 @@
 
 <script setup lang="ts">
 import usePageStore from '@/store/page';
+import type { CSSProperties } from 'vue';
 import PageContainer from '../components/PageContainer.vue';
 
 const store = usePageStore();
+
+const style = computed((): CSSProperties => {
+  return {
+    backdropFilter: `blur(${store.$state.desktop.topNavigationBar.blur}px)`,
+    background: `rgba(175, 175, 175, ${store.$state.desktop.topNavigationBar.opacity})`,
+  };
+});
 </script>
 
 <style lang="scss" scoped>
 .blur-card {
   width: 100%;
-  .top-bar {
-    height: 62px;
+  .fade-background {
+    height: 72px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: url('../assets/background.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-size: 24px;
   }
 }
 </style>
