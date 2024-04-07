@@ -2,18 +2,18 @@
   <TableHead title="数据库列表">
     <div class="flex justify-between">
       <div class="flex gc-4 align-center">
+        <a-tooltip title="AI代码生成">
+          <a-button type="primary" :disabled="codeKeys.length === 0" @click="openAiGen = true">
+            AI代码生成
+          </a-button>
+        </a-tooltip>
         <a-tooltip title="导入">
-          <a-button type="primary" @click="showDbForm = true">
+          <a-button @click="showDbForm = true" type="link">
             <ImportOutlined />
             导入
           </a-button>
         </a-tooltip>
-        <a-tooltip title="导出">
-          <a-button type="link" :disabled="codeKeys.length === 0" @click="download">
-            <DownloadOutlined />
-            下载代码
-          </a-button>
-        </a-tooltip>
+
         <a-tooltip title="编辑">
           <a-button type="link" @click="editCode()" :disabled="codeKeys.length !== 1">
             <EditOutlined />
@@ -51,7 +51,7 @@ import FieldVue from '@/views/components/table/Field.vue';
 import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { codeColumns } from '../../data/column';
 import { codeDelete, codeList, editCode } from '../../data/curd';
-import { showDbForm } from '../../data/form';
+import { openAiGen, showDbForm } from '../../data/form';
 import { codeKeys, codeTable } from '../../data/table';
 
 const download = () => {
