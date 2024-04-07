@@ -9,7 +9,7 @@ interface GptParams {
   temperature: number;
   top_p: number;
 }
-export const sendMsg = (data: GptParams) => {
+export const sendMsg = (messages: GptMessage[]) => {
   const gptStore = useGptStore();
   const baseUrl = gptStore.$state.config.baseUrl;
   const http = axios.create({
@@ -18,5 +18,11 @@ export const sendMsg = (data: GptParams) => {
       Authorization: `Bearer ${gptStore.$state.config.token}`,
     },
   });
-  return http.post(`${baseUrl}`, data);
+  return http.post(`${baseUrl}`, {
+    messages,
+    model: gptStore.$state.config.model,
+    stream: false,
+    temperature: gptStore.$state.config.temperature,
+    top_p: gptStore.$state.config.top_p,
+  });
 };

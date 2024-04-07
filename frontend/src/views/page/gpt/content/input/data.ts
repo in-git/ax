@@ -22,7 +22,7 @@ export const send = async (inputEl?: Ref<HTMLElement | undefined>) => {
     event.preventDefault();
   }
   dataLoading.value = true;
-  let tempMsg = undefined;
+  let tempMsg: GptMessage[] = [];
   try {
     const newMsg: GptMessage = {
       role: 'user',
@@ -31,20 +31,13 @@ export const send = async (inputEl?: Ref<HTMLElement | undefined>) => {
     conversation.value.messageList.push({
       ...newMsg,
     });
-
     if (gptStore.$state.config.memory) {
       tempMsg = conversation.value.messageList;
     } else {
       tempMsg = [newMsg];
     }
 
-    const { data } = await sendMsg({
-      messages: tempMsg,
-      model: gptStore.$state.config.model,
-      stream: false,
-      temperature: gptStore.$state.config.temperature,
-      top_p: 0.7,
-    });
+    const { data } = await sendMsg(tempMsg);
     msg.value = '';
 
     data.choices.forEach((e: any) => {
