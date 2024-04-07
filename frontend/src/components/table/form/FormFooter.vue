@@ -1,7 +1,7 @@
 <template>
   <div class="form__footer flex">
     <slot>
-      <a-button type="primary" htmlType="submit">保存</a-button>
+      <a-button type="primary" :loading="loading" htmlType="submit">保存</a-button>
     </slot>
   </div>
 </template>
@@ -11,6 +11,7 @@ withDefaults(
   defineProps<{
     justify?: 'left' | 'right' | 'center';
     position?: 'absolute' | 'sticky';
+    loading?: boolean;
   }>(),
   {
     justify: 'left',

@@ -1,5 +1,18 @@
 <template>
-  <div class="mt-12" v-if="codeFormData?.info">
+  <div v-if="codeFormData?.info">
+    <a-row>
+      <a-col :span="8" :offset="4">
+        <h3>
+          <CodeOutlined />
+          后端相关配置
+        </h3>
+        <div class="desc mb-12">
+          <info-circle-filled />
+          将会影响代码的目录结构
+        </div>
+      </a-col>
+    </a-row>
+
     <a-form-item label="生成包路径">
       <a-input v-model:value="codeFormData.info.packageName"></a-input>
       <div class="desc">
@@ -29,39 +42,11 @@
         功能名为第三层目录
       </div> -->
     </a-form-item>
-    <a-form-item label="上级菜单">
-      <a-tree-select
-        v-model:value="codeFormData.info.parentMenuId"
-        :field-names="{
-          value: 'menuId',
-          label: 'menuName',
-        }"
-        :tree-data="menuData"
-      ></a-tree-select>
-      <div class="desc">
-        <InfoCircleFilled />
-        挂载的目录
-      </div>
-    </a-form-item>
-    <a-divider></a-divider>
   </div>
 </template>
 
 <script setup lang="ts">
-import { menuList } from '@/api/modules/system/menu/menu';
-import { convertToTree } from '@/utils/common/tree';
 import { codeFormData } from '../../data/form';
-const menuData = ref();
-const getMenuList = async () => {
-  const { data } = await menuList();
-  if (data.data) {
-    menuData.value = convertToTree(data.data);
-  }
-};
-
-onMounted(() => {
-  getMenuList();
-});
 </script>
 
 <style lang="scss" scoped>

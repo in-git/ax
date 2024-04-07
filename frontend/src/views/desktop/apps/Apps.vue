@@ -42,7 +42,12 @@ const apps = ref<HTMLElement>();
 
 onMounted(async () => {
   const data = await getUserRouters();
-  menuList.value = data;
+  menuList.value = data.map(e => {
+    if (e.children?.length === 1) {
+      e = e.children[0];
+    }
+    return e;
+  });
   nextTick(() => {
     useSortable(appRef, menuList, {
       animation: 200,

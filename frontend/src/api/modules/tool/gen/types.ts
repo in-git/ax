@@ -26,7 +26,7 @@ interface SystemCode {
   treeCode?: any;
   treeParentCode?: any;
   treeName?: any;
-  parentMenuId?: any;
+  parentMenuId?: number;
   parentMenuName?: any;
   sub: boolean;
   tree: boolean;

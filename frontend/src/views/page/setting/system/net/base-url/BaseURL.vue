@@ -90,7 +90,7 @@
 </template>
 
 <script setup lang="ts">
-import { logout } from '@/api/modules/system/user/user';
+import { logoff } from '@/api/utils/auth';
 import usePageStore from '@/store/page';
 import type { URLSelection } from '@/store/page/types';
 import { NodeExpandOutlined } from '@ant-design/icons-vue';
@@ -111,7 +111,7 @@ const create = () => {
   open.value = true;
   serverForm.value = {
     label: '',
-    value: '',
+    value: 'http://',
     id: '',
   };
 };
@@ -138,13 +138,14 @@ const submit = () => {
 
 const setBaseurl = (url: string) => {
   Modal.confirm({
-    title: 'Server switched',
-    content: 'Whether to refresh the page immediately',
-    onOk() {
+    title: '切换服务器',
+    content: '这将会刷新页面,且会清空登陆信息',
+    centered: true,
+    async onOk() {
       developer.$state.developer.baseURL = url;
       axios.defaults.baseURL = `${url}`;
+      await logoff();
       window.location.reload();
-      logout();
     },
   });
 };
