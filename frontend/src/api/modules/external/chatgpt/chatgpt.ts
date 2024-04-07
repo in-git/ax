@@ -9,6 +9,34 @@ interface GptParams {
   temperature: number;
   top_p: number;
 }
+
+interface GptResponse {
+  id: string;
+  object: string;
+  created: number;
+  model: string;
+  choices: Choice[];
+  usage: Usage;
+  system_fingerprint: string;
+}
+
+interface Usage {
+  prompt_tokens: number;
+  completion_tokens: number;
+  total_tokens: number;
+}
+
+interface Choice {
+  index: number;
+  message: Message;
+  logprobs?: any;
+  finish_reason: string;
+}
+
+interface Message {
+  role: string;
+  content: string;
+}
 export const sendMsg = (messages: GptMessage[]) => {
   const gptStore = useGptStore();
   const baseUrl = gptStore.$state.config.baseUrl;
@@ -18,7 +46,7 @@ export const sendMsg = (messages: GptMessage[]) => {
       Authorization: `Bearer ${gptStore.$state.config.token}`,
     },
   });
-  return http.post(`${baseUrl}`, {
+  return http.post<GptResponse>(`${baseUrl}`, {
     messages,
     model: gptStore.$state.config.model,
     stream: false,

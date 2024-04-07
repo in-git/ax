@@ -25,6 +25,7 @@
                 后端配置
               </template>
             </a-tab-pane>
+
             <a-tab-pane key="field-info">
               <FiledInfo></FiledInfo>
               <template #tab>
@@ -49,7 +50,6 @@ import { codeFormData, codeShowForm } from '../data/form';
 import BackendInfo from './backend-info/BackendInfo.vue';
 import DatabaseInfo from './database-info/DatabaseInfo.vue';
 import FiledInfo from './field-info/FieldInfo.vue';
-
 const loading = ref(false);
 const submit = async () => {
   loading.value = true;
