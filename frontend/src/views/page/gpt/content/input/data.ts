@@ -1,32 +1,12 @@
-import useGptStore from '@/views/page/gpt/store/gpt';
-import type { GptMessage } from '@/views/page/gpt/store/types';
+import { sendMsg } from '@/api/modules/external/chatgpt/chatgpt';
+import useGptStore from '@/store/gpt/gpt';
+import type { GptMessage } from '@/store/gpt/types';
 import { message } from 'ant-design-vue';
 import type { AxiosError } from 'axios';
-import axios from 'axios';
 import { conversation } from '../../sidebar/sidebar';
 
 export const msg = ref<string>('');
 export const dataLoading = ref();
-
-interface GptParams {
-  messages: GptMessage[];
-  model: 'gpt-3.5-turbo';
-  stream: boolean;
-  temperature: number;
-  top_p: number;
-}
-
-export const sendMsg = (data: GptParams) => {
-  const gptStore = useGptStore();
-  const baseUrl = gptStore.$state.config.baseUrl;
-  const http = axios.create({
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${gptStore.$state.config.token}`,
-    },
-  });
-  return http.post(`${baseUrl}`, data);
-};
 
 /* 发送消息 */
 export const send = async (inputEl?: Ref<HTMLElement | undefined>) => {

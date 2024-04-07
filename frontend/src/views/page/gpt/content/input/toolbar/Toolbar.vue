@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import useGptStore from '@/views/page/gpt/store/gpt';
+import useGptStore from '@/store/gpt/gpt';
 import { InfoCircleOutlined } from '@ant-design/icons-vue';
 import { conversation } from '../../../sidebar/sidebar';
 import Keyword from './Keyword.vue';
@@ -98,4 +98,4 @@ watch(
   }
 }
 </style>
-@/views/page/gpt/gpt/gpt
+@/views/page/gpt/gpt/gpt @/views/page/gpt/gpt/gpt

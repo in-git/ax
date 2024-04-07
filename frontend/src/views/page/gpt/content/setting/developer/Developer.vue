@@ -18,8 +18,8 @@
 </template>
 
 <script setup lang="ts">
+import useGptStore from '@/store/gpt/gpt';
 import { InfoCircleFilled } from '@ant-design/icons-vue';
-import useGptStore from '../../../store/gpt';
 import { urlOptions } from './data';
 
 const gptStore = useGptStore();

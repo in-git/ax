@@ -74,8 +74,8 @@
 </template>
 
 <script setup lang="ts">
+import useGptStore from '@/store/gpt/gpt';
 import Memo from '@/views/components/memo/Memo.vue';
-import useGptStore from '@/views/page/gpt/store/gpt';
 import { InfoCircleFilled } from '@ant-design/icons-vue';
 
 const gptStore = useGptStore();
@@ -95,3 +95,4 @@ const popVisible = ref(false);
   color: var(--primary);
 }
 </style>
+@/views/page/gpt/gpt/gpt

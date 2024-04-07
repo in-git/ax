@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import useGptStore from '@/views/page/gpt/store/gpt';
+import useGptStore from '@/store/gpt/gpt';
 import { Pane, Splitpanes } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
 import HeadVue from './head/Head.vue';
@@ -45,4 +45,4 @@ const resize = (data: any[]) => {
   }
 }
 </style>
-@/views/page/gpt/gpt/gpt
+@/views/page/gpt/gpt/gpt @/views/page/gpt/gpt/gpt

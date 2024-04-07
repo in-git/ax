@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import useGptStore from '@/views/page/gpt/store/gpt';
+import useGptStore from '@/store/gpt/gpt';
 import { SettingOutlined } from '@ant-design/icons-vue';
 import { conversation } from '../../sidebar/sidebar';
 import { modelList } from '../setting/gpt/data';
@@ -62,4 +62,4 @@ const options = [
   }
 }
 </style>
-@/views/page/gpt/gpt/gpt
+@/views/page/gpt/gpt/gpt @/views/page/gpt/gpt/gpt
