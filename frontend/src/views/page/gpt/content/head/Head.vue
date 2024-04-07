@@ -14,36 +14,29 @@
         </a-breadcrumb-item>
       </a-breadcrumb>
     </div>
-
-    <div class="flex align-center gc-4">
-      <template v-for="(item, key) in options" :key="key">
-        <a-tooltip :title="item.tips">
-          <div class="system-icon" @click="item.action">
-            <component :is="item.icon"></component>
-          </div>
-        </a-tooltip>
-      </template>
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import useGptStore from '@/store/gpt/gpt';
-import { SettingOutlined } from '@ant-design/icons-vue';
 import { conversation } from '../../sidebar/sidebar';
-import { modelList } from '../setting/gpt/data';
-import { showSetting } from '../setting/setting';
-const gptStore = useGptStore();
 
-const options = [
+const modelList = [
   {
-    icon: markRaw(SettingOutlined),
-    tips: '打开设置',
-    action() {
-      showSetting.value = true;
-    },
+    label: 'gpt-3.5-turbo',
+    value: 'gpt-3.5-turbo',
+  },
+  {
+    label: 'gpt-4',
+    value: 'gpt-4',
+  },
+  {
+    label: 'gpt-4-turbo',
+    value: 'gpt-4-turbo-preview',
   },
 ];
+
+const gptStore = useGptStore();
 </script>
 
 <style lang="scss" scoped>
@@ -62,4 +55,4 @@ const options = [
   }
 }
 </style>
-@/views/page/gpt/gpt/gpt @/views/page/gpt/gpt/gpt
+@/views/page/gpt/gpt/gpt @/views/page/gpt/gpt/gpt ../../../setting/gpt/gpt/data

@@ -6,12 +6,6 @@
         <SidebarVue />
       </div>
       <Content />
-      <Transition
-        enter-active-class="animate__animated animate__zoomIn"
-        leave-active-class="animate__animated animate__zoomOut"
-      >
-        <SettingVue v-if="showSetting"></SettingVue>
-      </Transition>
     </div>
   </div>
 </template>
@@ -19,8 +13,6 @@
 <script setup lang="ts">
 import Content from './content/Content.vue';
 import { msg } from './content/input/data';
-import SettingVue from './content/setting/Setting.vue';
-import { showSetting } from './content/setting/setting';
 import SidebarVue from './sidebar/Sidebar.vue';
 import SidebarHead from './sidebar/SidebarHead.vue';
 

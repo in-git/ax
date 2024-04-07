@@ -27,9 +27,15 @@
 </template>
 
 <script setup lang="ts">
-import { BgColorsOutlined, DesktopOutlined, GlobalOutlined } from '@ant-design/icons-vue';
+import {
+  AimOutlined,
+  BgColorsOutlined,
+  DesktopOutlined,
+  GlobalOutlined,
+} from '@ant-design/icons-vue';
 import { nanoid } from 'nanoid';
 import DesktopSetting from './desktop/DesktopSetting.vue';
+import Gpt from './gpt/Gpt.vue';
 import Net from './system/net/Net.vue';
 import ThemeVue from './theme/Theme.vue';
 
@@ -51,6 +57,12 @@ const nav: Nav[] = [
     icon: markRaw(DesktopOutlined),
     id: nanoid(),
     component: markRaw(DesktopSetting),
+  },
+  {
+    title: 'GPT设置',
+    icon: markRaw(AimOutlined),
+    id: nanoid(),
+    component: markRaw(Gpt),
   },
 ];
 
