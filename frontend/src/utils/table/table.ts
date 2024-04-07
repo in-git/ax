@@ -3,7 +3,7 @@ import { message, Modal } from 'ant-design-vue';
 
 export const confirm = (onOk: any) => {
   Modal.confirm({
-    title: 'Warning',
+    title: '警告',
     content: '该操作可能影响系统运行',
     onOk,
     centered: true,
@@ -44,5 +44,13 @@ export const formatColumns = (data: ColumnProps[]) => {
     e.ellipsis = true;
     e.key = `${e.dataIndex}`;
     return e;
+  });
+};
+export const dictToOptions = (dict: SystemDictData[]) => {
+  return dict.map(e => {
+    return {
+      label: e.dictLabel,
+      value: e.dictValue,
+    };
   });
 };

@@ -27,6 +27,7 @@ export const sendMsg = (data: GptParams) => {
   });
   return http.post(`${baseUrl}`, data);
 };
+
 /* 发送消息 */
 export const send = async (inputEl?: Ref<HTMLElement | undefined>) => {
   const event = window.event as MouseEvent;
@@ -95,30 +96,4 @@ export const send = async (inputEl?: Ref<HTMLElement | undefined>) => {
     }
     message.warn('Unknown error');
   }
-};
-interface Balance {
-  total: number;
-  balanceData: number;
-}
-export const getBalance = async (): Promise<Balance> => {
-  const subscription = `https://openkey.cloud/v1/dashboard/billing/subscription`;
-  const usage = `https://openkey.cloud/v1/dashboard/billing/usage`;
-  const configStore = useGptStore();
-
-  const data = {
-    headers: {
-      Authorization: `Bearer ${configStore.$state.config.token}`,
-    },
-    data: {
-      api_key: configStore.$state.config.token,
-    },
-  };
-  /* 获取总量 */
-  const { data: subscriptionData } = await axios.get(`${subscription}`, data);
-  /* 获取已使用了的 */
-  const { data: usageData } = await axios.get(`${usage}`, data);
-  return {
-    total: usageData.total_usage,
-    balanceData: subscriptionData.hard_limit_usd,
-  };
 };

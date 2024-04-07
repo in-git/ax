@@ -1,6 +1,6 @@
 .gpt-sidebar {
 	width: 250px;
-	height: 100%;
+	height: calc(100% - 32px);
 	border-right: 1px solid #ddd;
 	li {
 		cursor: pointer;
@@ -45,7 +45,7 @@
 		}
 	}
 	ul.list {
-		height: calc(100% - 32px);
+		height: 100%;
 		overflow-y: auto;
 	}
 	input {

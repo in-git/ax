@@ -17,7 +17,7 @@
             ></a-segmented>
           </template>
         </a-popover>
-        <div class="text-999">
+        <div class="text-999 text-16">
           数量:
           <a-tag>{{ data.length }}</a-tag>
         </div>

@@ -1,5 +1,5 @@
 import { fetchDeptList } from '@/api/modules/system/dept/dept';
-import { deptResetForm, deptShowForm } from './form';
+import { deptResetForm, showDeptForm } from './form';
 import { deptKeys, deptQuery, deptTable } from './table';
 
 function convertToTree(data: SystemDept[]): SystemDept[] {
@@ -10,7 +10,7 @@ function convertToTree(data: SystemDept[]): SystemDept[] {
   });
   data.forEach(item => {
     if (item.parentId !== 0) {
-      map[item.parentId].children.push(map[item.deptId]);
+      map[item.parentId!].children.push(map[item.deptId]);
     } else {
       tree.push(map[item.deptId]);
     }
@@ -31,11 +31,11 @@ export const deptList = async () => {
 
 export const deptEdit = async (id?: number) => {
   let targetId: number = id ? id : deptKeys.value[0];
-  deptShowForm.value = true;
+  showDeptForm.value = true;
 };
 export const deptCreate = async () => {
   deptResetForm();
-  deptShowForm.value = true;
+  showDeptForm.value = true;
 };
 export const deptDelete = async (id?: number) => {
   let ids = id ? [id] : deptKeys.value;

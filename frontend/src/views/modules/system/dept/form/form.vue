@@ -3,8 +3,9 @@
     :model="deptForm"
     :wrapper-col="{ span: 8, offset: 1 }"
     :label-col="{ span: 4, offset: 4 }"
+    @submit="submit"
   >
-    <SystemModal title="部门信息编辑" v-model:visible="deptShowForm">
+    <SystemModal title="部门信息编辑" v-model:visible="showDeptForm">
       <div class="h-100 flex flex-col">
         <a-row>
           <a-col :span="8" :offset="9">
@@ -35,7 +36,7 @@
             <a-input v-model:value="deptForm.email"></a-input>
           </a-form-item>
           <a-form-item label="部门状态">
-            <a-input></a-input>
+            <a-radio-group :options="statusOptions" v-model:value="deptForm.status"></a-radio-group>
           </a-form-item>
           <a-row>
             <a-col :span="8" :offset="9">
@@ -49,9 +50,23 @@
 </template>
 
 <script setup lang="ts">
+import { createDept, updateDept } from '@/api/modules/system/dept/dept';
 import SystemModal from '@/components/modal/SysModal.vue';
-import { deptForm, deptShowForm } from '../data/form';
+import { statusOptions } from '@/global/options/system';
+import { response } from '@/utils/table/table';
+import { deptList } from '../data/curd';
+import { deptForm, showDeptForm } from '../data/form';
 import { deptTable } from '../data/table';
+
+const submit = () => {
+  if (deptForm.value.deptId) {
+    response(updateDept, deptForm.value);
+  } else {
+    response(createDept, deptForm.value);
+  }
+  showDeptForm.value = false;
+  deptList();
+};
 </script>
 
 <style lang="scss" scoped>

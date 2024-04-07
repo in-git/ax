@@ -10,11 +10,11 @@ export const statusOptions = [
 ];
 export const isOptions = [
   {
-    label: 'Yse',
+    label: '是',
     value: '0',
   },
   {
-    label: 'No',
+    label: '否',
     value: '1',
   },
 ];

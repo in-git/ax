@@ -22,3 +22,7 @@ export const updateDictData = (data: SystemDictData) => {
 export const createDictData = (data: SystemDictData) => {
   return axios.put<Response>(`system/dict/data`, data);
 };
+
+export const getOptionsByName = (name: string) => {
+  return axios.get<Response<SystemDictData[]>>(`system/dict/data/type/${name}`);
+};

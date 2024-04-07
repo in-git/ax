@@ -20,58 +20,22 @@
             :show-count="true"
           ></a-textarea>
           <div class="text-999">
-            <InfoCircleFilled />
-            相当于一个账号,
+            没有账号?
             <a-button type="link" href="https://faucet.openkey.cloud/" target="_blank">
               推荐获取
             </a-button>
-            <div>
-              从
-              <a-popover trigger="click" placement="right" v-model:open="popVisible">
-                <a-button type="link">备忘录</a-button>
-                <template #content>
-                  <Memo
-                    @update:value="popVisible = false"
-                    v-model:value="gptStore.$state.config.token"
-                  />
-                </template>
-              </a-popover>
-              获取
-            </div>
           </div>
-        </a-form-item>
-        <a-divider class="my-8" />
-        <a-form-item label="查询余额">
           <div>
-            <a-card :loading="loading">
-              <template #title>余额</template>
-              <template #extra>
-                <a-button
-                  type="primary"
-                  :disabled="!gptStore.$state.config.token"
-                  @click="subscription"
-                  :loading="loading"
-                  block
-                >
-                  查询
-                </a-button>
+            已有账号?
+            <a-popover trigger="click" placement="right" v-model:open="popVisible">
+              <a-button type="link">备忘录</a-button>
+              <template #content>
+                <Memo
+                  @update:value="popVisible = false"
+                  v-model:value="gptStore.$state.config.token"
+                />
               </template>
-              <a-progress :percent="totalAmount / balance">
-                <template #format="percent">
-                  <span>{{ percent.toFixed(2) }}%</span>
-                </template>
-              </a-progress>
-              <div class="flex gc-12">
-                <div class="mb-4">
-                  <span class="text-999 mr-4">总余额:</span>
-                  <span>{{ Number(balance).toFixed(2) }}</span>
-                </div>
-                <div>
-                  <span class="text-999 mr-4">已使用:</span>
-                  <span>{{ (Number(totalAmount) / 100).toFixed(2) }}</span>
-                </div>
-              </div>
-            </a-card>
+            </a-popover>
           </div>
         </a-form-item>
         <a-divider class="my-8" />
@@ -113,23 +77,10 @@
 import Memo from '@/views/components/memo/Memo.vue';
 import useGptStore from '@/views/page/gpt/store/gpt';
 import { InfoCircleFilled } from '@ant-design/icons-vue';
-import { getBalance } from '../../input/data';
 
 const gptStore = useGptStore();
-const loading = ref(false);
-const balance = ref<number>(0);
-const totalAmount = ref<number>(0);
 
 const popVisible = ref(false);
-
-/* 订阅查询 */
-const subscription = async () => {
-  loading.value = true;
-  const { total, balanceData } = await getBalance();
-  loading.value = false;
-  totalAmount.value = total;
-  balance.value = balanceData;
-};
 </script>
 
 <style lang="scss" scoped>
@@ -144,4 +95,3 @@ const subscription = async () => {
   color: var(--primary);
 }
 </style>
-@/views/page/gpt/gpt/gpt

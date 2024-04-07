@@ -1,4 +1,4 @@
-export const deptShowForm = ref(false);
+export const showDeptForm = ref(false);
 
 const form: SystemDept = {
   createBy: '',

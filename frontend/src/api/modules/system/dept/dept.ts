@@ -6,3 +6,11 @@ export const fetchDeptList = (query: IQuery) => {
     params: query,
   });
 };
+
+export const updateDept = (data: SystemDept) => {
+  return axios.put(`system/dept`, data);
+};
+
+export const createDept = (data: SystemDept) => {
+  return axios.post(`system/dept`, data);
+};

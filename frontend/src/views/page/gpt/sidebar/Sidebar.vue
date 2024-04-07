@@ -49,10 +49,10 @@
 </template>
 
 <script setup lang="ts">
-import type { Conversation } from '@/store/gpt/types';
 import useGptStore from '@/views/page/gpt/store/gpt';
 import { EllipsisOutlined } from '@ant-design/icons-vue';
 import type { MenuInfo } from 'ant-design-vue/es/menu/src/interface';
+import type { Conversation } from '../store/types';
 import { conversation, menus } from './sidebar';
 
 const store = useGptStore();

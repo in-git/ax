@@ -8,7 +8,7 @@
     </div>
 
     <div class="p-8 components">
-      <a-segmented v-model:value="current" :options="data"></a-segmented>
+      <a-segmented v-model:value="current" :options="gptNavOptions"></a-segmented>
       <div class="mt-8">
         <GptVue v-if="current === 'gpt'" />
         <Developer v-else="current === 'developer'" />
@@ -18,23 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import type { SegmentedOption } from 'ant-design-vue/es/segmented/src/segmented';
 import Developer from './developer/Developer.vue';
 import GptVue from './gpt/Gpt.vue';
-import { showSetting } from './setting';
-
-const data: SegmentedOption[] = [
-  {
-    title: 'Gpt设置',
-    label: 'Gpt设置',
-    value: 'gpt',
-  },
-  {
-    label: '开发者中心',
-    title: '开发者中心',
-    value: 'developer',
-  },
-];
+import { gptNavOptions, showSetting } from './setting';
 
 const current = ref<'gpt' | 'advance'>('gpt');
 </script>
@@ -45,6 +31,7 @@ const current = ref<'gpt' | 'advance'>('gpt');
   width: 600px;
   height: 450px;
   background: white;
+  z-index: 10;
   top: calc(50% - 220px);
   box-shadow: var(--window-shadow);
   left: calc(50% - 300px);
