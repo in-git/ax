@@ -53,13 +53,14 @@
            <a-form-item label="${comment}">
              <a-textarea v-model:value="${businessName}Form.${column.javaField}"></a-editor>
            </a-form-item>
-           <a-row>
-             <a-col :span="8" :offset="9">
-               <a-button type="primary" block>保存</a-button>
-             </a-col>
-           </a-row>
+
          #end
          #end
+          <a-row>
+              <a-col :span="8" :offset="9">
+                <a-button type="primary" block>保存</a-button>
+              </a-col>
+          </a-row>
         </div>
       </div>
     </SystemModal>
