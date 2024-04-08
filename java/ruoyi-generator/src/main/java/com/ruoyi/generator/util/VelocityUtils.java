@@ -227,11 +227,11 @@ public class VelocityUtils
         }
         else if (template.contains("api.ts.vm"))
         {
-            fileName = StringUtils.format("{}/api/{}/{}.ts", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/api/{}/{}/{}.ts", vuePath, moduleName, businessName,businessName);
         }
         else if (template.contains("types.ts.vm"))
         {
-            fileName = StringUtils.format("{}/api/{}/types.ts", vuePath, moduleName);
+            fileName = StringUtils.format("{}/api/{}/{}/types.ts", vuePath, moduleName,businessName);
         }
 
         else if (template.contains("index-tree.vue.vm"))
@@ -240,39 +240,39 @@ public class VelocityUtils
         }
         else if (template.contains("index.vue.vm"))
         {
-            fileName = StringUtils.format("{}/views/{}/{}/index.vue", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/index.vue", vuePath, moduleName, businessName);
         }
 
 
         else if (template.contains("curd.ts.vm"))
         {
-            fileName = StringUtils.format("{}/views/{}/{}/data/curd.ts", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/data/curd.ts", vuePath, moduleName, businessName);
         }
         else if (template.contains("column.ts.vm"))
         {
-            fileName = StringUtils.format("{}/views/{}/{}/data/column.ts", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/data/column.ts", vuePath, moduleName, businessName);
         }
 
         else if (template.contains("table.ts.vm"))
         {
-            fileName = StringUtils.format("{}/views/{}/{}/data/table.ts", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/data/table.ts", vuePath, moduleName, businessName);
         }
         else if (template.contains("form.ts.vm"))
         {
-            fileName = StringUtils.format("{}/views/{}/{}/data/form.ts", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/data/form.ts", vuePath, moduleName, businessName);
         }
 
         else if (template.contains("form.vue.vm"))
         {
-            fileName = StringUtils.format("{}/views/{}/{}/form/form.vue", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/form/form.vue", vuePath, moduleName, businessName);
         }
         else if (template.contains("table.vue.vm"))
         {
-            fileName = StringUtils.format("{}/views/{}/{}/table/table.vue", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/table/table.vue", vuePath, moduleName, businessName);
         }
         else if (template.contains("head.vue.vm"))
         {
-            fileName = StringUtils.format("{}/views/{}/{}/table/table-head/head.vue", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/table/table-head/head.vue", vuePath, moduleName, businessName);
         }
         return fileName;
     }

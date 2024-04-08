@@ -5,7 +5,7 @@ const ${businessName}Columns = ref<TableColumnProps[]>([
 {
     title:"$column.columnComment",
     dataIndex:"$column.columnName"
-}
+},
 #end
 ]);
 

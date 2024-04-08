@@ -1,7 +1,7 @@
 
 import type { IQuery, Response, TableResponse } from '@/api/config/types';
 import axios from 'axios';
-import {${ModuleName}${BusinessName}} from "./types"
+import type {${ModuleName}${BusinessName}} from "./types"
 
 // 查询${functionName}列表
 export const fetch${BusinessName}List = (query: IQuery) => {

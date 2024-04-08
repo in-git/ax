@@ -64,10 +64,10 @@ import {  ${businessName}List } from '../data/curd';
 import { create${BusinessName}, update${BusinessName} } from  '@/api/modules/${moduleName}/${businessName}/${businessName}';
 
 const submit = async () => {
-  if (noticeForm.value.noticeId) {
-    await response(update${businessName}, ${businessName}Form.value);
+  if (${businessName}Form.value.$pkColumn) {
+    await response(update${BusinessName}, ${businessName}Form.value);
   } else {
-    await response(create${businessName}, ${businessName}Form.value);
+    await response(create${BusinessName}, ${businessName}Form.value);
   }
   await  ${businessName}List();
   ${businessName}ShowForm.value = false;
