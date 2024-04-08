@@ -23,6 +23,7 @@
       <template v-slot="{ value }">
         <template v-if="value.column.key === 'operation'">
           <Operation
+            :loading="noticeTable.loading"
             :items="operationList"
             @open-change="openChange(value.record as any)"
             @edit="editNotice(value.record as any, value.record.noticeId)"

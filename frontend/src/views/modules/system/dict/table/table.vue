@@ -10,7 +10,11 @@
     >
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">
-          <Operation @edit="dictEdit(value.record.dictId)" :items="dictOperationList" />
+          <Operation
+            @edit="dictEdit(value.record.dictId)"
+            :items="dictOperationList"
+            :loading="dictTable.loading"
+          />
         </template>
         <template v-else-if="value.column.dataIndex === 'dictType'">
           <a-button @click="selectDictConfig(value.record.dictType)" type="link">

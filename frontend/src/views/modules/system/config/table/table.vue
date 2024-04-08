@@ -13,6 +13,7 @@
             @edit="editConfig(value.record.configId)"
             @open-change="openChange(value.record as any)"
             :items="configMenus"
+            :loading="configTable.loading"
           />
         </template>
         <template v-else-if="value.column.dataIndex === 'configType'">
