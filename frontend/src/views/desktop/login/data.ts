@@ -1,8 +1,3 @@
-export const langOptions = [
-  { label: 'English', value: 'en' },
-  { label: 'Chinese', value: 'zh' },
-];
-
 export const loginForm = ref({
   username: 'admin',
   password: 'admin123',

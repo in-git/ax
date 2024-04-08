@@ -29,7 +29,7 @@ import type { CSSProperties } from 'vue';
 import Profile from './profile/Profile.vue';
 const setting = () => {
   openWindow({
-    title: 'System setting',
+    title: '系统设置',
     component: markRaw(PageSetting),
     id: 'system_setting',
     w: 800,

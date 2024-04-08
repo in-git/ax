@@ -52,18 +52,20 @@
                 <a-form-item required label="新密码" name="newPassword" class="mt-24">
                   <a-input-password
                     allow-clear
+                    placeholder="请输入新密码"
                     v-model:value.trim="passwordForm.newPassword"
                   ></a-input-password>
                 </a-form-item>
                 <a-form-item required label="旧密码" name="oldPassword">
                   <a-input-password
+                    placeholder="请输入旧密码"
                     type="password"
                     allow-clear
                     v-model:value.trim="passwordForm.oldPassword"
                   ></a-input-password>
                 </a-form-item>
                 <a-button block :loading="loading" html-type="submit" type="primary" class="mt-12">
-                  Submit
+                  提交
                 </a-button>
               </a-form>
             </a-col>

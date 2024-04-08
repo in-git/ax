@@ -5,28 +5,21 @@
       <div class="form">
         <div class="form-container p-32">
           <a-space direction="vertical" class="w-100">
-            <h1 class="mb-24">Login in</h1>
+            <h1 class="mb-24 text-bold">登录</h1>
             <a-form layout="vertical" size="large" @finish="finish" :model="loginForm">
               <LoginHistory />
 
-              <a-form-item label="Password" required name="password">
+              <a-form-item label="密码" required name="password">
                 <a-input-password
                   allow-clear
                   v-model:value="loginForm.password"
-                  placeholder="Please enter password"
+                  placeholder="请输入密码"
                 ></a-input-password>
               </a-form-item>
 
-              <a-form-item name="lang">
-                <a-radio-group
-                  v-model:value="pageStore.$state.config.locale"
-                  :options="langOptions"
-                ></a-radio-group>
-              </a-form-item>
-
-              <a-form-item label="Captcha" name="code" required>
+              <a-form-item label="验证码" name="code" required>
                 <div class="flex gc-12">
-                  <a-input placeholder="Please enter captcha" v-model:value="loginForm.code" />
+                  <a-input placeholder="请输入验证码" v-model:value="loginForm.code" />
                   <a-image
                     @click="getCaptcha"
                     :preview="false"
@@ -38,17 +31,11 @@
                 </div>
               </a-form-item>
 
-              <a-form-item>
-                <a-flex :align="'center'" justify="space-between">
-                  <a-checkbox>user agreement</a-checkbox>
-                  <a-button type="link" class="px-0">forget password?</a-button>
-                </a-flex>
-              </a-form-item>
               <a-button type="primary" html-type="submit" :loading="loginLoading" block>
-                Login
+                登录
               </a-button>
             </a-form>
-            <a-divider>The others</a-divider>
+            <a-divider>其他登录方式</a-divider>
             <a-flex justify="center" gap="12">
               <div class="system-icon">
                 <WechatOutlined />
@@ -78,7 +65,7 @@ import useUserStore from '@/store/user';
 import { message } from 'ant-design-vue';
 import { getProfile } from '../toolbar/profile/data';
 import Welcome from './Welcome.vue';
-import { langOptions, loginForm, loginLoading } from './data';
+import { loginForm, loginLoading } from './data';
 import LoginHistory from './history/LoginHistory.vue';
 
 const pageStore = usePageStore();
