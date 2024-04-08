@@ -1,4 +1,4 @@
-import type { GptMessage } from '@/store/gpt/types';
+import type { AIMessage } from '@/store/AI/types';
 import { copyText } from '@/utils/common/utils';
 import { CopyOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
@@ -7,7 +7,7 @@ import { msg, send } from '../input/data';
 export const messageActions = [
   {
     tips: '复制',
-    action(item: GptMessage) {
+    action(item: AIMessage) {
       copyText(item.content);
       message.success('Copied');
     },
@@ -16,19 +16,19 @@ export const messageActions = [
   },
   {
     tips: '重新生成',
-    action(item: GptMessage) {
+    action(item: AIMessage) {
       msg.value = item.content;
       send();
     },
     icon: markRaw(ReloadOutlined),
-    show(item: GptMessage) {
+    show(item: AIMessage) {
       return item.role === 'user';
     },
   },
 
   {
     tips: '删除',
-    action(_: GptMessage, index: number) {
+    action(_: AIMessage, index: number) {
       conversation.value.messageList = conversation.value.messageList.filter(
         (_: any, i: number) => {
           return i !== index;

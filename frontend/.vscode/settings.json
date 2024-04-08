@@ -1,8 +1,4 @@
 {
-  "cSpell.words": [
-    "Operlog"
-  ],
-  "i18n-ally.localesPaths": [
-    "src/lang"
-  ]
+  "cSpell.words": ["Operlog", "Treeselect"],
+  "i18n-ally.localesPaths": ["src/lang"]
 }

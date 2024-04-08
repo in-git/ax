@@ -1,9 +1,9 @@
-import useGptStore from '@/store/gpt/gpt';
+import useAIStore from '@/store/AI/AI';
 
-import type { GptMessage } from '@/store/gpt/types';
+import type { AIMessage } from '@/store/AI/types';
 import axios from 'axios';
 
-interface GptResponse {
+interface AIResponse {
   id: string;
   object: string;
   created: number;
@@ -30,20 +30,20 @@ interface Message {
   role: string;
   content: string;
 }
-export const sendMsg = (messages: GptMessage[]) => {
-  const gptStore = useGptStore();
-  const baseUrl = gptStore.$state.config.baseUrl;
+export const sendMsg = (messages: AIMessage[]) => {
+  const AIStore = useAIStore();
+  const baseUrl = AIStore.$state.qianFan.baseUrl;
   const http = axios.create({
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${gptStore.$state.config.token}`,
+      Authorization: `Bearer ${AIStore.$state.qianFan.token}`,
     },
   });
-  return http.post<GptResponse>(`${baseUrl}`, {
+  return http.post<AIResponse>(`${baseUrl}`, {
     messages,
-    model: gptStore.$state.config.model,
+    model: AIStore.$state.qianFan.model,
     stream: false,
-    temperature: gptStore.$state.config.temperature,
-    top_p: gptStore.$state.config.top_p,
+    temperature: AIStore.$state.qianFan.temperature,
+    top_p: AIStore.$state.qianFan.top_p,
   });
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="gpt-home">
+  <div class="ai-home">
     <div class="core flex relative h-100">
       <div>
         <SidebarHead />
@@ -34,7 +34,7 @@ watch(
 );
 </script>
 <style scoped lang="scss">
-.gpt-home {
+.ai-home {
   width: 100%;
   height: 100%;
 

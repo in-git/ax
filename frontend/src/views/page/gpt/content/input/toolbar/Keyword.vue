@@ -10,9 +10,9 @@
             <div>你的描述越详细,chatgpt回答的越准确</div>
             <div>你能把话术存储起来，方便复用</div>
           </div>
-          <ul class="list" v-if="gptStore.$state.conversation.history.length > 0">
+          <ul class="list" v-if="AIStore.$state.conversation.history.length > 0">
             <li
-              v-for="(item, key) in gptStore.$state.conversation.history"
+              v-for="(item, key) in AIStore.$state.conversation.history"
               :key="key"
               @click="msg = item.text"
               class="flex justify-between align-center"
@@ -42,16 +42,16 @@
 </template>
 
 <script setup lang="ts">
-import useGptStore from '@/store/gpt/gpt';
+import useAIStore from '@/store/AI/AI';
 import { HistoryOutlined, SaveOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
 import { nanoid } from 'nanoid';
 import { msg } from '../data';
 
-const gptStore = useGptStore();
+const AIStore = useAIStore();
 
 const save = () => {
-  gptStore.$state.conversation.history.push({
+  AIStore.$state.conversation.history.push({
     id: nanoid(),
     text: msg.value,
   });
@@ -59,7 +59,7 @@ const save = () => {
 };
 
 const del = (id: string) => {
-  gptStore.$state.conversation.history = gptStore.$state.conversation.history.filter(
+  AIStore.$state.conversation.history = AIStore.$state.conversation.history.filter(
     e => e.id !== id,
   );
 };
@@ -104,4 +104,3 @@ const del = (id: string) => {
   color: var(--primary);
 }
 </style>
-@/views/page/gpt/gpt/gpt @/views/page/gpt/gpt/gpt

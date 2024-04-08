@@ -1,5 +1,5 @@
 <template>
-  <div class="gpt-message flex-1 px-12" ref="msgRef">
+  <div class="ai-message flex-1 px-12" ref="msgRef">
     <ul class="msg-list flex gr-8 flex-col">
       <li v-for="(item, key) in conversation.messageList" :key="key">
         <div class="message-item flex gc-4" :class="[item.role]">

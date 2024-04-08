@@ -4,9 +4,9 @@ export interface Conversation {
   id: string;
   /* Allows editing session names */
   edit: boolean;
-  messageList: GptMessage[];
+  messageList: AIMessage[];
 }
-export interface GptMessage {
+export interface AIMessage {
   role: 'system' | 'user' | 'assistant';
   content: string;
   time?: string;

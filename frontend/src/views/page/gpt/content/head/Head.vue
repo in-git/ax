@@ -2,7 +2,7 @@
   <div class="content-head flex justify-between align-center">
     <div class="flex gc-4 align-center">
       <a-select
-        v-model:value="gptStore.$state.config.model"
+        v-model:value="AIStore.$state.qianFan.model"
         style="width: 160px"
         :options="modelList"
       ></a-select>
@@ -18,25 +18,17 @@
 </template>
 
 <script setup lang="ts">
-import useGptStore from '@/store/gpt/gpt';
+import useAIStore from '@/store/AI/AI';
 import { conversation } from '../../sidebar/sidebar';
 
 const modelList = [
   {
-    label: 'gpt-3.5-turbo',
-    value: 'gpt-3.5-turbo',
-  },
-  {
-    label: 'gpt-4',
-    value: 'gpt-4',
-  },
-  {
-    label: 'gpt-4-turbo',
-    value: 'gpt-4-turbo-preview',
+    label: '',
+    value: '',
   },
 ];
 
-const gptStore = useGptStore();
+const AIStore = useAIStore();
 </script>
 
 <style lang="scss" scoped>
@@ -55,4 +47,3 @@ const gptStore = useGptStore();
   }
 }
 </style>
-@/views/page/gpt/gpt/gpt @/views/page/gpt/gpt/gpt ../../../setting/gpt/gpt/data

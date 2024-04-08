@@ -28,10 +28,9 @@
 </template>
 
 <script setup lang="ts">
-import chatgptPng from '@/assets/apps/gpt.png';
+import aiPng from '@/assets/apps/gpt.png';
 import { getData, openWindow } from '@/global/config/window';
-import GptIndex from '../../../gpt/GptIndex.vue';
-import aiPng from './asset/ai.png';
+import AIVue from '@/views/page/gpt/AI.vue';
 
 const visible = ref(false);
 const textareaValue = ref('');
@@ -45,10 +44,11 @@ const ai = () => {
   const data = getData(parentData);
   if (data)
     openWindow({
-      component: markRaw(GptIndex),
-      title: 'ChatGpt',
-      icon: chatgptPng,
+      component: markRaw(AIVue),
+      title: 'AI',
+      icon: aiPng,
       data: `${textareaValue.value}\n${inputValue.value}`,
+      id: 'ai',
     });
 };
 

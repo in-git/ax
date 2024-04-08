@@ -1,5 +1,5 @@
-import useGptStore from '@/store/gpt/gpt';
-import type { Conversation } from '@/store/gpt/types';
+import useAIStore from '@/store/AI/AI';
+import type { Conversation } from '@/store/AI/types';
 import { ClearOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons-vue';
 import { useDateFormat, useNow } from '@vueuse/core';
 import { Modal } from 'ant-design-vue';
@@ -17,7 +17,7 @@ export const conversation = ref<Conversation>({
 });
 
 export const createSession = () => {
-  const store = useGptStore();
+  const store = useAIStore();
   const formatted = useDateFormat(useNow(), 'YYYY-MM-DD HH:mm:ss');
   const id = nanoid();
 
@@ -71,7 +71,7 @@ export const menus = [
         title: '警告',
         content: '将会删除所有信息,包括这个对话框',
         onOk() {
-          const store = useGptStore();
+          const store = useAIStore();
           store.$state.conversation.list = store.$state.conversation.list.filter(e => {
             return e.id !== conversation.value.id;
           });
@@ -90,7 +90,7 @@ export const clearAll = () => {
     centered: true,
     content: '将会失去所有会话信息,且无法找回',
     onOk() {
-      const store = useGptStore();
+      const store = useAIStore();
       conversation.value = {
         ...conversationObj,
       };

@@ -14,7 +14,7 @@
       </a-popconfirm>
       <!--  -->
       <a-popover title="开启/关闭记忆" placement="topRight">
-        <a-switch size="small" v-model:checked="gptStore.$state.config.memory"></a-switch>
+        <a-switch size="small" v-model:checked="AIStore.$state.qianFan.memory"></a-switch>
         <template #content>
           <div class="text-999" style="width: 200px">
             <InfoCircleFilled />
@@ -24,7 +24,7 @@
             <a-statistic
               title="聊天字数统计"
               :value="count"
-              v-if="gptStore.$state.config.memory"
+              v-if="AIStore.$state.qianFan.memory"
             ></a-statistic>
             <div v-else>
               <InfoCircleOutlined />
@@ -42,12 +42,12 @@
 </template>
 
 <script setup lang="ts">
-import useGptStore from '@/store/gpt/gpt';
+import useAIStore from '@/store/AI/AI';
 import { InfoCircleOutlined } from '@ant-design/icons-vue';
 import { conversation } from '../../../sidebar/sidebar';
 import Keyword from './Keyword.vue';
 
-const gptStore = useGptStore();
+const AIStore = useAIStore();
 const count = ref(0);
 
 const clear = () => {
@@ -98,4 +98,3 @@ watch(
   }
 }
 </style>
-@/views/page/gpt/gpt/gpt @/views/page/gpt/gpt/gpt

@@ -5,13 +5,13 @@
       <Tool />
     </div>
 
-    <GptVue />
+    <AiVue />
   </div>
 </template>
 
 <script setup lang="ts">
+import AiVue from './ai/Ai.vue';
 import FileVue from './file/File.vue';
-import GptVue from './gpt/Gpt.vue';
 import Tool from './tool/Tool.vue';
 </script>
 

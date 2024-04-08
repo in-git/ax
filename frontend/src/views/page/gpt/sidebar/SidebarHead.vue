@@ -26,9 +26,9 @@
 </template>
 
 <script setup lang="ts">
-import useGptStore from '@/store/gpt/gpt';
+import useAIStore from '@/store/AI/AI';
 import { clearAll, createSession } from './sidebar';
-const store = useGptStore();
+const store = useAIStore();
 const list = computed(() => store.$state.conversation.list);
 </script>
 
@@ -43,4 +43,3 @@ const list = computed(() => store.$state.conversation.list);
   border-right: 1px solid #ddd;
 }
 </style>
-@/views/page/gpt/gpt/gpt @/views/page/gpt/gpt/gpt

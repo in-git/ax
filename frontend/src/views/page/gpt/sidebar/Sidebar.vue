@@ -1,5 +1,5 @@
 <template>
-  <div class="gpt-sidebar">
+  <div class="ai-sidebar">
     <ul class="list" v-show="list.length > 0">
       <li
         class="flex align-center p-8 justify-between"
@@ -49,13 +49,13 @@
 </template>
 
 <script setup lang="ts">
-import useGptStore from '@/store/gpt/gpt';
+import useAIStore from '@/store/AI/AI';
+import type { Conversation } from '@/store/AI/types';
 import { EllipsisOutlined } from '@ant-design/icons-vue';
 import type { MenuInfo } from 'ant-design-vue/es/menu/src/interface';
-import type { Conversation } from '../store/types';
 import { conversation, menus } from './sidebar';
 
-const store = useGptStore();
+const store = useAIStore();
 
 const itemRef = ref<HTMLElement[] | null>();
 const setTitle = (item: Conversation) => {
@@ -102,4 +102,3 @@ watch(
 <style lang="scss" scoped>
 @import './sidebar';
 </style>
-@/views/page/gpt/gpt/gpt@/views/page/gpt/gpt/types @/views/page/gpt/gpt/gpt../gpt/types

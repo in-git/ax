@@ -2,10 +2,10 @@
   <div class="gpt-content flex-1 flex flex-col relative">
     <HeadVue />
     <Splitpanes class="default-theme" horizontal @resized="resize">
-      <pane :size="100 - gptStore.$state.config.splitSize">
+      <pane :size="100 - AIStore.$state.qianFan.splitSize">
         <MessageVue />
       </pane>
-      <pane :size="gptStore.$state.config.splitSize" max-size="90" min-size="10">
+      <pane :size="AIStore.$state.qianFan.splitSize" max-size="90" min-size="10">
         <InputVue />
       </pane>
     </Splitpanes>
@@ -13,17 +13,17 @@
 </template>
 
 <script setup lang="ts">
-import useGptStore from '@/store/gpt/gpt';
+import useAIStore from '@/store/AI/AI';
 import { Pane, Splitpanes } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
 import HeadVue from './head/Head.vue';
 import InputVue from './input/Input.vue';
 import MessageVue from './message/Message.vue';
 
-const gptStore = useGptStore();
+const AIStore = useAIStore();
 
 const resize = (data: any[]) => {
-  gptStore.$state.config.splitSize = data[1].size;
+  AIStore.$state.qianFan.splitSize = data[1].size;
 };
 </script>
 
@@ -45,4 +45,3 @@ const resize = (data: any[]) => {
   }
 }
 </style>
-@/views/page/gpt/gpt/gpt @/views/page/gpt/gpt/gpt

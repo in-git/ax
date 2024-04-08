@@ -1,21 +1,21 @@
 <template>
-  <PageContainer title="GPT配置">
+  <PageContainer title="AI配置">
     <div>
       <a-form
-        :model="gptStore.$state.config"
+        :model="AIStore.$state.qianFan"
         :wrapper-col="{ span: 10 }"
         :label-col="{ span: 14 }"
         layout="vertical"
         labelAlign="left"
       >
-        <a-card title="GPT设置">
+        <a-card title="AI设置">
           <a-form-item>
             <template #label>
               <span class="text-primary">秘钥[令牌][Key][Token]</span>
             </template>
             <a-textarea
               :autoSize="{ row: 4 }"
-              v-model:value="gptStore.$state.config.token"
+              v-model:value="AIStore.$state.qianFan.token"
               allow-clear
               :maxlength="60"
               :show-count="true"
@@ -33,7 +33,7 @@
                 <template #content>
                   <Memo
                     @update:value="popVisible = false"
-                    v-model:value="gptStore.$state.config.token"
+                    v-model:value="AIStore.$state.qianFan.token"
                   />
                 </template>
               </a-popover>
@@ -46,7 +46,7 @@
               :min="0"
               :step="0.1"
               :max="1"
-              v-model:value="gptStore.$state.config.temperature"
+              v-model:value="AIStore.$state.qianFan.temperature"
               class="my-4"
             ></a-slider>
             <div class="text-999">
@@ -61,7 +61,7 @@
               :min="0"
               :step="0.1"
               :max="1"
-              v-model:value="gptStore.$state.config.top_p"
+              v-model:value="AIStore.$state.qianFan.top_p"
               class="my-4"
             ></a-slider>
             <div class="text-999">
@@ -73,7 +73,7 @@
           <a-form-item label="后端接口">
             <a-auto-complete
               :options="urlOptions"
-              v-model:value="gptStore.$state.config.baseUrl"
+              v-model:value="AIStore.$state.qianFan.baseUrl"
             ></a-auto-complete>
             <div class="text-999">
               <InfoCircleFilled />
@@ -87,25 +87,16 @@
 </template>
 
 <script setup lang="ts">
-import useGptStore from '@/store/gpt/gpt';
+import useAIStore from '@/store/AI/AI';
 import Memo from '@/views/components/memo/Memo.vue';
 import { InfoCircleFilled } from '@ant-design/icons-vue';
 import PageContainer from '../components/PageContainer.vue';
 
-const gptStore = useGptStore();
+const AIStore = useAIStore();
 
 const popVisible = ref(false);
 
-const urlOptions = [
-  {
-    label: 'CHATGPT镜像-文本',
-    value: 'https://openkey.cloud/v1/chat/completions/',
-  },
-  //   {
-  //     label: 'CHATGPT镜像-图片',
-  //     value: 'https://openkey.cloud/v1/images/generations',
-  //   },
-];
+const urlOptions: any[] = [];
 </script>
 
 <style lang="scss" scoped>
@@ -120,4 +111,3 @@ const urlOptions = [
   color: var(--primary);
 }
 </style>
-@/views/page/gpt/gpt/gpt

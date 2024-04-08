@@ -24,13 +24,13 @@ interface IConversation {
   history: History[];
 }
 
-interface GPT {
-  config: Config;
+interface AI {
+  qianFan: Config;
   conversation: IConversation;
 }
-const useGptStore = defineStore('gpt', {
-  state: (): GPT => ({
-    config: {
+const useAIStore = defineStore('AI', {
+  state: (): AI => ({
+    qianFan: {
       token: '',
       model: 'gpt-3.5-turbo',
       temperature: 1,
@@ -50,4 +50,4 @@ const useGptStore = defineStore('gpt', {
   persist: true,
 });
 
-export default useGptStore;
+export default useAIStore;

@@ -34,8 +34,8 @@ import {
   GlobalOutlined,
 } from '@ant-design/icons-vue';
 import { nanoid } from 'nanoid';
+import AI from './ai/AI.vue';
 import DesktopSetting from './desktop/DesktopSetting.vue';
-import Gpt from './gpt/Gpt.vue';
 import Net from './system/net/Net.vue';
 import ThemeVue from './theme/Theme.vue';
 
@@ -59,10 +59,10 @@ const nav: Nav[] = [
     component: markRaw(DesktopSetting),
   },
   {
-    title: 'GPT设置',
+    title: 'AI设置',
     icon: markRaw(AimOutlined),
     id: nanoid(),
-    component: markRaw(Gpt),
+    component: markRaw(AI),
   },
 ];
 
