@@ -34,11 +34,11 @@ axios.interceptors.response.use(
     }
     if (res.code === 401) {
       Modal.confirm({
-        title: 'Log out',
-        content: 'Login expired',
+        title: '退出登录',
+        content: '登录已过期',
         onOk() {
           userLogout();
-          message.warn('Permission Denied');
+          message.warn('没有权限');
           window.location.reload();
         },
       });

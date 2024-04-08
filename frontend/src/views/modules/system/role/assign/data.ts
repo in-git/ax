@@ -70,7 +70,7 @@ export const modeConfig = ref({
 });
 export const assign = (userId: number) => {
   Modal.confirm({
-    title: 'Warning',
+    title: '警告',
     content: '该操作可能影响系统运行',
     async onOk() {
       if (!currentRole.value) return;

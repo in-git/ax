@@ -28,8 +28,8 @@ export const createMenuData = () => {
 
 export const delMenu = (id?: string) => {
   Modal.confirm({
-    title: 'Operational qualification',
-    content: 'This may have an impact on the system',
+    title: '警告',
+    content: '该操作可能影响系统运行',
     centered: true,
     async onOk() {
       let targetIds: string = '';

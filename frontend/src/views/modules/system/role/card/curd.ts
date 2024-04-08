@@ -1,5 +1,6 @@
 import { delRole, deptTree, roleList, roleMenuTreeSelect } from '@/api/modules/system/role/role';
-import { message, Modal } from 'ant-design-vue';
+import { confirm } from '@/utils/table/table';
+import { message } from 'ant-design-vue';
 import { showRoleForm } from '../info/data';
 import { currentRole, roleData, roleObject, roleQuery, roleSpinning } from './data';
 
@@ -33,17 +34,12 @@ export const getRoles = async () => {
   roleSpinning.value = false;
 };
 export const delRoles = () => {
-  Modal.confirm({
-    centered: true,
-    async onOk() {
-      if (currentRole.value && currentRole.value.roleId) {
-        const { data } = await delRole(currentRole.value?.roleId);
-        await getRoles();
-        message.success(data.msg);
-      }
-    },
-    title: 'Warning',
-    content: 'This could have an impact on your system',
+  confirm(async () => {
+    if (currentRole.value && currentRole.value.roleId) {
+      const { data } = await delRole(currentRole.value?.roleId);
+      await getRoles();
+      message.success(data.msg);
+    }
   });
 };
 export const resetRoleForm = () => {

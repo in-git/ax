@@ -108,7 +108,7 @@ const resetPassword = async () => {
   );
   message.success(data.msg);
   Modal.confirm({
-    title: 'Warning',
+    title: '警告',
     content: '是否刷新页面',
 
     onOk() {
