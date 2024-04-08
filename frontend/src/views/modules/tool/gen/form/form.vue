@@ -8,7 +8,7 @@
     @finish="submit"
   >
     <SystemModal title="生成信息编辑" v-model:visible="codeShowForm">
-      <div class="h-100 flex flex-col">
+      <div class="h-100 flex flex-col" style="overflow: hidden">
         <div class="flex-1 p-8">
           <a-tabs tab-position="left" class="h-100">
             <a-tab-pane key="base-info">
@@ -35,7 +35,7 @@
             </a-tab-pane>
           </a-tabs>
         </div>
-        <FormFooter :loading="loading" />
+        <FormFooter :loading="loading" justify="center" />
       </div>
     </SystemModal>
   </a-form>

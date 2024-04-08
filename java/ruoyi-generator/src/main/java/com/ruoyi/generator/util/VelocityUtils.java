@@ -1,10 +1,5 @@
 package com.ruoyi.generator.util;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import org.apache.velocity.VelocityContext;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.ruoyi.common.constant.GenConstants;
@@ -12,10 +7,16 @@ import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.generator.domain.GenTable;
 import com.ruoyi.generator.domain.GenTableColumn;
+import org.apache.velocity.VelocityContext;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * 模板处理工具类
- * 
+ *
  * @author ruoyi
  */
 public class VelocityUtils
@@ -49,6 +50,7 @@ public class VelocityUtils
         velocityContext.put("ClassName", genTable.getClassName());
         velocityContext.put("className", StringUtils.uncapitalize(genTable.getClassName()));
         velocityContext.put("moduleName", genTable.getModuleName());
+        velocityContext.put("ModuleName", StringUtils.capitalize (genTable.getModuleName()));
         velocityContext.put("BusinessName", StringUtils.capitalize(genTable.getBusinessName()));
         velocityContext.put("businessName", genTable.getBusinessName());
         velocityContext.put("basePackage", getPackagePrefix(packageName));
@@ -129,11 +131,8 @@ public class VelocityUtils
      */
     public static List<String> getTemplateList(String tplCategory, String tplWebType)
     {
-        String useWebType = "vm/vue";
-        if ("element-plus".equals(tplWebType))
-        {
-            useWebType = "vm/vue/v3";
-        }
+        String useWebType = "vm/win";
+
         List<String> templates = new ArrayList<String>();
         templates.add("vm/java/domain.java.vm");
         templates.add("vm/java/mapper.java.vm");
@@ -142,18 +141,33 @@ public class VelocityUtils
         templates.add("vm/java/controller.java.vm");
         templates.add("vm/xml/mapper.xml.vm");
         templates.add("vm/sql/sql.vm");
-        templates.add("vm/js/api.js.vm");
-        if (GenConstants.TPL_CRUD.equals(tplCategory))
-        {
-            templates.add(useWebType + "/index.vue.vm");
-        }
-        else if (GenConstants.TPL_TREE.equals(tplCategory))
+        templates.add("vm/js/api.ts.vm");
+        templates.add("vm/js/types.ts.vm");
+
+        /**
+         *
+         * */
+        templates.add(useWebType + "/index.vue.vm");
+        templates.add(useWebType + "/data/column.ts.vm");
+        templates.add(useWebType + "/data/form.ts.vm");
+        templates.add(useWebType + "/data/table.ts.vm");
+        templates.add(useWebType + "/data/curd.ts.vm");
+        templates.add(useWebType + "/form/form.vue.vm");
+        templates.add(useWebType + "/table/table.vue.vm");
+        templates.add(useWebType + "/table/table-head/head.vue.vm");
+        //
+//        if (GenConstants.TPL_CRUD.equals(tplCategory))
+//        {
+//            templates.add(useWebType + "/index.vue.vm");
+//        }
+//        else
+            if (GenConstants.TPL_TREE.equals(tplCategory))
         {
             templates.add(useWebType + "/index-tree.vue.vm");
         }
         else if (GenConstants.TPL_SUB.equals(tplCategory))
         {
-            templates.add(useWebType + "/index.vue.vm");
+
             templates.add("vm/java/sub-domain.java.vm");
         }
         return templates;
@@ -211,17 +225,54 @@ public class VelocityUtils
         {
             fileName = businessName + "Menu.sql";
         }
-        else if (template.contains("api.js.vm"))
+        else if (template.contains("api.ts.vm"))
         {
-            fileName = StringUtils.format("{}/api/{}/{}.js", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/api/{}/{}.ts", vuePath, moduleName, businessName);
+        }
+        else if (template.contains("types.ts.vm"))
+        {
+            fileName = StringUtils.format("{}/api/{}/types.ts", vuePath, moduleName);
+        }
+
+        else if (template.contains("index-tree.vue.vm"))
+        {
+            fileName = StringUtils.format("{}/views/{}/{}/index.vue", vuePath, moduleName, businessName);
         }
         else if (template.contains("index.vue.vm"))
         {
             fileName = StringUtils.format("{}/views/{}/{}/index.vue", vuePath, moduleName, businessName);
         }
-        else if (template.contains("index-tree.vue.vm"))
+
+
+        else if (template.contains("curd.ts.vm"))
         {
-            fileName = StringUtils.format("{}/views/{}/{}/index.vue", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/{}/{}/data/curd.ts", vuePath, moduleName, businessName);
+        }
+        else if (template.contains("column.ts.vm"))
+        {
+            fileName = StringUtils.format("{}/views/{}/{}/data/column.ts", vuePath, moduleName, businessName);
+        }
+
+        else if (template.contains("table.ts.vm"))
+        {
+            fileName = StringUtils.format("{}/views/{}/{}/data/table.ts", vuePath, moduleName, businessName);
+        }
+        else if (template.contains("form.ts.vm"))
+        {
+            fileName = StringUtils.format("{}/views/{}/{}/data/form.ts", vuePath, moduleName, businessName);
+        }
+
+        else if (template.contains("form.vue.vm"))
+        {
+            fileName = StringUtils.format("{}/views/{}/{}/form/form.vue", vuePath, moduleName, businessName);
+        }
+        else if (template.contains("table.vue.vm"))
+        {
+            fileName = StringUtils.format("{}/views/{}/{}/table/table.vue", vuePath, moduleName, businessName);
+        }
+        else if (template.contains("head.vue.vm"))
+        {
+            fileName = StringUtils.format("{}/views/{}/{}/table/table-head/head.vue", vuePath, moduleName, businessName);
         }
         return fileName;
     }
@@ -240,7 +291,7 @@ public class VelocityUtils
 
     /**
      * 根据列类型获取导入包
-     * 
+     *
      * @param genTable 业务表对象
      * @return 返回需要导入的包列表
      */
@@ -270,7 +321,7 @@ public class VelocityUtils
 
     /**
      * 根据列类型获取字典组
-     * 
+     *
      * @param genTable 业务表对象
      * @return 返回字典组
      */
@@ -289,7 +340,7 @@ public class VelocityUtils
 
     /**
      * 添加字典列表
-     * 
+     *
      * @param dicts 字典列表
      * @param columns 列集合
      */

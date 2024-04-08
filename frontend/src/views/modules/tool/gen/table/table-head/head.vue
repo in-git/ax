@@ -9,6 +9,11 @@
           </a-button>
         </a-tooltip>
 
+        <a-tooltip title="下载代码">
+          <a-button type="link" @click="download" :disabled="codeKeys.length !== 1">
+            <DownloadOutlined />
+          </a-button>
+        </a-tooltip>
         <a-tooltip title="编辑">
           <a-button type="link" @click="editCode()" :disabled="codeKeys.length !== 1">
             <EditOutlined />

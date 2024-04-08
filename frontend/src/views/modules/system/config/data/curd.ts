@@ -24,8 +24,9 @@ export const editConfig = async (id?: number) => {
 };
 
 export const delConfig = async (id?: number) => {
-  const ids = id ? [id] : configKeys.value;
-  response(deleteConfigByIds, ids);
+  const targetId = id ? [id] : configKeys.value[0];
+  await response(deleteConfigByIds, targetId);
+  configList();
 };
 
 export const updateConfig = async (data: number) => {};

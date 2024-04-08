@@ -11,15 +11,18 @@ export const confirm = (onOk: any) => {
 };
 
 export const response = async (request: (...arg: any) => any, ...arg: any) => {
-  const { data } = await request(...arg);
-
-  if (!data) {
-    return;
-  }
-  if (data.code === 200) {
-    message.success(data.msg);
-  } else {
-    message.warning(data.msg);
+  try {
+    const { data } = await request(...arg);
+    if (!data) {
+      return;
+    }
+    if (data.code === 200) {
+      message.success(data.msg);
+    } else {
+      message.warning(data.msg);
+    }
+  } catch (error) {
+    console.info(error);
   }
 };
 

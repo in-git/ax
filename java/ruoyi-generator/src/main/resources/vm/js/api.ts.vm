@@ -1,0 +1,33 @@
+
+import type { IQuery, Response, TableResponse } from '@/api/config/types';
+import axios from 'axios';
+import {${ModuleName}${BusinessName}} from "./types"
+
+// 查询${functionName}列表
+export const fetch${BusinessName}List = (query: IQuery) => {
+  return axios.get<TableResponse<${ModuleName}${BusinessName}>>(`${moduleName}/${businessName}/list`, {
+    params: query,
+  });
+};
+// 查询${functionName}详细
+export const fetch${BusinessName}ById = (${pkColumn.javaField}: number) => {
+  return axios.get<Response<${ModuleName}${BusinessName}>>(`${moduleName}/${businessName}/${${pkColumn.javaField}}`);
+};
+
+// 新增${functionName}
+export const create${BusinessName}= (data: ${ModuleName}${BusinessName}) => {
+  return axios.post<Response<${ModuleName}${BusinessName}>>(`${moduleName}/${businessName}`, data);
+};
+
+// 修改${functionName}
+export const update${BusinessName} = (data: ${ModuleName}${BusinessName}) => {
+  return axios.put<Response<${ModuleName}${BusinessName}>>(`/${moduleName}/${businessName}`, data);
+};
+
+// 删除${functionName}
+export const delete${BusinessName} = (${pkColumn.javaField}:number) => {
+  return axios.post<Response<${ModuleName}${BusinessName}>>(`${moduleName}/${businessName}/${${pkColumn.javaField}}`);
+};
+
+
+

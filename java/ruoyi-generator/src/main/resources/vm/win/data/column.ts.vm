@@ -1,0 +1,12 @@
+import type { TableColumnProps } from 'ant-design-vue';
+
+const ${businessName}Columns = ref<TableColumnProps[]>([
+#foreach($column in $columns)
+{
+    title:"$column.columnComment",
+    dataIndex:"$column.columnName"
+}
+#end
+]);
+
+export { ${businessName}Columns };

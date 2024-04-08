@@ -1,0 +1,35 @@
+import { ${businessName}ResetForm, ${businessName}ShowForm,${businessName}Form } from './form';
+import { ${businessName}Keys, ${businessName}Query, ${businessName}Table } from './table';
+import {
+  delete${BusinessName},
+  fetch${BusinessName}ById ,
+  fetch${BusinessName}List,
+} from '@/api/modules/${moduleName}/${businessName}/${businessName}';
+import { response } from '@/utils/table/table';
+
+export const ${businessName}List = async () => {
+  ${businessName}Table.value.loading = true;
+  const { data } = await fetch${BusinessName}List(${businessName}Query.value);
+  ${businessName}Table.value.data = data.rows;
+  ${businessName}Query.value.total = data.total;
+  ${businessName}Table.value.loading = false;
+};
+
+export const ${businessName}Edit = async (id?: number) => {
+  let targetId: number = id ? id : ${businessName}Keys.value[0];
+    const { data } = await fetch${BusinessName}ById(targetId);
+     if (data.data) {
+        ${businessName}Form.value = data.data;
+        ${businessName}ShowForm.value = true;
+      }
+
+};
+export const ${businessName}Create = async () => {
+  ${businessName}ResetForm();
+  ${businessName}ShowForm.value = true;
+};
+export const ${businessName}Delete = async (id?: number) => {
+  let targetId = id ? [id] : ${businessName}Keys.value[0];
+    await response(delete${BusinessName}, targetId);
+    ${businessName}List();
+};
