@@ -1,6 +1,6 @@
 <template>
   <div class="page-container px-8">
-    <a-page-header :title="title" class="px-0 py-8" />
+    <div class="py-12 text-18">{{ title }}</div>
     <slot></slot>
   </div>
 </template>
@@ -14,7 +14,7 @@ defineProps<{
 <style lang="scss" scoped>
 .page-container {
   height: 100%;
-  background: #f1f0f5;
+  background: #f2f2f2;
   overflow-y: auto;
 }
 </style>

@@ -1,39 +1,41 @@
 <template>
   <PageContainer title="外观设置" class="theme">
-    <a-space direction="vertical" class="w-100">
-      <div class="subtitle">主题颜色</div>
-      <a-card>
-        <div class="color-palette">
-          <ul class="flex gc-4 align-center">
-            <li
-              class="flex flex-s align-center"
-              v-for="(item, key) in colorList"
-              :key="key"
-              :style="{ background: item }"
-              @click="selectItem(item)"
-              :class="{ active: item === store.$state.theme.theme }"
-            >
-              <CheckOutlined class="text-12" v-if="item === store.$state.theme.theme" />
-            </li>
-            <a-divider type="vertical"></a-divider>
-            <a-popover title="自定颜色" trigger="click">
-              <div class="system-icon text-999">
-                <BgColorsOutlined />
-                <span class="text-12 mx-8">自定义</span>
-                <div class="custom-color" :style="{ background: store.$state.theme.theme }"></div>
-              </div>
-              <template #content>
-                <Vue3ColorPicker
-                  mode="solid"
-                  :showColorList="false"
-                  :showEyeDrop="false"
-                  @update:model-value="setColor"
-                />
-              </template>
-            </a-popover>
-          </ul>
-        </div>
-      </a-card>
+    <a-space direction="vertical" class="w-100" :size="18">
+      <div>
+        <div class="subtitle mb-8">主题颜色</div>
+        <a-card>
+          <div class="color-palette">
+            <ul class="flex gc-4 align-center">
+              <li
+                class="flex flex-s align-center"
+                v-for="(item, key) in colorList"
+                :key="key"
+                :style="{ background: item }"
+                @click="selectItem(item)"
+                :class="{ active: item === store.$state.theme.theme }"
+              >
+                <CheckOutlined class="text-12" v-if="item === store.$state.theme.theme" />
+              </li>
+              <a-divider type="vertical"></a-divider>
+              <a-popover title="自定颜色" trigger="click">
+                <div class="system-icon text-999">
+                  <BgColorsOutlined />
+                  <span class="text-12 mx-8">自定义</span>
+                  <div class="custom-color" :style="{ background: store.$state.theme.theme }"></div>
+                </div>
+                <template #content>
+                  <Vue3ColorPicker
+                    mode="solid"
+                    :showColorList="false"
+                    :showEyeDrop="false"
+                    @update:model-value="setColor"
+                  />
+                </template>
+              </a-popover>
+            </ul>
+          </div>
+        </a-card>
+      </div>
       <ThemeControl />
       <ThemeGlobal />
     </a-space>
@@ -74,7 +76,7 @@ const selectItem = (item: string) => {
     li {
       width: 24px;
       height: 24px;
-      border-radius: var(--radius);
+      border-radius: 50%;
       border: 2px solid #c2c2c2;
       cursor: pointer;
       color: white;

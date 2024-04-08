@@ -100,7 +100,7 @@ $hh: 42px;
     height: calc(100%);
     .sidebar {
       min-width: 160px;
-      background: #f8f8f8;
+      background: #ffffff;
       border-right: 1px solid #ddd;
       ul {
         li {

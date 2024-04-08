@@ -2,27 +2,21 @@
   <div>
     <div class="text-999 mb-8 text-12">控件属性</div>
     <a-card>
-      <a-space class="w-100" direction="vertical" :size="16">
+      <a-space class="w-100" direction="vertical" :size="24">
         <a-flex class="w-100" justify="space-between">
           <div class="flex align-center">
             <div>文字方向</div>
             <div class="desc">反转文字显示</div>
           </div>
           <div>
-            <a-radio-group v-model:value="store.$state.theme.direction">
-              <a-radio value="ltr">LTR</a-radio>
-              <a-radio value="rtl">RTL</a-radio>
-            </a-radio-group>
+            <a-switch
+              un-checked-value="ltr"
+              checked-value="rtl"
+              v-model:checked="store.$state.theme.direction"
+            ></a-switch>
           </div>
         </a-flex>
-        <a-flex class="w-100" justify="space-between">
-          <div>控件大小</div>
-          <a-radio-group v-model:value="store.$state.theme.size">
-            <a-radio-button value="small">小</a-radio-button>
-            <a-radio-button value="medium">中</a-radio-button>
-            <a-radio-button value="large">大</a-radio-button>
-          </a-radio-group>
-        </a-flex>
+
         <a-flex class="w-100" justify="space-between">
           <div class="flex">
             水波纹特效
@@ -53,11 +47,15 @@
               checked-children="开"
               un-checked-children="关"
             ></a-switch>
-            <a-divider type="vertical"></a-divider>
-            <a-tooltip title="仅当只有两个字的时候生效">
-              <a-button>提交</a-button>
-            </a-tooltip>
           </a-flex>
+        </a-flex>
+        <a-flex class="w-100" justify="space-between">
+          <div>控件大小</div>
+          <a-radio-group v-model:value="store.$state.theme.size">
+            <a-radio-button value="small">小</a-radio-button>
+            <a-radio-button value="medium">中</a-radio-button>
+            <a-radio-button value="large">大</a-radio-button>
+          </a-radio-group>
         </a-flex>
       </a-space>
     </a-card>
