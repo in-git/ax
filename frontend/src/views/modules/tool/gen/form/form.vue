@@ -7,7 +7,7 @@
     }"
     @finish="submit"
   >
-    <SystemModal title="生成信息编辑" v-model:visible="codeShowForm">
+    <SystemModal title="生成信息编辑" v-model:visible="codeShowForm" w="95%" h="95%">
       <div class="h-100 flex flex-col" style="overflow: hidden">
         <div class="flex-1 p-8">
           <a-tabs tab-position="left" class="h-100">
@@ -54,6 +54,8 @@ const loading = ref(false);
 
 const submit = async () => {
   loading.value = true;
+  console.log(codeFormData.value.info.parentMenuId);
+
   await response(updateCode, codeFormData.value.info);
   codeShowForm.value = false;
   loading.value = false;

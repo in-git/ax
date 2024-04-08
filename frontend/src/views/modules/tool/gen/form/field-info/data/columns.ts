@@ -7,7 +7,11 @@ export const fieldColumns = [
     title: '键名',
     dataIndex: 'columnComment',
   },
-
+  {
+    title: '表单类型',
+    dataIndex: 'htmlType',
+    width: 120,
+  },
   {
     title: '键值类型',
     dataIndex: 'javaType',
