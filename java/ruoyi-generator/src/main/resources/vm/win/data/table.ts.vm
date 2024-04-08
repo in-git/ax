@@ -1,6 +1,7 @@
 import type { IQuery, TableConfig } from '@/api/config/types';
 import { DeleteOutlined } from '@ant-design/icons-vue';
 import type { ItemType } from 'ant-design-vue';
+import { ${businessName}Delete, ${businessName}List } from './curd';
 
 export const ${businessName}Table = ref<TableConfig>({
   //这里根据实际情况修改
@@ -30,5 +31,9 @@ export const ${businessName}OperationList: ItemType[] = [
     label: '删除',
     key: 'delete',
     icon: h(DeleteOutlined),
+    async onClick() {
+      await ${businessName}Delete();
+      ${businessName}List();
+    },
   },
 ];

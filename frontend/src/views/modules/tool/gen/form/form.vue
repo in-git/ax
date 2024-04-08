@@ -54,8 +54,6 @@ const loading = ref(false);
 
 const submit = async () => {
   loading.value = true;
-  console.log(codeFormData.value.info.parentMenuId);
-
   await response(updateCode, codeFormData.value.info);
   codeShowForm.value = false;
   loading.value = false;

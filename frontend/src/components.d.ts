@@ -78,6 +78,7 @@ declare module 'vue' {
     DownloadOutlined: typeof import('@ant-design/icons-vue')['DownloadOutlined']
     DownOutlined: typeof import('@ant-design/icons-vue')['DownOutlined']
     EditOutlined: typeof import('@ant-design/icons-vue')['EditOutlined']
+    EllipsisOutlined: typeof import('@ant-design/icons-vue')['EllipsisOutlined']
     ExportOutlined: typeof import('@ant-design/icons-vue')['ExportOutlined']
     Form: typeof import('./components/template/form/form.vue')['default']
     FormFooter: typeof import('./components/table/form/FormFooter.vue')['default']

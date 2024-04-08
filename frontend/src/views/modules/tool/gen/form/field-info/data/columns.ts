@@ -17,6 +17,7 @@ export const fieldColumns = [
     dataIndex: 'javaType',
     width: 120,
   },
+
   {
     title: '添加',
     dataIndex: 'isInsert',

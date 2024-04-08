@@ -10,6 +10,7 @@
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">
           <Operation
+            :loading="codeTable.loading"
             @open-change="openChange(value.record as any)"
             @edit="editCode(value.record.tableId)"
             :items="codeOperationList"

@@ -17,7 +17,7 @@
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'isInsert'">
           <a-switch
-            un-checked-value="1"
+            un-checked-value="0"
             size="small"
             v-model:checked="record.isInsert"
             checked-value="1"
@@ -25,7 +25,7 @@
         </template>
         <template v-else-if="column.dataIndex === 'isEdit'">
           <a-switch
-            un-checked-value="1"
+            un-checked-value="0"
             size="small"
             v-model:checked="record.isEdit"
             checked-value="1"
@@ -33,7 +33,7 @@
         </template>
         <template v-else-if="column.dataIndex === 'isList'">
           <a-switch
-            un-checked-value="1"
+            un-checked-value="0"
             size="small"
             v-model:checked="record.isList"
             checked-value="1"
@@ -41,7 +41,7 @@
         </template>
         <template v-else-if="column.dataIndex === 'isQuery'">
           <a-switch
-            un-checked-value="1"
+            un-checked-value="0"
             size="small"
             v-model:checked="record.isQuery"
             checked-value="1"
@@ -49,7 +49,7 @@
         </template>
         <template v-else-if="column.dataIndex === 'isRequired'">
           <a-switch
-            un-checked-value="1"
+            un-checked-value="0"
             size="small"
             v-model:checked="record.isRequired"
             checked-value="1"
@@ -70,9 +70,11 @@
           ></a-select>
         </template>
         <template v-else-if="column.dataIndex === 'operation'">
-          <a-button type="ghost">
-            <DoubleRightOutlined />
-          </a-button>
+          <a-dropdown trigger="click">
+            <a-button type="ghost">
+              <EllipsisOutlined />
+            </a-button>
+          </a-dropdown>
         </template>
       </template>
     </a-table>
@@ -81,7 +83,7 @@
 
 <script setup lang="ts">
 import { formatColumns } from '@/utils/table/table';
-import type { DoubleRightOutlined } from '@ant-design/icons-vue';
+import type { EllipsisOutlined } from '@ant-design/icons-vue';
 import { codeFormData } from '../../data/form';
 import { fieldColumns } from './data/columns';
 import { fieldTable } from './data/table';

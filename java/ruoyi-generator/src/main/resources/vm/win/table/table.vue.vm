@@ -10,7 +10,7 @@
     >
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">
-          <Operation   @open-change="openChange(value.record as ${ModuleName}${BusinessName})" @edit="${businessName}Edit(value.record.$pkColumn)" :items="${businessName}OperationList" />
+          <Operation :loading="${businessName}Table.loading" @open-change="openChange(value.record as ${ModuleName}${BusinessName})" @edit="${businessName}Edit(value.record.$pkColumn)" :items="${businessName}OperationList" />
         </template>
       </template>
     </SystemTable>

@@ -1,6 +1,12 @@
 <template>
   <div>
-    <a-dropdown-button @click="onClick" trigger="click" v-bind="$attrs" @open-change="openChange">
+    <a-dropdown-button
+      :loading="loading"
+      @click="onClick"
+      trigger="click"
+      v-bind="$attrs"
+      @open-change="openChange"
+    >
       <EditOutlined />
       <template #overlay>
         <a-menu :items="items" @select="onSelect"></a-menu>
@@ -19,7 +25,7 @@ const openChange = () => {
 const onClick = () => {
   emit('edit');
 };
-defineProps<{ items: any }>();
+defineProps<{ items: any; loading: boolean }>();
 
 const onSelect = (info: SelectInfo) => {
   console.log(info.item);

@@ -10,7 +10,11 @@
     >
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">
-          <Operation @edit="editMenu(value.record as any)" :items="menuItems" />
+          <Operation
+            :loading="menuTableConfig.loading"
+            @edit="editMenu(value.record as any)"
+            :items="menuItems"
+          />
         </template>
         <template v-if="value.column.dataIndex === 'isFrame'">
           <CheckOutlined v-if="value.record.isFrame === '0'" class="text-green" />

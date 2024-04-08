@@ -16,13 +16,14 @@ export const ${businessName}List = async () => {
 };
 
 export const ${businessName}Edit = async (id?: number) => {
-  let targetId: number = id ? id : ${businessName}Keys.value[0];
+    let targetId: number = id ? id : ${businessName}Keys.value[0];
+    ${businessName}Table.value.loading = true;
     const { data } = await fetch${BusinessName}ById(targetId);
-     if (data.data) {
+    if (data.data) {
         ${businessName}Form.value = data.data;
         ${businessName}ShowForm.value = true;
-      }
-
+    }
+    ${businessName}Table.value.loading = false;
 };
 export const ${businessName}Create = async () => {
   ${businessName}ResetForm();
@@ -31,5 +32,6 @@ export const ${businessName}Create = async () => {
 export const ${businessName}Delete = async (id?: number) => {
   let targetId = id ? [id] : ${businessName}Keys.value[0];
     await response(delete${BusinessName}, targetId);
-    ${businessName}List();
+    await ${businessName}List();
+   ${businessName}Keys.value=[]
 };

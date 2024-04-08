@@ -1,19 +1,18 @@
 <template>
-  <a-form :model="${businessName}Form"  @finish="submit"    :wrapper-col="{ span: 8, offset: 1 }"
+  <a-form :model="${businessName}Form"  @finish="submit" :wrapper-col="{ span: 8, offset: 1 }"
     :label-col="{ span: 4, offset: 4 }">
-    <SystemModal title="Untitled" v-model:visible="${businessName}ShowForm">
+    <SystemModal title="$functionName" v-model:visible="${businessName}ShowForm">
       <div class="h-100 flex flex-col">
            <a-row>
-             <a-col :span="8" :offset="9">
-                <h2>新增/编辑</h2>
-                <a-divider></a-divider>
-            </a-col>
-        </a-row>
+               <a-col :span="8" :offset="9">
+                 <h2 class="text-bold">新增/编辑</h2>
+                 <a-divider class="my-12"></a-divider>
+               </a-col>
+           </a-row>
         <div class="flex-1 p-8">
      #foreach($column in $columns)
-         #set($comment=$column.columnComment)
-         #if($column.htmlType == "input")
-           <a-form-item label="${comment}">
+         #set($comment=$column.columnComment)#if($column.isInsert == '0')#elseif($column.htmlType == "input")
+           <a-form-item label="${comment}" :required="#if($column.required)true#else(false)#end">
              <a-input v-model:value="${businessName}Form.${column.javaField}"></a-input>
            </a-form-item>
          #elseif($column.htmlType == "textarea")
@@ -40,7 +39,7 @@
            </a-form-item>
          #elseif($column.htmlType == "datetime")
            <a-form-item label="${comment}">
-             <a-date-picker v-model:value="${businessName}Form.${column.javaField}" class="w-100"></a-date-picker>
+             <a-date-picker  class="w-100"></a-date-picker>
            </a-form-item>
          #elseif($column.htmlType == "imageUpload")
            <a-form-item label="${comment}">
@@ -54,10 +53,14 @@
            <a-form-item label="${comment}">
              <a-textarea v-model:value="${businessName}Form.${column.javaField}"></a-editor>
            </a-form-item>
+           <a-row>
+             <a-col :span="8" :offset="9">
+               <a-button type="primary" block>保存</a-button>
+             </a-col>
+           </a-row>
          #end
          #end
         </div>
-        <FormFooter></FormFooter>
       </div>
     </SystemModal>
   </a-form>
