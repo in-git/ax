@@ -11,7 +11,6 @@ const codeColumns = ref<ColumnProps[]>([
   { title: '函数名', dataIndex: 'functionName' },
   { title: '函数作者', dataIndex: 'functionAuthor' },
   { title: '生成类型', dataIndex: 'genType' },
-  { title: '生成路径', dataIndex: 'genPath' },
 ]);
 
 export { codeColumns };
