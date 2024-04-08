@@ -1,4 +1,5 @@
 import type { IQuery, Response, TableResponse } from '@/api/config/types';
+import { uploadFile } from '@/api/utils/file';
 import axios from 'axios';
 import type {
   CaptchaResponse,
@@ -76,4 +77,13 @@ export const updateUser = (data: UserProfileData) => {
 
 export const resetPwd = (password: string, userId: number) => {
   return axios.put<Response>(`system/user/resetPwd`, { password, userId });
+};
+
+export const setUserAvatar = (file: File) => {
+  const formData = new FormData();
+  formData.append('avatarfile', file);
+  return uploadFile({
+    url: '',
+    formData,
+  });
 };

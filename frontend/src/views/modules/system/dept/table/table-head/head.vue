@@ -36,7 +36,7 @@
           </a-tooltip>
         </a-popconfirm>
       </a-popconfirm>
-      <FieldVue :columns="deptColumns" module-name="test" />
+      <FieldVue :columns="deptColumns" :module-name="deptTable.moduleName" />
     </div>
   </TableHead>
 </template>
@@ -46,7 +46,7 @@ import FieldVue from '@/views/components/table/Field.vue';
 import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { deptColumns } from '../../data/column';
 import { deptCreate, deptDelete, deptEdit, deptList } from '../../data/curd';
-import { deptKeys } from '../../data/table';
+import { deptKeys, deptTable } from '../../data/table';
 </script>
 
 <style lang="scss" scoped></style>

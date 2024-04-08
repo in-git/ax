@@ -8,7 +8,7 @@ interface ExportData {
   fileName: string;
   method: 'POST' | 'GET';
 }
-// 批量绑定模板接口
+// 导出文件接口
 export const exportFile = async (config: ExportData) => {
   const dev = usePageStore();
   const userStore = useUserStore();
@@ -34,4 +34,18 @@ export const exportFile = async (config: ExportData) => {
   } catch (error: any) {
     message.warning('Error exporting file!');
   }
+};
+interface UploadData {
+  url: string;
+  formData: FormData;
+}
+export const uploadFile = async (data: UploadData) => {
+  const userStore = useUserStore();
+  await fetch(data.url, {
+    body: data.formData,
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${userStore.$state.token}`,
+    },
+  });
 };

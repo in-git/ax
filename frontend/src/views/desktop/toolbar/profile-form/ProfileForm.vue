@@ -16,7 +16,31 @@
           >
             <a-card :bordered="false">
               <a-form-item label="用户头像">
-                <a-avatar :size="64"></a-avatar>
+                <div class="flex gc-12">
+                  <div>
+                    <a-avatar
+                      v-if="userProfile.avatar"
+                      :src="getAvatar()"
+                      alt="avatar"
+                      :size="84"
+                    />
+                  </div>
+                  <a-upload
+                    v-model:file-list="fileList"
+                    name="avatarfile"
+                    list-type="picture-card"
+                    class="avatar-uploader"
+                    :show-upload-list="false"
+                    :headers="headers"
+                    :action="`${baseURL}system/user/profile/avatar`"
+                  >
+                    <div>
+                      <loading-outlined v-if="loading"></loading-outlined>
+                      <plus-outlined v-else></plus-outlined>
+                      <div>上传头像</div>
+                    </div>
+                  </a-upload>
+                </div>
               </a-form-item>
               <a-form-item label="用户昵称" name="nickName" required>
                 <a-input v-model:value="userProfile.nickName"></a-input>
@@ -79,14 +103,30 @@
 <script setup lang="ts">
 import { updatePassword, updateProfile } from '@/api/modules/system/user/user';
 import { sexOptions } from '@/global/options/system';
+import usePageStore from '@/store/page';
+import useUserStore from '@/store/user';
+import { getAvatar } from '@/store/user/utils';
 import { message, Modal } from 'ant-design-vue';
 import { userProfile } from '../profile/data';
 import authPng from './auth.png';
 
+const fileList = ref([]);
 const loading = ref(false);
 const passwordForm = ref({
   oldPassword: '',
   newPassword: '',
+});
+
+const userStore = useUserStore();
+const page = usePageStore();
+const baseURL = page.$state.developer.baseURL;
+// + `system/user/profile/avatar`
+const headers = {
+  Authorization: `Bearer ${userStore.$state.token}`,
+};
+
+onMounted(() => {
+  console.log(baseURL + userProfile.value?.avatar);
 });
 const updateUserInfo = async () => {
   loading.value = true;
@@ -110,7 +150,6 @@ const resetPassword = async () => {
   Modal.confirm({
     title: '警告',
     content: '是否刷新页面',
-
     onOk() {
       window.location.reload();
     },
