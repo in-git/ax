@@ -1,96 +1,40 @@
 <template>
-  <PageContainer title="AI配置">
-    <div>
-      <a-form
-        :model="AIStore.$state.qianFan"
-        :wrapper-col="{ span: 10 }"
-        :label-col="{ span: 14 }"
-        layout="vertical"
-        labelAlign="left"
-      >
-        <a-card title="AI设置">
-          <a-form-item>
-            <template #label>
-              <span class="text-primary">秘钥[令牌][Key][Token]</span>
-            </template>
-            <a-textarea
-              :autoSize="{ row: 4 }"
-              v-model:value="AIStore.$state.qianFan.token"
-              allow-clear
-              :maxlength="60"
-              :show-count="true"
-            ></a-textarea>
-            <div class="text-999">
-              没有账号?
-              <a-button type="link" href="https://faucet.openkey.cloud/" target="_blank">
-                推荐获取
-              </a-button>
-            </div>
-            <div>
-              已有账号?
-              <a-popover trigger="click" placement="right" v-model:open="popVisible">
-                <a-button type="link">备忘录</a-button>
-                <template #content>
-                  <Memo
-                    @update:value="popVisible = false"
-                    v-model:value="AIStore.$state.qianFan.token"
-                  />
-                </template>
-              </a-popover>
-            </div>
-          </a-form-item>
-          <a-divider class="my-8" />
+  <div class="qf-container flex flex-col">
+    <div class="banner">
+      <div class="banner-text flex flex-s flex-col">
+        <h3 class="text-36 text-bold text-center">千帆大模型</h3>
+        <div class="text-12 text-center mt-24">
+          Lorem ipsum dolor sit amet
+          <a-button type="link" style="color: pink">立即获取</a-button>
+        </div>
+      </div>
+    </div>
+    <div class="flex-1 qf-form flex flex-s">
+      <a-form layout="vertical">
+        <a-form-item>
+          <a-input size="large" placeholder="请输入AK"></a-input>
+        </a-form-item>
+        <a-form-item>
+          <a-input size="large" placeholder="请输入SK"></a-input>
+        </a-form-item>
 
-          <a-form-item label="随机性[temperature]">
-            <a-slider
-              :min="0"
-              :step="0.1"
-              :max="1"
-              v-model:value="AIStore.$state.qianFan.temperature"
-              class="my-4"
-            ></a-slider>
-            <div class="text-999">
-              <InfoCircleFilled />
-              值越大，随机性越高
-            </div>
-          </a-form-item>
-
-          <a-divider class="my-8" />
-          <a-form-item label="核采样[top_p]">
-            <a-slider
-              :min="0"
-              :step="0.1"
-              :max="1"
-              v-model:value="AIStore.$state.qianFan.top_p"
-              class="my-4"
-            ></a-slider>
-            <div class="text-999">
-              <InfoCircleFilled />
-              与随机性类似
-            </div>
-          </a-form-item>
-          <a-divider class="my-8" />
-          <a-form-item label="后端接口">
-            <a-auto-complete
-              :options="urlOptions"
-              v-model:value="AIStore.$state.qianFan.baseUrl"
-            ></a-auto-complete>
-            <div class="text-999">
-              <InfoCircleFilled />
-              非开发人员，请勿修改
-            </div>
-          </a-form-item>
-        </a-card>
+        <div class="flex flex-s">
+          <div class="button-effect">
+            <button class="learn-more">
+              <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+              </span>
+              <span class="button-text">立即开始</span>
+            </button>
+          </div>
+        </div>
       </a-form>
     </div>
-  </PageContainer>
+  </div>
 </template>
 
 <script setup lang="ts">
 import useAIStore from '@/store/AI/AI';
-import Memo from '@/views/components/memo/Memo.vue';
-import { InfoCircleFilled } from '@ant-design/icons-vue';
-import PageContainer from '../components/PageContainer.vue';
 
 const AIStore = useAIStore();
 
@@ -100,14 +44,5 @@ const urlOptions: any[] = [];
 </script>
 
 <style lang="scss" scoped>
-.ant-form-item {
-  margin-bottom: 0;
-}
-.text-orange {
-  color: orange;
-  zoom: 0.9;
-}
-.text-primary {
-  color: var(--primary);
-}
+@import './style.scss';
 </style>

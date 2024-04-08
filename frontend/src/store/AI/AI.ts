@@ -1,17 +1,12 @@
 import { defineStore } from 'pinia';
 import type { Conversation } from './types';
 
-interface Config {
-  token: string;
-  temperature: number;
-  top_p: number;
-  memory: boolean;
-  model: 'gpt-3.5-turbo';
-  splitSize: number;
-  max_tokens: number;
-  frequency_penalty: number;
-  stream: boolean;
-  baseUrl: string;
+interface QFConfig {
+  /* ak+sk用于获取access_token */
+  ak: string;
+  sk: string;
+  /* 发起请求的秘钥 */
+  access_token: string;
 }
 
 export interface History {
@@ -25,22 +20,15 @@ interface IConversation {
 }
 
 interface AI {
-  qianFan: Config;
+  qianFan: QFConfig;
   conversation: IConversation;
 }
 const useAIStore = defineStore('AI', {
   state: (): AI => ({
     qianFan: {
-      token: '',
-      model: 'gpt-3.5-turbo',
-      temperature: 1,
-      top_p: 1,
-      memory: true,
-      splitSize: 40,
-      max_tokens: 10,
-      frequency_penalty: 0,
-      stream: false,
-      baseUrl: 'https://openkey.cloud/v1/chat/completions',
+      ak: '',
+      sk: '',
+      access_token: '',
     },
     conversation: {
       list: [],
