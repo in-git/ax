@@ -17,6 +17,13 @@
         <a-form-item>
           <a-input size="large" placeholder="请输入SK"></a-input>
         </a-form-item>
+        <a-form-item>
+          <a-input size="large" placeholder="token" disabled>
+            <template #suffix>
+              <CopyOutlined />
+            </template>
+          </a-input>
+        </a-form-item>
 
         <div class="flex flex-s">
           <div class="button-effect">
@@ -35,12 +42,11 @@
 
 <script setup lang="ts">
 import useAIStore from '@/store/AI/AI';
+import type { CopyOutlined } from '@ant-design/icons-vue';
 
 const AIStore = useAIStore();
 
-const popVisible = ref(false);
-
-const urlOptions: any[] = [];
+const urlOptions = [];
 </script>
 
 <style lang="scss" scoped>

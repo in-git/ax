@@ -23,7 +23,7 @@
            <a-form-item label="${comment}">
              <a-select v-model:value="${businessName}Form.${column.javaField}">
                <!-- Options here -->
-             </a-select>
+             </a-select>sele
            </a-form-item>
          #elseif($column.htmlType == "radio")
            <a-form-item label="${comment}">

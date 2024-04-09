@@ -73,6 +73,7 @@ declare module 'vue' {
     CheckOutlined: typeof import('@ant-design/icons-vue')['CheckOutlined']
     CloseOutlined: typeof import('@ant-design/icons-vue')['CloseOutlined']
     CodeOutlined: typeof import('@ant-design/icons-vue')['CodeOutlined']
+    CopyOutlined: typeof import('@ant-design/icons-vue')['CopyOutlined']
     DatabaseFilled: typeof import('@ant-design/icons-vue')['DatabaseFilled']
     DeleteOutlined: typeof import('@ant-design/icons-vue')['DeleteOutlined']
     DoubleRightOutlined: typeof import('@ant-design/icons-vue')['DoubleRightOutlined']

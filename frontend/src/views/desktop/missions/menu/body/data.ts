@@ -1,7 +1,7 @@
 import aiPng from '@/assets/apps/gpt.png';
 import notepad from '@/assets/system/notepad.png';
 import { openWindow } from '@/global/config/window';
-import AI from '@/views/page/gpt/AI.vue';
+import AI from '@/views/page/ai/AI.vue';
 import Notepad from '@/views/page/notepad/Notepad.vue';
 import { showWindowMenu } from '../data';
 

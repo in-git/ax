@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import aiPng from '@/assets/apps/gpt.png';
 import { getData, openWindow } from '@/global/config/window';
-import AIVue from '@/views/page/gpt/AI.vue';
+import AIVue from '@/views/page/ai/AI.vue';
 
 const visible = ref(false);
 const textareaValue = ref('');
