@@ -1,4 +1,4 @@
-import { sendMsg } from '@/api/modules/external/chatgpt/chatgpt';
+import { sendMsg } from '@/api/modules/external/qian-fan/qian-fan';
 import useAIStore from '@/store/AI/AI';
 import type { AIMessage } from '@/store/AI/types';
 import { message } from 'ant-design-vue';
@@ -37,7 +37,9 @@ export const send = async (inputEl?: Ref<HTMLElement | undefined>) => {
       tempMsg = [newMsg];
     }
 
-    const { data } = await sendMsg(tempMsg);
+    const { data } = await sendMsg({
+      messages: tempMsg,
+    });
     msg.value = '';
 
     data.choices.forEach((e: any) => {
@@ -60,8 +62,6 @@ export const send = async (inputEl?: Ref<HTMLElement | undefined>) => {
     const err = error as AxiosError;
     const response = err.response as any;
     if (response?.data) {
-      console.log(response.data.error);
-
       if (response.data.error.type === 'one_api_error') {
         message.warning('请填写秘钥');
         return;
