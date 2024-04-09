@@ -7,6 +7,7 @@ interface QFConfig {
   sk: string;
   /* 发起请求的秘钥 */
   access_token: string;
+  model: string;
 }
 
 export interface History {
@@ -29,6 +30,7 @@ const useAIStore = defineStore('AI', {
       ak: '',
       sk: '',
       access_token: '',
+      model: '',
     },
     conversation: {
       list: [],
