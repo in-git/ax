@@ -11,8 +11,10 @@
 </template>
 
 <script setup lang="ts">
+import { aiClearTimer } from './data';
+
 const time = ref(0);
-const clearFlag = setInterval(() => {
+aiClearTimer.value = setInterval(() => {
   time.value++;
 });
 const getClass = () => {
@@ -25,7 +27,7 @@ const getClass = () => {
   }
 };
 onUnmounted(() => {
-  clearInterval(clearFlag);
+  clearInterval(aiClearTimer.value);
 });
 </script>
 

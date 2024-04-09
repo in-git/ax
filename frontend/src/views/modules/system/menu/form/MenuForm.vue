@@ -1,5 +1,5 @@
 <template>
-  <SystemModal v-model:visible="showMenuForm" title="Menu config">
+  <SystemModal v-model:visible="showMenuForm" title="菜单配置">
     <a-form
       :model="menuForm"
       :label-col="{
@@ -15,13 +15,13 @@
       <a-card class="flex-1" :body-style="{ height: `500px`, overflowY: 'auto' }">
         <a-row :gutter="16">
           <a-col :span="14">
-            <h2 class="mb-12">Base info</h2>
+            <h3 class="mb-12">基础配置</h3>
             <a-divider class="mt-12"></a-divider>
-            <a-form-item label="Menu name" name="menuName" required>
+            <a-form-item label="菜单名" name="menuName" required>
               <a-input v-model:value="menuForm.menuName"></a-input>
             </a-form-item>
 
-            <a-form-item label="Select parent" name="parentId" required>
+            <a-form-item label="选择父级菜单" name="parentId" required>
               <a-tree-select
                 v-model:value="menuForm.parentId"
                 :field-names="{
@@ -31,21 +31,21 @@
                 :tree-data="treeData"
               ></a-tree-select>
             </a-form-item>
-            <a-form-item label="Menu status" name="status" required>
+            <a-form-item label="菜单状态" name="status" required>
               <a-radio-group
                 v-model:value="menuForm.status"
                 :options="statusOptions"
               ></a-radio-group>
             </a-form-item>
 
-            <a-form-item label="Visible" name="visible" required>
+            <a-form-item label="是否显示" name="visible" required>
               <a-radio-group
                 v-model:value="menuForm.visible"
                 :options="visibleOptions"
               ></a-radio-group>
             </a-form-item>
 
-            <a-form-item label="Order" name="orderNum" required>
+            <a-form-item label="排序" name="orderNum" required>
               <a-input-number class="w-100" v-model:value="menuForm.orderNum"></a-input-number>
             </a-form-item>
           </a-col>
@@ -58,14 +58,6 @@
                 v-for="item in menuTypeOptions"
               ></a-tab-pane>
             </a-tabs>
-            <!-- 菜单类型（M目录 C菜单 F按钮） -->
-            <!-- <a-form-item label="按钮类型" name="menuType" required>
-              <a-radio-group v-model:value="menuForm.menuType" buttonStyle="solid">
-                <a-radio-button :value="item.value" v-for="item in menuTypeOptions">
-                  {{ item.label }}
-                </a-radio-button>
-              </a-radio-group>
-            </a-form-item> -->
             <ParamVue />
           </a-col>
         </a-row>
@@ -127,4 +119,3 @@ watch(
 <style lang="scss" scoped>
 @import './style';
 </style>
-../data/data ./form

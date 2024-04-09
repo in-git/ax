@@ -2,7 +2,7 @@
   <PageContainer title="网络设置">
     <BaseURL />
     <a-card class="mt-12">
-      <a-flex justify="space-between">
+      <a-flex justify="space-between" class="mb-12">
         <div>超时</div>
         <div>
           <a-auto-complete
@@ -16,17 +16,29 @@
           </div>
         </div>
       </a-flex>
+      <a-flex justify="space-between">
+        <div>Token</div>
+        <div>
+          <a-textarea
+            :auto-size="{ maxRows: 3 }"
+            style="width: 200px"
+            :value="userStore.$state.token"
+          ></a-textarea>
+        </div>
+      </a-flex>
     </a-card>
   </PageContainer>
 </template>
 
 <script setup lang="ts">
 import usePageStore from '@/store/page';
+import useUserStore from '@/store/user';
 import PageContainer from '@/views/page/setting/components/PageContainer.vue';
 import type { InfoCircleFilled } from '@ant-design/icons-vue';
 import BaseURL from './base-url/BaseURL.vue';
 import { timeoutOptions } from './data';
 
+const userStore = useUserStore();
 const devStore = usePageStore();
 </script>
 

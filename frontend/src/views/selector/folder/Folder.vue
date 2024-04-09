@@ -30,6 +30,7 @@
         @dblclick="openApp(item)"
         @click="selectItem(item)"
         :class="{ active: item.name === current?.name }"
+        v-show="!item.hidden"
         :style="style"
       >
         <div v-if="item.meta.link">
@@ -79,6 +80,7 @@ const onError = (key: number) => {
     imageRef.value[key].src = logoPng;
   });
 };
+
 const current = ref<Routers>();
 const ulRef = ref();
 

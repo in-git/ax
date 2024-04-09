@@ -26,8 +26,8 @@
               </div>
             </div>
             <div class="msg" style="max-width: 600px">
-              <div v-if="!isSystem(item.role) || !item.content.includes('```')">
-                {{ item.content.trim() }}
+              <div v-if="!isSystem(item.role) || !item.content?.includes('```')">
+                {{ item.content?.trim() }}
               </div>
               <MdPreview previewTheme="default" v-else :modelValue="item.content" />
             </div>

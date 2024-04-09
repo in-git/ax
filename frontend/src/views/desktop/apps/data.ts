@@ -32,7 +32,7 @@ export const getIconByName = (item: Routers) => {
 };
 
 export const openApp = (item: Routers) => {
-  console.log(item.component);
+  console.log(item);
 
   if (item.children && item.children.length > 0) {
     openWindow({
@@ -45,6 +45,9 @@ export const openApp = (item: Routers) => {
   } else if (item.meta.link) {
     openLink(item.meta.link);
   } else {
+    if (item.path === '/') {
+      return;
+    }
     systemComponents.value.forEach(e => {
       if (e.path.includes(item.path)) {
         openWindow({
