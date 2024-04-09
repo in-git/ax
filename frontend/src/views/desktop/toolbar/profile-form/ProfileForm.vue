@@ -33,6 +33,7 @@
                     :show-upload-list="false"
                     :headers="headers"
                     :action="`${baseURL}system/user/profile/avatar`"
+                    @change="refresh"
                   >
                     <div>
                       <loading-outlined v-if="loading"></loading-outlined>
@@ -107,7 +108,7 @@ import usePageStore from '@/store/page';
 import useUserStore from '@/store/user';
 import { getAvatar } from '@/store/user/utils';
 import { message, Modal } from 'ant-design-vue';
-import { userProfile } from '../profile/data';
+import { getProfile, userProfile } from '../profile/data';
 import authPng from './auth.png';
 
 const fileList = ref([]);
@@ -125,9 +126,11 @@ const headers = {
   Authorization: `Bearer ${userStore.$state.token}`,
 };
 
-onMounted(() => {
-  console.log(baseURL + userProfile.value?.avatar);
-});
+const refresh = () => {
+  console.log('refresh');
+
+  getProfile();
+};
 const updateUserInfo = async () => {
   loading.value = true;
   if (!userProfile.value) return;
@@ -157,4 +160,8 @@ const resetPassword = async () => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+::v-deep(.ant-card) {
+  box-shadow: none !important;
+}
+</style>
