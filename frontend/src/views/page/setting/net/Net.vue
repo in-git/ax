@@ -43,10 +43,6 @@ const devStore = usePageStore();
 </script>
 
 <style lang="scss" scoped>
-.system-net {
-  background: #f1f0f5;
-  height: 100%;
-}
 .timeout-list {
   display: flex;
   gap: 12px;

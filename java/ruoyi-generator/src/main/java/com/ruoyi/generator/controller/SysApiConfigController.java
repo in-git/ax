@@ -17,7 +17,7 @@ import static com.ruoyi.common.core.domain.AjaxResult.success;
 @RestController
 @RequestMapping("/tool/api")
 public class SysApiConfigController {
-    
+
     /*
     * 获取千帆模型的token
     * */

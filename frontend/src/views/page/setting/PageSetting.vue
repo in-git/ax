@@ -32,11 +32,13 @@ import {
   BgColorsOutlined,
   DesktopOutlined,
   GlobalOutlined,
+  RobotOutlined,
 } from '@ant-design/icons-vue';
 import { nanoid } from 'nanoid';
 import AI from './ai/AI.vue';
+import ApiVue from './api/Api.vue';
 import DesktopSetting from './desktop/DesktopSetting.vue';
-import Net from './system/net/Net.vue';
+import Net from './net/Net.vue';
 import ThemeVue from './theme/Theme.vue';
 
 const nav: Nav[] = [
@@ -59,8 +61,14 @@ const nav: Nav[] = [
     component: markRaw(DesktopSetting),
   },
   {
-    title: 'AI设置',
+    title: '三方接口',
     icon: markRaw(AimOutlined),
+    id: nanoid(),
+    component: markRaw(ApiVue),
+  },
+  {
+    title: '千帆设置',
+    icon: markRaw(RobotOutlined),
     id: nanoid(),
     component: markRaw(AI),
   },
