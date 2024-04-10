@@ -17,6 +17,7 @@ export const galleryConfig = ref<GalleryData>({
   loading: false,
   data: [],
 });
+
 export const getPhotos = async () => {
   galleryConfig.value.loading = true;
   const http = axios.create({
@@ -28,4 +29,5 @@ export const getPhotos = async () => {
   galleryConfig.value.loading = false;
   return data;
 };
+
 export const currentPhoto = ref('');

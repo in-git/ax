@@ -1,6 +1,5 @@
 <template>
   <div class="wallpaper">
-    <div></div>
     <a-spin wrapperClassName="w-100 h-100" :spinning="galleryConfig.loading">
       <div class="images">
         <ul>
@@ -55,6 +54,7 @@ onMounted(async () => {
     background-repeat: no-repeat;
     background-position: center;
   }
+
   .tags {
     position: sticky;
     top: 0;
@@ -62,6 +62,7 @@ onMounted(async () => {
     padding: 4px;
     z-index: 10;
   }
+
   .active {
     border: 2px solid var(--primary);
   }
