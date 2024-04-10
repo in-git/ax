@@ -23,7 +23,6 @@
       </div>
     </template>
     <Loading v-else></Loading>
-    <CreateMenu></CreateMenu>
   </div>
 </template>
 
@@ -34,7 +33,6 @@ import Loading from '@/components/loading/Loading.vue';
 import usePageStore from '@/store/page';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import { appContextMenu, openContextMenu } from './contextmenu';
-import CreateMenu from './create-menu/CreateMenu.vue';
 import { getIconByName, getUserRouters, openApp } from './data';
 
 const selected = ref<string>('');

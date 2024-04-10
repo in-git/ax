@@ -1,6 +1,6 @@
 <template>
   <div class="contextmenu" v-show="contextMenu.show" :style="style" ref="contextMenuRef">
-    <a-menu @select="select" :items="contextMenu.items"></a-menu>
+    <a-menu @select="select" v-model:selectedKeys="keys" :items="contextMenu.items"></a-menu>
   </div>
 </template>
 
@@ -9,9 +9,10 @@ import { onClickOutside } from '@vueuse/core';
 import { contextMenu } from './data';
 
 const contextMenuRef = ref();
-
+const keys = ref<string[]>([]);
 const select = () => {
   contextMenu.value.show = false;
+  keys.value = [];
 };
 
 const style = computed(() => {
@@ -36,6 +37,7 @@ const style = computed(() => {
 
 onClickOutside(contextMenuRef, () => {
   contextMenu.value.show = false;
+  keys.value = [];
 });
 </script>
 

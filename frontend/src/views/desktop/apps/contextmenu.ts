@@ -6,10 +6,8 @@ import {
   BgColorsOutlined,
   DesktopOutlined,
   FolderFilled,
-  MenuOutlined,
   ReloadOutlined,
 } from '@ant-design/icons-vue';
-import { createMenuForm } from './create-menu/data';
 import { openApp } from './data';
 
 export const appContextMenu = (item: Routers) => {
@@ -61,27 +59,6 @@ export const openContextMenu = (e: MouseEvent) => {
             show: true,
           });
         },
-      },
-      {
-        label: '新建',
-        key: '5',
-        icon: h(MenuOutlined),
-        children: [
-          {
-            label: '创建文件夹',
-            key: '5-1',
-            onClick() {
-              createMenuForm.value = true;
-            },
-          },
-          {
-            label: '创建链接',
-            key: '5-2',
-            onClick(info) {
-              console.log('---', info);
-            },
-          },
-        ],
       },
     ],
     x: 0,
