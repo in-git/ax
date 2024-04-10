@@ -1,5 +1,5 @@
 import {
-  deleteConfigByIds,
+  deleteConfigById,
   fetchConfigById,
   fetchConfigList,
 } from '@/api/modules/system/config/config';
@@ -24,8 +24,8 @@ export const editConfig = async (id?: number) => {
 };
 
 export const delConfig = async (id?: number) => {
-  const targetId = id ? [id] : configKeys.value[0];
-  await response(deleteConfigByIds, targetId);
+  const targetId = id ? [id] : configKeys.value;
+  await response(deleteConfigById, targetId);
   configList();
 };
 

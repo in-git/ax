@@ -24,13 +24,6 @@
           v-model:value="configQuery.configName"
           @search="configList"
         ></a-input-search>
-        <a-divider type="vertical"></a-divider>
-        <div class="text-999 text-nowrap">是否禁用</div>
-        <a-segmented
-          v-model:value="configQuery.configType"
-          :options="systemTypeOptions"
-          @change="configList"
-        ></a-segmented>
       </div>
     </div>
     <div class="flex align-center">
@@ -51,7 +44,6 @@ import FiledVue from '@/views/components/table/Field.vue';
 import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { configColumns } from '../../data/column';
 import { configList, createConfig, delConfig, editConfig } from '../../data/curd';
-import { systemTypeOptions } from '../../data/options';
 import { configQuery, configTable } from '../../data/table';
 </script>
 

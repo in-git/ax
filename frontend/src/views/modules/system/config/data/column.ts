@@ -24,18 +24,8 @@ const configColumns = ref<ColumnProps[]>([
     show: true,
   },
   {
-    title: '配置类型',
+    title: '系统内置',
     dataIndex: 'configType',
-    show: true,
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'createTime',
-    show: true,
-  },
-  {
-    title: '更新时间',
-    dataIndex: 'updateTime',
     show: true,
   },
 ]);

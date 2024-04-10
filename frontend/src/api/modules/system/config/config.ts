@@ -18,6 +18,6 @@ export const updateConfig = (data: SystemConfig) => {
 export const createConfig = (data: SystemConfig) => {
   return axios.post<Response<SystemConfig>>(`system/config`, data);
 };
-export const deleteConfigByIds = (ids: number[]) => {
-  return axios.post<Response<SystemConfig>>(`system/config/${ids.join(',')}`);
+export const deleteConfigById = (id: number) => {
+  return axios.delete<Response<SystemConfig>>(`system/config/${id}`);
 };

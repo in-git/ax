@@ -25,7 +25,7 @@
             <a-form-item label="参数键值" required name="configValue">
               <a-input v-model:value="configForm.configValue" placeholder="请输入键值"></a-input>
             </a-form-item>
-            <a-form-item label="是否内置" required name="configValue">
+            <a-form-item label="是否内置" required name="configType">
               <a-radio-group
                 v-model:value="configForm.configType"
                 :options="systemTypeOptions"
@@ -60,6 +60,7 @@ import { createConfig, updateConfig } from '@/api/modules/system/config/config';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { response } from '@/utils/table/table';
 import formPng from '../assets/form.png';
+import { configList } from '../data/curd';
 import { configForm, showConfigForm } from '../data/form';
 import { systemTypeOptions } from '../data/options';
 
@@ -71,6 +72,7 @@ const submit = async () => {
   } else {
     await response(createConfig, configForm.value);
   }
+  await configList();
   loading.value = false;
   showConfigForm.value = false;
 };
