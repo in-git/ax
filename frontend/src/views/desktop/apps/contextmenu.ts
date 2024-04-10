@@ -3,13 +3,14 @@ import { minWindow } from '@/global/config/window';
 import { setContextMenu } from '@/views/components/contextmenu/data';
 import { setGallery } from '@/views/selector/gallery/data';
 import {
-  AppstoreOutlined,
   BgColorsOutlined,
   DesktopOutlined,
   FolderFilled,
+  MenuOutlined,
   ReloadOutlined,
 } from '@ant-design/icons-vue';
-import { getUserRouters, openApp } from './data';
+import { createMenuForm } from './create-menu/data';
+import { openApp } from './data';
 
 export const appContextMenu = (item: Routers) => {
   const e = window.event as MouseEvent;
@@ -37,23 +38,15 @@ export const openContextMenu = (e: MouseEvent) => {
     items: [
       {
         label: '刷新页面',
-        key: 'refreshPage',
+        key: '1',
         icon: h(ReloadOutlined),
         onClick() {
           window.location.reload();
         },
       },
       {
-        label: '刷新菜单',
-        key: 'refreshPage',
-        icon: h(AppstoreOutlined),
-        onClick() {
-          getUserRouters();
-        },
-      },
-      {
         label: '显示桌面',
-        key: 'refreshPage',
+        key: '3',
         icon: h(DesktopOutlined),
         onClick() {
           minWindow();
@@ -61,13 +54,34 @@ export const openContextMenu = (e: MouseEvent) => {
       },
       {
         label: '选择壁纸',
-        key: 'refreshPage',
+        key: '4',
         icon: h(BgColorsOutlined),
         onClick() {
           setGallery({
             show: true,
           });
         },
+      },
+      {
+        label: '新建',
+        key: '5',
+        icon: h(MenuOutlined),
+        children: [
+          {
+            label: '创建文件夹',
+            key: '5-1',
+            onClick() {
+              createMenuForm.value = true;
+            },
+          },
+          {
+            label: '创建链接',
+            key: '5-2',
+            onClick(info) {
+              console.log('---', info);
+            },
+          },
+        ],
       },
     ],
     x: 0,

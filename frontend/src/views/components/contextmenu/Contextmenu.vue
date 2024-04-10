@@ -1,12 +1,11 @@
 <template>
-  <div class="contextmenu" v-if="contextMenu.show" :style="style" ref="contextMenuRef">
-    <a-menu @select="select" @click="handleClick" :items="contextMenu.items"></a-menu>
+  <div class="contextmenu" v-show="contextMenu.show" :style="style" ref="contextMenuRef">
+    <a-menu @select="select" :items="contextMenu.items"></a-menu>
   </div>
 </template>
 
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core';
-import type { MenuInfo } from 'ant-design-vue/es/menu/src/interface';
 import { contextMenu } from './data';
 
 const contextMenuRef = ref();
@@ -15,20 +14,22 @@ const select = () => {
   contextMenu.value.show = false;
 };
 
-const handleClick = (menuInfo: MenuInfo) => {
-  const item = menuInfo.item;
-  console.log(item);
-};
-
 const style = computed(() => {
   let top = contextMenu.value.y || 0;
+  let left = contextMenu.value.x || 0;
 
   const maxY = window.innerHeight - contextMenu.value.items.length * 50;
+  const maxX = window.innerWidth - 140;
+  console.log(maxX);
+
   if (top > maxY) {
     top = maxY;
   }
+  if (left > maxX) {
+    left = maxX;
+  }
   return {
-    left: contextMenu.value.x + 'px',
+    left: left + 'px',
     top: `${top}px`,
   };
 });

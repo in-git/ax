@@ -5,7 +5,7 @@ interface FolderStore {
 }
 const useFolderStore = defineStore('folder', {
   state: (): FolderStore => ({
-    size: 74,
+    size: 84,
   }),
   persist: true,
 });

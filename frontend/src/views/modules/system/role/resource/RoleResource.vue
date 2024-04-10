@@ -26,7 +26,7 @@
           </a-form-item>
 
           <a-form-item name="deptIds" required label="选择部门">
-            <div @click="allocatingResource" class="mb-12 flex justify-between">
+            <div @click="reload" class="mb-12 flex justify-between">
               <span class="text-999">部门列表</span>
               <a-tooltip title="刷新">
                 <a-button type="ghost">
@@ -34,16 +34,18 @@
                 </a-button>
               </a-tooltip>
             </div>
-            <a-directory-tree
-              :tree-data="treeData"
-              :field-names="{
-                key: 'id',
-                title: 'label',
-              }"
-              selectable
-              v-model:selected-keys="currentRole.deptIds"
-              ref="treeRef"
-            ></a-directory-tree>
+            <a-spin :spinning="loading">
+              <a-directory-tree
+                :tree-data="treeData"
+                :field-names="{
+                  key: 'id',
+                  title: 'label',
+                }"
+                selectable
+                v-model:selected-keys="currentRole.deptIds"
+                ref="treeRef"
+              ></a-directory-tree>
+            </a-spin>
           </a-form-item>
         </a-card>
 
@@ -59,11 +61,11 @@ import SystemModal from '@/components/modal/SysModal.vue';
 import { message } from 'ant-design-vue';
 import { getRoles } from '../card/curd';
 import { currentRole, roleData } from '../card/data';
-import { allocatingResource, resourceModal } from './data';
+import { allocatingResource, resourceModal, scopedOptions } from './data';
 
 const treeData = ref<any>();
 const treeRef = ref();
-
+const loading = ref();
 const submit = async () => {
   if (!currentRole.value) return;
   const treeSelectData: any = currentRole.value.deptIds;
@@ -75,33 +77,17 @@ const submit = async () => {
   resourceModal.value = true;
   getRoles();
 };
+const reload = async () => {
+  loading.value = true;
+  await allocatingResource();
+  loading.value = false;
+};
 
-const scopedOptions = [
-  {
-    value: '1',
-    label: '全部数据权限',
-  },
-  {
-    value: '2',
-    label: '自定数据权限',
-  },
-  {
-    value: '3',
-    label: '本部门数据权限',
-  },
-  {
-    value: '4',
-    label: '本部门及以下数据权限',
-  },
-  {
-    value: '5',
-    label: '仅本人数据权限',
-  },
-];
 watch(
   roleData,
   () => {
     treeData.value = roleData.value.deptList;
+    loading.value = false;
   },
   {
     deep: true,
