@@ -59,6 +59,5 @@ export const openApp = (item: Routers) => {
       }
     });
   }
-
   setCurrentWindow(item.name);
 };

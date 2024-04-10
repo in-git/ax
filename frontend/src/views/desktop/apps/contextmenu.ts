@@ -1,10 +1,8 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import { minWindow } from '@/global/config/window';
 import { setContextMenu } from '@/views/components/contextmenu/data';
-import { setGallery } from '@/views/selector/gallery/data';
 import {
   AppstoreOutlined,
-  BgColorsOutlined,
   DesktopOutlined,
   FolderFilled,
   ReloadOutlined,
@@ -37,7 +35,7 @@ export const openContextMenu = (e: MouseEvent) => {
     items: [
       {
         label: '刷新页面',
-        key: 'refreshPage',
+        key: '1-1',
         icon: h(ReloadOutlined),
         onClick() {
           window.location.reload();
@@ -45,7 +43,7 @@ export const openContextMenu = (e: MouseEvent) => {
       },
       {
         label: '刷新菜单',
-        key: 'refreshPage',
+        key: '1-2',
         icon: h(AppstoreOutlined),
         onClick() {
           getUserRouters();
@@ -53,20 +51,10 @@ export const openContextMenu = (e: MouseEvent) => {
       },
       {
         label: '显示桌面',
-        key: 'refreshPage',
+        key: '1-3',
         icon: h(DesktopOutlined),
         onClick() {
           minWindow();
-        },
-      },
-      {
-        label: '选择壁纸',
-        key: 'refreshPage',
-        icon: h(BgColorsOutlined),
-        onClick() {
-          setGallery({
-            show: true,
-          });
         },
       },
     ],

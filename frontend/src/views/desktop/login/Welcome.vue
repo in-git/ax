@@ -34,7 +34,7 @@ import posterImg from '../assets/welcome.webp';
   background: #f8f8f8;
   border-right: 1px solid #ddd;
   padding: 64px;
-  background: url('../assets/background.webp');
+  background: url('../assets/welcome-background.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
