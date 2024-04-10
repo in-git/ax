@@ -60,19 +60,6 @@
             px
           </div>
         </div>
-
-        <div class="flex justify-between align-center">
-          <div>桌面文字</div>
-          <div style="width: 200px" class="text-right">
-            <a-switch
-              v-model:checked="store.$state.desktop.background.color"
-              un-checked-value="white"
-              checked-value="black"
-              checked-children="黑"
-              un-checked-children="白"
-            ></a-switch>
-          </div>
-        </div>
       </a-space>
     </a-card>
   </PageContainer>
