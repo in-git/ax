@@ -6,7 +6,7 @@
           <li
             v-for="item in menuList"
             :key="item.name"
-            :class="{ selected: item.path === selected }"
+            :class="{ selected: item.name === selected || item.meta.title === selected }"
             @click="select(item)"
             @dblclick="openApp(item)"
             v-show="!item.hidden"
@@ -57,7 +57,7 @@ onMounted(async () => {
   });
 });
 const select = (item: Routers) => {
-  selected.value = item.path;
+  selected.value = item.name || item.meta.title;
 };
 
 const pageStore = usePageStore();

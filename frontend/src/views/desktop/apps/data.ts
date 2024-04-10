@@ -14,6 +14,8 @@ export const userRouters = ref<Routers[]>([]);
 export const getUserRouters = async () => {
   appLoading.value = true;
   const { data } = await getRouters();
+  console.log(data.data);
+
   if (data.data) {
     userRouters.value = data.data;
   }

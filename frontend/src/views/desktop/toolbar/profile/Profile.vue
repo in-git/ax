@@ -27,9 +27,13 @@
                 <a-descriptions-item label="用户性别">
                   {{ getLabel(sexOptions, userProfile.sex) }}
                 </a-descriptions-item>
-                <a-descriptions-item label="用户角色">{{ userData.roleGroup }}</a-descriptions-item>
+                <a-descriptions-item label="用户角色">
+                  <a-tag v-for="(item, key) in userData?.roles" :key="key">
+                    {{ item.roleName }}
+                  </a-tag>
+                </a-descriptions-item>
                 <a-descriptions-item label="用户部门">
-                  {{ userData.postGroup }}
+                  {{ userData?.dept?.deptName }}
                 </a-descriptions-item>
               </a-descriptions>
               <a-divider class="my-12"></a-divider>
@@ -45,6 +49,7 @@
 </template>
 
 <script setup lang="ts">
+import type { UserProfileData } from '@/api/modules/system/user/types';
 import { logoff } from '@/api/utils/auth';
 import userCenterPng from '@/assets/system/user-center.png';
 import { openWindow } from '@/global/config/window';
@@ -56,13 +61,14 @@ import ProFileForm from '../profile-form/ProfileForm.vue';
 import { getProfile, userProfile } from './data';
 
 const popoverVisible = ref(false);
-const userData = ref();
+const userData = ref<UserProfileData>();
 const loading = ref(false);
 
 onMounted(async () => {
   loading.value = true;
   userData.value = await getProfile();
   loading.value = false;
+  console.log(userData.value);
 });
 
 const editProfile = () => {
