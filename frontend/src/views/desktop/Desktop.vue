@@ -34,7 +34,7 @@ const style = computed((): CSSProperties => {
   if (pageStore.$state.desktop.background.type === 'image') {
     return {
       background: `url('${pageStore.$state.desktop.background.src || defaultBackground}')`,
-      filter: `brightness(${100 - pageStore.$state.desktop.background.brightness}%) blur(${pageStore.$state.desktop.background.blur}px)`,
+      filter: `brightness(${100 - pageStore.$state.desktop.background.brightness}%)`,
     };
   }
   return {};

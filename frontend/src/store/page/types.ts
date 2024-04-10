@@ -28,6 +28,7 @@ export interface DesktopBackground {
   src: string;
   brightness: number;
   blur: number;
+  color: 'white' | 'black';
 }
 export interface PageSettings {
   developer: Developer;

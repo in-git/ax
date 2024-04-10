@@ -35,18 +35,45 @@
     </a-card>
     <div class="my-12 text-12 text-999">桌面配置</div>
     <a-card class="mt-12">
-      <div class="flex justify-between align-center">
-        <div>桌面明亮度</div>
-        <div style="width: 200px">
-          <a-slider v-model:value="store.$state.desktop.background.brightness"></a-slider>
+      <a-space class="w-100" direction="vertical">
+        <div class="flex justify-between align-center">
+          <div>桌面明亮度</div>
+          <div class="flex align-center">
+            <a-slider
+              v-model:value="store.$state.desktop.background.brightness"
+              :min="10"
+              :max="90"
+              style="width: 200px"
+            ></a-slider>
+            %
+          </div>
         </div>
-      </div>
-      <div class="flex justify-between align-center">
-        <div>桌面模糊</div>
-        <div style="width: 200px">
-          <a-slider v-model:value="store.$state.desktop.background.blur" :max="12"></a-slider>
+
+        <div class="flex justify-between align-center">
+          <div>桌面模糊</div>
+          <div class="flex align-center">
+            <a-slider
+              v-model:value="store.$state.desktop.background.blur"
+              style="width: 200px"
+              :max="12"
+            ></a-slider>
+            px
+          </div>
         </div>
-      </div>
+
+        <div class="flex justify-between align-center">
+          <div>桌面文字</div>
+          <div style="width: 200px" class="text-right">
+            <a-switch
+              v-model:checked="store.$state.desktop.background.color"
+              un-checked-value="white"
+              checked-value="black"
+              checked-children="黑"
+              un-checked-children="白"
+            ></a-switch>
+          </div>
+        </div>
+      </a-space>
     </a-card>
   </PageContainer>
 </template>

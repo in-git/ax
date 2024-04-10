@@ -1,5 +1,5 @@
 <template>
-  <div class="apps flex-1 p-4" ref="apps" @contextmenu="openContextMenu">
+  <div class="apps flex-1 p-4" ref="apps" @contextmenu="openContextMenu" :style="style">
     <template v-if="menuList.length >= 0">
       <div class="flex h-100">
         <ul ref="appRef">
@@ -30,6 +30,7 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import logoPng from '@/assets/logo.png';
 import Loading from '@/components/loading/Loading.vue';
+import usePageStore from '@/store/page';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import { appContextMenu, openContextMenu } from './contextmenu';
 import { getIconByName, getUserRouters, openApp } from './data';
@@ -56,6 +57,13 @@ onMounted(async () => {
 const select = (item: Routers) => {
   selected.value = item.path;
 };
+
+const pageStore = usePageStore();
+const style = computed(() => {
+  return {
+    backdropFilter: ` blur(${pageStore.$state.desktop.background.blur}px)`,
+  };
+});
 </script>
 
 <style lang="scss" scoped>
