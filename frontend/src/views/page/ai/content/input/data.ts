@@ -1,4 +1,4 @@
-import { sendMsg } from '@/api/modules/external/qian-fan/qian-fan';
+import { sendMsg } from '@/api/external/qian-fan/qian-fan';
 import useAIStore from '@/store/AI/AI';
 import type { AIMessage } from '@/store/AI/types';
 import { message } from 'ant-design-vue';

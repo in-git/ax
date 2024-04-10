@@ -23,7 +23,6 @@
       </div>
     </template>
     <Loading v-else></Loading>
-    <NoticeVue></NoticeVue>
   </div>
 </template>
 
@@ -34,7 +33,7 @@ import Loading from '@/components/loading/Loading.vue';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import { appContextMenu, openContextMenu } from './contextmenu';
 import { getIconByName, getUserRouters, openApp } from './data';
-import NoticeVue from './notice/Notice.vue';
+
 const selected = ref<string>('');
 const appRef = ref();
 const menuList = ref<Routers[]>([]);

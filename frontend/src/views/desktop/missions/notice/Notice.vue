@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { BellOutlined } from '@ant-design/icons-vue';
-import { showNotice } from '../../apps/notice/data';
+import { showNotice } from '../../notice/data';
 </script>
 
 <style lang="scss" scoped>

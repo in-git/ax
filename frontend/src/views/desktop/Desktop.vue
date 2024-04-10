@@ -7,6 +7,7 @@
     </div>
     <Login v-else />
     <Background></Background>
+    <NoticeVue />
   </div>
 </template>
 
@@ -19,7 +20,9 @@ import defaultBackground from './assets/background.webp';
 import Background from './background/Background.vue';
 import Login from './login/Login.vue';
 import Missions from './missions/Missions.vue';
+import NoticeVue from './notice/Notice.vue';
 import Toolbar from './toolbar/Toolbar.vue';
+
 const store = useUserStore();
 
 const tokens = computed(() => {

@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import VideoBackground from 'vue-responsive-video-background-player';
-import posterImg from './assets/welcome.webp';
+import posterImg from '../assets/welcome.webp';
 </script>
 
 <style lang="scss" scoped>
@@ -34,7 +34,7 @@ import posterImg from './assets/welcome.webp';
   background: #f8f8f8;
   border-right: 1px solid #ddd;
   padding: 64px;
-  background: url('./assets/background.webp');
+  background: url('../assets/background.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

@@ -1,4 +1,6 @@
 import useUserStore from '@/store/user';
+import { notify } from '@/views/desktop/notice/data';
+import { useDebounceFn } from '@vueuse/core';
 import { message, Modal } from 'ant-design-vue';
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
@@ -10,7 +12,13 @@ export interface HttpResponse<T = unknown> {
   code: number;
   data: T;
 }
-
+const debouncedFn = useDebounceFn(error => {
+  notify({
+    content: `和服务器失去链接，具体信息:${error.toString()}`,
+    title: '网络错误',
+    type: 'error',
+  });
+}, 100);
 axios.interceptors.request.use(
   (config: AxiosRequestConfig | any) => {
     if (config.headers) {
@@ -47,7 +55,8 @@ axios.interceptors.response.use(
   },
   error => {
     if (error.toString().includes('Network Error')) {
-      message.warn('Network Error');
+      debouncedFn(error);
+      message.warn('网络错误');
     } else {
       message.error(error.message);
     }
