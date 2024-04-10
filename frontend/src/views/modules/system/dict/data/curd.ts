@@ -20,8 +20,8 @@ export const dictEdit = async (id?: number) => {
   }
 };
 
-export const dictDelete = async (id?: number) => {
-  let ids = id ? [id] : dictKeys.value;
+export const dictDelete = async () => {
+  let ids = dictForm.value.dictId ? [dictForm.value.dictId] : dictKeys.value;
   await response(deleteDict, ids);
   dictList();
 };

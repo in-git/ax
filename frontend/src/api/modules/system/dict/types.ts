@@ -7,22 +7,22 @@ interface SystemDict {
   dictId: number;
   dictName: string;
   dictType: string;
-  status: string;
+  status: '0' | '1';
 }
 interface SystemDictData {
-  createBy: string;
-  createTime: string;
+  createBy?: string;
+  createTime?: string;
   updateBy?: any;
   updateTime?: any;
   remark: string;
-  dictCode: number;
-  dictSort: number;
+  dictCode?: number;
+  dictSort?: number;
   dictLabel: string;
   dictValue: string;
   dictType: string;
   cssClass: string;
   listClass: string;
   isDefault: string;
-  status: string;
-  default: boolean;
+  status: '0' | '1';
+  default?: boolean;
 }

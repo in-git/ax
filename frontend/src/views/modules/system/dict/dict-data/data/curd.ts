@@ -1,7 +1,7 @@
 import { deleteDictData, dictDataList, selectDictData } from '@/api/modules/system/dict/dict.data';
 import { response } from '@/utils/table/table';
 import { dictForm } from '../../data/form';
-import { dictDataForm, dictDataShowForm } from './form';
+import { dictDataForm, dictDataShowForm, resetDictDataForm } from './form';
 import { dictDataKeys, dictDataQuery, dictDataTable } from './table';
 
 export const listDictData = async () => {
@@ -27,4 +27,9 @@ export const dictDataDelete = async (id?: number) => {
   await response(deleteDictData, ids);
   listDictData();
   /* Delete ids */
+};
+
+export const createDictData = () => {
+  resetDictDataForm();
+  dictDataShowForm.value = true;
 };

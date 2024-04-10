@@ -8,11 +8,14 @@
       @update:visible="resourceModal = false"
     >
       <div v-if="resourceModal && !!currentRole" class="h-100 flex flex-col">
-        <a-card
-          title="配置"
-          :body-style="{ maxHeight: '430px', overflowY: 'auto' }"
-          class="flex-1 p-8"
-        >
+        <a-card :bordered="false" :bodyStyle="{ minHeight: '500px', overflowY: 'auto' }">
+          <a-row>
+            <a-col :span="8" :offset="4">
+              <h2>资源分配</h2>
+              <a-divider></a-divider>
+            </a-col>
+          </a-row>
+
           <a-form-item label="身份名" name="roleName" required>
             <a-input v-model:value="currentRole.roleName" disabled />
           </a-form-item>
@@ -96,4 +99,8 @@ watch(
 );
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+::v-deep(.ant-card) {
+  box-shadow: none !important;
+}
+</style>

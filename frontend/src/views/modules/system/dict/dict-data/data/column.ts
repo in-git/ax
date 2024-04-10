@@ -14,18 +14,6 @@ const dictDataColumns: TableColumnProps[] = [
     dataIndex: 'dictType',
   },
   {
-    title: '状态',
-    dataIndex: 'status',
-  },
-  {
-    title: '创建者',
-    dataIndex: 'createBy',
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'createTime',
-  },
-  {
     title: '备注',
     dataIndex: 'remark',
   },
@@ -34,16 +22,12 @@ const dictDataColumns: TableColumnProps[] = [
     dataIndex: 'dictCode',
   },
   {
-    title: '字典排序',
-    dataIndex: 'dictSort',
-  },
-  {
-    title: '列表类名',
-    dataIndex: 'listClass',
-  },
-  {
     title: '是否默认',
     dataIndex: 'isDefault',
+  },
+  {
+    title: '状态',
+    dataIndex: 'status',
   },
 ];
 
