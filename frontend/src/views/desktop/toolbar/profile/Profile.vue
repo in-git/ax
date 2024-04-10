@@ -15,6 +15,9 @@
               </div>
               <a-divider class="my-12"></a-divider>
               <a-descriptions :column="1" size="small">
+                <a-descriptions-item label="用户账号">
+                  {{ userProfile.userName }}
+                </a-descriptions-item>
                 <a-descriptions-item label="用户昵称">
                   {{ userProfile.nickName }}
                 </a-descriptions-item>
