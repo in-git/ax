@@ -1,16 +1,16 @@
 <template>
   <div class="wallpaper">
-    <a-spin wrapperClassName="w-100 h-100" :spinning="galleryConfig.loading">
+    <a-spin wrapperClassName="w-100 h-100" :spinning="pexelsResult.loading">
       <div class="images">
         <ul>
           <li
             class="li-background"
-            v-for="(item, key) in galleryConfig.data"
+            v-for="(item, key) in pexelsResult.data"
             :key="key"
-            @click="selectPhoto(item.download_url)"
-            :class="{ active: currentPhoto === item.download_url }"
+            @click="selectPhoto(item.src)"
+            :class="{ active: currentPhoto === item.src }"
           >
-            <img class="w-100 h-100" :preview="false" :src="item.download_url" />
+            <img class="w-100 h-100" :preview="false" :src="item.src" />
           </li>
         </ul>
       </div>
@@ -19,14 +19,14 @@
 </template>
 
 <script setup lang="ts">
-import { currentPhoto, galleryConfig, getPhotos } from './data';
+import { currentPhoto, getPexelsPhotos, pexelsResult } from './data';
 
 const selectPhoto = (src: string) => {
   currentPhoto.value = src;
 };
 
 onMounted(async () => {
-  getPhotos();
+  getPexelsPhotos();
 });
 </script>
 

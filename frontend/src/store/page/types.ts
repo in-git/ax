@@ -26,6 +26,8 @@ export interface Theme {
 export interface DesktopBackground {
   type: 'image' | 'video';
   src: string;
+  brightness: number;
+  blur: number;
 }
 export interface PageSettings {
   developer: Developer;

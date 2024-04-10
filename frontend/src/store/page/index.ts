@@ -45,6 +45,8 @@ const usePageStore = defineStore('page', {
       background: {
         type: 'image',
         src: '',
+        brightness: 100,
+        blur: 0,
       },
       topNavigationBar: {
         blur: 1,

@@ -6,19 +6,6 @@ import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
 import { userLogout } from '../modules/system/user/utils';
 
-export interface HttpResponse<T = unknown> {
-  status: number;
-  msg: string;
-  code: number;
-  data: T;
-}
-const debouncedFn = useDebounceFn(error => {
-  notify({
-    content: `和服务器失去链接，具体信息:${error.toString()}`,
-    title: '网络错误',
-    type: 'error',
-  });
-}, 100);
 axios.interceptors.request.use(
   (config: AxiosRequestConfig | any) => {
     if (config.headers) {
@@ -32,7 +19,14 @@ axios.interceptors.request.use(
   },
 );
 
-// add response interceptors
+const debouncedFn = useDebounceFn(error => {
+  notify({
+    content: `和服务器失去链接，具体信息:${error.toString()}`,
+    title: '网络错误',
+    type: 'error',
+  });
+}, 100);
+
 axios.interceptors.response.use(
   (response: AxiosResponse) => {
     const res = response.data;

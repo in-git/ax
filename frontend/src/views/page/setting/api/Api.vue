@@ -8,19 +8,19 @@
         <a-row :gutter="12">
           <a-col :span="12">
             <div class="text-center mb-24 PEXELS-logo">
-              <img :src="pexelsPng" alt="" />
+              <img height="60" src="https://images.pexels.com/lib/api/pexels.png" alt="" />
             </div>
-            <a-form-item label="访问密钥[API Key]">
-              <a-textarea
-                value="7qj4RgUvYwc2qD7KqXEENiRCozdjpuZHndOEHtkyZ6AAq0VNb1GHe7BE"
-              ></a-textarea>
+            <a-form-item label="访问密钥[API Key]" name="key" required>
+              <a-textarea v-model:value="key"></a-textarea>
               <div>
                 没有秘钥?
                 <a-button type="link">前往获取</a-button>
               </div>
             </a-form-item>
-            <a-form-item>
-              <a-button type="primary" block>保存</a-button>
+            <a-form-item name="save">
+              <a-button @click="save" :disabled="key.length === 0" type="primary" block>
+                保存
+              </a-button>
             </a-form-item>
           </a-col>
           <a-col :span="12">
@@ -38,7 +38,15 @@
 
 <script setup lang="ts">
 import PageContainer from '@/views/page/setting/components/PageContainer.vue';
-import pexelsPng from '../assets/pexels.png';
+import { message } from 'ant-design-vue';
+import localforage from 'localforage';
+
+const key = ref('7qj4RgUvYwc2qD7KqXEENiRCozdjpuZHndOEHtkyZ6AAq0VNb1GHe7BE');
+
+const save = () => {
+  localforage.setItem('db-api-pexels', key.value);
+  message.success('成功保存');
+};
 </script>
 
 <style lang="scss" scoped>

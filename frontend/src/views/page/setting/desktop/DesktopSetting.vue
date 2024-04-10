@@ -33,6 +33,21 @@
         </a-tab-pane>
       </a-tabs>
     </a-card>
+    <div class="my-12 text-12 text-999">桌面配置</div>
+    <a-card class="mt-12">
+      <div class="flex justify-between align-center">
+        <div>桌面明亮度</div>
+        <div style="width: 200px">
+          <a-slider v-model:value="store.$state.desktop.background.brightness"></a-slider>
+        </div>
+      </div>
+      <div class="flex justify-between align-center">
+        <div>桌面模糊</div>
+        <div style="width: 200px">
+          <a-slider v-model:value="store.$state.desktop.background.blur" :max="12"></a-slider>
+        </div>
+      </div>
+    </a-card>
   </PageContainer>
 </template>
 
