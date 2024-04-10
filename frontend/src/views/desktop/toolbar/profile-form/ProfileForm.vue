@@ -44,7 +44,7 @@
                 </div>
               </a-form-item>
               <a-form-item label="用户账号" name="userName" required>
-                <a-input v-model:value="userProfile.userName"></a-input>
+                <a-input v-model:value="userProfile.userName" disabled></a-input>
               </a-form-item>
               <a-form-item label="用户昵称" name="nickName" required>
                 <a-input v-model:value="userProfile.nickName"></a-input>

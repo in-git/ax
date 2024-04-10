@@ -3,7 +3,6 @@ import type { TableColumnProps } from 'ant-design-vue';
 const deptColumns = ref<TableColumnProps[]>([
   { title: '部门名称', dataIndex: 'deptName', key: 'deptName' },
   { title: '部门编号', dataIndex: 'deptId', key: 'deptId' },
-  { title: '上级部门', dataIndex: 'parentName', key: 'parentName' },
   { title: '排序', dataIndex: 'orderNum', key: 'orderNum' },
   { title: '负责人', dataIndex: 'leader', key: 'leader' },
   { title: '电话', dataIndex: 'phone', key: 'phone' },

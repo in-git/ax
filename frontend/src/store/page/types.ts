@@ -32,10 +32,6 @@ export interface DesktopBackground {
 export interface PageSettings {
   developer: Developer;
   theme: Theme;
-  config: {
-    locale: string;
-  };
-  locale: string;
   desktop: {
     background: DesktopBackground;
     topNavigationBar: {

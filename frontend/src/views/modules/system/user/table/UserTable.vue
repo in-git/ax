@@ -25,13 +25,13 @@
                   <template #icon>
                     <DeleteOutlined />
                   </template>
-                  Delete
+                  删除
                 </a-menu-item>
                 <a-menu-item @click="passwordModal = true">
                   <template #icon>
                     <LockOutlined />
                   </template>
-                  Change password
+                  修改密码
                 </a-menu-item>
               </a-menu>
             </template>
@@ -52,11 +52,11 @@ import { DeleteOutlined } from '@ant-design/icons-vue';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
+import { delUser, editUserConfig, loadUserData } from '../data/curd';
+import { userConfig, userQuery } from '../data/data';
 import ChangePassword from './change-password/ChangePassword.vue';
 import { passwordModal } from './change-password/data';
 import userColumns from './columns';
-import { delUser, editUserConfig, loadUserData } from './curd';
-import { userConfig, userQuery } from './data';
 import UserTableHead from './UserTableHead.vue';
 
 onMounted(() => {

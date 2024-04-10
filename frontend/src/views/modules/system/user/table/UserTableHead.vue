@@ -59,8 +59,8 @@
 import { exportFile } from '@/api/utils/file';
 import { setOptions } from '@/global/options/system';
 import { DeleteOutlined, ExportOutlined, ReloadOutlined } from '@ant-design/icons-vue';
-import { createUser, delUser, editUserConfig, loadUserData } from '../table/curd';
-import { userConfig, userQuery } from './data';
+import { createUser, delUser, editUserConfig, loadUserData } from '../data/curd';
+import { userConfig, userQuery } from '../data/data';
 
 const exportExcel = async () => {
   await exportFile({

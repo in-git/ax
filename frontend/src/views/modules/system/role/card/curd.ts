@@ -27,12 +27,14 @@ export const getDeptTree = async (id: number) => {
     currentRole.value.deptIds = data.checkedKeys;
   }
 };
+
 export const getRoles = async () => {
   roleSpinning.value = true;
   const { data } = await roleList(roleQuery.value);
   roleData.value.data = data.rows;
   roleSpinning.value = false;
 };
+
 export const delRoles = () => {
   confirm(async () => {
     if (currentRole.value && currentRole.value.roleId) {
@@ -42,6 +44,7 @@ export const delRoles = () => {
     }
   });
 };
+
 export const resetRoleForm = () => {
   currentRole.value = {
     ...roleObject,

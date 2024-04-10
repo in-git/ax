@@ -1,20 +1,22 @@
 <template>
   <div class="wallpaper">
-    <a-spin wrapperClassName="w-100 h-100" :spinning="pexelsResult.loading">
-      <div class="images">
-        <ul>
-          <li
-            class="li-background"
-            v-for="(item, key) in pexelsResult.data"
-            :key="key"
-            @click="selectPhoto(item.src)"
-            :class="{ active: currentPhoto === item.src }"
-          >
-            <img class="w-100 h-100" :preview="false" :src="item.src" />
-          </li>
-        </ul>
-      </div>
-    </a-spin>
+    <div class="w-100 h-100 flex flex-s">
+      <a-spin :spinning="pexelsResult.loading" size="large">
+        <div class="h-100 images">
+          <ul>
+            <li
+              class="li-background"
+              v-for="(item, key) in pexelsResult.data"
+              :key="key"
+              @click="selectPhoto(item.src)"
+              :class="{ active: currentPhoto === item.src }"
+            >
+              <img class="w-100 h-100" :preview="false" :src="item.src" />
+            </li>
+          </ul>
+        </div>
+      </a-spin>
+    </div>
   </div>
 </template>
 
@@ -37,6 +39,9 @@ onMounted(async () => {
     flex-wrap: wrap;
     gap: 4px;
     padding: 4px;
+  }
+  .images {
+    min-height: 200px;
   }
   li {
     flex: 1;

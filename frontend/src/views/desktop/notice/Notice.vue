@@ -9,14 +9,17 @@
       @close="showNotice = false"
     >
       <div class="flex flex-col gr-12">
-        <a-alert
-          :message="item.title"
-          :description="item.content"
-          :type="item.type"
-          closable
-          v-for="(item, key) in noticeList"
-          :key="key"
-        />
+        <template v-if="noticeList.length > 0">
+          <a-alert
+            :message="item.title"
+            :description="item.content"
+            :type="item.type"
+            closable
+            v-for="(item, key) in noticeList"
+            :key="key"
+          />
+        </template>
+        <a-empty v-else description="暂时没有收到任何通知" />
       </div>
     </a-drawer>
   </div>

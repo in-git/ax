@@ -26,6 +26,14 @@
           </a-form-item>
 
           <a-form-item name="deptIds" required label="选择部门">
+            <div @click="allocatingResource" class="mb-12 flex justify-between">
+              <span class="text-999">部门列表</span>
+              <a-tooltip title="刷新">
+                <a-button type="ghost">
+                  <ReloadOutlined />
+                </a-button>
+              </a-tooltip>
+            </div>
             <a-directory-tree
               :tree-data="treeData"
               :field-names="{
@@ -49,8 +57,9 @@
 import { roleDataScope } from '@/api/modules/system/role/role';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { message } from 'ant-design-vue';
+import { getRoles } from '../card/curd';
 import { currentRole, roleData } from '../card/data';
-import { resourceModal } from './data';
+import { allocatingResource, resourceModal } from './data';
 
 const treeData = ref<any>();
 const treeRef = ref();
@@ -63,6 +72,8 @@ const submit = async () => {
   }
   const { data } = await roleDataScope(currentRole.value);
   message.success(data.msg);
+  resourceModal.value = true;
+  getRoles();
 };
 
 const scopedOptions = [

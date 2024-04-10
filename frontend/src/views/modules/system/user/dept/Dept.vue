@@ -8,9 +8,9 @@
 <script setup lang="ts">
 import Department from '@/views/components/department/Department.vue';
 import type { Key } from 'ant-design-vue/es/vc-tree/interface';
+import { loadUserData } from '../data/curd';
+import { userQuery } from '../data/data';
 import { userForm } from '../form/data';
-import { loadUserData } from '../table/curd';
-import { userQuery } from '../table/data';
 
 const select = (keys: Key[]) => {
   userQuery.value.deptId = Number(keys[0]);
@@ -25,3 +25,4 @@ const select = (keys: Key[]) => {
   border-right: 1px solid #ddd;
 }
 </style>
+../data/data ../data/curd

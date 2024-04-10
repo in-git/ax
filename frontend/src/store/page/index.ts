@@ -32,20 +32,16 @@ const usePageStore = defineStore('page', {
       fontSize: 14,
       borderRadius: 4,
     },
-    locale: 'en',
     developer: {
       baseURL,
       urlSelection: baseUrlOptions,
       timeout: 8000,
     },
-    config: {
-      locale: '',
-    },
     desktop: {
       background: {
         type: 'image',
         src: '',
-        brightness: 100,
+        brightness: 0,
         blur: 0,
       },
       topNavigationBar: {

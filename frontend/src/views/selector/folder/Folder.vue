@@ -33,17 +33,22 @@
         v-show="!item.hidden"
         :style="style"
       >
-        <div v-if="item.meta.link">
-          <img
-            ref="imageRef"
-            :src="`https://favicon.qqsuu.cn/${item.meta.link}`"
-            @error="onError(key)"
-            :draggable="false"
-            width="36"
-          />
-        </div>
-        <div class="logo" v-else>
-          <img :src="getIconByName(item) || logoPng" :draggable="false" width="36" />
+        <div class="flex-1 flex flex-s">
+          <div v-if="item.meta.link" class="link">
+            <img
+              ref="imageRef"
+              :src="`https://favicon.qqsuu.cn/${item.meta.link}`"
+              @error="onError(key)"
+              :draggable="false"
+              width="36"
+            />
+          </div>
+          <div class="logo" v-else-if="item.meta">
+            <img :src="getIconByName(item) || logoPng" :draggable="false" width="36" />
+          </div>
+          <div class="logo" v-else>
+            <img :src="folderPng" :draggable="false" width="36" />
+          </div>
         </div>
         <div class="title">{{ item.meta.title }}</div>
       </li>
@@ -54,6 +59,7 @@
 <script setup lang="ts">
 import type { Routers } from '@/api/modules/system/user/types';
 import logoPng from '@/assets/logo.png';
+import folderPng from '@/assets/system/folder.png';
 import { getIconByName, openApp } from '@/views/desktop/apps/data';
 import type { CSSProperties } from 'vue';
 import useFolderStore from './store/folder';
@@ -61,15 +67,15 @@ import useFolderStore from './store/folder';
 const imageRef = ref<HTMLImageElement[]>();
 const sizeOptions = [
   {
-    value: 74,
+    value: 84,
     label: '小',
   },
   {
-    value: 84,
+    value: 94,
     label: '中',
   },
   {
-    value: 94,
+    value: 104,
     label: '大',
   },
 ];

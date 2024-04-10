@@ -46,10 +46,7 @@ const close = () => {
 };
 
 const use = () => {
-  setBackground({
-    type: 'image',
-    src: currentPhoto.value,
-  });
+  setBackground(currentPhoto.value, 'image');
 };
 
 const onChange = (page: number, pageSize: number) => {

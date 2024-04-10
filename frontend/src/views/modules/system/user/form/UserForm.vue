@@ -19,18 +19,18 @@
         <a-row :gutter="12" class="flex-1">
           <a-col :span="12">
             <a-card title="基础信息">
-              <a-form-item label="Nickname" name="nickName" required>
+              <a-form-item label="昵称" name="nickName" required>
                 <a-input
                   v-model:value="userForm.nickName"
                   focused
                   placeholder="Please enter nickname"
                 />
               </a-form-item>
-              <a-form-item label="Username" name="userName" required>
+              <a-form-item label="账号" name="userName" required>
                 <a-input v-model:value="userForm.userName" placeholder="Please enter username" />
               </a-form-item>
               <template v-if="!userForm.userId">
-                <a-form-item label="Password" name="password" required>
+                <a-form-item label="密码" name="password" required>
                   <a-input
                     type="password"
                     v-model:value="userForm.password"
@@ -39,27 +39,27 @@
                 </a-form-item>
               </template>
 
-              <a-form-item label="Phone" name="phonenumber" required :rules="{ len: 11 }">
+              <a-form-item label="手机号码" name="phonenumber" required :rules="{ len: 11 }">
                 <a-input
                   :maxlength="11"
                   v-model:value="userForm.phonenumber"
                   placeholder="Please enter phone number"
                 />
               </a-form-item>
-              <a-form-item label="Email" name="email" required>
+              <a-form-item label="邮箱" name="email" required>
                 <a-input
                   v-model:value="userForm.email"
                   type="email"
                   placeholder="Please enter email"
                 />
               </a-form-item>
-              <a-form-item label="Sex" name="sex" required>
+              <a-form-item label="性别" name="sex" required>
                 <a-radio-group v-model:value="userForm.sex" :options="sexOptions" />
               </a-form-item>
-              <a-form-item label="Status" name="status" required>
+              <a-form-item label="状态" name="status" required>
                 <a-radio-group v-model:value="userForm.status" :options="statusOptions" />
               </a-form-item>
-              <a-form-item label="Remark" name="remark">
+              <a-form-item label="备注" name="remark">
                 <a-textarea
                   :auto-size="{ minRows: 2, maxRows: 6 }"
                   v-model:value="userForm.remark"
@@ -82,6 +82,7 @@ import { createUser, updateUser } from '@/api/modules/system/user/user';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { sexOptions, statusOptions } from '@/global/options/system';
 import { message } from 'ant-design-vue';
+import { loadUserData } from '../data/curd';
 import { showUserForm, userForm } from './data';
 import RightVue from './right/Right.vue';
 const submit = async () => {
@@ -95,6 +96,7 @@ const submit = async () => {
   }
   message.success(result);
   showUserForm.value = false;
+  loadUserData();
 };
 </script>
 
@@ -107,3 +109,4 @@ const submit = async () => {
   height: 100%;
 }
 </style>
+../data/curd

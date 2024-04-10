@@ -21,7 +21,10 @@ export const pexelsQuery = ref<IQuery>({
 
 export const getPexelsPhotos = async () => {
   pexelsResult.value.loading = true;
-  const data = await getPexels(pexelsQuery.value.pageNum, pexelsQuery.value.pageSize);
+  const data = await getPexels({
+    page: pexelsQuery.value.pageNum,
+    per_page: pexelsQuery.value.pageSize,
+  });
   if (data) {
     pexelsResult.value.data = data.photos;
     pexelsResult.value.extraInfo = data.row;

@@ -29,8 +29,11 @@ export interface PexelsPhoto {
   liked: boolean;
   alt: string;
 }
-
-export const getPexels = async (page: number = 1, per_page: number = 20) => {
+interface PexelsQuery {
+  page: number;
+  per_page: number;
+}
+export const getPexels = async (query: PexelsQuery) => {
   const api: string = (await localforage.getItem('db-api-pexels')) || '';
   if (!api) {
     message.warning('请填写 [pexels] key');
@@ -41,8 +44,9 @@ export const getPexels = async (page: number = 1, per_page: number = 20) => {
       Authorization: api,
     },
     params: {
-      page,
-      per_page,
+      page: query.page || 1,
+      per_page: query.per_page || 20,
+      orientation: 'landscape',
     },
   });
   console.log(data);
