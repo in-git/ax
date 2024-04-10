@@ -16,7 +16,8 @@
               </div>
             </a-col>
           </a-row>
-          <a-form-item label="字典类型" name="dictType" required>
+          <!-- name="dictType" -->
+          <a-form-item label="字典类型" required>
             <a-input v-model:value="dictDataForm.dictType" disabled></a-input>
           </a-form-item>
           <a-form-item label="字典标题" name="dictLabel" required>
@@ -37,7 +38,7 @@
               v-model:value="dictDataForm.status"
             ></a-radio-group>
           </a-form-item>
-          <a-form-item label="备注" name="remark">
+          <a-form-item label="备注">
             <a-textarea
               placeholder="请输入备注信息"
               :auto-size="{

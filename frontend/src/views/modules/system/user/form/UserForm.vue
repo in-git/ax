@@ -30,7 +30,8 @@
                 <a-input v-model:value="userForm.userName" placeholder="Please enter username" />
               </a-form-item>
               <template v-if="!userForm.userId">
-                <a-form-item label="密码" name="password" required>
+                <!-- name="password" -->
+                <a-form-item label="密码" required>
                   <a-input
                     type="password"
                     v-model:value="userForm.password"
