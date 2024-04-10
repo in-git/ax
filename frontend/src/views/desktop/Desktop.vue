@@ -1,13 +1,15 @@
 <template>
   <div class="flex flex-col desktop">
-    <div v-if="tokens" class="flex-1 h-100 flex flex-col">
-      <Toolbar />
-      <Apps />
-      <Missions />
-    </div>
+    <template v-if="tokens">
+      <div class="flex-1 h-100 flex flex-col">
+        <Toolbar />
+        <Apps />
+        <Missions />
+      </div>
+      <Background></Background>
+      <NoticeVue />
+    </template>
     <Login v-else />
-    <Background></Background>
-    <NoticeVue />
   </div>
 </template>
 
