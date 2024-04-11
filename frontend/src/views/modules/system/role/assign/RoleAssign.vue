@@ -13,11 +13,24 @@
           <div>
             <a-input-search placeholder="请输入身份名"></a-input-search>
           </div>
-          <template v-if="modeConfig.mode === 'unassign'">
-            <a-button type="primary" danger>批量授权</a-button>
+          <template v-if="modeConfig.mode !== 'unassign'">
+            <a-button
+              :disabled="userData.selectedKeys.length === 0"
+              type="primary"
+              @click="assign()"
+            >
+              批量授权
+            </a-button>
           </template>
           <template v-else>
-            <a-button type="primary" danger>批量取消</a-button>
+            <a-button
+              type="primary"
+              :disabled="userData.selectedKeys.length === 0"
+              @click="unassign()"
+              danger
+            >
+              批量取消
+            </a-button>
           </template>
         </div>
         <div class="user-list p-8">
@@ -39,16 +52,16 @@
             <template #bodyCell="{ column, record }">
               <template v-if="column.dataIndex === 'operation'">
                 <template v-if="modeConfig.mode === 'unassign'">
-                  <a-tooltip title="取消授权">
-                    <a-button type="link" style="color: #fc6d6d" @click="assign(record.userId)">
-                      <img :src="unassignPng" width="16" height="16" />
+                  <a-tooltip title="">
+                    <a-button type="link" style="color: #fc6d6d" @click="unassign(record.userId)">
+                      取消授权
                     </a-button>
                   </a-tooltip>
                 </template>
                 <template v-else>
-                  <a-tooltip title="授权">
-                    <a-button type="link" style="color: #fc6d6d" @click="unassign(record.userId)">
-                      <img :src="assignPng" width="16" height="16" />
+                  <a-tooltip title="">
+                    <a-button type="link" style="color: green" @click="assign(record.userId)">
+                      授权
                     </a-button>
                   </a-tooltip>
                 </template>
@@ -64,7 +77,6 @@
 <script setup lang="ts">
 import SystemModal from '@/components/modal/SysModal.vue';
 import { formatColumns } from '@/utils/table/table';
-import assignPng from './assign.png';
 import { userColumns } from './columns';
 import {
   allocateUserModal,
@@ -76,7 +88,6 @@ import {
   userData,
   userQuery,
 } from './data';
-import unassignPng from './unassign.png';
 </script>
 
 <style lang="scss" scoped>

@@ -25,13 +25,15 @@ export const ${businessName}Edit = async (id?: number) => {
     }
     ${businessName}Table.value.loading = false;
 };
+
 export const ${businessName}Create = async () => {
   ${businessName}ResetForm();
   ${businessName}ShowForm.value = true;
 };
+
 export const ${businessName}Delete = async (id?: number) => {
-  let targetId = id ? [id] : ${businessName}Keys.value[0];
-    await response(delete${BusinessName}, targetId);
-    await ${businessName}List();
+  let ids = id ? [id] : websiteKeys.value;
+  await response(delete${BusinessName}, ids);
+  await ${businessName}List();
    ${businessName}Keys.value=[]
 };

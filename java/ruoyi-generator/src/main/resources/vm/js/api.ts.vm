@@ -25,8 +25,8 @@ export const update${BusinessName} = (data: ${ModuleName}${BusinessName}) => {
 };
 
 // 删除${functionName}
-export const delete${BusinessName} = (${pkColumn.javaField}:number) => {
-  return axios.delete<Response<${ModuleName}${BusinessName}>>(`${moduleName}/${businessName}/${${pkColumn.javaField}}`);
+export const delete${BusinessName} = (${pkColumn.javaField}s:number[]) => {
+  return axios.delete<Response<${ModuleName}${BusinessName}>>(`${moduleName}/${businessName}/${${pkColumn.javaField}s.join(',')}`);
 };
 
 

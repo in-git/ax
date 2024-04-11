@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.SysWebsiteMapper">
+    
+    <resultMap type="SysWebsite" id="SysWebsiteResult">
+        <result property="websiteId"    column="website_id"    />
+        <result property="name"    column="name"    />
+        <result property="url"    column="url"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="description"    column="description"    />
+        <result property="type"    column="type"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectSysWebsiteVo">
+        select website_id, name, url, create_time, description, type, update_time from sys_website
+    </sql>
+
+    <select id="selectSysWebsiteList" parameterType="SysWebsite" resultMap="SysWebsiteResult">
+        <include refid="selectSysWebsiteVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="url != null  and url != ''"> and url = #{url}</if>
+            <if test="description != null  and description != ''"> and description = #{description}</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+        </where>
+    </select>
+    
+    <select id="selectSysWebsiteByWebsiteId" parameterType="Long" resultMap="SysWebsiteResult">
+        <include refid="selectSysWebsiteVo"/>
+        where website_id = #{websiteId}
+    </select>
+        
+    <insert id="insertSysWebsite" parameterType="SysWebsite">
+        insert into sys_website
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="websiteId != null">website_id,</if>
+            <if test="name != null and name != ''">name,</if>
+            <if test="url != null">url,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="description != null">description,</if>
+            <if test="type != null">type,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="websiteId != null">#{websiteId},</if>
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="url != null">#{url},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="description != null">#{description},</if>
+            <if test="type != null">#{type},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSysWebsite" parameterType="SysWebsite">
+        update sys_website
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="url != null">url = #{url},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where website_id = #{websiteId}
+    </update>
+
+    <delete id="deleteSysWebsiteByWebsiteId" parameterType="Long">
+        delete from sys_website where website_id = #{websiteId}
+    </delete>
+
+    <delete id="deleteSysWebsiteByWebsiteIds" parameterType="String">
+        delete from sys_website where website_id in 
+        <foreach item="websiteId" collection="array" open="(" separator="," close=")">
+            #{websiteId}
+        </foreach>
+    </delete>
+</mapper>

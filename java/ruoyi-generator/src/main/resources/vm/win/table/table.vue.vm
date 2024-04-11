@@ -10,7 +10,14 @@
     >
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">
-          <Operation :loading="${businessName}Table.loading" @open-change="openChange(value.record as ${ModuleName}${BusinessName})" @edit="${businessName}Edit(value.record.$pkColumn)" :items="${businessName}OperationList" />
+          <Operation :loading="${businessName}Table.loading"
+          @open-change="openChange(value.record as ${ModuleName}${BusinessName})"
+          #foreach($column in $columns)
+          #if($column.isPk == "1")
+          @edit="${businessName}Edit(value.record.$column.javaField)"
+          #end
+          #end
+          :items="${businessName}OperationList" />
         </template>
       </template>
     </SystemTable>
@@ -30,6 +37,7 @@ import { ${businessName}Keys, ${businessName}OperationList, ${businessName}Query
 onMounted(() => {
   ${businessName}List();
 });
+
 const openChange = (record: ${ModuleName}${BusinessName}) => {
   ${businessName}Form.value = record;
 };

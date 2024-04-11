@@ -2,10 +2,12 @@ import type { TableColumnProps } from 'ant-design-vue';
 
 const ${businessName}Columns = ref<TableColumnProps[]>([
 #foreach($column in $columns)
+#if($column.isInsert == "1")
 {
     title:"$column.columnComment",
     dataIndex:"$column.javaField"
 },
+#end
 #end
 ]);
 

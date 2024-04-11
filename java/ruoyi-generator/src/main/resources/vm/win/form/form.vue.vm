@@ -1,6 +1,10 @@
 <template>
-  <a-form :rules="${businessName}Rules" :model="${businessName}Form" @finish="submit" :wrapper-col="{ span: 8, offset: 1 }"
-    :label-col="{ span: 4, offset: 4 }">
+  <a-form
+     :rules="${businessName}Rules"
+     :model="${businessName}Form"
+     @finish="submit"
+     :wrapper-col="{ span: 8, offset: 1 }"
+     :label-col="{ span: 4, offset: 4 }">
     <SystemModal title="$functionName" v-model:visible="${businessName}ShowForm">
       <div class="h-100 flex flex-col">
            <a-row>
@@ -25,7 +29,6 @@
          #elseif($column.htmlType == "select")
            <a-form-item label="${comment}" name="$field">
              <a-select v-model:value="${businessName}Form.${column.javaField}">
-               <!-- Options here -->
              </a-select>
            </a-form-item>
          #elseif($column.htmlType == "radio")
@@ -56,7 +59,6 @@
            <a-form-item label="${comment}" name="$field">
              <a-textarea v-model:value="${businessName}Form.${column.javaField}"></a-editor>
            </a-form-item>
-
          #end
          #end
           <a-row>
@@ -72,15 +74,27 @@
 
 <script setup lang="ts">
 import SystemModal from '@/components/modal/SysModal.vue';
-import { ${businessName}Form, ${businessName}ShowForm,${businessName}Rules  } from '../data/form';
+import {
+  ${businessName}Form,
+  ${businessName}ShowForm,
+  ${businessName}Rules
+} from '../data/form';
 import { response } from '@/utils/table/table';
 import {  ${businessName}List } from '../data/curd';
-import { create${BusinessName}, update${BusinessName}} from  '@/api/modules/${moduleName}/${businessName}/${businessName}';
+import {
+  create${BusinessName},
+  update${BusinessName}} from
+'@/api/modules/${moduleName}/${businessName}/${businessName}';
 
 const loading = ref(false)
+
 const submit = async () => {
   loading.value = true
-  if (${businessName}Form.value.id) {
+   #foreach($column in $columns)
+    #if($column.isPk == "1")
+      if (${businessName}Form.value.$column.javaField) {
+    #end
+    #end
     await response(update${BusinessName}, ${businessName}Form.value);
   } else {
     await response(create${BusinessName}, ${businessName}Form.value);
