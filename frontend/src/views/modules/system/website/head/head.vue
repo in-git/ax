@@ -24,13 +24,13 @@
     <div class="flex">
       <a-tooltip title="卡片模式" @click="viewMode = 'card'" v-if="viewMode === 'table'">
         <a-button type="text">
-          <AppstoreAddOutlined />
+          <OrderedListOutlined />
         </a-button>
       </a-tooltip>
 
       <a-tooltip title="表格模式" @click="viewMode = 'table'" v-else>
         <a-button type="text">
-          <OrderedListOutlined />
+          <AppstoreAddOutlined />
         </a-button>
       </a-tooltip>
 

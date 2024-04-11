@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-dropdown-button
-      :loading="loading"
+      :disabled="loading"
       @click="onClick"
       trigger="click"
       v-bind="$attrs"
