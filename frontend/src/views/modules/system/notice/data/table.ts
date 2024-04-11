@@ -24,8 +24,8 @@ export const operationList: ItemType[] = [
     label: '删除',
     key: 'delete',
     icon: h(DeleteOutlined),
-    onClick() {
-      response(deleteNotice, noticeForm.value.noticeId);
+    async onClick() {
+      await response(deleteNotice, noticeForm.value.noticeId);
       noticeList();
     },
   },
