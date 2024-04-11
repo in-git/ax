@@ -23,7 +23,7 @@ import logo from '@/assets/logo.png';
 import settingPng from '@/assets/system/system_setting.png';
 import { openWindow } from '@/global/config/window';
 import usePageStore from '@/store/page';
-import PageSetting from '@/views/page/setting/PageSetting.vue';
+import PageSetting from '@/views/desktop/setting/PageSetting.vue';
 import { InfoCircleOutlined, SettingOutlined } from '@ant-design/icons-vue';
 import type { CSSProperties } from 'vue';
 import Profile from './profile/Profile.vue';

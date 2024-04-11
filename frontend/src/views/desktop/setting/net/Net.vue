@@ -31,15 +31,15 @@
 </template>
 
 <script setup lang="ts">
-import usePageStore from '@/store/page';
+import useSystemStore from '@/store/system';
 import useUserStore from '@/store/user';
-import PageContainer from '@/views/page/setting/components/PageContainer.vue';
+import PageContainer from '@/views/desktop/setting/components/PageContainer.vue';
 import type { InfoCircleFilled } from '@ant-design/icons-vue';
 import BaseURL from './base-url/BaseURL.vue';
 import { timeoutOptions } from './data';
 
 const userStore = useUserStore();
-const devStore = usePageStore();
+const devStore = useSystemStore();
 </script>
 
 <style lang="scss" scoped>

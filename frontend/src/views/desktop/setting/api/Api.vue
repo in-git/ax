@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import PageContainer from '@/views/page/setting/components/PageContainer.vue';
+import PageContainer from '@/views/desktop/setting/components/PageContainer.vue';
 import { message } from 'ant-design-vue';
 import localforage from 'localforage';
 

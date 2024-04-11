@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import { openWindow } from '@/global/config/window';
-import PageSetting from '@/views/page/setting/PageSetting.vue';
+import PageSetting from '@/views/desktop/setting/PageSetting.vue';
 import localforage from 'localforage';
 import { setGallery } from '../../data';
 import { currentPhoto, getPexelsPhotos, pexelsResult } from './data';
