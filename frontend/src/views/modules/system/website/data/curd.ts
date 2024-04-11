@@ -25,10 +25,12 @@ export const websiteEdit = async (id?: number) => {
   }
   websiteTable.value.loading = false;
 };
+
 export const websiteCreate = async () => {
   websiteResetForm();
   websiteShowForm.value = true;
 };
+
 export const websiteDelete = async (id?: number) => {
   let ids = id ? [id] : websiteKeys.value;
   await response(deleteWebsite, ids);

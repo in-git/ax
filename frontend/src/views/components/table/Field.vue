@@ -3,7 +3,7 @@
     <a-popover trigger="click" title="字段筛选" placement="bottomRight">
       <a-tooltip title="字段筛选">
         <a-button type="link">
-          <AppstoreAddOutlined />
+          <FilterOutlined />
         </a-button>
       </a-tooltip>
       <template #content>
@@ -37,7 +37,6 @@
 <script setup lang="ts">
 import useColumnsStore from '@/store/columns/index';
 import type { ColumnProps } from '@/types/system';
-import { AppstoreAddOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
 
 const emit = defineEmits(['update:columns']);

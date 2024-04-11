@@ -22,6 +22,18 @@
       </div>
     </div>
     <div class="flex">
+      <a-tooltip title="卡片模式" @click="viewMode = 'card'" v-if="viewMode === 'table'">
+        <a-button type="text">
+          <AppstoreAddOutlined />
+        </a-button>
+      </a-tooltip>
+
+      <a-tooltip title="表格模式" @click="viewMode = 'table'" v-else>
+        <a-button type="text">
+          <OrderedListOutlined />
+        </a-button>
+      </a-tooltip>
+
       <a-popconfirm
         title="确定要删除吗"
         :disabled="websiteKeys.length === 0"
@@ -41,10 +53,15 @@
 
 <script setup lang="ts">
 import FieldVue from '@/views/components/table/Field.vue';
-import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
-import { websiteColumns } from '../../data/column';
-import { websiteCreate, websiteDelete, websiteEdit, websiteList } from '../../data/curd';
-import { websiteKeys, websiteTable } from '../../data/table';
+import {
+  AppstoreAddOutlined,
+  OrderedListOutlined,
+  type DeleteOutlined,
+  type ReloadOutlined,
+} from '@ant-design/icons-vue';
+import { websiteColumns } from '../data/column';
+import { websiteCreate, websiteDelete, websiteEdit, websiteList } from '../data/curd';
+import { viewMode, websiteKeys, websiteTable } from '../data/table';
 </script>
 
 <style lang="scss" scoped></style>

@@ -15,7 +15,7 @@ defineProps<{
 
 <style lang="scss" scoped>
 .table__head {
-  border-bottom: 1px solid #ddd;
   padding-bottom: 8px;
+  box-shadow: 0 0 15px #cfcfcf9a;
 }
 </style>

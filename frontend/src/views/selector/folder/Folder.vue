@@ -8,7 +8,6 @@
             <SettingOutlined />
             设置
           </a-button>
-
           <template #content>
             <a-segmented
               v-model:value="folderStore.$state.size"
