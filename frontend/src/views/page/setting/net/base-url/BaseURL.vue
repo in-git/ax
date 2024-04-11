@@ -91,8 +91,8 @@
 
 <script setup lang="ts">
 import { logoff } from '@/api/utils/auth';
-import usePageStore from '@/store/page';
-import type { URLSelection } from '@/store/page/types';
+import useSystemStore from '@/store/system';
+import type { URLSelection } from '@/store/system/types';
 import { NodeExpandOutlined } from '@ant-design/icons-vue';
 import { useCloned } from '@vueuse/core';
 import { Modal } from 'ant-design-vue';
@@ -105,7 +105,7 @@ const serverForm = ref<URLSelection>({
   value: '',
   id: '',
 });
-const developer = usePageStore();
+const developer = useSystemStore();
 
 const create = () => {
   open.value = true;

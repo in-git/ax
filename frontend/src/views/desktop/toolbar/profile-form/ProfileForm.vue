@@ -107,7 +107,7 @@
 <script setup lang="ts">
 import { updatePassword, updateProfile } from '@/api/modules/system/user/user';
 import { sexOptions } from '@/global/options/system';
-import usePageStore from '@/store/page';
+import useSystemStore from '@/store/system';
 import useUserStore from '@/store/user';
 import { getAvatar } from '@/store/user/utils';
 import { message, Modal } from 'ant-design-vue';
@@ -122,7 +122,7 @@ const passwordForm = ref({
 });
 
 const userStore = useUserStore();
-const page = usePageStore();
+const page = useSystemStore();
 const baseURL = page.$state.developer.baseURL;
 // + `system/user/profile/avatar`
 const headers = {

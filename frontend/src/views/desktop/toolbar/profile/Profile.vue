@@ -68,7 +68,6 @@ onMounted(async () => {
   loading.value = true;
   userData.value = await getProfile();
   loading.value = false;
-  console.log(userData.value);
 });
 
 const editProfile = () => {

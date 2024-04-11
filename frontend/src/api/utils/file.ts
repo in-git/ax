@@ -1,4 +1,4 @@
-import usePageStore from '@/store/page';
+import useSystemStore from '@/store/system';
 import useUserStore from '@/store/user';
 import { message } from 'ant-design-vue';
 
@@ -10,7 +10,7 @@ interface ExportData {
 }
 // 导出文件接口
 export const exportFile = async (config: ExportData) => {
-  const dev = usePageStore();
+  const dev = useSystemStore();
   const userStore = useUserStore();
 
   try {
