@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <ul class="p-12" ref="ulRef">
+    <ul class="p-12 flex-wrap" ref="ulRef">
       <li
         v-for="(item, key) in props.data"
         :key="key"
@@ -33,8 +33,8 @@
         v-show="!item.hidden"
         :style="style"
       >
-        <div class="flex-1 flex flex-s">
-          <div v-if="item.meta.link" class="link">
+        <div class="flex-image">
+          <div v-if="item.meta.link" class="link h-100">
             <img
               ref="imageRef"
               :src="`https://favicon.qqsuu.cn/${item.meta.link}`"
@@ -43,14 +43,16 @@
               width="36"
             />
           </div>
-          <div class="logo" v-else-if="item.meta">
+          <div class="logo h-100" v-else-if="item.meta">
             <img :src="getIconByName(item) || logoPng" :draggable="false" width="36" />
           </div>
           <div class="logo" v-else>
             <img :src="folderPng" :draggable="false" width="36" />
           </div>
         </div>
-        <div class="title">{{ item.meta.title }}</div>
+        <div class="title">
+          <div class="w-100 h-100 flex flex-s">{{ item.meta.title }}</div>
+        </div>
       </li>
     </ul>
   </div>

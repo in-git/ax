@@ -8,7 +8,7 @@
               <div class="flex gc-12">
                 <div class="flex-1">
                   <a-input
-                    placeholder="Please enter title"
+                    placeholder="请输入标题"
                     v-model:value="noticeForm.noticeTitle"
                     style="width: 400px"
                   ></a-input>

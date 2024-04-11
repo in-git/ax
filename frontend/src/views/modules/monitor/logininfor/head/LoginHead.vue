@@ -4,16 +4,16 @@
       <div class="flex">
         <div class="flex gc-4">
           <a-input
-            placeholder="Please enter ip"
+            placeholder="请输入IP"
             allow-clear
             v-model:value="loginLogQuery.ipaddr"
           ></a-input>
           <a-input
-            placeholder="Please enter username"
+            placeholder="请输入用户名"
             allow-clear
             v-model:value="loginLogQuery.userName"
           ></a-input>
-          <a-button type="primary" @click="loadLoginList">Search</a-button>
+          <a-button type="primary" @click="loadLoginList">搜索</a-button>
         </div>
       </div>
     </TableHead>

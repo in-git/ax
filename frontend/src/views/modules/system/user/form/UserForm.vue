@@ -20,14 +20,10 @@
           <a-col :span="12">
             <a-card title="基础信息">
               <a-form-item label="昵称" name="nickName" required>
-                <a-input
-                  v-model:value="userForm.nickName"
-                  focused
-                  placeholder="Please enter nickname"
-                />
+                <a-input v-model:value="userForm.nickName" focused placeholder="请输入昵称" />
               </a-form-item>
               <a-form-item label="账号" name="userName" required>
-                <a-input v-model:value="userForm.userName" placeholder="Please enter username" />
+                <a-input v-model:value="userForm.userName" placeholder="请输入账号" />
               </a-form-item>
               <template v-if="!userForm.userId">
                 <!-- name="password" -->
@@ -35,7 +31,7 @@
                   <a-input
                     type="password"
                     v-model:value="userForm.password"
-                    placeholder="Please enter password"
+                    placeholder="请输入密码"
                   />
                 </a-form-item>
               </template>
@@ -44,15 +40,11 @@
                 <a-input
                   :maxlength="11"
                   v-model:value="userForm.phonenumber"
-                  placeholder="Please enter phone number"
+                  placeholder="请输入手机号码"
                 />
               </a-form-item>
               <a-form-item label="邮箱" name="email" required>
-                <a-input
-                  v-model:value="userForm.email"
-                  type="email"
-                  placeholder="Please enter email"
-                />
+                <a-input v-model:value="userForm.email" type="email" placeholder="请输入邮箱" />
               </a-form-item>
               <a-form-item label="性别" name="sex" required>
                 <a-radio-group v-model:value="userForm.sex" :options="sexOptions" />
