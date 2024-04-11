@@ -48,8 +48,11 @@ interface Item {
 }
 
 const selectItem = (item: Item) => {
-  websiteKeys.value.push(item.id);
-  console.log(websiteKeys.value);
+  if (!websiteKeys.value.includes(item.id)) {
+    websiteKeys.value.push(item.id);
+  } else {
+    websiteKeys.value = websiteKeys.value.filter(e => e !== item.id);
+  }
 };
 
 const cardData = computed(() => {
@@ -75,39 +78,5 @@ const cardData = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-$width: 200px;
-.table-card-list {
-  display: grid;
-  padding: 12px;
-  gap: 12px;
-  grid-template-columns: repeat(auto-fill, minmax($width, 1fr));
-}
-:deep(td.ant-descriptions-item) {
-  padding-bottom: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: $width - 80px;
-  text-overflow: ellipsis;
-}
-div.index {
-  $wh: 24px;
-  width: $wh;
-  height: $wh;
-  border-radius: 50%;
-  line-height: $wh;
-  border: 1px solid var(--primary);
-  color: var(--primary);
-  text-align: center;
-  position: absolute;
-  background: white;
-  right: -10px;
-  top: -10px;
-}
-li.active {
-  div.index {
-    border: 1px solid #ddd;
-    background: var(--primary);
-    color: white;
-  }
-}
+@import './style';
 </style>
