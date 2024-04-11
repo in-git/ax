@@ -28,7 +28,12 @@
             <a-select v-model:value="currentRole.dataScope" :options="scopedOptions" />
           </a-form-item>
 
-          <a-form-item name="deptIds" required label="选择部门">
+          <a-form-item
+            name="deptIds"
+            required
+            label="选择部门"
+            v-if="currentRole.dataScope === '2'"
+          >
             <div @click="reload" class="mb-12 flex justify-between">
               <span class="text-999">部门列表</span>
               <a-tooltip title="刷新">
@@ -77,7 +82,7 @@ const submit = async () => {
   }
   const { data } = await roleDataScope(currentRole.value);
   message.success(data.msg);
-  resourceModal.value = true;
+  resourceModal.value = false;
   getRoles();
 };
 const reload = async () => {

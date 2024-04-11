@@ -25,6 +25,8 @@ const debouncedFn = useDebounceFn(error => {
     title: '网络错误',
     type: 'error',
   });
+  message.warn('网络错误');
+  console.log('执行错误');
 }, 100);
 
 axios.interceptors.response.use(
@@ -50,7 +52,6 @@ axios.interceptors.response.use(
   error => {
     if (error.toString().includes('Network Error')) {
       debouncedFn(error);
-      message.warn('网络错误');
     } else {
       message.error(error.message);
     }

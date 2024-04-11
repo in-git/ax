@@ -19,7 +19,7 @@
         </a-popover>
         <div class="text-999">
           数量:
-          <a-tag>{{ data.length }}</a-tag>
+          <span class="ml-8">{{ data.length }}</span>
         </div>
       </div>
     </div>

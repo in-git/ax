@@ -46,7 +46,7 @@ export const getPexels = async (query: PexelsQuery) => {
     params: {
       page: query.page || 1,
       per_page: query.per_page || 20,
-      orientation: 'landscape',
+      orientation: 'portrait',
     },
   });
   console.log(data);
