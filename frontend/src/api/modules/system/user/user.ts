@@ -46,9 +46,11 @@ export const updatePassword = (newPassword: string, oldPassword: string) => {
     `/system/user/profile/updatePwd?oldPassword=${oldPassword}&newPassword=${newPassword}`,
   );
 };
+/* 获取用户部门列表 */
 export const deptTree = () => {
   return axios.get<Response<UserDept[]>>(`system/user/deptTree`);
 };
+
 export const userList = (query: IQuery) => {
   return axios.get<TableResponse<UserProfileData>>(`system/user/list`, {
     params: query,

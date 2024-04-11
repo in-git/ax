@@ -30,7 +30,7 @@
               </template>
               <template #action>
                 <a-space direction="vertical">
-                  <a-button size="small" type="primary">查看</a-button>
+                  <a-button size="small" type="primary" @click="view(item)">查看</a-button>
                 </a-space>
               </template>
             </a-alert>
@@ -39,12 +39,25 @@
         <a-empty v-else description="暂时没有收到任何通知" />
       </div>
     </a-drawer>
+    <a-modal @ok="viewer = false" v-model:open="viewer" centered :title="currentNotice?.title">
+      <div class="content" v-html="currentNotice?.content"></div>
+    </a-modal>
   </div>
 </template>
 
 <script setup lang="ts">
 import useSystemStore from '@/store/system';
-import { noticeList, showNotice } from './data';
+import { noticeList, showNotice, type DesktopNotice } from './data';
+
+const viewer = ref(false);
+
+const currentNotice = ref<DesktopNotice>();
+
+const view = (item: DesktopNotice) => {
+  viewer.value = true;
+  currentNotice.value = item;
+  onClose(item.id);
+};
 
 const onClose = (id?: number) => {
   const systemStore = useSystemStore();
@@ -57,4 +70,10 @@ const onClose = (id?: number) => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.content {
+  background: #f5f2f3;
+  min-height: 100px;
+  padding: 12px;
+}
+</style>

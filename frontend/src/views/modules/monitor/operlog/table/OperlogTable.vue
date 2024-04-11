@@ -111,6 +111,7 @@ const getStatus = (status: string) => {
         cursor: pointer;
         width: 100%;
         border: 1px solid transparent;
+        max-width: $width;
       }
     }
   }

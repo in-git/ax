@@ -52,7 +52,7 @@
 
 <script setup lang="ts">
 import { deptTreeData, loadDeptTree } from '@/views/components/department/data';
-import { userForm, userPosts, userRoles } from '../data';
+import { userForm, userPosts, userRoles } from '../../data/form';
 
 const treeData = ref();
 
@@ -115,3 +115,4 @@ onMounted(async () => {
   }
 }
 </style>
+../form

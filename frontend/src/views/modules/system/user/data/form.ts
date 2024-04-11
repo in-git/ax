@@ -1,7 +1,7 @@
 import type { SystemPost } from '@/api/modules/system/post/types';
 import type { Role } from '@/api/modules/system/role/types';
 import type { UserProfileData } from '@/api/modules/system/user/types';
-import { editUserConfig } from '../data/curd';
+import { editUserConfig } from './curd';
 
 export const showUserForm = ref<boolean>(false);
 

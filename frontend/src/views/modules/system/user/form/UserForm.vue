@@ -76,7 +76,7 @@ import SystemModal from '@/components/modal/SysModal.vue';
 import { sexOptions, statusOptions } from '@/global/options/system';
 import { message } from 'ant-design-vue';
 import { loadUserData } from '../data/curd';
-import { showUserForm, userForm } from './data';
+import { showUserForm, userForm } from '../data/form';
 import RightVue from './right/Right.vue';
 const submit = async () => {
   let result = '';
@@ -102,4 +102,4 @@ const submit = async () => {
   height: 100%;
 }
 </style>
-../data/curd
+../data/curd ./form

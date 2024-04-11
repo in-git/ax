@@ -23,7 +23,7 @@ import { resetPwd } from '@/api/modules/system/user/user';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { message } from 'ant-design-vue';
 import type { RuleObject } from 'ant-design-vue/es/form';
-import { userForm } from '../../form/data';
+import { userForm } from '../../data/form';
 import { passwordModal } from './data';
 const form = ref({
   password: '',
@@ -47,3 +47,4 @@ const rules: RuleObject = {
   box-shadow: none;
 }
 </style>
+../../form/form

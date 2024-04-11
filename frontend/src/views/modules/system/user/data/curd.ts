@@ -1,7 +1,7 @@
 import { deleteUsers, getUser, userList } from '@/api/modules/system/user/user';
 import { message, Modal } from 'ant-design-vue';
-import { resetUserForm, showUserForm, userForm, userPosts, userRoles } from '../form/data';
 import { userConfig, userQuery } from './data';
+import { resetUserForm, showUserForm, userForm, userPosts, userRoles } from './form';
 
 export const delUser = (id?: number) => {
   Modal.confirm({
@@ -35,10 +35,12 @@ export const editUserConfig = async (id?: string) => {
 
   showUserForm.value = true;
 };
+
 export const createUser = () => {
   showUserForm.value = false;
   resetUserForm();
 };
+
 export const loadUserData = async () => {
   userConfig.value.loading = true;
   const { data } = await userList(userQuery.value);

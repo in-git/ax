@@ -18,6 +18,16 @@
               </div>
             </li>
           </ul>
+          <div class="divider text-right">
+            <a-tooltip title="更新本地数据">
+              <a-button type="link" @click="reset">
+                同步
+                <template #icon>
+                  <ReloadOutlined />
+                </template>
+              </a-button>
+            </a-tooltip>
+          </div>
         </div>
       </template>
     </a-popover>
@@ -28,6 +38,7 @@
 import useColumnsStore from '@/store/columns/index';
 import type { ColumnProps } from '@/types/system';
 import { AppstoreAddOutlined } from '@ant-design/icons-vue';
+import { message } from 'ant-design-vue';
 
 const emit = defineEmits(['update:columns']);
 const cols = ref();
@@ -41,6 +52,20 @@ const props = defineProps<{
 const onChange = () => {
   emit('update:columns', cols.value);
 };
+
+const reset = () => {
+  cols.value = [];
+  store.$state = store.$state.filter(e => {
+    if (e.moduleName === props.moduleName) {
+      e.columns = props.columns as any;
+      cols.value = props.columns;
+      emit('update:columns', cols.value);
+    }
+    return e;
+  });
+  message.success('已更新');
+};
+
 const computedColumns = computed(() => {
   const colArr = props.columns.map(e => {
     if (typeof e.show === 'undefined') {
@@ -76,5 +101,10 @@ const computedColumns = computed(() => {
     align-items: center;
     justify-content: space-between;
   }
+}
+.divider {
+  border-top: 1px solid #ddd;
+  padding-top: 8px;
+  margin-top: 8px;
 }
 </style>

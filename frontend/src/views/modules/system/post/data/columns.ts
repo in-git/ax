@@ -22,16 +22,10 @@ export const postColumns = ref<ColumnProps[]>([
     key: 'createTime',
   },
   {
-    title: '更新时间',
-    dataIndex: 'updateTime',
-    key: 'updateTime',
-  },
-  {
     title: '备注',
     dataIndex: 'remark',
     key: 'remark',
   },
-
   {
     title: '状态',
     dataIndex: 'status',

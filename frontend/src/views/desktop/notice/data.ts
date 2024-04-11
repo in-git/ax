@@ -1,4 +1,4 @@
-interface DesktopNotice {
+export interface DesktopNotice {
   content: string;
   title: string;
   type: 'error' | 'notice';
