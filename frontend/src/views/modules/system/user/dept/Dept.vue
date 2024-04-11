@@ -38,11 +38,10 @@ const search = () => {
   treeData.value = result;
 };
 const onSelect = (keys: Key[]) => {
-  console.log(keys[0]);
-
   userQuery.value.deptId = Number(keys[0]);
   loadUserData();
 };
+
 watch(
   deptTreeData,
   async () => {

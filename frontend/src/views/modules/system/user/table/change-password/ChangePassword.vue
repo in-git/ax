@@ -25,9 +25,11 @@ import { message } from 'ant-design-vue';
 import type { RuleObject } from 'ant-design-vue/es/form';
 import { userForm } from '../../data/form';
 import { passwordModal } from './data';
+
 const form = ref({
   password: '',
 });
+
 const submit = async () => {
   const { data } = await resetPwd(form.value.password, userForm.value.userId!);
   message.success(data.msg);
