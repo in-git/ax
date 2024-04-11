@@ -7,12 +7,12 @@ import type {  ${ModuleName}${BusinessName} } from '@/api/modules/${moduleName}/
 export const ${businessName}Table = ref<TableConfig<${ModuleName}${BusinessName}>>({
   //这里根据实际情况修改
   //作用：勾选的唯一标识
-  rowKey: '$pkColumn',
+  rowKey: 'id',
   data: [],
   loading: false,
   moduleName: '${businessName}',
 });
-//查询阐述
+//查询参数接口
 interface ${businessName}Query {
 }
 //查询参数

@@ -30,7 +30,7 @@
               <FiledInfo></FiledInfo>
               <template #tab>
                 <RobotFilled />
-                代码生成
+                字段配置
               </template>
             </a-tab-pane>
           </a-tabs>
