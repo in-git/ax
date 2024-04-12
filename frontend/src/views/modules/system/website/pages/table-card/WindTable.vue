@@ -24,10 +24,10 @@
 import type { SystemWebsite } from '@/api/modules/system/website/types';
 import Operation from '@/views/components/table/Operation.vue';
 import SystemTable from '@/views/components/table/SystemTable.vue';
-import { websiteColumns } from '../data/column';
-import { websiteEdit } from '../data/curd';
-import { websiteForm } from '../data/form';
-import { websiteKeys, websiteOperationList, websiteQuery, websiteTable } from '../data/table';
+import { websiteColumns } from '../../data/column';
+import { websiteEdit } from '../../data/curd';
+import { websiteForm } from '../../data/form';
+import { websiteKeys, websiteOperationList, websiteQuery, websiteTable } from '../../data/table';
 const openChange = (record: SystemWebsite) => {
   websiteForm.value = record;
 };

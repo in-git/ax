@@ -60,9 +60,9 @@ import {
   type DeleteOutlined,
   type ReloadOutlined,
 } from '@ant-design/icons-vue';
-import { websiteColumns } from '../data/column';
-import { websiteCreate, websiteDelete, websiteEdit, websiteList } from '../data/curd';
-import { viewMode, websiteKeys, websiteTable } from '../data/table';
+import { websiteColumns } from '../../data/column';
+import { websiteCreate, websiteDelete, websiteEdit, websiteList } from '../../data/curd';
+import { viewMode, websiteKeys, websiteTable } from '../../data/table';
 </script>
 
 <style lang="scss" scoped></style>

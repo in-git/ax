@@ -40,9 +40,9 @@
 
 <script setup lang="ts">
 import { useSortable } from '@vueuse/integrations/useSortable';
-import { dragstart, drop, selectSystemWebsite, systemWebsiteCardData } from '../data/card';
-import { websiteEdit } from '../data/curd';
-import { websiteKeys } from '../data/table';
+import { dragstart, drop, selectSystemWebsite, systemWebsiteCardData } from '../../data/card';
+import { websiteEdit } from '../../data/curd';
+import { websiteKeys } from '../../data/table';
 
 const cardRef = ref();
 

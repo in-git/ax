@@ -1,12 +1,20 @@
 <template>
   <div class="system-module flex flex-col">
+    <!-- loading效果 -->
     <Loading @cancel="cancelRequest" v-if="websiteTable.loading" class="loading" />
+
+    <!-- 顶部筛选，查询选项 -->
     <HeadVue />
+
+    <!-- 中间数据 -->
     <div class="data__content">
-      <TableVue v-if="viewMode === 'table'"></TableVue>
+      <WindTable v-if="viewMode === 'table'"></WindTable>
       <CardVue v-else></CardVue>
     </div>
+
+    <!-- 底部分页信息 -->
     <FooterVue></FooterVue>
+
     <!-- 表单编辑 -->
     <FormVue />
   </div>
@@ -14,13 +22,13 @@
 
 <script setup lang="ts">
 import { message } from 'ant-design-vue';
-import FooterVue from './components/Footer.vue';
-import HeadVue from './components/Head.vue';
 import { websiteList } from './data/curd';
 import { viewMode, websiteTable } from './data/table';
-import FormVue from './form/Form.vue';
-import CardVue from './table/Card.vue';
-import TableVue from './table/Table.vue';
+import FooterVue from './pages/components/WindFooter.vue';
+import HeadVue from './pages/components/WindHead.vue';
+import FormVue from './pages/form/WindForm.vue';
+import CardVue from './pages/table-card/WindCard.vue';
+import WindTable from './pages/table-card/WindTable.vue';
 
 const cancelRequest = () => {
   websiteTable.value.loading = false;
@@ -43,8 +51,5 @@ onMounted(() => {
   left: 0;
   background: #cfcfcf4f;
   z-index: 100;
-}
-.system-module {
-  overflow: hidden;
 }
 </style>

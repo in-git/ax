@@ -18,8 +18,8 @@ defineProps<{
   padding-bottom: 8px;
   box-shadow: 0 0 15px #cfcfcf9a;
   position: sticky;
-  top: 0;
-  z-index: 100;
+  top: 0px;
+  z-index: 10;
   background: white;
 }
 </style>

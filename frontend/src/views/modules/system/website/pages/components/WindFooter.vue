@@ -1,8 +1,14 @@
 <template>
   <div class="card-footer px-12 flex align-center justify-between">
-    <div class="text-12 text-999">
-      <span>已选:</span>
-      <span>（{{ websiteKeys.length }}）</span>
+    <div class="flex align-center text-12 text-999">
+      <div>
+        <span>已选:</span>
+        <span>（{{ websiteKeys.length }}）</span>
+      </div>
+      <div>
+        <span class="mr-8">全选</span>
+        <a-checkbox />
+      </div>
     </div>
     <a-pagination
       :total="websiteQuery.total"
@@ -15,8 +21,8 @@
 </template>
 
 <script setup lang="ts">
-import { websiteList } from '../data/curd';
-import { websiteKeys, websiteQuery } from '../data/table';
+import { websiteList } from '../../data/curd';
+import { websiteKeys, websiteQuery } from '../../data/table';
 
 const pageChange = (page: number, pageSize: number) => {
   websiteQuery.value.pageNum = page;
@@ -34,7 +40,7 @@ const pageChange = (page: number, pageSize: number) => {
   background: white;
   border-top: 1px solid #ddd;
   flex-basis: 36px;
-  z-index: 100;
+  z-index: 5;
   line-height: 36px;
 }
 </style>

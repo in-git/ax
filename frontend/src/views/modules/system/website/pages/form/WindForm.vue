@@ -42,8 +42,8 @@
 import { createWebsite, updateWebsite } from '@/api/modules/system/website/website';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { response } from '@/utils/table/table';
-import { websiteList } from '../data/curd';
-import { websiteForm, websiteRules, websiteShowForm } from '../data/form';
+import { websiteList } from '../../data/curd';
+import { websiteForm, websiteRules, websiteShowForm } from '../../data/form';
 
 const loading = ref(false);
 

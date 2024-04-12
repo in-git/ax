@@ -11,16 +11,17 @@ interface CardData {
   }[];
 }
 
+/* 当前拖拽的元素 */
 export const dragstart = (item: CardData) => {
-  /* 当前拖拽的元素 */
   console.log('dragstart==', item.id);
 };
 
+/* 目标元素，鼠标放下 */
 export const drop = (item: CardData) => {
-  /* 目标元素，鼠标放下 */
   console.log('drop==', item.id);
 };
 
+/* 选择卡片 */
 export const selectSystemWebsite = (item: CardData) => {
   if (!websiteKeys.value.includes(item.id)) {
     websiteKeys.value.push(item.id);
@@ -29,6 +30,7 @@ export const selectSystemWebsite = (item: CardData) => {
   }
 };
 
+/* 渲染卡片的内容 */
 export const systemWebsiteCardData = computed(() => {
   let arr: CardData[] = [];
   websiteTable.value.data.map((e: SystemWebsite | any, i) => {

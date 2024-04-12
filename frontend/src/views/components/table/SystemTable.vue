@@ -8,7 +8,7 @@
         selectedRowKeys: selectedKeys,
         onChange,
       }"
-      class="px-12 py-8"
+      class="px-12"
       :pagination="false"
       :customRow="customRow"
       :rowKey="table.rowKey"

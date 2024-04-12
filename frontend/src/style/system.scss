@@ -20,6 +20,10 @@
 	background: #f7fafc;
 	position: relative;
 	overflow: auto;
+	/* 避免出现滚动条 */
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
 %icon {
 	height: 32px;
