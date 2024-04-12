@@ -18,13 +18,7 @@
               type="error"
               closable
             />
-            <a-alert
-              v-else-if="item.type === 'notice'"
-              :message="item.title"
-              type="info"
-              closable
-              @close="onClose(item.id)"
-            >
+            <a-alert v-else-if="item.type === 'notice'" :message="item.title" type="info">
               <template #description>
                 <div v-html="item.content"></div>
               </template>
@@ -56,15 +50,13 @@ const currentNotice = ref<DesktopNotice>();
 const view = (item: DesktopNotice) => {
   viewer.value = true;
   currentNotice.value = item;
-  onClose(item.id);
-};
-
-const onClose = (id?: number) => {
   const systemStore = useSystemStore();
-  if (id) {
-    systemStore.$state.readMessages.push(id);
+  console.log(item.id);
+
+  if (item.id) {
+    systemStore.$state.readMessages.push(item.id);
     noticeList.value = noticeList.value.filter(e => {
-      return e.id === id;
+      return e.id === item.id;
     });
   }
 };
