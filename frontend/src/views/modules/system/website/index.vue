@@ -1,22 +1,21 @@
 <template>
-  <div class="system-module flex flex-col">
-    <!-- loading效果 -->
-    <Loading @cancel="cancelRequest" v-if="websiteTable.loading" class="loading" />
-
+  <div class="system-template">
     <!-- 顶部筛选，查询选项 -->
     <HeadVue />
-
     <!-- 中间数据 -->
     <div class="data__content">
       <WindTable v-if="viewMode === 'table'"></WindTable>
       <CardVue v-else></CardVue>
     </div>
-
     <!-- 底部分页信息 -->
     <FooterVue></FooterVue>
 
+    <!-- 绝对定位模块 -->
     <!-- 表单编辑 -->
     <FormVue />
+    <!-- loading效果 -->
+    <Loading @cancel="cancelRequest" v-if="websiteTable.loading" class="loading" />
+    <!-- end -->
   </div>
 </template>
 
@@ -40,16 +39,4 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
-.data__content {
-  flex: 1;
-  overflow-y: auto;
-}
-.loading {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #cfcfcf4f;
-  z-index: 100;
-}
-</style>
+<style lang="scss" scoped></style>
