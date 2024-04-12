@@ -1,5 +1,5 @@
 <template>
-  <div class="loading w-100 h-100 flex-s flex absolute flex-col text-999">
+  <div class="loading w-100 flex-s flex absolute flex-col text-999">
     <LoadingOutlined spin class="text-16" />
     <div class="my-12">正在响应,请稍后...</div>
     <div>
@@ -36,6 +36,7 @@ onUnmounted(() => {
   top: 0%;
   left: 0;
   width: 100%;
+  height: 100%;
   .text-warning {
     color: orange;
   }

@@ -17,5 +17,9 @@ defineProps<{
 .table__head {
   padding-bottom: 8px;
   box-shadow: 0 0 15px #cfcfcf9a;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
 }
 </style>

@@ -15,26 +15,17 @@
           </a-col>
         </a-row>
         <div class="flex-1 p-8">
-          <a-form-item label="网页ID">
-            <a-input v-model:value="websiteForm.websiteId"></a-input>
-          </a-form-item>
           <a-form-item label="网页名称">
             <a-input v-model:value="websiteForm.name"></a-input>
           </a-form-item>
           <a-form-item label="网页URL">
             <a-input v-model:value="websiteForm.url"></a-input>
           </a-form-item>
-          <a-form-item label="创建时间" name="createTime">
-            <a-date-picker class="w-100"></a-date-picker>
-          </a-form-item>
           <a-form-item label="网页描述">
             <a-input v-model:value="websiteForm.description"></a-input>
           </a-form-item>
           <a-form-item label="网页类型" name="type">
             <a-select v-model:value="websiteForm.type"></a-select>
-          </a-form-item>
-          <a-form-item label="创建时间" name="updateTime">
-            <a-date-picker class="w-100"></a-date-picker>
           </a-form-item>
           <a-row>
             <a-col :span="8" :offset="9">
@@ -63,9 +54,9 @@ const submit = async () => {
   } else {
     await response(createWebsite, websiteForm.value);
   }
-  await websiteList();
   loading.value = false;
   websiteShowForm.value = false;
+  await websiteList();
 };
 </script>
 

@@ -1,7 +1,6 @@
 <template>
   <div>
     <a-table
-      :loading="table.loading"
       @change="pageChange"
       table-layout="fixed"
       sticky
@@ -52,7 +51,13 @@ import { formatColumns } from '@/utils/table/table';
 import type { TableColumnProps, TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
-const emit = defineEmits(['update:selectedKeys', 'update:query', 'reload', 'update:form']);
+const emit = defineEmits([
+  'update:selectedKeys',
+  'update:query',
+  'reload',
+  'update:form',
+  'dblclick',
+]);
 const selectedKeys = ref();
 
 const props = defineProps<{
@@ -70,8 +75,13 @@ const onChange = (keys: Key[]) => {
 const customRow = (record: any) => {
   return {
     onClick() {
+      const id = record[props.table.rowKey];
       emit('update:form', record);
-      selectedKeys.value = [record[props.table.rowKey]];
+      selectedKeys.value = [id];
+    },
+    onDblclick() {
+      const id = [record[props.table.rowKey]];
+      emit('dblclick', id);
     },
   };
 };

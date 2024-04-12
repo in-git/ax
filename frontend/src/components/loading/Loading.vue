@@ -1,199 +1,52 @@
 <template>
   <div class="loader-container w-100 h-100 flex flex-s flex-col">
     <div class="loader"></div>
-    <span class="text-999 mt-12">loading...</span>
+
+    <a-button type="text" class="mt-24" danger @click="cancelLoading">
+      <span class="text-red">取消请求</span>
+      <template #icon>
+        <CloseOutlined />
+      </template>
+    </a-button>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { cancelAllRequest } from '@/api/config/interceptor';
+
+const emit = defineEmits(['cancel']);
+const cancelLoading = () => {
+  cancelAllRequest();
+  emit('cancel');
+};
+</script>
 
 <style lang="scss" scoped>
-/* HTML: <div class="loader"></div> */
-/* HTML: <div class="loader"></div> */
 .loader {
-  width: 80px;
-  aspect-ratio: 2;
-  --c: no-repeat linear-gradient(#046d8b 0 0);
-  background: var(--c), var(--c), var(--c), var(--c), var(--c), var(--c), var(--c);
-  animation:
-    l4-1 1.5s infinite,
-    l4-2 1.5s infinite;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 30px;
+  display: inline-grid;
+  overflow: hidden;
+  color: #666666;
 }
-@keyframes l4-1 {
-  0% {
-    background-size:
-      0 4px,
-      4px 0,
-      0 4px,
-      4px 0,
-      0 4px,
-      4px 0,
-      0 4px;
-  }
-  7.14% {
-    background-size:
-      25% 4px,
-      4px 0,
-      0 4px,
-      4px 0,
-      0 4px,
-      4px 0,
-      0 4px;
-  }
-  14.29% {
-    background-size:
-      25% 4px,
-      4px 50%,
-      0 4px,
-      4px 0,
-      0 4px,
-      4px 0,
-      0 4px;
-  }
-  21.43% {
-    background-size:
-      25% 4px,
-      4px 50%,
-      25% 4px,
-      4px 0,
-      0 4px,
-      4px 0,
-      0 4px;
-  }
-  28.57% {
-    background-size:
-      25% 4px,
-      4px 50%,
-      25% 4px,
-      4px 100%,
-      0 4px,
-      4px 0,
-      0 4px;
-  }
-  35.71% {
-    background-size:
-      25% 4px,
-      4px 50%,
-      25% 4px,
-      4px 100%,
-      25% 4px,
-      4px 0,
-      0 4px;
-  }
-  42.86% {
-    background-size:
-      25% 4px,
-      4px 50%,
-      25% 4px,
-      4px 100%,
-      25% 4px,
-      4px 50%,
-      0 4px;
-  }
-  49%,
-  51% {
-    background-size:
-      25% 4px,
-      4px 50%,
-      25% 4px,
-      4px 100%,
-      25% 4px,
-      4px 50%,
-      25% 4px;
-  }
-  57.14% {
-    background-size:
-      0 4px,
-      4px 50%,
-      25% 4px,
-      4px 100%,
-      25% 4px,
-      4px 50%,
-      25% 4px;
-  }
-  64.29% {
-    background-size:
-      0 4px,
-      4px 0,
-      25% 4px,
-      4px 100%,
-      25% 4px,
-      4px 50%,
-      25% 4px;
-  }
-  71.43% {
-    background-size:
-      0 4px,
-      4px 0,
-      0 4px,
-      4px 100%,
-      25% 4px,
-      4px 50%,
-      25% 4px;
-  }
-  78.57% {
-    background-size:
-      0 4px,
-      4px 0,
-      0 4px,
-      4px 0,
-      25% 4px,
-      4px 50%,
-      25% 4px;
-  }
-  85.71% {
-    background-size:
-      0 4px,
-      4px 0,
-      0 4px,
-      4px 0,
-      0 4px,
-      4px 50%,
-      25% 4px;
-  }
-  92.86% {
-    background-size:
-      0 4px,
-      4px 0,
-      0 4px,
-      4px 0,
-      0 4px,
-      4px 0,
-      25% 4px;
-  }
-  100% {
-    background-size:
-      0 4px,
-      4px 0,
-      0 4px,
-      4px 0,
-      0 4px,
-      4px 0,
-      0 4px;
-  }
+.loader:before,
+.loader:after {
+  content: 'Loading...';
+  grid-area: 1/1;
+  clip-path: inset(0 -200% 50%);
+  text-shadow: -10ch 0 0;
+  animation: l12 1s infinite;
 }
-@keyframes l4-2 {
-  0%,
-  49.9% {
-    background-position:
-      0 50%,
-      bottom 20px left 16px,
-      20px 0,
-      50% 0,
-      40px 100%,
-      bottom 0 right 16px,
-      60px 50%;
-  }
+.loader:after {
+  clip-path: inset(50% -200% 0%);
+  text-shadow: 10ch 0 0;
+  --s: -1;
+}
+@keyframes l12 {
   50%,
   100% {
-    background-position:
-      right 60px top 50%,
-      16px 0,
-      right 40px top 0,
-      50% 100%,
-      right 20px bottom 0,
-      right 16px top 20px,
-      100% 50%;
+    transform: translateX(calc(var(--s, 1) * 100%));
   }
 }
 </style>

@@ -5,7 +5,7 @@
         <a-tab-pane key="mission" tab="顶部导航">
           <div class="blur-card mb-12">
             <div class="fade-background">
-              <div :style="style" class="text-white px-12 w-100 h-100 flex flex-s">Win</div>
+              <div :style="style" class="text-white px-12 w-100 h-100 flex flex-s">风 | Wind</div>
             </div>
             <div class="flex align-center gc-12">
               背景模糊

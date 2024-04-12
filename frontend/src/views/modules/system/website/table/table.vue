@@ -7,6 +7,7 @@
       v-model:query="websiteQuery"
       v-model:selected-keys="websiteKeys"
       v-model:form="websiteForm"
+      @dblclick="onDblclick"
     >
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">
@@ -27,17 +28,17 @@ import type { SystemWebsite } from '@/api/modules/system/website/types';
 import Operation from '@/views/components/table/Operation.vue';
 import SystemTable from '@/views/components/table/SystemTable.vue';
 import { websiteColumns } from '../data/column';
-import { websiteEdit, websiteList } from '../data/curd';
+import { websiteEdit } from '../data/curd';
 import { websiteForm } from '../data/form';
 import { websiteKeys, websiteOperationList, websiteQuery, websiteTable } from '../data/table';
-import TableHeadVue from '../head/head.vue';
-
-onMounted(() => {
-  websiteList();
-});
+import TableHeadVue from './Head.vue';
 
 const openChange = (record: SystemWebsite) => {
   websiteForm.value = record;
+};
+
+const onDblclick = (id: number) => {
+  websiteEdit(id);
 };
 </script>
 

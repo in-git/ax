@@ -1,28 +1,25 @@
 <template>
   <div class="apps flex-1 p-4" ref="apps" @contextmenu="openContextMenu" :style="style">
-    <template v-if="menuList.length >= 0">
-      <div class="flex h-100">
-        <ul ref="appRef">
-          <li
-            v-for="item in menuList"
-            :key="item.name"
-            :class="{ selected: item.name === selected || item.meta.title === selected }"
-            @click="select(item)"
-            @dblclick="openApp(item)"
-            v-show="!item.hidden"
-            @contextmenu.stop="appContextMenu(item)"
-          >
-            <div>
-              <div class="logo">
-                <img :src="getIconByName(item) || logoPng" :draggable="false" width="48" />
-              </div>
-              <div class="title">{{ item.meta?.title || 'Untitled' }}</div>
+    <div class="flex h-100">
+      <ul ref="appRef">
+        <li
+          v-for="item in menuList"
+          :key="item.name"
+          :class="{ selected: item.name === selected || item.meta.title === selected }"
+          @click="select(item)"
+          @dblclick="openApp(item)"
+          v-show="!item.hidden"
+          @contextmenu.stop="appContextMenu(item)"
+        >
+          <div>
+            <div class="logo">
+              <img :src="getIconByName(item) || logoPng" :draggable="false" width="48" />
             </div>
-          </li>
-        </ul>
-      </div>
-    </template>
-    <Loading v-else></Loading>
+            <div class="title">{{ item.meta?.title || 'Untitled' }}</div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -30,7 +27,6 @@
 import { getOptionsByName } from '@/api/modules/system/dict/dict.data';
 import type { Routers } from '@/api/modules/system/user/types';
 import logoPng from '@/assets/logo.png';
-import Loading from '@/components/loading/Loading.vue';
 import usePageStore from '@/store/page';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import { appContextMenu, openContextMenu } from './contextmenu';
