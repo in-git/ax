@@ -1,0 +1,28 @@
+export const ${businessName}ShowForm = ref(false);
+import type {  ${ModuleName}${BusinessName} } from '@/api/modules/${moduleName}/${businessName}/types';
+import type { Rule } from 'ant-design-vue/es/form/interface';
+
+const form:  ${ModuleName}${BusinessName} = {
+#foreach($column in $columns)
+    $column.javaField:#if($column.javaType == "String") "" #elseif($column.javaType == "Integer") 0 #elseif($column.javaType == "Long") 0 #elseif($column.javaType == "Double") 0.0 #elseif($column.javaType == "Boolean") false #else null #end,
+#end
+};
+
+export const ${businessName}Form = ref<${ModuleName}${BusinessName}>({
+  ...form,
+});
+
+export const ${businessName}ResetForm = () => {
+  ${businessName}Form.value = {
+    ...form,
+  };
+};
+
+export const ${businessName}Rules: Record<string, Rule[]> = {
+#foreach($column in $columns)
+#set($javaField=$column.javaField)
+#if($column.isInsert)
+  $javaField: [{ required:#if($column.required) true#else false #end, trigger: 'change' }],
+#end
+#end
+};

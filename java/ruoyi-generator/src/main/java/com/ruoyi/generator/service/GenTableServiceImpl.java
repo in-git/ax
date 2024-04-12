@@ -268,7 +268,7 @@ public class GenTableServiceImpl implements IGenTableService
         List<String> templates = VelocityUtils.getTemplateList(table.getTplCategory(), table.getTplWebType());
         for (String template : templates)
         {
-            if (!StringUtils.containsAny(template, "sql.vm", "api.ts.vm", "index.vue.vm", "index-tree.vue.vm"))
+            if (!StringUtils.containsAny(template, "sql.vm", "api.ts.vm", "index.vue.vm.vm", "index-tree.vue.vm"))
             {
                 // 渲染模板
                 StringWriter sw = new StringWriter();

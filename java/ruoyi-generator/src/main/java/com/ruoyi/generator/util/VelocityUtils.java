@@ -129,7 +129,7 @@ public class VelocityUtils
      */
     public static List<String> getTemplateList(String tplCategory, String tplWebType)
     {
-        String useWebType = "vm/win";
+        String useWebType = "vm/wind";
 
         List<String> templates = new ArrayList<String>();
         templates.add("vm/java/domain.java.vm");
@@ -142,17 +142,26 @@ public class VelocityUtils
         templates.add("vm/js/api.ts.vm");
         templates.add("vm/js/types.ts.vm");
 
+
         /**
-         *
-         * */
-        templates.add(useWebType + "/index.vue.vm");
+        *   Vue数据层
+        * */
         templates.add(useWebType + "/data/column.ts.vm");
         templates.add(useWebType + "/data/form.ts.vm");
         templates.add(useWebType + "/data/table.ts.vm");
         templates.add(useWebType + "/data/curd.ts.vm");
-        templates.add(useWebType + "/form/form.vue.vm");
-        templates.add(useWebType + "/table/table.vue.vm");
-        templates.add(useWebType + "/table/table-head/head.vue.vm");
+
+        /**
+         *   Vue 组件
+         *   vm/wind/pages/components/WindForm.vue.vm
+         * */
+        templates.add(useWebType + "/pages/components/WindForm.vue.vm");
+        templates.add(useWebType + "/pages/components/WindFooter.vue.vm");
+        templates.add(useWebType + "/pages/components/WindHead.vue.vm");
+        templates.add(useWebType + "/pages/table-card/WindCard.vue.vm");
+        templates.add(useWebType + "/pages/table-card/WindTable.vue.vm");
+        templates.add(useWebType + "/index.vue.vm");
+        templates.add(useWebType + "/readme.md.vm");
         //
 //        if (GenConstants.TPL_CRUD.equals(tplCategory))
 //        {
@@ -223,6 +232,16 @@ public class VelocityUtils
         {
             fileName = businessName + "Menu.sql";
         }
+
+
+        else if (template.contains("index-tree.vue.vm"))
+        {
+            fileName = StringUtils.format("{}/views/{}/{}/index.vue.vm", vuePath, moduleName, businessName);
+        }
+
+        /**
+         *  Wind API 生成
+         * */
         else if (template.contains("api.ts.vm"))
         {
             fileName = StringUtils.format("{}/api/modules/{}/{}/{}.ts", vuePath, moduleName, businessName,businessName);
@@ -231,17 +250,9 @@ public class VelocityUtils
         {
             fileName = StringUtils.format("{}/api/modules/{}/{}/types.ts", vuePath, moduleName,businessName);
         }
-
-        else if (template.contains("index-tree.vue.vm"))
-        {
-            fileName = StringUtils.format("{}/views/{}/{}/index.vue", vuePath, moduleName, businessName);
-        }
-        else if (template.contains("index.vue.vm"))
-        {
-            fileName = StringUtils.format("{}/views/modules/{}/{}/index.vue", vuePath, moduleName, businessName);
-        }
-
-
+        /**
+         *  Wind DATA 生成
+         * */
         else if (template.contains("curd.ts.vm"))
         {
             fileName = StringUtils.format("{}/views/modules/{}/{}/data/curd.ts", vuePath, moduleName, businessName);
@@ -250,7 +261,10 @@ public class VelocityUtils
         {
             fileName = StringUtils.format("{}/views/modules/{}/{}/data/column.ts", vuePath, moduleName, businessName);
         }
-
+        else if (template.contains("card.ts.vm"))
+        {
+            fileName = StringUtils.format("{}/views/modules/{}/{}/data/card.ts", vuePath, moduleName, businessName);
+        }
         else if (template.contains("table.ts.vm"))
         {
             fileName = StringUtils.format("{}/views/modules/{}/{}/data/table.ts", vuePath, moduleName, businessName);
@@ -259,18 +273,39 @@ public class VelocityUtils
         {
             fileName = StringUtils.format("{}/views/modules/{}/{}/data/form.ts", vuePath, moduleName, businessName);
         }
-
-        else if (template.contains("form.vue.vm"))
+        /**
+         *  Wind VUE组件 生成
+         * */
+        else if (template.contains("index.vue.vm"))
         {
-            fileName = StringUtils.format("{}/views/modules/{}/{}/form/form.vue", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/index.vue", vuePath, moduleName, businessName);
         }
-        else if (template.contains("table.vue.vm"))
+        else if (template.contains("WindFooter.vue.vm"))
         {
-            fileName = StringUtils.format("{}/views/modules/{}/{}/table/table.vue", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/pages/components/WindFooter.vue", vuePath, moduleName, businessName);
         }
-        else if (template.contains("head.vue.vm"))
+        else if (template.contains("WindForm.vue.vm"))
         {
-            fileName = StringUtils.format("{}/views/modules/{}/{}/table/table-head/head.vue", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/pages/components/WindForm.vue", vuePath, moduleName, businessName);
+        }
+        else if (template.contains("WindHead.vue.vm"))
+        {
+            fileName = StringUtils.format("{}/views/modules/{}/{}/pages/components/WindHead.vue", vuePath, moduleName, businessName);
+        }
+        else if (template.contains("WindCard.vue.vm"))
+        {
+            fileName = StringUtils.format("{}/views/modules/{}/{}/pages/table-card/WindCard.vue", vuePath, moduleName, businessName);
+        }
+        else if (template.contains("WindTable.vue.vm"))
+        {
+            fileName = StringUtils.format("{}/views/modules/{}/{}/pages/table-card/WindTable.vue", vuePath, moduleName, businessName);
+        }
+        /**
+         *  Wind readme.md 生成
+         * */
+        else if (template.contains("readme.md.vm"))
+        {
+            fileName = StringUtils.format("{}/views/modules/{}/{}/readme.md", vuePath, moduleName, businessName);
         }
         return fileName;
     }

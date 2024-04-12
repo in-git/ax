@@ -1,0 +1,44 @@
+<template>
+  <div class="card-footer px-12 flex align-center justify-between">
+    <div class="flex align-center text-12 text-999 gc-8">
+      <div>
+        <span>已选:</span>
+        <span>（{{ ${businessName}Keys.length }}）</span>
+      </div>
+    </div>
+    <a-pagination
+      :total="${businessName}Query.total"
+      :current="${businessName}Query.pageNum"
+      :page-size="${businessName}Query.pageSize"
+      show-size-changer
+      @change="pageChange"
+      show-quick-jumper
+      show-less-items
+    ></a-pagination>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ${businessName}List } from '../../data/curd';
+import { ${businessName}Keys, ${businessName}Query } from '../../data/table';
+
+const pageChange = (page: number, pageSize: number) => {
+  ${businessName}Query.value.pageNum = page;
+  ${businessName}Query.value.pageSize = pageSize;
+  ${businessName}List();
+};
+</script>
+
+<style lang="scss" scoped>
+.card-footer {
+  position: sticky;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  border-top: 1px solid #ddd;
+  flex-basis: 36px;
+  z-index: 5;
+  line-height: 36px;
+}
+</style>

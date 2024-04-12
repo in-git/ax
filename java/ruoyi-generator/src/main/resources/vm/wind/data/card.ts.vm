@@ -1,0 +1,54 @@
+import { ${businessName}Columns } from './column';
+import { ${businessName}Keys, ${businessName}Table } from './table';
+import type {  ${ModuleName}${BusinessName} } from '@/api/modules/${moduleName}/${businessName}/types';
+
+interface CardData {
+  id: number;
+  raw?: ${ModuleName}${BusinessName};
+  items: {
+    label: string;
+    value: any;
+  }[];
+}
+
+/* 当前拖拽的元素 */
+export const dragstart = (item: CardData) => {
+  console.log('dragstart==', item.id);
+};
+
+/* 目标元素，鼠标放下 */
+export const drop = (item: CardData) => {
+  console.log('drop==', item.id);
+};
+
+/* 选择卡片 */
+export const select${ModuleName}${BusinessName} = (item: CardData) => {
+  if (!${businessName}Keys.value.includes(item.id)) {
+    ${businessName}Keys.value.push(item.id);
+  } else {
+    ${businessName}Keys.value = ${businessName}Keys.value.filter(e => e !== item.id);
+  }
+};
+
+/* 渲染卡片的内容 */
+export const ${businessName}CardData = computed(() => {
+  let arr: CardData[] = [];
+  ${businessName}Table.value.data.map((e: ${ModuleName}${BusinessName} | any, i) => {
+    let items: any = [];
+    websiteColumns.value.forEach((v: any, k) => {
+      const label = v.title;
+      const value = e[v.dataIndex as any];
+      if (v.dataIndex === 'operation') return;
+      items.push({
+        label,
+        value,
+      });
+    });
+    arr.push({
+      id: e.websiteId,
+      items,
+      raw: e,
+    });
+  });
+  return arr;
+});

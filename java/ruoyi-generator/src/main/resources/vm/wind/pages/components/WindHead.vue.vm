@@ -1,0 +1,55 @@
+<template>
+  <TableHead title="$functionName">
+    <div class="flex justify-between">
+      <div class="flex gc-4 align-center">
+        <a-tooltip title="新建">
+          <a-button type="primary" @click="${businessName}Create">
+            <PlusOutlined />
+          </a-button>
+        </a-tooltip>
+        <a-tooltip title="编辑">
+          <a-button type="link"
+          @click="${businessName}Edit()"
+          :disabled="${businessName}Keys.length !== 1">
+            <EditOutlined />
+          </a-button>
+        </a-tooltip>
+        <a-tooltip title="刷新">
+          <a-button type="link" @click="${businessName}List">
+            <ReloadOutlined />
+          </a-button>
+        </a-tooltip>
+        <a-divider type="vertical" />
+        <a-input-search allow-clear @search="${businessName}List"></a-input-search>
+      </div>
+    </div>
+    <div class="flex">
+       <a-popconfirm title="确定要批量删除吗"
+           :disabled="${businessName}Keys.length === 0"
+           placement="bottomRight" @confirm="${businessName}Delete()">
+           <a-tooltip title="批量删除">
+             <a-button
+                  danger
+                  type="link"
+                  :disabled="${businessName}Keys.length === 0">
+               <DeleteOutlined />
+             </a-button>
+           </a-tooltip>
+      </a-popconfirm>
+      <FieldVue
+        :columns="${businessName}Columns"
+        :module-name="${businessName}Table.moduleName"
+      />
+    </div>
+  </TableHead>
+</template>
+
+<script setup lang="ts">
+import FieldVue from '@/views/components/table/Field.vue';
+import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
+import { ${businessName}Columns } from '../../data/column';
+import { ${businessName}Create, ${businessName}Delete, ${businessName}Edit, ${businessName}List } from '../../data/curd';
+import { ${businessName}Keys,${businessName}Table } from '../../data/table';
+</script>
+
+<style lang="scss" scoped></style>
