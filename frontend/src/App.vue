@@ -1,6 +1,6 @@
 <template>
   <ConfigProvider
-    :theme="theme"
+    :theme="localTheme"
     :locale="locale"
     :componentSize="store.$state.theme.size"
     :direction="store.$state.theme.direction"
@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import { closeWindow, windowList } from '@/global/config/window';
 import Gallery from '@/views/selector/gallery/Gallery.vue';
-import { ConfigProvider } from 'ant-design-vue';
+import { ConfigProvider, theme } from 'ant-design-vue';
 import zh_CN from 'ant-design-vue/es/locale/zh_CN';
 import {
   loadGoogleFont,
@@ -72,7 +72,8 @@ nextTick(async () => {
   /* 设置主题变量 */
   setCssVar();
 });
-const theme = computed(() => {
+
+const localTheme = computed(() => {
   return {
     token: {
       colorPrimary: store.$state.theme.theme,
@@ -80,6 +81,7 @@ const theme = computed(() => {
       fontSize: store.$state.theme.fontSize,
       colorText: '#313030',
     },
+    algorithm: theme.compactAlgorithm,
   };
 });
 </script>

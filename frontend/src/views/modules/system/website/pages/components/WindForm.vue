@@ -7,7 +7,7 @@
     :label-col="{ span: 4 }"
   >
     <SystemModal title="网页收藏" v-model:visible="websiteShowForm">
-      <div class="h-100 flex flex-col form-content">
+      <div class="form__content">
         <a-card title="基础配置" :bordered="false">
           <div class="flex-1 p-8">
             <a-form-item label="网页名称">
@@ -56,9 +56,4 @@ const submit = async () => {
 };
 </script>
 
-<style lang="scss" scoped>
-.form-content {
-  background: #f0f2f5;
-  padding: 12px;
-}
-</style>
+<style lang="scss" scoped></style>

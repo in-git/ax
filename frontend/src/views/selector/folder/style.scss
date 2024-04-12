@@ -2,13 +2,15 @@
 	background: white;
 	ul {
 		display: flex;
-		gap: 24px;
+		gap: 28px;
 	}
 	li {
-		width: 280px;
+		min-width: 240px;
+		flex: 1;
 		img {
 			width: 42px;
 		}
+		max-width: 280px;
 	}
 	.title {
 		border-bottom: 1px solid #ddd;

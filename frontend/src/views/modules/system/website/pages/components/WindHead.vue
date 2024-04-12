@@ -23,18 +23,6 @@
       </div>
     </div>
     <div class="flex">
-      <a-tooltip title="卡片模式" @click="viewMode = 'card'" v-if="viewMode === 'table'">
-        <a-button type="text">
-          <OrderedListOutlined />
-        </a-button>
-      </a-tooltip>
-
-      <a-tooltip title="表格模式" @click="viewMode = 'table'" v-else>
-        <a-button type="text">
-          <AppstoreAddOutlined />
-        </a-button>
-      </a-tooltip>
-
       <a-popconfirm
         title="确定要删除吗"
         :disabled="websiteKeys.length === 0"
@@ -48,6 +36,20 @@
         </a-tooltip>
       </a-popconfirm>
       <FieldVue :columns="websiteColumns" :module-name="websiteTable.moduleName" />
+
+      <div>
+        <a-tooltip title="卡片模式" @click="viewMode = 'card'" v-if="viewMode === 'table'">
+          <a-button type="link">
+            <OrderedListOutlined />
+          </a-button>
+        </a-tooltip>
+
+        <a-tooltip title="表格模式" @click="viewMode = 'table'" v-else>
+          <a-button type="link">
+            <AppstoreAddOutlined />
+          </a-button>
+        </a-tooltip>
+      </div>
     </div>
   </TableHead>
 </template>

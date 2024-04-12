@@ -24,7 +24,6 @@ export const formatColumns = (data: ColumnProps[]) => {
     key: 'operation',
     fixed: 'right',
     show: true,
-    width: 80,
   };
   if (data.findIndex(e => e.dataIndex === operation.key) <= -1) {
     data.push(operation);

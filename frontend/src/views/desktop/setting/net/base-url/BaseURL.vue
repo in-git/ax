@@ -8,6 +8,7 @@
             <li
               v-for="item in developer.$state.developer.urlSelection"
               :key="item.value"
+              @click="setBaseurl(item.value)"
               class="text-center flex flex-col gr-4"
               :class="[{ 'breathing-light': developer.$state.developer.baseURL === item.value }]"
             >
@@ -39,18 +40,13 @@
               </div>
               <a-divider class="my-6"></a-divider>
               <div class="text-center">
-                <a-tooltip title="切换">
-                  <a-button type="link" @click="setBaseurl(item.value)">
-                    <NodeExpandOutlined />
-                  </a-button>
-                </a-tooltip>
                 <a-tooltip title="编辑">
-                  <a-button type="text" @click="edit(item)">
+                  <a-button size="small" type="text" @click="edit(item)">
                     <EditOutlined />
                   </a-button>
                 </a-tooltip>
                 <a-popconfirm @confirm="deleteUrl(item.id)" title="确定删除吗">
-                  <a-button type="link" danger>
+                  <a-button size="small" type="link" danger>
                     <DeleteOutlined />
                   </a-button>
                 </a-popconfirm>
@@ -93,7 +89,6 @@
 import { logoff } from '@/api/utils/auth';
 import useSystemStore from '@/store/system';
 import type { URLSelection } from '@/store/system/types';
-import { NodeExpandOutlined } from '@ant-design/icons-vue';
 import { useCloned } from '@vueuse/core';
 import { Modal } from 'ant-design-vue';
 import axios from 'axios';

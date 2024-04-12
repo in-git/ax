@@ -97,12 +97,6 @@ $hh: 42px;
   background: #0d0d0e;
   color: white;
 }
-.drv {
-  border: 1px solid #eee;
-  box-shadow: 0 0 25px #a0a0a065;
-  border-radius: var(--radius);
-  overflow: hidden;
-}
 .page-setting {
   .settings {
     height: calc(100%);

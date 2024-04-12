@@ -102,7 +102,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-$hh: 42px;
+$hh: 36px;
 .drv {
   border: none;
   box-shadow:
@@ -116,19 +116,19 @@ $hh: 42px;
 .drag-header {
   cursor: move;
   background: white;
-  height: 40px;
+  height: $hh;
   border-bottom: 1px solid #ddd;
   border-top-left-radius: var(--radius);
   border-top-right-radius: var(--radius);
 }
 .drag-content {
-  height: calc(100% - 40px);
+  height: calc(100% - $hh);
   position: relative;
 }
 
 %icon {
-  width: 40px;
-  height: 40px;
+  width: $hh;
+  height: $hh;
   border-radius: 0;
   color: #909399;
   &:hover {

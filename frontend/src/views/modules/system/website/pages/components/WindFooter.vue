@@ -1,6 +1,6 @@
 <template>
-  <div class="card-footer px-12 flex align-center justify-between">
-    <div class="flex align-center text-12 text-999 gc-8">
+  <div class="card__footer">
+    <div class="card_footer_left">
       <div>
         <span>已选:</span>
         <span>（{{ websiteKeys.length }}）</span>
@@ -29,16 +29,4 @@ const pageChange = (page: number, pageSize: number) => {
 };
 </script>
 
-<style lang="scss" scoped>
-.card-footer {
-  position: sticky;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background: white;
-  border-top: 1px solid #ddd;
-  flex-basis: 36px;
-  z-index: 5;
-  line-height: 36px;
-}
-</style>
+<style lang="scss" scoped></style>

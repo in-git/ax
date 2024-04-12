@@ -1,5 +1,5 @@
 <template>
-  <div class="card-footer px-12 flex align-center justify-between">
+ <div class="card__footer">
     <div class="flex align-center text-12 text-999 gc-8">
       <div>
         <span>已选:</span>
@@ -31,14 +31,9 @@ const pageChange = (page: number, pageSize: number) => {
 
 <style lang="scss" scoped>
 .card-footer {
-  position: sticky;
-  left: 0;
-  bottom: 0;
-  width: 100%;
   background: white;
-  border-top: 1px solid #ddd;
-  flex-basis: 36px;
-  z-index: 5;
-  line-height: 36px;
+   z-index: 5;
+   padding: 8px 0;
+   border-top: 1px solid #ddd;
 }
 </style>

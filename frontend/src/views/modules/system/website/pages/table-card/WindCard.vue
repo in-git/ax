@@ -1,6 +1,6 @@
 <template>
-  <div class="table-card flex-1 flex flex-col">
-    <ul class="table-card-list flex-1" ref="cardRef">
+  <div class="table__card">
+    <ul class="table_card_list flex-1" ref="cardRef">
       <li
         v-for="(item, key) in websiteCardData"
         :key="key"
@@ -63,48 +63,11 @@ nextTick(() => {
 
 <style lang="scss" scoped>
 $width: 200px;
-.table-card-list {
-  display: flex;
-  padding: 8px;
-  flex-wrap: wrap;
-  gap: 8px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  place-content: start;
-  li {
-    height: fit-content;
-    flex: 1;
-    width: $width;
-    max-width: $width;
-  }
-}
 :deep(td.ant-descriptions-item) {
   padding-bottom: 0;
   white-space: nowrap;
   overflow: hidden;
   max-width: $width - 80px;
   text-overflow: ellipsis;
-}
-div.index {
-  $wh: 24px;
-  width: $wh;
-  height: $wh;
-  border-radius: 50%;
-  line-height: $wh;
-  border: 1px solid var(--primary);
-  color: var(--primary);
-  text-align: center;
-  position: absolute;
-  background: white;
-  right: -10px;
-  top: -10px;
-  z-index: 10;
-}
-li.active {
-  div.index {
-    border: 1px solid #ddd;
-    background: var(--primary);
-    color: white;
-  }
 }
 </style>

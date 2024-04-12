@@ -6,7 +6,7 @@
      :wrapper-col="{ span: 8, offset: 1 }"
      :label-col="{ span: 4, offset: 4 }">
     <SystemModal title="$functionName" v-model:visible="${businessName}ShowForm">
-      <div class="h-100 flex flex-col">
+      <div class="form__content">
            <a-row>
                <a-col :span="8" :offset="9">
                  <h2 class="text-bold">新增/编辑</h2>

@@ -22,31 +22,11 @@
 	position: relative;
 	overflow: auto;
 }
+
 .system-module {
 	@extend %system-module;
 }
 
-/* 代码下载模板 */
-.system-template {
-	@extend %system-module;
-	display: flex;
-	flex-direction: column;
-	/* 避免出现滚动条 */
-	&::-webkit-scrollbar {
-		display: none;
-	}
-	.data__content {
-		flex: 1;
-		overflow-y: auto;
-	}
-	.loading {
-		position: absolute;
-		top: 0;
-		left: 0;
-		background: #cfcfcf4f;
-		z-index: 100;
-	}
-}
 %icon {
 	height: 32px;
 	padding: 0 8px;
