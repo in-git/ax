@@ -16,6 +16,8 @@
       :page-size="websiteQuery.pageSize"
       show-size-changer
       @change="pageChange"
+      show-quick-jumper
+      show-less-items
     ></a-pagination>
   </div>
 </template>

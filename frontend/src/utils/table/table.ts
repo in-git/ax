@@ -1,14 +1,5 @@
 import type { ColumnProps } from '@/types/system';
-import { message, Modal } from 'ant-design-vue';
-
-export const confirm = (onOk: any) => {
-  Modal.confirm({
-    title: '警告',
-    content: '该操作可能影响系统运行',
-    onOk,
-    centered: true,
-  });
-};
+import { message } from 'ant-design-vue';
 
 export const response = async (request: (...arg: any) => any, ...arg: any) => {
   try {
@@ -33,6 +24,7 @@ export const formatColumns = (data: ColumnProps[]) => {
     key: 'operation',
     fixed: 'right',
     show: true,
+    width: 80,
   };
   if (data.findIndex(e => e.dataIndex === operation.key) <= -1) {
     data.push(operation);

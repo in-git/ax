@@ -1,6 +1,5 @@
 import { delRole, deptTree, roleList, roleMenuTreeSelect } from '@/api/modules/system/role/role';
-import { confirm } from '@/utils/table/table';
-import { message } from 'ant-design-vue';
+import { message, Modal } from 'ant-design-vue';
 import { showRoleForm } from '../info/data';
 import { currentRole, roleData, roleObject, roleQuery, roleSpinning } from './data';
 
@@ -36,12 +35,17 @@ export const getRoles = async () => {
 };
 
 export const delRoles = () => {
-  confirm(async () => {
-    if (currentRole.value && currentRole.value.roleId) {
-      const { data } = await delRole(currentRole.value?.roleId);
-      await getRoles();
-      message.success(data.msg);
-    }
+  Modal.confirm({
+    title: '警告',
+    content: '该操作可能影响系统运行',
+    async onOk() {
+      if (currentRole.value && currentRole.value.roleId) {
+        const { data } = await delRole(currentRole.value?.roleId);
+        await getRoles();
+        message.success(data.msg);
+      }
+    },
+    centered: true,
   });
 };
 

@@ -83,7 +83,6 @@ $width: 200px;
   flex-wrap: wrap;
   gap: 8px;
   overflow-y: auto;
-  height: 100%;
   place-content: start;
   li {
     height: fit-content;

@@ -1,6 +1,5 @@
 import { deletePost, getPost, postList } from '@/api/modules/system/post/post';
-import { confirm } from '@/utils/table/table';
-import { message } from 'ant-design-vue';
+import { message, Modal } from 'ant-design-vue';
 import { postForm, resetPostForm, showPostForm } from './form';
 import { postKeys, postQuery, postTable } from './table';
 
@@ -13,11 +12,16 @@ export const loadPostList = async () => {
 };
 
 export const delPost = (id?: number) => {
-  confirm(async () => {
-    let ids = [];
-    ids = !!id ? [id] : postKeys.value;
-    const { data } = await deletePost(ids);
-    message.success(data.msg);
+  Modal.confirm({
+    title: '警告',
+    content: '该操作可能影响系统运行',
+    async onOk() {
+      let ids = [];
+      ids = !!id ? [id] : postKeys.value;
+      const { data } = await deletePost(ids);
+      message.success(data.msg);
+    },
+    centered: true,
   });
 };
 
