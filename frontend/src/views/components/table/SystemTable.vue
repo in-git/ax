@@ -1,23 +1,15 @@
 <template>
-  <div>
+  <div class="flex-1">
     <a-table
       @change="pageChange"
       table-layout="fixed"
       sticky
-      :scroll="{ y: 467 }"
       :row-selection="{
         selectedRowKeys: selectedKeys,
         onChange,
       }"
       class="px-12 py-8"
-      :pagination="{
-        total: query.total,
-        current: query.pageNum,
-        showSizeChanger: true,
-        pageSize: query.pageSize,
-        showQuickJumper: true,
-        showLessItems: true,
-      }"
+      :pagination="false"
       :customRow="customRow"
       :rowKey="table.rowKey"
       :columns="formatColumns(columns)"

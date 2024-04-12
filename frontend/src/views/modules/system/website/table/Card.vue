@@ -1,15 +1,17 @@
 <template>
   <div class="table-card flex-1 flex flex-col">
-    <CardHead />
-
-    <ul class="table-card-list flex-1">
+    <ul class="table-card-list flex-1" ref="cardRef">
       <li
-        v-for="(item, key) in cardData"
+        v-for="(item, key) in systemWebsiteCardData"
         :key="key"
         size="small"
-        @click="selectItem(item)"
+        @click="selectSystemWebsite(item)"
         :class="{ active: websiteKeys.includes(item.id) }"
         @dblclick="websiteEdit(item.id)"
+        :draggable="true"
+        @dragstart="dragstart(item)"
+        @drop="drop(item)"
+        @dragover="e => e.preventDefault()"
       >
         <a-card>
           <div class="index">{{ key + 1 }}</div>
@@ -33,65 +35,29 @@
         </a-card>
       </li>
     </ul>
-    <div class="card-footer px-12 flex align-center">
-      <a-pagination
-        :total="websiteQuery.total"
-        :current="websiteQuery.pageNum"
-        :page-size="websiteQuery.pageSize"
-        show-size-changer
-        @change="pageChange"
-      ></a-pagination>
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { websiteColumns } from '../data/column';
-import { websiteEdit, websiteList } from '../data/curd';
-import { websiteKeys, websiteQuery, websiteTable } from '../data/table';
-import CardHead from './Head.vue';
+import { useSortable } from '@vueuse/integrations/useSortable';
+import { dragstart, drop, selectSystemWebsite, systemWebsiteCardData } from '../data/card';
+import { websiteEdit } from '../data/curd';
+import { websiteKeys } from '../data/table';
 
-interface Item {
-  id: number;
-  items: {
-    label: string;
-    value: any;
-  }[];
+const cardRef = ref();
+
+interface SortConfig {
+  oldIndex: number;
+  newIndex: number;
 }
 
-const selectItem = (item: Item) => {
-  if (!websiteKeys.value.includes(item.id)) {
-    websiteKeys.value.push(item.id);
-  } else {
-    websiteKeys.value = websiteKeys.value.filter(e => e !== item.id);
-  }
-};
-
-const pageChange = (page: number, pageSize: number) => {
-  websiteQuery.value.pageNum = page;
-  websiteQuery.value.pageSize = pageSize;
-  websiteList();
-};
-
-const cardData = computed(() => {
-  let arr: Item[] = [];
-  websiteTable.value.data.map((e: any, i) => {
-    let items: any = [];
-    websiteColumns.value.forEach((v: any, k) => {
-      const label = v.title;
-      const value = e[v.dataIndex as any];
-      if (v.dataIndex === 'operation') return;
-      items.push({
-        label,
-        value,
-      });
-    });
-    arr.push({
-      id: e.websiteId,
-      items,
-    });
+nextTick(() => {
+  useSortable(cardRef, systemWebsiteCardData.value, {
+    animation: 200,
+    onUpdate(e: SortConfig) {
+      console.log(e.oldIndex, e.newIndex);
+    },
   });
-  return arr;
 });
 </script>
 
@@ -140,14 +106,5 @@ li.active {
     background: var(--primary);
     color: white;
   }
-}
-.card-footer {
-  position: sticky;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 36px;
-  background: white;
-  border-top: 1px solid #ddd;
 }
 </style>

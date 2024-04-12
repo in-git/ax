@@ -1,26 +1,23 @@
 <template>
-  <div>
-    <TableHeadVue />
-    <SystemTable
-      :columns="websiteColumns"
-      :table="websiteTable"
-      v-model:query="websiteQuery"
-      v-model:selected-keys="websiteKeys"
-      v-model:form="websiteForm"
-      @dblclick="onDblclick"
-    >
-      <template v-slot="{ value }">
-        <template v-if="value.column.dataIndex === 'operation'">
-          <Operation
-            :loading="websiteTable.loading"
-            @open-change="openChange(value.record as SystemWebsite)"
-            @edit="websiteEdit(value.record.websiteId)"
-            :items="websiteOperationList"
-          />
-        </template>
+  <SystemTable
+    :columns="websiteColumns"
+    :table="websiteTable"
+    v-model:query="websiteQuery"
+    v-model:selected-keys="websiteKeys"
+    v-model:form="websiteForm"
+    @dblclick="onDblclick"
+  >
+    <template v-slot="{ value }">
+      <template v-if="value.column.dataIndex === 'operation'">
+        <Operation
+          :loading="websiteTable.loading"
+          @open-change="openChange(value.record as SystemWebsite)"
+          @edit="websiteEdit(value.record.websiteId)"
+          :items="websiteOperationList"
+        />
       </template>
-    </SystemTable>
-  </div>
+    </template>
+  </SystemTable>
 </template>
 
 <script setup lang="ts">
@@ -31,8 +28,6 @@ import { websiteColumns } from '../data/column';
 import { websiteEdit } from '../data/curd';
 import { websiteForm } from '../data/form';
 import { websiteKeys, websiteOperationList, websiteQuery, websiteTable } from '../data/table';
-import TableHeadVue from './Head.vue';
-
 const openChange = (record: SystemWebsite) => {
   websiteForm.value = record;
 };

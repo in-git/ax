@@ -11,6 +11,7 @@
     handles-type="borders"
     :minWidth="600"
     :minHeight="600"
+    enableNativeDrag
   >
     <slot name="head">
       <div class="drag-header flex justify-between align-center">

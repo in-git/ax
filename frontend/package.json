@@ -13,7 +13,6 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@ant-design-vue/pro-layout": "^3.2.5",
     "@ant-design/icons-vue": "^7.0.1",
     "@cyhnkckali/vue3-color-picker": "^1.1.8",
     "@vueup/vue-quill": "latest",
@@ -77,7 +76,6 @@
   "vite": {
     "optimizeDeps": {
       "include": [
-        "@ant-design-vue/pro-layout",
         "ant-design-vue/es",
         "vue",
         "vue-router"
