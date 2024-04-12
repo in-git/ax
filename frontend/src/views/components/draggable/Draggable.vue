@@ -105,14 +105,17 @@ onMounted(() => {
 $hh: 42px;
 .drv {
   border: none;
-  box-shadow: 0 0 6px #707070b4;
+  box-shadow:
+    0 6px 16px 0 #00000014,
+    0 3px 6px -4px #0000001f,
+    0 9px 28px 8px #0000000d;
 }
 .drv-draggable {
   border-radius: var(--radius) !important;
 }
 .drag-header {
   cursor: move;
-  background: #f5f2f3;
+  background: white;
   height: 40px;
   border-bottom: 1px solid #ddd;
   border-top-left-radius: var(--radius);
@@ -127,7 +130,7 @@ $hh: 42px;
   width: 40px;
   height: 40px;
   border-radius: 0;
-
+  color: #909399;
   &:hover {
     background: #dddddd70;
   }

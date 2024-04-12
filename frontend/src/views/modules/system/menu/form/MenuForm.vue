@@ -12,7 +12,7 @@
       @finish="submit"
       class="flex-1 flex flex-col"
     >
-      <a-card class="flex-1" :body-style="{ height: `500px`, overflowY: 'auto' }">
+      <a-card class="flex-1" :body-style="{ height: `500px`, overflowY: 'auto' }" :bordered="false">
         <a-row :gutter="16">
           <a-col :span="14">
             <h3 class="mb-12">基础配置</h3>

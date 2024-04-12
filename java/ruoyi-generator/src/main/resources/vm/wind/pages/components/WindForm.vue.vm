@@ -20,15 +20,15 @@
          #if($column.isInsert == '0')
          #elseif($column.htmlType == "input")
            <a-form-item label="${comment}">
-             <a-input v-model:value="${businessName}Form.${column.javaField}"></a-input>
+             <a-input placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}"></a-input>
            </a-form-item>
          #elseif($column.htmlType == "textarea")
            <a-form-item label="${comment}" name="$field">
-             <a-textarea v-model:value="${businessName}Form.${column.javaField}"></a-textarea>
+             <a-textarea placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}"></a-textarea>
            </a-form-item>
          #elseif($column.htmlType == "select")
            <a-form-item label="${comment}" name="$field">
-             <a-select v-model:value="${businessName}Form.${column.javaField}">
+             <a-select placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}">
              </a-select>
            </a-form-item>
          #elseif($column.htmlType == "radio")
@@ -57,7 +57,7 @@
            </a-form-item>
          #elseif($column.htmlType == "editor")
            <a-form-item label="${comment}" name="$field">
-             <a-textarea v-model:value="${businessName}Form.${column.javaField}"></a-editor>
+             <a-textarea placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}"></a-editor>
            </a-form-item>
          #end
          #end

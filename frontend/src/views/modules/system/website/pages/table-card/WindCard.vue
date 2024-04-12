@@ -65,10 +65,11 @@ nextTick(() => {
 $width: 200px;
 .table-card-list {
   display: flex;
-  padding: 12px;
+  padding: 8px;
   flex-wrap: wrap;
   gap: 8px;
   overflow-y: auto;
+  overflow-x: hidden;
   place-content: start;
   li {
     height: fit-content;

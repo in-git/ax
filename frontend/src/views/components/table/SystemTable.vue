@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1">
+  <div class="flex-1 p-8">
     <a-table
       @change="pageChange"
       table-layout="fixed"
@@ -8,7 +8,6 @@
         selectedRowKeys: selectedKeys,
         onChange,
       }"
-      class="px-12"
       :pagination="false"
       :customRow="customRow"
       :rowKey="table.rowKey"

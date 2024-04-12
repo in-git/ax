@@ -78,6 +78,7 @@ const theme = computed(() => {
       colorPrimary: store.$state.theme.theme,
       borderRadius: store.$state.theme.borderRadius,
       fontSize: store.$state.theme.fontSize,
+      colorText: '#313030',
     },
   };
 });

@@ -18,7 +18,7 @@
 %system-module {
 	width: 100%;
 	height: 100%;
-	background: #f7fafc;
+	background: var(--color-background);
 	position: relative;
 	overflow: auto;
 }

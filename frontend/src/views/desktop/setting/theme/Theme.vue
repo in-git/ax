@@ -51,7 +51,7 @@ import { useCssVar } from '@vueuse/core';
 import PageContainer from '../components/PageContainer.vue';
 import ThemeControl from './controls/ThemeControl.vue';
 import ThemeGlobal from './global/ThemeGlobal.vue';
-const colorList = ['#3785fa', '#6954F0', '#FDB52A', '#09B678', '#E82626', '#C6C6C6'];
+const colorList = ['#1677ff', '#6954F0', '#FDB52A', '#09B678', '#E82626', '#C6C6C6'];
 
 const store = usePageStore();
 const setColor = (data: string) => {
@@ -68,10 +68,10 @@ const selectItem = (item: string) => {
 
 <style lang="scss" scoped>
 .theme {
-  background: #f1f0f5;
+  background: var(--color-background);
   overflow-y: auto;
   height: 100%;
-  padding-bottom: 12px;
+  padding-bottom: 8px;
   .color-palette {
     li {
       width: 24px;
