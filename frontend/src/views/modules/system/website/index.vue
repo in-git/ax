@@ -24,8 +24,8 @@ import { message } from 'ant-design-vue';
 import { websiteList } from './data/curd';
 import { viewMode, websiteTable } from './data/table';
 import FooterVue from './pages/components/WindFooter.vue';
+import FormVue from './pages/components/WindForm.vue';
 import HeadVue from './pages/components/WindHead.vue';
-import FormVue from './pages/form/WindForm.vue';
 import CardVue from './pages/table-card/WindCard.vue';
 import WindTable from './pages/table-card/WindTable.vue';
 

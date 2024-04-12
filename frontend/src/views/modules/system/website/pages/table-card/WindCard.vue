@@ -40,7 +40,6 @@
 </template>
 
 <script setup lang="ts">
-import { selectionKeys } from '@/components/selection/data';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import { dragstart, drop, selectSystemWebsite, systemWebsiteCardData } from '../../data/card';
 import { websiteEdit } from '../../data/curd';
@@ -61,18 +60,6 @@ nextTick(() => {
     },
   });
 });
-
-watch(
-  selectionKeys,
-  () => {
-    console.log('select');
-    websiteKeys.value = Array.from(selectionKeys.value).map(e => Number(e));
-  },
-  {
-    immediate: true,
-    deep: true,
-  },
-);
 </script>
 
 <style lang="scss" scoped>

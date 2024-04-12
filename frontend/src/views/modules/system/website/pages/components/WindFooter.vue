@@ -1,13 +1,9 @@
 <template>
   <div class="card-footer px-12 flex align-center justify-between">
-    <div class="flex align-center text-12 text-999">
+    <div class="flex align-center text-12 text-999 gc-8">
       <div>
         <span>已选:</span>
         <span>（{{ websiteKeys.length }}）</span>
-      </div>
-      <div>
-        <span class="mr-8">全选</span>
-        <a-checkbox />
       </div>
     </div>
     <a-pagination
