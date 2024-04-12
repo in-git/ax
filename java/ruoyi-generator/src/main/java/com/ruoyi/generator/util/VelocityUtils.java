@@ -147,6 +147,7 @@ public class VelocityUtils
         *   Vue数据层
         * */
         templates.add(useWebType + "/data/column.ts.vm");
+        templates.add(useWebType + "/data/card.ts.vm");
         templates.add(useWebType + "/data/form.ts.vm");
         templates.add(useWebType + "/data/table.ts.vm");
         templates.add(useWebType + "/data/curd.ts.vm");

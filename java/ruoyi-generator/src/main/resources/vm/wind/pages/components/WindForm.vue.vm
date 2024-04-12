@@ -78,9 +78,9 @@ import {
   ${businessName}Form,
   ${businessName}ShowForm,
   ${businessName}Rules
-} from '../data/form';
+} from '../../data/form';
 import { response } from '@/utils/table/table';
-import {  ${businessName}List } from '../data/curd';
+import {  ${businessName}List } from '../../data/curd';
 import {
   create${BusinessName},
   update${BusinessName}} from

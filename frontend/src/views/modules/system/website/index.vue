@@ -3,7 +3,7 @@
     <!-- 顶部筛选，查询选项 -->
     <HeadVue />
     <!-- 中间数据 -->
-    <div class="data__content" data-selection-area>
+    <div class="data__content">
       <WindTable v-if="viewMode === 'table'"></WindTable>
       <CardVue v-else></CardVue>
     </div>

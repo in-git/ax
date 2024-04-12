@@ -54,9 +54,9 @@ const submit = async () => {
   } else {
     await response(createWebsite, websiteForm.value);
   }
+  await websiteList();
   loading.value = false;
   websiteShowForm.value = false;
-  await websiteList();
 };
 </script>
 

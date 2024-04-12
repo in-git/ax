@@ -12,11 +12,10 @@ export const websiteTable = ref<TableConfig<SystemWebsite>>({
   loading: false,
   moduleName: 'website',
 });
-
 //查询参数接口
-
 interface websiteQuery {}
 
+export const viewMode = ref<'card' | 'table'>('table');
 //查询参数
 export const websiteQuery = ref<IQuery<websiteQuery>>({
   pageNum: 1,
@@ -39,5 +38,3 @@ export const websiteOperationList: ItemType[] = [
     },
   },
 ];
-
-export const viewMode = ref<'card' | 'table'>('table');

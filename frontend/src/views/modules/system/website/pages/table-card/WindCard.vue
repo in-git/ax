@@ -2,7 +2,7 @@
   <div class="table-card flex-1 flex flex-col">
     <ul class="table-card-list flex-1" ref="cardRef">
       <li
-        v-for="(item, key) in systemWebsiteCardData"
+        v-for="(item, key) in websiteCardData"
         :key="key"
         size="small"
         @click="selectSystemWebsite(item)"
@@ -12,7 +12,6 @@
         @dragstart="dragstart(item)"
         @drop="drop(item)"
         @dragover="e => e.preventDefault()"
-        :data-selection="item.id"
       >
         <a-card>
           <div class="index">{{ key + 1 }}</div>
@@ -41,7 +40,7 @@
 
 <script setup lang="ts">
 import { useSortable } from '@vueuse/integrations/useSortable';
-import { dragstart, drop, selectSystemWebsite, systemWebsiteCardData } from '../../data/card';
+import { dragstart, drop, selectSystemWebsite, websiteCardData } from '../../data/card';
 import { websiteEdit } from '../../data/curd';
 import { websiteKeys } from '../../data/table';
 
@@ -53,7 +52,7 @@ interface SortConfig {
 }
 
 nextTick(() => {
-  useSortable(cardRef, systemWebsiteCardData.value, {
+  useSortable(cardRef, websiteCardData.value, {
     animation: 200,
     onUpdate(e: SortConfig) {
       // console.log(e.oldIndex, e.newIndex);

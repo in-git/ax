@@ -1,6 +1,6 @@
-import type { SystemWebsite } from '@/api/modules/system/website/types';
 import { websiteColumns } from './column';
 import { websiteKeys, websiteTable } from './table';
+import type {  SystemWebsite } from '@/api/modules/system/website/types';
 
 interface CardData {
   id: number;
@@ -31,7 +31,7 @@ export const selectSystemWebsite = (item: CardData) => {
 };
 
 /* 渲染卡片的内容 */
-export const systemWebsiteCardData = computed(() => {
+export const websiteCardData = computed(() => {
   let arr: CardData[] = [];
   websiteTable.value.data.map((e: SystemWebsite | any, i) => {
     let items: any = [];

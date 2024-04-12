@@ -19,6 +19,8 @@ export const ${businessName}Table = ref<TableConfig<${ModuleName}${BusinessName}
 //查询参数接口
 interface ${businessName}Query {
 }
+// 预览模式:卡片|表格
+export const viewMode = ref<'card' | 'table'>('table');
 
 //查询参数
 export const ${businessName}Query = ref<IQuery<${businessName}Query>>({

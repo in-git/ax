@@ -2,11 +2,8 @@
   <div class="loader-container w-100 h-100 flex flex-s flex-col">
     <div class="loader"></div>
 
-    <a-button type="text" class="mt-24" danger @click="cancelLoading">
+    <a-button type="text" class="mt-24" @click="cancelLoading">
       <span class="text-red">取消请求</span>
-      <template #icon>
-        <CloseOutlined />
-      </template>
     </a-button>
   </div>
 </template>
@@ -22,6 +19,9 @@ const cancelLoading = () => {
 </script>
 
 <style lang="scss" scoped>
+.text-red {
+  color: pink;
+}
 .loader {
   font-weight: bold;
   font-family: monospace;
