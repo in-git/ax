@@ -34,6 +34,7 @@
   <Contextmenu />
   <!-- 图片选择器 -->
   <Gallery />
+  <Selection />
 </template>
 
 <script setup lang="ts">
@@ -41,6 +42,7 @@ import { closeWindow, windowList } from '@/global/config/window';
 import Gallery from '@/views/selector/gallery/Gallery.vue';
 import { ConfigProvider } from 'ant-design-vue';
 import zh_CN from 'ant-design-vue/es/locale/zh_CN';
+import Selection from './components/selection/Selection.vue';
 import {
   loadGoogleFont,
   loadSystemComponents,
@@ -53,7 +55,6 @@ import usePageStore from './store/page';
 import Contextmenu from './views/components/contextmenu/Contextmenu.vue';
 import Draggable from './views/components/draggable/Draggable.vue';
 import Desktop from './views/desktop/Desktop.vue';
-
 const locale = ref(zh_CN);
 
 const store = usePageStore();

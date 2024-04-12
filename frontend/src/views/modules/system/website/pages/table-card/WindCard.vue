@@ -12,6 +12,7 @@
         @dragstart="dragstart(item)"
         @drop="drop(item)"
         @dragover="e => e.preventDefault()"
+        :data-selection="item.id"
       >
         <a-card>
           <div class="index">{{ key + 1 }}</div>
@@ -39,6 +40,7 @@
 </template>
 
 <script setup lang="ts">
+import { selectionKeys } from '@/components/selection/data';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import { dragstart, drop, selectSystemWebsite, systemWebsiteCardData } from '../../data/card';
 import { websiteEdit } from '../../data/curd';
@@ -55,10 +57,22 @@ nextTick(() => {
   useSortable(cardRef, systemWebsiteCardData.value, {
     animation: 200,
     onUpdate(e: SortConfig) {
-      console.log(e.oldIndex, e.newIndex);
+      // console.log(e.oldIndex, e.newIndex);
     },
   });
 });
+
+watch(
+  selectionKeys,
+  () => {
+    console.log('select');
+    websiteKeys.value = Array.from(selectionKeys.value).map(e => Number(e));
+  },
+  {
+    immediate: true,
+    deep: true,
+  },
+);
 </script>
 
 <style lang="scss" scoped>

@@ -104,6 +104,7 @@ declare module 'vue' {
     ReloadOutlined: typeof import('@ant-design/icons-vue')['ReloadOutlined']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Selection: typeof import('./components/selection/Selection.vue')['default']
     SettingFilled: typeof import('@ant-design/icons-vue')['SettingFilled']
     SettingOutlined: typeof import('@ant-design/icons-vue')['SettingOutlined']
     SysModal: typeof import('./components/modal/SysModal.vue')['default']

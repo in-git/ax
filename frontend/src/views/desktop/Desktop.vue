@@ -14,7 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import usePageStore from '@/store/page';
 import useUserStore from '@/store/user';
 import Apps from './apps/Apps.vue';
 import Background from './background/Background.vue';
@@ -22,14 +21,11 @@ import Login from './login/Login.vue';
 import Missions from './missions/Missions.vue';
 import NoticeVue from './notice/Notice.vue';
 import Toolbar from './toolbar/Toolbar.vue';
-
 const store = useUserStore();
 
 const tokens = computed(() => {
   return store.$state.token;
 });
-
-const pageStore = usePageStore();
 </script>
 
 <style lang="scss" scoped>
