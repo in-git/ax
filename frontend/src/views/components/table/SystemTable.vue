@@ -13,7 +13,7 @@
         selectedRowKeys: selectedKeys,
         onChange,
       }"
-      :pagination="false"
+      :pagination="pagination"
       :customRow="customRow"
       :rowKey="table.rowKey"
       :columns="formatColumns(columns)"
@@ -55,14 +55,27 @@ const emit = defineEmits([
   'dblclick',
 ]);
 const selectedKeys = ref();
-
-const props = defineProps<{
-  table: TableConfig;
-  query: IQuery;
-  columns: TableColumnProps[];
-  selectedKeys: number[] | string[];
-  form?: any;
-}>();
+// {
+//         total: query.total,
+//         current: query.pageNum,
+//         showSizeChanger: true,
+//         pageSize: query.pageSize,
+//         showQuickJumper: true,
+//         showLessItems: true,
+//       }
+const props = withDefaults(
+  defineProps<{
+    table: TableConfig;
+    query: IQuery;
+    columns: TableColumnProps[];
+    selectedKeys: number[] | string[];
+    form?: any;
+    pagination: TablePaginationConfig | false;
+  }>(),
+  {
+    pagination: false,
+  },
+);
 
 const onChange = (keys: Key[]) => {
   selectedKeys.value = keys;

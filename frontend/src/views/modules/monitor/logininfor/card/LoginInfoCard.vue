@@ -51,7 +51,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 ul.list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 0.1fr));
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 8px;
   li {
     border: 1px solid #ddd;

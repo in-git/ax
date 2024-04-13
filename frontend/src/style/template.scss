@@ -61,6 +61,9 @@
 .card__body {
 	border-radius: 0;
 	height: 100%;
+	:deep(.ant-card) {
+		box-shadow: none;
+	}
 	:deep(.ant-card-body) {
 		height: 100%;
 	}

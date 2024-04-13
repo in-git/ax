@@ -1,6 +1,6 @@
 <template>
-  <div class="px-8">
-    <a-card :title="title" class="w-100">
+  <div class="pl-8">
+    <a-card :title="title">
       <slot></slot>
     </a-card>
   </div>
@@ -15,5 +15,6 @@ defineProps<{
 <style lang="scss" scoped>
 .page-container {
   overflow-y: auto;
+  height: 100% !important;
 }
 </style>

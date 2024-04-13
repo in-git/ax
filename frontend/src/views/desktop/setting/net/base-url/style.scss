@@ -18,6 +18,15 @@
 		color: #333;
 	}
 }
+.item {
+	flex: 1;
+	max-width: 33%;
+	.url {
+		max-width: 120px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
 
 .breathing-light {
 	animation: breathe 1s ease-in-out infinite alternate;

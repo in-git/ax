@@ -1,46 +1,46 @@
 <template>
-  <div>
-    <div>
-      <a-card :body-style="{ padding: '0' }">
-        <template #title>
-          <div class="subtitle">选择服务器</div>
-        </template>
-        <template #extra>
-          <a-button type="primary" @click="create">
-            新建
-            <template #icon>
-              <PlusOutlined />
-            </template>
-          </a-button>
-        </template>
-        <div class="p-8 server-list">
-          <a-flex wrap="wrap" :gap="12">
-            <a-card
-              v-for="item in developer.$state.developer.urlSelection"
-              class="flex-1 h-100"
-              :class="[{ 'breathing-light': developer.$state.developer.baseURL === item.value }]"
-            >
-              <a-card-meta :title="item.label">
-                <template #description>
+  <div class="h-100">
+    <a-card :bodyStyle="{ height: '100%' }">
+      <template #title>
+        <div class="subtitle">选择服务器</div>
+      </template>
+      <template #extra>
+        <a-button type="primary" @click="create">
+          新建
+          <template #icon>
+            <PlusOutlined />
+          </template>
+        </a-button>
+      </template>
+      <div>
+        <a-flex wrap="wrap" :gap="8">
+          <a-card
+            v-for="item in developer.$state.developer.urlSelection"
+            class="item"
+            :class="[{ 'breathing-light': developer.$state.developer.baseURL === item.value }]"
+          >
+            <a-card-meta :title="item.label">
+              <template #description>
+                <div class="url">
                   {{ item.value }}
-                </template>
-              </a-card-meta>
-              <template #actions>
-                <a-tooltip title="切换">
-                  <div @click="setBaseurl(item.value)">切换</div>
-                </a-tooltip>
-                <a-tooltip title="编辑">
-                  <div @click="edit(item)">编辑</div>
-                </a-tooltip>
-                <a-popconfirm @confirm="deleteUrl(item.id)" title="确定删除吗">
-                  <div>删除</div>
-                </a-popconfirm>
+                </div>
               </template>
-            </a-card>
-          </a-flex>
-        </div>
-      </a-card>
-    </div>
+            </a-card-meta>
+            <template #actions>
+              <a-tooltip title="切换">
+                <div @click="setBaseurl(item.value)">切换</div>
+              </a-tooltip>
+              <a-tooltip title="编辑">
+                <div @click="edit(item)">编辑</div>
+              </a-tooltip>
+              <a-popconfirm @confirm="deleteUrl(item.id)" title="确定删除吗">
+                <div>删除</div>
+              </a-popconfirm>
+            </template>
+          </a-card>
+        </a-flex>
+      </div>
+    </a-card>
     <a-drawer
       title="创建服务器"
       placement="right"

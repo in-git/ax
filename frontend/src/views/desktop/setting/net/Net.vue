@@ -1,9 +1,11 @@
 <template>
   <PageContainer title="网络设置">
     <BaseURL />
-    <a-card class="mt-12">
-      <a-flex justify="space-between" class="mb-12">
-        <div>超时</div>
+    <a-card class="mt-8 h-100" :body-style="{ height: '100%' }">
+      <template #title>
+        <div class="subtitle">超时</div>
+      </template>
+      <a-flex justify="space-between" class="mb-8">
         <div>
           <a-auto-complete
             style="width: 200px"
