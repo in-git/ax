@@ -5,7 +5,7 @@
 }
 /* 代码下载模板 */
 .system__template {
-	@extend %system-module;
+	@extend %system__module;
 	display: flex;
 	flex-direction: column;
 	border-radius: 0;
@@ -55,5 +55,13 @@
 	border-radius: 0;
 	:deep(.ant-card-body) {
 		padding: 4px 12px !important;
+	}
+}
+
+.card__body {
+	border-radius: 0;
+	height: 100%;
+	:deep(.ant-card-body) {
+		height: 100%;
 	}
 }

@@ -21,9 +21,9 @@
           </a-flex>
         </a-card>
 
-        <div class="modal__content">
+        <a-card :bordered="false" class="modal__content">
           <slot></slot>
-        </div>
+        </a-card>
         <div>
           <slot name="footer"></slot>
         </div>
@@ -79,8 +79,7 @@ const style = computed((): CSSProperties => {
 .model__head {
   border-radius: 0 !important;
 }
-:deep(.ant-card) {
-}
+
 .model__mask {
   background-color: #3333336b;
   pointer-events: initial;
@@ -112,6 +111,9 @@ const style = computed((): CSSProperties => {
   .modal__content {
     flex: 1;
     overflow-y: auto;
+    :deep(.ant-card-body) {
+      height: 100%;
+    }
   }
 }
 </style>

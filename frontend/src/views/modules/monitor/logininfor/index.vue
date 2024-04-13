@@ -1,5 +1,5 @@
 <template>
-  <div class="system-module flex flex-col">
+  <div class="system__module flex flex-col">
     <LoginHead />
     <LoginInfoCard />
   </div>

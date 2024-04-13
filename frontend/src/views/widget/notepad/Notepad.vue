@@ -1,5 +1,5 @@
 <template>
-  <div class="notepad system-module">
+  <div class="notepad system__module">
     <ToolbarVue />
     <div style="height: calc(100% - 40px)">
       <textarea v-model="content" v-focus @input="onChange"></textarea>

@@ -25,7 +25,7 @@
       </ul>
     </a-spin>
 
-    <div class="system-footer text-right">
+    <div class="footer text-right">
       <a-pagination
         :total="loginLogQuery.total"
         v-model:current="loginLogQuery.pageNum"

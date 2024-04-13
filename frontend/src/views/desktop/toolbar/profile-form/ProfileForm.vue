@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-form system-module">
+  <div class="profile-form system__module">
     <div class="px-8">
       <a-tabs>
         <a-tab-pane key="info" tab="基础信息" v-if="userProfile">

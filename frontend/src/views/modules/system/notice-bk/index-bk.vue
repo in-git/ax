@@ -1,5 +1,5 @@
 <template>
-  <div class="system-module">
+  <div class="system__module">
     <NoticeTable />
     <NoticeForm />
   </div>

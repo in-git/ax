@@ -1,5 +1,5 @@
 <template>
-  <div class="system-module">
+  <div class="system__module">
     <MenuTable></MenuTable>
     <Transition
       enter-active-class="animate__animated animate__zoomIn"

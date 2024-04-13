@@ -1,5 +1,5 @@
 <template>
-  <div class="missions system-head">
+  <div class="missions system__head">
     <div class="window flex flex-s" @click.ca="openMenu">
       <img :src="logo" width="32" alt="" />
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="system-module">
+  <div class="system__module">
     <Transition
       enter-active-class="animate__animated animate__fadeInLeft"
       leave-active-class="animate__animated animate__fadeOutRight"

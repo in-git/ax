@@ -1,5 +1,5 @@
 <template>
-  <div class="top-toolbar system-head px-12" :style="style">
+  <div class="top-toolbar system__head px-12" :style="style">
     <div>
       <div class="flex align-center gc-4">
         <img :src="logo" width="28" style="object-fit: contain" />

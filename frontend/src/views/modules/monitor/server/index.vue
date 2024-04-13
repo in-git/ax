@@ -1,5 +1,5 @@
 <template>
-  <div class="system-module server" ref="serverRef">
+  <div class="system__module server" ref="serverRef">
     <Loading v-if="serverLoading"></Loading>
     <div v-else class="modules">
       <CpuVue />

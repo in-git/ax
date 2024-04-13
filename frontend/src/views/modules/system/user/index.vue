@@ -1,5 +1,5 @@
 <template>
-  <div class="system-module flex">
+  <div class="system__module flex">
     <Dept />
     <UserTable />
     <UserForm></UserForm>

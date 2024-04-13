@@ -65,3 +65,6 @@ a {
   text-decoration: none;
   color: var(--primary);
 }
+*:deep(.ant-card) {
+  border-radius: 0;
+}

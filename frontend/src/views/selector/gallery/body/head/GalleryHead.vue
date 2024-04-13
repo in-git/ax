@@ -1,6 +1,6 @@
 <template>
   <div class="gallery-head">
-    <div class="system-head px-12">
+    <div class="system__head px-12">
       <div class="flex">
         <div>
           <img :src="currentGalleryNav.icon" width="24" class="mr-12" />

@@ -1,5 +1,5 @@
 <template>
-  <a-card class="folder system-module">
+  <a-card class="folder system__module">
     <a-card>
       <div class="text-999">
         数量:
