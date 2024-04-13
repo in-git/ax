@@ -32,7 +32,7 @@ export const ${businessName}Create = async () => {
 };
 
 export const ${businessName}Delete = async (id?: number) => {
-  let ids = id ? [id] : websiteKeys.value;
+  let ids = id ? [id] : ${businessName}Keys.value;
   await response(delete${BusinessName}, ids);
   await ${businessName}List();
    ${businessName}Keys.value=[]

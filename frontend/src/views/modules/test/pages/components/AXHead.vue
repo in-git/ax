@@ -7,39 +7,39 @@
       <div class="flex justify-between">
         <div class="flex gc-4 align-center">
           <a-tooltip title="新建">
-            <a-button type="primary" @click="${businessName}Create">
+            <a-button type="primary" @click="configCreate">
               <PlusOutlined />
             </a-button>
           </a-tooltip>
           <a-tooltip title="编辑">
-            <a-button type="link" @click="${businessName}Edit()" :disabled="${businessName}Keys.length !== 1">
+            <a-button type="link" @click="configEdit()" :disabled="configKeys.length !== 1">
               <EditOutlined />
             </a-button>
           </a-tooltip>
           <a-tooltip title="刷新">
-            <a-button type="link" @click="${businessName}List">
+            <a-button type="link" @click="configList">
               <ReloadOutlined />
             </a-button>
           </a-tooltip>
 
           <a-divider type="vertical" />
-          <a-input-search allow-clear @search="${businessName}List"></a-input-search>
+          <a-input-search allow-clear @search="configList"></a-input-search>
         </div>
       </div>
       <div class="flex">
         <a-popconfirm
           title="确定要删除吗"
-          :disabled="${businessName}Keys.length === 0"
+          :disabled="configKeys.length === 0"
           placement="bottomRight"
-          @confirm="${businessName}Delete()"
+          @confirm="configDelete()"
         >
           <a-tooltip title="批量删除">
-            <a-button danger type="link" :disabled="${businessName}Keys.length === 0">
+            <a-button danger type="link" :disabled="configKeys.length === 0">
               <DeleteOutlined />
             </a-button>
           </a-tooltip>
         </a-popconfirm>
-        <FieldVue :columns="${businessName}Columns" :module-name="${businessName}Table.moduleName" />
+        <FieldVue :columns="configColumns" :module-name="configTable.moduleName" />
 
         <div>
           <a-tooltip title="卡片模式" @click="viewMode = 'card'" v-if="viewMode === 'table'">
@@ -67,9 +67,9 @@ import {
   type DeleteOutlined,
   type ReloadOutlined,
 } from '@ant-design/icons-vue';
-import { ${businessName}Columns } from '../../data/column';
-import { ${businessName}Create, ${businessName}Delete, ${businessName}Edit, ${businessName}List } from '../../data/curd';
-import { viewMode, ${businessName}Keys, ${businessName}Table } from '../../data/table';
+import { configColumns } from '../../data/column';
+import { configCreate, configDelete, configEdit, configList } from '../../data/curd';
+import { viewMode, configKeys, configTable } from '../../data/table';
 </script>
 
 <style lang="scss" scoped></style>

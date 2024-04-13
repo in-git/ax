@@ -7,29 +7,25 @@
     :label-col="{ span: 4 }"
   >
     <SystemModal title="网页收藏" v-model:visible="websiteShowForm">
-      <div class="form__content">
-        <a-card title="基础配置" :bordered="false">
-          <div class="flex-1 p-8">
-            <a-form-item label="网页名称">
-              <a-input v-model:value="websiteForm.name"></a-input>
-            </a-form-item>
-            <a-form-item label="网页URL">
-              <a-input v-model:value="websiteForm.url"></a-input>
-            </a-form-item>
-            <a-form-item label="网页描述">
-              <a-input v-model:value="websiteForm.description"></a-input>
-            </a-form-item>
-            <a-form-item label="网页类型" name="type">
-              <a-select v-model:value="websiteForm.type"></a-select>
-            </a-form-item>
-            <a-row>
-              <a-col :span="6" :offset="5">
-                <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
-              </a-col>
-            </a-row>
-          </div>
-        </a-card>
-      </div>
+      <a-card title="编辑/新增" class="form__content">
+        <a-form-item label="网页名称">
+          <a-input v-model:value="websiteForm.name"></a-input>
+        </a-form-item>
+        <a-form-item label="网页URL">
+          <a-input v-model:value="websiteForm.url"></a-input>
+        </a-form-item>
+        <a-form-item label="网页描述">
+          <a-input v-model:value="websiteForm.description"></a-input>
+        </a-form-item>
+        <a-form-item label="网页类型" name="type">
+          <a-select v-model:value="websiteForm.type"></a-select>
+        </a-form-item>
+        <a-row>
+          <a-col :span="6" :offset="5">
+            <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
+          </a-col>
+        </a-row>
+      </a-card>
     </SystemModal>
   </a-form>
 </template>

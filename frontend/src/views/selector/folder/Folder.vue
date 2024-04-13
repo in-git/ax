@@ -1,51 +1,51 @@
 <template>
-  <div class="folder system-module">
-    <div class="folder-head px-12">
-      <div class="flex gc-12 align-center">
-        <div class="text-999">
-          数量:
-          <span class="ml-8">{{ data.length }}</span>
-        </div>
+  <a-card class="folder system-module">
+    <a-card>
+      <div class="text-999">
+        数量:
+        <span class="ml-8">{{ data.length }}</span>
       </div>
-    </div>
-    <ul class="p-12 flex-wrap" ref="ulRef">
-      <li
-        v-for="(item, key) in props.data"
-        :key="key"
-        @dblclick="openApp(item)"
-        @click="selectItem(item)"
-        :class="{ active: item.name === current?.name }"
-        v-show="!item.hidden"
-        class="flex justify-between align-center"
-      >
-        <div class="flex gc-16 flex-1">
-          <div class="flex flex-s">
-            <div v-if="item.meta.link" class="link h-100">
-              <img
-                ref="imageRef"
-                :src="`https://favicon.qqsuu.cn/${item.meta.link}`"
-                @error="onError(key)"
-                :draggable="false"
-              />
+    </a-card>
+    <a-card class="mt-8" :bordered="false">
+      <ul class="flex-wrap" ref="ulRef">
+        <li
+          v-for="(item, key) in props.data"
+          :key="key"
+          @dblclick="openApp(item)"
+          @click="selectItem(item)"
+          :class="{ active: item.name === current?.name }"
+          v-show="!item.hidden"
+          class="flex justify-between align-center"
+        >
+          <div class="flex gc-16 flex-1">
+            <div class="flex flex-s">
+              <div v-if="item.meta.link" class="link h-100">
+                <img
+                  ref="imageRef"
+                  :src="`https://favicon.qqsuu.cn/${item.meta.link}`"
+                  @error="onError(key)"
+                  :draggable="false"
+                />
+              </div>
+              <div v-else-if="item.meta">
+                <img :src="getIconByName(item) || logoPng" :draggable="false" />
+              </div>
+              <div v-else>
+                <img :src="folderPng" :draggable="false" />
+              </div>
             </div>
-            <div v-else-if="item.meta">
-              <img :src="getIconByName(item) || logoPng" :draggable="false" />
-            </div>
-            <div v-else>
-              <img :src="folderPng" :draggable="false" />
+            <div class="flex justify-between flex-1 info align-center">
+              <div>
+                <div>{{ item.meta.title }}</div>
+                <div class="text-999 mt-8">路径： {{ item.path }}</div>
+              </div>
+              <a-button shape="round" class="open" @click="openApp(item)">打开</a-button>
             </div>
           </div>
-          <div class="flex justify-between flex-1 info align-center">
-            <div>
-              <div>{{ item.meta.title }}</div>
-              <div class="text-999 mt-8">路径： {{ item.path }}</div>
-            </div>
-            <a-button shape="round" class="open" @click="openApp(item)">打开</a-button>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
+        </li>
+      </ul>
+    </a-card>
+  </a-card>
 </template>
 
 <script setup lang="ts">

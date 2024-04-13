@@ -1,35 +1,24 @@
-.server-list {
-	ul {
-		gap: 8px;
-	}
+:deep(.ant-card-meta-description) {
+	white-space: nowrap;
+	overflow: hidden;
+}
+:deep(.ant-card-actions) {
 	li {
-		border: 1px solid #ddd;
-		border-radius: var(--radius);
-		padding: 8px 0;
-		cursor: pointer;
-		flex: 1;
-		min-width: 120px;
-		max-width: 140px;
-	}
-	.url {
-		white-space: nowrap;
-		width: 100%;
-		overflow: hidden;
-		padding: 0 8px;
-		text-overflow: ellipsis;
+		margin: 4px 0;
+		button {
+			color: #999;
+		}
 	}
 }
 .create {
 	border: 1px dashed #ddd;
 	color: #666;
+	height: 100%;
 	&:hover {
 		color: #333;
 	}
 }
-.selected {
-	color: green;
-	font-size: 12px;
-}
+
 .breathing-light {
 	animation: breathe 1s ease-in-out infinite alternate;
 	border: 1px solid transparent;

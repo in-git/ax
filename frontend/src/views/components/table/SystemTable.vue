@@ -1,5 +1,10 @@
 <template>
-  <div class="flex-1 p-8">
+  <a-card
+    :bordered="false"
+    class="flex-1"
+    :bodyStyle="{ padding: '0 12px' }"
+    :style="{ boxShadow: 'none' }"
+  >
     <a-table
       @change="pageChange"
       table-layout="fixed"
@@ -32,7 +37,7 @@
         </template>
       </template>
     </a-table>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">

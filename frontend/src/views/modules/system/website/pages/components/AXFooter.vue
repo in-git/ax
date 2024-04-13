@@ -1,21 +1,21 @@
 <template>
-  <div class="card__footer">
-    <div class="card_footer_left">
+  <a-card :bordered="false" :bodyStyle="{ padding: '4px 12px' }" class="card__footer">
+    <a-flex justify="space-between" :align="'center'">
       <div>
         <span>已选:</span>
         <span>（{{ websiteKeys.length }}）</span>
       </div>
-    </div>
-    <a-pagination
-      :total="websiteQuery.total"
-      :current="websiteQuery.pageNum"
-      :page-size="websiteQuery.pageSize"
-      show-size-changer
-      @change="pageChange"
-      show-quick-jumper
-      show-less-items
-    ></a-pagination>
-  </div>
+      <a-pagination
+        :total="websiteQuery.total"
+        :current="websiteQuery.pageNum"
+        :page-size="websiteQuery.pageSize"
+        show-size-changer
+        @change="pageChange"
+        show-quick-jumper
+        show-less-items
+      ></a-pagination>
+    </a-flex>
+  </a-card>
 </template>
 
 <script setup lang="ts">

@@ -1,29 +1,28 @@
 <template>
-  <a-card class="table__card" :bordered="false" :body-style="{ padding: '0' }">
-    <ul class="table_card_list" ref="cardRef">
+    <a-card class="table__card" :bordered="false" :body-style="{ padding: '0' }">
+    <ul class="table_card_list flex-1" ref="cardRef">
       <li
-        v-for="(item, key) in websiteCardData"
+        v-for="(item, key) in configCardData"
         :key="key"
         size="small"
-        @click="selectSystemWebsite(item)"
-        @dblclick="websiteEdit(item.id)"
+        @click="selectSystemConfig(item)"
+        :class="{ active: configKeys.includes(item.id) }"
+        @dblclick="configEdit(item.id)"
         :draggable="true"
         @dragstart="dragstart(item)"
         @drop="drop(item)"
         @dragover="e => e.preventDefault()"
       >
         <a-card>
-          <div class="active" v-if="websiteKeys.includes(item.id)">
-            <check-outlined class="text-12" />
-          </div>
+          <div class="index">{{ key + 1 }}</div>
 
-          <a-card-meta title="表单标题" class="mb-8">
-            <template #description>www.ax.com</template>
+          <a-card-meta title="Europe Street beat" class="mb-8">
+            <template #description>www.axxxxxxx.com</template>
           </a-card-meta>
           <a-descriptions
             :column="1"
             layout="horizontal"
-            :labelStyle="{ width: '80px', color: '#999' }"
+            :labelStyle="{ width: '80px', color: '#666' }"
           >
             <a-descriptions-item
               :label="v.label"
@@ -36,14 +35,14 @@
         </a-card>
       </li>
     </ul>
-  </a-card>
+   </a-card>
 </template>
 
 <script setup lang="ts">
 import { useSortable } from '@vueuse/integrations/useSortable';
-import { dragstart, drop, selectSystemWebsite, websiteCardData } from '../../data/card';
-import { websiteEdit } from '../../data/curd';
-import { websiteKeys } from '../../data/table';
+import { dragstart, drop, selectSystemConfig, configCardData } from '../../data/card';
+import { configEdit } from '../../data/curd';
+import { configKeys } from '../../data/table';
 
 const cardRef = ref();
 
@@ -53,7 +52,7 @@ interface SortConfig {
 }
 
 nextTick(() => {
-  useSortable(cardRef, websiteCardData.value, {
+  useSortable(cardRef, configCardData.value, {
     animation: 200,
     onUpdate(e: SortConfig) {
       // console.log(e.oldIndex, e.newIndex);

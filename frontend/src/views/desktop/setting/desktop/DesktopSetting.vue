@@ -33,8 +33,11 @@
         </a-tab-pane>
       </a-tabs>
     </a-card>
-    <div class="my-12 text-12 text-999">桌面配置</div>
+
     <a-card class="mt-12">
+      <template #title>
+        <div class="text-12 text-999">桌面配置</div>
+      </template>
       <a-space class="w-100" direction="vertical">
         <div class="flex justify-between align-center">
           <div>桌面明亮度</div>

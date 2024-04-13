@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { ${businessName}List } from './data/curd';
+import { configList } from './data/curd';
 import { viewMode } from './data/table';
 import FooterVue from './pages/components/AXFooter.vue';
 import FormVue from './pages/components/AXForm.vue';
@@ -34,7 +34,7 @@ import CardVue from './pages/table-card/AXCard.vue';
 import TableVue from './pages/table-card/AXTable.vue';
 
 onMounted(() => {
-  ${businessName}List();
+  configList();
 });
 </script>
 

@@ -14,23 +14,25 @@
     enableNativeDrag
   >
     <slot name="head">
-      <div class="drag-header flex justify-between align-center">
-        <div class="flex align-center">
-          <div class="win-icon flex flex-s">
-            <img :src="icon" width="20" height="20" v-if="icon" />
-          </div>
+      <a-card :bordered="false" :bodyStyle="{ padding: 0 }" class="drag-header">
+        <div class="flex justify-between align-center">
+          <div class="flex align-center">
+            <div class="win-icon flex flex-s">
+              <img :draggable="false" :src="icon" width="20" height="20" v-if="icon" />
+            </div>
 
-          <div>{{ title }}</div>
-        </div>
-        <div class="flex">
-          <div class="system-icon minus" @click="hidden">
-            <MinusOutlined />
+            <div>{{ title }}</div>
           </div>
-          <div class="system-icon close" @click="close">
-            <CloseOutlined />
+          <div class="flex">
+            <div class="system-icon minus" @click="hidden">
+              <MinusOutlined />
+            </div>
+            <div class="system-icon close" @click="close">
+              <CloseOutlined />
+            </div>
           </div>
         </div>
-      </div>
+      </a-card>
     </slot>
     <div class="drag-content">
       <slot></slot>
@@ -115,11 +117,8 @@ $hh: 36px;
 }
 .drag-header {
   cursor: move;
-  background: white;
   height: $hh;
-  border-bottom: 1px solid #ddd;
-  border-top-left-radius: var(--radius);
-  border-top-right-radius: var(--radius);
+  border-radius: 0 !important;
 }
 .drag-content {
   height: calc(100% - $hh);

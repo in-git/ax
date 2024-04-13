@@ -3,12 +3,12 @@
     <a-flex justify="space-between" :align="'center'">
       <div>
         <span>已选:</span>
-        <span>（{{ ${businessName}Keys.length }}）</span>
+        <span>（{{ configKeys.length }}）</span>
       </div>
       <a-pagination
-        :total="${businessName}Query.total"
-        :current="${businessName}Query.pageNum"
-        :page-size="${businessName}Query.pageSize"
+        :total="configQuery.total"
+        :current="configQuery.pageNum"
+        :page-size="configQuery.pageSize"
         show-size-changer
         @change="pageChange"
         show-quick-jumper
@@ -19,13 +19,13 @@
 </template>
 
 <script setup lang="ts">
-import { ${businessName}List } from '../../data/curd';
-import { ${businessName}Keys, ${businessName}Query } from '../../data/table';
+import { configList } from '../../data/curd';
+import { configKeys, configQuery } from '../../data/table';
 
 const pageChange = (page: number, pageSize: number) => {
-  ${businessName}Query.value.pageNum = page;
-  ${businessName}Query.value.pageSize = pageSize;
-  ${businessName}List();
+  configQuery.value.pageNum = page;
+  configQuery.value.pageSize = pageSize;
+  configList();
 };
 </script>
 

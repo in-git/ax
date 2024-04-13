@@ -1,7 +1,9 @@
 <template>
   <div class="theme-global">
-    <div class="subtitle">全局配置</div>
     <a-card>
+      <template #title>
+        <div class="text-999 text-12">全局配置</div>
+      </template>
       <a-space direction="vertical" class="w-100" :size="24">
         <a-flex justify="space-between" :align="'center'">
           <div>字体大小</div>
@@ -47,9 +49,6 @@ const pageStore = usePageStore();
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .subtitle {
-    margin-bottom: 8px;
   }
 }
 </style>

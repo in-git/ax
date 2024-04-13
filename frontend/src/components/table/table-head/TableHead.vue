@@ -1,10 +1,12 @@
 <template>
-  <div class="table__head py-8 px-12">
-    <h3 class="text-14 mb-12">{{ title }}</h3>
-    <div class="flex justify-between align-center">
+  <a-card class="table__head">
+    <template #title>
+      <h3 class="text-14">{{ title }}</h3>
+    </template>
+    <a-flex justify="space-between" :align="'center'">
       <slot></slot>
-    </div>
-  </div>
+    </a-flex>
+  </a-card>
 </template>
 
 <script setup lang="ts">
@@ -15,11 +17,8 @@ defineProps<{
 
 <style lang="scss" scoped>
 .table__head {
-  padding-bottom: 8px;
-  box-shadow: 0 0 15px #cfcfcf9a;
-  position: sticky;
+  position: sticky !important;
   top: 0px;
   z-index: 10;
-  background: white;
 }
 </style>

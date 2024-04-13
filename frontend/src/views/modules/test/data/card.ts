@@ -1,10 +1,10 @@
-import { ${businessName}Columns } from './column';
-import { ${businessName}Keys, ${businessName}Table } from './table';
-import type {  ${ModuleName}${BusinessName} } from '@/api/modules/${moduleName}/${businessName}/types';
+import { configColumns } from './column';
+import { configKeys, configTable } from './table';
+import type {  SystemConfig } from '@/api/modules/system/config/types';
 
 interface CardData {
   id: number;
-  raw?: ${ModuleName}${BusinessName};
+  raw?: SystemConfig;
   items: {
     label: string;
     value: any;
@@ -22,20 +22,20 @@ export const drop = (item: CardData) => {
 };
 
 /* 选择卡片 */
-export const select${ModuleName}${BusinessName} = (item: CardData) => {
-  if (!${businessName}Keys.value.includes(item.id)) {
-    ${businessName}Keys.value.push(item.id);
+export const selectSystemConfig = (item: CardData) => {
+  if (!configKeys.value.includes(item.id)) {
+    configKeys.value.push(item.id);
   } else {
-    ${businessName}Keys.value = ${businessName}Keys.value.filter(e => e !== item.id);
+    configKeys.value = configKeys.value.filter(e => e !== item.id);
   }
 };
 
 /* 渲染卡片的内容 */
-export const ${businessName}CardData = computed(() => {
+export const configCardData = computed(() => {
   let arr: CardData[] = [];
-  ${businessName}Table.value.data.map((e: ${ModuleName}${BusinessName} | any, i) => {
+  configTable.value.data.map((e: SystemConfig | any, i) => {
     let items: any = [];
-    ${businessName}Columns.value.forEach((v: any, k) => {
+    configColumns.value.forEach((v: any, k) => {
       const label = v.title;
       const value = e[v.dataIndex as any];
       if (v.dataIndex === 'operation') return;

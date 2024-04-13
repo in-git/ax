@@ -1,57 +1,62 @@
 <template>
-  <TableHead title="网页收藏">
-    <div class="flex justify-between">
-      <div class="flex gc-4 align-center">
-        <a-tooltip title="新建">
-          <a-button type="primary" @click="websiteCreate">
-            <PlusOutlined />
-          </a-button>
-        </a-tooltip>
-        <a-tooltip title="编辑">
-          <a-button type="link" @click="websiteEdit()" :disabled="websiteKeys.length !== 1">
-            <EditOutlined />
-          </a-button>
-        </a-tooltip>
-        <a-tooltip title="刷新">
-          <a-button type="link" @click="websiteList">
-            <ReloadOutlined />
-          </a-button>
-        </a-tooltip>
+  <a-card class="table__head">
+    <template #title>
+      <h3 class="text-14">网页收藏</h3>
+    </template>
+    <a-flex justify="space-between" :align="'center'">
+      <div class="flex justify-between">
+        <div class="flex gc-4 align-center">
+          <a-tooltip title="新建">
+            <a-button type="primary" @click="websiteCreate">
+              <PlusOutlined />
+            </a-button>
+          </a-tooltip>
+          <a-tooltip title="编辑">
+            <a-button type="link" @click="websiteEdit()" :disabled="websiteKeys.length !== 1">
+              <EditOutlined />
+            </a-button>
+          </a-tooltip>
+          <a-tooltip title="刷新">
+            <a-button type="link" @click="websiteList">
+              <ReloadOutlined />
+            </a-button>
+          </a-tooltip>
 
-        <a-divider type="vertical" />
-        <a-input-search allow-clear @search="websiteList"></a-input-search>
+          <a-divider type="vertical" />
+          <a-input-search allow-clear @search="websiteList"></a-input-search>
+        </div>
       </div>
-    </div>
-    <div class="flex">
-      <a-popconfirm
-        title="确定要删除吗"
-        :disabled="websiteKeys.length === 0"
-        placement="bottomRight"
-        @confirm="websiteDelete()"
-      >
-        <a-tooltip title="批量删除">
-          <a-button danger type="link" :disabled="websiteKeys.length === 0">
-            <DeleteOutlined />
-          </a-button>
-        </a-tooltip>
-      </a-popconfirm>
-      <FieldVue :columns="websiteColumns" :module-name="websiteTable.moduleName" />
+      <div class="flex">
+        <a-popconfirm
+          title="确定要删除吗"
+          :disabled="websiteKeys.length === 0"
+          placement="bottomRight"
+          @confirm="websiteDelete()"
+        >
+          <a-tooltip title="批量删除">
+            <a-button danger type="link" :disabled="websiteKeys.length === 0">
+              <DeleteOutlined />
+            </a-button>
+          </a-tooltip>
+        </a-popconfirm>
+        <FieldVue :columns="websiteColumns" :module-name="websiteTable.moduleName" />
 
-      <div>
-        <a-tooltip title="卡片模式" @click="viewMode = 'card'" v-if="viewMode === 'table'">
-          <a-button type="link">
-            <OrderedListOutlined />
-          </a-button>
-        </a-tooltip>
+        <div>
+          <a-tooltip title="卡片模式" @click="viewMode = 'card'" v-if="viewMode === 'table'">
+            <a-button type="link">
+              <OrderedListOutlined />
+            </a-button>
+          </a-tooltip>
 
-        <a-tooltip title="表格模式" @click="viewMode = 'table'" v-else>
-          <a-button type="link">
-            <AppstoreAddOutlined />
-          </a-button>
-        </a-tooltip>
+          <a-tooltip title="表格模式" @click="viewMode = 'table'" v-else>
+            <a-button type="link">
+              <AppstoreAddOutlined />
+            </a-button>
+          </a-tooltip>
+        </div>
       </div>
-    </div>
-  </TableHead>
+    </a-flex>
+  </a-card>
 </template>
 
 <script setup lang="ts">

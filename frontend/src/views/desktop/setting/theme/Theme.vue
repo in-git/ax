@@ -2,8 +2,10 @@
   <PageContainer title="外观设置" class="theme">
     <a-space direction="vertical" class="w-100" :size="18">
       <div>
-        <div class="subtitle mb-8">主题颜色</div>
         <a-card>
+          <template #title>
+            <div class="subtitle">主题颜色</div>
+          </template>
           <div class="color-palette">
             <ul class="flex gc-4 align-center">
               <li
@@ -68,10 +70,8 @@ const selectItem = (item: string) => {
 
 <style lang="scss" scoped>
 .theme {
-  background: var(--color-background);
   overflow-y: auto;
   height: 100%;
-  padding-bottom: 8px;
   .color-palette {
     li {
       width: 24px;

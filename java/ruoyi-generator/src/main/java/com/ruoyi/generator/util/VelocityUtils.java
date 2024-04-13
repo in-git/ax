@@ -283,23 +283,23 @@ public class VelocityUtils
         }
         else if (template.contains("AXFooter.vue.vm"))
         {
-            fileName = StringUtils.format("{}/views/modules/{}/{}/pages/components/WindFooter.vue", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/pages/components/AXFooter.vue", vuePath, moduleName, businessName);
         }
         else if (template.contains("AXForm.vue.vm"))
         {
-            fileName = StringUtils.format("{}/views/modules/{}/{}/pages/components/WindForm.vue", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/pages/components/AXForm.vue", vuePath, moduleName, businessName);
         }
         else if (template.contains("AXHead.vue.vm"))
         {
-            fileName = StringUtils.format("{}/views/modules/{}/{}/pages/components/WindHead.vue", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/pages/components/AXHead.vue", vuePath, moduleName, businessName);
         }
         else if (template.contains("AXCard.vue.vm"))
         {
-            fileName = StringUtils.format("{}/views/modules/{}/{}/pages/table-card/WindCard.vue", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/pages/table-card/AXCard.vue", vuePath, moduleName, businessName);
         }
         else if (template.contains("AXTable.vue.vm"))
         {
-            fileName = StringUtils.format("{}/views/modules/{}/{}/pages/table-card/WindTable.vue", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/pages/table-card/AXTable.vue", vuePath, moduleName, businessName);
         }
         /**
          *  AX readme.md 生成

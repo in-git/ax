@@ -1,19 +1,19 @@
 <template>
   <SystemTable
-    :columns="websiteColumns"
-    :table="websiteTable"
-    v-model:query="websiteQuery"
-    v-model:selected-keys="websiteKeys"
-    v-model:form="websiteForm"
+    :columns="${businessName}Columns"
+    :table="${businessName}Table"
+    v-model:query="${businessName}Query"
+    v-model:selected-keys="${businessName}Keys"
+    v-model:form="${businessName}Form"
     @dblclick="onDblclick"
   >
     <template v-slot="{ value }">
       <template v-if="value.column.dataIndex === 'operation'">
         <Operation
-          :loading="websiteTable.loading"
-          @open-change="openChange(value.record as SystemWebsite)"
-          @edit="websiteEdit(value.record.websiteId)"
-          :items="websiteOperationList"
+          :loading="${businessName}Table.loading"
+          @open-change="openChange(value.record as ${ModuleName}${BusinessName})"
+          @edit="${businessName}Edit(value.record.websiteId)"
+          :items="${businessName}OperationList"
         />
       </template>
     </template>
@@ -21,19 +21,25 @@
 </template>
 
 <script setup lang="ts">
-import type { SystemWebsite } from '@/api/modules/system/website/types';
+import type {  ${ModuleName}${BusinessName} } from '@/api/modules/${moduleName}/${businessName}/types';
 import Operation from '@/views/components/table/Operation.vue';
 import SystemTable from '@/views/components/table/SystemTable.vue';
-import { websiteColumns } from '../../data/column';
-import { websiteEdit } from '../../data/curd';
-import { websiteForm } from '../../data/form';
-import { websiteKeys, websiteOperationList, websiteQuery, websiteTable } from '../../data/table';
-const openChange = (record: SystemWebsite) => {
-  websiteForm.value = record;
+import { ${businessName}Columns } from '../../data/column';
+import { ${businessName}Edit } from '../../data/curd';
+import { ${businessName}Form } from '../../data/form';
+
+import { ${businessName}Keys, 
+    ${businessName}OperationList, 
+    ${businessName}Query, 
+    ${businessName}Table 
+} from '../../data/table';
+
+const openChange = (record: ${ModuleName}${BusinessName}) => {
+  ${businessName}Form.value = record;
 };
 
 const onDblclick = (id: number) => {
-  websiteEdit(id);
+  ${businessName}Edit(id);
 };
 </script>
 

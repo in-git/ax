@@ -1,64 +1,43 @@
 <template>
   <div>
     <div>
-      <div class="mb-12 text-999">选择服务器</div>
-      <a-card :body-style="{ maxHeight: '400px', overflowY: 'auto' }">
+      <a-card :body-style="{ padding: '0' }">
+        <template #title>
+          <div class="subtitle">选择服务器</div>
+        </template>
+        <template #extra>
+          <a-button type="primary" @click="create">
+            新建
+            <template #icon>
+              <PlusOutlined />
+            </template>
+          </a-button>
+        </template>
         <div class="p-8 server-list">
-          <ul class="flex flex-wrap">
-            <li
+          <a-flex wrap="wrap" :gap="12">
+            <a-card
               v-for="item in developer.$state.developer.urlSelection"
-              :key="item.value"
-              @click="setBaseurl(item.value)"
-              class="text-center flex flex-col gr-4"
+              class="flex-1 h-100"
               :class="[{ 'breathing-light': developer.$state.developer.baseURL === item.value }]"
             >
-              <div>
-                <img :src="serverPng" width="48" />
-              </div>
-
-              <div class="text-14 text-bold">
-                {{ item.label }}
-              </div>
-              <div
-                :class="[
-                  developer.$state.developer.baseURL == item.value ? 'selected' : 'unselected',
-                ]"
-              >
-                <a-badge color="green" v-if="developer.$state.developer.baseURL === item.value">
-                  <template #text>
-                    <span class="text-12 text-999">当前连接</span>
-                  </template>
-                </a-badge>
-                <a-badge v-else color="red">
-                  <template #text>
-                    <span class="text-12 text-999">未连接</span>
-                  </template>
-                </a-badge>
-              </div>
-              <div class="url">
-                {{ item.value }}
-              </div>
-              <a-divider class="my-6"></a-divider>
-              <div class="text-center">
+              <a-card-meta :title="item.label">
+                <template #description>
+                  {{ item.value }}
+                </template>
+              </a-card-meta>
+              <template #actions>
+                <a-tooltip title="切换">
+                  <div @click="setBaseurl(item.value)">切换</div>
+                </a-tooltip>
                 <a-tooltip title="编辑">
-                  <a-button size="small" type="text" @click="edit(item)">
-                    <EditOutlined />
-                  </a-button>
+                  <div @click="edit(item)">编辑</div>
                 </a-tooltip>
                 <a-popconfirm @confirm="deleteUrl(item.id)" title="确定删除吗">
-                  <a-button size="small" type="link" danger>
-                    <DeleteOutlined />
-                  </a-button>
+                  <div>删除</div>
                 </a-popconfirm>
-              </div>
-            </li>
-            <li class="create flex flex-s" @click="create">
-              <div class="text-16 text-center">
-                <PlusOutlined class="text-24" />
-                <div>新建</div>
-              </div>
-            </li>
-          </ul>
+              </template>
+            </a-card>
+          </a-flex>
         </div>
       </a-card>
     </div>
@@ -92,7 +71,6 @@ import type { URLSelection } from '@/store/system/types';
 import { useCloned } from '@vueuse/core';
 import { Modal } from 'ant-design-vue';
 import axios from 'axios';
-import serverPng from '../../assets/server.png';
 
 const open = ref(false);
 const serverForm = ref<URLSelection>({

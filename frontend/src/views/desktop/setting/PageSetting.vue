@@ -1,29 +1,21 @@
 <template>
-  <div class="page-setting w-100 h-100 system-module">
-    <div class="settings flex h-100 w-100">
-      <div class="sidebar">
-        <ul>
-          <li
-            v-for="(item, key) in nav"
-            :key="key"
-            :class="{ active: item.id === current.id }"
-            @click="selectNav(item)"
-            class="flex gc-4 align-center"
-          >
-            <div class="icon">
+  <a-card class="h-100 p-8 card" :bordered="false" :body-style="{ height: '100%', padding: '0' }">
+    <a-flex class="settings flex h-100 w-100">
+      <a-card :body-style="{ height: '100%' }">
+        <a-menu v-model:selectedKeys="selectedKeys">
+          <a-menu-item v-for="(item, key) in nav" :key="item.id" @click="selectNav(item)">
+            {{ item.title }}
+            <template #icon>
               <component :is="item.icon"></component>
-            </div>
-            <span>
-              {{ item.title }}
-            </span>
-          </li>
-        </ul>
-      </div>
+            </template>
+          </a-menu-item>
+        </a-menu>
+      </a-card>
       <div class="content flex-1">
         <component :is="current.component"></component>
       </div>
-    </div>
-  </div>
+    </a-flex>
+  </a-card>
 </template>
 
 <script setup lang="ts">
@@ -41,11 +33,18 @@ import DesktopSetting from './desktop/DesktopSetting.vue';
 import Net from './net/Net.vue';
 import ThemeVue from './theme/Theme.vue';
 
+interface Nav {
+  title: string;
+  icon: any;
+  id: string;
+  component: any;
+}
+const selectedKeys = ref(['primary']);
 const nav: Nav[] = [
   {
     title: '外观设置',
     icon: markRaw(BgColorsOutlined),
-    id: nanoid(),
+    id: 'primary',
     component: markRaw(ThemeVue),
   },
   {
@@ -76,59 +75,25 @@ const nav: Nav[] = [
 
 const current = ref<Nav>(nav[0]);
 
-interface Nav {
-  title: string;
-  icon: any;
-  id: string;
-  component: any;
-}
-
 const selectNav = (item: Nav) => {
   current.value = item;
 };
 </script>
 
 <style lang="scss" scoped>
-$hh: 42px;
-.header {
-  line-height: $hh;
-  padding: 0 12px;
-  cursor: move;
-  background: #0d0d0e;
-  color: white;
-}
-.page-setting {
-  .settings {
-    height: calc(100%);
-    .sidebar {
-      min-width: 160px;
-      background: #ffffff;
-      border-right: 1px solid #ddd;
-      ul {
-        li {
-          line-height: $hh;
-          padding: 0 var(--padding);
-          cursor: pointer;
-          user-select: none;
-          color: #999;
-          &:hover {
-            background: #eee;
-            color: #666;
-          }
-        }
-        li.active {
-          color: #333;
-          font-weight: bold;
-        }
-      }
-      .icon {
-        width: 32px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    }
+:deep(.ant-menu) {
+  overflow: hidden;
+  width: 140px;
+  height: 100%;
+  border-right: none !important;
+  &::-webkit-scrollbar {
+    display: none;
   }
+}
+.content {
+  overflow-y: auto;
+}
+.card {
+  border-radius: 0;
 }
 </style>
