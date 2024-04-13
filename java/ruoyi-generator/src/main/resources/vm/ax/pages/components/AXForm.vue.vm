@@ -50,7 +50,7 @@
            </a-form-item>
          #elseif($column.htmlType == "editor")
            <a-form-item label="${comment}" name="$field">
-             <a-textarea placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}"></a-editor>
+             <a-textarea placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}"></a-textarea>
            </a-form-item>
          #end
          #end

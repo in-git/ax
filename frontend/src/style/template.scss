@@ -19,36 +19,21 @@
 		margin-top: 8px;
 	}
 	.form__content {
-		height: 100%;
 		border-radius: 0;
+		height: 100%;
 	}
 	.table__head {
 		border-radius: 0 !important;
 	}
-	.card__footer {
-		box-shadow: 0 0 1px transparent !important;
-		border-radius: 0;
-	}
-	$width: 180px;
+	$width: 200px;
 	.table_card_list {
 		display: grid;
-		padding: 8px 0;
-		flex-wrap: wrap;
-		flex: 1;
-		height: 100%;
 		gap: 8px;
 		overflow-y: auto;
 		overflow-x: hidden;
 		place-content: start;
-		grid-template-columns: repeat(auto-fit, minmax($width, 0.3fr));
+		grid-template-columns: repeat(auto-fill, minmax($width, 1fr));
 		flex: 1;
-		li {
-			height: fit-content;
-			flex: 1;
-			width: $width;
-			min-width: $width;
-			max-width: $width;
-		}
 		div.active {
 			$wh: 20px;
 			position: absolute;
@@ -63,5 +48,12 @@
 			text-align: center;
 			border-radius: 50%;
 		}
+	}
+}
+.card__footer {
+	box-shadow: 0 0 1px transparent !important;
+	border-radius: 0;
+	:deep(.ant-card-body) {
+		padding: 4px 12px !important;
 	}
 }

@@ -279,25 +279,6 @@ $list-font-weight: (
   bolder: bolder
 );
 
-@each $key, $value in $list-font-style {
-  .text-#{$key} {
-    font-style: $value;
-  }
-}
-
-@each $key, $value in $list-font-align {
-  .text-#{$key} {
-    text-align: $value;
-  }
-}
-
-/* 文字粗细 */
-@each $key, $value in $list-font-weight {
-  .text-#{$key} {
-    font-weight: $value;
-  }
-}
-
 /* 生成文字大小 */
 @for $var from 1 to 21 {
   .text-#{($var * 2) + 10} {
@@ -313,31 +294,6 @@ $list-font-weight: (
 }
 .text-6 {
   transform: scale(0.5);
-}
-
-$list-color: (
-  red: var(--red),
-  green: var(--green),
-  blue: var(--blue),
-  yellow: var(--yellow),
-  orange: var(--orange),
-  purple: var(--purple),
-  gray: var(--gray),
-  // white: var(--white),
-  // black: var(--black),
-  transparent: transparent
-);
-$text-color-list: (2, 3, 4, 5, 6, 7, 8, 9, a, b, c, d, e);
-/* 生成text-aaa,text-999 */
-@each $v in $text-color-list {
-  .text-#{$v}#{$v}#{$v} {
-    color: str-insert(#{$v}#{$v}#{$v}, "#", 0);
-  }
-}
-@each $key, $value in $list-color {
-  .text-#{$key} {
-    color: $value;
-  }
 }
 
 .text-selected {

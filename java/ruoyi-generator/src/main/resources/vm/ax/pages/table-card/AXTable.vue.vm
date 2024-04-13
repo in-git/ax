@@ -12,7 +12,11 @@
         <Operation
           :loading="${businessName}Table.loading"
           @open-change="openChange(value.record as ${ModuleName}${BusinessName})"
-          @edit="${businessName}Edit(value.record.websiteId)"
+          #foreach($column in $columns)
+          #if($column.isPk == "1")
+          @edit="${businessName}Edit(value.record.$column.javaField)"
+          #end
+          #end
           :items="${businessName}OperationList"
         />
       </template>

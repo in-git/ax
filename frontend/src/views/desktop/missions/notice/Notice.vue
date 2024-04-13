@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { listNotice } from '@/api/modules/system/notice/notice';
+import { fetchNoticeList } from '@/api/modules/system/notice/notice';
 import useSystemStore from '@/store/system';
 import { BellOutlined } from '@ant-design/icons-vue';
 import { noticeList, showNotice } from '../../notice/data';
@@ -18,7 +18,7 @@ const systemStore = useSystemStore();
 const dot = ref(false);
 const getSystemNotice = async () => {
   noticeList.value = [];
-  const { data } = await listNotice({
+  const { data } = await fetchNoticeList({
     pageNum: 1,
     pageSize: 20,
     total: 0,

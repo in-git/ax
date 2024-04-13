@@ -1,22 +1,28 @@
 import type { IQuery, Response, TableResponse } from '@/api/config/types';
 import axios from 'axios';
 
-export const listNotice = (query: IQuery) => {
+// 查询通知公告列表
+export const fetchNoticeList = (query: IQuery) => {
   return axios.get<TableResponse<SystemNotice>>(`system/notice/list`, {
     params: query,
   });
 };
-export const getNotice = (id: number) => {
-  return axios.get<Response<SystemNotice>>(`system/notice/${id}`);
+// 查询通知公告详细
+export const fetchNoticeById = (noticeId: number) => {
+  return axios.get<Response<SystemNotice>>(`system/notice/${noticeId}`);
 };
 
-export const updateNotice = (data: SystemNotice) => {
-  return axios.put(`system/notice`, data);
-};
-
+// 新增通知公告
 export const createNotice = (data: SystemNotice) => {
-  return axios.post(`system/notice`, data);
+  return axios.post<Response<SystemNotice>>(`system/notice`, data);
 };
-export const deleteNotice = (id: number) => {
-  return axios.delete(`system/notice/${id}`);
+
+// 修改通知公告
+export const updateNotice = (data: SystemNotice) => {
+  return axios.put<Response<SystemNotice>>(`/system/notice`, data);
+};
+
+// 删除通知公告
+export const deleteNotice = (noticeIds: number[]) => {
+  return axios.delete<Response<SystemNotice>>(`system/notice/${noticeIds.join(',')}`);
 };

@@ -1,24 +1,39 @@
-import { getNotice, listNotice } from '@/api/modules/system/notice/notice';
-import { noticeForm, showNoticeForm } from './form';
+import { noticeResetForm, noticeShowForm,noticeForm } from './form';
 import { noticeKeys, noticeQuery, noticeTable } from './table';
+import {
+  deleteNotice,
+  fetchNoticeById ,
+  fetchNoticeList,
+} from '@/api/modules/system/notice/notice';
+import { response } from '@/utils/table/table';
 
 export const noticeList = async () => {
   noticeTable.value.loading = true;
-  const { data } = await listNotice(noticeQuery.value);
+  const { data } = await fetchNoticeList(noticeQuery.value);
   noticeTable.value.data = data.rows;
-  noticeTable.value.loading = false;
   noticeQuery.value.total = data.total;
+  noticeTable.value.loading = false;
 };
 
-export const editNotice = async (item: SystemNotice, id: number) => {
-  let targetId = id ? id : noticeKeys.value[0];
-  noticeForm.value = item;
+export const noticeEdit = async (id?: number) => {
+    let targetId: number = id ? id : noticeKeys.value[0];
+    noticeTable.value.loading = true;
+    const { data } = await fetchNoticeById(targetId);
+    if (data.data) {
+        noticeForm.value = data.data;
+        noticeShowForm.value = true;
+    }
+    noticeTable.value.loading = false;
+};
 
-  console.log(item.noticeId);
+export const noticeCreate = async () => {
+  noticeResetForm();
+  noticeShowForm.value = true;
+};
 
-  const { data } = await getNotice(targetId);
-  if (data.data) {
-    noticeForm.value = data.data;
-    showNoticeForm.value = true;
-  }
+export const noticeDelete = async (id?: number) => {
+  let ids = id ? [id] : noticeKeys.value;
+  await response(deleteNotice, ids);
+  await noticeList();
+   noticeKeys.value=[]
 };
