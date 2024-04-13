@@ -6,6 +6,7 @@ export interface Theme {
   wave: boolean;
   virtual: boolean;
   size?: 'small' | 'middle' | 'large' | undefined;
+  algorithm: 'compact' | 'default' | 'dark';
   autoInsertSpaceInButton: boolean;
 }
 export interface DesktopBackground {

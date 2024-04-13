@@ -12,6 +12,7 @@ const usePageStore = defineStore('page', {
       autoInsertSpaceInButton: true,
       fontSize: 14,
       borderRadius: 4,
+      algorithm: 'default',
     },
     desktop: {
       background: {

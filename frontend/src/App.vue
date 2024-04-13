@@ -53,9 +53,11 @@ import usePageStore from './store/page';
 import Contextmenu from './views/components/contextmenu/Contextmenu.vue';
 import Draggable from './views/components/draggable/Draggable.vue';
 import Desktop from './views/desktop/Desktop.vue';
-const locale = ref(zh_CN);
 
+const locale = ref(zh_CN);
+const { compactAlgorithm, darkAlgorithm, defaultAlgorithm } = theme;
 const store = usePageStore();
+
 /* 初始化请求 */
 setAxios();
 /*  */
@@ -74,6 +76,12 @@ nextTick(async () => {
 });
 
 const localTheme = computed(() => {
+  let algorithm = store.$state.theme.algorithm;
+  let map = {
+    dark: darkAlgorithm,
+    compact: compactAlgorithm,
+    default: defaultAlgorithm,
+  };
   return {
     token: {
       colorPrimary: store.$state.theme.theme,
@@ -81,7 +89,7 @@ const localTheme = computed(() => {
       fontSize: store.$state.theme.fontSize,
       colorText: '#313030',
     },
-    algorithm: theme.compactAlgorithm,
+    algorithm: map[algorithm],
   };
 });
 </script>

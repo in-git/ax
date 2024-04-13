@@ -23,11 +23,11 @@
 import { message } from 'ant-design-vue';
 import { websiteList } from './data/curd';
 import { viewMode, websiteTable } from './data/table';
-import FooterVue from './pages/components/WindFooter.vue';
-import FormVue from './pages/components/WindForm.vue';
-import HeadVue from './pages/components/WindHead.vue';
-import CardVue from './pages/table-card/WindCard.vue';
-import WindTable from './pages/table-card/WindTable.vue';
+import FooterVue from './pages/components/AXFooter.vue';
+import FormVue from './pages/components/AXForm.vue';
+import HeadVue from './pages/components/AXHead.vue';
+import CardVue from './pages/table-card/AXCard.vue';
+import WindTable from './pages/table-card/AXTable.vue';
 
 const cancelRequest = () => {
   websiteTable.value.loading = false;

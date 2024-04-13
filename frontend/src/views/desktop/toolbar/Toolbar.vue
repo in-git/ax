@@ -3,7 +3,7 @@
     <div>
       <div class="flex align-center gc-4">
         <img :src="logo" width="28" style="object-fit: contain" />
-        风 | Wind
+        AX
       </div>
     </div>
     <div class="flex gc-4">

@@ -5,8 +5,19 @@
       <a-space class="w-100" direction="vertical" :size="24">
         <a-flex class="w-100" justify="space-between">
           <div class="flex align-center">
+            <div>紧凑模式</div>
+          </div>
+          <div>
+            <a-select
+              v-model:value="store.$state.theme.algorithm"
+              :options="themeOptions"
+            ></a-select>
+          </div>
+        </a-flex>
+
+        <a-flex class="w-100" justify="space-between">
+          <div class="flex align-center">
             <div>文字方向</div>
-            <div class="desc">反转文字显示</div>
           </div>
           <div>
             <a-switch
@@ -18,10 +29,7 @@
         </a-flex>
 
         <a-flex class="w-100" justify="space-between">
-          <div class="flex">
-            水波纹特效
-            <div class="desc">按钮上的水波纹特效</div>
-          </div>
+          <div class="flex">水波纹特效</div>
           <div class="text-right">
             <a-switch
               v-model:checked="store.$state.theme.wave"
@@ -64,10 +72,22 @@
 
 <script setup lang="ts">
 import usePageStore from '@/store/page';
-
-const current = ref('#3785FA');
-
 const store = usePageStore();
+
+const themeOptions = [
+  {
+    label: '黑暗模式',
+    value: 'dark',
+  },
+  {
+    label: '紧凑模式',
+    value: 'compact',
+  },
+  {
+    label: '默认模式',
+    value: 'default',
+  },
+];
 </script>
 
 <style lang="scss" scoped></style>
