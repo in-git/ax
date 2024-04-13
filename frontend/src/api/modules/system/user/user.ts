@@ -16,6 +16,10 @@ export const login = (data: LoginParams) => {
   return axios.post<LoginResponse>('/login', data);
 };
 
+export const register = (data: LoginParams) => {
+  return axios.post<LoginResponse>('/register', data);
+};
+
 export const logout = () => {
   return axios.post<LoginResponse>('/logout');
 };

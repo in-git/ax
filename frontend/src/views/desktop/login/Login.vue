@@ -1,139 +1,23 @@
 <template>
   <div class="login flex-1">
-    <div class="login-container">
+    <a-flex class="login-container">
       <Welcome />
-      <div class="form">
-        <div class="form-container p-32">
-          <a-space direction="vertical" class="w-100">
-            <h1 class="mb-24 text-bold">登录</h1>
-            <a-form layout="vertical" size="large" @finish="finish" :model="loginForm">
-              <LoginHistory />
-
-              <a-form-item label="密码" required name="password">
-                <a-input-password
-                  allow-clear
-                  v-model:value="loginForm.password"
-                  placeholder="请输入密码"
-                ></a-input-password>
-              </a-form-item>
-
-              <a-form-item label="验证码" name="code" required>
-                <div class="flex gc-12">
-                  <a-input placeholder="请输入验证码" v-model:value="loginForm.code" />
-                  <a-image
-                    @click="getCaptcha"
-                    :preview="false"
-                    loading="lazy"
-                    class="cursor-pointer"
-                    :src="captchaImage"
-                    width="100"
-                  />
-                </div>
-              </a-form-item>
-
-              <a-button type="primary" html-type="submit" :loading="loginLoading" block>
-                登录
-              </a-button>
-            </a-form>
-            <a-divider>其他登录方式</a-divider>
-            <a-flex justify="center" gap="12">
-              <div class="system-icon">
-                <WechatOutlined />
-              </div>
-              <div class="system-icon">
-                <QqOutlined />
-              </div>
-              <div class="system-icon">
-                <GoogleOutlined />
-              </div>
-              <div class="system-icon">
-                <GithubFilled />
-              </div>
-            </a-flex>
-          </a-space>
-        </div>
-      </div>
-    </div>
+      <LoginVue v-if="loginMode === 'login'"></LoginVue>
+      <RegisterVue v-else></RegisterVue>
+    </a-flex>
   </div>
 </template>
 
 <script setup lang="ts">
-import { captcha, login } from '@/api/modules/system/user/user';
-import usePageStore from '@/store/page';
-import useUserStore from '@/store/user';
-
-import { message } from 'ant-design-vue';
-import { getProfile } from '../toolbar/profile/data';
 import Welcome from './Welcome.vue';
-import { loginForm, loginLoading } from './data';
-import LoginHistory from './history/LoginHistory.vue';
-
-const pageStore = usePageStore();
-const captchaImage = ref();
-
-const getCaptcha = async () => {
-  const { data } = await captcha();
-  captchaImage.value = `data:image/gif;base64,${data.img}`;
-  loginForm.value.uuid = data.uuid;
-};
-
-onMounted(() => {
-  getCaptcha();
-});
-
-const finish = async () => {
-  loginLoading.value = true;
-  try {
-    const { data } = await login({
-      username: loginForm.value.username,
-      password: loginForm.value.password,
-      code: loginForm.value.code,
-      uuid: loginForm.value.uuid,
-    });
-    loginLoading.value = false;
-    message.success('Success');
-
-    const store = useUserStore();
-
-    /* 创建历史记录 */
-    const index = store.$state.history.findIndex(e => {
-      return e.username === loginForm.value.username && loginForm.value.password === e.password;
-    });
-
-    if (index === -1 || store.$state.history.length === 0) {
-      store.$state.history.push({
-        username: loginForm.value.username,
-        password: loginForm.value.password,
-      });
-    }
-    getProfile();
-    store.$state.token = data.token;
-  } catch (error) {
-    loginLoading.value = false;
-    loginForm.value.code = '';
-    getCaptcha();
-  }
-};
+import { loginMode } from './data';
+import LoginVue from './login/Login.vue';
+import RegisterVue from './register/Register.vue';
 </script>
 
 <style lang="scss" scoped>
-.login {
-  background: #f8f8f8;
-  .login-container {
-    display: flex;
-    height: 100%;
-
-    .form {
-      padding: 24px;
-      min-width: 400px;
-      width: 30%;
-      .form-container {
-        background: white;
-        border: 1px solid #ddd;
-        height: 100%;
-        width: 100%;
-      }
-    }
-  }
+.login-container {
+  display: flex;
+  height: 100%;
 }
 </style>

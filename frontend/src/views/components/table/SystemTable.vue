@@ -55,14 +55,6 @@ const emit = defineEmits([
   'dblclick',
 ]);
 const selectedKeys = ref();
-// {
-//         total: query.total,
-//         current: query.pageNum,
-//         showSizeChanger: true,
-//         pageSize: query.pageSize,
-//         showQuickJumper: true,
-//         showLessItems: true,
-//       }
 const props = withDefaults(
   defineProps<{
     table: TableConfig;
@@ -70,7 +62,7 @@ const props = withDefaults(
     columns: TableColumnProps[];
     selectedKeys: number[] | string[];
     form?: any;
-    pagination: TablePaginationConfig | false;
+    pagination?: TablePaginationConfig | false;
   }>(),
   {
     pagination: false,

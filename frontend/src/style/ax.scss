@@ -295,7 +295,9 @@ $list-font-weight: (
 .text-6 {
   transform: scale(0.5);
 }
-
+.text-center {
+  text-align: center;
+}
 .text-selected {
   user-select: all;
 }
