@@ -1,20 +1,20 @@
 <template>
-    <a-card class="table__card" :bordered="false" :body-style="{ padding: '0' }">
+  <a-card :bordered="false" :body-style="{ padding: '0' }">
     <ul class="table_card_list flex-1" ref="cardRef">
       <li
-        v-for="(item, key) in ${businessName}CardData"
+        v-for="(item, key) in configCardData"
         :key="key"
         size="small"
-        @click="select${ModuleName}${BusinessName}(item)"
-        :class="{ active: ${businessName}Keys.includes(item.id) }"
-        @dblclick="${businessName}Edit(item.id)"
+        @click="selectSystemConfig(item)"
+        :class="{ active: configKeys.includes(item.id) }"
+        @dblclick="configEdit(item.id)"
         :draggable="true"
         @dragstart="dragstart(item)"
         @drop="drop(item)"
         @dragover="e => e.preventDefault()"
       >
         <a-card>
-          <div class="active" v-if="${businessName}Keys.includes(item.id)">{{ key + 1 }}</div>
+          <div class="active" v-if="configKeys.includes(item.id)">{{ key + 1 }}</div>
           <a-card-meta :title="item.items[0].value" class="mb-8">
             <template #description>详细信息</template>
           </a-card-meta>
@@ -34,14 +34,14 @@
         </a-card>
       </li>
     </ul>
-   </a-card>
+  </a-card>
 </template>
 
 <script setup lang="ts">
 import { useSortable } from '@vueuse/integrations/useSortable';
-import { dragstart, drop, select${ModuleName}${BusinessName}, ${businessName}CardData } from '../../data/card';
-import { ${businessName}Edit } from '../../data/curd';
-import { ${businessName}Keys } from '../../data/table';
+import { configCardData, dragstart, drop, selectSystemConfig } from '../../data/card';
+import { configEdit } from '../../data/curd';
+import { configKeys } from '../../data/table';
 
 const cardRef = ref();
 
@@ -51,7 +51,7 @@ interface SortConfig {
 }
 
 nextTick(() => {
-  useSortable(cardRef, ${businessName}CardData.value, {
+  useSortable(cardRef, configCardData.value, {
     animation: 200,
     onUpdate(e: SortConfig) {
       // console.log(e.oldIndex, e.newIndex);

@@ -5,57 +5,68 @@
     </template>
 
    <a-flex class="mb-12" :gap="12" wrap="wrap">
-   #foreach($column in $columns)
-   #set($dictType=$column.dictType)
-   #set($javaField=$column.javaField)
-   #if($column.isQuery == '1' && $column.htmlType == "select" && "" != $dictType)
-      <div>
-        <a-select
-          v-model:value="${businessName}Query.$column.javaField"
-          style="width: 160px"
-          placeholder="请选择$column.columnComment"
-          allow-clear
-          @blur="${businessName}List"
-          :options="${javaField}Options"
-        ></a-select>
-      </div>
-   #elseif($column.isQuery == "1")
     <div>
        <a-input
-         @blur="${businessName}List"
-         v-model:value="${businessName}Query.$column.javaField"
+         @blur="configList"
+         v-model:value="configQuery.configName"
          style="width: 160px"
-         placeholder="请输入$column.columnComment"
+         placeholder="请输入参数名称"
          allow-clear
        ></a-input>
      </div>
-   #end
-   #end
-      <a-button type="primary" @click="${businessName}List">搜索</a-button>
+    <div>
+       <a-input
+         @blur="configList"
+         v-model:value="configQuery.configKey"
+         style="width: 160px"
+         placeholder="请输入参数键名"
+         allow-clear
+       ></a-input>
+     </div>
+    <div>
+       <a-input
+         @blur="configList"
+         v-model:value="configQuery.configValue"
+         style="width: 160px"
+         placeholder="请输入参数键值"
+         allow-clear
+       ></a-input>
+     </div>
+      <div>
+        <a-select
+          v-model:value="configQuery.configType"
+          style="width: 160px"
+          placeholder="请选择系统内置（Y是 N否）"
+          allow-clear
+          @blur="configList"
+          :options="configTypeOptions"
+        ></a-select>
+      </div>
+      <a-button type="primary" @click="configList">搜索</a-button>
     </a-flex>
 
     <a-flex justify="space-between" :align="'center'">
         <a-flex justify="space-between" :align="'center'">
         <a-flex :align="'center'" :gap="4">
 
-         <div v-perm="'${moduleName}:${businessName}:add'">
+         <div v-perm="'system:config:add'">
              <a-tooltip title="新建">
-                <a-button type="primary" @click="${businessName}Create">
+                <a-button type="primary" @click="configCreate">
                   <PlusOutlined />
                 </a-button>
             </a-tooltip>
          </div>
 
-         <div v-perm="'${moduleName}:${businessName}:edit'">
+         <div v-perm="'system:config:edit'">
               <a-tooltip title="编辑">
-                <a-button type="link" @click="${businessName}Edit()" :disabled="${businessName}Keys.length !== 1">
+                <a-button type="link" @click="configEdit()" :disabled="configKeys.length !== 1">
                   <EditOutlined />
                 </a-button>
               </a-tooltip>
           </div>
 
           <a-tooltip title="刷新">
-            <a-button type="link" @click="${businessName}List">
+            <a-button type="link" @click="configList">
               <ReloadOutlined />
             </a-button>
           </a-tooltip>
@@ -64,22 +75,22 @@
         </a-flex>
        <a-flex>
 
-       <div v-perm="'${moduleName}:${businessName}:delete'">
+       <div v-perm="'system:config:delete'">
         <a-popconfirm
           title="确定要删除吗"
-          :disabled="${businessName}Keys.length === 0"
+          :disabled="configKeys.length === 0"
           placement="bottomRight"
-          @confirm="${businessName}Delete()"
+          @confirm="configDelete()"
         >
           <a-tooltip title="批量删除">
-            <a-button danger type="link" :disabled="${businessName}Keys.length === 0">
+            <a-button danger type="link" :disabled="configKeys.length === 0">
               <DeleteOutlined />
             </a-button>
           </a-tooltip>
         </a-popconfirm>
         </div>
 
-        <FieldVue :columns="${businessName}Columns" :module-name="${businessName}Table.moduleName" />
+        <FieldVue :columns="configColumns" :module-name="configTable.moduleName" />
         <div>
           <a-tooltip title="卡片模式" @click="viewMode = 'card'" v-if="viewMode === 'table'">
             <a-button type="link">
@@ -100,11 +111,7 @@
 
 <script setup lang="ts">
 import {
-#foreach($column in $columns)
-#if($column.dictType != "")
-   ${column.javaField}Options,
-#end
-#end
+   configTypeOptions,
 } from '../../data/options';
 import FieldVue from '@/views/components/table/Field.vue';
 import {
@@ -113,9 +120,9 @@ import {
   type DeleteOutlined,
   type ReloadOutlined,
 } from '@ant-design/icons-vue';
-import { ${businessName}Columns } from '../../data/column';
-import { ${businessName}Create, ${businessName}Delete, ${businessName}Edit, ${businessName}List } from '../../data/curd';
-import { viewMode, ${businessName}Keys, ${businessName}Table,${businessName}Query } from '../../data/table';
+import { configColumns } from '../../data/column';
+import { configCreate, configDelete, configEdit, configList } from '../../data/curd';
+import { viewMode, configKeys, configTable,configQuery } from '../../data/table';
 
 
 </script>

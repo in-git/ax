@@ -1,32 +1,26 @@
-import type { ColumnProps } from '@/types/system';
+import type { TableColumnProps } from 'ant-design-vue';
 
-const configColumns = ref<ColumnProps[]>([
-  {
-    title: '配置名称',
-    dataIndex: 'configName',
-    width: 120,
-    show: true,
-  },
-  {
-    title: '备注',
-    dataIndex: 'remark',
-    show: true,
-  },
-
-  {
-    title: '配置键',
-    dataIndex: 'configKey',
-    show: true,
-  },
-  {
-    title: '配置值',
-    dataIndex: 'configValue',
-    show: true,
-  },
-  {
-    title: '系统内置',
-    dataIndex: 'configType',
-    show: true,
-  },
+const configColumns = ref<TableColumnProps[]>([
+{
+    title:"参数名称",
+    dataIndex:"configName"
+},
+{
+    title:"参数键名",
+    dataIndex:"configKey"
+},
+{
+    title:"参数键值",
+    dataIndex:"configValue"
+},
+{
+    title:"系统内置（Y是 N否）",
+    dataIndex:"configType"
+},
+{
+    title:"备注",
+    dataIndex:"remark"
+},
 ]);
+
 export { configColumns };

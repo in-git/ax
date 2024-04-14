@@ -65,11 +65,9 @@
            </a-form-item>
          #end
          #end
-          <a-row>
-              <a-col :span="8" :offset="9">
-                <a-button  htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
-              </a-col>
-          </a-row>
+         <template #extra>
+           <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
+         </template>
          </a-card>
     </SystemModal>
   </a-form>

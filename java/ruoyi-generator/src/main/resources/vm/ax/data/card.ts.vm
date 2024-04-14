@@ -45,7 +45,11 @@ export const ${businessName}CardData = computed(() => {
       });
     });
     arr.push({
-      id: e.websiteId,
+    #foreach($column in $columns)
+    #if($column.isPk == "1")
+      id: e[$column.javaField],
+    #end
+    #end
       items,
       raw: e,
     });

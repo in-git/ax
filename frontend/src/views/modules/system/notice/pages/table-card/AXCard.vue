@@ -1,5 +1,5 @@
 <template>
-    <a-card class="table__card" :bordered="false" :body-style="{ padding: '0' }">
+  <a-card :bordered="false" :body-style="{ padding: '0' }">
     <ul class="table_card_list flex-1" ref="cardRef">
       <li
         v-for="(item, key) in noticeCardData"
@@ -35,12 +35,12 @@
         </a-card>
       </li>
     </ul>
-   </a-card>
+  </a-card>
 </template>
 
 <script setup lang="ts">
 import { useSortable } from '@vueuse/integrations/useSortable';
-import { dragstart, drop, selectSystemNotice, noticeCardData } from '../../data/card';
+import { dragstart, drop, noticeCardData, selectSystemNotice } from '../../data/card';
 import { noticeEdit } from '../../data/curd';
 import { noticeKeys } from '../../data/table';
 

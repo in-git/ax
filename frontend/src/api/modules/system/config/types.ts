@@ -1,12 +1,12 @@
-export interface SystemConfig {
-  createBy: string;
-  createTime: string;
-  updateBy: string;
-  updateTime?: any;
-  remark: string;
-  configId: number;
-  configName: string;
-  configKey: string;
-  configValue: string;
-  configType: string;
+export interface SystemConfig{
+    configId: number ;
+    configName: string ;
+    configKey: string ;
+    configValue: string ;
+    configType: string ;
+    createBy: string ;
+    createTime: any ;
+    updateBy: string ;
+    updateTime: any ;
+    remark: string ;
 }

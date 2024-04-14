@@ -3,7 +3,6 @@ import useUserStore from '@/store/user';
 export default {
   mounted(el: HTMLElement, binding: { value: string }) {
     const store = useUserStore();
-    console.log(store.$state.userInfo);
     let userInfo = store.$state.userInfo;
     if (userInfo) {
       userInfo.roles.forEach(e => {
