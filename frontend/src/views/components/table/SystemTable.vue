@@ -1,10 +1,5 @@
 <template>
-  <a-card
-    :bordered="false"
-    class="flex-1"
-    :bodyStyle="{ padding: '0 12px' }"
-    :style="{ boxShadow: 'none' }"
-  >
+  <a-card :style="{ boxShadow: 'none' }">
     <a-table
       @change="pageChange"
       table-layout="fixed"

@@ -1,9 +1,9 @@
 <template>
-  <div class="system__module">
+  <a-card class="system__module">
     <TableVue />
     <FormVue />
     <DbVue></DbVue>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">

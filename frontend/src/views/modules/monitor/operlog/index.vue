@@ -1,7 +1,7 @@
 <template>
-  <div class="system__module">
+  <a-card class="system__module">
     <OperlogTable />
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">

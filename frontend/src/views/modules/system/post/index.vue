@@ -1,8 +1,8 @@
 <template>
-  <div class="system__module">
+  <a-card class="system__module">
     <PostTable></PostTable>
     <PostForm />
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">

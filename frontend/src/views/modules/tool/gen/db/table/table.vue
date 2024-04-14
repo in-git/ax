@@ -1,21 +1,23 @@
 <template>
   <div>
     <TableHeadVue />
-    <SystemTable
-      :columns="dbColumns"
-      :table="dbTable"
-      v-model:query="dbQuery"
-      v-model:selected-keys="dbKeys"
-      @reload="dbList"
-    >
-      <template v-slot="{ value }">
-        <template v-if="value.column.dataIndex === 'operation'">
-          <a-button type="text" @click="importDb(value.record.tableName)">
-            <DownloadOutlined />
-          </a-button>
+    <a-card class="mt-8">
+      <SystemTable
+        :columns="dbColumns"
+        :table="dbTable"
+        v-model:query="dbQuery"
+        v-model:selected-keys="dbKeys"
+        @reload="dbList"
+      >
+        <template v-slot="{ value }">
+          <template v-if="value.column.dataIndex === 'operation'">
+            <a-button type="text" @click="importDb(value.record.tableName)">
+              <DownloadOutlined />
+            </a-button>
+          </template>
         </template>
-      </template>
-    </SystemTable>
+      </SystemTable>
+    </a-card>
   </div>
 </template>
 

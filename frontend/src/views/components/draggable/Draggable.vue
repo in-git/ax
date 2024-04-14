@@ -35,9 +35,7 @@
       </a-card>
     </slot>
     <div class="drag-content">
-      <a-card :bordered="false" class="card__container" :bodyStyle="{ height: '100%' }">
-        <slot></slot>
-      </a-card>
+      <slot></slot>
     </div>
   </VueDraggable>
 </template>

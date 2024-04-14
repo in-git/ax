@@ -1,5 +1,5 @@
 <template>
-  <div class="system__module">
+  <a-card class="system__module">
     <Transition
       enter-active-class="animate__animated animate__fadeInLeft"
       leave-active-class="animate__animated animate__fadeOutRight"
@@ -14,7 +14,7 @@
     </Transition>
 
     <FormVue></FormVue>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">
