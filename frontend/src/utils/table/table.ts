@@ -40,11 +40,22 @@ export const formatColumns = (data: ColumnProps[]) => {
     return e;
   });
 };
-export const dictToOptions = (dict: SystemDictData[]) => {
+
+/* 字典数据转下拉框数据 */
+export const dictDataToOptions = (dict: SystemDictData[]) => {
   return dict.map(e => {
     return {
       label: e.dictLabel,
       value: e.dictValue,
+    };
+  });
+};
+/* 字典数据转下拉框数据 */
+export const dictToOptions = (dict: SystemDict[]) => {
+  return dict.map(e => {
+    return {
+      label: e.dictName,
+      value: e.dictType,
     };
   });
 };

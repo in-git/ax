@@ -13,14 +13,22 @@ export const websiteTable = ref<TableConfig<SystemWebsite>>({
   moduleName: 'website',
 });
 //查询参数接口
-interface websiteQuery {}
-
+interface websiteQuery {
+  name: '';
+  url: '';
+  type: '';
+}
+// 预览模式:卡片|表格
 export const viewMode = ref<'card' | 'table'>('table');
+
 //查询参数
 export const websiteQuery = ref<IQuery<websiteQuery>>({
   pageNum: 1,
   pageSize: 10,
   total: 0,
+  name: '',
+  url: '',
+  type: '',
 });
 
 //已选中的元素数组

@@ -8,35 +8,42 @@
     @finish="submit"
   >
     <SystemModal title="生成信息编辑" v-model:visible="codeShowForm" w="95%" h="95%">
-      <div class="h-100 flex flex-col" style="overflow: hidden">
-        <div class="flex-1 p-8">
-          <a-tabs tab-position="left" class="h-100">
-            <a-tab-pane key="base-info">
-              <DatabaseInfo></DatabaseInfo>
-              <template #tab>
-                <DatabaseFilled />
-                SQL配置
-              </template>
-            </a-tab-pane>
-            <a-tab-pane key="generate-info">
-              <BackendInfo></BackendInfo>
-              <template #tab>
-                <CodeOutlined />
-                后端配置
-              </template>
-            </a-tab-pane>
+      <a-card class="card-head">
+        <a-flex :justify="'space-between'">
+          <div>生成代码配置</div>
+          <a-button type="primary" :loading="loading" htmlType="submit">保存</a-button>
+        </a-flex>
+      </a-card>
+      <a-card class="mt-12">
+        <a-flex class="h-100" style="overflow: hidden">
+          <div class="flex-1 p-8">
+            <a-tabs tab-position="left" class="h-100">
+              <a-tab-pane key="base-info">
+                <DatabaseInfo></DatabaseInfo>
+                <template #tab>
+                  <DatabaseFilled />
+                  SQL配置
+                </template>
+              </a-tab-pane>
+              <a-tab-pane key="generate-info">
+                <BackendInfo></BackendInfo>
+                <template #tab>
+                  <CodeOutlined />
+                  后端配置
+                </template>
+              </a-tab-pane>
 
-            <a-tab-pane key="field-info">
-              <FiledInfo></FiledInfo>
-              <template #tab>
-                <RobotFilled />
-                字段配置
-              </template>
-            </a-tab-pane>
-          </a-tabs>
-        </div>
-        <FormFooter :loading="loading" justify="center" />
-      </div>
+              <a-tab-pane key="field-info">
+                <FiledInfo></FiledInfo>
+                <template #tab>
+                  <RobotFilled />
+                  字段配置
+                </template>
+              </a-tab-pane>
+            </a-tabs>
+          </div>
+        </a-flex>
+      </a-card>
     </SystemModal>
   </a-form>
 </template>
@@ -59,3 +66,11 @@ const submit = async () => {
   loading.value = false;
 };
 </script>
+
+<style scoped>
+.card-head {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+</style>

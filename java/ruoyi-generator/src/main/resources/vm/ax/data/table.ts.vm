@@ -18,6 +18,11 @@ export const ${businessName}Table = ref<TableConfig<${ModuleName}${BusinessName}
 });
 //查询参数接口
 interface ${businessName}Query {
+  #foreach($column in $columns)
+  #if($column.isQuery == '1')
+  $column.javaField:#if($column.javaType == "String") "" #elseif($column.javaType == "Integer") 0 #elseif($column.javaType == "Long") 0 #elseif($column.javaType == "Double") 0.0 #elseif($column.javaType == "Boolean") false #else null #end;
+  #end
+  #end
 }
 // 预览模式:卡片|表格
 export const viewMode = ref<'card' | 'table'>('table');
@@ -27,6 +32,11 @@ export const ${businessName}Query = ref<IQuery<${businessName}Query>>({
   pageNum: 1,
   pageSize: 10,
   total: 0,
+  #foreach($column in $columns)
+  #if($column.isQuery == '1')
+  $column.javaField:#if($column.javaType == "String") "" #elseif($column.javaType == "Integer") 0 #elseif($column.javaType == "Long") 0 #elseif($column.javaType == "Double") 0.0 #elseif($column.javaType == "Boolean") false #else null #end,
+  #end
+  #end
 });
 
 //已选中的元素数组

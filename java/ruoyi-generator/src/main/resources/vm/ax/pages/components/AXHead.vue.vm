@@ -3,6 +3,37 @@
     <template #title>
       <h3 class="text-14">网页收藏</h3>
     </template>
+
+   <a-flex class="mb-12" :gap="12" wrap="wrap">
+   #foreach($column in $columns)
+   #set($dictType=$column.dictType)
+   #set($javaField=$column.javaField)
+   #if($column.isQuery == '1' && $column.htmlType == "select" && "" != $dictType)
+      <div>
+        <a-select
+          v-model:value="${businessName}Query.$column.javaField"
+          style="width: 160px"
+          placeholder="请选择$column.columnComment"
+          allow-clear
+          @blur="${businessName}List"
+          :options="${javaField}Options"
+        ></a-select>
+      </div>
+   #elseif($column.isQuery == "1")
+    <div>
+       <a-input
+         @blur="${businessName}List"
+         v-model:value="${businessName}Query.$column.javaField"
+         style="width: 160px"
+         placeholder="请输入$column.columnComment"
+         allow-clear
+       ></a-input>
+     </div>
+   #end
+   #end
+      <a-button type="primary" @click="websiteList">搜索</a-button>
+    </a-flex>
+
     <a-flex justify="space-between" :align="'center'">
         <a-flex justify="space-between" :align="'center'">
         <a-flex :align="'center'" :gap="4">
@@ -28,11 +59,8 @@
               <ReloadOutlined />
             </a-button>
           </a-tooltip>
-
-          <a-divider type="vertical" />
-          <a-input-search allow-clear @search="${businessName}List"></a-input-search>
          </a-flex>
-         
+
         </a-flex>
        <a-flex>
 
@@ -71,6 +99,16 @@
 </template>
 
 <script setup lang="ts">
+import {
+#foreach($column in $columns)
+#if($column.dictType != "")
+   #if($dictType != "")
+   ${column.javaField}OptionsFetch,
+   ${column.javaField}Options,
+   #end
+#end
+#end
+} from '../../data/options';
 import FieldVue from '@/views/components/table/Field.vue';
 import {
   AppstoreAddOutlined,
@@ -80,7 +118,15 @@ import {
 } from '@ant-design/icons-vue';
 import { ${businessName}Columns } from '../../data/column';
 import { ${businessName}Create, ${businessName}Delete, ${businessName}Edit, ${businessName}List } from '../../data/curd';
-import { viewMode, ${businessName}Keys, ${businessName}Table } from '../../data/table';
+import { viewMode, ${businessName}Keys, ${businessName}Table,${businessName}Query } from '../../data/table';
+
+onMounted( async ()=>{
+#foreach($column in $columns)
+#if($column.dictType != "")
+   await ${column.javaField}OptionsFetch();
+#end
+#end
+})
 </script>
 
 <style lang="scss" scoped></style>

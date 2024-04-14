@@ -151,6 +151,7 @@ public class VelocityUtils
         templates.add(useWebType + "/data/form.ts.vm");
         templates.add(useWebType + "/data/table.ts.vm");
         templates.add(useWebType + "/data/curd.ts.vm");
+        templates.add(useWebType + "/data/options.ts.vm");
 
         /**
          *   Vue 组件
@@ -273,6 +274,10 @@ public class VelocityUtils
         else if (template.contains("form.ts.vm"))
         {
             fileName = StringUtils.format("{}/views/modules/{}/{}/data/form.ts", vuePath, moduleName, businessName);
+        }
+        else if (template.contains("options.ts.vm"))
+        {
+            fileName = StringUtils.format("{}/views/modules/{}/{}/data/options.ts", vuePath, moduleName, businessName);
         }
         /**
          *  AX VUE组件 生成

@@ -9,7 +9,7 @@
       <!-- loading效果 -->
       <!-- 中间数据 -->
       <div class="data__content">
-        <WindTable v-if="viewMode === 'table'"></WindTable>
+        <TableVue v-if="viewMode === 'table'"></TableVue>
         <CardVue v-else></CardVue>
       </div>
       <!-- 底部分页信息 -->
@@ -26,15 +26,16 @@
 
 <script setup lang="ts">
 import { websiteList } from './data/curd';
+import { typeOptionsFetch } from './data/options';
 import { viewMode } from './data/table';
 import FooterVue from './pages/components/AXFooter.vue';
 import FormVue from './pages/components/AXForm.vue';
 import HeadVue from './pages/components/AXHead.vue';
 import CardVue from './pages/table-card/AXCard.vue';
-import WindTable from './pages/table-card/AXTable.vue';
-
-onMounted(() => {
+import TableVue from './pages/table-card/AXTable.vue';
+onMounted(async () => {
   websiteList();
+  await typeOptionsFetch();
 });
 </script>
 

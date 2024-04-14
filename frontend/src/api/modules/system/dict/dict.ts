@@ -24,5 +24,9 @@ export const createDict = (data: SystemDict) => {
 };
 
 export const selectDictData = (id: number) => {
-  return axios.get(`system/dict/type/${id}`);
+  return axios.get<Response>(`system/dict/type/${id}`);
+};
+
+export const optionSelect = () => {
+  return axios.get<Response<SystemDict[]>>(`system/dict/type/optionselect`);
 };

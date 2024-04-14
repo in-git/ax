@@ -32,7 +32,7 @@ const params = {
     stream: false,
     temperature: gpt.$state.qianFan.temperature,
     top_p: gpt.$state.qianFan.top_p,
-    token: gpt.$state.qianFan.token,
+    token: gpt.$state.qianFan.access_token,
     baseUrl: gpt.$state.qianFan.baseUrl,
   },
   tableConfig: {

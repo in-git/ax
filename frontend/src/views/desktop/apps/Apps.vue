@@ -24,7 +24,6 @@
 </template>
 
 <script setup lang="ts">
-import { getOptionsByName } from '@/api/modules/system/dict/dict.data';
 import type { Routers } from '@/api/modules/system/user/types';
 import logoPng from '@/assets/logo.png';
 import usePageStore from '@/store/page';
@@ -50,9 +49,6 @@ onMounted(async () => {
       animation: 200,
     });
   });
-  /*  */
-  const { data: dt } = await getOptionsByName('website_type');
-  console.log(dt);
 });
 const select = (item: Routers) => {
   selected.value = item.name || item.meta.title;
