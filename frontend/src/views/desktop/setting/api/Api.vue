@@ -24,11 +24,11 @@
             </a-form-item>
           </a-col>
           <a-col :span="12">
-            <div class="desc w-100 h-100 p-12">
+            <a-card class="desc w-100 h-100 p-12">
               <h3>PEXELS</h3>
               <a-divider></a-divider>
               免费的股票照片和视频，你可以在任何地方使用。浏览数以百万计的高品质免版税的股票图像和版权免费的图片。
-            </div>
+            </a-card>
           </a-col>
         </a-row>
       </a-form>
@@ -59,6 +59,5 @@ const save = () => {
 }
 .desc {
   border-radius: var(--radius);
-  background: #f5f2f3;
 }
 </style>

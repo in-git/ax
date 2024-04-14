@@ -44,7 +44,6 @@ textarea {
   outline: none;
   background: linear-gradient(transparent 95%, #585c5c4b 0);
   line-height: 26px;
-  font-size: 12px;
   background-size: 100% 26px;
   background-attachment: local; /*  这里需要根据 textarea 的内容进行滚动 */
   /* textarea样式修改 */

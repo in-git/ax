@@ -17,8 +17,6 @@ import Tool from './tool/Tool.vue';
 
 <style lang="scss" scoped>
 .toolbar {
-  $hh: 24px;
-  height: $hh;
   background: #f8f8f8;
   justify-content: space-between;
   align-items: center;

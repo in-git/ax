@@ -35,11 +35,9 @@ const activeKey = ref<'token' | 'settings'>('token');
 
 <style lang="scss" scoped>
 .qf-container {
-  background: white;
   height: 100%;
 
   .banner {
-    color: white;
     height: 200px;
     width: 100%;
     background: url('../assets/qf-bg.jpg');

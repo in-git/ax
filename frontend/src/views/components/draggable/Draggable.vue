@@ -35,7 +35,9 @@
       </a-card>
     </slot>
     <div class="drag-content">
-      <slot></slot>
+      <a-card :bordered="false" class="card__container" :bodyStyle="{ height: '100%' }">
+        <slot></slot>
+      </a-card>
     </div>
   </VueDraggable>
 </template>
@@ -105,25 +107,6 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 $hh: 36px;
-.drv {
-  border: none;
-  box-shadow:
-    0 6px 16px 0 #00000014,
-    0 3px 6px -4px #0000001f,
-    0 9px 28px 8px #0000000d;
-}
-.drv-draggable {
-  border-radius: var(--radius) !important;
-}
-.drag-header {
-  cursor: move;
-  height: $hh;
-  border-radius: 0 !important;
-}
-.drag-content {
-  height: calc(100% - $hh);
-  position: relative;
-}
 
 %icon {
   width: $hh;
@@ -134,6 +117,31 @@ $hh: 36px;
     background: #dddddd70;
   }
 }
+
+.drv {
+  border: none;
+  box-shadow:
+    0 6px 16px 0 #00000014,
+    0 3px 6px -4px #0000001f,
+    0 9px 28px 8px #0000000d;
+}
+
+.drv-draggable {
+  border-radius: var(--radius) !important;
+}
+
+.drag-header {
+  cursor: move;
+  height: $hh;
+  border-radius: 0 !important;
+  border-top-left-radius: var(--radius);
+}
+
+.drag-content {
+  height: calc(100% - $hh);
+  position: relative;
+}
+
 .close {
   @extend %icon;
   &:hover {

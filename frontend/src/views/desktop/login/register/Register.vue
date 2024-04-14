@@ -1,8 +1,11 @@
 <template>
-  <div class="form">
+  <a-card class="form card__content" :bordered="false">
     <div class="form-container p-32">
       <a-space direction="vertical" class="w-100">
-        <h1 class="mb-24 text-bold">注册</h1>
+        <a-flex class="mb-24" :gap="24">
+          <h4 @click="changeMode('login')">登录</h4>
+          <h1 class="text-bold mb-0">注册</h1>
+        </a-flex>
         <a-form
           :rules="loginRules"
           layout="vertical"
@@ -39,15 +42,13 @@
             </div>
           </a-form-item>
 
-          <a-button type="primary" html-type="submit" :loading="loginLoading" block>注册</a-button>
+          <a-button class="mt-24" type="primary" html-type="submit" :loading="loginLoading" block>
+            注册
+          </a-button>
         </a-form>
-        <a-divider>已有账号？</a-divider>
-        <div class="text-center">
-          <a-button type="link" @click="changeMode('login')">返回登录</a-button>
-        </div>
       </a-space>
     </div>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">
@@ -72,10 +73,20 @@ onMounted(() => {
   min-width: 400px;
   width: 30%;
   .form-container {
-    background: white;
-    border: 1px solid #ddd;
     height: 100%;
     width: 100%;
+  }
+  h4 {
+    font-size: 16px;
+    line-height: 44px;
+    color: #999;
+    cursor: pointer;
+  }
+  h1 {
+    line-height: 44px;
+    color: var(--primary);
+    cursor: pointer;
+    border-bottom: 2px solid var(--primary);
   }
 }
 </style>

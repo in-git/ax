@@ -1,12 +1,11 @@
 <template>
   <div class="content-head flex justify-between align-center">
     <div class="flex gc-4 align-center">
-      <a-select
+      <!-- <a-select
         v-model:value="AIStore.$state.qianFan.model"
         style="width: 160px"
         :options="modelList"
-      ></a-select>
-      <a-divider type="vertical"></a-divider>
+      ></a-select> -->
       <a-breadcrumb>
         <a-breadcrumb-item>会话列表</a-breadcrumb-item>
         <a-breadcrumb-item>

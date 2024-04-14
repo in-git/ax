@@ -3,9 +3,10 @@
     <BaseURL />
     <a-card class="mt-8 h-100" :body-style="{ height: '100%' }">
       <template #title>
-        <div class="subtitle">超时</div>
+        <div class="subtitle">其他配置</div>
       </template>
       <a-flex justify="space-between" class="mb-8">
+        <div>超时</div>
         <div>
           <a-auto-complete
             style="width: 200px"
