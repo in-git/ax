@@ -6,7 +6,7 @@
         <span class="ml-8">{{ data.length }}</span>
       </div>
     </a-card>
-    <a-card class="mt-8" :bordered="false">
+    <a-card class="mt-8">
       <ul class="flex-wrap" ref="ulRef">
         <li
           v-for="(item, key) in props.data"
@@ -18,7 +18,7 @@
           class="flex justify-between align-center"
         >
           <div class="flex gc-16 flex-1">
-            <div class="flex flex-s">
+            <a-flex justify="space-between" :align="'center'">
               <div v-if="item.meta.link" class="link h-100">
                 <img
                   ref="imageRef"
@@ -33,14 +33,14 @@
               <div v-else>
                 <img :src="folderPng" :draggable="false" />
               </div>
-            </div>
-            <div class="flex justify-between flex-1 info align-center">
+            </a-flex>
+            <a-flex justify="space-between" :align="'center'" class="flex-1 info">
               <div>
                 <div>{{ item.meta.title }}</div>
                 <div class="text-999 mt-8">路径： {{ item.path }}</div>
               </div>
               <a-button shape="round" class="open" @click="openApp(item)">打开</a-button>
-            </div>
+            </a-flex>
           </div>
         </li>
       </ul>

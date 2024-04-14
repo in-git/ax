@@ -15,24 +15,24 @@
         </div>
         <div class="flex justify-between">
           <div class="flex gc-4">
-            <a-tooltip title="Create">
+            <a-tooltip title="新建用户">
               <a-button type="primary" @click="createUser">
                 <PlusOutlined />
               </a-button>
             </a-tooltip>
 
-            <a-tooltip title="Refresh">
+            <a-tooltip title="刷新">
               <a-button @click="loadUserData">
                 <ReloadOutlined />
               </a-button>
             </a-tooltip>
-            <a-tooltip title="Edit">
+            <a-tooltip title="编辑">
               <a-button @click="editUserConfig()" :disabled="userConfig.selectedKeys.length !== 1">
                 <EditOutlined />
               </a-button>
             </a-tooltip>
 
-            <a-tooltip title="Export">
+            <a-tooltip title="导出">
               <a-button @click="exportExcel">
                 <ExportOutlined />
               </a-button>

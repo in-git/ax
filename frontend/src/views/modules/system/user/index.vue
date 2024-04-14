@@ -1,9 +1,11 @@
 <template>
-  <div class="system__module flex">
-    <Dept />
-    <UserTable />
-    <UserForm></UserForm>
-  </div>
+  <a-card class="system__module" :body-style="{ height: '100%' }">
+    <a-flex class="h-100">
+      <Dept />
+      <UserTable />
+      <UserForm></UserForm>
+    </a-flex>
+  </a-card>
 </template>
 
 <script setup lang="ts">

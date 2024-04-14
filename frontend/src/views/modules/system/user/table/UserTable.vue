@@ -1,44 +1,45 @@
 <template>
   <div class="flex-1 pt-8 px-8">
     <UserTableHead />
-    <a-table
-      class="px-12"
-      :columns="columns"
-      :dataSource="userConfig.data"
-      :loading="userConfig.loading"
-      @change="pageChange"
-      sticky
-      :row-selection="{
-        selectedRowKeys: userConfig.selectedKeys,
-        onChange,
-      }"
-      :customRow="customRow"
-      rowKey="userId"
-    >
-      <template #bodyCell="{ column, record }">
-        <template v-if="column.dataIndex === 'operation'">
-          <a-dropdown-button @click="editUserConfig(record.userId)" trigger="click">
-            <EditOutlined />
-            <template #overlay>
-              <a-menu>
-                <a-menu-item @click="delUser(record.userId)">
-                  <template #icon>
-                    <DeleteOutlined />
-                  </template>
-                  删除
-                </a-menu-item>
-                <a-menu-item @click="passwordModal = true">
-                  <template #icon>
-                    <LockOutlined />
-                  </template>
-                  修改密码
-                </a-menu-item>
-              </a-menu>
-            </template>
-          </a-dropdown-button>
+    <a-card class="mt-8">
+      <a-table
+        :columns="columns"
+        :dataSource="userConfig.data"
+        :loading="userConfig.loading"
+        @change="pageChange"
+        sticky
+        :row-selection="{
+          selectedRowKeys: userConfig.selectedKeys,
+          onChange,
+        }"
+        :customRow="customRow"
+        rowKey="userId"
+      >
+        <template #bodyCell="{ column, record }">
+          <template v-if="column.dataIndex === 'operation'">
+            <a-dropdown-button @click="editUserConfig(record.userId)" trigger="click">
+              <EditOutlined />
+              <template #overlay>
+                <a-menu>
+                  <a-menu-item @click="delUser(record.userId)">
+                    <template #icon>
+                      <DeleteOutlined />
+                    </template>
+                    删除
+                  </a-menu-item>
+                  <a-menu-item @click="passwordModal = true">
+                    <template #icon>
+                      <LockOutlined />
+                    </template>
+                    修改密码
+                  </a-menu-item>
+                </a-menu>
+              </template>
+            </a-dropdown-button>
+          </template>
         </template>
-      </template>
-    </a-table>
+      </a-table>
+    </a-card>
 
     <!--  -->
     <ChangePassword />

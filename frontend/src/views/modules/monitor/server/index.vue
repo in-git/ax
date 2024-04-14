@@ -45,6 +45,7 @@ onUnmounted(() => {
 .server {
   display: flex;
   flex-direction: column;
+  background: white;
   .modules {
     height: 100%;
     overflow-y: scroll;
