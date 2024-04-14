@@ -29,6 +29,9 @@
             </a-tooltip>
           </template>
         </a-input>
+        <div class="text-right">
+          <a-button type="link">立即获取</a-button>
+        </div>
       </a-form-item>
 
       <div class="flex flex-s">
@@ -51,23 +54,28 @@ import { getQFToken } from '@/api/modules/tool/api/api';
 import useAIStore from '@/store/AI/AI';
 import { copyText } from '@/utils/common/utils';
 import type { CopyOutlined } from '@ant-design/icons-vue';
-const form = ref({
+import localforage from 'localforage';
+interface Form {
+  ak: string;
+  sk: string;
+}
+const form = ref<Form>({
   ak: '',
   sk: '',
 });
 const AIStore = useAIStore();
 
-onMounted(() => {
-  form.value.ak = AIStore.$state.qianFan.ak;
-  form.value.sk = AIStore.$state.qianFan.sk;
+onMounted(async () => {
+  const tokenString: string = (await localforage.getItem('qf-api')) as string;
+  const api: Form = JSON.parse(tokenString);
+  form.value.ak = api.ak;
+  form.value.sk = api.sk;
 });
 
 const submit = async () => {
-  AIStore.$state.qianFan.ak = form.value.ak;
-  AIStore.$state.qianFan.sk = form.value.sk;
+  await localforage.setItem('qf-api', JSON.stringify(form.value));
   const { data } = await getQFToken(form.value.ak, form.value.sk);
   if (data.data) {
-    console.log(data.data);
     AIStore.$state.qianFan.access_token = data.data.access_token;
   }
 };

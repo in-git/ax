@@ -1,5 +1,5 @@
 <template>
-  <div class="qf-settings">
+  <div>
     <a-row :gutter="16">
       <a-col :span="16">
         <a-form :label-col="{ span: 8 }" :wrapper-col="{ span: 15, offset: 1 }" label-align="left">
