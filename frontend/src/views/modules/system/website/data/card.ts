@@ -1,6 +1,6 @@
+import type { SystemWebsite } from '@/api/modules/system/website/types';
 import { websiteColumns } from './column';
 import { websiteKeys, websiteTable } from './table';
-import type {  SystemWebsite } from '@/api/modules/system/website/types';
 
 interface CardData {
   id: number;
@@ -45,7 +45,7 @@ export const websiteCardData = computed(() => {
       });
     });
     arr.push({
-      id: e.websiteId,
+      id: e['websiteId'],
       items,
       raw: e,
     });

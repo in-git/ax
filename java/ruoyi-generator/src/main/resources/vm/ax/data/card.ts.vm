@@ -47,7 +47,7 @@ export const ${businessName}CardData = computed(() => {
     arr.push({
     #foreach($column in $columns)
     #if($column.isPk == "1")
-      id: e[$column.javaField],
+      id: e['$column.javaField'],
     #end
     #end
       items,

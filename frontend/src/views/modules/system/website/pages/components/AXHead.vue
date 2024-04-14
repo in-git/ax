@@ -4,25 +4,25 @@
       <h3 class="text-14">网页收藏</h3>
     </template>
 
-    <a-flex class="mb-12" :gap="12" wrap="wrap">
-      <div>
-        <a-input
-          @blur="websiteList"
-          v-model:value="websiteQuery.name"
-          style="width: 160px"
-          placeholder="请输入网页名称"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-input
-          @blur="websiteList"
-          v-model:value="websiteQuery.url"
-          style="width: 160px"
-          placeholder="请输入网页URL"
-          allow-clear
-        ></a-input>
-      </div>
+   <a-flex class="mb-12" :gap="12" wrap="wrap">
+    <div>
+       <a-input
+         @blur="websiteList"
+         v-model:value="websiteQuery.name"
+         style="width: 160px"
+         placeholder="请输入网页名称"
+         allow-clear
+       ></a-input>
+     </div>
+    <div>
+       <a-input
+         @blur="websiteList"
+         v-model:value="websiteQuery.url"
+         style="width: 160px"
+         placeholder="请输入网页URL"
+         allow-clear
+       ></a-input>
+     </div>
       <div>
         <a-select
           v-model:value="websiteQuery.type"
@@ -37,22 +37,23 @@
     </a-flex>
 
     <a-flex justify="space-between" :align="'center'">
-      <a-flex justify="space-between" :align="'center'">
+        <a-flex justify="space-between" :align="'center'">
         <a-flex :align="'center'" :gap="4">
-          <div v-perm="'system:website:add'">
-            <a-tooltip title="新建">
-              <a-button type="primary" @click="websiteCreate">
-                <PlusOutlined />
-              </a-button>
-            </a-tooltip>
-          </div>
 
-          <div v-perm="'system:website:edit'">
-            <a-tooltip title="编辑">
-              <a-button type="link" @click="websiteEdit()" :disabled="websiteKeys.length !== 1">
-                <EditOutlined />
-              </a-button>
+         <div v-perm="'system:website:add'">
+             <a-tooltip title="新建">
+                <a-button type="primary" @click="websiteCreate">
+                  <PlusOutlined />
+                </a-button>
             </a-tooltip>
+         </div>
+
+         <div v-perm="'system:website:edit'">
+              <a-tooltip title="编辑">
+                <a-button type="link" @click="websiteEdit()" :disabled="websiteKeys.length !== 1">
+                  <EditOutlined />
+                </a-button>
+              </a-tooltip>
           </div>
 
           <a-tooltip title="刷新">
@@ -60,22 +61,24 @@
               <ReloadOutlined />
             </a-button>
           </a-tooltip>
+         </a-flex>
+
         </a-flex>
-      </a-flex>
-      <a-flex>
-        <div v-perm="'system:website:delete'">
-          <a-popconfirm
-            title="确定要删除吗"
-            :disabled="websiteKeys.length === 0"
-            placement="bottomRight"
-            @confirm="websiteDelete()"
-          >
-            <a-tooltip title="批量删除">
-              <a-button danger type="link" :disabled="websiteKeys.length === 0">
-                <DeleteOutlined />
-              </a-button>
-            </a-tooltip>
-          </a-popconfirm>
+       <a-flex>
+
+       <div v-perm="'system:website:delete'">
+        <a-popconfirm
+          title="确定要删除吗"
+          :disabled="websiteKeys.length === 0"
+          placement="bottomRight"
+          @confirm="websiteDelete()"
+        >
+          <a-tooltip title="批量删除">
+            <a-button danger type="link" :disabled="websiteKeys.length === 0">
+              <DeleteOutlined />
+            </a-button>
+          </a-tooltip>
+        </a-popconfirm>
         </div>
 
         <FieldVue :columns="websiteColumns" :module-name="websiteTable.moduleName" />
@@ -92,12 +95,15 @@
             </a-button>
           </a-tooltip>
         </div>
-      </a-flex>
+       </a-flex>
     </a-flex>
   </a-card>
 </template>
 
 <script setup lang="ts">
+import {
+   typeOptions,
+} from '../../data/options';
 import FieldVue from '@/views/components/table/Field.vue';
 import {
   AppstoreAddOutlined,
@@ -107,12 +113,9 @@ import {
 } from '@ant-design/icons-vue';
 import { websiteColumns } from '../../data/column';
 import { websiteCreate, websiteDelete, websiteEdit, websiteList } from '../../data/curd';
-import { typeOptions, typeOptionsFetch } from '../../data/options';
-import { viewMode, websiteKeys, websiteQuery, websiteTable } from '../../data/table';
+import { viewMode, websiteKeys, websiteTable,websiteQuery } from '../../data/table';
 
-onMounted(async () => {
-  await typeOptionsFetch();
-});
+
 </script>
 
 <style lang="scss" scoped></style>

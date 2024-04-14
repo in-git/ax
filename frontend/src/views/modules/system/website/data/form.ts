@@ -24,10 +24,10 @@ export const websiteResetForm = () => {
 
 export const websiteRules: Record<string, Rule[]> = {
   websiteId: [{ required: false , trigger: 'change' }],
-  name: [{ required: true, trigger: 'change' }],
-  url: [{ required: true, trigger: 'change' }],
+  name: [{ required: false , trigger: 'change' }],
+  url: [{ required: false , trigger: 'change' }],
   createTime: [{ required: false , trigger: 'change' }],
   description: [{ required: false , trigger: 'change' }],
-  type: [{ required: true, trigger: 'change' }],
+  type: [{ required: false , trigger: 'change' }],
   updateTime: [{ required: false , trigger: 'change' }],
 };
