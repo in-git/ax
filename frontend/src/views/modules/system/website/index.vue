@@ -25,16 +25,19 @@
 </template>
 
 <script setup lang="ts">
+
 import { websiteList } from './data/curd';
-import { typeOptionsFetch } from './data/options';
 import { viewMode } from './data/table';
 import FooterVue from './pages/components/AXFooter.vue';
 import FormVue from './pages/components/AXForm.vue';
 import HeadVue from './pages/components/AXHead.vue';
 import CardVue from './pages/table-card/AXCard.vue';
 import TableVue from './pages/table-card/AXTable.vue';
-onMounted(async () => {
-  websiteList();
+ import {
+  typeOptionsFetch,
+} from './data/options';
+onMounted(async() => {
+  await websiteList();
   await typeOptionsFetch();
 });
 </script>

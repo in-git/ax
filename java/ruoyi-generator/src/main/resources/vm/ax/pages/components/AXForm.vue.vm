@@ -12,18 +12,18 @@
 #set($field=$column.javaField)
          #if($column.isInsert == '0')
          #elseif($column.isQuery == '1' && $column.htmlType == "select" && "" != $column.dictType)
-           <a-form-item label="${comment}">
+           <a-form-item label="${comment}" name="$field" >
              <a-select
-               v-model:value="${businessName}Query.$column.javaField"
+               v-model:value="${businessName}Form.$column.javaField"
                class="w-100"
                placeholder="请选择$column.columnComment"
                allow-clear
                @change="${businessName}List"
-               :options="${$column.dictType}Options"
+               :options="${column.javaField}Options"
              ></a-select>
             </a-form-item>
          #elseif($column.htmlType == "input")
-           <a-form-item label="${comment}">
+           <a-form-item label="${comment}" name="$field">
              <a-input placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}"></a-input>
            </a-form-item>
          #elseif($column.htmlType == "textarea")
@@ -95,7 +95,6 @@ import {
   create${BusinessName},
   update${BusinessName}} from
 '@/api/modules/${moduleName}/${businessName}/${businessName}';
-import { ${businessName}Query } from '../../data/table';
 
 const loading = ref(false)
 

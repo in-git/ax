@@ -1,15 +1,15 @@
 export const websiteShowForm = ref(false);
-import type { SystemWebsite } from '@/api/modules/system/website/types';
+import type {  SystemWebsite } from '@/api/modules/system/website/types';
 import type { Rule } from 'ant-design-vue/es/form/interface';
 
-const form: SystemWebsite = {
-  websiteId: 0,
-  name: '',
-  url: '',
-  createTime: null,
-  description: '',
-  type: '',
-  updateTime: null,
+const form:  SystemWebsite = {
+    websiteId: 0 ,
+    name: "" ,
+    url: "" ,
+    createTime: null ,
+    description: "" ,
+    type: "" ,
+    updateTime: null ,
 };
 
 export const websiteForm = ref<SystemWebsite>({
@@ -23,11 +23,11 @@ export const websiteResetForm = () => {
 };
 
 export const websiteRules: Record<string, Rule[]> = {
-  websiteId: [{ required: false, trigger: 'change' }],
+  websiteId: [{ required: false , trigger: 'change' }],
   name: [{ required: true, trigger: 'change' }],
-  url: [{ required: false, trigger: 'change' }],
-  createTime: [{ required: false, trigger: 'change' }],
-  description: [{ required: false, trigger: 'change' }],
-  type: [{ required: false, trigger: 'change' }],
-  updateTime: [{ required: false, trigger: 'change' }],
+  url: [{ required: true, trigger: 'change' }],
+  createTime: [{ required: false , trigger: 'change' }],
+  description: [{ required: false , trigger: 'change' }],
+  type: [{ required: true, trigger: 'change' }],
+  updateTime: [{ required: false , trigger: 'change' }],
 };
