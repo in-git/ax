@@ -14,3 +14,7 @@ export const updateDept = (data: SystemDept) => {
 export const createDept = (data: SystemDept) => {
   return axios.post(`system/dept`, data);
 };
+
+export const deleteDept = (id: number) => {
+  return axios.delete(`system/dept/${id}`);
+};

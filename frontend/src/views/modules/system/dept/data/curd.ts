@@ -1,4 +1,5 @@
-import { fetchDeptList } from '@/api/modules/system/dept/dept';
+import { deleteDept, fetchDeptList } from '@/api/modules/system/dept/dept';
+import { response } from '@/utils/table/table';
 import { deptResetForm, showDeptForm } from './form';
 import { deptKeys, deptQuery, deptTable } from './table';
 
@@ -23,7 +24,6 @@ export const deptList = async () => {
   const { data } = await fetchDeptList(deptQuery.value);
   if (data.data) {
     deptTable.value.data = convertToTree(data.data);
-
     deptQuery.value.total = data.data.length;
     deptTable.value.loading = false;
   }
@@ -38,6 +38,8 @@ export const deptCreate = async () => {
   showDeptForm.value = true;
 };
 export const deptDelete = async (id?: number) => {
-  let ids = id ? [id] : deptKeys.value;
+  let targetId = id ? [id] : deptKeys.value[0];
+  await response(deleteDept, targetId);
+  deptList();
   /* Delete ids */
 };

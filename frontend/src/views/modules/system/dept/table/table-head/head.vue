@@ -24,17 +24,15 @@
     <div class="flex">
       <a-popconfirm
         title="确定要删除吗"
+        :disabled="deptKeys.length === 0"
         placement="bottomRight"
         @confirm="deptDelete()"
-        :disabled="deptKeys.length === 0"
       >
-        <a-popconfirm title="确定要删除吗" placement="bottomRight" @confirm="deptDelete()">
-          <a-tooltip title="批量删除">
-            <a-button danger type="link" :disabled="deptKeys.length === 0">
-              <DeleteOutlined />
-            </a-button>
-          </a-tooltip>
-        </a-popconfirm>
+        <a-tooltip title="批量删除">
+          <a-button danger type="link" :disabled="deptKeys.length === 0">
+            <DeleteOutlined />
+          </a-button>
+        </a-tooltip>
       </a-popconfirm>
       <FieldVue :columns="deptColumns" :module-name="deptTable.moduleName" />
     </div>
