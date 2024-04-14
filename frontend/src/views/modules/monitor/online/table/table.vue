@@ -7,6 +7,7 @@
       v-model:query="onlineQuery"
       v-model:selected-keys="onlineKeys"
       @reload="onlineList"
+      class="mt-12"
     >
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">

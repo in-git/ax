@@ -20,5 +20,6 @@ defineProps<{
   position: sticky !important;
   top: 0px;
   z-index: 10;
+  margin-bottom: 8px;
 }
 </style>
