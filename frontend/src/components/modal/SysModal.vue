@@ -93,7 +93,7 @@ const style = computed((): CSSProperties => {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 100;
   .close-icon {
     cursor: pointer;
     width: 24px;
@@ -106,14 +106,11 @@ const style = computed((): CSSProperties => {
     border-radius: var(--radius);
     display: flex;
     flex-direction: column;
-    border: 1px solid #ddd;
   }
   .modal__content {
-    flex: 1;
     overflow-y: auto;
-    :deep(.ant-card-body) {
-      height: 100%;
-    }
+    flex: 1;
+    border-radius: 0;
   }
 }
 </style>

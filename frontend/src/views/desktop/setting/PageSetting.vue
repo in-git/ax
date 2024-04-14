@@ -1,5 +1,9 @@
 <template>
-  <a-card class="h-100 card__body" :bordered="false" :body-style="{ height: '100%', padding: '0' }">
+  <a-card
+    class="h-100 card__container"
+    :bordered="false"
+    :body-style="{ height: '100%', padding: '0' }"
+  >
     <a-flex class="settings flex h-100 w-100">
       <a-card :body-style="{ height: '100%' }">
         <a-menu v-model:selectedKeys="selectedKeys">

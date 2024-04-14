@@ -28,6 +28,7 @@ import { websiteColumns } from '../../data/column';
 import { websiteEdit } from '../../data/curd';
 import { websiteForm } from '../../data/form';
 import { websiteKeys, websiteOperationList, websiteQuery, websiteTable } from '../../data/table';
+
 const openChange = (record: SystemWebsite) => {
   websiteForm.value = record;
 };

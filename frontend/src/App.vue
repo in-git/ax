@@ -26,7 +26,7 @@
         @close="closeWindow(item.id || '')"
         :icon="item.icon"
       >
-        <a-card :bordered="false" class="card__body" :bodyStyle="{ height: '100%' }">
+        <a-card :bordered="false" class="card__container" :bodyStyle="{ height: '100%' }">
           <component :data="item.data" :id="item.id" :is="item.component"></component>
         </a-card>
       </Draggable>

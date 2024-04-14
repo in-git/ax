@@ -50,7 +50,7 @@
 
 <script setup lang="ts">
 import type { UserProfileData } from '@/api/modules/system/user/types';
-import { logoff } from '@/api/utils/auth';
+import { userLogout } from '@/api/modules/system/user/utils';
 import userCenterPng from '@/assets/system/user-center.png';
 import { openWindow } from '@/global/config/window';
 import { sexOptions } from '@/global/options/system';
@@ -85,7 +85,7 @@ const logout = async () => {
   Modal.confirm({
     title: '警告',
     async onOk() {
-      logoff();
+      userLogout();
     },
     centered: true,
     content: '将会退出登录',

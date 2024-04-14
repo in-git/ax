@@ -65,7 +65,7 @@
 </template>
 
 <script setup lang="ts">
-import { logoff } from '@/api/utils/auth';
+import { userLogout } from '@/api/modules/system/user/utils';
 import useSystemStore from '@/store/system';
 import type { URLSelection } from '@/store/system/types';
 import { useCloned } from '@vueuse/core';
@@ -117,7 +117,7 @@ const setBaseurl = (url: string) => {
     async onOk() {
       developer.$state.developer.baseURL = url;
       axios.defaults.baseURL = `${url}`;
-      await logoff();
+      await userLogout();
       window.location.reload();
     },
   });

@@ -3,6 +3,7 @@ import dragEffect from './dragEffect';
 import draggable from './draggable';
 import focus from './focus';
 import inputSelect from './input-select';
+import perm from './perm';
 
 export default {
   install(Vue: App) {
@@ -10,5 +11,6 @@ export default {
     Vue.directive('focus', focus);
     Vue.directive('dragEffect', dragEffect);
     Vue.directive('input-select', inputSelect);
+    Vue.directive('perm', perm);
   },
 };

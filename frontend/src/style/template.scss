@@ -5,10 +5,11 @@
 }
 /* 代码下载模板 */
 .system__template {
-	@extend %system__module;
+	width: 100%;
+	height: 100%;
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	border-radius: 0;
 	/* 避免出现滚动条 */
 	&::-webkit-scrollbar {
 		display: none;
@@ -18,13 +19,7 @@
 		overflow-y: auto;
 		margin-top: 8px;
 	}
-	.form__content {
-		border-radius: 0;
-		height: 100%;
-	}
-	.table__head {
-		border-radius: 0 !important;
-	}
+
 	$width: 200px;
 	.table_card_list {
 		display: grid;
@@ -58,7 +53,7 @@
 	}
 }
 
-.card__body {
+.card__container {
 	border-radius: 0;
 	height: 100%;
 	:deep(.ant-card) {

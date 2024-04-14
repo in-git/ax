@@ -1,9 +1,9 @@
 <template>
-  <div class="form__footer flex">
+  <a-card class="form__footer flex">
     <slot>
       <a-button type="primary" :loading="loading" htmlType="submit">保存</a-button>
     </slot>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">
@@ -23,15 +23,11 @@ withDefaults(
 <style lang="scss" scoped>
 .form__footer {
   position: v-bind(position);
-  bottom: 0;
   width: 100%;
   height: 48px;
-  background: #f8f8f8;
   border-top: 1px solid #ddd;
   justify-content: v-bind(justify);
   align-items: center;
-  padding: 0 12px;
-  min-height: 48px;
   z-index: 100;
 }
 </style>

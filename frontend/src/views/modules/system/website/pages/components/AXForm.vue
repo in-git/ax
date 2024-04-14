@@ -7,7 +7,7 @@
     :label-col="{ span: 4 }"
   >
     <SystemModal title="网页收藏" v-model:visible="websiteShowForm">
-      <a-card title="编辑/新增" class="form__content">
+      <a-card title="编辑/新增" class="card__container">
         <a-form-item label="网页名称">
           <a-input v-model:value="websiteForm.name"></a-input>
         </a-form-item>

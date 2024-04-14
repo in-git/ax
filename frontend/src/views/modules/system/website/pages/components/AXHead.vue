@@ -4,13 +4,16 @@
       <h3 class="text-14">网页收藏</h3>
     </template>
     <a-flex justify="space-between" :align="'center'">
-      <div class="flex justify-between">
-        <div class="flex gc-4 align-center">
-          <a-tooltip title="新建">
-            <a-button type="primary" @click="websiteCreate">
-              <PlusOutlined />
-            </a-button>
-          </a-tooltip>
+      <a-flex justify="space-between" :align="'center'">
+        <a-flex :align="'center'" :gap="4">
+          <div v-perm="'system:website:add'">
+            <a-tooltip title="新建">
+              <a-button type="primary" @click="websiteCreate">
+                <PlusOutlined />
+              </a-button>
+            </a-tooltip>
+          </div>
+
           <a-tooltip title="编辑">
             <a-button type="link" @click="websiteEdit()" :disabled="websiteKeys.length !== 1">
               <EditOutlined />
@@ -24,9 +27,10 @@
 
           <a-divider type="vertical" />
           <a-input-search allow-clear @search="websiteList"></a-input-search>
-        </div>
-      </div>
-      <div class="flex">
+        </a-flex>
+      </a-flex>
+
+      <a-flex>
         <a-popconfirm
           title="确定要删除吗"
           :disabled="websiteKeys.length === 0"
@@ -54,7 +58,7 @@
             </a-button>
           </a-tooltip>
         </div>
-      </div>
+      </a-flex>
     </a-flex>
   </a-card>
 </template>
