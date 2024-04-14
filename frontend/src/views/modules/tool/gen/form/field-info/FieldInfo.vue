@@ -6,7 +6,9 @@
       sticky
       :data-source="codeFormData.info.columns"
       :pagination="{
-        pageSize: 10,
+        pageSize: 20,
+        showLessItems: true,
+        showQuickJumper: true,
       }"
     >
       <template #bodyCell="{ column, record }">

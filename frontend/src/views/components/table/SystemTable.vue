@@ -8,6 +8,7 @@
         selectedRowKeys: selectedKeys,
         onChange,
       }"
+      v-bind="$attrs"
       :pagination="pagination"
       :customRow="customRow"
       :rowKey="table.rowKey"
@@ -42,6 +43,7 @@ import { formatColumns } from '@/utils/table/table';
 import type { TableColumnProps, TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
+
 const emit = defineEmits([
   'update:selectedKeys',
   'update:query',
@@ -49,6 +51,7 @@ const emit = defineEmits([
   'update:form',
   'dblclick',
 ]);
+
 const selectedKeys = ref();
 const props = withDefaults(
   defineProps<{

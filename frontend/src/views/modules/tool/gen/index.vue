@@ -1,8 +1,9 @@
 <template>
-  <a-card class="system__module">
+  <a-card :body-style="{ overflowY: 'hidden' }" class="system__module">
     <TableVue />
     <FormVue />
-    <DbVue></DbVue>
+    <DbVue />
+    <!--  -->
   </a-card>
 </template>
 
@@ -12,4 +13,8 @@ import FormVue from './form/form.vue';
 import TableVue from './table/table.vue';
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.system__module {
+  overflow: hidden;
+}
+</style>

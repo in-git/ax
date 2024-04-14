@@ -10,6 +10,8 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
+	overflow: hidden;
+	border-radius: 0;
 	/* 避免出现滚动条 */
 	&::-webkit-scrollbar {
 		display: none;
@@ -52,10 +54,16 @@
 		padding: 4px 12px !important;
 	}
 }
-
+.table__head {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
 .card__container {
 	border-radius: 0;
 	height: 100%;
+	position: sticky;
+	bottom: 0;
 	:deep(.ant-card) {
 		box-shadow: none;
 	}

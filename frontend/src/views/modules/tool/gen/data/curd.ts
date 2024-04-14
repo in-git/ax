@@ -21,7 +21,8 @@ export const editCode = async (id?: number) => {
   codeShowForm.value = true;
 };
 export const codeDelete = async () => {
-  await response(deleteCodeByIds, currentCode.value?.tableId);
+  let ids = currentCode.value?.tableId ? [currentCode.value?.tableId] : codeKeys.value;
+  await response(deleteCodeByIds, ids);
   codeList();
 };
 export const createCode = () => {

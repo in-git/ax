@@ -1,45 +1,68 @@
 <template>
-  <SystemTable
-    :columns="websiteColumns"
-    :table="websiteTable"
-    v-model:query="websiteQuery"
-    v-model:selected-keys="websiteKeys"
-    v-model:form="websiteForm"
-    @dblclick="onDblclick"
-  >
-    <template v-slot="{ value }">
-      <template v-if="value.column.dataIndex === 'operation'">
-        <Operation
-          :loading="websiteTable.loading"
-          @open-change="openChange(value.record as SystemWebsite)"
-          @edit="websiteEdit(value.record.websiteId)"
-          :items="websiteOperationList"
-        />
+  <a-card :style="{ boxShadow: 'none' }">
+    <a-table
+      @change="pageChange"
+      table-layout="fixed"
+      sticky
+      :row-selection="{
+        selectedRowKeys: websiteKeys,
+        onChange: (k: any[]) => (websiteKeys = k),
+      }"
+      :pagination="false"
+      :customRow="customRow"
+      :rowKey="websiteTable.rowKey"
+      :columns="formatColumns(websiteColumns)"
+      :data-source="websiteTable.data"
+    >
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.key === 'operation'">
+          <Operation
+            :loading="websiteTable.loading"
+            @open-change="openChange(record as any)"
+            @edit="websiteEdit(record.configId)"
+            :items="websiteOperationList"
+          />
+        </template>
       </template>
-    </template>
-  </SystemTable>
+    </a-table>
+  </a-card>
 </template>
 
 <script setup lang="ts">
-import type {  SystemWebsite } from '@/api/modules/system/website/types';
+import type { SystemWebsite } from '@/api/modules/system/website/types';
+import { formatColumns } from '@/utils/table/table';
 import Operation from '@/views/components/table/Operation.vue';
-import SystemTable from '@/views/components/table/SystemTable.vue';
+import type { TablePaginationConfig } from 'ant-design-vue';
+import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { websiteColumns } from '../../data/column';
 import { websiteEdit } from '../../data/curd';
 import { websiteForm } from '../../data/form';
-
-import { websiteKeys, 
-    websiteOperationList, 
-    websiteQuery, 
-    websiteTable 
-} from '../../data/table';
+import { websiteKeys, websiteOperationList, websiteQuery, websiteTable } from '../../data/table';
 
 const openChange = (record: SystemWebsite) => {
   websiteForm.value = record;
 };
 
-const onDblclick = (id: number) => {
-  websiteEdit(id);
+/* 行事件 */
+const customRow = (record: SystemWebsite) => {
+  return {
+    onClick() {
+      websiteKeys.value = [record.websiteId];
+    },
+    onDblclick() {
+      websiteEdit(record.websiteId);
+    },
+  };
+};
+
+/* 分页事件触发 */
+const pageChange = (
+  pagination: TablePaginationConfig,
+  filters: Record<string, FilterValue>,
+  sorter: SorterResult<any> | SorterResult<any>[],
+) => {
+  websiteQuery.value.pageNum = pagination.current!;
+  websiteQuery.value.pageSize = pagination.pageSize!;
 };
 </script>
 
