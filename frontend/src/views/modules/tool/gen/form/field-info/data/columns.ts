@@ -19,13 +19,13 @@ export const fieldColumns = [
   // },
 
   {
-    title: '添加',
+    title: '添加&编辑',
     dataIndex: 'isInsert',
   },
-  {
-    title: '编辑',
-    dataIndex: 'isEdit',
-  },
+  // {
+  //   title: '编辑',
+  //   dataIndex: 'isEdit',
+  // },
   {
     title: '列表',
     dataIndex: 'isList',
