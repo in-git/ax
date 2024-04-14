@@ -21,7 +21,7 @@ export const ${businessName}ResetForm = () => {
 export const ${businessName}Rules: Record<string, Rule[]> = {
 #foreach($column in $columns)
 #set($javaField=$column.javaField)
-#if($column.isInsert)
+#if($column.isInsert=="1")
   $javaField: [{ required:#if($column.required) true#else false #end, trigger: 'change' }],
 #end
 #end
