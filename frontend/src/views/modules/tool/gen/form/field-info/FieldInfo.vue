@@ -32,7 +32,7 @@
         <a-card :bordered="false" class="addition">
           <div>
             <a-row :gutter="12">
-              <a-col :span="6">
+              <a-col :span="7">
                 <a-flex>
                   <div class="label">字段描述</div>
                   <a-input
@@ -42,7 +42,7 @@
                   ></a-input>
                 </a-flex>
               </a-col>
-              <a-col :span="6">
+              <a-col :span="5">
                 <a-flex>
                   <div class="label">查询方式</div>
                   <a-select
@@ -97,7 +97,7 @@
                   ></a-input-number>
                 </a-flex>
               </a-col>
-              <a-col :span="6">
+              <a-col :span="8">
                 <a-flex>
                   <div class="label">下拉选项</div>
                   <a-select
