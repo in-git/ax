@@ -40,10 +40,24 @@ interface UploadData {
   url: string;
   formData: FormData;
 }
+/* 上传文件 */
 export const uploadFile = async (data: UploadData) => {
   const userStore = useUserStore();
   await fetch(data.url, {
     body: data.formData,
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${userStore.$state.token}`,
+    },
+  });
+};
+
+/* 上传到OSS */
+export const uploadToOss = (file: File) => {
+  const dev = useSystemStore();
+  const userStore = useUserStore();
+  fetch(`${dev.$state.developer.baseURL}/common/upload-oss`, {
+    body: file,
     method: 'POST',
     headers: {
       Authorization: `Bearer ${userStore.$state.token}`,

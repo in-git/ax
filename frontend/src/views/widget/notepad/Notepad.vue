@@ -1,10 +1,10 @@
 <template>
-  <div class="notepad system__module">
+  <a-card class="notepad system__module" :body-style="{ height: '100%' }">
     <ToolbarVue />
     <div style="height: calc(100% - 40px)">
       <textarea v-model="content" v-focus @input="onChange"></textarea>
     </div>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">

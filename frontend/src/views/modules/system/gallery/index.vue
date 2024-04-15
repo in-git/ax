@@ -25,17 +25,16 @@
 </template>
 
 <script setup lang="ts">
-
 import { galleryList } from './data/curd';
+import { galleryTypeOptionsFetch } from './data/options';
 import { viewMode } from './data/table';
 import FooterVue from './pages/components/AXFooter.vue';
 import FormVue from './pages/components/AXForm.vue';
 import HeadVue from './pages/components/AXHead.vue';
 import CardVue from './pages/table-card/AXCard.vue';
 import TableVue from './pages/table-card/AXTable.vue';
- import {
-} from './data/options';
-onMounted(async() => {
+onMounted(async () => {
+  await galleryTypeOptionsFetch();
   await galleryList();
 });
 </script>

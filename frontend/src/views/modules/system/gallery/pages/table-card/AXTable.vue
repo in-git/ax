@@ -23,6 +23,9 @@
             :items="galleryOperationList"
           />
         </template>
+        <template v-else-if="column.key === 'imageUrl'">
+          <a-image height="40px" :src="`${ossURL}${record.imageUrl}`"></a-image>
+        </template>
       </template>
     </a-table>
   </a-card>
@@ -39,6 +42,8 @@ import { galleryEdit } from '../../data/curd';
 import { galleryForm } from '../../data/form';
 import { galleryKeys, galleryOperationList, galleryQuery, galleryTable } from '../../data/table';
 
+const ossURL = `https://test-ax-oss.oss-cn-guangzhou.aliyuncs.com`;
+
 const openChange = (record: SystemGallery) => {
   galleryForm.value = record;
 };
@@ -47,8 +52,7 @@ const openChange = (record: SystemGallery) => {
 const customRow = (record: SystemGallery) => {
   return {
     onClick() {
-     galleryKeys.value = [record.galleryId];
-
+      galleryKeys.value = [record.galleryId];
     },
     onDblclick() {
       galleryEdit(record.galleryId);
