@@ -1,10 +1,13 @@
 <template>
   <Teleport to="body">
     <div class="system__module gallery flex" v-if="galleryConfig.show">
-      <div class="gallery-container flex">
+      <a-card
+        class="gallery-container"
+        :body-style="{ padding: '0', height: '100%', display: 'flex' }"
+      >
         <GalleryNav />
         <GalleryBody />
-      </div>
+      </a-card>
     </div>
   </Teleport>
 </template>
@@ -38,7 +41,6 @@ bus.on(() => {
     overflow: hidden;
     width: 800px;
     height: 600px;
-    background-color: #f5f2f3;
   }
 }
 </style>

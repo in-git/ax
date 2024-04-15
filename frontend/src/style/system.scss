@@ -28,9 +28,8 @@
 
 .system-icon {
 	@extend %icon;
-	color: #333;
 	&:hover {
-		background: white;
+		background: var(--color-primary-hover-bg);
 		color: #111;
 	}
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="gallery-head">
+  <a-card class="card__container" :bodyStyle="{ padding: '0' }">
     <div class="system__head px-12">
       <div class="flex">
         <div>
@@ -26,7 +26,7 @@
         <a-button size="small" type="primary" @click="use">使用</a-button>
       </div>
     </div>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">
@@ -55,8 +55,4 @@ const onChange = (page: number, pageSize: number) => {
 };
 </script>
 
-<style lang="scss" scoped>
-.gallery-head {
-  background-color: #f2f3f3;
-}
-</style>
+<style lang="scss" scoped></style>

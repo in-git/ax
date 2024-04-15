@@ -62,13 +62,12 @@
 }
 .card__container {
 	border-radius: 0;
-	height: 100%;
 	position: sticky;
 	bottom: 0;
-	:deep(.ant-card) {
+	&:deep(.ant-card) {
 		box-shadow: none;
 	}
-	:deep(.ant-card-body) {
+	&:deep(.ant-card-body) {
 		height: 100%;
 	}
 }

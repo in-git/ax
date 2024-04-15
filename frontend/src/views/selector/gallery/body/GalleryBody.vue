@@ -1,7 +1,7 @@
 <template>
   <div class="gallery-body flex-1">
     <GalleryHead />
-    <a-card :body-style="{ height: '100%', background: 'transparent' }">
+    <a-card class="card__container">
       <div class="list" v-if="galleryData && galleryData.length > 0">
         <div
           class="relative image-item"

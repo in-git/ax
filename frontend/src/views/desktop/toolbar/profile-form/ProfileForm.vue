@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-form system__module">
+  <a-card class="profile-form system__module">
     <div class="px-8">
       <a-tabs>
         <a-tab-pane key="info" tab="基础信息" v-if="userProfile">
@@ -101,7 +101,7 @@
         </a-tab-pane>
       </a-tabs>
     </div>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">
@@ -130,8 +130,6 @@ const headers = {
 };
 
 const refresh = () => {
-  console.log('refresh');
-
   getProfile();
 };
 const updateUserInfo = async () => {
