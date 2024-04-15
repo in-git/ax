@@ -10,6 +10,7 @@
       <a-card title="编辑/新增">
         <a-form-item label="存储位置">
           <a-radio-group
+            @change="galleryForm.imageUrl = ''"
             :options="storageOptions"
             v-model:value="galleryForm.storage"
           ></a-radio-group>

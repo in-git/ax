@@ -16,7 +16,7 @@
           </div>
           <a-image
             :alt="item.imageName"
-            :src="getGalleryImage(item.storage) + item.imageUrl"
+            :src="item.imageUrl"
             height="80px"
             :preview="false"
           ></a-image>
@@ -29,7 +29,6 @@
 
 <script setup lang="ts">
 import type { SystemGallery } from '@/api/modules/system/gallery/types';
-import { getGalleryImage } from '@/views/modules/system/gallery/data/utils';
 import { currentGallery, galleryData, getGallery } from '../data/data';
 import GalleryHead from './head/GalleryHead.vue';
 

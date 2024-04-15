@@ -1,7 +1,7 @@
 <template>
   <div class="notice flex gc-4">
     <div class="system-icon" @click="showNotice = true">
-      <a-badge :dot="dot">
+      <a-badge :dot="noticeList.length > 0">
         <BellOutlined class="icon" />
       </a-badge>
     </div>
@@ -15,7 +15,6 @@ import { BellOutlined } from '@ant-design/icons-vue';
 import { noticeList, showNotice } from '../../notice/data';
 
 const systemStore = useSystemStore();
-const dot = ref(false);
 const getSystemNotice = async () => {
   noticeList.value = [];
   const { data } = await fetchNoticeList({
@@ -27,7 +26,6 @@ const getSystemNotice = async () => {
   data.rows.forEach(e => {
     const isIncludes = systemStore.$state.readMessages.includes(e.noticeId);
     if (!isIncludes) {
-      dot.value = true;
       noticeList.value.push({
         content: e.noticeContent,
         title: e.noticeTitle,

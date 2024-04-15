@@ -11,9 +11,9 @@
         v-else
         @change="fileChange"
         accept="image/*"
-        :maxCount="1"
         :action="getAction()"
         v-model:fileList="fileList"
+        multiple
         :headers="{
           Authorization: `Bearer ${userStore.$state.token}`,
         }"
@@ -32,6 +32,7 @@ import useUserStore from '@/store/user';
 import type { UploadChangeParam } from 'ant-design-vue/es/upload/interface';
 import { galleryForm } from '../../../data/form';
 import { storageOptions } from '../../../data/options';
+import { getGalleryImage } from '../../../data/utils';
 
 const fileList = ref();
 const userStore = useUserStore();
@@ -45,9 +46,10 @@ const getAction = () => {
   return target;
 };
 const fileChange = (info: UploadChangeParam) => {
-  console.log(info.file);
   if (info.file.response) {
-    galleryForm.value.imageUrl = info.file.response.url;
+    console.log(info.file.response);
+    galleryForm.value.imageUrl =
+      getGalleryImage(galleryForm.value.storage) + info.file.response.url;
     galleryForm.value.imageName = info.file.response.originalFilename;
   }
 };

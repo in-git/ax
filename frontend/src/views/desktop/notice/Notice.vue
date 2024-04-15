@@ -33,6 +33,7 @@
         <a-empty v-else description="暂时没有收到任何通知" />
       </div>
     </a-drawer>
+    <!-- 查看通知具体内容 -->
     <a-modal @ok="viewer = false" v-model:open="viewer" centered :title="currentNotice?.title">
       <div class="content" v-html="currentNotice?.content"></div>
     </a-modal>
@@ -51,13 +52,11 @@ const view = (item: DesktopNotice) => {
   viewer.value = true;
   currentNotice.value = item;
   const systemStore = useSystemStore();
-  console.log(item.id);
-
+  noticeList.value = noticeList.value.filter(e => {
+    return e.id !== item.id;
+  });
   if (item.id) {
     systemStore.$state.readMessages.push(item.id);
-    noticeList.value = noticeList.value.filter(e => {
-      return e.id === item.id;
-    });
   }
 };
 </script>
