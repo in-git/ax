@@ -1,7 +1,7 @@
 <template>
   <div class="gallery-nav">
     <div class="p-8 px-12">分类列表</div>
-    <a-menu class="h-100" :selected-keys="['wallpaper']">
+    <a-menu class="h-100" v-model:selected-keys="galleryKeys">
       <a-menu-item
         @click="selectGalleryNav(item)"
         :key="item.type"
@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { galleryNavList, selectGalleryNav } from '../data/nav';
+import { galleryKeys, galleryNavList, selectGalleryNav } from '../data/nav';
 </script>
 
 <style lang="scss" scoped>
