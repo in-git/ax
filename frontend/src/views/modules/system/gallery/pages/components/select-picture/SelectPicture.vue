@@ -1,37 +1,49 @@
 <template>
   <div>
-    <a-tabs v-model:activeKey="galleryForm.storage">
-      <a-tab-pane key="oss" tab="OSS">
-        <a-upload-dragger
-          @change="fileChange"
-          accept="image/*"
-          class="flex-1"
-          :maxCount="1"
-          :action="`${dev.$state.developer.baseURL}common/upload-oss`"
-          :headers="{
-            Authorization: `Bearer ${userStore.$state.token}`,
-          }"
-        >
-          <p class="ant-upload-drag-icon">
-            <PlusOutlined />
-          </p>
-          <p class="ant-upload-text">上传到阿里云OSS</p>
-        </a-upload-dragger>
-      </a-tab-pane>
-      <a-tab-pane key="local" tab="服务器">本地上传</a-tab-pane>
-    </a-tabs>
+    <a-card class="mt-12">
+      <div class="uploaded" v-if="galleryForm.imageUrl">
+        <a-image class="w-100 h-100" :src="galleryForm.imageUrl"></a-image>
+        <div class="system-icon" @click="galleryForm.imageUrl = ''">
+          <CloseOutlined />
+        </div>
+      </div>
+      <a-upload-dragger
+        v-else
+        @change="fileChange"
+        accept="image/*"
+        :maxCount="1"
+        :action="getAction()"
+        v-model:fileList="fileList"
+        :headers="{
+          Authorization: `Bearer ${userStore.$state.token}`,
+        }"
+      >
+        <p class="ant-upload-drag-icon">
+          <PlusOutlined />
+        </p>
+        <p class="ant-upload-text">点击上传文件</p>
+      </a-upload-dragger>
+    </a-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import useSystemStore from '@/store/system';
 import useUserStore from '@/store/user';
 import type { UploadChangeParam } from 'ant-design-vue/es/upload/interface';
 import { galleryForm } from '../../../data/form';
+import { storageOptions } from '../../../data/options';
 
-const dev = useSystemStore();
+const fileList = ref();
 const userStore = useUserStore();
-
+const getAction = () => {
+  let target = '';
+  storageOptions.forEach(e => {
+    if (e.value === galleryForm.value.storage) {
+      target = e.action;
+    }
+  });
+  return target;
+};
 const fileChange = (info: UploadChangeParam) => {
   console.log(info.file);
   if (info.file.response) {
@@ -41,4 +53,20 @@ const fileChange = (info: UploadChangeParam) => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.uploaded {
+  height: 120px;
+  border: 1px dashed #eee;
+  overflow: hidden;
+  position: relative;
+  img {
+    border-radius: var(--radius);
+  }
+  .system-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+  }
+}
+</style>

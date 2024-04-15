@@ -131,14 +131,14 @@ xss:
 # 把下面配置直接追加到配置文件中，修改对应的值即可
 aliyunoss:
   # 地域节点
-  endpoint: oss-cn-guangzhou.aliyuncs.com
+  endpoint:
   # AccessKey
-  accessKeyId: LTAI5t8SqVFCsnUvWCaK8MEt
+  accessKeyId:
   # AccessKey 秘钥
-  accessKeySecret: Af4pXY8Sf45A0Ea0oQXSIiVxug64se
+  accessKeySecret:
   # bucket名称
-  bucketName: test-ax-oss
+  bucketName:
   # bucket下文件夹的路径
-  filehost: ax
+  filehost:
   # 访问域名
-  url: https://test-ax-oss.oss-cn-guangzhou.aliyuncs.com
+  url:

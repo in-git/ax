@@ -30,8 +30,8 @@
 </template>
 
 <script setup lang="ts">
-import { ossURL } from '@/api/utils/config';
 import { setBackground } from '@/store/page/utils';
+import { getGalleryImage } from '@/views/modules/system/gallery/data/utils';
 import { setGallery } from '../../data';
 import { currentGallery, galleryQuery, getGallery } from '../../data/data';
 import { currentGalleryNav } from '../../data/nav';
@@ -44,7 +44,10 @@ const close = () => {
 
 const use = () => {
   if (currentGallery.value) {
-    setBackground(ossURL + currentGallery.value.imageUrl, 'image');
+    setBackground(
+      getGalleryImage(currentGallery.value.storage) + currentGallery.value.imageUrl,
+      'image',
+    );
   }
 };
 

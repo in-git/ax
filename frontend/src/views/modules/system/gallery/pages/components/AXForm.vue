@@ -8,9 +8,14 @@
   >
     <SystemModal title="系统图库" v-model:visible="galleryShowForm">
       <a-card title="编辑/新增">
+        <a-form-item label="存储位置">
+          <a-radio-group
+            :options="storageOptions"
+            v-model:value="galleryForm.storage"
+          ></a-radio-group>
+        </a-form-item>
         <a-form-item label="图片URL" name="imageUrl">
           <SelectPicture />
-          <input type="text" hidden v-model="galleryForm.imageUrl" />
         </a-form-item>
 
         <a-form-item label="图片名" name="imageName">
@@ -39,7 +44,7 @@ import SystemModal from '@/components/modal/SysModal.vue';
 import { response } from '@/utils/table/table';
 import { galleryList } from '../../data/curd';
 import { galleryForm, galleryRules, galleryShowForm } from '../../data/form';
-import { galleryTypeOptions } from '../../data/options';
+import { galleryTypeOptions, storageOptions } from '../../data/options';
 import SelectPicture from './select-picture/SelectPicture.vue';
 
 const loading = ref(false);

@@ -24,7 +24,10 @@
           />
         </template>
         <template v-else-if="column.key === 'imageUrl'">
-          <a-image height="40px" :src="`${ossURL}${record.imageUrl}`"></a-image>
+          <a-image
+            height="40px"
+            :src="`${getGalleryImage(record.storage)}${record.imageUrl}`"
+          ></a-image>
         </template>
       </template>
     </a-table>
@@ -42,8 +45,7 @@ import { galleryEdit } from '../../data/curd';
 import { galleryForm } from '../../data/form';
 import { galleryKeys, galleryOperationList, galleryQuery, galleryTable } from '../../data/table';
 
-import { ossURL } from '@/api/utils/config';
-
+import { getGalleryImage } from '../../data/utils';
 const openChange = (record: SystemGallery) => {
   galleryForm.value = record;
 };
