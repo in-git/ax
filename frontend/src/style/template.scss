@@ -12,6 +12,7 @@
 	flex-direction: column;
 	overflow: hidden;
 	border-radius: 0;
+
 	/* 避免出现滚动条 */
 	&::-webkit-scrollbar {
 		display: none;

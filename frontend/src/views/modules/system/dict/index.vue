@@ -1,5 +1,5 @@
 <template>
-  <a-card class="system__module">
+  <a-card class="system__template" :body-style="{ height: '100%' }">
     <Transition
       enter-active-class="animate__animated animate__fadeInLeft"
       leave-active-class="animate__animated animate__fadeOutRight"

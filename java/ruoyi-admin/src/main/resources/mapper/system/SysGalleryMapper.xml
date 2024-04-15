@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.SysGalleryMapper">
+    
+    <resultMap type="SysGallery" id="SysGalleryResult">
+        <result property="galleryId"    column="gallery_id"    />
+        <result property="imageName"    column="image_name"    />
+        <result property="type"    column="type"    />
+        <result property="imageUrl"    column="image_url"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectSysGalleryVo">
+        select gallery_id, image_name, type, image_url, create_time, update_time from sys_gallery
+    </sql>
+
+    <select id="selectSysGalleryList" parameterType="SysGallery" resultMap="SysGalleryResult">
+        <include refid="selectSysGalleryVo"/>
+        <where>  
+            <if test="imageName != null  and imageName != ''"> and image_name like concat('%', #{imageName}, '%')</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+            <if test="imageUrl != null  and imageUrl != ''"> and image_url = #{imageUrl}</if>
+        </where>
+    </select>
+    
+    <select id="selectSysGalleryByGalleryId" parameterType="Long" resultMap="SysGalleryResult">
+        <include refid="selectSysGalleryVo"/>
+        where gallery_id = #{galleryId}
+    </select>
+        
+    <insert id="insertSysGallery" parameterType="SysGallery" useGeneratedKeys="true" keyProperty="galleryId">
+        insert into sys_gallery
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="imageName != null and imageName != ''">image_name,</if>
+            <if test="type != null and type != ''">type,</if>
+            <if test="imageUrl != null and imageUrl != ''">image_url,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="imageName != null and imageName != ''">#{imageName},</if>
+            <if test="type != null and type != ''">#{type},</if>
+            <if test="imageUrl != null and imageUrl != ''">#{imageUrl},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSysGallery" parameterType="SysGallery">
+        update sys_gallery
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="imageName != null and imageName != ''">image_name = #{imageName},</if>
+            <if test="type != null and type != ''">type = #{type},</if>
+            <if test="imageUrl != null and imageUrl != ''">image_url = #{imageUrl},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where gallery_id = #{galleryId}
+    </update>
+
+    <delete id="deleteSysGalleryByGalleryId" parameterType="Long">
+        delete from sys_gallery where gallery_id = #{galleryId}
+    </delete>
+
+    <delete id="deleteSysGalleryByGalleryIds" parameterType="String">
+        delete from sys_gallery where gallery_id in 
+        <foreach item="galleryId" collection="array" open="(" separator="," close=")">
+            #{galleryId}
+        </foreach>
+    </delete>
+</mapper>

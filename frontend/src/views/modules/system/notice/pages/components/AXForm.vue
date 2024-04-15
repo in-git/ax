@@ -7,7 +7,7 @@
     :label-col="{ span: 4, offset: 4 }"
   >
     <SystemModal title="通知公告" v-model:visible="noticeShowForm">
-      <a-card title="编辑/新增" class="form__content">
+      <a-card title="编辑/新增">
         <template #extra>
           <a-button type="primary" htmlType="submit">保存</a-button>
         </template>

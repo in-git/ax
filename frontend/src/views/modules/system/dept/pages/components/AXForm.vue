@@ -7,7 +7,7 @@
     :label-col="{ span: 4, offset: 4 }"
   >
     <SystemModal title="部门" v-model:visible="deptShowForm">
-      <a-card title="编辑/新增" class="form__content">
+      <a-card title="编辑/新增">
         <a-form-item label="父级菜单" name="parentId" v-if="deptForm.parentId !== 0">
           <a-tree-select
             allowClear

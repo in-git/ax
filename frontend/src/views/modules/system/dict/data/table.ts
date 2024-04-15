@@ -16,9 +16,11 @@ interface DictQuery {
 
 export const dictQuery = ref<IQuery<DictQuery>>({
   pageNum: 1,
-  pageSize: 15,
+  pageSize: 20,
   total: 0,
   dictName: '',
+  orderByColumn: 'dict_id',
+  isAsc: 'desc',
 });
 export const dictKeys = ref<number[]>([]);
 
