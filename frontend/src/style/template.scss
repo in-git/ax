@@ -64,9 +64,8 @@
 	border-radius: 0;
 	position: sticky;
 	bottom: 0;
-	&:deep(.ant-card) {
-		box-shadow: none;
-	}
+	box-shadow: none !important;
+
 	&:deep(.ant-card-body) {
 		height: 100%;
 	}

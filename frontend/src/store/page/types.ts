@@ -14,6 +14,7 @@ export interface DesktopBackground {
   src: string;
   brightness: number;
   blur: number;
+  grayscale: number;
 }
 export interface PageSettings {
   theme: Theme;

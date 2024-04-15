@@ -57,6 +57,7 @@ export const openContextMenu = (e: MouseEvent) => {
         onClick() {
           setGallery({
             show: true,
+            type: 'wallpaper',
           });
         },
       },

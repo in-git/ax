@@ -24,7 +24,6 @@
 
 <script setup lang="ts">
 import {
-  AimOutlined,
   BgColorsOutlined,
   DesktopOutlined,
   GlobalOutlined,
@@ -32,7 +31,6 @@ import {
 } from '@ant-design/icons-vue';
 import { nanoid } from 'nanoid';
 import AI from './ai/AI.vue';
-import ApiVue from './api/Api.vue';
 import DesktopSetting from './desktop/DesktopSetting.vue';
 import Net from './net/Net.vue';
 import ThemeVue from './theme/Theme.vue';
@@ -63,12 +61,7 @@ const nav: Nav[] = [
     id: nanoid(),
     component: markRaw(DesktopSetting),
   },
-  {
-    title: '三方接口',
-    icon: markRaw(AimOutlined),
-    id: nanoid(),
-    component: markRaw(ApiVue),
-  },
+
   {
     title: '千帆设置',
     icon: markRaw(RobotOutlined),
@@ -96,8 +89,5 @@ const selectNav = (item: Nav) => {
 }
 .content {
   overflow-y: auto;
-}
-.card {
-  border-radius: 0;
 }
 </style>

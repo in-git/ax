@@ -1,6 +1,6 @@
 <template>
   <PageContainer title="桌面配置">
-    <a-card :body-style="{ paddingTop: '0' }">
+    <a-card :body-style="{ paddingTop: '0' }" class="card__container" :bordered="false">
       <template #title>
         <div class="text-12 text-999">顶部导航</div>
       </template>
@@ -33,13 +33,13 @@
       </div>
     </a-card>
 
-    <a-card class="mt-12">
+    <a-card class="card__container" :bordered="false">
       <template #title>
         <div class="text-12 text-999">桌面配置</div>
       </template>
       <a-space class="w-100" direction="vertical">
         <div class="flex justify-between align-center">
-          <div>桌面明亮度</div>
+          <div>明亮度</div>
           <div class="flex align-center">
             <a-slider
               v-model:value="store.$state.desktop.background.brightness"
@@ -53,7 +53,7 @@
         </div>
 
         <div class="flex justify-between align-center">
-          <div>桌面模糊</div>
+          <div>模糊</div>
           <div class="flex align-center">
             <a-slider
               v-model:value="store.$state.desktop.background.blur"
@@ -61,6 +61,19 @@
               :max="12"
             ></a-slider>
             <div class="label">{{ store.$state.desktop.background.blur }}px</div>
+          </div>
+        </div>
+
+        <div class="flex justify-between align-center">
+          <div>灰度</div>
+          <div class="flex align-center">
+            <a-slider
+              v-model:value="store.$state.desktop.background.grayscale"
+              style="width: 200px"
+              :max="100"
+              :step="5"
+            ></a-slider>
+            <div class="label">{{ store.$state.desktop.background.grayscale }}%</div>
           </div>
         </div>
       </a-space>
@@ -96,6 +109,7 @@ const style = computed((): CSSProperties => {
     background-attachment: fixed;
     background-repeat: no-repeat;
     font-size: 24px;
+    // filter: grayscale()
   }
 }
 .label {

@@ -19,7 +19,9 @@ const style = computed((): CSSProperties => {
   if (pageStore.$state.desktop.background.type === 'image') {
     return {
       background: `url('${pageStore.$state.desktop.background.src || defaultBackground}')`,
-      filter: `brightness(${100 - pageStore.$state.desktop.background.brightness}%)`,
+      filter: `
+      brightness(${100 - pageStore.$state.desktop.background.brightness}%)
+      grayscale(${pageStore.$state.desktop.background.grayscale}%)`,
     };
   }
   return {};

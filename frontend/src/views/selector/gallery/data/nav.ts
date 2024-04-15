@@ -10,6 +10,7 @@ interface GalleryNav {
   type: 'wallpaper' | 'avatar' | 'sys-icon';
 }
 export const galleryKeys = ref<string[]>(['wallpaper']);
+
 export const galleryNavList: GalleryNav[] = [
   {
     title: '壁纸',

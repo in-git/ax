@@ -13,16 +13,11 @@
 </template>
 
 <script setup lang="ts">
-import { useEventBus } from '@vueuse/core';
 import GalleryBody from './body/GalleryBody.vue';
 import { galleryConfig } from './data';
 import GalleryNav from './nav/GalleryNav.vue';
-const bus = useEventBus('gallery');
-const emit = defineEmits(['update:visible']);
 
-bus.on(() => {
-  close();
-});
+
 </script>
 
 <style lang="scss" scoped>

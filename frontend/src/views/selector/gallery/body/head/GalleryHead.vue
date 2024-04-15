@@ -22,7 +22,7 @@
         />
       </div>
       <div class="flex gc-4">
-        <a-button size="small" @click="getGallery">刷新</a-button>
+        <a-button size="small" @click="getGallery" :loading="galleryLoading">刷新</a-button>
         <a-button size="small" type="primary" @click="use">使用</a-button>
       </div>
     </div>
@@ -32,7 +32,7 @@
 <script setup lang="ts">
 import { setBackground } from '@/store/page/utils';
 import { setGallery } from '../../data';
-import { currentGallery, galleryQuery, getGallery } from '../../data/data';
+import { currentGallery, galleryLoading, galleryQuery, getGallery } from '../../data/data';
 import { currentGalleryNav } from '../../data/nav';
 
 const close = () => {

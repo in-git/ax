@@ -1,7 +1,7 @@
 <template>
   <div class="gallery-body flex-1">
     <GalleryHead />
-    <a-card class="card__container">
+    <a-card class="card__container" :loading="galleryLoading">
       <div class="list" v-if="galleryData && galleryData.length > 0">
         <div
           class="relative image-item"
@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import type { SystemGallery } from '@/api/modules/system/gallery/types';
-import { currentGallery, galleryData, getGallery } from '../data/data';
+import { currentGallery, galleryData, galleryLoading, getGallery } from '../data/data';
 import GalleryHead from './head/GalleryHead.vue';
 
 const selectItem = (item: SystemGallery) => {
