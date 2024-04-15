@@ -30,6 +30,10 @@ public class SysGallery extends BaseEntity
     @Excel(name = "图片URL")
     private String imageUrl;
 
+    /** 来源 */
+    @Excel(name = "来源")
+    private String storage;
+
     public void setGalleryId(Long galleryId) 
     {
         this.galleryId = galleryId;
@@ -66,6 +70,15 @@ public class SysGallery extends BaseEntity
     {
         return imageUrl;
     }
+    public void setStorage(String storage) 
+    {
+        this.storage = storage;
+    }
+
+    public String getStorage() 
+    {
+        return storage;
+    }
 
     @Override
     public String toString() {
@@ -76,6 +89,7 @@ public class SysGallery extends BaseEntity
             .append("imageUrl", getImageUrl())
             .append("createTime", getCreateTime())
             .append("updateTime", getUpdateTime())
+            .append("storage", getStorage())
             .toString();
     }
 }

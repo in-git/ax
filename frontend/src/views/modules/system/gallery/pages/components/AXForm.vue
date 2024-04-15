@@ -9,27 +9,7 @@
     <SystemModal title="系统图库" v-model:visible="galleryShowForm">
       <a-card title="编辑/新增">
         <a-form-item label="图片URL" name="imageUrl">
-          <div>
-            <div class="image-preview flex-1" v-if="galleryForm.imageUrl">
-              <a-image :src="ossURL + galleryForm.imageUrl"></a-image>
-            </div>
-
-            <a-upload-dragger
-              @change="fileChange"
-              accept="image/*"
-              class="flex-1"
-              :maxCount="1"
-              :action="`${dev.$state.developer.baseURL}common/upload-oss`"
-              :headers="{
-                Authorization: `Bearer ${userStore.$state.token}`,
-              }"
-            >
-              <p class="ant-upload-drag-icon">
-                <inbox-outlined></inbox-outlined>
-              </p>
-              <p class="ant-upload-text">点击上传图片</p>
-            </a-upload-dragger>
-          </div>
+          <SelectPicture />
           <input type="text" hidden v-model="galleryForm.imageUrl" />
         </a-form-item>
 
@@ -55,26 +35,13 @@
 
 <script setup lang="ts">
 import { createGallery, updateGallery } from '@/api/modules/system/gallery/gallery';
-import { ossURL } from '@/api/utils/config';
 import SystemModal from '@/components/modal/SysModal.vue';
-import useSystemStore from '@/store/system';
-import useUserStore from '@/store/user';
 import { response } from '@/utils/table/table';
-import type { UploadChangeParam } from 'ant-design-vue/es/upload/interface';
 import { galleryList } from '../../data/curd';
 import { galleryForm, galleryRules, galleryShowForm } from '../../data/form';
 import { galleryTypeOptions } from '../../data/options';
+import SelectPicture from './select-picture/SelectPicture.vue';
 
-const dev = useSystemStore();
-const userStore = useUserStore();
-
-const fileChange = (info: UploadChangeParam) => {
-  console.log(info.file);
-  if (info.file.response) {
-    galleryForm.value.imageUrl = info.file.response.url;
-    galleryForm.value.imageName = info.file.response.originalFilename;
-  }
-};
 const loading = ref(false);
 
 const submit = async () => {

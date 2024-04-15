@@ -1,14 +1,15 @@
 export const galleryShowForm = ref(false);
-import type {  SystemGallery } from '@/api/modules/system/gallery/types';
+import type { SystemGallery } from '@/api/modules/system/gallery/types';
 import type { Rule } from 'ant-design-vue/es/form/interface';
 
-const form:  SystemGallery = {
-    galleryId: 0 ,
-    imageName: "" ,
-    type: "" ,
-    imageUrl: "" ,
-    createTime: null ,
-    updateTime: null ,
+const form: SystemGallery = {
+  galleryId: 0,
+  imageName: '',
+  type: '',
+  imageUrl: '',
+  createTime: null,
+  updateTime: null,
+  storage: 'local',
 };
 
 export const galleryForm = ref<SystemGallery>({
