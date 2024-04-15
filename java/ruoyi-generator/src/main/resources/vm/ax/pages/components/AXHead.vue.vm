@@ -1,7 +1,7 @@
 <template>
   <a-card class="table__head">
     <template #title>
-      <h3 class="text-14">网页收藏</h3>
+      <h3 class="text-14">${functionName}</h3>
     </template>
 
    <a-flex class="mb-12" :gap="12" wrap="wrap">
@@ -64,6 +64,14 @@
         </a-flex>
        <a-flex>
 
+       <div v-perm="'${moduleName}:${businessName}:export'">
+         <a-tooltip title="导出">
+           <a-button type="link" @click="${businessName}Export" >
+             <ExportOutlined />
+           </a-button>
+         </a-tooltip>
+       </div>
+
        <div v-perm="'${moduleName}:${businessName}:delete'">
         <a-popconfirm
           title="确定要删除吗"
@@ -114,8 +122,17 @@ import {
   type ReloadOutlined,
 } from '@ant-design/icons-vue';
 import { ${businessName}Columns } from '../../data/column';
-import { ${businessName}Create, ${businessName}Delete, ${businessName}Edit, ${businessName}List } from '../../data/curd';
-import { viewMode, ${businessName}Keys, ${businessName}Table,${businessName}Query } from '../../data/table';
+import {
+  ${businessName}Create,
+  ${businessName}Delete,
+  ${businessName}Edit,
+  ${businessName}List,
+${businessName}Export } from '../../data/curd';
+import { viewMode,
+  ${businessName}Keys,
+  ${businessName}Table,
+  ${businessName}Query
+} from '../../data/table';
 
 
 </script>

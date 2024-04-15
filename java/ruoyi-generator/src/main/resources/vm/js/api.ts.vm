@@ -21,7 +21,7 @@ export const create${BusinessName}= (data: ${ModuleName}${BusinessName}) => {
 
 // 修改${functionName}
 export const update${BusinessName} = (data: ${ModuleName}${BusinessName}) => {
-  return axios.put<Response<${ModuleName}${BusinessName}>>(`/${moduleName}/${businessName}`, data);
+  return axios.put<Response<${ModuleName}${BusinessName}>>(`${moduleName}/${businessName}`, data);
 };
 
 // 删除${functionName}
@@ -29,5 +29,13 @@ export const delete${BusinessName} = (${pkColumn.javaField}s:number[]) => {
   return axios.delete<Response<${ModuleName}${BusinessName}>>(`${moduleName}/${businessName}/${${pkColumn.javaField}s.join(',')}`);
 };
 
-
-
+// 导出${functionName}
+export const export${BusinessName} = async (page: Page) => {
+  await exportFile({
+    url: '${moduleName}/${businessName}/export',
+    data: page,
+    fileName: '${functionName}.xls',
+    method: 'POST',
+  });
+  message.success(`成功下载`);
+};

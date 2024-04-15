@@ -4,6 +4,7 @@ import {
   delete${BusinessName},
   fetch${BusinessName}ById ,
   fetch${BusinessName}List,
+  export${BusinessName}
 } from '@/api/modules/${moduleName}/${businessName}/${businessName}';
 import { response } from '@/utils/table/table';
 
@@ -36,4 +37,11 @@ export const ${businessName}Delete = async (id?: number) => {
   await response(delete${BusinessName}, ids);
   await ${businessName}List();
    ${businessName}Keys.value=[]
+};
+
+export const ${businessName}Export = () => {
+  return export${BusinessName}({
+    pageNum: ${businessName}Query.value.pageNum,
+    pageSize: ${businessName}Query.value.pageSize,
+  });
 };

@@ -1,5 +1,6 @@
 import type { IQuery, Response, TableResponse } from '@/api/config/types';
 import axios from 'axios';
+import type { SystemNotice } from './types';
 
 // 查询通知公告列表
 export const fetchNoticeList = (query: IQuery) => {

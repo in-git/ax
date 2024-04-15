@@ -1,4 +1,5 @@
 import type { IQuery, TableConfig } from '@/api/config/types';
+import type { SystemNotice } from '@/api/modules/system/notice/types';
 import { DeleteOutlined } from '@ant-design/icons-vue';
 import type { ItemType } from 'ant-design-vue';
 import { noticeDelete, noticeList } from './curd';
@@ -12,7 +13,10 @@ export const noticeTable = ref<TableConfig<SystemNotice>>({
   moduleName: 'notice',
 });
 //查询参数接口
-interface noticeQuery {}
+interface noticeQuery {
+  noticeTitle: string;
+  noticeType: string;
+}
 // 预览模式:卡片|表格
 export const viewMode = ref<'card' | 'table'>('table');
 
@@ -21,6 +25,8 @@ export const noticeQuery = ref<IQuery<noticeQuery>>({
   pageNum: 1,
   pageSize: 10,
   total: 0,
+  noticeTitle: '',
+  noticeType: '',
 });
 
 //已选中的元素数组

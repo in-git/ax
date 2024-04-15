@@ -175,7 +175,7 @@ export function downloadFile(text: string, fileName: string) {
 
   xhr.send();
 }
-export function downloadExportFile(blob: Blob, fileName: string, fileType = 'png') {
+export function downloadExportFile(blob: Blob, fileName: string) {
   const downloadElement = document.createElement('a');
   let href: any = blob;
   if (typeof blob === 'string') {
@@ -184,7 +184,7 @@ export function downloadExportFile(blob: Blob, fileName: string, fileType = 'png
     href = window.URL.createObjectURL(blob); // 创建下载的链接
   }
   downloadElement.href = href;
-  downloadElement.download = `${fileName}.${fileType}`; // 下载后文件名
+  downloadElement.download = `${fileName}`; // 下载后文件名
   document.body.appendChild(downloadElement);
   downloadElement.click(); // 触发点击下载
   document.body.removeChild(downloadElement); // 下载完成移除元素
@@ -192,6 +192,7 @@ export function downloadExportFile(blob: Blob, fileName: string, fileType = 'png
     window.URL.revokeObjectURL(href); // 释放掉blob对象
   }
 }
+
 export function downloadTextFile(fileContent: string, fileName: string): void {
   // 创建 Blob 对象
   const blob: Blob = new Blob([fileContent], {

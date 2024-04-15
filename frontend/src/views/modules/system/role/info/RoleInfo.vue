@@ -9,72 +9,79 @@
     >
       <div v-if="showRoleForm && currentRole" class="h-100 flex flex-col">
         <div class="flex-1">
-          <a-row>
-            <a-col :span="12">
-              <a-card :bordered="false">
-                <a-form-item label="身份名" name="roleName" required>
-                  <a-input v-model:value="currentRole.roleName"></a-input>
-                </a-form-item>
+          <a-card class="table__head">
+            <a-flex justify="space-between">
+              <div>身份管理</div>
+              <a-button type="primary" :loading="loading" htmlType="submit">保存</a-button>
+            </a-flex>
+          </a-card>
+          <a-card class="mt-12">
+            <a-row>
+              <a-col :span="12">
+                <a-card :bordered="false">
+                  <a-form-item label="身份名" name="roleName" required>
+                    <a-input v-model:value="currentRole.roleName"></a-input>
+                  </a-form-item>
 
-                <a-form-item label="排序" name="roleSort" required>
-                  <a-input-number
-                    class="w-100"
-                    v-model:value="currentRole.roleSort"
-                  ></a-input-number>
-                  <div class="text-12 text-999">
-                    <InfoCircleFilled />
-                    数字越小，排序靠前
-                  </div>
-                </a-form-item>
+                  <a-form-item label="排序" name="roleSort" required>
+                    <a-input-number
+                      class="w-100"
+                      v-model:value="currentRole.roleSort"
+                    ></a-input-number>
+                    <div class="text-12 text-999">
+                      <InfoCircleFilled />
+                      数字越小，排序靠前
+                    </div>
+                  </a-form-item>
 
-                <a-form-item label="身份标识" name="roleKey" required>
-                  <a-input class="w-100" v-model:value="currentRole.roleKey"></a-input>
-                </a-form-item>
+                  <a-form-item label="身份标识" name="roleKey" required>
+                    <a-input class="w-100" v-model:value="currentRole.roleKey"></a-input>
+                  </a-form-item>
 
-                <a-form-item label="身份描叙" name="remark">
-                  <a-textarea
-                    :autoSize="{ minRows: 2, maxRows: 4 }"
-                    v-model:value="currentRole.remark"
-                    placeholder="用于描述该身份的作用"
-                  ></a-textarea>
-                </a-form-item>
-                <a-form-item label="状态" required>
-                  <a-segmented
-                    :options="setOptions('启用', '禁用')"
-                    v-model:value="currentRole.status"
-                  />
-                </a-form-item>
-              </a-card>
-            </a-col>
-            <a-col :span="12">
-              <a-card class="mt-8" :bordered="false">
-                <a-form-item label="分配菜单" :label-col="{ span: 24 }">
-                  <div class="flex align-center mb-8">
-                    <span class="text-12 text-999 mr-4">父子关联</span>
-                    <a-switch v-model:checked="checkStrictly"></a-switch>
-                  </div>
-                  <a-card :body-style="{ height: '370px', overflowY: 'auto' }">
-                    <a-tree
-                      :treeData="treeData"
-                      checkable
-                      block-node
-                      :selectable="false"
-                      v-model:checked-keys="currentRole.menuIds"
-                      :fieldNames="{
-                        key: 'id',
-                        title: 'label',
-                      }"
-                      default-expand-parent
-                      :check-strictly="!checkStrictly"
-                      ref="treeRef"
-                    ></a-tree>
-                  </a-card>
-                </a-form-item>
-              </a-card>
-            </a-col>
-          </a-row>
+                  <a-form-item label="身份描叙" name="remark">
+                    <a-textarea
+                      :autoSize="{ minRows: 2, maxRows: 4 }"
+                      v-model:value="currentRole.remark"
+                      placeholder="用于描述该身份的作用"
+                    ></a-textarea>
+                  </a-form-item>
+                  <a-form-item label="状态" required>
+                    <a-segmented
+                      :options="setOptions('启用', '禁用')"
+                      v-model:value="currentRole.status"
+                    />
+                  </a-form-item>
+                </a-card>
+              </a-col>
+              <a-col :span="12">
+                <a-card class="mt-8" :bordered="false">
+                  <a-form-item label="分配菜单" :label-col="{ span: 24 }">
+                    <div class="flex align-center mb-8">
+                      <span class="text-12 text-999 mr-4">父子关联</span>
+                      <a-switch v-model:checked="checkStrictly"></a-switch>
+                    </div>
+                    <a-card :body-style="{ height: '370px', overflowY: 'auto' }">
+                      <a-tree
+                        :treeData="treeData"
+                        checkable
+                        block-node
+                        :selectable="false"
+                        v-model:checked-keys="currentRole.menuIds"
+                        :fieldNames="{
+                          key: 'id',
+                          title: 'label',
+                        }"
+                        default-expand-parent
+                        :check-strictly="!checkStrictly"
+                        ref="treeRef"
+                      ></a-tree>
+                    </a-card>
+                  </a-form-item>
+                </a-card>
+              </a-col>
+            </a-row>
+          </a-card>
         </div>
-        <FormFooter class="px-12"></FormFooter>
       </div>
     </SystemModal>
   </a-form>
@@ -83,7 +90,6 @@
 <script setup lang="ts">
 import { createRole, updateRole } from '@/api/modules/system/role/role';
 import SystemModal from '@/components/modal/SysModal.vue';
-import FormFooter from '@/components/table/form/FormFooter.vue';
 import { setOptions } from '@/global/options/system';
 import { message } from 'ant-design-vue';
 import { getRoles, resetRoleForm } from '../card/curd';
@@ -91,11 +97,13 @@ import { currentRole, roleData } from '../card/data';
 import { showRoleForm } from './data';
 
 const treeData = ref<any[]>([]);
+const loading = ref(false);
 
 const treeRef = ref();
 const checkStrictly = ref(false);
 
 const submit = async () => {
+  loading.value = true;
   if (currentRole.value) {
     let data: any = currentRole.value.menuIds;
     const halfCheckedKeys: number[] = treeRef.value.halfCheckedKeys;
@@ -121,7 +129,7 @@ const submit = async () => {
       const { data } = await createRole(currentRole.value);
       message.success(data.msg);
     }
-
+    loading.value = false;
     await getRoles();
     resetRoleForm();
     showRoleForm.value = false;

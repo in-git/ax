@@ -1,4 +1,6 @@
 import type { IQuery, Response, TableResponse } from '@/api/config/types';
+import { exportFile } from '@/api/utils/file';
+import { message } from 'ant-design-vue';
 import axios from 'axios';
 import type { SystemWebsite } from './types';
 
@@ -26,4 +28,17 @@ export const updateWebsite = (data: SystemWebsite) => {
 // 删除网页收藏
 export const deleteWebsite = (websiteIds: number[]) => {
   return axios.delete<Response<SystemWebsite>>(`system/website/${websiteIds.join(',')}`);
+};
+type Page = {
+  pageNum: number;
+  pageSize: number;
+};
+export const exportWebsite = async (page: Page) => {
+  await exportFile({
+    url: 'system/website/export',
+    data: undefined,
+    fileName: 'TEST.xls',
+    method: 'POST',
+  });
+  message.success(`成功下载`);
 };

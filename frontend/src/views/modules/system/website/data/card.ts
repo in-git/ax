@@ -1,6 +1,6 @@
+import type { SystemWebsite } from '@/api/modules/system/website/types';
 import { websiteColumns } from './column';
 import { websiteKeys, websiteTable } from './table';
-import type {  SystemWebsite } from '@/api/modules/system/website/types';
 
 interface CardData {
   id: number;

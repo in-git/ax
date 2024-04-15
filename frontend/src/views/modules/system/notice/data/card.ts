@@ -1,3 +1,4 @@
+import type { SystemNotice } from '@/api/modules/system/notice/types';
 import { noticeColumns } from './column';
 import { noticeKeys, noticeTable } from './table';
 
