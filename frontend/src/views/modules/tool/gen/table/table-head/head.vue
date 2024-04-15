@@ -3,7 +3,7 @@
     <a-flex :justify="'space-between'">
       <a-flex :justify="'center'">
         <a-flex :gap="4" :justify="'space-between'" :align="'center'">
-          <a-tooltip title="导入">
+          <a-tooltip title="导入数据库">
             <a-button @click="showDbForm = true" type="primary">
               <ImportOutlined />
               导入

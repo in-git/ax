@@ -19,6 +19,8 @@ export const codeQuery = ref<IQuery<codeQuery>>({
   pageNum: 1,
   pageSize: 10,
   total: 0,
+  orderByColumn: 'create_time',
+  isAsc: 'desc',
 });
 export const codeKeys = ref<number[]>([]);
 
