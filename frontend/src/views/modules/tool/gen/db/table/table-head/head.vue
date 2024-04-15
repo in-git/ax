@@ -1,5 +1,5 @@
 <template>
-  <a-card title="待导入的列表">
+  <a-card title="待导入的列表" class="mb-8">
     <template #extra>
       <a-button @click="importDb()" type="primary">导入</a-button>
     </template>
