@@ -18,8 +18,8 @@
         <template v-if="column.key === 'operation'">
           <Operation
             :loading="galleryTable.loading"
-            @open-change="openChange(record as any)"
-            @edit="galleryEdit(record.configId)"
+            @open-change="openChange(record as SystemGallery)"
+            @onClick="galleryEdit(record.galleryId)"
             :items="galleryOperationList"
           />
         </template>

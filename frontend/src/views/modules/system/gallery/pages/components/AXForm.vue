@@ -9,20 +9,27 @@
     <SystemModal title="系统图库" v-model:visible="galleryShowForm">
       <a-card title="编辑/新增">
         <a-form-item label="图片URL" name="imageUrl">
-          <a-upload-dragger
-            @change="fileChange"
-            accept="image/*"
-            :maxCount="1"
-            :action="`${dev.$state.developer.baseURL}common/upload-oss`"
-            :headers="{
-              Authorization: `Bearer ${userStore.$state.token}`,
-            }"
-          >
-            <p class="ant-upload-drag-icon">
-              <inbox-outlined></inbox-outlined>
-            </p>
-            <p class="ant-upload-text">点击上传图片</p>
-          </a-upload-dragger>
+          <div>
+            <div class="image-preview flex-1" v-if="galleryForm.imageUrl">
+              <a-image :src="ossURL + galleryForm.imageUrl"></a-image>
+            </div>
+
+            <a-upload-dragger
+              @change="fileChange"
+              accept="image/*"
+              class="flex-1"
+              :maxCount="1"
+              :action="`${dev.$state.developer.baseURL}common/upload-oss`"
+              :headers="{
+                Authorization: `Bearer ${userStore.$state.token}`,
+              }"
+            >
+              <p class="ant-upload-drag-icon">
+                <inbox-outlined></inbox-outlined>
+              </p>
+              <p class="ant-upload-text">点击上传图片</p>
+            </a-upload-dragger>
+          </div>
           <input type="text" hidden v-model="galleryForm.imageUrl" />
         </a-form-item>
 
@@ -48,6 +55,7 @@
 
 <script setup lang="ts">
 import { createGallery, updateGallery } from '@/api/modules/system/gallery/gallery';
+import { ossURL } from '@/api/utils/config';
 import SystemModal from '@/components/modal/SysModal.vue';
 import useSystemStore from '@/store/system';
 import useUserStore from '@/store/user';
@@ -82,4 +90,8 @@ const submit = async () => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.image-preview {
+  height: 150px;
+}
+</style>

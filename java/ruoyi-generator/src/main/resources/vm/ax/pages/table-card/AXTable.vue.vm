@@ -18,8 +18,12 @@
         <template v-if="column.key === 'operation'">
           <Operation
             :loading="${businessName}Table.loading"
-            @open-change="openChange(record as any)"
-            @edit="${businessName}Edit(record.configId)"
+            @open-change="openChange(record as ${ModuleName}${BusinessName})"
+              #foreach($column in $columns)
+              #if($column.isPk == "1")
+              @edit="${businessName}Edit(record.$column.javaField)"
+              #end
+              #end
             :items="${businessName}OperationList"
           />
         </template>
