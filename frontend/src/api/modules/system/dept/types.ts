@@ -1,11 +1,6 @@
-interface SystemDept {
-  createBy: string;
-  createTime: string;
-  updateBy?: any;
-  updateTime?: any;
-  remark?: any;
+export interface SystemDept {
   deptId: number;
-  parentId: number | undefined;
+  parentId: number;
   ancestors: string;
   deptName: string;
   orderNum: number;
@@ -14,6 +9,9 @@ interface SystemDept {
   email: string;
   status: string;
   delFlag: string;
-  parentName?: any;
-  children: any[];
+  createBy: string;
+  createTime: any;
+  updateBy: string;
+  updateTime: any;
+  children: SystemDept[];
 }

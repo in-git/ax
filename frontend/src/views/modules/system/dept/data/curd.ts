@@ -1,6 +1,7 @@
-import { deleteDept, fetchDeptList } from '@/api/modules/system/dept/dept';
+import { deleteDept, fetchDeptById, fetchDeptList } from '@/api/modules/system/dept/dept';
+import type { SystemDept } from '@/api/modules/system/dept/types';
 import { response } from '@/utils/table/table';
-import { deptResetForm, showDeptForm } from './form';
+import { deptForm, deptResetForm, deptShowForm } from './form';
 import { deptKeys, deptQuery, deptTable } from './table';
 
 function convertToTree(data: SystemDept[]): SystemDept[] {
@@ -20,26 +21,33 @@ function convertToTree(data: SystemDept[]): SystemDept[] {
 }
 export const deptList = async () => {
   deptTable.value.loading = true;
-  /* GET LIST */
   const { data } = await fetchDeptList(deptQuery.value);
   if (data.data) {
     deptTable.value.data = convertToTree(data.data);
-    deptQuery.value.total = data.data.length;
-    deptTable.value.loading = false;
+    deptQuery.value.total = data.data?.length;
   }
+  deptTable.value.loading = false;
 };
 
 export const deptEdit = async (id?: number) => {
   let targetId: number = id ? id : deptKeys.value[0];
-  showDeptForm.value = true;
+  deptTable.value.loading = true;
+  const { data } = await fetchDeptById(targetId);
+  if (data.data) {
+    deptForm.value = data.data;
+    deptShowForm.value = true;
+  }
+  deptTable.value.loading = false;
 };
+
 export const deptCreate = async () => {
   deptResetForm();
-  showDeptForm.value = true;
+  deptShowForm.value = true;
 };
+
 export const deptDelete = async (id?: number) => {
-  let targetId = id ? [id] : deptKeys.value[0];
-  await response(deleteDept, targetId);
-  deptList();
-  /* Delete ids */
+  let ids = id ? [id] : deptKeys.value;
+  await response(deleteDept, ids);
+  await deptList();
+  deptKeys.value = [];
 };
