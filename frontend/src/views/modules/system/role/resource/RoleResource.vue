@@ -7,15 +7,16 @@
       title="身份资源分配"
       @update:visible="resourceModal = false"
     >
-      <div v-if="resourceModal && !!currentRole" class="h-100 flex flex-col">
-        <a-card :bordered="false" :bodyStyle="{ minHeight: '500px', overflowY: 'auto' }">
-          <a-row>
-            <a-col :span="8" :offset="4">
-              <h2>资源分配</h2>
-              <a-divider></a-divider>
-            </a-col>
-          </a-row>
-
+      <a-card>
+        <a-flex :justify="'space-between'">
+          <div>
+            <h2>资源分配</h2>
+          </div>
+          <a-button type="primary" :loading="loading" htmlType="submit">保存</a-button>
+        </a-flex>
+      </a-card>
+      <div v-if="resourceModal && !!currentRole" class="mt-12">
+        <a-card>
           <a-form-item label="身份名" name="roleName" required>
             <a-input v-model:value="currentRole.roleName" disabled />
           </a-form-item>
@@ -56,8 +57,6 @@
             </a-spin>
           </a-form-item>
         </a-card>
-
-        <FormFooter />
       </div>
     </SystemModal>
   </a-form>
