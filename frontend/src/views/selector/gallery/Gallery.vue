@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <div class="system-module gallery flex" v-if="galleryConfig.show">
+    <div class="system__module gallery flex" v-if="galleryConfig.show">
       <div class="gallery-container flex">
         <GalleryNav />
         <GalleryBody />

@@ -9,19 +9,21 @@
       :class="[boolValue(showMask, 'model__mask', 'model__mask__none')]"
     >
       <div class="modal__container" :style="style">
-        <div class="system-head px-8 text-bold">
-          <slot name="title">{{ title }}</slot>
-          <div>
-            <slot name="extra"></slot>
-            <div class="system-icon" @click="close">
-              <CloseOutlined class="text-12" />
+        <a-card :body-style="{ padding: '8px' }" class="model__head">
+          <a-flex justify="space-between" :align="'center'">
+            <slot name="title">{{ title }}</slot>
+            <div>
+              <slot name="extra"></slot>
+              <div class="close-icon" @click="close">
+                <CloseOutlined class="text-12" />
+              </div>
             </div>
-          </div>
-        </div>
+          </a-flex>
+        </a-card>
 
-        <div class="modal__content">
+        <a-card :bordered="false" class="modal__content">
           <slot></slot>
-        </div>
+        </a-card>
         <div>
           <slot name="footer"></slot>
         </div>
@@ -74,6 +76,10 @@ const style = computed((): CSSProperties => {
     pointer-events: initial !important;
   }
 }
+.model__head {
+  border-radius: 0 !important;
+}
+
 .model__mask {
   background-color: #3333336b;
   pointer-events: initial;
@@ -82,24 +88,29 @@ const style = computed((): CSSProperties => {
   position: v-bind(position);
   width: 100%;
   height: 100%;
-
   left: 0;
   top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
-
+  z-index: 100;
+  .close-icon {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    &:hover {
+      color: var(--primary);
+    }
+  }
   .modal__container {
     border-radius: var(--radius);
-    background-color: white;
     display: flex;
     flex-direction: column;
-    border: 1px solid #ddd;
   }
   .modal__content {
-    flex: 1;
     overflow-y: auto;
+    flex: 1;
+    border-radius: 0;
   }
 }
 </style>

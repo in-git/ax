@@ -21,7 +21,7 @@ import { currentGalleryNav, galleryNavList, selectGallery } from './data';
 
 <style lang="scss" scoped>
 .gallery-nav {
-  width: 200px;
+  width: 120px;
   background-color: #f8f8f8;
   border-right: 1px solid #ddd;
   li {
@@ -29,6 +29,7 @@ import { currentGalleryNav, galleryNavList, selectGallery } from './data';
     display: flex;
     align-items: center;
     filter: grayscale(100%);
+    cursor: pointer;
     &:hover {
       background-color: #f0f0f0;
       filter: initial;

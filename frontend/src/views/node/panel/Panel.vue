@@ -1,5 +1,5 @@
 <template>
-  <div class="system-module nodejs">
+  <div class="system__module nodejs">
     <ul class="p-12.">
       <li>
         <div class="card">

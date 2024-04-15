@@ -1,5 +1,5 @@
 <template>
-  <div class="system-module"></div>
+  <div class="system__module"></div>
 </template>
 
 <script setup lang="ts"></script>

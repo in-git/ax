@@ -2,10 +2,10 @@ import { windowList } from '@/global/config/window';
 import useUserStore from '@/store/user';
 import { logout } from './user';
 
-export const userLogout = () => {
+export const userLogout = async () => {
   const userStore = useUserStore();
   userStore.$state.token = '';
   userStore.$state.userInfo = undefined;
   windowList.value = [];
-  logout();
+  await logout();
 };

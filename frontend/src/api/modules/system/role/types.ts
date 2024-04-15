@@ -16,7 +16,7 @@ export interface Role {
   flag: boolean;
   menuIds: number[];
   deptIds?: any;
-  permissions?: any;
+  permissions?: string[];
   admin: boolean;
 }
 export interface RoleDeptTreeData {

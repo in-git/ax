@@ -1,19 +1,8 @@
 :root {
-  // --green: #57cc99;
-  // --pink: #ffafcc;
-  // --blue: #00b4d8;
-  // --dark: #00131d;
-  // --purple: #c8b6ff;
-  // --orange: #fdffb6;
-  // --gray: #f5f2f3;
-  // --white: #fefbfc;
-
-  /* 主题样式 */
-  --primary: #3785fa;
   --secondary: #ece9ea;
 
   --radius: 4px;
-  --box-shadow: 0 0 5px #575757a1;
+  --box-shadow: 0 6px 16px 0 #00000014, 0 3px 6px -4px #0000001f, 0 9px 28px 8px #0000000d;
 
   /* 间距 */
   --padding: 8px;
@@ -27,4 +16,13 @@
   --subtitle: 12px;
   --desc: 12px;
   --font-size: 12px;
+
+  /* 主题样式 */
+  --primary: #3785fa;
+  /* 主题背景色 */
+  --color-primary-bg: #e6f4ff;
+  /* 鼠标hover的背景色 */
+  --color-primary-hover-bg: #bae0ff;
+  /* 通用白板背景色 */
+  --color-background: #f0f2f5;
 }

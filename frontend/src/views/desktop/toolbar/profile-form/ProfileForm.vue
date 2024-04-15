@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-form system-module">
+  <div class="profile-form system__module">
     <div class="px-8">
       <a-tabs>
         <a-tab-pane key="info" tab="基础信息" v-if="userProfile">
@@ -16,7 +16,35 @@
           >
             <a-card :bordered="false">
               <a-form-item label="用户头像">
-                <a-avatar :size="64"></a-avatar>
+                <div class="flex gc-12">
+                  <div>
+                    <a-avatar
+                      v-if="userProfile.avatar"
+                      :src="getAvatar()"
+                      alt="avatar"
+                      :size="84"
+                    />
+                  </div>
+                  <a-upload
+                    v-model:file-list="fileList"
+                    name="avatarfile"
+                    list-type="picture-card"
+                    class="avatar-uploader"
+                    :show-upload-list="false"
+                    :headers="headers"
+                    :action="`${baseURL}system/user/profile/avatar`"
+                    @change="refresh"
+                  >
+                    <div>
+                      <loading-outlined v-if="loading"></loading-outlined>
+                      <plus-outlined v-else></plus-outlined>
+                      <div>上传头像</div>
+                    </div>
+                  </a-upload>
+                </div>
+              </a-form-item>
+              <a-form-item label="用户账号" name="userName" required>
+                <a-input v-model:value="userProfile.userName" disabled></a-input>
               </a-form-item>
               <a-form-item label="用户昵称" name="nickName" required>
                 <a-input v-model:value="userProfile.nickName"></a-input>
@@ -52,18 +80,20 @@
                 <a-form-item required label="新密码" name="newPassword" class="mt-24">
                   <a-input-password
                     allow-clear
+                    placeholder="请输入新密码"
                     v-model:value.trim="passwordForm.newPassword"
                   ></a-input-password>
                 </a-form-item>
                 <a-form-item required label="旧密码" name="oldPassword">
                   <a-input-password
+                    placeholder="请输入旧密码"
                     type="password"
                     allow-clear
                     v-model:value.trim="passwordForm.oldPassword"
                   ></a-input-password>
                 </a-form-item>
                 <a-button block :loading="loading" html-type="submit" type="primary" class="mt-12">
-                  Submit
+                  提交
                 </a-button>
               </a-form>
             </a-col>
@@ -77,15 +107,33 @@
 <script setup lang="ts">
 import { updatePassword, updateProfile } from '@/api/modules/system/user/user';
 import { sexOptions } from '@/global/options/system';
+import useSystemStore from '@/store/system';
+import useUserStore from '@/store/user';
+import { getAvatar } from '@/store/user/utils';
 import { message, Modal } from 'ant-design-vue';
-import { userProfile } from '../profile/data';
+import { getProfile, userProfile } from '../profile/data';
 import authPng from './auth.png';
 
+const fileList = ref([]);
 const loading = ref(false);
 const passwordForm = ref({
   oldPassword: '',
   newPassword: '',
 });
+
+const userStore = useUserStore();
+const page = useSystemStore();
+const baseURL = page.$state.developer.baseURL;
+// + `system/user/profile/avatar`
+const headers = {
+  Authorization: `Bearer ${userStore.$state.token}`,
+};
+
+const refresh = () => {
+  console.log('refresh');
+
+  getProfile();
+};
 const updateUserInfo = async () => {
   loading.value = true;
   if (!userProfile.value) return;
@@ -106,9 +154,8 @@ const resetPassword = async () => {
   );
   message.success(data.msg);
   Modal.confirm({
-    title: 'Warning',
+    title: '警告',
     content: '是否刷新页面',
-
     onOk() {
       window.location.reload();
     },
@@ -116,4 +163,8 @@ const resetPassword = async () => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+::v-deep(.ant-card) {
+  box-shadow: none !important;
+}
+</style>

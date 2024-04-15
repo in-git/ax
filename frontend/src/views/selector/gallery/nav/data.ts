@@ -9,6 +9,9 @@ interface GalleryNav {
   icon: string;
   component: any;
   id: string;
+  params: {
+    size: string;
+  };
 }
 export const galleryNavList: GalleryNav[] = [
   {
@@ -16,18 +19,28 @@ export const galleryNavList: GalleryNav[] = [
     icon: wallpaperPng,
     component: markRaw(WallpaperVue),
     id: 'wallpaper',
+
+    params: {
+      size: '1920,1080',
+    },
   },
   {
     title: '头像',
     icon: avatarPng,
     component: markRaw(WallpaperVue),
     id: 'avatar',
+    params: {
+      size: '64,64',
+    },
   },
   {
     title: '图标',
     icon: iconPng,
     component: markRaw(WallpaperVue),
     id: 'icon',
+    params: {
+      size: '32,32',
+    },
   },
 ];
 

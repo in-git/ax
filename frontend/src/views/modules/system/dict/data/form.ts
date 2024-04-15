@@ -7,7 +7,7 @@ const form: SystemDict = {
   dictId: 0,
   dictName: '',
   dictType: '',
-  status: '',
+  status: '0',
 };
 
 export const dictForm = ref<SystemDict>({

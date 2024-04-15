@@ -1,5 +1,5 @@
 <template>
-  <div class="system-module server" ref="serverRef">
+  <div class="system__module server" ref="serverRef">
     <Loading v-if="serverLoading"></Loading>
     <div v-else class="modules">
       <CpuVue />
@@ -45,6 +45,7 @@ onUnmounted(() => {
 .server {
   display: flex;
   flex-direction: column;
+  background: white;
   .modules {
     height: 100%;
     overflow-y: scroll;

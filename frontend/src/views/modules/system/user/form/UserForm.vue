@@ -16,51 +16,57 @@
       @update:visible="showUserForm = false"
     >
       <div class="flex-1 p-8 h-100 flex flex-col">
+        <a-card class="mb-8">
+          <a-flex justify="space-between">
+            编辑用户信息
+            <div>
+              <a-button type="primary" :loading="loading" htmlType="submit">保存</a-button>
+            </div>
+          </a-flex>
+        </a-card>
         <a-row :gutter="12" class="flex-1">
           <a-col :span="12">
             <a-card title="基础信息">
-              <a-form-item label="Nickname" name="nickName" required>
+              <a-form-item label="昵称" name="nickName" required>
+                <a-input v-model:value="userForm.nickName" focused placeholder="请输入昵称" />
+              </a-form-item>
+              <a-form-item label="账号" name="userName" required>
                 <a-input
-                  v-model:value="userForm.nickName"
-                  focused
-                  placeholder="Please enter nickname"
+                  :disabled="false"
+                  v-model:value="userForm.userName"
+                  placeholder="请输入账号"
                 />
               </a-form-item>
-              <a-form-item label="Username" name="userName" required>
-                <a-input v-model:value="userForm.userName" placeholder="Please enter username" />
-              </a-form-item>
               <template v-if="!userForm.userId">
-                <a-form-item label="Password" name="password" required>
+                <!-- name="password" -->
+                <a-form-item label="密码" required>
                   <a-input
                     type="password"
                     v-model:value="userForm.password"
-                    placeholder="Please enter password"
+                    placeholder="请输入密码"
                   />
                 </a-form-item>
               </template>
 
-              <a-form-item label="Phone" name="phonenumber" required :rules="{ len: 11 }">
+              <a-form-item label="手机号码" name="phonenumber" :rules="{ len: 11 }">
                 <a-input
                   :maxlength="11"
                   v-model:value="userForm.phonenumber"
-                  placeholder="Please enter phone number"
+                  placeholder="请输入手机号码"
                 />
               </a-form-item>
-              <a-form-item label="Email" name="email" required>
-                <a-input
-                  v-model:value="userForm.email"
-                  type="email"
-                  placeholder="Please enter email"
-                />
+              <a-form-item label="邮箱" name="email">
+                <a-input v-model:value="userForm.email" type="email" placeholder="请输入邮箱" />
               </a-form-item>
-              <a-form-item label="Sex" name="sex" required>
+              <a-form-item label="性别" name="sex">
                 <a-radio-group v-model:value="userForm.sex" :options="sexOptions" />
               </a-form-item>
-              <a-form-item label="Status" name="status" required>
+              <a-form-item label="状态" name="status">
                 <a-radio-group v-model:value="userForm.status" :options="statusOptions" />
               </a-form-item>
-              <a-form-item label="Remark" name="remark">
+              <a-form-item label="备注" name="remark">
                 <a-textarea
+                  placeholder="请输入备注信息"
                   :auto-size="{ minRows: 2, maxRows: 6 }"
                   v-model:value="userForm.remark"
                 ></a-textarea>
@@ -71,7 +77,6 @@
             <RightVue></RightVue>
           </a-col>
         </a-row>
-        <FormFooter></FormFooter>
       </div>
     </SystemModal>
   </a-form>
@@ -82,9 +87,13 @@ import { createUser, updateUser } from '@/api/modules/system/user/user';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { sexOptions, statusOptions } from '@/global/options/system';
 import { message } from 'ant-design-vue';
-import { showUserForm, userForm } from './data';
+import { loadUserData } from '../data/curd';
+import { showUserForm, userForm } from '../data/form';
 import RightVue from './right/Right.vue';
+
+const loading = ref(false);
 const submit = async () => {
+  loading.value = true;
   let result = '';
   if (!userForm.value.userId) {
     const { data } = await createUser(userForm.value);
@@ -93,8 +102,10 @@ const submit = async () => {
     const { data } = await updateUser(userForm.value);
     result = data.msg;
   }
+  loading.value = false;
   message.success(result);
   showUserForm.value = false;
+  loadUserData();
 };
 </script>
 
@@ -107,3 +118,4 @@ const submit = async () => {
   height: 100%;
 }
 </style>
+../data/curd ./form

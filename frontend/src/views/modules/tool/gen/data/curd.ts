@@ -13,16 +13,18 @@ export const codeList = async () => {
 };
 
 export const editCode = async (id?: number) => {
+  codeTable.value.loading = true;
   let targetId = id ? id : codeKeys.value[0];
   const { data } = await fetchCodeById(targetId);
   if (data.data) codeFormData.value = data.data;
+  codeTable.value.loading = false;
   codeShowForm.value = true;
 };
 export const codeDelete = async () => {
-  await response(deleteCodeByIds, currentCode.value?.tableId);
+  let ids = currentCode.value?.tableId ? [currentCode.value?.tableId] : codeKeys.value;
+  await response(deleteCodeByIds, ids);
   codeList();
 };
-export const codeUpdate = async (id: number) => {};
 export const createCode = () => {
   codeShowForm.value = true;
 };

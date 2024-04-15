@@ -1,44 +1,32 @@
 <template>
-  <div class="flex-1 pt-8 px-8">
+  <div class="flex-1">
     <UserTableHead />
-    <a-table
-      class="px-12"
-      :columns="columns"
-      :dataSource="userConfig.data"
-      :loading="userConfig.loading"
-      @change="pageChange"
-      sticky
-      :row-selection="{
-        selectedRowKeys: userConfig.selectedKeys,
-        onChange,
-      }"
-      :customRow="customRow"
-      rowKey="userId"
-    >
-      <template #bodyCell="{ column, record }">
-        <template v-if="column.dataIndex === 'operation'">
-          <a-dropdown-button @click="editUserConfig(record.userId)" trigger="click">
-            <EditOutlined />
-            <template #overlay>
-              <a-menu>
-                <a-menu-item @click="delUser(record.userId)">
-                  <template #icon>
-                    <DeleteOutlined />
-                  </template>
-                  Delete
-                </a-menu-item>
-                <a-menu-item @click="passwordModal = true">
-                  <template #icon>
-                    <LockOutlined />
-                  </template>
-                  Change password
-                </a-menu-item>
-              </a-menu>
-            </template>
-          </a-dropdown-button>
+    <a-card class="mt-8">
+      <a-table
+        :columns="formatColumns(userColumns)"
+        :dataSource="userConfig.data"
+        :loading="userConfig.loading"
+        @change="pageChange"
+        sticky
+        :row-selection="{
+          selectedRowKeys: userConfig.selectedKeys,
+          onChange,
+        }"
+        :customRow="customRow"
+        rowKey="userId"
+      >
+        <template #bodyCell="{ column, record }">
+          <template v-if="column.dataIndex === 'operation'">
+            <Operation
+              :loading="userConfig.loading"
+              @open-change="openChange(record as UserProfileData)"
+              @edit="editUserConfig(record.noticeId)"
+              :items="userOperationList"
+            />
+          </template>
         </template>
-      </template>
-    </a-table>
+      </a-table>
+    </a-card>
 
     <!--  -->
     <ChangePassword />
@@ -46,19 +34,23 @@
 </template>
 
 <script setup lang="ts">
-import type { SystemMenu } from '@/api/modules/system/menu/types';
 import type { UserProfileData } from '@/api/modules/system/user/types';
-import { DeleteOutlined } from '@ant-design/icons-vue';
+import { formatColumns } from '@/utils/table/table';
+import Operation from '@/views/components/table/Operation.vue';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
+import userColumns from '../data/columns';
+import { editUserConfig, loadUserData } from '../data/curd';
+import { userConfig, userQuery } from '../data/data';
+import { userForm } from '../data/form';
+import { userOperationList } from '../data/table';
 import ChangePassword from './change-password/ChangePassword.vue';
-import { passwordModal } from './change-password/data';
-import userColumns from './columns';
-import { delUser, editUserConfig, loadUserData } from './curd';
-import { userConfig, userQuery } from './data';
 import UserTableHead from './UserTableHead.vue';
 
+const openChange = (record: UserProfileData) => {
+  userForm.value = record;
+};
 onMounted(() => {
   loadUserData();
 });
@@ -76,7 +68,7 @@ const customRow = (record: UserProfileData) => {
 const pageChange = (
   pagination: TablePaginationConfig,
   filters: Record<string, FilterValue>,
-  sorter: SorterResult<SystemMenu> | SorterResult<SystemMenu>[],
+  sorter: SorterResult<UserProfileData> | SorterResult<UserProfileData>[],
 ) => {
   userQuery.value.pageNum = pagination.current || 0;
   userQuery.value.pageSize = pagination.pageSize || 0;
@@ -87,11 +79,6 @@ const pageChange = (
     userQuery.value.orderByColumn = `${sorter.columnKey}`;
   }
 };
-const columns = userColumns.map(e => {
-  e.ellipsis = true;
-  e.key = `${e.dataIndex}`;
-  return e;
-});
 </script>
 
 <style lang="scss" scoped></style>

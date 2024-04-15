@@ -1,6 +1,6 @@
 <template>
   <div class="menu-head mb-4">
-    <a-card>
+    <a-card :bordered="false">
       <h3>菜单管理</h3>
       <div class="mt-12 flex align-center justify-between">
         <div class="flex gc-4">

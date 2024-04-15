@@ -1,8 +1,8 @@
 <template>
-  <div class="system-module flex flex-col">
+  <a-card class="system__module flex flex-col">
     <LoginHead />
     <LoginInfoCard />
-  </div>
+  </a-card>
 </template>
 
 <script setup>

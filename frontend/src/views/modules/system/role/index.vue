@@ -1,5 +1,5 @@
 <template>
-  <div class="role system-module flex">
+  <div class="role system__module flex">
     <RoleCard />
     <RoleInfo />
     <RoleResource />

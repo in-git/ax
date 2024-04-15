@@ -7,7 +7,7 @@
   <div class="flex justify-between px-12 mb-12">
     <div class="flex justify-between">
       <div class="flex gc-4 align-center">
-        <a-tooltip title="新建">
+        <a-tooltip title="新建" @click="createDictData">
           <a-button type="primary">
             <PlusOutlined />
           </a-button>
@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { editDictConfig } from '../../../data/form';
-import { dictDataDelete, dictDataEdit, listDictData } from '../../data/curd';
+import { createDictData, dictDataDelete, dictDataEdit, listDictData } from '../../data/curd';
 import { dictDataKeys } from '../../data/table';
 </script>
 

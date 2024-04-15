@@ -1,6 +1,6 @@
 <template>
   <ConfigProvider
-    :theme="theme"
+    :theme="localTheme"
     :locale="locale"
     :componentSize="store.$state.theme.size"
     :direction="store.$state.theme.direction"
@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import { closeWindow, windowList } from '@/global/config/window';
 import Gallery from '@/views/selector/gallery/Gallery.vue';
-import { ConfigProvider } from 'ant-design-vue';
+import { ConfigProvider, theme } from 'ant-design-vue';
 import zh_CN from 'ant-design-vue/es/locale/zh_CN';
 import {
   loadGoogleFont,
@@ -55,8 +55,9 @@ import Draggable from './views/components/draggable/Draggable.vue';
 import Desktop from './views/desktop/Desktop.vue';
 
 const locale = ref(zh_CN);
-
+const { compactAlgorithm, darkAlgorithm, defaultAlgorithm } = theme;
 const store = usePageStore();
+
 /* 初始化请求 */
 setAxios();
 /*  */
@@ -73,13 +74,21 @@ nextTick(async () => {
   /* 设置主题变量 */
   setCssVar();
 });
-const theme = computed(() => {
+
+const localTheme = computed(() => {
+  let algorithm = store.$state.theme.algorithm;
+  let map = {
+    dark: darkAlgorithm,
+    compact: compactAlgorithm,
+    default: defaultAlgorithm,
+  };
   return {
     token: {
       colorPrimary: store.$state.theme.theme,
       borderRadius: store.$state.theme.borderRadius,
       fontSize: store.$state.theme.fontSize,
     },
+    algorithm: map[algorithm],
   };
 });
 </script>

@@ -1,6 +1,6 @@
 import { deleteJob, fetchJobList, jobInfo } from '@/api/modules/monitor/job/job';
 import { getOptionsByName } from '@/api/modules/system/dict/dict.data';
-import { dictToOptions, response } from '@/utils/table/table';
+import { dictDataToOptions, response } from '@/utils/table/table';
 import { jobForm, jobShowForm, resetJobForm } from './form';
 import { jobGroupOptions } from './options';
 import { jobKeys, jobQuery, jobTable } from './table';
@@ -35,6 +35,6 @@ export const jobDelete = async (id?: number) => {
 export const getDict = async () => {
   const { data } = await getOptionsByName('sys_job_group');
   if (data.data) {
-    jobGroupOptions.value = dictToOptions(data.data);
+    jobGroupOptions.value = dictDataToOptions(data.data);
   }
 };

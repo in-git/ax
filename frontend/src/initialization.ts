@@ -1,6 +1,7 @@
 import { useCssVar } from '@vueuse/core';
 import axios from 'axios';
 import usePageStore from './store/page';
+import useSystemStore from './store/system';
 
 const images = import.meta.glob('./assets/system/*.*');
 let modules = import.meta.glob('./views/modules/**/index.vue');
@@ -44,7 +45,7 @@ export const loadGoogleFont = () => {
 
 /* 设置请求 */
 export const setAxios = () => {
-  const store = usePageStore();
+  const store = useSystemStore();
   /*  */
   axios.defaults.baseURL = store.$state.developer.baseURL;
   axios.defaults.timeout = store.$state.developer.timeout * 1000;

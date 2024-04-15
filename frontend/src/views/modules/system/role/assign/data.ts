@@ -6,7 +6,8 @@ import {
   unallocatedList,
 } from '@/api/modules/system/role/role';
 import type { UserProfileData } from '@/api/modules/system/user/types';
-import { Modal, message } from 'ant-design-vue';
+import { response } from '@/utils/table/table';
+import { Modal } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
 import { currentRole } from '../card/data';
 
@@ -16,7 +17,7 @@ export const allocateUsers = async () => {
   if (currentRole.value) {
     loading.value = true;
     userQuery.value.roleId = currentRole.value.roleId;
-    const { data } = await allocatedList(userQuery.value);
+    const { data } = await unallocatedList(userQuery.value);
     userData.value.data = data.rows;
     userQuery.value.total = data.total;
     loading.value = false;
@@ -31,7 +32,8 @@ export const allocateUsers = async () => {
 export const unassignUsers = async () => {
   if (!currentRole.value) return;
   userQuery.value.roleId = currentRole.value.roleId;
-  const { data } = await unallocatedList(userQuery.value);
+  const { data } = await allocatedList(userQuery.value);
+
   allocateUserModal.value = true;
   userData.value.data = data.rows;
   userQuery.value.total = data.total;
@@ -68,20 +70,25 @@ export const modeConfig = ref({
   title: '',
   mode: '',
 });
-export const assign = (userId: number) => {
+export const assign = async (userId?: number) => {
+  if (!currentRole.value) return;
+  let ids = userId ? [userId] : userData.value.selectedKeys;
+  await response(assignAuthUser, currentRole.value.roleId, [ids]);
+  await allocateUsers();
+  userData.value.selectedKeys = [];
+};
+
+export const unassign = async (userId?: number) => {
+  let ids = userId ? [userId] : userData.value.selectedKeys;
   Modal.confirm({
-    title: 'Warning',
+    title: '警告',
     content: '该操作可能影响系统运行',
     async onOk() {
       if (!currentRole.value) return;
-      const { data } = await authUserCancel(currentRole.value.roleId, userId);
-      message.success(data);
+      await authUserCancel(currentRole.value.roleId, ids);
+      await unassignUsers();
+      userData.value.selectedKeys = [];
     },
     centered: true,
   });
-};
-export const unassign = async (userId: number) => {
-  if (!currentRole.value) return;
-  const { data } = await assignAuthUser(currentRole.value.roleId, userId);
-  message.success(data);
 };

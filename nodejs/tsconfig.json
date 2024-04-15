@@ -1,19 +1,12 @@
 {
-  "include": [
-    "./src/**/*.ts",
-    "./express.d.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
+  "include": ["./src/**/*.ts", "./express.d.ts"],
+  "exclude": ["node_modules", "./src/assets/**.ts"],
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"]
     },
-    "types": [
-      "node",
-    ],
+    "types": ["node"],
     "target": "ESNext",
     "module": "commonjs",
     "allowArbitraryExtensions": true,

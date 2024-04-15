@@ -1,25 +1,39 @@
-import type { SystemConfig } from '@/api/modules/system/config/types';
+export const configShowForm = ref(false);
+import type {  SystemConfig } from '@/api/modules/system/config/types';
+import type { Rule } from 'ant-design-vue/es/form/interface';
 
-export const showConfigForm = ref(false);
-
-const form: SystemConfig = {
-  createBy: '',
-  createTime: '',
-  updateBy: '',
-  remark: '',
-  configId: 0,
-  configName: '',
-  configKey: '',
-  configValue: '',
-  configType: 'Y',
+const form:  SystemConfig = {
+    configId: 0 ,
+    configName: "" ,
+    configKey: "" ,
+    configValue: "" ,
+    configType: "" ,
+    createBy: "" ,
+    createTime: null ,
+    updateBy: "" ,
+    updateTime: null ,
+    remark: "" ,
 };
 
 export const configForm = ref<SystemConfig>({
   ...form,
 });
 
-export const resetConfigForm = () => {
+export const configResetForm = () => {
   configForm.value = {
     ...form,
   };
+};
+
+export const configRules: Record<string, Rule[]> = {
+  configId: [{ required: false , trigger: 'change' }],
+  configName: [{ required: true, trigger: 'change' }],
+  configKey: [{ required: true, trigger: 'change' }],
+  configValue: [{ required: true, trigger: 'change' }],
+  configType: [{ required: false , trigger: 'change' }],
+  createBy: [{ required: false , trigger: 'change' }],
+  createTime: [{ required: false , trigger: 'change' }],
+  updateBy: [{ required: false , trigger: 'change' }],
+  updateTime: [{ required: false , trigger: 'change' }],
+  remark: [{ required: false , trigger: 'change' }],
 };

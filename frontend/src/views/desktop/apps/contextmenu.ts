@@ -3,13 +3,12 @@ import { minWindow } from '@/global/config/window';
 import { setContextMenu } from '@/views/components/contextmenu/data';
 import { setGallery } from '@/views/selector/gallery/data';
 import {
-  AppstoreOutlined,
   BgColorsOutlined,
   DesktopOutlined,
   FolderFilled,
   ReloadOutlined,
 } from '@ant-design/icons-vue';
-import { getUserRouters, openApp } from './data';
+import { openApp } from './data';
 
 export const appContextMenu = (item: Routers) => {
   const e = window.event as MouseEvent;
@@ -37,23 +36,15 @@ export const openContextMenu = (e: MouseEvent) => {
     items: [
       {
         label: '刷新页面',
-        key: 'refreshPage',
+        key: '1',
         icon: h(ReloadOutlined),
         onClick() {
           window.location.reload();
         },
       },
       {
-        label: '刷新菜单',
-        key: 'refreshPage',
-        icon: h(AppstoreOutlined),
-        onClick() {
-          getUserRouters();
-        },
-      },
-      {
         label: '显示桌面',
-        key: 'refreshPage',
+        key: '3',
         icon: h(DesktopOutlined),
         onClick() {
           minWindow();
@@ -61,7 +52,7 @@ export const openContextMenu = (e: MouseEvent) => {
       },
       {
         label: '选择壁纸',
-        key: 'refreshPage',
+        key: '4',
         icon: h(BgColorsOutlined),
         onClick() {
           setGallery({

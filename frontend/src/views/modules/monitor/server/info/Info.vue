@@ -26,7 +26,7 @@ nextTick(() => {
 启动时间:${serverInfo.value.jvm.startTime}`,
   );
 
-  useIntersectionObserver(target, ([{ isIntersecting }], observerElement) => {
+  useIntersectionObserver(target, ([{ isIntersecting }]) => {
     targetIsVisible.value = isIntersecting;
     if (isIntersecting) {
       clearFlag = setInterval(() => {

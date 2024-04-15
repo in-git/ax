@@ -1,25 +1,19 @@
 import type { ColumnProps } from '@/types/system';
-import { message, Modal } from 'ant-design-vue';
-
-export const confirm = (onOk: any) => {
-  Modal.confirm({
-    title: '警告',
-    content: '该操作可能影响系统运行',
-    onOk,
-    centered: true,
-  });
-};
+import { message } from 'ant-design-vue';
 
 export const response = async (request: (...arg: any) => any, ...arg: any) => {
-  const { data } = await request(...arg);
-
-  if (!data) {
-    return;
-  }
-  if (data.code === 200) {
-    message.success(data.msg);
-  } else {
-    message.warning(data.msg);
+  try {
+    const { data } = await request(...arg);
+    if (!data) {
+      return;
+    }
+    if (data.code === 200) {
+      message.success(data.msg);
+    } else {
+      message.warning(data.msg);
+    }
+  } catch (error) {
+    console.info(error);
   }
 };
 
@@ -46,11 +40,22 @@ export const formatColumns = (data: ColumnProps[]) => {
     return e;
   });
 };
-export const dictToOptions = (dict: SystemDictData[]) => {
+
+/* 字典数据转下拉框数据 */
+export const dictDataToOptions = (dict: SystemDictData[]) => {
   return dict.map(e => {
     return {
       label: e.dictLabel,
       value: e.dictValue,
+    };
+  });
+};
+/* 字典数据转下拉框数据 */
+export const dictToOptions = (dict: SystemDict[]) => {
+  return dict.map(e => {
+    return {
+      label: e.dictName,
+      value: e.dictType,
     };
   });
 };

@@ -1,8 +1,8 @@
 <template>
-  <div class="system-module">
+  <a-card class="system__module">
     <TableVue></TableVue>
     <FormVue></FormVue>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">

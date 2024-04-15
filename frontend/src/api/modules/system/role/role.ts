@@ -57,15 +57,10 @@ export const unallocatedList = (query: IQuery) => {
   });
 };
 
-export const authUserCancel = (roleId: number, userId: number) => {
-  return axios.put(`system/role/authUser/cancel`, {
-    roleId,
-    userId,
-  });
+export const authUserCancel = (roleId: number, userIds: number[]) => {
+  return axios.put(`system/role/authUser/cancelAll?roleId=${roleId}&userIds=${userIds.join(',')}`);
 };
-export const assignAuthUser = (roleId: number, userId: number) => {
-  return axios.put(`system/role/authUser/selectAll`, {
-    roleId,
-    userId,
-  });
+
+export const assignAuthUser = (roleId: number, userIds: number[]) => {
+  return axios.put(`system/role/authUser/selectAll?roleId=${roleId}&userIds=${userIds.join(',')}`);
 };

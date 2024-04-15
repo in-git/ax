@@ -1,27 +1,24 @@
-export const dictDataShowForm = ref(false);
+import { dictForm } from '../../data/form';
 
+export const dictDataShowForm = ref(false);
 const form: SystemDictData = {
-  createBy: '',
-  createTime: '',
   remark: '',
-  dictCode: 0,
-  dictSort: 0,
   dictLabel: '',
   dictValue: '',
   dictType: '',
   cssClass: '',
   listClass: '',
-  isDefault: '',
-  status: '',
-  default: false,
+  isDefault: '0',
+  status: '0',
 };
 
 export const dictDataForm = ref<SystemDictData>({
   ...form,
 });
 
-export const dictDataResetForm = () => {
+export const resetDictDataForm = () => {
   dictDataForm.value = {
     ...form,
+    dictType: dictForm.value.dictType,
   };
 };

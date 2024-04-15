@@ -10,11 +10,14 @@
           <a-card :loading="loading" :bordered="false" :body-style="{ padding: '0' }">
             <div v-if="!!userProfile">
               <div class="flex align-center gc-12">
-                <a-avatar :imageSrc="userProfile.avatar"></a-avatar>
+                <a-avatar :src="getAvatar()"></a-avatar>
                 {{ userProfile.userName }}
               </div>
               <a-divider class="my-12"></a-divider>
               <a-descriptions :column="1" size="small">
+                <a-descriptions-item label="用户账号">
+                  {{ userProfile.userName }}
+                </a-descriptions-item>
                 <a-descriptions-item label="用户昵称">
                   {{ userProfile.nickName }}
                 </a-descriptions-item>
@@ -24,9 +27,13 @@
                 <a-descriptions-item label="用户性别">
                   {{ getLabel(sexOptions, userProfile.sex) }}
                 </a-descriptions-item>
-                <a-descriptions-item label="用户角色">{{ userData.roleGroup }}</a-descriptions-item>
+                <a-descriptions-item label="用户角色">
+                  <a-tag v-for="(item, key) in userData?.roles" :key="key">
+                    {{ item.roleName }}
+                  </a-tag>
+                </a-descriptions-item>
                 <a-descriptions-item label="用户部门">
-                  {{ userData.postGroup }}
+                  {{ userData?.dept?.deptName }}
                 </a-descriptions-item>
               </a-descriptions>
               <a-divider class="my-12"></a-divider>
@@ -42,17 +49,19 @@
 </template>
 
 <script setup lang="ts">
-import { logoff } from '@/api/utils/auth';
+import type { UserProfileData } from '@/api/modules/system/user/types';
+import { userLogout } from '@/api/modules/system/user/utils';
 import userCenterPng from '@/assets/system/user-center.png';
 import { openWindow } from '@/global/config/window';
 import { sexOptions } from '@/global/options/system';
+import { getAvatar } from '@/store/user/utils';
 import { getLabel } from '@/utils/common/utils';
 import { Modal } from 'ant-design-vue';
 import ProFileForm from '../profile-form/ProfileForm.vue';
 import { getProfile, userProfile } from './data';
 
 const popoverVisible = ref(false);
-const userData = ref();
+const userData = ref<UserProfileData>();
 const loading = ref(false);
 
 onMounted(async () => {
@@ -68,6 +77,7 @@ const editProfile = () => {
     id: 'user-center',
     icon: userCenterPng,
   });
+  popoverVisible.value = false;
 };
 
 const logout = async () => {
@@ -75,7 +85,7 @@ const logout = async () => {
   Modal.confirm({
     title: '警告',
     async onOk() {
-      logoff();
+      userLogout();
     },
     centered: true,
     content: '将会退出登录',
@@ -87,7 +97,7 @@ const logout = async () => {
 .profile {
   width: 200px;
 }
-::v-deep(.ant-card) {
-  box-shadow: none;
+::v-deep(.ant-card-body) {
+  box-shadow: none !important;
 }
 </style>

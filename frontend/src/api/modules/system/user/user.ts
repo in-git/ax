@@ -1,4 +1,5 @@
 import type { IQuery, Response, TableResponse } from '@/api/config/types';
+import { uploadFile } from '@/api/utils/file';
 import axios from 'axios';
 import type {
   CaptchaResponse,
@@ -13,6 +14,10 @@ import type {
 
 export const login = (data: LoginParams) => {
   return axios.post<LoginResponse>('/login', data);
+};
+
+export const register = (data: LoginParams) => {
+  return axios.post<LoginResponse>('/register', data);
 };
 
 export const logout = () => {
@@ -45,9 +50,11 @@ export const updatePassword = (newPassword: string, oldPassword: string) => {
     `/system/user/profile/updatePwd?oldPassword=${oldPassword}&newPassword=${newPassword}`,
   );
 };
+/* 获取用户部门列表 */
 export const deptTree = () => {
   return axios.get<Response<UserDept[]>>(`system/user/deptTree`);
 };
+
 export const userList = (query: IQuery) => {
   return axios.get<TableResponse<UserProfileData>>(`system/user/list`, {
     params: query,
@@ -76,4 +83,13 @@ export const updateUser = (data: UserProfileData) => {
 
 export const resetPwd = (password: string, userId: number) => {
   return axios.put<Response>(`system/user/resetPwd`, { password, userId });
+};
+
+export const setUserAvatar = (file: File) => {
+  const formData = new FormData();
+  formData.append('avatarfile', file);
+  return uploadFile({
+    url: '',
+    formData,
+  });
 };

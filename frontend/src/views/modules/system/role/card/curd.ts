@@ -26,15 +26,18 @@ export const getDeptTree = async (id: number) => {
     currentRole.value.deptIds = data.checkedKeys;
   }
 };
+
 export const getRoles = async () => {
   roleSpinning.value = true;
   const { data } = await roleList(roleQuery.value);
   roleData.value.data = data.rows;
   roleSpinning.value = false;
 };
+
 export const delRoles = () => {
   Modal.confirm({
-    centered: true,
+    title: '警告',
+    content: '该操作可能影响系统运行',
     async onOk() {
       if (currentRole.value && currentRole.value.roleId) {
         const { data } = await delRole(currentRole.value?.roleId);
@@ -42,10 +45,10 @@ export const delRoles = () => {
         message.success(data.msg);
       }
     },
-    title: 'Warning',
-    content: 'This could have an impact on your system',
+    centered: true,
   });
 };
+
 export const resetRoleForm = () => {
   currentRole.value = {
     ...roleObject,

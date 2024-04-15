@@ -54,9 +54,9 @@ export type FormEvent = {
   errors: Record<string, any> | undefined;
 };
 
-export interface TableConfig {
+export interface TableConfig<T = {}> {
   rowKey: string;
-  data: any[];
+  data: T[];
   loading: boolean;
   /* 模块名，用于存储表头，必须唯一 */
   moduleName: string;

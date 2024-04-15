@@ -30,7 +30,7 @@
           </a-form-item>
           <a-row>
             <a-col :span="8" :offset="9">
-              <a-button type="primary" htmlType="submit" block>提交</a-button>
+              <a-button :loading="loading" type="primary" htmlType="submit" block>提交</a-button>
             </a-col>
           </a-row>
         </div>
@@ -45,14 +45,19 @@ import SystemModal from '@/components/modal/SysModal.vue';
 import { statusOptions } from '@/global/options/system';
 import { response } from '@/utils/table/table';
 import TeamWork from '../assets/TeamWork.png';
+import { dictList } from '../data/curd';
 import { dictForm, showDictForm } from '../data/form';
 
+const loading = ref(false);
 const submit = async () => {
+  loading.value = true;
   if (dictForm.value.dictId) {
     await response(updateDict, dictForm.value);
   } else {
     await response(createDict, dictForm.value);
   }
+  loading.value = false;
+  await dictList();
   showDictForm.value = false;
 };
 </script>

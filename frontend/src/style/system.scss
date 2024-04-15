@@ -1,26 +1,19 @@
-.system-head {
+.system__head {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	height: 42px;
 	border-bottom: 1px solid #ddd;
 }
-.system-footer {
-	position: sticky;
-	bottom: 0;
-	background: white;
-	width: 100%;
-	z-index: 100;
-	padding: 8px 0;
-	border-top: 1px solid #ddd;
-}
-.system-module {
-	width: 100%;
+/* 系统模块，当时用窗口时，使用该通用css */
+
+.system__module {
+	border-radius: 0 !important;
 	height: 100%;
-	background: #f7fafc;
 	position: relative;
 	overflow: auto;
 }
+
 %icon {
 	height: 32px;
 	padding: 0 8px;
@@ -32,6 +25,7 @@
 	font-size: 16px;
 	border-radius: var(--radius);
 }
+
 .system-icon {
 	@extend %icon;
 	color: #333;
@@ -50,45 +44,6 @@
 	}
 }
 
-.system-form {
-	display: flex;
-	flex-direction: column;
-	position: relative;
-	flex: 1;
-}
-.system-form-head {
-	@extend .system-head;
-	position: sticky;
-	z-index: 100;
-	background: white;
-	height: 48px;
-	line-height: 48px;
-	top: 0;
-	border-bottom: 1px solid #ddd;
-	padding: 0 12px;
-}
-.system-form-modal {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: #64636391;
-	left: 0;
-	top: 0;
-	z-index: 100;
-	.modal-container {
-		width: 90%;
-		height: 90%;
-		background: white;
-		border-radius: var(--radius);
-	}
-	.form {
-		height: 510px;
-		overflow-y: auto;
-	}
-}
 .system-close {
 	&:hover {
 		background-color: #fc3333;

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a-form-item label="Username" required name="username">
-      <a-input v-model:value="loginForm.username" allow-clear placeholder="Please enter username">
+    <a-form-item label="账号" required name="username">
+      <a-input v-model:value="loginForm.username" allow-clear placeholder="请输入用户名">
         <template #suffix>
           <a-popover
             trigger="click"

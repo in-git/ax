@@ -1,0 +1,140 @@
+<template>
+  <a-card class="table__head">
+    <template #title>
+      <h3 class="text-14">${functionName}</h3>
+    </template>
+
+   <a-flex class="mb-12" :gap="12" wrap="wrap">
+   #foreach($column in $columns)
+   #set($dictType=$column.dictType)
+   #set($javaField=$column.javaField)
+   #if($column.isQuery == '1' && $column.htmlType == "select" && "" != $dictType)
+      <div>
+        <a-select
+          v-model:value="${businessName}Query.$column.javaField"
+          style="width: 160px"
+          placeholder="请选择$column.columnComment"
+          allow-clear
+          @blur="${businessName}List"
+          :options="${javaField}Options"
+        ></a-select>
+      </div>
+   #elseif($column.isQuery == "1")
+    <div>
+       <a-input
+         @blur="${businessName}List"
+         v-model:value="${businessName}Query.$column.javaField"
+         style="width: 160px"
+         placeholder="请输入$column.columnComment"
+         allow-clear
+       ></a-input>
+     </div>
+   #end
+   #end
+      <a-button type="primary" @click="${businessName}List">搜索</a-button>
+    </a-flex>
+
+    <a-flex justify="space-between" :align="'center'">
+        <a-flex justify="space-between" :align="'center'">
+        <a-flex :align="'center'" :gap="4">
+
+         <div v-perm="'${moduleName}:${businessName}:add'">
+             <a-tooltip title="新建">
+                <a-button type="primary" @click="${businessName}Create">
+                  <PlusOutlined />
+                </a-button>
+            </a-tooltip>
+         </div>
+
+         <div v-perm="'${moduleName}:${businessName}:edit'">
+              <a-tooltip title="编辑">
+                <a-button type="link" @click="${businessName}Edit()" :disabled="${businessName}Keys.length !== 1">
+                  <EditOutlined />
+                </a-button>
+              </a-tooltip>
+          </div>
+
+          <a-tooltip title="刷新">
+            <a-button type="link" @click="${businessName}List">
+              <ReloadOutlined />
+            </a-button>
+          </a-tooltip>
+         </a-flex>
+
+        </a-flex>
+       <a-flex>
+
+       <div v-perm="'${moduleName}:${businessName}:export'">
+         <a-tooltip title="导出">
+           <a-button type="link" @click="${businessName}Export" >
+             <ExportOutlined />
+           </a-button>
+         </a-tooltip>
+       </div>
+
+       <div v-perm="'${moduleName}:${businessName}:delete'">
+        <a-popconfirm
+          title="确定要删除吗"
+          :disabled="${businessName}Keys.length === 0"
+          placement="bottomRight"
+          @confirm="${businessName}Delete()"
+        >
+          <a-tooltip title="批量删除">
+            <a-button danger type="link" :disabled="${businessName}Keys.length === 0">
+              <DeleteOutlined />
+            </a-button>
+          </a-tooltip>
+        </a-popconfirm>
+        </div>
+
+        <FieldVue :columns="${businessName}Columns" :module-name="${businessName}Table.moduleName" />
+        <div>
+          <a-tooltip title="卡片模式" @click="viewMode = 'card'" v-if="viewMode === 'table'">
+            <a-button type="link">
+              <OrderedListOutlined />
+            </a-button>
+          </a-tooltip>
+
+          <a-tooltip title="表格模式" @click="viewMode = 'table'" v-else>
+            <a-button type="link">
+              <AppstoreAddOutlined />
+            </a-button>
+          </a-tooltip>
+        </div>
+       </a-flex>
+    </a-flex>
+  </a-card>
+</template>
+
+<script setup lang="ts">
+import {
+#foreach($column in $columns)
+#if($column.dictType != "")
+   ${column.javaField}Options,
+#end
+#end
+} from '../../data/options';
+import FieldVue from '@/views/components/table/Field.vue';
+import {
+  AppstoreAddOutlined,
+  OrderedListOutlined,
+  type DeleteOutlined,
+  type ReloadOutlined,
+} from '@ant-design/icons-vue';
+import { ${businessName}Columns } from '../../data/column';
+import {
+  ${businessName}Create,
+  ${businessName}Delete,
+  ${businessName}Edit,
+  ${businessName}List,
+${businessName}Export } from '../../data/curd';
+import { viewMode,
+  ${businessName}Keys,
+  ${businessName}Table,
+  ${businessName}Query
+} from '../../data/table';
+
+
+</script>
+
+<style lang="scss" scoped></style>

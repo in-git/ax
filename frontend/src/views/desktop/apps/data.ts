@@ -7,10 +7,17 @@ import { openWindow, setCurrentWindow } from '@/global/config/window';
 import { systemComponents } from '@/initialization';
 import { openLink } from '@/utils/common/utils';
 import FolderVue from '@/views/selector/folder/Folder.vue';
+
 export const appLoading = ref(false);
+
+export const userRouters = ref<Routers[]>([]);
 export const getUserRouters = async () => {
   appLoading.value = true;
   const { data } = await getRouters();
+
+  if (data.data) {
+    userRouters.value = data.data;
+  }
   appLoading.value = false;
   return data.data || [];
 };
@@ -32,7 +39,7 @@ export const getIconByName = (item: Routers) => {
 };
 
 export const openApp = (item: Routers) => {
-  console.log(item.component);
+  console.log(item);
 
   if (item.children && item.children.length > 0) {
     openWindow({
@@ -45,6 +52,9 @@ export const openApp = (item: Routers) => {
   } else if (item.meta.link) {
     openLink(item.meta.link);
   } else {
+    if (item.path === '/') {
+      return;
+    }
     systemComponents.value.forEach(e => {
       if (e.path.includes(item.path)) {
         openWindow({
@@ -56,6 +66,5 @@ export const openApp = (item: Routers) => {
       }
     });
   }
-
   setCurrentWindow(item.name);
 };

@@ -1,23 +1,34 @@
-import type { SystemPost } from '@/api/modules/system/post/types';
+export const postShowForm = ref(false);
+import type {  SystemPost } from '@/api/modules/system/post/types';
+import type { Rule } from 'ant-design-vue/es/form/interface';
 
-export const showPostForm = ref(false);
-
-let form: SystemPost = {
-  createBy: '',
-  createTime: '',
-  remark: '',
-  postId: 0,
-  postCode: '',
-  postName: '',
-  postSort: 0,
-  status: '0',
-  flag: false,
+const form:  SystemPost = {
+    postId: 0 ,
+    postCode: "" ,
+    postName: "" ,
+    postSort: 0 ,
+    status: "" ,
+    createBy: "" ,
+    createTime: null ,
+    updateBy: "" ,
+    updateTime: null ,
+    remark: "" ,
 };
+
 export const postForm = ref<SystemPost>({
   ...form,
 });
-export const resetPostForm = () => {
+
+export const postResetForm = () => {
   postForm.value = {
     ...form,
   };
+};
+
+export const postRules: Record<string, Rule[]> = {
+  postCode: [{ required: true, trigger: 'change' }],
+  postName: [{ required: true, trigger: 'change' }],
+  postSort: [{ required: true, trigger: 'change' }],
+  status: [{ required: true, trigger: 'change' }],
+  remark: [{ required: false , trigger: 'change' }],
 };

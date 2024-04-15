@@ -1,7 +1,5 @@
 package com.ruoyi.framework.web.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import com.ruoyi.common.constant.CacheConstants;
 import com.ruoyi.common.constant.Constants;
 import com.ruoyi.common.constant.UserConstants;
@@ -15,8 +13,12 @@ import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.framework.manager.AsyncManager;
 import com.ruoyi.framework.manager.factory.AsyncFactory;
+import com.ruoyi.system.mapper.SysUserMapper;
 import com.ruoyi.system.service.ISysConfigService;
 import com.ruoyi.system.service.ISysUserService;
+import com.ruoyi.system.service.impl.SysUserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * 注册校验方法
@@ -34,6 +36,18 @@ public class SysRegisterService
 
     @Autowired
     private RedisCache redisCache;
+    @Autowired
+    private SysUserMapper userMapper;
+
+    @Autowired
+    SysUserServiceImpl userRoleService;
+
+    public void assignRoles(SysUser user)
+    {
+        //   默认注册的用户是访客角色
+        userRoleService.insertUserRole(userMapper.selectUserByUserName(user.getUserName()).getUserId(),new Long[]{100L});
+
+    }
 
     /**
      * 注册
@@ -84,6 +98,7 @@ public class SysRegisterService
             }
             else
             {
+                assignRoles(sysUser);
                 AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.REGISTER, MessageUtils.message("user.register.success")));
             }
         }

@@ -1,97 +1,71 @@
 <template>
   <div>
     <a-card title="权限分配">
-      <a-tabs>
-        <a-tab-pane key="role" tab="Role">
-          <a-card :body-style="{ padding: 0 }" :bordered="false">
-            <a-form-item :wrapper-col="{ span: 24 }" required name="roleIds">
-              <div class="right-list">
-                <ul v-if="userRoles.length > 0">
-                  <li
-                    v-for="(item, key) in userRoles"
-                    :key="key"
-                    :class="{ active: userForm.roleIds.includes(item.roleId) }"
-                    @click="selectRole(item)"
-                  >
-                    <img :src="rolePng" width="32" />
-                    <div class="text-12 title">
-                      {{ item.roleName }}
-                    </div>
-                    <div class="checked" v-if="userForm.roleIds.includes(item.roleId)">
-                      <CheckCircleFilled style="color: #19a119" />
-                    </div>
-                  </li>
-                </ul>
-                <a-empty v-else></a-empty>
-              </div>
-            </a-form-item>
-          </a-card>
-        </a-tab-pane>
-        <a-tab-pane key="post" tab="Post">
-          <a-card :body-style="{ padding: 0 }" :bordered="false">
-            <a-form-item :wrapper-col="{ span: 24 }" required name="postIds">
-              <div class="right-list post">
-                <ul v-if="userPosts.length > 0">
-                  <li
-                    v-for="(item, key) in userPosts"
-                    :key="key"
-                    :class="{ active: userForm.postIds.includes(item.postId) }"
-                    @click="selectPost(item)"
-                  >
-                    <img :src="deptPng" width="32" />
-                    <div class="text-12 title">
-                      {{ item.postName }}
-                    </div>
-                    <div class="checked" v-if="userForm.postIds.includes(item.postId)">
-                      <CheckOutlined style="color: #19a119" />
-                    </div>
-                  </li>
-                </ul>
+      <a-space class="w-100" direction="vertical" :size="20">
+        <div class="flex justify-between">
+          <div>角色分配</div>
+          <a-select
+            v-model:value="userForm.roleIds"
+            style="width: 200px"
+            :field-names="{
+              label: 'roleName',
+              value: 'roleId',
+            }"
+            allowClear
+            mode="multiple"
+            :options="userRoles"
+          ></a-select>
+        </div>
 
-                <a-empty v-else></a-empty>
-              </div>
-            </a-form-item>
-          </a-card>
-        </a-tab-pane>
+        <div class="flex justify-between">
+          <div>岗位分配</div>
+          <a-select
+            v-model:value="userForm.postIds"
+            style="width: 200px"
+            allowClear
+            mode="multiple"
+            :field-names="{
+              label: 'postName',
+              value: 'postId',
+            }"
+            :options="userPosts"
+          ></a-select>
+        </div>
 
-        <a-tab-pane key="Department" tab="Department">
-          <a-card
-            :body-style="{ padding: 0, maxHeight: '550px', overflowY: 'auto' }"
-            :bordered="false"
-          >
-            <a-form-item :wrapper-col="{ span: 24 }" class="mb-0">
-              <Department :id="userForm.deptId" />
-            </a-form-item>
-          </a-card>
-        </a-tab-pane>
-      </a-tabs>
+        <div class="flex justify-between">
+          <div>部门分配</div>
+          <a-directory-tree
+            style="width: 200px"
+            :tree-data="treeData"
+            selectable
+            v-model:selected-keys="selectedKeys"
+            blockNode
+            :default-expand-all="true"
+            :fieldNames="{ children: 'children', title: 'label', key: 'id' }"
+            @select="onSelect"
+          ></a-directory-tree>
+        </div>
+      </a-space>
     </a-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { SystemPost } from '@/api/modules/system/post/types';
-import type { Role } from '@/api/modules/system/role/types';
-import deptPng from '@/assets/system/dept.png';
-import rolePng from '@/assets/system/role.png';
-import Department from '@/views/components/department/Department.vue';
-import type { CheckCircleFilled } from '@ant-design/icons-vue';
-import { userForm, userPosts, userRoles } from '../data';
+import { deptTreeData, loadDeptTree } from '@/views/components/department/data';
+import { userForm, userPosts, userRoles } from '../../data/form';
 
-const selectRole = (item: Role) => {
-  if (userForm.value.roleIds.includes(item.roleId)) {
-    userForm.value.roleIds = userForm.value.roleIds.filter(e => e !== item.roleId);
-  } else {
-    userForm.value.roleIds.push(item.roleId);
-  }
+const treeData = ref();
+
+const selectedKeys = ref<number[]>([]);
+
+const onSelect = () => {
+  userForm.value.deptId = selectedKeys.value[0] || 0;
 };
-const selectPost = (item: SystemPost) => {
-  if (userForm.value.postIds.includes(item.postId)) {
-    userForm.value.postIds = userForm.value.postIds.filter(e => e !== item.postId);
-  } else {
-    userForm.value.postIds.push(item.postId);
-  }
-};
+onMounted(async () => {
+  await loadDeptTree();
+  treeData.value = deptTreeData.value;
+  selectedKeys.value.push(userForm.value.deptId);
+});
 </script>
 
 <style lang="scss" scoped>
@@ -141,3 +115,4 @@ const selectPost = (item: SystemPost) => {
   }
 }
 </style>
+../form

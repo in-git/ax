@@ -1,5 +1,5 @@
 <template>
-  <div class="system-module">
+  <a-card class="system__module">
     <MenuTable></MenuTable>
     <Transition
       enter-active-class="animate__animated animate__zoomIn"
@@ -7,7 +7,7 @@
     >
       <MenuForm v-if="showMenuForm"></MenuForm>
     </Transition>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">

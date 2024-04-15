@@ -20,7 +20,7 @@ export const updateDictData = (data: SystemDictData) => {
 };
 
 export const createDictData = (data: SystemDictData) => {
-  return axios.put<Response>(`system/dict/data`, data);
+  return axios.post<Response>(`system/dict/data`, data);
 };
 
 export const getOptionsByName = (name: string) => {

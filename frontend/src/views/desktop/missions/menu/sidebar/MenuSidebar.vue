@@ -40,7 +40,7 @@ import { Modal } from 'ant-design-vue';
 const { enter, isFullscreen, exit } = useFullscreen();
 const closePage = () => {
   Modal.confirm({
-    title: 'Waning',
+    title: '警告',
     content: '是否关机',
     centered: true,
     onOk() {

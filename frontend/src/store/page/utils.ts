@@ -1,7 +1,7 @@
 import usePageStore from '.';
-import type { DesktopBackground } from './types';
 
-export const setBackground = (item: DesktopBackground) => {
+export const setBackground = (src: string, type: 'image' | 'video') => {
   const store = usePageStore();
-  store.$state.desktop.background = item;
+  store.$state.desktop.background.src = src;
+  store.$state.desktop.background.type = type;
 };

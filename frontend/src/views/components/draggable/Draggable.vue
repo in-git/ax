@@ -11,25 +11,28 @@
     handles-type="borders"
     :minWidth="600"
     :minHeight="600"
+    enableNativeDrag
   >
     <slot name="head">
-      <div class="drag-header flex justify-between align-center">
-        <div class="flex align-center">
-          <div class="win-icon flex flex-s">
-            <img :src="icon" width="20" height="20" v-if="icon" />
-          </div>
+      <a-card :bordered="false" :bodyStyle="{ padding: 0 }" class="drag-header">
+        <div class="flex justify-between align-center">
+          <div class="flex align-center">
+            <div class="win-icon flex flex-s">
+              <img :draggable="false" :src="icon" width="20" height="20" v-if="icon" />
+            </div>
 
-          <div>{{ title }}</div>
-        </div>
-        <div class="flex">
-          <div class="system-icon minus" @click="hidden">
-            <MinusOutlined />
+            <div>{{ title }}</div>
           </div>
-          <div class="system-icon close" @click="close">
-            <CloseOutlined />
+          <div class="flex">
+            <div class="system-icon minus" @click="hidden">
+              <MinusOutlined />
+            </div>
+            <div class="system-icon close" @click="close">
+              <CloseOutlined />
+            </div>
           </div>
         </div>
-      </div>
+      </a-card>
     </slot>
     <div class="drag-content">
       <slot></slot>
@@ -101,36 +104,42 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-$hh: 42px;
-.drv {
-  border: none;
-  box-shadow: 0 0 6px #707070b4;
-}
-.drv-draggable {
-  border-radius: var(--radius) !important;
-}
-.drag-header {
-  cursor: move;
-  background: #f5f2f3;
-  height: 40px;
-  border-bottom: 1px solid #ddd;
-  border-top-left-radius: var(--radius);
-  border-top-right-radius: var(--radius);
-}
-.drag-content {
-  height: calc(100% - 40px);
-  position: relative;
-}
+$hh: 36px;
 
 %icon {
-  width: 40px;
-  height: 40px;
+  width: $hh;
+  height: $hh;
   border-radius: 0;
-
+  color: #909399;
   &:hover {
     background: #dddddd70;
   }
 }
+
+.drv {
+  border: none;
+  box-shadow:
+    0 6px 16px 0 #00000014,
+    0 3px 6px -4px #0000001f,
+    0 9px 28px 8px #0000000d;
+}
+
+.drv-draggable {
+  border-radius: var(--radius) !important;
+}
+
+.drag-header {
+  cursor: move;
+  height: $hh;
+  border-radius: 0 !important;
+  border-top-left-radius: var(--radius);
+}
+
+.drag-content {
+  height: calc(100% - $hh);
+  position: relative;
+}
+
 .close {
   @extend %icon;
   &:hover {

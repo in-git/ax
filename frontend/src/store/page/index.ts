@@ -1,25 +1,6 @@
 import { defineStore } from 'pinia';
 import type { PageSettings } from './types';
-/* 从vite环境变量中读取 `默认后端地址` */
-const baseURL = import.meta.env.VITE_BASEURL || '';
 
-const baseUrlOptions = [
-  {
-    label: '本地',
-    value: 'http://localhost:8080/',
-    id: 'test',
-  },
-  {
-    label: '测试',
-    value: 'http://150.158.14.110:8081/',
-    id: 'test',
-  },
-  {
-    label: '若依官网',
-    value: 'http://vue.ruoyi.vip/prod-api/',
-    id: 'ruo-yi',
-  },
-];
 const usePageStore = defineStore('page', {
   state: (): PageSettings => ({
     theme: {
@@ -31,20 +12,14 @@ const usePageStore = defineStore('page', {
       autoInsertSpaceInButton: true,
       fontSize: 14,
       borderRadius: 4,
-    },
-    locale: 'en',
-    developer: {
-      baseURL,
-      urlSelection: baseUrlOptions,
-      timeout: 8000,
-    },
-    config: {
-      locale: '',
+      algorithm: 'default',
     },
     desktop: {
       background: {
         type: 'image',
         src: '',
+        brightness: 0,
+        blur: 0,
       },
       topNavigationBar: {
         blur: 1,

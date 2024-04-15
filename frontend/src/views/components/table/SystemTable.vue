@@ -1,24 +1,15 @@
 <template>
-  <div>
+  <a-card :style="{ boxShadow: 'none' }">
     <a-table
-      :loading="table.loading"
       @change="pageChange"
       table-layout="fixed"
       sticky
-      :scroll="{ y: 467 }"
       :row-selection="{
         selectedRowKeys: selectedKeys,
         onChange,
       }"
-      class="px-12 py-8"
-      :pagination="{
-        total: query.total,
-        current: query.pageNum,
-        showSizeChanger: true,
-        pageSize: query.pageSize,
-        showQuickJumper: true,
-        showLessItems: true,
-      }"
+      v-bind="$attrs"
+      :pagination="pagination"
       :customRow="customRow"
       :rowKey="table.rowKey"
       :columns="formatColumns(columns)"
@@ -42,26 +33,38 @@
         </template>
       </template>
     </a-table>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">
 import type { IQuery, TableConfig } from '@/api/config/types';
-import type { SystemMenu } from '@/api/modules/system/menu/types';
 import { formatColumns } from '@/utils/table/table';
 import type { TableColumnProps, TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
-const emit = defineEmits(['update:selectedKeys', 'update:query', 'reload', 'update:form']);
-const selectedKeys = ref();
 
-const props = defineProps<{
-  table: TableConfig;
-  query: IQuery;
-  columns: TableColumnProps[];
-  selectedKeys: number[] | string[];
-  form?: any;
-}>();
+const emit = defineEmits([
+  'update:selectedKeys',
+  'update:query',
+  'reload',
+  'update:form',
+  'dblclick',
+]);
+
+const selectedKeys = ref();
+const props = withDefaults(
+  defineProps<{
+    table: TableConfig;
+    query: IQuery;
+    columns: TableColumnProps[];
+    selectedKeys: number[] | string[];
+    form?: any;
+    pagination?: TablePaginationConfig | false;
+  }>(),
+  {
+    pagination: false,
+  },
+);
 
 const onChange = (keys: Key[]) => {
   selectedKeys.value = keys;
@@ -70,8 +73,13 @@ const onChange = (keys: Key[]) => {
 const customRow = (record: any) => {
   return {
     onClick() {
+      const id = record[props.table.rowKey];
       emit('update:form', record);
-      selectedKeys.value = [record[props.table.rowKey]];
+      selectedKeys.value = [id];
+    },
+    onDblclick() {
+      const id = [record[props.table.rowKey]];
+      emit('dblclick', id);
     },
   };
 };
@@ -79,7 +87,7 @@ const customRow = (record: any) => {
 const pageChange = (
   pagination: TablePaginationConfig,
   filters: Record<string, FilterValue>,
-  sorter: SorterResult<SystemMenu> | SorterResult<SystemMenu>[],
+  sorter: SorterResult<any> | SorterResult<any>[],
 ) => {
   emit('update:query', {
     ...props.query,

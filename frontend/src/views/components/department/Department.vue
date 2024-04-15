@@ -33,7 +33,7 @@ const selectedKeys = ref<number[]>([]);
 const emit = defineEmits(['search', 'select']);
 
 const props = defineProps<{
-  id: number | null;
+  id: number;
   allowSelect?: boolean;
 }>();
 const search = () => {

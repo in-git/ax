@@ -2,4 +2,7 @@
 @import "./common.scss";
 @import "./variable";
 @import "./system.scss";
-@import "./color.scss";
+/* Wind系统内置样式库 */
+@import "./ax.scss";
+/* vue模板scss */
+@import "./template.scss";

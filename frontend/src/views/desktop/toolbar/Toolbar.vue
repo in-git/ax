@@ -1,9 +1,9 @@
 <template>
-  <div class="top-toolbar system-head px-12" :style="style">
+  <div class="top-toolbar system__head px-12" :style="style">
     <div>
       <div class="flex align-center gc-4">
         <img :src="logo" width="28" style="object-fit: contain" />
-        Win
+        AX
       </div>
     </div>
     <div class="flex gc-4">
@@ -23,13 +23,13 @@ import logo from '@/assets/logo.png';
 import settingPng from '@/assets/system/system_setting.png';
 import { openWindow } from '@/global/config/window';
 import usePageStore from '@/store/page';
-import PageSetting from '@/views/page/setting/PageSetting.vue';
+import PageSetting from '@/views/desktop/setting/PageSetting.vue';
 import { InfoCircleOutlined, SettingOutlined } from '@ant-design/icons-vue';
 import type { CSSProperties } from 'vue';
 import Profile from './profile/Profile.vue';
 const setting = () => {
   openWindow({
-    title: 'System setting',
+    title: '系统设置',
     component: markRaw(PageSetting),
     id: 'system_setting',
     w: 800,

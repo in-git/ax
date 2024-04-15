@@ -1,31 +1,36 @@
-import axios from 'axios';
-
-export interface PicsumPhoto {
-  id: string;
-  author: string;
-  width: number;
-  height: number;
-  url: string;
-  download_url: string;
-}
+import type { IQuery } from '@/api/config/types';
+import { getPexels, type PexelsResponse } from '@/api/external/utils/pexels';
+import type { PhotoType } from '@/api/external/utils/types';
 
 interface GalleryData {
-  data: PicsumPhoto[];
+  data: PhotoType[];
   loading: boolean;
+  extraInfo: PexelsResponse | undefined;
 }
-export const galleryConfig = ref<GalleryData>({
+export const pexelsResult = ref<GalleryData>({
   loading: false,
   data: [],
+  extraInfo: undefined,
 });
-export const getPhotos = async () => {
-  galleryConfig.value.loading = true;
-  const http = axios.create({
-    baseURL: '',
-  });
 
-  const { data } = await http.get<PicsumPhoto[]>(`https://picsum.photos/v2/list?page=2&limit=30`);
-  galleryConfig.value.data = data;
-  galleryConfig.value.loading = false;
-  return data;
+export const pexelsQuery = ref<IQuery>({
+  pageNum: 1,
+  pageSize: 30,
+  total: 0,
+});
+
+export const getPexelsPhotos = async () => {
+  pexelsResult.value.data = [];
+  pexelsResult.value.loading = true;
+  const data = await getPexels({
+    page: pexelsQuery.value.pageNum,
+    per_page: pexelsQuery.value.pageSize,
+  });
+  if (data) {
+    pexelsResult.value.data = data.photos;
+    pexelsResult.value.extraInfo = data.row;
+    pexelsResult.value.loading = false;
+  }
 };
+
 export const currentPhoto = ref('');
