@@ -42,7 +42,7 @@ import { galleryEdit } from '../../data/curd';
 import { galleryForm } from '../../data/form';
 import { galleryKeys, galleryOperationList, galleryQuery, galleryTable } from '../../data/table';
 
-const ossURL = `https://test-ax-oss.oss-cn-guangzhou.aliyuncs.com`;
+import { ossURL } from '@/api/utils/config';
 
 const openChange = (record: SystemGallery) => {
   galleryForm.value = record;

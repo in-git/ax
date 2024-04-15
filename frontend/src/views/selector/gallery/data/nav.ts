@@ -1,53 +1,40 @@
 import avatarPng from '../assets/avatar.png';
 import iconPng from '../assets/icon.png';
 import wallpaperPng from '../assets/wallpaper.png';
+import { galleryQuery, getGallery } from './data';
 /*  */
-import WallpaperVue from '../body/wallpaper/Wallpaper.vue';
 
 interface GalleryNav {
   title: string;
   icon: string;
-  component: any;
-  id: string;
-  params: {
-    size: string;
-  };
+  type: 'wallpaper' | 'avatar' | 'sys-icon';
 }
 export const galleryNavList: GalleryNav[] = [
   {
     title: '壁纸',
     icon: wallpaperPng,
-    component: markRaw(WallpaperVue),
-    id: 'wallpaper',
-
-    params: {
-      size: '1920,1080',
-    },
+    type: 'wallpaper',
   },
   {
     title: '头像',
     icon: avatarPng,
-    component: markRaw(WallpaperVue),
-    id: 'avatar',
-    params: {
-      size: '64,64',
-    },
+    type: 'avatar',
   },
   {
     title: '图标',
     icon: iconPng,
-    component: markRaw(WallpaperVue),
-    id: 'icon',
-    params: {
-      size: '32,32',
-    },
+    type: 'sys-icon',
   },
 ];
 
 export const currentGalleryNav = ref<GalleryNav>(galleryNavList[0]);
-export const selectGallery = (item: GalleryNav) => {
+
+export const selectGalleryNav = (item: GalleryNav) => {
   currentGalleryNav.value = item;
+  galleryQuery.value.type = item.type;
+  getGallery();
 };
+
 export const currentPhoto = ref({
   id: '',
   src: '',

@@ -11,33 +11,30 @@
         <close-outlined />
       </div>
     </div>
-    <div class="px-12 flex justify-between py-8" v-if="pexelsResult.extraInfo">
+    <div class="px-12 flex justify-between py-8">
       <div>
         <a-pagination
           size="small"
-          :total="pexelsResult.extraInfo.total_results"
-          :current="pexelsQuery.pageNum"
-          :page-size="pexelsQuery.pageSize"
+          :total="galleryQuery.total"
+          :current="galleryQuery.pageNum"
+          :page-size="galleryQuery.pageSize"
           @change="onChange"
         />
       </div>
       <div class="flex gc-4">
-        <div>
-          <a-button size="small" @click="getPexelsPhotos">刷新</a-button>
-        </div>
-        <div>
-          <a-button size="small" type="primary" @click="use">使用</a-button>
-        </div>
+        <a-button size="small" @click="getGallery">刷新</a-button>
+        <a-button size="small" type="primary" @click="use">使用</a-button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ossURL } from '@/api/utils/config';
 import { setBackground } from '@/store/page/utils';
 import { setGallery } from '../../data';
-import { currentGalleryNav } from '../../nav/data';
-import { currentPhoto, getPexelsPhotos, pexelsQuery, pexelsResult } from '../wallpaper/data';
+import { currentGallery, galleryQuery, getGallery } from '../../data/data';
+import { currentGalleryNav } from '../../data/nav';
 
 const close = () => {
   setGallery({
@@ -46,13 +43,15 @@ const close = () => {
 };
 
 const use = () => {
-  setBackground(currentPhoto.value, 'image');
+  if (currentGallery.value) {
+    setBackground(ossURL + currentGallery.value.imageUrl, 'image');
+  }
 };
 
 const onChange = (page: number, pageSize: number) => {
-  pexelsQuery.value.pageNum = page;
-  pexelsQuery.value.pageSize = pageSize;
-  getPexelsPhotos();
+  galleryQuery.value.pageNum = page;
+  galleryQuery.value.pageSize = pageSize;
+  getGallery();
 };
 </script>
 

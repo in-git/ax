@@ -1,54 +1,29 @@
 <template>
   <div class="gallery-nav">
-    <div class="px-12 my-8 text-999">分类列表</div>
-    <ul>
-      <li
+    <div class="p-8 px-12">分类列表</div>
+    <a-menu class="h-100" :selected-keys="['wallpaper']">
+      <a-menu-item
+        @click="selectGalleryNav(item)"
+        :key="item.type"
         v-for="(item, key) in galleryNavList"
-        :key="key"
-        :class="{ active: item.id === currentGalleryNav.id }"
-        @click="selectGallery(item)"
       >
-        <div class="icon"><img :src="item.icon" width="24" height="24" /></div>
-        <div class="ml-12">{{ item.title }}</div>
-      </li>
-    </ul>
+        <template #icon>
+          <img :src="item.icon" width="20" />
+        </template>
+        {{ item.title }}
+      </a-menu-item>
+    </a-menu>
   </div>
 </template>
 
 <script setup lang="ts">
-import { currentGalleryNav, galleryNavList, selectGallery } from './data';
+import { galleryNavList, selectGalleryNav } from '../data/nav';
 </script>
 
 <style lang="scss" scoped>
 .gallery-nav {
-  width: 120px;
+  width: 160px;
   background-color: #f8f8f8;
   border-right: 1px solid #ddd;
-  li {
-    padding: 8px 12px;
-    display: flex;
-    align-items: center;
-    filter: grayscale(100%);
-    cursor: pointer;
-    &:hover {
-      background-color: #f0f0f0;
-      filter: initial;
-    }
-    .icon {
-      width: 24px;
-      height: 24px;
-
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-  li.active {
-    color: var(--primary);
-    font-weight: bold;
-    background-color: #eff6fc;
-    filter: initial;
-  }
 }
 </style>
