@@ -1,13 +1,12 @@
-export interface SystemPost {
-  createBy: string;
-  createTime: string;
-  updateBy?: any;
-  updateTime?: any;
-  remark: string;
-  postId: number;
-  postCode: string;
-  postName: string;
-  postSort: number;
-  status: string;
-  flag: boolean;
+export interface SystemPost{
+    postId: number ;
+    postCode: string ;
+    postName: string ;
+    postSort: number ;
+    status: string ;
+    createBy: string ;
+    createTime: any ;
+    updateBy: string ;
+    updateTime: any ;
+    remark: string ;
 }
