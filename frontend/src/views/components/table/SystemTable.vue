@@ -38,7 +38,6 @@
 
 <script setup lang="ts">
 import type { IQuery, TableConfig } from '@/api/config/types';
-import type { SystemMenu } from '@/api/modules/system/menu/types';
 import { formatColumns } from '@/utils/table/table';
 import type { TableColumnProps, TablePaginationConfig } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
@@ -88,7 +87,7 @@ const customRow = (record: any) => {
 const pageChange = (
   pagination: TablePaginationConfig,
   filters: Record<string, FilterValue>,
-  sorter: SorterResult<SystemMenu> | SorterResult<SystemMenu>[],
+  sorter: SorterResult<any> | SorterResult<any>[],
 ) => {
   emit('update:query', {
     ...props.query,

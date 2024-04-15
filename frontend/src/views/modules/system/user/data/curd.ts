@@ -5,8 +5,8 @@ import { resetUserForm, showUserForm, userForm, userPosts, userRoles } from './f
 
 export const delUser = (id?: number) => {
   Modal.confirm({
-    title: 'Whether to perform an operation',
-    content: 'The system may be affected',
+    title: '警告',
+    content: '是否要删除用户',
     async onOk() {
       let ids = [];
       if (id) {
