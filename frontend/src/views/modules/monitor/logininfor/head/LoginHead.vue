@@ -1,5 +1,5 @@
 <template>
-  <div class="login-head">
+  <div class="table__head">
     <TableHead title="登陆日志">
       <div class="flex">
         <div class="flex gc-4">

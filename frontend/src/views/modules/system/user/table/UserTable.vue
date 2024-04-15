@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1 pt-8 px-8">
+  <div class="flex-1">
     <UserTableHead />
     <a-card class="mt-8">
       <a-table

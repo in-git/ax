@@ -8,6 +8,9 @@
   >
     <SystemModal title="通知公告" v-model:visible="noticeShowForm">
       <a-card title="编辑/新增" class="form__content">
+        <template #extra>
+          <a-button type="primary" htmlType="submit">保存</a-button>
+        </template>
         <a-flex justify="space-between" wrap="wrap" class="mb-8">
           <a-flex :gap="12" wrap="wrap">
             <a-input
@@ -27,7 +30,6 @@
               </a-radio-button>
             </a-radio-group>
           </a-flex>
-          <a-button type="primary" htmlType="submit">保存</a-button>
         </a-flex>
 
         <div class="flex-1">
@@ -35,7 +37,7 @@
             contentType="html"
             theme="snow"
             v-model:content="noticeForm.noticeContent"
-            style="height: 410px"
+            style="height: 390px"
           />
         </div>
       </a-card>

@@ -1,5 +1,5 @@
 <template>
-  <div class="dept">
+  <a-card class="dept">
     <h3>用户部门</h3>
     <a-input-search
       allow-clear
@@ -19,7 +19,7 @@
       :default-expand-all="true"
       :fieldNames="{ title: 'label', key: 'id' }"
     ></a-directory-tree>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">

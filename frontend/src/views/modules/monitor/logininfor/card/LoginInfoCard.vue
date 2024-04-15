@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-card class="my-12">
+    <a-card>
       <a-spin :spinning="loginLogData.loading">
         <ul class="list">
           <li v-for="(item, key) in loginLogData.data" :key="key">
