@@ -27,13 +27,13 @@
             <tr
               @dblclick="confirm"
               v-for="(item, key) in dictData"
-              :key="item.configId"
+              :key="item.memoId"
               @click="selectItem(item)"
-              :class="{ active: item.configId === currentRow?.configId }"
+              :class="{ active: item.memoId === currentRow?.memoId }"
             >
-              <td>{{ item.configKey }}</td>
+              <td>{{ item.title }}</td>
               <td>
-                {{ item.configValue }}
+                {{ item.value }}
               </td>
             </tr>
           </tbody>
@@ -45,11 +45,11 @@
 
 <script setup lang="ts">
 import type { IQuery } from '@/api/config/types';
-import { fetchConfigList } from '@/api/modules/system/config/config';
-import type { SystemConfig } from '@/api/modules/system/config/types';
+import { fetchMemoList } from '@/api/modules/system/memo/memo';
+import type { SystemMemo } from '@/api/modules/system/memo/types';
 
-const currentRow = ref<SystemConfig>();
-const dictData = ref<SystemConfig[]>([]);
+const currentRow = ref<SystemMemo>();
+const dictData = ref<SystemMemo[]>([]);
 
 const emit = defineEmits(['update:value']);
 
@@ -69,14 +69,14 @@ const pageChange = (page: number, pageSize: number) => {
 };
 
 const confirm = () => {
-  emit('update:value', currentRow.value?.configValue);
+  emit('update:value', currentRow.value?.value);
 };
-const selectItem = (item: SystemConfig) => {
+const selectItem = (item: SystemMemo) => {
   currentRow.value = item;
 };
 const getList = async () => {
   loading.value = true;
-  const { data } = await fetchConfigList(query.value);
+  const { data } = await fetchMemoList(query.value);
   dictData.value = data.rows;
   query.value.total = data.total;
   loading.value = false;

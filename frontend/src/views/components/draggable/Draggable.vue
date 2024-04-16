@@ -157,9 +157,10 @@ $hh: 36px;
 
 .drag-header {
   cursor: move;
-  height: $hh;
-  border-radius: 0 !important;
+  border-radius: 0;
+  padding-right: 8px;
   border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
 }
 
 .drag-content {

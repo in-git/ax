@@ -1,5 +1,5 @@
 <template>
-  <a-card :style="{ boxShadow: 'none' }">
+  <a-card :style="{ boxShadow: 'none' }" :body-style="{ padding: '0' }">
     <a-table
       @change="pageChange"
       table-layout="fixed"
@@ -8,6 +8,7 @@
         selectedRowKeys: websiteKeys,
         onChange: (k: any[]) => (websiteKeys = k),
       }"
+      bordered
       :pagination="false"
       :customRow="customRow"
       :rowKey="websiteTable.rowKey"

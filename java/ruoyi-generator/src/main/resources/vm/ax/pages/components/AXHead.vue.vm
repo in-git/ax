@@ -72,7 +72,7 @@
          </a-tooltip>
        </div>
 
-       <div v-perm="'${moduleName}:${businessName}:delete'">
+       <div v-perm="'${moduleName}:${businessName}:remove'">
         <a-popconfirm
           title="确定要删除吗"
           :disabled="${businessName}Keys.length === 0"

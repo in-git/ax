@@ -1,93 +1,91 @@
 <template>
   <a-card class="table__head">
     <template #title>
-      <h3 class="text-14">系统配置列表</h3>
+      <h3 class="text-14">备忘录</h3>
     </template>
 
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="configList"
-          v-model:value="configQuery.configName"
+          @blur="memoList"
+          v-model:value="memoQuery.title"
           style="width: 160px"
-          placeholder="请输入参数名称"
+          placeholder="请输入备忘录标题"
           allow-clear
         ></a-input>
       </div>
       <div>
         <a-input
-          @blur="configList"
-          v-model:value="configQuery.configKey"
+          @blur="memoList"
+          v-model:value="memoQuery.value"
           style="width: 160px"
-          placeholder="请输入参数键名"
+          placeholder="请输入备忘录的值"
           allow-clear
         ></a-input>
       </div>
       <div>
         <a-input
-          @blur="configList"
-          v-model:value="configQuery.configValue"
+          @blur="memoList"
+          v-model:value="memoQuery.description"
           style="width: 160px"
-          placeholder="请输入参数键值"
+          placeholder="请输入备忘录描述"
           allow-clear
         ></a-input>
       </div>
-      <div>
-        <a-select
-          v-model:value="configQuery.configType"
-          style="width: 160px"
-          placeholder="请选择系统内置（Y是 N否）"
-          allow-clear
-          @blur="configList"
-          :options="configTypeOptions"
-        ></a-select>
-      </div>
-      <a-button type="primary" @click="configList">搜索</a-button>
+      <a-button type="primary" @click="memoList">搜索</a-button>
     </a-flex>
 
     <a-flex justify="space-between" :align="'center'">
       <a-flex justify="space-between" :align="'center'">
         <a-flex :align="'center'" :gap="4">
-          <div v-perm="'system:config:add'">
+          <div v-perm="'system:memo:add'">
             <a-tooltip title="新建">
-              <a-button type="primary" @click="configCreate">
+              <a-button type="primary" @click="memoCreate">
                 <PlusOutlined />
               </a-button>
             </a-tooltip>
           </div>
 
-          <div v-perm="'system:config:edit'">
+          <div v-perm="'system:memo:edit'">
             <a-tooltip title="编辑">
-              <a-button type="link" @click="configEdit()" :disabled="configKeys.length !== 1">
+              <a-button type="link" @click="memoEdit()" :disabled="memoKeys.length !== 1">
                 <EditOutlined />
               </a-button>
             </a-tooltip>
           </div>
 
           <a-tooltip title="刷新">
-            <a-button type="link" @click="configList">
+            <a-button type="link" @click="memoList">
               <ReloadOutlined />
             </a-button>
           </a-tooltip>
         </a-flex>
       </a-flex>
       <a-flex>
-        <div v-perm="'system:config:remove'">
+        <div v-perm="'system:memo:export'">
+          <a-tooltip title="导出">
+            <a-button type="link" @click="memoExport">
+              <ExportOutlined />
+            </a-button>
+          </a-tooltip>
+        </div>
+
+        <div v-perm="'system:memo:remove'">
           <a-popconfirm
             title="确定要删除吗"
-            :disabled="configKeys.length === 0"
+            :disabled="memoKeys.length === 0"
             placement="bottomRight"
-            @confirm="configDelete()"
+            @confirm="memoDelete()"
           >
             <a-tooltip title="批量删除">
-              <a-button danger type="link" :disabled="configKeys.length === 0">
+              <a-button danger type="link" :disabled="memoKeys.length === 0">
                 <DeleteOutlined />
               </a-button>
             </a-tooltip>
           </a-popconfirm>
         </div>
 
-        <FieldVue :columns="configColumns" :module-name="configTable.moduleName" />
+        <FieldVue :columns="memoColumns" :module-name="memoTable.moduleName" />
         <div>
           <a-tooltip title="卡片模式" @click="viewMode = 'card'" v-if="viewMode === 'table'">
             <a-button type="link">
@@ -114,10 +112,10 @@ import {
   type DeleteOutlined,
   type ReloadOutlined,
 } from '@ant-design/icons-vue';
-import { configColumns } from '../../data/column';
-import { configCreate, configDelete, configEdit, configList } from '../../data/curd';
-import { configTypeOptions } from '../../data/options';
-import { configKeys, configQuery, configTable, viewMode } from '../../data/table';
+import { memoColumns } from '../../data/column';
+import { memoCreate, memoDelete, memoEdit, memoExport, memoList } from '../../data/curd';
+import {} from '../../data/options';
+import { memoKeys, memoQuery, memoTable, viewMode } from '../../data/table';
 </script>
 
 <style lang="scss" scoped></style>

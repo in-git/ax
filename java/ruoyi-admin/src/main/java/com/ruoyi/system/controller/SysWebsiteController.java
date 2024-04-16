@@ -34,7 +34,7 @@ public class SysWebsiteController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:website:list')")
     @GetMapping("/list")
-    @DataScope(deptAlias = "sw",userAlias = "sw")
+    @DataScope(deptAlias = "sys_website",userAlias = "sys_website")
     public TableDataInfo list(SysWebsite sysWebsite)
     {
         startPage();

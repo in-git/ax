@@ -72,7 +72,7 @@
         </a-flex>
       </a-flex>
       <a-flex>
-        <div v-perm="'system:dept:delete'">
+        <div v-perm="'system:dept:remove'">
           <a-popconfirm
             title="确定要删除吗"
             :disabled="deptKeys.length === 0"

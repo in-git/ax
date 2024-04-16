@@ -62,7 +62,7 @@
         </a-flex>
       </a-flex>
       <a-flex>
-        <div v-perm="'system:gallery:delete'">
+        <div v-perm="'system:gallery:remove'">
           <a-popconfirm
             title="确定要删除吗"
             :disabled="galleryKeys.length === 0"

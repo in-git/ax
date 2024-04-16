@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectSysWebsiteVo">
-        select website_id, name, url, create_time, description, type, update_time, user_id, dept_id from sys_website sw
+        select website_id, name, url, create_time, description, type, update_time, user_id, dept_id from sys_website sys_website
     </sql>
 
     <select id="selectSysWebsiteList" parameterType="SysWebsite" resultMap="SysWebsiteResult">

@@ -68,7 +68,7 @@
             <ExportOutlined />
           </a-button>
         </a-tooltip>
-        <div v-perm="'system:website:delete'">
+        <div v-perm="'system:website:remove'">
           <a-popconfirm
             title="确定要删除吗"
             :disabled="websiteKeys.length === 0"
