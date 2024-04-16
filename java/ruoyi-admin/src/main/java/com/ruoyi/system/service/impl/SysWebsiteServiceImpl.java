@@ -98,8 +98,19 @@ public class SysWebsiteServiceImpl implements ISysWebsiteService
     @Override
     public int deleteSysWebsiteByWebsiteIds(Long[] websiteIds)
     {
+        int count =0;
+        SysUser user = SecurityUtils.getLoginUser().getUser();
+        for (Long websiteId : websiteIds) {
+            // 在这里处理每个websiteId
+            System.out.println(websiteId); // 举例输出
+            SysWebsite sysWebsite = sysWebsiteMapper.selectSysWebsiteByWebsiteId(websiteId);
+            if(user.getUserId()== sysWebsite.getUserId()){
+                sysWebsiteMapper.deleteSysWebsiteByWebsiteIds(websiteIds);
+                count++;
+            }
+        }
 
-        return sysWebsiteMapper.deleteSysWebsiteByWebsiteIds(websiteIds);
+        return count;
     }
 
     /**

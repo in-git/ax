@@ -31,6 +31,16 @@
             </template>
           </a-dropdown-button>
         </template>
+        <template v-else-if="column.key === 'from'">
+          <a-tag
+            :bordered="false"
+            v-if="record.userId === userStore.$state.userInfo?.userId"
+            color="green"
+          >
+            自己
+          </a-tag>
+          <a-tag v-else color="orange" :bordered="false">超管</a-tag>
+        </template>
       </template>
     </a-table>
   </a-card>
