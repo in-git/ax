@@ -70,6 +70,8 @@ const props = withDefaults(defineProps<DragType>(), {
   w: 1000,
   h: 700,
   resizable: false,
+  y: 0,
+  x: 0,
 });
 
 const moveTop = () => {
