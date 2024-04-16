@@ -66,13 +66,24 @@ type DragType = {
 };
 const emit = defineEmits(['close']);
 
-const props = withDefaults(defineProps<DragType>(), {
-  w: 1000,
-  h: 700,
-  resizable: false,
-  y: 0,
-  x: 0,
-});
+const props = withDefaults(
+  defineProps<{
+    w?: number;
+    h?: number;
+    title: string;
+    z?: number;
+    id?: string;
+    resizable?: boolean;
+    icon?: string;
+  }>(),
+  {
+    w: 1000,
+    h: 700,
+    resizable: false,
+    y: 0,
+    x: 0,
+  },
+);
 
 const moveTop = () => {
   if (props.id) {
@@ -90,8 +101,8 @@ const isFullscreen = ref(false);
 const windowProps = ref<DragType>({
   x: window.innerWidth / 2 - props.w / 2 + offset - 32,
   y: window.innerHeight / 2 - props.h / 2 + offset,
-  w: 0,
-  h: 0,
+  w: 1,
+  h: 1,
 });
 
 /* 记录放大之前的数据，用于缩小后还原 */
