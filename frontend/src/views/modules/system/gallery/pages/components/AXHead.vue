@@ -1,7 +1,7 @@
 <template>
   <a-card class="table__head">
     <template #title>
-      <h3 class="text-14">网页收藏</h3>
+      <h3 class="text-14">图片管理列表</h3>
     </template>
 
     <a-flex class="mb-12" :gap="12" wrap="wrap">

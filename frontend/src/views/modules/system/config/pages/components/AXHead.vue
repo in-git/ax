@@ -1,37 +1,37 @@
 <template>
   <a-card class="table__head">
     <template #title>
-      <h3 class="text-14">网页收藏</h3>
+      <h3 class="text-14">系统配置列表</h3>
     </template>
 
-   <a-flex class="mb-12" :gap="12" wrap="wrap">
-    <div>
-       <a-input
-         @blur="configList"
-         v-model:value="configQuery.configName"
-         style="width: 160px"
-         placeholder="请输入参数名称"
-         allow-clear
-       ></a-input>
-     </div>
-    <div>
-       <a-input
-         @blur="configList"
-         v-model:value="configQuery.configKey"
-         style="width: 160px"
-         placeholder="请输入参数键名"
-         allow-clear
-       ></a-input>
-     </div>
-    <div>
-       <a-input
-         @blur="configList"
-         v-model:value="configQuery.configValue"
-         style="width: 160px"
-         placeholder="请输入参数键值"
-         allow-clear
-       ></a-input>
-     </div>
+    <a-flex class="mb-12" :gap="12" wrap="wrap">
+      <div>
+        <a-input
+          @blur="configList"
+          v-model:value="configQuery.configName"
+          style="width: 160px"
+          placeholder="请输入参数名称"
+          allow-clear
+        ></a-input>
+      </div>
+      <div>
+        <a-input
+          @blur="configList"
+          v-model:value="configQuery.configKey"
+          style="width: 160px"
+          placeholder="请输入参数键名"
+          allow-clear
+        ></a-input>
+      </div>
+      <div>
+        <a-input
+          @blur="configList"
+          v-model:value="configQuery.configValue"
+          style="width: 160px"
+          placeholder="请输入参数键值"
+          allow-clear
+        ></a-input>
+      </div>
       <div>
         <a-select
           v-model:value="configQuery.configType"
@@ -46,23 +46,22 @@
     </a-flex>
 
     <a-flex justify="space-between" :align="'center'">
-        <a-flex justify="space-between" :align="'center'">
+      <a-flex justify="space-between" :align="'center'">
         <a-flex :align="'center'" :gap="4">
-
-         <div v-perm="'system:config:add'">
-             <a-tooltip title="新建">
-                <a-button type="primary" @click="configCreate">
-                  <PlusOutlined />
-                </a-button>
+          <div v-perm="'system:config:add'">
+            <a-tooltip title="新建">
+              <a-button type="primary" @click="configCreate">
+                <PlusOutlined />
+              </a-button>
             </a-tooltip>
-         </div>
+          </div>
 
-         <div v-perm="'system:config:edit'">
-              <a-tooltip title="编辑">
-                <a-button type="link" @click="configEdit()" :disabled="configKeys.length !== 1">
-                  <EditOutlined />
-                </a-button>
-              </a-tooltip>
+          <div v-perm="'system:config:edit'">
+            <a-tooltip title="编辑">
+              <a-button type="link" @click="configEdit()" :disabled="configKeys.length !== 1">
+                <EditOutlined />
+              </a-button>
+            </a-tooltip>
           </div>
 
           <a-tooltip title="刷新">
@@ -70,24 +69,22 @@
               <ReloadOutlined />
             </a-button>
           </a-tooltip>
-         </a-flex>
-
         </a-flex>
-       <a-flex>
-
-       <div v-perm="'system:config:delete'">
-        <a-popconfirm
-          title="确定要删除吗"
-          :disabled="configKeys.length === 0"
-          placement="bottomRight"
-          @confirm="configDelete()"
-        >
-          <a-tooltip title="批量删除">
-            <a-button danger type="link" :disabled="configKeys.length === 0">
-              <DeleteOutlined />
-            </a-button>
-          </a-tooltip>
-        </a-popconfirm>
+      </a-flex>
+      <a-flex>
+        <div v-perm="'system:config:delete'">
+          <a-popconfirm
+            title="确定要删除吗"
+            :disabled="configKeys.length === 0"
+            placement="bottomRight"
+            @confirm="configDelete()"
+          >
+            <a-tooltip title="批量删除">
+              <a-button danger type="link" :disabled="configKeys.length === 0">
+                <DeleteOutlined />
+              </a-button>
+            </a-tooltip>
+          </a-popconfirm>
         </div>
 
         <FieldVue :columns="configColumns" :module-name="configTable.moduleName" />
@@ -104,15 +101,12 @@
             </a-button>
           </a-tooltip>
         </div>
-       </a-flex>
+      </a-flex>
     </a-flex>
   </a-card>
 </template>
 
 <script setup lang="ts">
-import {
-   configTypeOptions,
-} from '../../data/options';
 import FieldVue from '@/views/components/table/Field.vue';
 import {
   AppstoreAddOutlined,
@@ -122,9 +116,8 @@ import {
 } from '@ant-design/icons-vue';
 import { configColumns } from '../../data/column';
 import { configCreate, configDelete, configEdit, configList } from '../../data/curd';
-import { viewMode, configKeys, configTable,configQuery } from '../../data/table';
-
-
+import { configTypeOptions } from '../../data/options';
+import { configKeys, configQuery, configTable, viewMode } from '../../data/table';
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,12 +1,13 @@
 package com.ruoyi.system.mapper;
 
-import java.util.List;
 import com.ruoyi.system.domain.SysWebsite;
+
+import java.util.List;
 
 /**
  * 网页收藏Mapper接口
  * 
- * @author Win
+ * @author AX
  * @date ${datetime}
  */
 public interface SysWebsiteMapper 

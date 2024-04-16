@@ -12,10 +12,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="description"    column="description"    />
         <result property="type"    column="type"    />
         <result property="updateTime"    column="update_time"    />
+        <result property="userId"    column="user_id"    />
+        <result property="deptId"    column="dept_id"    />
     </resultMap>
 
     <sql id="selectSysWebsiteVo">
-        select website_id, name, url, create_time, description, type, update_time from sys_website
+        select website_id, name, url, create_time, description, type, update_time, user_id, dept_id from sys_website sw
     </sql>
 
     <select id="selectSysWebsiteList" parameterType="SysWebsite" resultMap="SysWebsiteResult">
@@ -25,6 +27,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="url != null  and url != ''"> and url = #{url}</if>
             <if test="description != null  and description != ''"> and description = #{description}</if>
             <if test="type != null  and type != ''"> and type = #{type}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="deptId != null "> and dept_id = #{deptId}</if>
+            ${params.dataScope}
         </where>
     </select>
     
@@ -33,37 +38,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where website_id = #{websiteId}
     </select>
         
-    <insert id="insertSysWebsite" parameterType="SysWebsite">
+    <insert id="insertSysWebsite" parameterType="SysWebsite" useGeneratedKeys="true" keyProperty="websiteId">
         insert into sys_website
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="websiteId != null">website_id,</if>
-            <if test="name != null and name != ''">name,</if>
+            <if test="name != null">name,</if>
             <if test="url != null">url,</if>
             <if test="createTime != null">create_time,</if>
             <if test="description != null">description,</if>
             <if test="type != null">type,</if>
             <if test="updateTime != null">update_time,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="deptId != null">dept_id,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="websiteId != null">#{websiteId},</if>
-            <if test="name != null and name != ''">#{name},</if>
+            <if test="name != null">#{name},</if>
             <if test="url != null">#{url},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="description != null">#{description},</if>
             <if test="type != null">#{type},</if>
             <if test="updateTime != null">#{updateTime},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="deptId != null">#{deptId},</if>
          </trim>
     </insert>
 
     <update id="updateSysWebsite" parameterType="SysWebsite">
         update sys_website
         <trim prefix="SET" suffixOverrides=",">
-            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="name != null">name = #{name},</if>
             <if test="url != null">url = #{url},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="description != null">description = #{description},</if>
             <if test="type != null">type = #{type},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="deptId != null">dept_id = #{deptId},</if>
         </trim>
         where website_id = #{websiteId}
     </update>

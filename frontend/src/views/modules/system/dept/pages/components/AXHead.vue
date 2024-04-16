@@ -1,37 +1,37 @@
 <template>
   <a-card class="table__head">
     <template #title>
-      <h3 class="text-14">网页收藏</h3>
+      <h3 class="text-14">部门列表</h3>
     </template>
 
-   <a-flex class="mb-12" :gap="12" wrap="wrap">
-    <div>
-       <a-input
-         @blur="deptList"
-         v-model:value="deptQuery.deptName"
-         style="width: 160px"
-         placeholder="请输入部门名称"
-         allow-clear
-       ></a-input>
-     </div>
-    <div>
-       <a-input
-         @blur="deptList"
-         v-model:value="deptQuery.leader"
-         style="width: 160px"
-         placeholder="请输入负责人"
-         allow-clear
-       ></a-input>
-     </div>
-    <div>
-       <a-input
-         @blur="deptList"
-         v-model:value="deptQuery.phone"
-         style="width: 160px"
-         placeholder="请输入联系电话"
-         allow-clear
-       ></a-input>
-     </div>
+    <a-flex class="mb-12" :gap="12" wrap="wrap">
+      <div>
+        <a-input
+          @blur="deptList"
+          v-model:value="deptQuery.deptName"
+          style="width: 160px"
+          placeholder="请输入部门名称"
+          allow-clear
+        ></a-input>
+      </div>
+      <div>
+        <a-input
+          @blur="deptList"
+          v-model:value="deptQuery.leader"
+          style="width: 160px"
+          placeholder="请输入负责人"
+          allow-clear
+        ></a-input>
+      </div>
+      <div>
+        <a-input
+          @blur="deptList"
+          v-model:value="deptQuery.phone"
+          style="width: 160px"
+          placeholder="请输入联系电话"
+          allow-clear
+        ></a-input>
+      </div>
       <div>
         <a-select
           v-model:value="deptQuery.status"
@@ -46,23 +46,22 @@
     </a-flex>
 
     <a-flex justify="space-between" :align="'center'">
-        <a-flex justify="space-between" :align="'center'">
+      <a-flex justify="space-between" :align="'center'">
         <a-flex :align="'center'" :gap="4">
-
-         <div v-perm="'system:dept:add'">
-             <a-tooltip title="新建">
-                <a-button type="primary" @click="deptCreate">
-                  <PlusOutlined />
-                </a-button>
+          <div v-perm="'system:dept:add'">
+            <a-tooltip title="新建">
+              <a-button type="primary" @click="deptCreate">
+                <PlusOutlined />
+              </a-button>
             </a-tooltip>
-         </div>
+          </div>
 
-         <div v-perm="'system:dept:edit'">
-              <a-tooltip title="编辑">
-                <a-button type="link" @click="deptEdit()" :disabled="deptKeys.length !== 1">
-                  <EditOutlined />
-                </a-button>
-              </a-tooltip>
+          <div v-perm="'system:dept:edit'">
+            <a-tooltip title="编辑">
+              <a-button type="link" @click="deptEdit()" :disabled="deptKeys.length !== 1">
+                <EditOutlined />
+              </a-button>
+            </a-tooltip>
           </div>
 
           <a-tooltip title="刷新">
@@ -70,24 +69,22 @@
               <ReloadOutlined />
             </a-button>
           </a-tooltip>
-         </a-flex>
-
         </a-flex>
-       <a-flex>
-
-       <div v-perm="'system:dept:delete'">
-        <a-popconfirm
-          title="确定要删除吗"
-          :disabled="deptKeys.length === 0"
-          placement="bottomRight"
-          @confirm="deptDelete()"
-        >
-          <a-tooltip title="批量删除">
-            <a-button danger type="link" :disabled="deptKeys.length === 0">
-              <DeleteOutlined />
-            </a-button>
-          </a-tooltip>
-        </a-popconfirm>
+      </a-flex>
+      <a-flex>
+        <div v-perm="'system:dept:delete'">
+          <a-popconfirm
+            title="确定要删除吗"
+            :disabled="deptKeys.length === 0"
+            placement="bottomRight"
+            @confirm="deptDelete()"
+          >
+            <a-tooltip title="批量删除">
+              <a-button danger type="link" :disabled="deptKeys.length === 0">
+                <DeleteOutlined />
+              </a-button>
+            </a-tooltip>
+          </a-popconfirm>
         </div>
 
         <FieldVue :columns="deptColumns" :module-name="deptTable.moduleName" />
@@ -104,15 +101,12 @@
             </a-button>
           </a-tooltip>
         </div>
-       </a-flex>
+      </a-flex>
     </a-flex>
   </a-card>
 </template>
 
 <script setup lang="ts">
-import {
-   statusOptions,
-} from '../../data/options';
 import FieldVue from '@/views/components/table/Field.vue';
 import {
   AppstoreAddOutlined,
@@ -122,9 +116,8 @@ import {
 } from '@ant-design/icons-vue';
 import { deptColumns } from '../../data/column';
 import { deptCreate, deptDelete, deptEdit, deptList } from '../../data/curd';
-import { viewMode, deptKeys, deptTable,deptQuery } from '../../data/table';
-
-
+import { statusOptions } from '../../data/options';
+import { deptKeys, deptQuery, deptTable, viewMode } from '../../data/table';
 </script>
 
 <style lang="scss" scoped></style>

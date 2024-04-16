@@ -95,17 +95,21 @@ const loading = ref(false);
 const submit = async () => {
   loading.value = true;
   let result = '';
-  if (!userForm.value.userId) {
-    const { data } = await createUser(userForm.value);
-    result = data.msg;
-  } else {
-    const { data } = await updateUser(userForm.value);
-    result = data.msg;
+  try {
+    if (!userForm.value.userId) {
+      const { data } = await createUser(userForm.value);
+      result = data.msg;
+    } else {
+      const { data } = await updateUser(userForm.value);
+      result = data.msg;
+    }
+    loading.value = false;
+    message.success(result);
+    showUserForm.value = false;
+    loadUserData();
+  } catch (error) {
+    loading.value = false;
   }
-  loading.value = false;
-  message.success(result);
-  showUserForm.value = false;
-  loadUserData();
 };
 </script>
 

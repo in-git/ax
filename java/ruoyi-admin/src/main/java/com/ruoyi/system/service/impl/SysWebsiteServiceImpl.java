@@ -1,17 +1,20 @@
 package com.ruoyi.system.service.impl;
 
-import java.util.List;
+import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.common.utils.DateUtils;
+import com.ruoyi.common.utils.SecurityUtils;
+import com.ruoyi.system.domain.SysWebsite;
+import com.ruoyi.system.mapper.SysWebsiteMapper;
+import com.ruoyi.system.service.ISysWebsiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.system.mapper.SysWebsiteMapper;
-import com.ruoyi.system.domain.SysWebsite;
-import com.ruoyi.system.service.ISysWebsiteService;
+
+import java.util.List;
 
 /**
  * 网页收藏Service业务层处理
  * 
- * @author Win
+ * @author AX
  * @date ${datetime}
  */
 @Service
@@ -46,13 +49,16 @@ public class SysWebsiteServiceImpl implements ISysWebsiteService
 
     /**
      * 新增网页收藏
-     * 
+     * 不同用户之间数据不共享
      * @param sysWebsite 网页收藏
      * @return 结果
      */
     @Override
     public int insertSysWebsite(SysWebsite sysWebsite)
     {
+        SysUser user = SecurityUtils.getLoginUser().getUser();
+        sysWebsite.setDeptId(user.getDeptId());
+        sysWebsite.setUserId(user.getUserId());
         sysWebsite.setCreateTime(DateUtils.getNowDate());
         return sysWebsiteMapper.insertSysWebsite(sysWebsite);
     }

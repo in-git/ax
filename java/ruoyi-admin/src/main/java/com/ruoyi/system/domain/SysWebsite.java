@@ -8,7 +8,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
 /**
  * 网页收藏对象 sys_website
  * 
- * @author Win
+ * @author AX
  * @date ${datetime}
  */
 public class SysWebsite extends BaseEntity
@@ -33,6 +33,14 @@ public class SysWebsite extends BaseEntity
     /** 网页类型 */
     @Excel(name = "网页类型")
     private String type;
+
+    /** 用户ID */
+    @Excel(name = "用户ID")
+    private Long userId;
+
+    /** 部门ID */
+    @Excel(name = "部门ID")
+    private Long deptId;
 
     public void setWebsiteId(Long websiteId) 
     {
@@ -79,6 +87,24 @@ public class SysWebsite extends BaseEntity
     {
         return type;
     }
+    public void setUserId(Long userId) 
+    {
+        this.userId = userId;
+    }
+
+    public Long getUserId() 
+    {
+        return userId;
+    }
+    public void setDeptId(Long deptId) 
+    {
+        this.deptId = deptId;
+    }
+
+    public Long getDeptId() 
+    {
+        return deptId;
+    }
 
     @Override
     public String toString() {
@@ -90,6 +116,8 @@ public class SysWebsite extends BaseEntity
             .append("description", getDescription())
             .append("type", getType())
             .append("updateTime", getUpdateTime())
+            .append("userId", getUserId())
+            .append("deptId", getDeptId())
             .toString();
     }
 }
