@@ -20,7 +20,7 @@
             <Operation
               :loading="userConfig.loading"
               @open-change="openChange(record as UserProfileData)"
-              @on-click="editUserConfig(record.noticeId)"
+              @on-click="editUserConfig(record.userId)"
               :items="userOperationList"
             />
           </template>

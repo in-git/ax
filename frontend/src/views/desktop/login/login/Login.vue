@@ -25,7 +25,7 @@
 
           <a-form-item label="验证码" name="code" required>
             <div class="flex gc-12">
-              <a-input placeholder="请输入验证码" v-model:value="loginForm.code" />
+              <a-input placeholder="请输入验证码" :maxlength="2" v-model:value="loginForm.code" />
               <a-image
                 @click="getCaptcha"
                 :preview="false"

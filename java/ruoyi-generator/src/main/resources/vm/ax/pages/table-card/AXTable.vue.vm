@@ -21,7 +21,7 @@
             @open-change="openChange(record as ${ModuleName}${BusinessName})"
               #foreach($column in $columns)
               #if($column.isPk == "1")
-              @edit="${businessName}Edit(record.$column.javaField)"
+              @on-click="${businessName}Edit(record.$column.javaField)"
               #end
               #end
             :items="${businessName}OperationList"

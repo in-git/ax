@@ -46,13 +46,13 @@
               <a-form-item label="用户账号" name="userName" required>
                 <a-input v-model:value="userProfile.userName" disabled></a-input>
               </a-form-item>
-              <a-form-item label="用户昵称" name="nickName" required>
+              <a-form-item label="用户昵称">
                 <a-input v-model:value="userProfile.nickName"></a-input>
               </a-form-item>
-              <a-form-item label="用户手机" required>
+              <a-form-item label="用户手机">
                 <a-input v-model:value="userProfile.phonenumber"></a-input>
               </a-form-item>
-              <a-form-item label="用户邮箱" required name="email">
+              <a-form-item label="用户邮箱">
                 <a-input v-model:value="userProfile.email"></a-input>
               </a-form-item>
               <a-form-item label="用户性别" required name="sex">

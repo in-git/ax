@@ -1,4 +1,5 @@
 export const noticeShowForm = ref(false);
+import type { SystemNotice } from '@/api/modules/system/notice/types';
 import type { Rule } from 'ant-design-vue/es/form/interface';
 
 const form: SystemNotice = {
