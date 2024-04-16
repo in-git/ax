@@ -1,6 +1,7 @@
 package com.ruoyi.system.service;
 
 import com.ruoyi.system.domain.SysWebsite;
+import com.ruoyi.system.domain.WebInfo;
 
 import java.util.List;
 
@@ -59,4 +60,12 @@ public interface ISysWebsiteService
      * @return 结果
      */
     public int deleteSysWebsiteByWebsiteId(Long websiteId);
+
+    /**
+     * 根据URL获取网页的信息
+     *
+     * @param url 目标网址
+     * @return 结果
+     */
+    public WebInfo getWebsiteInfoByUrl(String url);
 }

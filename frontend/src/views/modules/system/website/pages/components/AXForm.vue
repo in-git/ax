@@ -8,14 +8,28 @@
   >
     <SystemModal title="网页收藏" v-model:visible="websiteShowForm">
       <a-card title="编辑/新增">
+        <a-form-item label="网页URL" name="url">
+          <a-input-search
+            placeholder="请输入网页URL"
+            @search="search"
+            v-model:value="websiteForm.url"
+          ></a-input-search>
+          <div class="system-subtitle">
+            <InfoCircleFilled />
+            复制网址后会自动获取网页
+          </div>
+        </a-form-item>
+        <a-col :offset="9" :span="8">
+          <a-divider></a-divider>
+        </a-col>
         <a-form-item label="网页名称" name="name">
           <a-input placeholder="请输入网页名称" v-model:value="websiteForm.name"></a-input>
         </a-form-item>
-        <a-form-item label="网页URL" name="url">
-          <a-input placeholder="请输入网页URL" v-model:value="websiteForm.url"></a-input>
-        </a-form-item>
         <a-form-item label="网页描述" name="description">
-          <a-input placeholder="请输入网页描述" v-model:value="websiteForm.description"></a-input>
+          <a-textarea
+            placeholder="请输入网页描述"
+            v-model:value="websiteForm.description"
+          ></a-textarea>
         </a-form-item>
         <a-form-item label="网页类型" name="type">
           <a-select
@@ -36,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { createWebsite, updateWebsite } from '@/api/modules/system/website/website';
+import { createWebsite, getSiteInfo, updateWebsite } from '@/api/modules/system/website/website';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { response } from '@/utils/table/table';
 import { websiteList } from '../../data/curd';
@@ -44,7 +58,15 @@ import { websiteForm, websiteRules, websiteShowForm } from '../../data/form';
 import { typeOptions } from '../../data/options';
 
 const loading = ref(false);
-
+const search = async () => {
+  if (websiteForm.value.url) {
+    const { data } = await getSiteInfo(websiteForm.value.url);
+    if (data.data) {
+      websiteForm.value.description = data.data.description;
+      websiteForm.value.name = data.data.title;
+    }
+  }
+};
 const submit = async () => {
   loading.value = true;
   if (websiteForm.value.websiteId) {

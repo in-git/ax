@@ -4,11 +4,15 @@ import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.system.domain.SysWebsite;
+import com.ruoyi.system.domain.WebInfo;
 import com.ruoyi.system.mapper.SysWebsiteMapper;
 import com.ruoyi.system.service.ISysWebsiteService;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,4 +128,29 @@ public class SysWebsiteServiceImpl implements ISysWebsiteService
     {
         return sysWebsiteMapper.deleteSysWebsiteByWebsiteId(websiteId);
     }
+
+    /**
+     * 根据URL获取网页的信息
+     *
+     * @param url 目标网址
+     * @return 结果
+     */
+    @Override
+    public WebInfo getWebsiteInfoByUrl(String url) {
+        try {
+            // 从URL加载网页
+            Document doc = Jsoup.connect(url).get();
+
+            // 获取网页标题
+            String title = doc.title();
+            String description = doc.select("meta[name=description]").attr("content");
+
+            // 返回标题和描述信息
+            return new WebInfo(title, description);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

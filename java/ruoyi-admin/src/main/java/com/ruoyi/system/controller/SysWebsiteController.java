@@ -8,6 +8,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.system.domain.SysWebsite;
+import com.ruoyi.system.domain.WebInfo;
 import com.ruoyi.system.service.ISysWebsiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -96,5 +97,13 @@ public class SysWebsiteController extends BaseController
     public AjaxResult remove(@PathVariable Long[] websiteIds)
     {
         return toAjax(sysWebsiteService.deleteSysWebsiteByWebsiteIds(websiteIds));
+    }
+
+    @GetMapping("/siteInfo/{url}")
+    @Log(title = "网页收藏", businessType = BusinessType.OTHER)
+    public  AjaxResult getSiteInfo(@PathVariable String url){
+        WebInfo info = sysWebsiteService.getWebsiteInfoByUrl("http://"+url);
+        System.out.println(info.toString());
+        return success(info);
     }
 }
