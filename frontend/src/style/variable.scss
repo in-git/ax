@@ -7,9 +7,9 @@
   /* 间距 */
   --padding: 8px;
   --margin: 8px;
-
+  --transition: 0.1s;
   /* 动画效果 */
-  --animate-duration: 0.2s;
+  --animate-duration: var(--transition);
 
   /* 文本 */
   --title: 14px;

@@ -136,18 +136,10 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 $hh: 36px;
-
-.drv {
-  border: none;
-  box-shadow:
-    0 6px 16px 0 #00000014,
-    0 3px 6px -4px #0000001f,
-    0 9px 28px 8px #0000000d;
-}
-
 .drv-draggable {
-  transition: all var(--transition);
   border-radius: var(--radius);
+  border: 1px solid #99999962;
+  box-shadow: 0 0 16px 0 #6464643f;
 }
 
 .drag-header {
