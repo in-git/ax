@@ -9,6 +9,7 @@ import com.ruoyi.system.service.ISysWebsiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,7 +45,19 @@ public class SysWebsiteServiceImpl implements ISysWebsiteService
     @Override
     public List<SysWebsite> selectSysWebsiteList(SysWebsite sysWebsite)
     {
-        return sysWebsiteMapper.selectSysWebsiteList(sysWebsite);
+        SysUser user = SecurityUtils.getLoginUser().getUser();
+        if (user.getUserId()==1L){
+            return  sysWebsiteMapper.selectSysWebsiteList(sysWebsite);
+        }else{
+            /*把超级管理员的数据查询出来，共享给别人用户*/
+            SysWebsite admin= new SysWebsite();
+            admin.setUserId(1L);
+            List<SysWebsite> adminWebsites = sysWebsiteMapper.selectSysWebsiteList(admin);
+            List<SysWebsite> userWebsites = sysWebsiteMapper.selectSysWebsiteList(sysWebsite);
+            List<SysWebsite> mergedList = new ArrayList<>(adminWebsites);
+            mergedList.addAll(userWebsites);
+            return mergedList;
+        }
     }
 
     /**
@@ -85,6 +98,7 @@ public class SysWebsiteServiceImpl implements ISysWebsiteService
     @Override
     public int deleteSysWebsiteByWebsiteIds(Long[] websiteIds)
     {
+
         return sysWebsiteMapper.deleteSysWebsiteByWebsiteIds(websiteIds);
     }
 

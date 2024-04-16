@@ -2,11 +2,7 @@
   <a-card class="system-memo">
     <a-space class="w-100" direction="vertical">
       <div>
-        <h3>备忘录列表</h3>
-        <div class="text-12 system-subtitle">
-          <info-circle-filled />
-          数据源自参数列表
-        </div>
+        <h4>备忘录列表</h4>
       </div>
       <div class="mb-4 flex justify-between align-center">
         <a-pagination :total="query.total" :current="query.pageNum" @change="pageChange" />
@@ -54,14 +50,17 @@ const dictData = ref<SystemMemo[]>([]);
 const emit = defineEmits(['update:value']);
 
 const loading = ref(true);
+
 const query = ref<IQuery>({
   pageNum: 1,
   pageSize: 20,
   total: 0,
 });
+
 defineProps<{
   value: any;
 }>();
+
 const pageChange = (page: number, pageSize: number) => {
   query.value.pageNum = page;
   query.value.pageSize = pageSize;

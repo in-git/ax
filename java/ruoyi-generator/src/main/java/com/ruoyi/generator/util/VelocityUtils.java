@@ -163,7 +163,7 @@ public class VelocityUtils
         templates.add(useWebType + "/pages/table-card/AXCard.vue.vm");
         templates.add(useWebType + "/pages/table-card/AXTable.vue.vm");
         templates.add(useWebType + "/index.vue.vm");
-        templates.add(useWebType + "/readme.md.vm");
+        templates.add(useWebType + "/readme.md.vm.vm");
         //
 //        if (GenConstants.TPL_CRUD.equals(tplCategory))
 //        {
@@ -307,11 +307,11 @@ public class VelocityUtils
             fileName = StringUtils.format("{}/views/modules/{}/{}/pages/table-card/AXTable.vue", vuePath, moduleName, businessName);
         }
         /**
-         *  AX readme.md 生成
+         *  AX readme.md.vm 生成
          * */
-        else if (template.contains("readme.md.vm"))
+        else if (template.contains("readme.md.vm.vm"))
         {
-            fileName = StringUtils.format("{}/views/modules/{}/{}/readme.md", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/readme.md.vm", vuePath, moduleName, businessName);
         }
         return fileName;
     }

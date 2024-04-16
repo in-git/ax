@@ -17,12 +17,19 @@
     >
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'operation'">
-          <Operation
-            :loading="websiteTable.loading"
-            @open-change="openChange(record as any)"
-            @on-click="websiteEdit(record.websiteId)"
-            :items="websiteOperationList"
-          />
+          <a-dropdown-button trigger="click" @open-change="openChange(record as any)">
+            <EditOutlined />
+            <template #overlay>
+              <a-menu>
+                <a-menu-item :disabled="userStore.$state.userInfo?.userId !== record.userId">
+                  <template #icon>
+                    <DeleteOutlined />
+                  </template>
+                  删除
+                </a-menu-item>
+              </a-menu>
+            </template>
+          </a-dropdown-button>
         </template>
       </template>
     </a-table>
@@ -31,14 +38,15 @@
 
 <script setup lang="ts">
 import type { SystemWebsite } from '@/api/modules/system/website/types';
+import useUserStore from '@/store/user';
 import { formatColumns } from '@/utils/table/table';
-import Operation from '@/views/components/table/Operation.vue';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { websiteColumns } from '../../data/column';
 import { websiteEdit } from '../../data/curd';
 import { websiteForm } from '../../data/form';
-import { websiteKeys, websiteOperationList, websiteQuery, websiteTable } from '../../data/table';
+import { websiteKeys, websiteQuery, websiteTable } from '../../data/table';
+const userStore = useUserStore();
 
 const openChange = (record: SystemWebsite) => {
   websiteForm.value = record;

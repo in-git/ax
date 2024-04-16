@@ -8,16 +8,19 @@ const form:  ${ModuleName}${BusinessName} = {
 #end
 };
 
+// 当前选中的一项，用于删除，编辑
 export const ${businessName}Form = ref<${ModuleName}${BusinessName}>({
   ...form,
 });
 
+// 重置表格
 export const ${businessName}ResetForm = () => {
   ${businessName}Form.value = {
     ...form,
   };
 };
 
+// 表格校验
 export const ${businessName}Rules: Record<string, Rule[]> = {
 #foreach($column in $columns)
 #set($javaField=$column.javaField)

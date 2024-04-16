@@ -39,11 +39,11 @@ export const ${businessName}Query = ref<IQuery<${businessName}Query>>({
   #end
 });
 
-//已选中的元素数组
+// 已选中的元素数组
 export const ${businessName}Keys = ref<number[]>([]);
 
 
-//操作的下拉菜单
+// 表格操作的下拉菜单
 export const ${businessName}OperationList: ItemType[] = [
   {
     label: '删除',
