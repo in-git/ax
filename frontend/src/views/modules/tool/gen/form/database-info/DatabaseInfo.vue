@@ -6,7 +6,7 @@
           <DatabaseFilled />
           数据库相关配置
         </h3>
-        <div class="my-8 text-12 text-999">
+        <div class="my-8 text-12 system-subtitle">
           <info-circle-filled />
           对表的基本信息进行配置
         </div>
@@ -24,7 +24,7 @@
         allowClear
       ></a-tree-select>
 
-      <div class="text-12 text-999">
+      <div class="text-12 system-subtitle">
         <InfoCircleFilled />
         将会在数据库中创建菜单
       </div>

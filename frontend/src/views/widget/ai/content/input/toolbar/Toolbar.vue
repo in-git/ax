@@ -16,7 +16,7 @@
       <a-popover title="开启/关闭记忆" placement="topRight">
         <a-switch size="small" v-model:checked="AIStore.$state.qianFan.memory"></a-switch>
         <template #content>
-          <div class="text-999" style="width: 200px">
+          <div class="system-subtitle" style="width: 200px">
             <InfoCircleFilled />
             将聊天记录给AI处理,让AI能通过对话理解语境,同时加剧TOKENS损耗
           </div>

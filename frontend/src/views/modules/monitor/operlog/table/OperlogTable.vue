@@ -20,7 +20,7 @@
               <div>
                 <div class="flex flex-col justify-between">
                   <div class="text-16 mb-4 title">{{ item.title }}</div>
-                  <div class="text-999 text-12">{{ item.operTime }}</div>
+                  <div class="system-subtitle text-12">{{ item.operTime }}</div>
                 </div>
               </div>
 

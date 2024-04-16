@@ -1,9 +1,9 @@
 <template>
-  <div class="system-memo">
+  <a-card class="system-memo">
     <a-space class="w-100" direction="vertical">
       <div>
         <h3>备忘录列表</h3>
-        <div class="text-12 text-999">
+        <div class="text-12 system-subtitle">
           <info-circle-filled />
           数据源自参数列表
         </div>
@@ -40,7 +40,7 @@
         </table>
       </a-spin>
     </a-space>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">

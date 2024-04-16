@@ -2,7 +2,7 @@
   <PageContainer title="桌面配置">
     <a-card :body-style="{ paddingTop: '0' }" class="card__container" :bordered="false">
       <template #title>
-        <div class="text-12 text-999">顶部导航</div>
+        <div class="text-12 system-subtitle">顶部导航</div>
       </template>
       <div class="blur-card mb-12">
         <div class="fade-background">
@@ -35,7 +35,7 @@
 
     <a-card class="card__container" :bordered="false">
       <template #title>
-        <div class="text-12 text-999">桌面配置</div>
+        <div class="text-12 system-subtitle">桌面配置</div>
       </template>
       <a-space class="w-100" direction="vertical">
         <div class="flex justify-between align-center">

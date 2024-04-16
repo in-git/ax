@@ -25,7 +25,7 @@
       </a-spin>
 
       <a-divider dashed>
-        <span class="text-999 text-12">没有更多了</span>
+        <span class="system-subtitle">没有更多了</span>
       </a-divider>
     </div>
   </div>

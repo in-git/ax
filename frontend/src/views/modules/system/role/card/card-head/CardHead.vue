@@ -22,7 +22,7 @@
         <a-divider type="vertical"></a-divider>
 
         <div class="flex gc-2 text-nowrap align-center" :class="[!isActive() ? 'active' : 'gray']">
-          <span class="text-999">编辑/权限:</span>
+          <span class="system-subtitle">编辑/权限:</span>
           <a-tooltip title="编辑基础信息">
             <a-button type="text" @click="selectRole()" :disabled="!currentRole">
               <EditOutlined class="icon" />

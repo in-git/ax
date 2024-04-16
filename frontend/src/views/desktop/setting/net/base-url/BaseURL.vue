@@ -2,7 +2,7 @@
   <div class="h-100">
     <a-card :bodyStyle="{ height: '100%' }">
       <template #title>
-        <div class="subtitle">选择服务器</div>
+        <div class="system-subtitle">选择服务器</div>
       </template>
       <template #extra>
         <a-button type="primary" @click="create">

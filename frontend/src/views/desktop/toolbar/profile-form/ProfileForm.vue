@@ -75,7 +75,7 @@
               <a-form size="middle" :model="passwordForm" layout="vertical" @finish="resetPassword">
                 <div class="text-center">
                   <img :src="authPng" width="64" />
-                  <div class="text-24 text-999 text-bold">更新密码</div>
+                  <div class="text-24 system-subtitle text-bold">更新密码</div>
                 </div>
                 <a-form-item required label="新密码" name="newPassword" class="mt-24">
                   <a-input-password

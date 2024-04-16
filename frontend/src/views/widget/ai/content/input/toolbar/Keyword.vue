@@ -6,7 +6,7 @@
       </div>
       <template #content>
         <div class="content">
-          <div class="text-999 text-12">
+          <div class="system-subtitle text-12">
             <div>你的描述越详细,chatgpt回答的越准确</div>
             <div>你能把话术存储起来，方便复用</div>
           </div>
