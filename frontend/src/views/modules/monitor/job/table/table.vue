@@ -10,7 +10,7 @@
     >
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">
-          <Operation @edit="jobEdit" :loading="jobTable.loading" :items="jobOperationList" />
+          <Operation @on-click="jobEdit" :loading="jobTable.loading" :items="jobOperationList" />
         </template>
       </template>
     </SystemTable>

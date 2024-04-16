@@ -24,7 +24,7 @@
           <Operation
             :loading="codeTable.loading"
             @open-change="openChange(record as any)"
-            @edit="editCode(record.tableId)"
+            @on-click="editCode(record.tableId)"
             :items="codeOperationList"
           />
         </template>

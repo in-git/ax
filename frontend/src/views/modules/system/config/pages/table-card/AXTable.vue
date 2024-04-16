@@ -12,7 +12,7 @@
         <Operation
           :loading="configTable.loading"
           @open-change="openChange(value.record as SystemConfig)"
-          @edit="configEdit(value.record.configId)"
+          @on-click="configEdit(value.record.configId)"
           :items="configOperationList"
         />
       </template>
@@ -21,18 +21,14 @@
 </template>
 
 <script setup lang="ts">
-import type {  SystemConfig } from '@/api/modules/system/config/types';
+import type { SystemConfig } from '@/api/modules/system/config/types';
 import Operation from '@/views/components/table/Operation.vue';
 import SystemTable from '@/views/components/table/SystemTable.vue';
 import { configColumns } from '../../data/column';
 import { configEdit } from '../../data/curd';
 import { configForm } from '../../data/form';
 
-import { configKeys, 
-    configOperationList, 
-    configQuery, 
-    configTable 
-} from '../../data/table';
+import { configKeys, configOperationList, configQuery, configTable } from '../../data/table';
 
 const openChange = (record: SystemConfig) => {
   configForm.value = record;

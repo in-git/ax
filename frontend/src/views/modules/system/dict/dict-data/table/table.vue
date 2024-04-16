@@ -10,7 +10,7 @@
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">
           <Operation
-            @edit="dictDataEdit(value.record.dictCode)"
+            @on-click="dictDataEdit(value.record.dictCode)"
             :loading="dictDataTable.loading"
             :items="dictDataOperationList"
           />

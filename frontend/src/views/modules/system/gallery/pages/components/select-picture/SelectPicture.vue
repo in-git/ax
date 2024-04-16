@@ -32,7 +32,6 @@ import useUserStore from '@/store/user';
 import type { UploadChangeParam } from 'ant-design-vue/es/upload/interface';
 import { galleryForm } from '../../../data/form';
 import { storageOptions } from '../../../data/options';
-import { getGalleryImage } from '../../../data/utils';
 
 const fileList = ref();
 const userStore = useUserStore();
@@ -47,9 +46,7 @@ const getAction = () => {
 };
 const fileChange = (info: UploadChangeParam) => {
   if (info.file.response) {
-    console.log(info.file.response);
-    galleryForm.value.imageUrl =
-      getGalleryImage(galleryForm.value.storage) + info.file.response.url;
+    galleryForm.value.imageUrl = info.file.response.url;
     galleryForm.value.imageName = info.file.response.originalFilename;
   }
 };

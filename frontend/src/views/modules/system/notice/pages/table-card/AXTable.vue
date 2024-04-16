@@ -12,7 +12,7 @@
         <Operation
           :loading="noticeTable.loading"
           @open-change="openChange(value.record as SystemNotice)"
-          @edit="noticeEdit(value.record.noticeId)"
+          @on-click="noticeEdit(value.record.noticeId)"
           :items="noticeOperationList"
         />
       </template>
@@ -27,6 +27,7 @@ import { noticeColumns } from '../../data/column';
 import { noticeEdit } from '../../data/curd';
 import { noticeForm } from '../../data/form';
 
+import type { SystemNotice } from '@/api/modules/system/notice/types';
 import { noticeKeys, noticeOperationList, noticeQuery, noticeTable } from '../../data/table';
 
 const openChange = (record: SystemNotice) => {

@@ -11,7 +11,7 @@
       <template v-slot="{ value }">
         <template v-if="value.column.dataIndex === 'operation'">
           <Operation
-            @edit="dictEdit(value.record.dictId)"
+            @on-click="dictEdit(value.record.dictId)"
             :items="dictOperationList"
             :loading="dictTable.loading"
             @open-change="openChange(value.record as any)"

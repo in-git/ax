@@ -19,7 +19,7 @@
           <Operation
             :loading="postTable.loading"
             @open-change="openChange(record as any)"
-            @edit="postEdit(record.configId)"
+            @on-click="postEdit(record.configId)"
             :items="postOperationList"
           />
         </template>
