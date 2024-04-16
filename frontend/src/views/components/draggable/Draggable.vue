@@ -1,10 +1,10 @@
 <template>
   <VueDraggable
-    v-model:w="width"
-    v-model:h="height"
+    v-model:w="windowProps.w"
+    v-model:h="windowProps.h"
     :z="z"
-    v-model:x="x"
-    v-model:y="y"
+    v-model:x="windowProps.x"
+    v-model:y="windowProps.y"
     drag-handle=".drag-header"
     @dragstop="dragstop"
     @mousedown="moveTop"
@@ -24,9 +24,16 @@
             <div>{{ title }}</div>
           </div>
           <div class="flex">
-            <div class="system-icon minus" @click="hidden">
+            <div class="system-icon" @click="hidden">
               <MinusOutlined />
             </div>
+            <div class="system-icon" @click="minimize" v-if="isFullscreen">
+              <CompressOutlined />
+            </div>
+            <div class="system-icon" @click="expand" v-else>
+              <ExpandOutlined />
+            </div>
+
             <div class="system-icon close" @click="close">
               <CloseOutlined />
             </div>
@@ -42,27 +49,28 @@
 
 <script setup lang="ts">
 import { hiddenWindow, setCurrentWindow, toTop, windowList } from '@/global/config/window';
-import { MinusOutlined } from '@ant-design/icons-vue';
+import { CompressOutlined, ExpandOutlined, MinusOutlined } from '@ant-design/icons-vue';
+import { useCloned } from '@vueuse/core';
 import VueDraggable from 'draggable-resizable-vue3';
 
+type DragType = {
+  w?: number;
+  h?: number;
+  title?: string;
+  z?: number;
+  id?: string;
+  resizable?: boolean;
+  icon?: string;
+  x?: number;
+  y: number;
+};
 const emit = defineEmits(['close']);
 
-const props = withDefaults(
-  defineProps<{
-    w?: number;
-    h?: number;
-    title: string;
-    z?: number;
-    id?: string;
-    resizable?: boolean;
-    icon?: string;
-  }>(),
-  {
-    w: 1000,
-    h: 700,
-    resizable: false,
-  },
-);
+const props = withDefaults(defineProps<DragType>(), {
+  w: 1000,
+  h: 700,
+  resizable: false,
+});
 
 const moveTop = () => {
   if (props.id) {
@@ -75,46 +83,59 @@ const close = () => {
 };
 
 const offset = windowList.value.length * 40;
-const x = ref(window.innerWidth / 2 - props.w / 2 + offset - 32);
-const y = ref(window.innerHeight / 2 - props.h / 2 + offset);
 const maxHeight = window.innerHeight;
+const isFullscreen = ref(false);
+const windowProps = ref<DragType>({
+  x: window.innerWidth / 2 - props.w / 2 + offset - 32,
+  y: window.innerHeight / 2 - props.h / 2 + offset,
+  w: 0,
+  h: 0,
+});
 
-const width = ref();
-const height = ref();
+/* 记录放大之前的数据，用于缩小后还原 */
+let beforeExpandData: DragType = {
+  w: 0,
+  h: 0,
+  x: 0,
+  y: 0,
+};
+/* 最大化 */
+const expand = () => {
+  isFullscreen.value = !isFullscreen.value;
+  beforeExpandData = useCloned(windowProps.value).cloned.value;
+  windowProps.value.x = 0;
+  windowProps.value.y = 0;
+  windowProps.value.w = window.innerWidth;
+  windowProps.value.h = window.innerHeight - 40;
+};
 
+const minimize = () => {
+  windowProps.value = beforeExpandData;
+  isFullscreen.value = !isFullscreen.value;
+};
 const hidden = () => {
   if (props.id) {
     hiddenWindow(props.id);
   }
 };
 const dragstop = () => {
-  if (y.value < 0) {
-    y.value = 0;
+  if (windowProps.value.y < 0) {
+    windowProps.value.y = 0;
   }
-  if (y.value > maxHeight - 100) {
-    y.value = maxHeight - 100;
+  if (windowProps.value.y > maxHeight - 100) {
+    windowProps.value.y = maxHeight - 100;
   }
 };
 
 onMounted(() => {
   if (props.id) setCurrentWindow(props.id);
-  width.value = props.w;
-  height.value = props.h;
+  windowProps.value.w = props.w;
+  windowProps.value.h = props.h;
 });
 </script>
 
 <style lang="scss" scoped>
 $hh: 36px;
-
-%icon {
-  width: $hh;
-  height: $hh;
-  border-radius: 0;
-  color: #909399;
-  &:hover {
-    background: #dddddd70;
-  }
-}
 
 .drv {
   border: none;
@@ -125,7 +146,8 @@ $hh: 36px;
 }
 
 .drv-draggable {
-  border-radius: var(--radius) !important;
+  transition: all var(--transition);
+  border-radius: var(--radius);
 }
 
 .drag-header {
@@ -141,18 +163,12 @@ $hh: 36px;
 }
 
 .close {
-  @extend %icon;
   &:hover {
     background-color: #f74545;
     color: white;
   }
 }
-.minus {
-  @extend %icon;
-  &:hover {
-    background-color: #dddddd70;
-  }
-}
+
 .win-icon {
   width: 40px;
   height: 38px;
