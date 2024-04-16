@@ -44,6 +44,7 @@ onClickOutside(contextMenuRef, () => {
 <style lang="scss" scoped>
 .contextmenu {
   border: 1px solid #eee;
+  border-radius: var(--radius);
   position: fixed;
   overflow-y: hidden;
   z-index: 120;

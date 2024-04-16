@@ -19,7 +19,7 @@
           <Operation
             :loading="websiteTable.loading"
             @open-change="openChange(record as any)"
-            @on-click="websiteEdit(record.configId)"
+            @on-click="websiteEdit(record.websiteId)"
             :items="websiteOperationList"
           />
         </template>

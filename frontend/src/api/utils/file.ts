@@ -36,10 +36,12 @@ export const exportFile = async (config: ExportData) => {
     message.warning('Error exporting file!');
   }
 };
+
 interface UploadData {
   url: string;
   formData: FormData;
 }
+
 /* 上传文件 */
 export const uploadFile = async (data: UploadData) => {
   const userStore = useUserStore();

@@ -19,7 +19,7 @@
           <Operation
             :loading="deptTable.loading"
             @open-change="openChange(record as any)"
-            @on-click="deptEdit(record.configId)"
+            @on-click="deptEdit(record.deptId)"
             :items="deptOperationList"
           />
         </template>
