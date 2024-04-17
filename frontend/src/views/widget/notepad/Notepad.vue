@@ -1,7 +1,7 @@
 <template>
   <a-card class="system__module" :body-style="{ height: '100%' }">
     <ToolbarVue />
-    <div style="height: calc(100% - 40px)">
+    <div style="height: calc(100% - 32px)">
       <textarea v-model="content" v-focus @input="onChange"></textarea>
     </div>
   </a-card>

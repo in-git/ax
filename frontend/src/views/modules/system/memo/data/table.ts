@@ -17,7 +17,7 @@ interface memoQuery {
   title: '';
   value: '';
   description: '';
-  type: '1';
+  type: '1' | '2';
 }
 // 预览模式:卡片|表格
 export const viewMode = ref<'card' | 'table'>('table');

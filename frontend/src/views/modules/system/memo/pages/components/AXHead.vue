@@ -15,22 +15,11 @@
         ></a-input>
       </div>
       <div>
-        <a-input
-          @blur="memoList"
-          v-model:value="memoQuery.value"
-          style="width: 160px"
-          placeholder="请输入备忘录的值"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-input
-          @blur="memoList"
-          v-model:value="memoQuery.description"
-          style="width: 160px"
-          placeholder="请输入备忘录描述"
-          allow-clear
-        ></a-input>
+        <a-radio-group
+          @change="memoList"
+          :options="memoTypeOptions"
+          v-model:value="memoQuery.type"
+        ></a-radio-group>
       </div>
       <a-button type="primary" @click="memoList">搜索</a-button>
     </a-flex>
@@ -114,7 +103,7 @@ import {
 } from '@ant-design/icons-vue';
 import { memoColumns } from '../../data/column';
 import { memoCreate, memoDelete, memoEdit, memoExport, memoList } from '../../data/curd';
-import {} from '../../data/options';
+import { memoTypeOptions } from '../../data/options';
 import { memoKeys, memoQuery, memoTable, viewMode } from '../../data/table';
 </script>
 

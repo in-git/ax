@@ -3,15 +3,17 @@
     <a-dropdown trigger="click">
       <div class="menu-button" accesskey="f">文件(F)</div>
       <template #overlay>
-        <a-menu :items="menuList" style="width: 120px"></a-menu>
+        <a-card :body-style="{ padding: '0' }" :loading="loading">
+          <a-menu :items="menuList" style="width: 120px"></a-menu>
+        </a-card>
       </template>
     </a-dropdown>
   </div>
 
-  <SystemModal w="300px" h="220px" v-model:visible="visible" title="保存记事本" position="fixed">
+  <SystemModal w="300px" h="260px" v-model:visible="visible" title="保存记事本" position="fixed">
     <a-form @finish="saveText" layout="vertical" :model="form" class="p-12">
       <a-form-item label="记事本标题" name="title" required>
-        <a-input placeholder="请输入标题" v-model:value="form.title" />
+        <a-input :maxlength="16" placeholder="请输入标题" v-model:value="form.title" />
       </a-form-item>
       <a-form-item label="描述信息" name="description" required>
         <a-input placeholder="请输入描述信息" v-model:value="form.description" />
@@ -34,6 +36,7 @@ import NotepadVue from '../../Notepad.vue';
 
 const notepadId = inject<string>('data')!;
 const visible = ref(false);
+const loading = ref(false);
 const form = ref({
   title: '',
   description: '',

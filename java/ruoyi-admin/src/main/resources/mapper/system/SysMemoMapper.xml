@@ -25,6 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectSysMemoVo"/>
         <where>  
             <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
             ${params.dataScope}
         </where>
     </select>

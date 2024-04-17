@@ -39,6 +39,7 @@ declare module 'vue' {
     AList: typeof import('ant-design-vue/es')['List']
     AListItem: typeof import('ant-design-vue/es')['ListItem']
     AMenu: typeof import('ant-design-vue/es')['Menu']
+    AMenuDivider: typeof import('ant-design-vue/es')['MenuDivider']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     AModal: typeof import('ant-design-vue/es')['Modal']
     APageHeader: typeof import('ant-design-vue/es')['PageHeader']
