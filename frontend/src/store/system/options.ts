@@ -6,7 +6,7 @@ export const baseUrlOptions = [
   },
   {
     label: '测试',
-    value: 'http://150.158.14.110:8081/',
+    value: 'http://150.158.14.110:8080/',
     id: 'test',
   },
   {

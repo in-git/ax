@@ -9,6 +9,4 @@ public class WebInfo {
     private String title;
     private String description;
     private String logo;
-
-
 }
