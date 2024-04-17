@@ -1,20 +1,15 @@
 <template>
   <div class="top-toolbar system__head px-12" :style="style">
-    <div>
-      <div class="flex align-center gc-4">
-        <img :src="logo" width="28" style="object-fit: contain" />
-        AX
-      </div>
-    </div>
-    <div class="flex gc-4">
+    <a-flex :align="'center'" :gap="4">
+      <img :src="logo" width="28" style="object-fit: contain" />
+      AX
+    </a-flex>
+    <a-flex :gap="4">
       <div class="system-icon-dark" @click="setting">
         <SettingOutlined />
       </div>
-      <div class="system-icon-dark">
-        <InfoCircleOutlined />
-      </div>
       <Profile />
-    </div>
+    </a-flex>
   </div>
 </template>
 
@@ -24,7 +19,7 @@ import settingPng from '@/assets/system/system_setting.png';
 import { openWindow } from '@/global/config/window';
 import usePageStore from '@/store/page';
 import PageSetting from '@/views/desktop/setting/PageSetting.vue';
-import { InfoCircleOutlined, SettingOutlined } from '@ant-design/icons-vue';
+import { SettingOutlined } from '@ant-design/icons-vue';
 import type { CSSProperties } from 'vue';
 import Profile from './profile/Profile.vue';
 const setting = () => {

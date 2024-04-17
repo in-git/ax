@@ -52,7 +52,7 @@
           </div>
 
           <div v-perm="'system:website:edit'">
-            <a-tooltip title="编辑">
+            <a-tooltip title="编辑 ( 双击 )">
               <a-button type="link" @click="websiteEdit()" :disabled="websiteKeys.length !== 1">
                 <EditOutlined />
               </a-button>

@@ -1,11 +1,12 @@
 <template>
-  <a-card class="system-memo" title="备忘录列表" :bodyStyle="{ padding: '8px' }">
+  <a-card class="system-memo" title="备忘录列表">
     <template #extra>
       <a-button type="primary" @click="confirm" :disabled="!currentRow">确定</a-button>
     </template>
     <a-space class="w-100" direction="vertical">
       <a-spin :spinning="loading">
         <a-table
+          sticky
           @change="pageChange"
           :pagination="{
             pageSize: query.pageSize,
@@ -87,10 +88,15 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .system-memo {
-  width: 400px;
+  width: 500px;
   max-height: 400px;
   :deep(.ant-pagination) {
     margin: 8px;
+  }
+  :deep(.ant-card-body) {
+    padding: 0;
+    padding-top: 0;
+    min-height: 300px;
   }
 }
 </style>

@@ -1,7 +1,12 @@
 <template>
   <a-card class="table__card">
-    <ul class="table_card_list flex-1" ref="cardRef" v-if="websiteTable.data.length > 0">
-      <li v-for="item in websiteTable.data" :key="item.websiteId" @dblclick="openLink(item.url)">
+    <ul class="table_card_list flex-1" ref="cardRef" v-show="websiteTable.data.length > 0">
+      <li
+        :draggable="true"
+        v-for="item in websiteTable.data"
+        :key="item.websiteId"
+        @dblclick="openLink(item.url)"
+      >
         <img :src="`https://favicon.qqsuu.cn/${item.url}`" width="36" height="36" />
         <a-flex class="flex-1" vertical :gap="2">
           <a-flex justify="space-between">
@@ -14,14 +19,14 @@
               </a-button>
             </div>
           </a-flex>
-
           <div class="system-subtitle">
             {{ item.description }}
           </div>
         </a-flex>
       </li>
     </ul>
-    <a-empty v-else />
+
+    <a-empty v-show="websiteTable.data.length === 0" />
   </a-card>
 </template>
 
