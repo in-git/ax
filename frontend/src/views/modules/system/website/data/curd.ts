@@ -17,6 +17,8 @@ export const websiteList = async () => {
 };
 
 export const websiteEdit = async (id?: number) => {
+  console.log(id);
+
   let targetId: number = id ? id : websiteKeys.value[0];
   websiteTable.value.loading = true;
   const { data } = await fetchWebsiteById(targetId);

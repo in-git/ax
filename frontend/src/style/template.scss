@@ -30,7 +30,7 @@
 		overflow-y: auto;
 		overflow-x: hidden;
 		place-content: start;
-		grid-template-columns: repeat(auto-fill, minmax($width, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax($width, 1fr));
 		flex: 1;
 		div.active {
 			$wh: 20px;
@@ -68,5 +68,11 @@
 
 	&:deep(.ant-card-body) {
 		height: 100%;
+	}
+}
+.table__card {
+	box-shadow: none !important;
+	*:deep(.ant-card-body) {
+		padding: 0 !important;
 	}
 }

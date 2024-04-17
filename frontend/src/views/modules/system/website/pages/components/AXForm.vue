@@ -11,17 +11,19 @@
         <a-form-item label="网页URL" name="url">
           <a-input-search
             placeholder="请输入网页URL"
-            @search="search"
             v-model:value="websiteForm.url"
-          ></a-input-search>
-          <div class="system-subtitle">
+            @search="search"
+          >
+            <template #prefix>
+              <div class="system-subtitle">http(s)://</div>
+            </template>
+          </a-input-search>
+          <div class="system-subtitle mt-4">
             <InfoCircleFilled />
-            复制网址后会自动获取网页
+            点击搜索能自动获取网页信息
           </div>
         </a-form-item>
-        <a-col :offset="9" :span="8">
-          <a-divider></a-divider>
-        </a-col>
+
         <a-form-item label="网页名称" name="name">
           <a-input placeholder="请输入网页名称" v-model:value="websiteForm.name"></a-input>
         </a-form-item>
@@ -53,17 +55,39 @@
 import { createWebsite, getSiteInfo, updateWebsite } from '@/api/modules/system/website/website';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { response } from '@/utils/table/table';
+import { message } from 'ant-design-vue';
 import { websiteList } from '../../data/curd';
 import { websiteForm, websiteRules, websiteShowForm } from '../../data/form';
 import { typeOptions } from '../../data/options';
 
 const loading = ref(false);
+
+/* 获取精确域名 */
+const extractDomain = (url: string): string => {
+  try {
+    const domain = new URL(url).hostname;
+    const parts = domain.split('.');
+    if (parts.length > 2) {
+      return parts.slice(-2).join('.');
+    }
+    return domain;
+  } catch (error) {
+    console.error('Invalid URL:', error);
+    return '';
+  }
+};
+
 const search = async () => {
   if (websiteForm.value.url) {
-    const { data } = await getSiteInfo(websiteForm.value.url);
-    if (data.data) {
-      websiteForm.value.description = data.data.description;
-      websiteForm.value.name = data.data.title;
+    let url = extractDomain(websiteForm.value.url);
+    try {
+      const { data } = await getSiteInfo(url);
+      if (data.data && url) {
+        websiteForm.value.description = data.data.description;
+        websiteForm.value.name = data.data.title;
+      }
+    } catch (error) {
+      message.warn('获取失败，请手动填写信息');
     }
   }
 };

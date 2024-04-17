@@ -58,5 +58,5 @@ public interface SysWebsiteMapper
      * @param websiteIds 需要删除的数据主键集合
      * @return 结果
      */
-    public int deleteSysWebsiteByWebsiteIds(Long[] websiteIds);
+    public int deleteSysWebsiteByWebsiteIds(Long[] websiteIds,Long userId);
 }

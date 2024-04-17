@@ -9,6 +9,7 @@ import com.ruoyi.system.mapper.SysWebsiteMapper;
 import com.ruoyi.system.service.ISysWebsiteService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -102,19 +103,9 @@ public class SysWebsiteServiceImpl implements ISysWebsiteService
     @Override
     public int deleteSysWebsiteByWebsiteIds(Long[] websiteIds)
     {
-        int count =0;
-        SysUser user = SecurityUtils.getLoginUser().getUser();
-        for (Long websiteId : websiteIds) {
-            // 在这里处理每个websiteId
-            System.out.println(websiteId); // 举例输出
-            SysWebsite sysWebsite = sysWebsiteMapper.selectSysWebsiteByWebsiteId(websiteId);
-            if(user.getUserId()== sysWebsite.getUserId()){
-                sysWebsiteMapper.deleteSysWebsiteByWebsiteIds(websiteIds);
-                count++;
-            }
-        }
 
-        return count;
+        SysUser user = SecurityUtils.getLoginUser().getUser();
+        return sysWebsiteMapper.deleteSysWebsiteByWebsiteIds(websiteIds,user.getUserId());
     }
 
     /**
@@ -143,10 +134,20 @@ public class SysWebsiteServiceImpl implements ISysWebsiteService
 
             // 获取网页标题
             String title = doc.title();
+
+            // 获取网页描述
             String description = doc.select("meta[name=description]").attr("content");
 
-            // 返回标题和描述信息
-            return new WebInfo(title, description);
+            // 获取网页 logo
+            String logoUrl = null;
+            Elements links = doc.select("link[rel~=(?i)^(shortcut )?icon$]");
+            if (!links.isEmpty()) {
+                // 获取第一个匹配的 link 标签中的 href 属性值作为 logoUrl
+                logoUrl = links.get(0).attr("href");
+            }
+
+            // 返回标题、描述信息和 logoUrl
+            return new WebInfo(title, description, logoUrl);
         } catch (IOException e) {
             e.printStackTrace();
             return null;

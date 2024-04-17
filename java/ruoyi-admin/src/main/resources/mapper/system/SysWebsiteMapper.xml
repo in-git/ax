@@ -78,7 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteSysWebsiteByWebsiteId" parameterType="Long">
-        delete from sys_website where website_id = #{websiteId}
+        delete from sys_website where website_id = #{websiteId} and user_id = #{user_id}
     </delete>
 
     <delete id="deleteSysWebsiteByWebsiteIds" parameterType="String">

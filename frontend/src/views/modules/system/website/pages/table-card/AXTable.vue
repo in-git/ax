@@ -17,7 +17,11 @@
     >
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'operation'">
-          <a-dropdown-button trigger="click" @open-change="openChange(record as any)">
+          <a-dropdown-button
+            trigger="click"
+            @click="websiteEdit(record.websiteId)"
+            @open-change="openChange(record as SystemWebsite)"
+          >
             <EditOutlined />
             <template #overlay>
               <a-menu>
@@ -63,6 +67,7 @@ const userStore = useUserStore();
 
 const openChange = (record: SystemWebsite) => {
   websiteForm.value = record;
+  websiteEdit(record.websiteId);
 };
 
 /* 行事件 */
