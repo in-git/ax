@@ -8,7 +8,7 @@
         selectedRowKeys: websiteKeys,
         onChange: (k: any[]) => (websiteKeys = k),
       }"
-      bordered
+      :bordered="false"
       :pagination="false"
       :customRow="customRow"
       :rowKey="websiteTable.rowKey"
@@ -26,8 +26,8 @@
             <template #overlay>
               <a-menu>
                 <a-menu-item
-                  :disabled="userStore.$state.userInfo?.userId !== record.userId"
-                  @click="websiteDelete(record.websiteId)"
+                  :disabled="websiteDisable(record.userId)"
+                  @click="websiteDelete(record.userId)"
                 >
                   <template #icon>
                     <DeleteOutlined />
@@ -60,14 +60,13 @@ import { formatColumns } from '@/utils/table/table';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { websiteColumns } from '../../data/column';
-import { websiteDelete, websiteEdit } from '../../data/curd';
+import { websiteDelete, websiteDisable, websiteEdit } from '../../data/curd';
 import { websiteForm } from '../../data/form';
 import { websiteKeys, websiteQuery, websiteTable } from '../../data/table';
 const userStore = useUserStore();
 
 const openChange = (record: SystemWebsite) => {
   websiteForm.value = record;
-  websiteEdit(record.websiteId);
 };
 
 /* 行事件 */

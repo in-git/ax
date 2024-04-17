@@ -34,7 +34,7 @@ export const ${businessName}Query = ref<IQuery<${businessName}Query>>({
   total: 0,
   #foreach($column in $columns)
   #if($column.isQuery == '1')
-  $column.javaField:#if($column.javaType == "String") "" #elseif($column.javaType == "Integer") 0 #elseif($column.javaType == "Long") 0 #elseif($column.javaType == "Double") 0.0 #elseif($column.javaType == "Boolean") false #else null #end,
+  $column.javaField:#if($column.javaType == "String") string #elseif($column.javaType == "Integer") 0 #elseif($column.javaType == "Long") 0 #elseif($column.javaType == "Double") 0.0 #elseif($column.javaType == "Boolean") false #else null #end,
   #end
   #end
 });

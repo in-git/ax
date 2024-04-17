@@ -72,7 +72,4 @@
 }
 .table__card {
 	box-shadow: none !important;
-	*:deep(.ant-card-body) {
-		padding: 0 !important;
-	}
 }

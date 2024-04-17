@@ -14,21 +14,21 @@ export const websiteTable = ref<TableConfig<SystemWebsite>>({
 });
 //查询参数接口
 interface websiteQuery {
-  name: '';
-  url: '';
-  type: '';
+  name: string;
+  url: string;
+  type: string;
 }
 // 预览模式:卡片|表格
-export const viewMode = ref<'card' | 'table'>('table');
+export const viewMode = ref<'card' | 'table'>('card');
 
 //查询参数
 export const websiteQuery = ref<IQuery<websiteQuery>>({
   pageNum: 1,
-  pageSize: 10,
+  pageSize: 20,
   total: 0,
   name: '',
   url: '',
-  type: '',
+  type: 'image',
 });
 
 //已选中的元素数组

@@ -24,14 +24,13 @@
         ></a-input>
       </div>
       <div>
-        <a-select
+        <a-radio-group
           v-model:value="websiteQuery.type"
-          style="width: 160px"
           placeholder="请选择网页类型"
           allow-clear
-          @blur="websiteList"
           :options="typeOptions"
-        ></a-select>
+          @change="selectType"
+        ></a-radio-group>
       </div>
       <a-button type="primary" @click="websiteList">搜索</a-button>
     </a-flex>
@@ -120,6 +119,11 @@ import {
 } from '../../data/curd';
 import { typeOptions } from '../../data/options';
 import { viewMode, websiteKeys, websiteQuery, websiteTable } from '../../data/table';
+
+const selectType = () => {
+  websiteQuery.value.pageNum = 1;
+  websiteList();
+};
 </script>
 
 <style lang="scss" scoped></style>

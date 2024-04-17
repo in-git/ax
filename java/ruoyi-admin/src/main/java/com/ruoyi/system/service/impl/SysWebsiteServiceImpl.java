@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 网页收藏Service业务层处理
@@ -57,10 +58,11 @@ public class SysWebsiteServiceImpl implements ISysWebsiteService
             /*把超级管理员的数据查询出来，共享给别人用户*/
             SysWebsite admin= new SysWebsite();
             admin.setUserId(1L);
+            admin.setType(sysWebsite.getType());
             List<SysWebsite> adminWebsites = sysWebsiteMapper.selectSysWebsiteList(admin);
             List<SysWebsite> userWebsites = sysWebsiteMapper.selectSysWebsiteList(sysWebsite);
-            List<SysWebsite> mergedList = new ArrayList<>(adminWebsites);
-            mergedList.addAll(userWebsites);
+            List<SysWebsite> mergedList = new ArrayList<>( userWebsites);
+            mergedList.addAll(adminWebsites);
             return mergedList;
         }
     }
@@ -90,8 +92,14 @@ public class SysWebsiteServiceImpl implements ISysWebsiteService
     @Override
     public int updateSysWebsite(SysWebsite sysWebsite)
     {
-        sysWebsite.setUpdateTime(DateUtils.getNowDate());
-        return sysWebsiteMapper.updateSysWebsite(sysWebsite);
+        SysUser user = SecurityUtils.getLoginUser().getUser();
+        if(!(Objects.equals(user.getUserId(), sysWebsite.getUserId()))){
+            return  -1;
+        }
+        else{
+            sysWebsite.setUpdateTime(DateUtils.getNowDate());
+            return sysWebsiteMapper.updateSysWebsite(sysWebsite);
+        }
     }
 
     /**

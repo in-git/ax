@@ -60,7 +60,7 @@ nextTick(() => {
 .table_card_list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(fit-content, 1fr));
-  grid-template-rows: repeat(auto-fill, 80px);
+
   li {
     display: flex;
     padding: 8px;

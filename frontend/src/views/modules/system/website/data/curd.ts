@@ -4,6 +4,7 @@ import {
   fetchWebsiteById,
   fetchWebsiteList,
 } from '@/api/modules/system/website/website';
+import useUserStore from '@/store/user';
 import { response } from '@/utils/table/table';
 import { websiteForm, websiteResetForm, websiteShowForm } from './form';
 import { websiteKeys, websiteQuery, websiteTable } from './table';
@@ -17,8 +18,6 @@ export const websiteList = async () => {
 };
 
 export const websiteEdit = async (id?: number) => {
-  console.log(id);
-
   let targetId: number = id ? id : websiteKeys.value[0];
   websiteTable.value.loading = true;
   const { data } = await fetchWebsiteById(targetId);
@@ -46,4 +45,8 @@ export const websiteExport = () => {
     pageNum: websiteQuery.value.pageNum,
     pageSize: websiteQuery.value.pageSize,
   });
+};
+export const websiteDisable = (userId: number) => {
+  const userStore = useUserStore();
+  return userId !== userStore.$state.userInfo?.userId;
 };

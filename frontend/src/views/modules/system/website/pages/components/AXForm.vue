@@ -30,6 +30,9 @@
         <a-form-item label="网页描述" name="description">
           <a-textarea
             placeholder="请输入网页描述"
+            :auto-size="{
+              minRows: 6,
+            }"
             v-model:value="websiteForm.description"
           ></a-textarea>
         </a-form-item>
