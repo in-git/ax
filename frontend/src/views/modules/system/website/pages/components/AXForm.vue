@@ -31,8 +31,10 @@
           <a-textarea
             placeholder="请输入网页描述"
             :auto-size="{
-              minRows: 6,
+              minRows: 5,
             }"
+            :maxlength="140"
+            show-count
             v-model:value="websiteForm.description"
           ></a-textarea>
         </a-form-item>

@@ -17,7 +17,7 @@ export const response = async (request: (...arg: any) => any, ...arg: any) => {
   }
 };
 
-export const formatColumns = (data: ColumnProps[]) => {
+export const formatColumns = (data: ColumnProps[], operationSlot = true) => {
   let operation: ColumnProps = {
     title: '操作',
     dataIndex: 'operation',
@@ -25,7 +25,7 @@ export const formatColumns = (data: ColumnProps[]) => {
     fixed: 'right',
     show: true,
   };
-  if (data.findIndex(e => e.dataIndex === operation.key) <= -1) {
+  if (data.findIndex(e => e.dataIndex === operation.key) <= -1 && operationSlot) {
     data.push(operation);
   }
 

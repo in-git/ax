@@ -8,6 +8,7 @@
         selectedRowKeys: websiteKeys,
         onChange: (k: any[]) => (websiteKeys = k),
       }"
+      :loading="websiteTable.loading"
       :bordered="false"
       :pagination="false"
       :customRow="customRow"
@@ -19,10 +20,10 @@
         <template v-if="column.key === 'operation'">
           <a-dropdown-button
             trigger="click"
-            @click="websiteEdit(record.websiteId)"
+            @click="openLink(record.url)"
             @open-change="openChange(record as SystemWebsite)"
           >
-            <EditOutlined />
+            <LinkOutlined />
             <template #overlay>
               <a-menu>
                 <a-menu-item
@@ -56,6 +57,7 @@
 <script setup lang="ts">
 import type { SystemWebsite } from '@/api/modules/system/website/types';
 import useUserStore from '@/store/user';
+import { openLink } from '@/utils/common/utils';
 import { formatColumns } from '@/utils/table/table';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';

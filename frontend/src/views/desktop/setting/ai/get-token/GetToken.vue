@@ -25,7 +25,20 @@
         </a-input>
       </a-form-item>
       <a-form-item required name="sk" label="SK">
-        <a-input allow-clear size="large" placeholder="请输入SK" v-model:value="form.sk"></a-input>
+        <a-input allow-clear size="large" placeholder="请输入SK" v-model:value="form.sk">
+          <template #suffix>
+            <a-popover trigger="click">
+              <a-tooltip title="从备忘录中读取">
+                <a-button type="ghost">
+                  <BookOutlined />
+                </a-button>
+              </a-tooltip>
+              <template #content>
+                <MemoVue v-model:value="form.sk"></MemoVue>
+              </template>
+            </a-popover>
+          </template>
+        </a-input>
       </a-form-item>
       <a-form-item label="AccessToken">
         <a-input

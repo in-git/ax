@@ -9,6 +9,7 @@
         onChange: (k: any[]) => (${businessName}Keys = k),
       }"
       bordered
+      :loading="${businessName}Table.loading"
       :pagination="false"
       :customRow="customRow"
       :rowKey="${businessName}Table.rowKey"

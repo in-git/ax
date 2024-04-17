@@ -96,6 +96,7 @@ declare module 'vue' {
     ImportOutlined: typeof import('@ant-design/icons-vue')['ImportOutlined']
     InboxOutlined: typeof import('@ant-design/icons-vue')['InboxOutlined']
     InfoCircleFilled: typeof import('@ant-design/icons-vue')['InfoCircleFilled']
+    LinkOutlined: typeof import('@ant-design/icons-vue')['LinkOutlined']
     Loading: typeof import('./components/loading/Loading.vue')['default']
     LoadingOutlined: typeof import('@ant-design/icons-vue')['LoadingOutlined']
     LockOutlined: typeof import('@ant-design/icons-vue')['LockOutlined']

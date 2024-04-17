@@ -4,35 +4,40 @@
       <h3 class="text-14">网页收藏列表</h3>
     </template>
 
-    <a-flex class="mb-12" :gap="12" wrap="wrap">
-      <div>
-        <a-input
-          @blur="websiteList"
-          v-model:value="websiteQuery.name"
-          style="width: 160px"
-          placeholder="请输入网页名称"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-input
-          @blur="websiteList"
-          v-model:value="websiteQuery.url"
-          style="width: 160px"
-          placeholder="请输入网页URL"
-          allow-clear
-        ></a-input>
-      </div>
+    <a-flex class="mb-12" wrap="wrap" justify="space-between">
       <div>
         <a-radio-group
           v-model:value="websiteQuery.type"
           placeholder="请选择网页类型"
           allow-clear
-          :options="typeOptions"
           @change="selectType"
-        ></a-radio-group>
+        >
+          <a-radio-button v-for="item in typeOptions" :value="item.value">
+            {{ item.label }}
+          </a-radio-button>
+        </a-radio-group>
       </div>
-      <a-button type="primary" @click="websiteList">搜索</a-button>
+      <a-flex :gap="12">
+        <div>
+          <a-input
+            @blur="websiteList"
+            v-model:value="websiteQuery.name"
+            style="width: 160px"
+            placeholder="请输入网页名称"
+            allow-clear
+          ></a-input>
+        </div>
+        <div>
+          <a-input
+            @blur="websiteList"
+            v-model:value="websiteQuery.url"
+            style="width: 160px"
+            placeholder="请输入网页URL"
+            allow-clear
+          ></a-input>
+        </div>
+        <a-button type="primary" @click="websiteList">搜索</a-button>
+      </a-flex>
     </a-flex>
 
     <a-flex justify="space-between" :align="'center'">

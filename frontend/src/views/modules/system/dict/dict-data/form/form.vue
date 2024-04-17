@@ -7,15 +7,11 @@
     @finish="submit"
   >
     <SystemModal title="字典数据编辑" v-model:visible="dictDataShowForm">
-      <div class="h-100 flex flex-col">
+      <a-card title="编辑数据">
+        <template #extra>
+          <a-button type="primary" :loading="loading" htmlType="submit">保存</a-button>
+        </template>
         <div class="flex-1">
-          <a-row>
-            <a-col :span="8" :offset="9">
-              <div class="py-12 text-center">
-                <img :src="TeamWork" width="160" />
-              </div>
-            </a-col>
-          </a-row>
           <!-- name="dictType" -->
           <a-form-item label="字典类型" required>
             <a-input v-model:value="dictDataForm.dictType" disabled></a-input>
@@ -48,10 +44,8 @@
               v-model:value="dictDataForm.remark"
             ></a-textarea>
           </a-form-item>
-
-          <FormFooter justify="center"></FormFooter>
         </div>
-      </div>
+      </a-card>
     </SystemModal>
   </a-form>
 </template>
@@ -61,10 +55,10 @@ import { createDictData, updateDictData } from '@/api/modules/system/dict/dict.d
 import SystemModal from '@/components/modal/SysModal.vue';
 import { statusOptions } from '@/global/options/system';
 import { response } from '@/utils/table/table';
-import TeamWork from '../../assets/TeamWork.png';
 import { listDictData } from '../data/curd';
 import { dictDataForm, dictDataShowForm } from '../data/form';
 
+const loading = ref(false);
 const submit = async () => {
   console.log(dictDataForm.value);
 

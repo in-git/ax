@@ -1,6 +1,6 @@
 <template>
   <div class="h-100">
-    <a-card :bodyStyle="{ height: '100%' }">
+    <a-card :bodyStyle="{ height: '100%' }" class="card__container" :bordered="false">
       <template #title>
         <div class="system-subtitle">选择服务器</div>
       </template>

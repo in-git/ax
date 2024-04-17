@@ -1,11 +1,6 @@
 <template>
   <div class="pl-8">
-    <a-card
-      :title="title"
-      class="card__container"
-      :bordered="false"
-      :body-style="{ padding: '12px 0' }"
-    >
+    <a-card :title="title">
       <slot></slot>
     </a-card>
   </div>

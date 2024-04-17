@@ -1,8 +1,8 @@
 <template>
   <a-card class="table__card">
     <ul class="table_card_list flex-1" ref="cardRef" v-if="websiteTable.data.length > 0">
-      <li v-for="item in websiteTable.data" :key="item.websiteId">
-        <img :src="`https://favicon.qqsuu.cn/${item.url}`" width="36" height="36" alt="" />
+      <li v-for="item in websiteTable.data" :key="item.websiteId" @dblclick="openLink(item.url)">
+        <img :src="`https://favicon.qqsuu.cn/${item.url}`" width="36" height="36" />
         <a-flex class="flex-1" vertical :gap="2">
           <a-flex justify="space-between">
             <div class="site-title">
@@ -26,6 +26,7 @@
 </template>
 
 <script setup lang="ts">
+import { openLink } from '@/utils/common/utils';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import { websiteCardData } from '../../data/card';
 import { websiteTable } from '../../data/table';
@@ -69,10 +70,15 @@ nextTick(() => {
     cursor: pointer;
     max-width: 220px;
     &:hover {
-      background: #f8f5f2;
+      color: black;
+      background: var(--color-primary-hover-bg);
     }
+    border-radius: var(--radius);
     img {
       border-radius: var(--radius);
+      background: var(--color-background);
+      border: 1px solid #ddd;
+      padding: 2px;
     }
   }
   .site-title {

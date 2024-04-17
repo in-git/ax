@@ -1,6 +1,7 @@
 import type { IQuery, TableConfig } from '@/api/config/types';
 import { DeleteOutlined } from '@ant-design/icons-vue';
 import type { ItemType } from 'ant-design-vue';
+import { dictDataDelete } from './curd';
 
 export const dictDataTable = ref<TableConfig>({
   rowKey: 'dictCode',
@@ -27,5 +28,8 @@ export const dictDataOperationList: ItemType[] = [
     label: '删除',
     key: 'delete',
     icon: h(DeleteOutlined),
+    onClick() {
+      dictDataDelete();
+    },
   },
 ];
