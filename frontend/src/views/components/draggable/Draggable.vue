@@ -166,6 +166,10 @@ $hh: 36px;
 .drag-content {
   height: calc(100% - $hh);
   position: relative;
+  background: url('../../../assets/logo.png');
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
 }
 
 .close {

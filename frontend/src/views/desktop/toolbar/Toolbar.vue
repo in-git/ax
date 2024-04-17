@@ -43,7 +43,7 @@ const style = computed((): CSSProperties => {
 
 <style lang="scss" scoped>
 .top-toolbar {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #dddddd3f;
   position: relative;
   color: white;
   z-index: 10;
