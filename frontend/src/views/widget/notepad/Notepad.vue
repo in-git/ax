@@ -1,5 +1,5 @@
 <template>
-  <a-card class="notepad system__module" :body-style="{ height: '100%' }">
+  <a-card class="system__module" :body-style="{ height: '100%' }">
     <ToolbarVue />
     <div style="height: calc(100% - 40px)">
       <textarea v-model="content" v-focus @input="onChange"></textarea>
@@ -48,9 +48,7 @@ textarea {
   background-attachment: local; /*  这里需要根据 textarea 的内容进行滚动 */
   /* textarea样式修改 */
   width: 100%;
-  color: #333;
   word-break: break-all;
   overflow-x: hidden;
 }
 </style>
-./types

@@ -105,6 +105,7 @@ const style = computed((): CSSProperties => {
   .modal__container {
     border-radius: var(--radius);
     display: flex;
+    overflow: hidden;
     flex-direction: column;
   }
   .modal__content {

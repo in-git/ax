@@ -4,8 +4,10 @@
 	cursor: default;
 	padding: 4px;
 	user-select: none;
+	opacity: 0.8;
 	&:hover {
-		border-bottom: 1px solid #7ba4da;
+		opacity: 1;
+		border-bottom: 1px solid var(--primary);
 		background: #7ba4da15;
 	}
 }

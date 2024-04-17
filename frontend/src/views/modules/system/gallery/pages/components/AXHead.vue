@@ -14,24 +14,7 @@
           allow-clear
         ></a-input>
       </div>
-      <div>
-        <a-input
-          @blur="galleryList"
-          v-model:value="galleryQuery.type"
-          style="width: 160px"
-          placeholder="请输入图片类型"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-input
-          @blur="galleryList"
-          v-model:value="galleryQuery.imageUrl"
-          style="width: 160px"
-          placeholder="请输入图片URL"
-          allow-clear
-        ></a-input>
-      </div>
+
       <a-button type="primary" @click="galleryList">搜索</a-button>
     </a-flex>
 

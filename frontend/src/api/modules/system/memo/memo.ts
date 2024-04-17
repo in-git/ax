@@ -16,7 +16,7 @@ export const fetchMemoById = (memoId: number) => {
 };
 
 // 新增备忘录
-export const createMemo = (data: SystemMemo) => {
+export const createMemo = (data: Partial<SystemMemo>) => {
   return axios.post<Response<SystemMemo>>(`system/memo`, data);
 };
 
