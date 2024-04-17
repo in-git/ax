@@ -1,67 +1,58 @@
 <template>
-  <div class="h-100">
-    <a-card :bodyStyle="{ height: '100%' }" class="card__container" :bordered="false">
-      <template #title>
-        <div class="system-subtitle">选择服务器</div>
-      </template>
-      <template #extra>
-        <a-button type="primary" @click="create">
-          新建
-          <template #icon>
-            <PlusOutlined />
+  <a-card class="card__container" :bordered="false">
+    <template #title>
+      <div class="system-subtitle">选择服务器</div>
+    </template>
+    <template #extra>
+      <a-button type="primary" @click="create">
+        新建
+        <template #icon>
+          <PlusOutlined />
+        </template>
+      </a-button>
+    </template>
+    <a-flex wrap="wrap" :gap="8">
+      <a-card
+        v-for="item in developer.$state.developer.urlSelection"
+        class="item"
+        :class="[{ 'breathing-light': developer.$state.developer.baseURL === item.value }]"
+      >
+        <a-card-meta :title="item.label">
+          <template #description>
+            <div class="url">
+              {{ item.value }}
+            </div>
           </template>
-        </a-button>
-      </template>
-      <div>
-        <a-flex wrap="wrap" :gap="8">
-          <a-card
-            v-for="item in developer.$state.developer.urlSelection"
-            class="item"
-            :class="[{ 'breathing-light': developer.$state.developer.baseURL === item.value }]"
-          >
-            <a-card-meta :title="item.label">
-              <template #description>
-                <div class="url">
-                  {{ item.value }}
-                </div>
-              </template>
-            </a-card-meta>
-            <template #actions>
-              <a-tooltip title="切换">
-                <div @click="setBaseurl(item.value)">切换</div>
-              </a-tooltip>
-              <a-tooltip title="编辑">
-                <div @click="edit(item)">编辑</div>
-              </a-tooltip>
-              <a-popconfirm @confirm="deleteUrl(item.id)" title="确定删除吗">
-                <div>删除</div>
-              </a-popconfirm>
-            </template>
-          </a-card>
-        </a-flex>
-      </div>
-    </a-card>
-    <a-drawer
-      title="创建服务器"
-      placement="right"
-      :open="open"
-      :get-container="false"
-      :style="{ position: 'absolute' }"
-      @close="open = false"
-    >
-      <a-card>
-        <a-form layout="vertical" @finish="submit" :model="serverForm">
-          <a-form-item label="服务器名" name="label" required>
-            <a-input v-model:value="serverForm.label" placeholder="请输入名字"></a-input>
-          </a-form-item>
-          <a-form-item label="IP地址" required name="value">
-            <a-input v-model:value="serverForm.value" placeholder="请输入IP地址"></a-input>
-          </a-form-item>
-          <a-button type="primary" htmlType="submit" block>确定</a-button>
-        </a-form>
+        </a-card-meta>
+        <template #actions>
+          <a-tooltip title="切换">
+            <div @click="setBaseurl(item.value)">切换</div>
+          </a-tooltip>
+          <a-tooltip title="编辑">
+            <div @click="edit(item)">编辑</div>
+          </a-tooltip>
+          <a-popconfirm @confirm="deleteUrl(item.id)" title="确定删除吗">
+            <div>删除</div>
+          </a-popconfirm>
+        </template>
       </a-card>
-    </a-drawer>
-  </div>
+    </a-flex>
+  </a-card>
+  <a-modal :footer="false" title="创建服务器" centered v-model:open="open" width="400px">
+    <a-card>
+      <a-form layout="vertical" @finish="submit" :model="serverForm">
+        <a-form-item label="服务器名" name="label" required>
+          <a-input v-model:value="serverForm.label" placeholder="请输入名字"></a-input>
+        </a-form-item>
+        <a-form-item label="IP地址" required name="value">
+          <a-input v-model:value="serverForm.value" placeholder="请输入IP地址"></a-input>
+        </a-form-item>
+        <div>
+          <a-button type="primary" htmlType="submit" block>确定</a-button>
+        </div>
+      </a-form>
+    </a-card>
+  </a-modal>
 </template>
 
 <script setup lang="ts">
