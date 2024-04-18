@@ -1,8 +1,9 @@
 <template>
-  <a-card class="system__module" :body-style="{ height: '100%' }">
+  <a-card class="system__module system__notepad" :body-style="{ height: '100%' }">
     <ToolbarVue />
-    <div style="height: calc(100% - 32px)">
+    <div style="height: calc(100% - 32px)" class="relative">
       <textarea v-model="content" v-focus @input="onChange"></textarea>
+      <div class="count">字数 {{ content.length }}</div>
     </div>
   </a-card>
 </template>
@@ -50,5 +51,14 @@ textarea {
   width: 100%;
   word-break: break-all;
   overflow-x: hidden;
+}
+.count {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-image: -webkit-linear-gradient(bottom left, var(--primary), #817931, green);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  user-select: none;
 }
 </style>

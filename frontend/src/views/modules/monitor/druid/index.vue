@@ -1,7 +1,7 @@
 <template>
-  <div class="system__module flex flex-s">
+  <a-card class="system__module flex flex-s w-100 h-100">
     <a-empty description="开发中..."></a-empty>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts"></script>

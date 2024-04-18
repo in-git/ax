@@ -22,6 +22,7 @@ import PageSetting from '@/views/desktop/setting/PageSetting.vue';
 import { SettingOutlined } from '@ant-design/icons-vue';
 import type { CSSProperties } from 'vue';
 import Profile from './profile/Profile.vue';
+
 const setting = () => {
   openWindow({
     title: '系统设置',
