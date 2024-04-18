@@ -68,4 +68,3 @@ export const openApp = (item: Routers) => {
   }
   setCurrentWindow(item.name);
 };
-export const test = ref(true);

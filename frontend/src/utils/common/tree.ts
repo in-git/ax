@@ -12,7 +12,7 @@ export const convertToTree = (data: SystemMenu[]): SystemMenu[] => {
 
   data.forEach(menu => {
     if (menu.parentId && map.has(menu.parentId)) {
-      map.get(menu.parentId)!.children.push(map.get(menu.menuId)!);
+      map.get(menu.parentId)!.children?.push(map.get(menu.menuId)!);
     } else {
       result.push(map.get(menu.menuId)!);
     }

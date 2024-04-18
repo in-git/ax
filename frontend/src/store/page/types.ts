@@ -23,6 +23,7 @@ export interface PageSettings {
     topNavigationBar: {
       blur: number;
       opacity: number;
+      borderOpacity: number;
     };
   };
 }

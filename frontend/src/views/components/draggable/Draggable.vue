@@ -166,9 +166,9 @@ $hh: 36px;
 .drag-content {
   height: calc(100% - $hh);
   position: relative;
-  background: url('../../../assets/logo.png');
+  background: url('./assets/background.png');
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: cover;
   background-position: center;
 }
 
@@ -180,7 +180,8 @@ $hh: 36px;
 }
 
 .win-icon {
+  font-size: 14px !important;
   width: 40px;
-  height: 38px;
+  height: 36px;
 }
 </style>

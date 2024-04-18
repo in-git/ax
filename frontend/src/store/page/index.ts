@@ -25,6 +25,7 @@ const usePageStore = defineStore('page', {
       topNavigationBar: {
         blur: 1,
         opacity: 0.5,
+        borderOpacity: 1,
       },
     },
   }),

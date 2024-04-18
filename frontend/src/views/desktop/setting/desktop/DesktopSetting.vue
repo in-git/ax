@@ -4,33 +4,53 @@
       <template #title>
         <div class="text-12 system-subtitle">顶部导航</div>
       </template>
-      <div class="blur-card mb-12">
+      <a-form class="blur-card mb-12">
         <div class="fade-background">
           <div :style="style" class="text-white px-12 w-100 h-100 flex flex-s">AX</div>
         </div>
-        <div class="flex align-center gc-12">
-          背景模糊
-          <a-slider
-            v-model:value="store.$state.desktop.topNavigationBar.blur"
-            :step="1"
-            :max="10"
-            :min="0"
-            class="flex-1"
-          ></a-slider>
-          {{ store.$state.desktop.topNavigationBar.blur }}px
-        </div>
-        <div class="flex align-center gc-12">
+        <a-flex :align="'center'" :gap="12" justify="space-between">
+          <div>背景模糊</div>
+          <a-flex>
+            <a-slider
+              v-model:value="store.$state.desktop.topNavigationBar.blur"
+              :step="1"
+              :max="10"
+              :min="0"
+              style="width: 200px"
+            ></a-slider>
+            <div class="label">{{ store.$state.desktop.topNavigationBar.blur }}px</div>
+          </a-flex>
+        </a-flex>
+        <a-flex :align="'center'" :gap="12" justify="space-between">
           背景透明
-          <a-slider
-            v-model:value="store.$state.desktop.topNavigationBar.opacity"
-            :step="0.1"
-            :max="1"
-            :min="0"
-            class="flex-1"
-          ></a-slider>
-          {{ store.$state.desktop.topNavigationBar.opacity * 100 }}%
-        </div>
-      </div>
+          <a-flex>
+            <a-slider
+              v-model:value="store.$state.desktop.topNavigationBar.opacity"
+              :step="0.1"
+              :max="1"
+              :min="0"
+              style="width: 200px"
+            ></a-slider>
+            <div class="label">{{ store.$state.desktop.topNavigationBar.opacity * 100 }}%</div>
+          </a-flex>
+        </a-flex>
+
+        <a-flex :align="'center'" :gap="12" justify="space-between">
+          边框透明度
+          <a-flex>
+            <a-slider
+              v-model:value="store.$state.desktop.topNavigationBar.borderOpacity"
+              :step="0.1"
+              :max="1"
+              :min="0"
+              style="width: 200px"
+            ></a-slider>
+            <div class="label">
+              {{ store.$state.desktop.topNavigationBar.borderOpacity * 100 }}%
+            </div>
+          </a-flex>
+        </a-flex>
+      </a-form>
     </a-card>
 
     <a-card class="card__container" :bordered="false">

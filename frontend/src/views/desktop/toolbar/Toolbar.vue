@@ -37,13 +37,14 @@ const style = computed((): CSSProperties => {
   return {
     background: `rgba(175, 175, 175, ${store.$state.desktop.topNavigationBar.opacity})`,
     'backdrop-filter': `blur(${store.$state.desktop.topNavigationBar.blur}px)`,
+    borderBottomColor: `rgba(255,255,255,${store.$state.desktop.topNavigationBar.borderOpacity})`,
   };
 });
 </script>
 
 <style lang="scss" scoped>
 .top-toolbar {
-  border-bottom: 1px solid #dddddd3f;
+  border-bottom: 1px solid white;
   position: relative;
   color: white;
   z-index: 10;
