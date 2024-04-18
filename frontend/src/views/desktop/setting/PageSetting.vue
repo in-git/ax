@@ -24,6 +24,7 @@
 
 <script setup lang="ts">
 import {
+  AreaChartOutlined,
   BgColorsOutlined,
   DesktopOutlined,
   GlobalOutlined,
@@ -34,7 +35,7 @@ import AI from './ai/AI.vue';
 import DesktopSetting from './desktop/DesktopSetting.vue';
 import Net from './net/Net.vue';
 import ThemeVue from './theme/Theme.vue';
-
+import GalleryBody from './wallpaper/GalleryBody.vue';
 interface Nav {
   title: string;
   icon: any;
@@ -50,6 +51,12 @@ const nav: Nav[] = [
     component: markRaw(ThemeVue),
   },
   {
+    title: '壁纸设置',
+    icon: markRaw(AreaChartOutlined),
+    id: nanoid(),
+    component: markRaw(GalleryBody),
+  },
+  {
     title: '网络设置',
     icon: markRaw(GlobalOutlined),
     id: nanoid(),
@@ -61,7 +68,6 @@ const nav: Nav[] = [
     id: nanoid(),
     component: markRaw(DesktopSetting),
   },
-
   {
     title: '千帆设置',
     icon: markRaw(RobotOutlined),

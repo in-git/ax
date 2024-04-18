@@ -32,13 +32,10 @@
   </ConfigProvider>
   <!-- 通用右键菜单 -->
   <Contextmenu />
-  <!-- 图片选择器 -->
-  <Gallery />
 </template>
 
 <script setup lang="ts">
 import { closeWindow, windowList } from '@/global/config/window';
-import Gallery from '@/views/selector/gallery/Gallery.vue';
 import { ConfigProvider, theme } from 'ant-design-vue';
 import zh_CN from 'ant-design-vue/es/locale/zh_CN';
 import {

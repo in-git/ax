@@ -68,3 +68,4 @@ export const openApp = (item: Routers) => {
   }
   setCurrentWindow(item.name);
 };
+export const showGalleryModal = ref(false);

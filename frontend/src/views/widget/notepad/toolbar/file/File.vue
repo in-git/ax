@@ -3,7 +3,12 @@
     <a-dropdown trigger="click">
       <div class="menu-button" accesskey="f">文件(F)</div>
       <template #overlay>
-        <a-card :body-style="{ padding: '0' }" :loading="loading">
+        <a-card
+          :body-style="{ padding: '0' }"
+          :bordered="false"
+          class="card__container"
+          :loading="loading"
+        >
           <a-menu :items="menuList" style="width: 120px"></a-menu>
         </a-card>
       </template>

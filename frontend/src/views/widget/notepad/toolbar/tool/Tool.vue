@@ -8,9 +8,9 @@
     </a-dropdown>
 
     <SystemModal w="400px" h="300px" title="二维码" v-model:visible="qrModal" v-if="qrModal">
-      <div class="w-100 h-100 flex flex-s">
+      <a-flex class="w-100 h-100 flex-s">
         <a-qrcode :value="text" />
-      </div>
+      </a-flex>
     </SystemModal>
   </div>
 </template>

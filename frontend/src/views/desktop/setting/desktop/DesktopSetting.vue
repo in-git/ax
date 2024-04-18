@@ -1,6 +1,6 @@
 <template>
   <PageContainer title="桌面配置">
-    <a-card :body-style="{ paddingTop: '0' }" class="card__container" :bordered="false">
+    <a-card class="card__container" :bordered="false">
       <template #title>
         <div class="text-12 system-subtitle">顶部导航</div>
       </template>

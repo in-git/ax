@@ -1,12 +1,16 @@
 package com.ruoyi.system.service.impl;
 
-import java.util.List;
 import com.ruoyi.common.utils.DateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.ruoyi.system.mapper.SysGalleryMapper;
 import com.ruoyi.system.domain.SysGallery;
+import com.ruoyi.system.mapper.SysGalleryMapper;
 import com.ruoyi.system.service.ISysGalleryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 系统图库Service业务层处理
@@ -20,6 +24,8 @@ public class SysGalleryServiceImpl implements ISysGalleryService
     @Autowired
     private SysGalleryMapper sysGalleryMapper;
 
+    @Value("${ruoyi.iconsPath}")
+    private String iconsPath;
     /**
      * 查询系统图库
      * 
@@ -92,5 +98,22 @@ public class SysGalleryServiceImpl implements ISysGalleryService
     public int deleteSysGalleryByGalleryId(Long galleryId)
     {
         return sysGalleryMapper.deleteSysGalleryByGalleryId(galleryId);
+    }
+
+    @Override
+    public List<String> getSystemIcons() {
+        List<String> filePaths = new ArrayList<>();
+        File directory = new File(iconsPath);
+        if (directory.exists() && directory.isDirectory()) {
+            File[] files = directory.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isFile()) {
+                        filePaths.add(file.getAbsolutePath());
+                    }
+                }
+            }
+        }
+        return filePaths;
     }
 }

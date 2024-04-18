@@ -1,10 +1,11 @@
 import type { IQuery } from '@/api/config/types';
 import { fetchGalleryList } from '@/api/modules/system/gallery/gallery';
-import type { SystemGallery } from '@/api/modules/system/gallery/types';
+import type { GalleryType, SystemGallery } from '@/api/modules/system/gallery/types';
 
 interface GalleryQuery {
-  type: 'wallpaper' | 'avatar' | 'sys-icon' | '';
+  type: GalleryType;
 }
+
 export const galleryData = ref<SystemGallery[]>();
 
 export const galleryLoading = ref(false);
@@ -25,3 +26,14 @@ export const getGallery = async () => {
 };
 
 export const currentGallery = ref<SystemGallery>();
+
+interface GalleryConfig {
+  category?: '';
+  maximum?: number;
+  type?: GalleryType | undefined;
+}
+export const galleryConfig = ref<GalleryConfig>({
+  category: '',
+  maximum: 1,
+  type: undefined,
+});

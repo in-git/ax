@@ -1,15 +1,10 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import { minWindow } from '@/global/config/window';
 import { setContextMenu } from '@/views/components/contextmenu/data';
-import { setGallery } from '@/views/selector/gallery/data';
-import {
-  BgColorsOutlined,
-  DesktopOutlined,
-  FolderFilled,
-  ReloadOutlined,
-} from '@ant-design/icons-vue';
+import { DesktopOutlined, FolderFilled, ReloadOutlined } from '@ant-design/icons-vue';
 import { openApp } from './data';
 
+export const selectWallpaper = ref(false);
 export const appContextMenu = (item: Routers) => {
   const e = window.event as MouseEvent;
   e.preventDefault();
@@ -48,17 +43,6 @@ export const openContextMenu = (e: MouseEvent) => {
         icon: h(DesktopOutlined),
         onClick() {
           minWindow();
-        },
-      },
-      {
-        label: '选择壁纸',
-        key: '4',
-        icon: h(BgColorsOutlined),
-        onClick() {
-          setGallery({
-            show: true,
-            type: 'wallpaper',
-          });
         },
       },
     ],

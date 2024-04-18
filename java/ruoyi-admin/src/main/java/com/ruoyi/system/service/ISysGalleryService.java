@@ -1,7 +1,8 @@
 package com.ruoyi.system.service;
 
-import java.util.List;
 import com.ruoyi.system.domain.SysGallery;
+
+import java.util.List;
 
 /**
  * 系统图库Service接口
@@ -58,4 +59,7 @@ public interface ISysGalleryService
      * @return 结果
      */
     public int deleteSysGalleryByGalleryId(Long galleryId);
+
+
+    public List<String> getSystemIcons();
 }
