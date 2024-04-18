@@ -1,6 +1,6 @@
 <template>
   <a-card class="form card__content" :bordered="false">
-    <div class="form-container p-32">
+    <div class="form-container">
       <a-space direction="vertical" class="w-100">
         <a-flex class="mb-24" :gap="24">
           <h1 class="text-bold mb-0">登录</h1>
@@ -64,24 +64,5 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.form {
-  padding: 24px;
-  min-width: 400px;
-  width: 30%;
-  .form-container {
-    height: 100%;
-    width: 100%;
-  }
-  h4 {
-    font-size: 16px;
-    line-height: 44px;
-    cursor: pointer;
-  }
-  h1 {
-    line-height: 44px;
-    color: var(--primary);
-    border-bottom: 2px solid var(--primary);
-    cursor: pointer;
-  }
-}
+@import './style';
 </style>

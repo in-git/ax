@@ -161,6 +161,7 @@ $hh: 36px;
   padding-right: 8px;
   border-top-left-radius: var(--radius);
   border-top-right-radius: var(--radius);
+  border-bottom: 1px solid #cecdcda1;
 }
 
 .drag-content {
