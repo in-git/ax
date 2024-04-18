@@ -50,16 +50,14 @@ onMounted(async () => {
 });
 
 const selectItem = (iconPath: string, type: IconType) => {
-  emit('update:modelValue', {
-    type,
-    iconPath,
-  });
+  emit('update:modelValue', `${type},${iconPath}`);
   active.value = iconPath;
 };
 </script>
 
 <style lang="scss" scoped>
 .icon-selector {
+  width: 400px;
   ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
@@ -69,6 +67,10 @@ const selectItem = (iconPath: string, type: IconType) => {
       display: flex;
       place-items: center;
       place-content: center;
+      border-radius: var(--radius);
+      &:hover {
+        background-color: var(--color-primary-bg);
+      }
     }
     li.active {
       border: 1px solid var(--primary);

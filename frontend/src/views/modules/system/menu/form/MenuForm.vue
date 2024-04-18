@@ -12,13 +12,36 @@
       @finish="submit"
       class="flex-1 flex flex-col"
     >
-      <a-card class="flex-1" :body-style="{ height: `500px`, overflowY: 'auto' }" :bordered="false">
+      <a-card class="flex-1" :body-style="{ height: `500px`, overflowY: 'auto' }" title="基础配置">
+        <template #extra>
+          <a-button type="primary" :loading="loading" htmlType="submit">保存</a-button>
+        </template>
         <a-row :gutter="16">
           <a-col :span="14">
-            <h3 class="mb-12">基础配置</h3>
-            <a-divider class="mt-12"></a-divider>
             <a-form-item label="菜单名" name="menuName" required>
               <a-input v-model:value="menuForm.menuName"></a-input>
+            </a-form-item>
+
+            <a-form-item label="图标" name="menuIcon" required>
+              <a-input v-model:value="menuForm.icon">
+                <template #addonAfter>
+                  <a-popover trigger="click" placement="leftBottom" v-model:open="visible">
+                    <a-tooltip title="选择图标">
+                      <div class="w-100 h-100 cursor-pointer">
+                        <SmileOutlined />
+                      </div>
+                    </a-tooltip>
+                    <template #content>
+                      <div>
+                        <IconSelector
+                          @update:model-value="visible = false"
+                          v-model="menuForm.icon"
+                        />
+                      </div>
+                    </template>
+                  </a-popover>
+                </template>
+              </a-input>
             </a-form-item>
 
             <a-form-item label="选择父级菜单" name="parentId" required>
@@ -62,7 +85,6 @@
           </a-col>
         </a-row>
       </a-card>
-      <FormFooter justify="center"></FormFooter>
     </a-form>
   </SystemModal>
 </template>
@@ -71,6 +93,8 @@
 import { createMenu, updateMenu } from '@/api/modules/system/menu/menu';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { statusOptions, visibleOptions } from '@/global/options/system';
+import IconSelector from '@/views/selector/icon/IconSelector.vue';
+import { SmileOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
 import { loadMenuData } from '../data/curd';
 import { listMenu, menuTableConfig } from '../data/data';
@@ -79,11 +103,13 @@ import { menuTypeOptions } from '../data/options';
 import ParamVue from './Params.vue';
 
 const treeSelected = ref<number[]>([]);
-
+const loading = ref(false);
+const visible = ref(false);
 const treeData = ref<any[]>([]);
 
 const submit = async () => {
   let msg = '';
+  loading.value = true;
   /* update */
   if (menuForm.value.menuId) {
     const { data } = await updateMenu(menuForm.value);
@@ -92,6 +118,7 @@ const submit = async () => {
     const { data } = await createMenu(menuForm.value);
     msg = data.msg;
   }
+  loading.value = false;
   message.success(msg);
   showMenuForm.value = !showMenuForm.value;
   loadMenuData();

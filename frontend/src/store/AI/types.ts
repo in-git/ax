@@ -37,6 +37,7 @@ interface QFConfig {
   /* 预设词 */
   prompt: string;
   baseUrl: string;
+  splitSize: number;
 }
 
 interface Message {
