@@ -4,7 +4,6 @@ import { setContextMenu } from '@/views/components/contextmenu/data';
 import { DesktopOutlined, FolderFilled, ReloadOutlined } from '@ant-design/icons-vue';
 import { openApp } from './data';
 
-export const selectWallpaper = ref(false);
 export const appContextMenu = (item: Routers) => {
   const e = window.event as MouseEvent;
   e.preventDefault();
@@ -39,7 +38,7 @@ export const openContextMenu = (e: MouseEvent) => {
       },
       {
         label: '显示桌面',
-        key: '3',
+        key: '2',
         icon: h(DesktopOutlined),
         onClick() {
           minWindow();

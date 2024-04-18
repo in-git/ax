@@ -29,6 +29,6 @@ export const deleteGallery = (galleryIds: number[]) => {
 };
 
 // 获取系统图标
-export const getIcons = () => {
-  return axios.get<Response<string>>(`system/gallery/getIcons`);
+export const geSystemIcons = () => {
+  return axios.get<Response<string[]>>(`system/gallery/getIcons`);
 };

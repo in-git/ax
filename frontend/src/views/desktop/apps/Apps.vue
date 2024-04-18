@@ -20,6 +20,9 @@
         </li>
       </ul>
     </div>
+    <a-modal v-model:open="test" centered title="图标选择">
+      <IconSelector />
+    </a-modal>
   </div>
 </template>
 
@@ -27,9 +30,10 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import logoPng from '@/assets/logo.png';
 import usePageStore from '@/store/page';
+import IconSelector from '@/views/selector/icon/IconSelector.vue';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import { appContextMenu, openContextMenu } from './contextmenu';
-import { getIconByName, getUserRouters, openApp } from './data';
+import { getIconByName, getUserRouters, openApp, test } from './data';
 
 const selected = ref<string>('');
 const appRef = ref();

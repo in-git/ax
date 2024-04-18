@@ -39,7 +39,14 @@ public class SysGalleryController extends BaseController
         List<SysGallery> list = sysGalleryService.selectSysGalleryList(sysGallery);
         return getDataTable(list);
     }
-
+    /**
+     * 获取所有ICON
+     */
+    @GetMapping("/getIcons")
+    public AjaxResult getIcons()
+    {
+        return success(sysGalleryService.getSystemIcons());
+    }
     /**
      * 导出系统图库列表
      */
@@ -99,9 +106,5 @@ public class SysGalleryController extends BaseController
      * 删除系统图库
      */
 
-    @GetMapping("/getIcons")
-    public AjaxResult getIcons()
-    {
-        return success(sysGalleryService.getSystemIcons());
-    }
+
 }

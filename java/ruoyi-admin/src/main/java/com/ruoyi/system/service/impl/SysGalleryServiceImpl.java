@@ -24,7 +24,7 @@ public class SysGalleryServiceImpl implements ISysGalleryService
     @Autowired
     private SysGalleryMapper sysGalleryMapper;
 
-    @Value("${ruoyi.iconsPath}")
+    @Value("${ruoyi.profile}")
     private String iconsPath;
     /**
      * 查询系统图库
@@ -102,18 +102,22 @@ public class SysGalleryServiceImpl implements ISysGalleryService
 
     @Override
     public List<String> getSystemIcons() {
-        List<String> filePaths = new ArrayList<>();
-        File directory = new File(iconsPath);
-        if (directory.exists() && directory.isDirectory()) {
-            File[] files = directory.listFiles();
-            if (files != null) {
-                for (File file : files) {
-                    if (file.isFile()) {
-                        filePaths.add(file.getAbsolutePath());
+        try {
+            List<String> filePaths = new ArrayList<>();
+            File directory = new File(iconsPath+"icons");
+            if (directory.exists() && directory.isDirectory()) {
+                File[] files = directory.listFiles();
+                if (files != null) {
+                    for (File file : files) {
+                        if (file.isFile()) {
+                            filePaths.add(file.getName());
+                        }
                     }
                 }
             }
+            return filePaths;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        return filePaths;
     }
 }
