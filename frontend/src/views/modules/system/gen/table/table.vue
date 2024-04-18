@@ -1,7 +1,6 @@
 <template>
   <div>
     <TableHeadVue />
-
     <a-table
       @change="pageChange"
       table-layout="fixed"
@@ -15,6 +14,7 @@
         selectedRowKeys: codeKeys,
         onChange,
       }"
+      :custom-row="customRow"
       :rowKey="codeTable.rowKey"
       :columns="formatColumns(codeColumns)"
       :data-source="codeTable.data"
@@ -34,10 +34,11 @@
 </template>
 
 <script setup lang="ts">
-import TableHeadVue from './table-head/head.vue';
+import TableHeadVue from './head.vue';
 
 import { formatColumns } from '@/utils/table/table';
 import Operation from '@/views/components/table/Operation.vue';
+import { useArrayFilter } from '@vueuse/core';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import { codeColumns } from '../data/column';
 import { codeList, editCode } from '../data/curd';
@@ -55,6 +56,19 @@ const pageChange = (pagination: TablePaginationConfig) => {
 const onChange = (keys: any[]) => {
   codeKeys.value = keys;
 };
+
+const customRow = (record: SystemCode) => {
+  return {
+    onClick() {
+      if (!codeKeys.value.includes(record.tableName)) {
+        codeKeys.value.push(record.tableName);
+      } else {
+        codeKeys.value = useArrayFilter(codeKeys.value, e => e !== record.tableName).value;
+      }
+    },
+  };
+};
+
 onMounted(() => {
   codeList();
 });

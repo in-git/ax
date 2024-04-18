@@ -50,10 +50,10 @@ import { batchGenCode } from '@/api/modules/tool/gen/gen';
 import { response } from '@/utils/table/table';
 import FieldVue from '@/views/components/table/Field.vue';
 import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
-import { codeColumns } from '../../data/column';
-import { codeDelete, codeList, editCode } from '../../data/curd';
-import { showDbForm } from '../../data/form';
-import { codeKeys, codeTable } from '../../data/table';
+import { codeColumns } from '../data/column';
+import { codeDelete, codeList, editCode } from '../data/curd';
+import { showDbForm } from '../data/form';
+import { codeKeys, codeTable } from '../data/table';
 
 const download = () => {
   response(batchGenCode, codeKeys.value);

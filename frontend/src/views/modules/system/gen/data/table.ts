@@ -22,7 +22,7 @@ export const codeQuery = ref<IQuery<codeQuery>>({
   orderByColumn: 'create_time',
   isAsc: 'desc',
 });
-export const codeKeys = ref<number[]>([]);
+export const codeKeys = ref<string[]>([]);
 
 export const codeOperationList: ItemType[] = [
   {

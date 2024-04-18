@@ -33,6 +33,7 @@
 <script setup lang="ts">
 import type { ${ModuleName}${BusinessName} } from '@/api/modules/${moduleName}/${businessName}/types';
 import { formatColumns } from '@/utils/table/table';
+import { useArrayFilter } from '@vueuse/core';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { ${businessName}Columns } from '../../data/column';
@@ -48,6 +49,12 @@ const openChange = (record: ${ModuleName}${BusinessName}) => {
 const customRow = (record: ${ModuleName}${BusinessName}) => {
   return {
     onClick() {
+      const id= record[${businessName}Table.rowKey]
+      if (!codeKeys.value.includes(id) {
+         codeKeys.value.push(id);
+      } else {
+         codeKeys.value = useArrayFilter(codeKeys.value, e => e !== id).value;
+     }
      #foreach($column in $columns)
      #if($column.isPk == "1")
      ${businessName}Keys.value = [record.$column.javaField];
