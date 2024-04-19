@@ -10,11 +10,34 @@ const http = axios.create({
     Accept: 'application/json',
   },
 });
-
+interface Message {
+  role: string;
+  content: string;
+}
 interface QFConfig {
-  messages: any[];
+  temperature: number;
+  top_p: number;
+  penalty_score: number;
+  stream: boolean;
+  messages: Message[];
+  prompt: string;
+}
+interface QFResponse {
+  id: string;
+  object: string;
+  created: number;
+  result: string;
+  is_truncated: boolean;
+  need_clear_history: boolean;
+  finish_reason: string;
+  usage: Usage;
 }
 
+interface Usage {
+  prompt_tokens: number;
+  completion_tokens: number;
+  total_tokens: number;
+}
 /* 发送信息 */
 export const sendMsg = async (config: QFConfig) => {
   const AIStore = useAIStore();
@@ -24,9 +47,5 @@ export const sendMsg = async (config: QFConfig) => {
     throw new Error('没有填写Token');
   }
   const url = `https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions?access_token=${access_token}`;
-  return http.post<QFMessage>(url, {
-    messages: config.messages,
-    disable_search: false,
-    enable_citation: false,
-  });
+  return http.post<QFResponse>(url, config);
 };
