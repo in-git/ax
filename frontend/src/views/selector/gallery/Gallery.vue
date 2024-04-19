@@ -10,7 +10,7 @@
           @click="selectItem(item)"
           :class="[{ active: selectedSet.includes(item.imageUrl) }]"
         >
-          <img :src="item.imageUrl" alt="" />
+          <img :src="getHost(`profile/${type}/${item.imageUrl}`)" alt="" />
         </li>
       </ul>
       <a-empty v-else />
@@ -22,6 +22,7 @@
 import type { IQuery, TableConfig } from '@/api/config/types';
 import { fetchGalleryList } from '@/api/modules/system/gallery/gallery';
 import type { GalleryType, SystemGallery } from '@/api/modules/system/gallery/types';
+import { getHost } from '@/store/system/utils';
 
 const props = withDefaults(
   defineProps<{
@@ -35,6 +36,7 @@ const props = withDefaults(
     type: 'avatar',
   },
 );
+
 const emit = defineEmits(['update:value']);
 const selectedSet = ref<string[]>([]);
 

@@ -1,6 +1,7 @@
 // 这里是静态下拉框的数据
 import { getOptionsByName } from '@/api/modules/system/dict/dict.data';
 import useSystemStore from '@/store/system';
+import { getHost } from '@/store/system/utils';
 import { dictDataToOptions } from '@/utils/table/table';
 
 const dev = useSystemStore();
@@ -18,11 +19,11 @@ export const storageOptions = [
   {
     label: '本地',
     value: 'local',
-    action: `${dev.$state.developer.baseURL}common/upload`,
+    action: `${getHost()}common/upload`,
   },
   {
     label: '云存储',
     value: 'oss',
-    action: `${dev.$state.developer.baseURL}common/upload-oss`,
+    action: `${getHost()}common/upload-oss`,
   },
 ];

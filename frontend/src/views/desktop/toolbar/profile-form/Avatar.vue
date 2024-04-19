@@ -13,7 +13,7 @@
           class="avatar-uploader"
           :show-upload-list="false"
           :headers="headers"
-          :action="`${baseURL}system/user/profile/avatar`"
+          :action="`${getHost('system/user/profile/avatar')}`"
           @change="refresh"
           accept="image/*"
         >
@@ -32,6 +32,7 @@
       centered
       v-model:open="visible"
       title="选择头像"
+      :body-style="{ padding: '0' }"
     >
       <Gallery type="avatar" v-model:value="userProfile.avatar" />
     </a-modal>
@@ -40,6 +41,7 @@
 
 <script setup lang="ts">
 import useSystemStore from '@/store/system';
+import { getHost } from '@/store/system/utils';
 import useUserStore from '@/store/user';
 import { getAvatar } from '@/store/user/utils';
 import Gallery from '@/views/selector/gallery/Gallery.vue';
@@ -54,7 +56,7 @@ const page = useSystemStore();
 const refresh = () => {
   getProfile();
 };
-const baseURL = page.$state.developer.baseURL;
+
 // + `system/user/profile/avatar`
 const headers = {
   Authorization: `Bearer ${userStore.$state.token}`,

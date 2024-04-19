@@ -11,10 +11,11 @@
           @click="selectItem(item)"
           justify="center"
         >
-          <div class="selected" v-if="currentGallery === item">
+          <div class="selected" v-if="currentGallery === getStaticHost('wallpaper/' + item)">
             <CheckOutlined />
           </div>
-          <img :src="host + item" :alt="item" height="80px" />
+          <img :src="getStaticHost(`wallpaper/${item}`)" :alt="item" height="80px" />
+          {{ getStaticHost(`wallpaper/${item}`) }}
         </div>
       </div>
       <a-empty v-else></a-empty>
@@ -23,13 +24,12 @@
 </template>
 
 <script setup lang="ts">
+import { getStaticHost } from '@/store/system/utils';
 import { currentGallery, galleryData, galleryLoading, getGallery } from './data/data';
 import GalleryHead from './GalleryHead.vue';
 
-const host = 'http://localhost:8080/profile/wallpaper/';
-
 const selectItem = (item: string) => {
-  currentGallery.value = host + item;
+  currentGallery.value = getStaticHost('wallpaper/' + item);
 };
 
 getGallery();
@@ -42,7 +42,7 @@ getGallery();
     gap: 12px;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     place-items: start;
-    height: 100%;
+    height: 80px;
     text-align: center;
   }
   :deep(.ant-card) {
@@ -77,7 +77,7 @@ getGallery();
     overflow: hidden;
     height: 100%;
     img {
-      object-fit: cover;
+      object-fit: contain;
       width: 100%;
       height: 100%;
       border-radius: var(--radius);

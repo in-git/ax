@@ -9,7 +9,7 @@
             @click="selectItem(item, 'image')"
             :class="{ active: item === active }"
           >
-            <img :src="url + item" width="32" />
+            <img :src="host + item" :alt="item" width="32" />
           </li>
         </ul>
       </a-tab-pane>
@@ -32,11 +32,11 @@
 
 <script setup lang="ts">
 import { getSystemImages } from '@/api/modules/system/gallery/gallery';
-import useSystemStore from '@/store/system';
+import { getHost } from '@/store/system/utils';
 import * as IconList from '@ant-design/icons-vue';
-const store = useSystemStore();
+
+const host = getHost('profile/sys-icon/');
 const icons = ref<string[]>([]);
-const url = store.$state.developer.baseURL + 'profile/icons/';
 
 type IconType = 'icon' | 'image';
 const emit = defineEmits(['update:modelValue']);
@@ -45,7 +45,7 @@ defineProps<{
   modelValue: string;
 }>();
 onMounted(async () => {
-  const { data } = await getSystemImages();
+  const { data } = await getSystemImages('sys-icon');
   icons.value = data.data!;
 });
 

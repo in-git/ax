@@ -1,4 +1,5 @@
 import useSystemStore from '@/store/system';
+import { getHost } from '@/store/system/utils';
 import useUserStore from '@/store/user';
 import { message } from 'ant-design-vue';
 
@@ -15,7 +16,7 @@ export const exportFile = async (config: ExportData) => {
   const userStore = useUserStore();
 
   try {
-    const response = await fetch(dev.$state.developer.baseURL + config.url, {
+    const response = await fetch(getHost(config.url), {
       method: config.method || 'GET',
       body: config.data,
       headers: {
@@ -58,7 +59,7 @@ export const uploadFile = async (data: UploadData) => {
 export const uploadToOss = (file: File) => {
   const dev = useSystemStore();
   const userStore = useUserStore();
-  fetch(`${dev.$state.developer.baseURL}/common/upload-oss`, {
+  fetch(`${getHost()}/common/upload-oss`, {
     body: file,
     method: 'POST',
     headers: {

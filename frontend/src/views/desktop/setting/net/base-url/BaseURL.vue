@@ -15,7 +15,7 @@
       <a-card
         v-for="item in developer.$state.developer.urlSelection"
         class="item"
-        :class="[{ 'breathing-light': developer.$state.developer.baseURL === item.value }]"
+        :class="[{ 'breathing-light': getHost() === item.value }]"
       >
         <a-card-meta :title="item.label">
           <template #description>
@@ -59,6 +59,7 @@
 import { userLogout } from '@/api/modules/system/user/utils';
 import useSystemStore from '@/store/system';
 import type { URLSelection } from '@/store/system/types';
+import { getHost } from '@/store/system/utils';
 import { useCloned } from '@vueuse/core';
 import { Modal } from 'ant-design-vue';
 import axios from 'axios';
