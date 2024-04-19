@@ -1120,12 +1120,6 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (1, 103, 'admin', '超级管理员', '00', 'visitor@163.com', '15888888888', '1', '/profile/avatar/2024/04/10/nodejs_20240410182957A001.jpg', '$2a$10$aMw2U1fjT03V2mAwEzwZUePjSjaCEPbt8UiTFIQn8Njr6PgAhpOIe', '0', '0', '127.0.0.1', '2024-04-15 10:22:36', 'admin', '2024-04-10 15:08:49', '', '2024-04-15 10:22:36', '管理员');
 INSERT INTO `sys_user` VALUES (2, 200, 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '', '$2a$10$8xkL0c8Q2VJBnN.TZ.aXDu.L8a/dD.uXPUHiO94nLo0lZLsLzlyB.', '0', '0', '127.0.0.1', '2024-04-10 21:58:36', 'admin', '2024-04-10 15:08:49', 'admin', '2024-04-10 22:03:44', '访客角色');
-INSERT INTO `sys_user` VALUES (100, 200, 'Annis', 'Annis', '00', '11111111111@123.com', '11111111111', '1', '', '$2a$10$BnRVxbqfdoKJ.5eV9Vv7quABjjEEzYP8qoSxVjgPoH7JyZJEHcnJ6', '0', '0', '127.0.0.1', '2024-04-11 22:07:46', 'admin', '2024-04-10 19:03:08', 'admin', '2024-04-15 09:45:52', '小爱同学');
-INSERT INTO `sys_user` VALUES (101, NULL, 'test23', 'test23', '00', '', '', '0', '', '$2a$10$tzw2Jp6jVwdpmgrCFIhIqusXiyryzVLXUYF5n.qLCjj3iWtdhKQRy', '0', '0', '', NULL, '', '2024-04-13 19:10:31', '', NULL, NULL);
-INSERT INTO `sys_user` VALUES (102, NULL, '123456', '123456', '00', '', '', '0', '', '$2a$10$3IxD3FnnYyFiDUYU2nW/beRhrg55uw8zKeeQ3Sa8lrdZoGEfWY9CC', '0', '0', '', NULL, '', '2024-04-13 19:20:07', '', NULL, NULL);
-INSERT INTO `sys_user` VALUES (103, NULL, '123456789', '123456789', '00', '', '', '0', '', '$2a$10$lWCiIsU3eX/HWDvPknRue.cqfiS.Gm8cu0x/UKX3/MJLP9PS4JFP6', '0', '0', '', NULL, '', '2024-04-13 19:22:07', '', NULL, NULL);
-INSERT INTO `sys_user` VALUES (104, NULL, 'sadfasd', 'sadfasd', '00', '', '', '0', '', '$2a$10$c6MgP8LTWKSdrjZyi9eWiuJuCjD3NBMCBEFj5a.CFcxlVva2fOKuu', '0', '0', '127.0.0.1', '2024-04-15 10:30:55', '', '2024-04-13 19:23:43', 'admin', '2024-04-15 10:30:55', NULL);
-INSERT INTO `sys_user` VALUES (105, NULL, 'cabcab', 'cabcab', '00', '444891953@qq.com', '', '1', '', '$2a$10$Sf63Rm2fR8YyGdMV5davAeKa2PNIbjpGUMJvz8ruxXXYTzRiYJr4C', '0', '0', '127.0.0.1', '2024-04-13 20:43:00', '', '2024-04-13 20:42:44', '', '2024-04-13 20:49:13', NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_post

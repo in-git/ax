@@ -1,7 +1,6 @@
 package com.ruoyi.system.mapper;
 
 import java.util.List;
-import com.ruoyi.system.domain.SysGallery;
 
 /**
  * 系统图库Mapper接口
