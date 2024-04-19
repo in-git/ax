@@ -1,4 +1,4 @@
-import { sendMsg } from '@/api/external/qian-fan/qian-fan';
+import { qfMsg } from '@/api/external/qian-fan/qian-fan';
 import useAIStore from '@/store/AI/AI';
 import type { AIMessage } from '@/store/AI/types';
 import { message } from 'ant-design-vue';
@@ -39,7 +39,7 @@ export const send = async (inputEl?: Ref<HTMLElement | undefined>) => {
       tempMsg = [newMsg];
     }
 
-    const { data } = await sendMsg({
+    const { data } = await qfMsg({
       messages: tempMsg,
     });
     if (data.error_code) {

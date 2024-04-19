@@ -6,27 +6,73 @@
         <a-menu :items="items"></a-menu>
       </template>
     </a-dropdown>
-    <div class="menu-button px-12" @click="ai">AI一下</div>
-    <a-modal centered title="二维码" v-model:open="modal" getContainer=".system__notepad">
+    <a-button @click="ai" :disabled="loading">
+      <div class="menu-button">AI一下</div>
+    </a-button>
+
+    <a-modal centered title="二维码" v-model:open="qrModal" getContainer=".system__notepad">
       <a-flex class="w-100 flex h-100 flex-s">
-        <a-qrcode :value="text" />
+        <a-qrcode :value="qrText" />
       </a-flex>
+    </a-modal>
+    <a-modal centered title="AI处理结果" v-model:open="aiModal" getContainer=".system__notepad">
+      <a-card class="md-card">
+        <MdPreview previewTheme="default" :modelValue="aiText" />
+      </a-card>
+      <template #footer>
+        <a-button type="ghost" @click="append">追加</a-button>
+        <a-button type="primary" @click="cover">覆盖</a-button>
+      </template>
     </a-modal>
   </div>
 </template>
 
 <script setup lang="ts">
+import { qfMsg } from '@/api/external/qian-fan/qian-fan';
 import { getData, setData } from '@/global/config/window';
 import { QrcodeOutlined, RetweetOutlined } from '@ant-design/icons-vue';
 import { message, type ItemType } from 'ant-design-vue';
+import { MdPreview } from 'md-editor-v3';
+import 'md-editor-v3/lib/style.css';
 
-const modal = ref(false);
+const qrModal = ref(false);
+const aiModal = ref(false);
+const loading = ref(false);
+const aiText = ref('');
 const notepadId = inject<string>('data')!;
 
-const ai = () => {};
-const text = computed(() => {
+const qrText = computed(() => {
   return getData(notepadId) || '';
 });
+
+const ai = async () => {
+  try {
+    const content = getData(notepadId);
+    if (content.length > 1000) {
+      message.warn('字数超过1000');
+      return;
+    }
+    loading.value = true;
+    message.success('正在响应');
+    const { data } = await qfMsg([
+      {
+        role: 'user',
+        content,
+      },
+    ]);
+    aiModal.value = true;
+    aiText.value = data.result;
+  } catch (error) {
+    loading.value = false;
+  }
+};
+const cover = () => {
+  setData(notepadId, aiText.value);
+};
+const append = () => {
+  const oldText = getData(notepadId);
+  setData(notepadId, oldText + aiText.value);
+};
 const items: ItemType[] = [
   {
     label: '字符串反转',
@@ -51,7 +97,7 @@ const items: ItemType[] = [
         message.warn('文本内容过长');
         return;
       }
-      modal.value = true;
+      qrModal.value = true;
     },
     icon: h(QrcodeOutlined),
   },
@@ -60,4 +106,18 @@ const items: ItemType[] = [
 
 <style lang="scss" scoped>
 @import '../common.scss';
+
+:deep(.ant-btn) {
+  border: none;
+  padding: 0;
+  height: fit-content !important;
+  background: none;
+  white-space: nowrap !important;
+}
+.md-card {
+  :deep(.ant-card-body) {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+}
 </style>

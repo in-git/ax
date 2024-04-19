@@ -2,8 +2,8 @@
   <a-card class="flex toolbar gc-4">
     <div class="flex align-center">
       <FileVue />
-      <Tool />
       <List />
+      <Tool />
     </div>
   </a-card>
 </template>

@@ -1,4 +1,16 @@
 interface QFMessage {
+  role: string;
+  content: string;
+}
+interface QFConfig {
+  temperature: number;
+  top_p: number;
+  penalty_score: number;
+  stream: boolean;
+  messages: QFMessage[];
+  prompt: string;
+}
+interface QFResponse {
   id: string;
   object: string;
   created: number;
@@ -7,7 +19,6 @@ interface QFMessage {
   need_clear_history: boolean;
   finish_reason: string;
   usage: Usage;
-  error_code?: number;
 }
 
 interface Usage {
