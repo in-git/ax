@@ -8,9 +8,9 @@
         <li
           v-for="item in galleryData.data"
           @click="selectItem(item)"
-          :class="[{ active: selectedSet.includes(item.imageUrl) }]"
+          :class="[{ active: selectedSet.includes(item) }]"
         >
-          <img :src="getHost(`profile/${type}/${item.imageUrl}`)" alt="" />
+          <img :src="getStaticHost(`/${type}/${item}`)" />
         </li>
       </ul>
       <a-empty v-else />
@@ -20,9 +20,9 @@
 
 <script setup lang="ts">
 import type { IQuery, TableConfig } from '@/api/config/types';
-import { fetchGalleryList } from '@/api/modules/system/gallery/gallery';
-import type { GalleryType, SystemGallery } from '@/api/modules/system/gallery/types';
-import { getHost } from '@/store/system/utils';
+import { getSystemImages } from '@/api/utils/file';
+import { getStaticHost } from '@/store/system/utils';
+import type { GalleryType } from '@/types/system';
 
 const props = withDefaults(
   defineProps<{
@@ -46,17 +46,17 @@ const query = ref<IQuery<{ type: GalleryType }>>({
   total: 0,
   type: 'wallpaper',
 });
-const galleryData = ref<TableConfig<SystemGallery>>({
+const galleryData = ref<TableConfig<string>>({
   rowKey: 'galleryId',
   data: [],
   loading: false,
   moduleName: '',
 });
-const selectItem = (item: SystemGallery) => {
+const selectItem = (item: string) => {
   if (props.limit <= selectedSet.value.length) {
     selectedSet.value.shift();
   }
-  selectedSet.value.push(item.imageUrl);
+  selectedSet.value.push(item);
 };
 
 const confirm = () => {
@@ -68,9 +68,11 @@ const confirm = () => {
 };
 
 const getData = async () => {
-  const { data } = await fetchGalleryList(query.value);
-  galleryData.value.data = data.rows;
-  query.value.total = data.total;
+  const { data } = await getSystemImages(props.type);
+  if (data.data) {
+    galleryData.value.data = data.data;
+    query.value.total = data.data.length;
+  }
 };
 
 onMounted(() => {

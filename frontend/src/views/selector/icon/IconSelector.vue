@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { getSystemImages } from '@/api/modules/system/gallery/gallery';
+import { getSystemImages } from '@/api/utils/file';
 import { getHost } from '@/store/system/utils';
 import * as IconList from '@ant-design/icons-vue';
 

@@ -1,7 +1,9 @@
-import useSystemStore from '@/store/system';
 import { getHost } from '@/store/system/utils';
 import useUserStore from '@/store/user';
+import type { GalleryType } from '@/types/system';
 import { message } from 'ant-design-vue';
+import axios from 'axios';
+import type { Response } from '../config/types';
 
 interface ExportData {
   url: string;
@@ -12,9 +14,7 @@ interface ExportData {
 // 导出文件接口
 // 已使用:代码下载
 export const exportFile = async (config: ExportData) => {
-  const dev = useSystemStore();
   const userStore = useUserStore();
-
   try {
     const response = await fetch(getHost(config.url), {
       method: config.method || 'GET',
@@ -57,13 +57,20 @@ export const uploadFile = async (data: UploadData) => {
 
 /* 上传到OSS */
 export const uploadToOss = (file: File) => {
-  const dev = useSystemStore();
   const userStore = useUserStore();
   fetch(`${getHost()}/common/upload-oss`, {
     body: file,
     method: 'POST',
     headers: {
       Authorization: `Bearer ${userStore.$state.token}`,
+    },
+  });
+};
+// 获取系统图标
+export const getSystemImages = (type: GalleryType) => {
+  return axios.get<Response<string[]>>(`system/gallery/getImages`, {
+    params: {
+      type,
     },
   });
 };

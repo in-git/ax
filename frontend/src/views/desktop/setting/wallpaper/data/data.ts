@@ -1,6 +1,6 @@
 import type { IQuery } from '@/api/config/types';
-import { getSystemImages } from '@/api/modules/system/gallery/gallery';
-import type { GalleryType } from '@/api/modules/system/gallery/types';
+import { getSystemImages } from '@/api/utils/file';
+import type { GalleryType } from '@/types/system';
 
 interface GalleryQuery {
   type: GalleryType;
