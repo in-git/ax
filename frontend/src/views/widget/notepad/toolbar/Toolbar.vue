@@ -4,6 +4,7 @@
       <FileVue />
       <List />
       <Tool />
+      <slot></slot>
     </div>
   </a-card>
 </template>

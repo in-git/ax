@@ -33,7 +33,6 @@ import { getData, setData } from '@/global/config/window';
 import { QrcodeOutlined, RetweetOutlined } from '@ant-design/icons-vue';
 import { message, type ItemType } from 'ant-design-vue';
 import { MdPreview } from 'md-editor-v3';
-import 'md-editor-v3/lib/style.css';
 
 const qrModal = ref(false);
 const aiModal = ref(false);
