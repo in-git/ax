@@ -7,7 +7,7 @@ ruoyi:
   # 版权年份
   copyrightYear: 2024
   # 文件路径 示例（ Windows配置D:/ruoyi/uploadPath，Linux配置 /home/ruoyi/uploadPath）
-  profile: E:/git/win/resource/
+  profile: /www/wwwroot/ax/
   # 静态资源目录,包含子目录：icons,wallpaper,avatar
   # 获取ip地址开关
   addressEnabled: true
@@ -17,7 +17,7 @@ ruoyi:
 # 开发环境配置
 server:
   # 服务器的HTTP端口，默认为8080
-  port: 8080
+  port: 8888
   servlet:
     # 应用的访问路径
     context-path: /
@@ -95,7 +95,7 @@ token:
   # 令牌自定义标识
   header: Authorization
   # 令牌密钥
-  secret: httplocalhostwin
+  secret: httplocalhostax
   # 令牌有效期（默认30分钟）
   expireTime: 30
 

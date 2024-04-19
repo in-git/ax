@@ -56,7 +56,13 @@
           </template>
         </a-input>
         <div class="text-right">
-          <a-button type="link">立即获取</a-button>
+          <a-button
+            type="link"
+            target="_blank"
+            href="https://cloud.baidu.com/product/wenxinworkshop"
+          >
+            立即获取
+          </a-button>
         </div>
       </a-form-item>
 

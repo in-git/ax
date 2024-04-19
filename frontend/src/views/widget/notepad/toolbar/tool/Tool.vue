@@ -15,7 +15,13 @@
         <a-qrcode :value="qrText" />
       </a-flex>
     </a-modal>
-    <a-modal centered title="AI处理结果" v-model:open="aiModal" getContainer=".system__notepad">
+    <a-modal
+      centered
+      title="AI处理结果"
+      width="600px"
+      v-model:open="aiModal"
+      getContainer=".system__notepad"
+    >
       <a-card class="md-card">
         <MdPreview previewTheme="default" :modelValue="aiText" />
       </a-card>
@@ -61,6 +67,7 @@ const ai = async () => {
     ]);
     aiModal.value = true;
     aiText.value = data.result;
+    loading.value = false;
   } catch (error) {
     loading.value = false;
   }

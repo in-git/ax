@@ -39,12 +39,8 @@ export const send = async (inputEl?: Ref<HTMLElement | undefined>) => {
       tempMsg = [newMsg];
     }
 
-    const { data } = await qfMsg({
-      messages: tempMsg,
-    });
-    if (data.error_code) {
-      throw new Error('出了点问题');
-    }
+    const { data } = await qfMsg(tempMsg);
+
     msg.value = '';
 
     conversation.value.messageList.push({

@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : ax
+ Source Server         : win
  Source Server Type    : MySQL
- Source Server Version : 80024
+ Source Server Version : 80024 (8.0.24)
  Source Host           : 150.158.14.110:3306
  Source Schema         : win
 
  Target Server Type    : MySQL
- Target Server Version : 80024
+ Target Server Version : 80024 (8.0.24)
  File Encoding         : 65001
 
- Date: 15/04/2024 11:42:56
+ Date: 19/04/2024 22:31:58
 */
 
 SET NAMES utf8mb4;
@@ -44,7 +44,7 @@ CREATE TABLE `gen_table`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`table_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of gen_table
@@ -65,8 +65,10 @@ INSERT INTO `gen_table` VALUES (25, 'sys_role_dept', '角色和部门关联表',
 INSERT INTO `gen_table` VALUES (26, 'sys_role_menu', '角色和菜单关联表', NULL, NULL, 'SysRoleMenu', 'crud', '', 'com.ruoyi.system', 'system', 'menu', '角色和菜单关联', 'AX', '0', '/', NULL, 'admin', '2024-04-14 21:24:28', '', NULL, NULL);
 INSERT INTO `gen_table` VALUES (27, 'sys_user', '用户信息表', NULL, NULL, 'SysUser', 'crud', '', 'com.ruoyi.system', 'system', 'user', '用户信息', 'AX', '0', '/', NULL, 'admin', '2024-04-14 21:24:28', '', NULL, NULL);
 INSERT INTO `gen_table` VALUES (28, 'sys_user_role', '用户和角色关联表', NULL, NULL, 'SysUserRole', 'crud', '', 'com.ruoyi.system', 'system', 'role', '用户和角色关联', 'AX', '0', '/', NULL, 'admin', '2024-04-14 21:24:30', '', NULL, NULL);
-INSERT INTO `gen_table` VALUES (29, 'sys_website', '网页收藏', NULL, NULL, 'SysWebsite', 'crud', '', 'com.ruoyi.system', 'system', 'website', '网页收藏', 'AX', '0', '/', '{}', 'admin', '2024-04-14 21:35:12', '', '2024-04-14 23:04:10', NULL);
+INSERT INTO `gen_table` VALUES (29, 'sys_website', '网页收藏', NULL, NULL, 'SysWebsite', 'crud', '', 'com.ruoyi.system', 'system', 'website', '网页收藏', 'AX', '0', '/', '{}', 'admin', '2024-04-14 21:35:12', '', '2024-04-16 11:16:09', '网页收藏');
 INSERT INTO `gen_table` VALUES (30, 'sys_user_post', '用户与岗位关联表', NULL, NULL, 'SysUserPost', 'crud', '', 'com.ruoyi.system', 'system', 'post', '用户与岗位关联', 'AX', '0', '/', NULL, 'admin', '2024-04-14 21:47:14', '', NULL, NULL);
+INSERT INTO `gen_table` VALUES (31, 'sys_gallery', '系统图库', NULL, NULL, 'SysGallery', 'crud', '', 'com.ruoyi.system', 'system', 'gallery', '系统图库', 'AX', '0', '/', '{}', 'admin', '2024-04-15 12:12:31', '', '2024-04-15 12:17:22', '系统图库');
+INSERT INTO `gen_table` VALUES (32, 'sys_memo', '备忘录', NULL, NULL, 'SysMemo', 'crud', '', 'com.ruoyi.system', 'system', 'memo', '备忘录', 'AX', '0', '/', '{}', 'admin', '2024-04-16 18:25:42', '', '2024-04-16 19:33:44', '系统备忘录');
 
 -- ----------------------------
 -- Table structure for gen_table_column
@@ -96,7 +98,7 @@ CREATE TABLE `gen_table_column`  (
   `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`column_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 307 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 326 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of gen_table_column
@@ -273,32 +275,34 @@ INSERT INTO `gen_table_column` VALUES (294, 27, 'update_time', '更新时间', '
 INSERT INTO `gen_table_column` VALUES (295, 27, 'remark', '备注', 'varchar(500)', 'String', 'remark', '0', '0', '0', '1', '1', '1', NULL, 'EQ', 'textarea', '', 19, 'admin', '2024-04-14 21:24:30', '', NULL);
 INSERT INTO `gen_table_column` VALUES (296, 28, 'user_id', '用户ID', 'bigint', 'Long', 'userId', '1', '0', '0', '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2024-04-14 21:24:30', '', NULL);
 INSERT INTO `gen_table_column` VALUES (297, 28, 'role_id', '角色ID', 'bigint', 'Long', 'roleId', '1', '0', '0', '1', NULL, NULL, NULL, 'EQ', 'input', '', 2, 'admin', '2024-04-14 21:24:30', '', NULL);
-INSERT INTO `gen_table_column` VALUES (298, 29, 'website_id', '网页ID', 'int', 'Long', 'websiteId', '1', '1', '0', '0', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2024-04-14 21:35:12', '', '2024-04-14 23:04:10');
-INSERT INTO `gen_table_column` VALUES (299, 29, 'name', '网页名称', 'varchar(255)', 'String', 'name', '0', '0', '0', '1', '1', '1', '1', 'LIKE', 'input', '', 2, 'admin', '2024-04-14 21:35:13', '', '2024-04-14 23:04:10');
-INSERT INTO `gen_table_column` VALUES (300, 29, 'url', '网页URL', 'varchar(255)', 'String', 'url', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2024-04-14 21:35:13', '', '2024-04-14 23:04:10');
-INSERT INTO `gen_table_column` VALUES (301, 29, 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', '0', '0', NULL, NULL, NULL, 'EQ', 'datetime', '', 4, 'admin', '2024-04-14 21:35:13', '', '2024-04-14 23:04:10');
-INSERT INTO `gen_table_column` VALUES (302, 29, 'description', '网页描述', 'varchar(255)', 'String', 'description', '0', '0', '0', '1', '1', '1', '0', 'EQ', 'input', '', 5, 'admin', '2024-04-14 21:35:13', '', '2024-04-14 23:04:10');
-INSERT INTO `gen_table_column` VALUES (303, 29, 'type', '网页类型', 'varchar(255)', 'String', 'type', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'select', 'website_type', 6, 'admin', '2024-04-14 21:35:13', '', '2024-04-14 23:04:10');
-INSERT INTO `gen_table_column` VALUES (304, 29, 'update_time', '创建时间', 'datetime', 'Date', 'updateTime', '0', '0', '0', '0', '1', NULL, NULL, 'EQ', 'datetime', '', 7, 'admin', '2024-04-14 21:35:13', '', '2024-04-14 23:04:10');
+INSERT INTO `gen_table_column` VALUES (298, 29, 'website_id', '网页ID', 'int', 'Long', 'websiteId', '1', '1', '0', '0', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2024-04-14 21:35:12', '', '2024-04-16 11:16:09');
+INSERT INTO `gen_table_column` VALUES (299, 29, 'name', '网页名称', 'varchar(255)', 'String', 'name', '0', '0', '0', '1', '1', '1', '1', 'LIKE', 'input', '', 2, 'admin', '2024-04-14 21:35:13', '', '2024-04-16 11:16:09');
+INSERT INTO `gen_table_column` VALUES (300, 29, 'url', '网页URL', 'varchar(255)', 'String', 'url', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2024-04-14 21:35:13', '', '2024-04-16 11:16:09');
+INSERT INTO `gen_table_column` VALUES (301, 29, 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', '0', '0', NULL, NULL, NULL, 'EQ', 'datetime', '', 4, 'admin', '2024-04-14 21:35:13', '', '2024-04-16 11:16:09');
+INSERT INTO `gen_table_column` VALUES (302, 29, 'description', '网页描述', 'varchar(255)', 'String', 'description', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2024-04-14 21:35:13', '', '2024-04-16 11:16:10');
+INSERT INTO `gen_table_column` VALUES (303, 29, 'type', '网页类型', 'varchar(255)', 'String', 'type', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'select', 'website_type', 6, 'admin', '2024-04-14 21:35:13', '', '2024-04-16 11:16:10');
+INSERT INTO `gen_table_column` VALUES (304, 29, 'update_time', '创建时间', 'datetime', 'Date', 'updateTime', '0', '0', '0', '0', '1', NULL, NULL, 'EQ', 'datetime', '', 7, 'admin', '2024-04-14 21:35:13', '', '2024-04-16 11:16:10');
 INSERT INTO `gen_table_column` VALUES (305, 30, 'user_id', '用户ID', 'bigint', 'Long', 'userId', '1', '0', '0', '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2024-04-14 21:47:14', '', NULL);
 INSERT INTO `gen_table_column` VALUES (306, 30, 'post_id', '岗位ID', 'bigint', 'Long', 'postId', '1', '0', '0', '1', NULL, NULL, NULL, 'EQ', 'input', '', 2, 'admin', '2024-04-14 21:47:14', '', NULL);
-
--- ----------------------------
--- Table structure for qrtz_blob_triggers
--- ----------------------------
-DROP TABLE IF EXISTS `qrtz_blob_triggers`;
-CREATE TABLE `qrtz_blob_triggers`  (
-  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '调度名称',
-  `trigger_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'qrtz_triggers表trigger_name的外键',
-  `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'qrtz_triggers表trigger_group的外键',
-  `blob_data` blob NULL COMMENT '存放持久化Trigger对象',
-  PRIMARY KEY (`sched_name`, `trigger_name`, `trigger_group`) USING BTREE,
-  CONSTRAINT `qrtz_blob_triggers_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'Blob类型的触发器表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of qrtz_blob_triggers
--- ----------------------------
+INSERT INTO `gen_table_column` VALUES (307, 31, 'gallery_id', '图库ID', 'int', 'Long', 'galleryId', '1', '1', '0', '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2024-04-15 12:12:31', '', '2024-04-15 19:44:39');
+INSERT INTO `gen_table_column` VALUES (308, 31, 'image_name', '图片名', 'varchar(255)', 'String', 'imageName', '0', '0', '1', '1', '1', '1', '1', 'LIKE', 'input', '', 2, 'admin', '2024-04-15 12:12:31', '', '2024-04-15 19:44:39');
+INSERT INTO `gen_table_column` VALUES (309, 31, 'type', '图片类型', 'varchar(255)', 'String', 'type', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'select', '', 3, 'admin', '2024-04-15 12:12:31', '', '2024-04-15 19:44:39');
+INSERT INTO `gen_table_column` VALUES (310, 31, 'image_url', '图片URL', 'varchar(255)', 'String', 'imageUrl', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2024-04-15 12:12:31', '', '2024-04-15 19:44:39');
+INSERT INTO `gen_table_column` VALUES (311, 31, 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', '0', '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 5, 'admin', '2024-04-15 12:12:31', '', '2024-04-15 19:44:39');
+INSERT INTO `gen_table_column` VALUES (312, 31, 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', '0', '1', '1', NULL, NULL, 'EQ', 'datetime', '', 6, 'admin', '2024-04-15 12:12:31', '', '2024-04-15 19:44:39');
+INSERT INTO `gen_table_column` VALUES (313, 31, 'storage', '来源', 'varchar(255)', 'String', 'storage', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 7, '', '2024-04-15 19:44:39', '', NULL);
+INSERT INTO `gen_table_column` VALUES (314, 29, 'user_id', '用户ID', 'int', 'Long', 'userId', '0', '0', '0', '0', '1', '1', '1', 'EQ', 'input', '', 8, '', '2024-04-16 11:15:05', '', '2024-04-16 11:16:10');
+INSERT INTO `gen_table_column` VALUES (315, 29, 'dept_id', '部门ID', 'int', 'Long', 'deptId', '0', '0', '0', '0', '1', '1', '1', 'EQ', 'input', '', 9, '', '2024-04-16 11:15:05', '', '2024-04-16 11:16:10');
+INSERT INTO `gen_table_column` VALUES (316, 32, 'memo_id', '主键', 'int', 'Long', 'memoId', '1', '1', '0', '0', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2024-04-16 18:25:42', '', '2024-04-16 19:33:44');
+INSERT INTO `gen_table_column` VALUES (317, 32, 'title', '备忘录标题', 'varchar(255)', 'String', 'title', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2024-04-16 18:25:42', '', '2024-04-16 19:33:44');
+INSERT INTO `gen_table_column` VALUES (318, 32, 'value', '备忘录的值', 'varchar(255)', 'String', 'value', '0', '0', '1', '1', '1', '1', '0', 'EQ', 'input', '', 3, 'admin', '2024-04-16 18:25:42', '', '2024-04-16 19:33:44');
+INSERT INTO `gen_table_column` VALUES (319, 32, 'description', '备忘录描述', 'varchar(255)', 'String', 'description', '0', '0', '0', '1', '1', '1', '0', 'EQ', 'input', '', 4, 'admin', '2024-04-16 18:25:42', '', '2024-04-16 19:33:44');
+INSERT INTO `gen_table_column` VALUES (320, 32, 'extra', '附加值', 'varchar(255)', 'String', 'extra', '0', '0', '0', '1', '1', '1', '0', 'EQ', 'input', '', 5, 'admin', '2024-04-16 18:25:42', '', '2024-04-16 19:33:44');
+INSERT INTO `gen_table_column` VALUES (321, 32, 'user_id', '用户ID', 'int', 'Long', 'userId', '0', '0', '0', '0', '1', '0', '0', 'EQ', 'input', '', 6, 'admin', '2024-04-16 18:25:42', '', '2024-04-16 19:33:44');
+INSERT INTO `gen_table_column` VALUES (322, 32, 'dept_id', '部门ID', 'int', 'Long', 'deptId', '0', '0', '0', '0', '1', '0', '0', 'EQ', 'input', '', 8, 'admin', '2024-04-16 18:25:42', '', '2024-04-16 19:33:45');
+INSERT INTO `gen_table_column` VALUES (323, 32, 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', '0', '0', NULL, NULL, NULL, 'EQ', 'datetime', '', 9, 'admin', '2024-04-16 18:25:42', '', '2024-04-16 19:33:45');
+INSERT INTO `gen_table_column` VALUES (324, 32, 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', '0', '0', '1', NULL, NULL, 'EQ', 'datetime', '', 10, 'admin', '2024-04-16 18:25:42', '', '2024-04-16 19:33:45');
+INSERT INTO `gen_table_column` VALUES (325, 32, 'type', '1：备忘录，2：记事本', 'varchar(1)', 'String', 'type', '0', '0', '0', '0', '1', '0', '0', 'EQ', 'select', '', 7, '', '2024-04-16 19:32:46', '', '2024-04-16 19:33:44');
 
 -- ----------------------------
 -- Table structure for qrtz_calendars
@@ -309,7 +313,7 @@ CREATE TABLE `qrtz_calendars`  (
   `calendar_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '日历名称',
   `calendar` blob NOT NULL COMMENT '存放持久化calendar对象',
   PRIMARY KEY (`sched_name`, `calendar_name`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '日历信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '日历信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of qrtz_calendars
@@ -327,7 +331,7 @@ CREATE TABLE `qrtz_cron_triggers`  (
   `time_zone_id` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '时区',
   PRIMARY KEY (`sched_name`, `trigger_name`, `trigger_group`) USING BTREE,
   CONSTRAINT `qrtz_cron_triggers_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'Cron类型的触发器表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'Cron类型的触发器表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of qrtz_cron_triggers
@@ -352,7 +356,7 @@ CREATE TABLE `qrtz_fired_triggers`  (
   `is_nonconcurrent` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否并发',
   `requests_recovery` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否接受恢复执行',
   PRIMARY KEY (`sched_name`, `entry_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '已触发的触发器表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '已触发的触发器表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of qrtz_fired_triggers
@@ -374,7 +378,7 @@ CREATE TABLE `qrtz_job_details`  (
   `requests_recovery` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '是否接受恢复执行',
   `job_data` blob NULL COMMENT '存放持久化job对象',
   PRIMARY KEY (`sched_name`, `job_name`, `job_group`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '任务详细信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '任务详细信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of qrtz_job_details
@@ -388,7 +392,7 @@ CREATE TABLE `qrtz_locks`  (
   `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '调度名称',
   `lock_name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '悲观锁名称',
   PRIMARY KEY (`sched_name`, `lock_name`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '存储的悲观锁信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '存储的悲观锁信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of qrtz_locks
@@ -402,7 +406,7 @@ CREATE TABLE `qrtz_paused_trigger_grps`  (
   `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '调度名称',
   `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'qrtz_triggers表trigger_group的外键',
   PRIMARY KEY (`sched_name`, `trigger_group`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '暂停的触发器表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '暂停的触发器表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of qrtz_paused_trigger_grps
@@ -418,7 +422,7 @@ CREATE TABLE `qrtz_scheduler_state`  (
   `last_checkin_time` bigint NOT NULL COMMENT '上次检查时间',
   `checkin_interval` bigint NOT NULL COMMENT '检查间隔时间',
   PRIMARY KEY (`sched_name`, `instance_name`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '调度器状态表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '调度器状态表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of qrtz_scheduler_state
@@ -437,7 +441,7 @@ CREATE TABLE `qrtz_simple_triggers`  (
   `times_triggered` bigint NOT NULL COMMENT '已经触发的次数',
   PRIMARY KEY (`sched_name`, `trigger_name`, `trigger_group`) USING BTREE,
   CONSTRAINT `qrtz_simple_triggers_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '简单触发器的信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '简单触发器的信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of qrtz_simple_triggers
@@ -464,7 +468,7 @@ CREATE TABLE `qrtz_simprop_triggers`  (
   `bool_prop_2` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Boolean类型的trigger的第二个参数',
   PRIMARY KEY (`sched_name`, `trigger_name`, `trigger_group`) USING BTREE,
   CONSTRAINT `qrtz_simprop_triggers_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '同步机制的行锁表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '同步机制的行锁表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of qrtz_simprop_triggers
@@ -494,7 +498,7 @@ CREATE TABLE `qrtz_triggers`  (
   PRIMARY KEY (`sched_name`, `trigger_name`, `trigger_group`) USING BTREE,
   INDEX `sched_name`(`sched_name` ASC, `job_name` ASC, `job_group` ASC) USING BTREE,
   CONSTRAINT `qrtz_triggers_ibfk_1` FOREIGN KEY (`sched_name`, `job_name`, `job_group`) REFERENCES `qrtz_job_details` (`sched_name`, `job_name`, `job_group`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '触发器详细信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '触发器详细信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of qrtz_triggers
@@ -516,7 +520,7 @@ CREATE TABLE `sys_config`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`config_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 102 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '参数配置表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 102 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '参数配置表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_config
@@ -547,7 +551,7 @@ CREATE TABLE `sys_dept`  (
   `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`dept_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 201 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '部门表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 201 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '部门表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_dept
@@ -584,7 +588,7 @@ CREATE TABLE `sys_dict_data`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`dict_code`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 102 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典数据表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 109 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典数据表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_dict_data
@@ -620,6 +624,11 @@ INSERT INTO `sys_dict_data` VALUES (28, 1, '成功', '0', 'sys_common_status', '
 INSERT INTO `sys_dict_data` VALUES (29, 2, '失败', '1', 'sys_common_status', '', 'danger', 'N', '0', 'admin', '2024-04-10 15:08:50', '', NULL, '停用状态');
 INSERT INTO `sys_dict_data` VALUES (100, 1, '图片资源', 'image', 'website_type', '', NULL, '0', '0', 'admin', '2024-04-10 23:19:19', 'admin', '2024-04-10 23:19:44', '图片分类');
 INSERT INTO `sys_dict_data` VALUES (101, 0, '设计资源', 'design', 'website_type', NULL, NULL, '0', '0', 'admin', '2024-04-11 15:28:57', '', NULL, '设计');
+INSERT INTO `sys_dict_data` VALUES (102, 0, '壁纸', 'wallpaper', 'sys_gallery', NULL, NULL, '0', '0', 'admin', '2024-04-15 12:30:50', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (103, 0, '头像', 'avatar', 'sys_gallery', NULL, NULL, '0', '0', 'admin', '2024-04-15 12:31:13', '', NULL, '公用头像');
+INSERT INTO `sys_dict_data` VALUES (104, 0, '图标', 'sys-icon', 'sys_gallery', NULL, NULL, '0', '0', 'admin', '2024-04-15 12:32:06', '', NULL, '系统应用图标，在菜单栏配置');
+INSERT INTO `sys_dict_data` VALUES (106, 3, '在线工具', 'tool', 'website_type', NULL, NULL, '0', '0', 'admin', '2024-04-17 18:37:29', '', NULL, '在线工具');
+INSERT INTO `sys_dict_data` VALUES (108, 0, '管理系统', 'management', 'website_type', NULL, NULL, '0', '0', 'admin', '2024-04-18 13:38:15', '', NULL, '后台管理系统模板');
 
 -- ----------------------------
 -- Table structure for sys_dict_type
@@ -637,7 +646,7 @@ CREATE TABLE `sys_dict_type`  (
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`dict_id`) USING BTREE,
   UNIQUE INDEX `dict_type`(`dict_type` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 102 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典类型表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 103 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典类型表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_dict_type
@@ -653,6 +662,7 @@ INSERT INTO `sys_dict_type` VALUES (8, '通知状态', 'sys_notice_status', '0',
 INSERT INTO `sys_dict_type` VALUES (9, '操作类型', 'sys_oper_type', '0', 'admin', '2024-04-10 15:08:50', '', NULL, '操作类型列表');
 INSERT INTO `sys_dict_type` VALUES (10, '系统状态', 'sys_common_status', '0', 'admin', '2024-04-10 15:08:50', '', NULL, '登录状态列表');
 INSERT INTO `sys_dict_type` VALUES (100, '网址分类', 'website_type', '0', 'admin', '2024-04-10 22:57:53', '', NULL, '网页分类列表');
+INSERT INTO `sys_dict_type` VALUES (102, '图片分类', 'sys_gallery', '0', 'admin', '2024-04-15 12:23:56', '', NULL, '图片分类,系统用');
 
 -- ----------------------------
 -- Table structure for sys_job
@@ -673,7 +683,7 @@ CREATE TABLE `sys_job`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注信息',
   PRIMARY KEY (`job_id`, `job_name`, `job_group`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_job
@@ -696,7 +706,7 @@ CREATE TABLE `sys_job_log`  (
   `exception_info` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '异常信息',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`job_log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度日志表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_job_log
@@ -719,111 +729,42 @@ CREATE TABLE `sys_logininfor`  (
   PRIMARY KEY (`info_id`) USING BTREE,
   INDEX `idx_sys_logininfor_s`(`status` ASC) USING BTREE,
   INDEX `idx_sys_logininfor_lt`(`login_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 200 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 330 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_logininfor
 -- ----------------------------
-INSERT INTO `sys_logininfor` VALUES (100, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-10 16:50:30');
-INSERT INTO `sys_logininfor` VALUES (101, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '1', '验证码已失效', '2024-04-10 17:55:12');
-INSERT INTO `sys_logininfor` VALUES (102, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-10 17:55:14');
-INSERT INTO `sys_logininfor` VALUES (103, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-10 17:57:37');
-INSERT INTO `sys_logininfor` VALUES (104, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-10 17:58:03');
-INSERT INTO `sys_logininfor` VALUES (105, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '1', '验证码已失效', '2024-04-10 18:17:13');
-INSERT INTO `sys_logininfor` VALUES (106, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-10 18:17:16');
-INSERT INTO `sys_logininfor` VALUES (107, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-10 19:51:39');
-INSERT INTO `sys_logininfor` VALUES (108, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-10 21:00:03');
-INSERT INTO `sys_logininfor` VALUES (109, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-10 21:00:06');
-INSERT INTO `sys_logininfor` VALUES (110, 'ry', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-10 21:00:34');
-INSERT INTO `sys_logininfor` VALUES (111, 'ry', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-10 21:58:30');
-INSERT INTO `sys_logininfor` VALUES (112, 'ry', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-10 21:58:35');
-INSERT INTO `sys_logininfor` VALUES (113, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '1', '验证码错误', '2024-04-11 08:27:19');
-INSERT INTO `sys_logininfor` VALUES (114, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 08:27:21');
-INSERT INTO `sys_logininfor` VALUES (115, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 09:06:56');
-INSERT INTO `sys_logininfor` VALUES (116, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 11:33:50');
-INSERT INTO `sys_logininfor` VALUES (117, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 13:36:14');
-INSERT INTO `sys_logininfor` VALUES (118, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 14:05:38');
-INSERT INTO `sys_logininfor` VALUES (119, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 16:55:02');
-INSERT INTO `sys_logininfor` VALUES (120, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 18:22:15');
-INSERT INTO `sys_logininfor` VALUES (121, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 18:46:18');
-INSERT INTO `sys_logininfor` VALUES (122, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 19:51:38');
-INSERT INTO `sys_logininfor` VALUES (123, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-11 19:51:42');
-INSERT INTO `sys_logininfor` VALUES (124, 'Annis', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 19:51:48');
-INSERT INTO `sys_logininfor` VALUES (125, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 20:43:52');
-INSERT INTO `sys_logininfor` VALUES (126, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-11 20:43:56');
-INSERT INTO `sys_logininfor` VALUES (127, 'Annis', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 20:44:00');
-INSERT INTO `sys_logininfor` VALUES (128, 'Annis', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-11 20:45:40');
-INSERT INTO `sys_logininfor` VALUES (129, 'Annis', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 20:45:47');
-INSERT INTO `sys_logininfor` VALUES (130, 'Annis', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-11 20:54:06');
-INSERT INTO `sys_logininfor` VALUES (131, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 20:54:09');
-INSERT INTO `sys_logininfor` VALUES (132, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-11 20:54:13');
-INSERT INTO `sys_logininfor` VALUES (133, 'Annis', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 20:54:17');
-INSERT INTO `sys_logininfor` VALUES (134, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 21:40:05');
-INSERT INTO `sys_logininfor` VALUES (135, 'Annis', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 22:07:45');
-INSERT INTO `sys_logininfor` VALUES (136, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-11 22:14:47');
-INSERT INTO `sys_logininfor` VALUES (137, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '1', '验证码错误', '2024-04-12 00:34:26');
-INSERT INTO `sys_logininfor` VALUES (138, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-12 00:34:28');
-INSERT INTO `sys_logininfor` VALUES (139, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '1', '验证码已失效', '2024-04-12 09:35:55');
-INSERT INTO `sys_logininfor` VALUES (140, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-12 09:35:58');
-INSERT INTO `sys_logininfor` VALUES (141, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '1', '验证码已失效', '2024-04-12 10:27:22');
-INSERT INTO `sys_logininfor` VALUES (142, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-12 10:27:24');
-INSERT INTO `sys_logininfor` VALUES (143, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-12 10:46:24');
-INSERT INTO `sys_logininfor` VALUES (144, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '1', '验证码错误', '2024-04-12 12:54:45');
-INSERT INTO `sys_logininfor` VALUES (145, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-12 12:54:47');
-INSERT INTO `sys_logininfor` VALUES (146, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-12 13:37:27');
-INSERT INTO `sys_logininfor` VALUES (147, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-12 17:56:30');
-INSERT INTO `sys_logininfor` VALUES (148, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-12 18:15:31');
-INSERT INTO `sys_logininfor` VALUES (149, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-12 18:58:06');
-INSERT INTO `sys_logininfor` VALUES (150, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-12 19:59:16');
-INSERT INTO `sys_logininfor` VALUES (151, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-12 20:48:25');
-INSERT INTO `sys_logininfor` VALUES (152, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-12 23:17:26');
-INSERT INTO `sys_logininfor` VALUES (153, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-13 00:16:17');
-INSERT INTO `sys_logininfor` VALUES (154, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 00:19:21');
-INSERT INTO `sys_logininfor` VALUES (155, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-13 00:20:01');
-INSERT INTO `sys_logininfor` VALUES (156, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 00:23:35');
-INSERT INTO `sys_logininfor` VALUES (157, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-13 00:24:20');
-INSERT INTO `sys_logininfor` VALUES (158, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 08:42:30');
-INSERT INTO `sys_logininfor` VALUES (159, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 09:58:09');
-INSERT INTO `sys_logininfor` VALUES (160, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 11:03:02');
-INSERT INTO `sys_logininfor` VALUES (161, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 13:36:51');
-INSERT INTO `sys_logininfor` VALUES (162, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 16:29:29');
-INSERT INTO `sys_logininfor` VALUES (163, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 18:26:32');
-INSERT INTO `sys_logininfor` VALUES (164, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-13 18:30:40');
-INSERT INTO `sys_logininfor` VALUES (165, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '1', '验证码已失效', '2024-04-13 18:40:33');
-INSERT INTO `sys_logininfor` VALUES (166, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 19:02:49');
-INSERT INTO `sys_logininfor` VALUES (167, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-13 19:06:43');
-INSERT INTO `sys_logininfor` VALUES (168, 'test23', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '注册成功', '2024-04-13 19:10:32');
-INSERT INTO `sys_logininfor` VALUES (169, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 19:11:54');
-INSERT INTO `sys_logininfor` VALUES (170, '123456', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '注册成功', '2024-04-13 19:20:07');
-INSERT INTO `sys_logininfor` VALUES (171, 'sadfasd', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '注册成功', '2024-04-13 19:23:43');
-INSERT INTO `sys_logininfor` VALUES (172, 'sadfasd', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 19:24:08');
-INSERT INTO `sys_logininfor` VALUES (173, 'cabcab', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '注册成功', '2024-04-13 20:42:44');
-INSERT INTO `sys_logininfor` VALUES (174, 'cabcab', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '1', '验证码错误', '2024-04-13 20:42:47');
-INSERT INTO `sys_logininfor` VALUES (175, 'cabcab', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 20:42:54');
-INSERT INTO `sys_logininfor` VALUES (176, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 21:13:30');
-INSERT INTO `sys_logininfor` VALUES (177, 'admin', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 21:31:57');
-INSERT INTO `sys_logininfor` VALUES (178, 'admin', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-13 21:32:03');
-INSERT INTO `sys_logininfor` VALUES (179, 'sadfasd', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 21:32:46');
-INSERT INTO `sys_logininfor` VALUES (180, 'sadfasd', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-13 21:42:29');
-INSERT INTO `sys_logininfor` VALUES (181, 'sadfasd', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 21:42:34');
-INSERT INTO `sys_logininfor` VALUES (182, 'sadfasd', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '退出成功', '2024-04-13 21:43:26');
-INSERT INTO `sys_logininfor` VALUES (183, 'sadfasd', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 21:43:42');
-INSERT INTO `sys_logininfor` VALUES (184, 'sadfasd', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 21:46:07');
-INSERT INTO `sys_logininfor` VALUES (185, 'admin', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 21:46:24');
-INSERT INTO `sys_logininfor` VALUES (186, 'sadfasd', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 21:46:32');
-INSERT INTO `sys_logininfor` VALUES (187, 'admin', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-13 22:57:53');
-INSERT INTO `sys_logininfor` VALUES (188, 'admin', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '1', '验证码错误', '2024-04-14 09:33:52');
-INSERT INTO `sys_logininfor` VALUES (189, 'admin', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '1', '验证码错误', '2024-04-14 09:33:54');
-INSERT INTO `sys_logininfor` VALUES (190, 'admin', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-14 09:33:56');
-INSERT INTO `sys_logininfor` VALUES (191, 'admin', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-14 10:42:58');
-INSERT INTO `sys_logininfor` VALUES (192, 'admin', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-14 12:30:20');
-INSERT INTO `sys_logininfor` VALUES (193, 'admin', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-14 14:46:05');
-INSERT INTO `sys_logininfor` VALUES (194, 'admin', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-14 17:42:30');
-INSERT INTO `sys_logininfor` VALUES (195, 'admin', '192.168.1.124', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-14 19:05:21');
-INSERT INTO `sys_logininfor` VALUES (196, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 08:54:01');
-INSERT INTO `sys_logininfor` VALUES (197, 'sadfasd', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 10:18:49');
-INSERT INTO `sys_logininfor` VALUES (198, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 10:22:36');
-INSERT INTO `sys_logininfor` VALUES (199, 'sadfasd', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 10:30:55');
+
+-- ----------------------------
+-- Table structure for sys_memo
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_memo`;
+CREATE TABLE `sys_memo`  (
+  `memo_id` int NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备忘录标题',
+  `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备忘录的值',
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备忘录描述',
+  `extra` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '附加值',
+  `user_id` int NULL DEFAULT NULL COMMENT '用户ID',
+  `type` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '1：备忘录，2：记事本',
+  `dept_id` int NULL DEFAULT NULL COMMENT '部门ID',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`memo_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_memo
+-- ----------------------------
+INSERT INTO `sys_memo` VALUES (1, 'test', 'test', 'tes', 'test', 0, NULL, 0, '2024-04-16 18:36:47', NULL);
+INSERT INTO `sys_memo` VALUES (8, 'test006', 'test006', 'test006', 'test006', 109, '1', NULL, '2024-04-16 19:56:41', NULL);
+INSERT INTO `sys_memo` VALUES (9, '超管的备忘录', '超管的备忘录', '超管的备忘录', '超管的备忘录', 1, '1', 103, '2024-04-16 21:57:58', NULL);
+INSERT INTO `sys_memo` VALUES (11, '超管的备忘录', 'mark', 'test', 'test', 104, '1', NULL, '2024-04-17 21:05:30', NULL);
+INSERT INTO `sys_memo` VALUES (12, '这是私人的值', '这是私人的值', '这是私人的值', '这是私人的值', 108, '1', NULL, '2024-04-17 21:41:05', NULL);
+INSERT INTO `sys_memo` VALUES (17, '测试标题', 's', '测试描述信息', NULL, 108, '2', NULL, '2024-04-17 22:24:20', NULL);
+INSERT INTO `sys_memo` VALUES (18, '测试信息', '测试列表', '测试', NULL, 108, '2', NULL, '2024-04-17 22:31:06', NULL);
+INSERT INTO `sys_memo` VALUES (19, '这是备忘录的值', '背完路', 'bwl', 'extra', 108, '1', NULL, '2024-04-17 22:54:57', NULL);
+INSERT INTO `sys_memo` VALUES (20, '文本渐变', '给我一段文本渐变的css', '文本渐变CSS', NULL, 1, '2', 103, '2024-04-19 10:27:35', NULL);
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -850,13 +791,13 @@ CREATE TABLE `sys_menu`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2075 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单权限表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2087 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单权限表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES (1, '系统管理', 0, 1, 'system', NULL, '', 1, 0, 'M', '0', '0', '', 'system', 'admin', '2024-04-10 15:08:49', '', NULL, '系统管理目录');
-INSERT INTO `sys_menu` VALUES (2, '系统监控', 0, 2, 'monitor', NULL, '', 1, 0, 'M', '0', '0', '', 'monitor', 'admin', '2024-04-10 15:08:49', '', NULL, '系统监控目录');
+INSERT INTO `sys_menu` VALUES (1, '系统管理', 0, 1, 'system', NULL, '', 1, 0, 'M', '0', '0', '', 'system', 'admin', '2024-04-10 15:08:49', 'admin', '2024-04-16 18:32:05', '系统管理目录');
+INSERT INTO `sys_menu` VALUES (2, '系统监控', 0, 2, 'monitor', NULL, '', 1, 0, 'M', '0', '0', '', 'monitor', 'admin', '2024-04-10 15:08:49', 'admin', '2024-04-18 20:18:35', '系统监控目录');
 INSERT INTO `sys_menu` VALUES (100, '用户管理', 1, 1, 'user', 'system/user/index', '', 1, 0, 'C', '0', '0', 'system:user:list', 'user', 'admin', '2024-04-10 15:08:49', '', NULL, '用户管理菜单');
 INSERT INTO `sys_menu` VALUES (101, '身份管理', 1, 0, 'role', 'system/role/index', '', 1, 0, 'C', '0', '0', 'system:role:list', 'peoples', 'admin', '2024-04-10 15:08:49', 'admin', '2024-04-11 15:32:47', '角色管理菜单');
 INSERT INTO `sys_menu` VALUES (102, '菜单管理', 1, 3, 'menu', 'system/menu/index', '', 1, 0, 'C', '0', '0', 'system:menu:list', 'tree-table', 'admin', '2024-04-10 15:08:49', '', NULL, '菜单管理菜单');
@@ -870,9 +811,8 @@ INSERT INTO `sys_menu` VALUES (109, '在线用户', 2, 1, 'online', 'monitor/onl
 INSERT INTO `sys_menu` VALUES (110, '定时任务', 2, 2, 'job', 'monitor/job/index', '', 1, 0, 'C', '0', '0', 'monitor:job:list', 'job', 'admin', '2024-04-10 15:08:49', '', NULL, '定时任务菜单');
 INSERT INTO `sys_menu` VALUES (111, '数据监控', 2, 3, 'druid', 'monitor/druid/index', '', 1, 0, 'C', '0', '0', 'monitor:druid:list', 'druid', 'admin', '2024-04-10 15:08:49', '', NULL, '数据监控菜单');
 INSERT INTO `sys_menu` VALUES (112, '服务监控', 2, 4, 'server', 'monitor/server/index', '', 1, 0, 'C', '0', '0', 'monitor:server:list', 'server', 'admin', '2024-04-10 15:08:49', '', NULL, '服务监控菜单');
-INSERT INTO `sys_menu` VALUES (113, '缓存监控', 2, 5, 'cache', 'monitor/cache/index', '', 1, 0, 'C', '0', '0', 'monitor:cache:list', 'redis', 'admin', '2024-04-10 15:08:49', '', NULL, '缓存监控菜单');
-INSERT INTO `sys_menu` VALUES (114, '缓存列表', 2, 6, 'cacheList', 'monitor/cache/list', '', 1, 0, 'C', '0', '0', 'monitor:cache:list', 'redis-list', 'admin', '2024-04-10 15:08:49', '', NULL, '缓存列表菜单');
-INSERT INTO `sys_menu` VALUES (116, '代码生成', 1, 2, 'gen', 'tool/gen/index', '', 1, 0, 'C', '0', '0', 'tool:gen:list', 'code', 'admin', '2024-04-10 15:08:49', 'admin', '2024-04-11 11:34:31', '代码生成菜单');
+INSERT INTO `sys_menu` VALUES (114, '缓存列表', 2, 6, 'cache', 'monitor/cache/index', '', 1, 0, 'C', '0', '0', 'monitor:cache:list', 'redis-list', 'admin', '2024-04-10 15:08:49', 'admin', '2024-04-19 19:29:50', '缓存列表菜单');
+INSERT INTO `sys_menu` VALUES (116, '代码生成', 1, 2, 'gen', 'system/gen/index', '', 1, 0, 'C', '0', '0', 'tool:gen:list', 'code', 'admin', '2024-04-10 15:08:49', 'admin', '2024-04-18 16:45:49', '代码生成菜单');
 INSERT INTO `sys_menu` VALUES (500, '操作日志', 108, 1, 'operlog', 'monitor/operlog/index', '', 1, 0, 'C', '0', '0', 'monitor:operlog:list', 'form', 'admin', '2024-04-10 15:08:49', '', NULL, '操作日志菜单');
 INSERT INTO `sys_menu` VALUES (501, '登录日志', 108, 2, 'logininfor', 'monitor/logininfor/index', '', 1, 0, 'C', '0', '0', 'monitor:logininfor:list', 'logininfor', 'admin', '2024-04-10 15:08:49', '', NULL, '登录日志菜单');
 INSERT INTO `sys_menu` VALUES (1000, '用户查询', 100, 1, '', '', '', 1, 0, 'F', '0', '0', 'system:user:query', '#', 'admin', '2024-04-10 15:08:49', '', NULL, '');
@@ -936,12 +876,18 @@ INSERT INTO `sys_menu` VALUES (1057, '生成删除', 116, 3, '#', '', '', 1, 0, 
 INSERT INTO `sys_menu` VALUES (1058, '导入代码', 116, 4, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:import', '#', 'admin', '2024-04-10 15:08:49', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (1059, '预览代码', 116, 5, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:preview', '#', 'admin', '2024-04-10 15:08:49', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (1060, '生成代码', 116, 6, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:code', '#', 'admin', '2024-04-10 15:08:49', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2069, '网页收藏', 0, 1, 'website', 'system/website/index', NULL, 1, 0, 'C', '0', '0', 'system:website:list', '#', 'admin', '2024-04-11 15:45:16', '', NULL, '网页收藏菜单');
+INSERT INTO `sys_menu` VALUES (2069, '网页收藏', 0, 3, 'website', 'system/website/index', NULL, 1, 0, 'C', '0', '0', 'system:website:list', '#', 'admin', '2024-04-11 15:45:16', 'admin', '2024-04-16 18:32:01', '网页收藏菜单');
 INSERT INTO `sys_menu` VALUES (2070, '网页收藏查询', 2069, 1, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:website:query', '#', 'admin', '2024-04-11 15:45:16', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2071, '网页收藏新增', 2069, 2, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:website:add', '#', 'admin', '2024-04-11 15:45:16', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2072, '网页收藏修改', 2069, 3, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:website:edit', '#', 'admin', '2024-04-11 15:45:16', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2073, '网页收藏删除', 2069, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:website:remove', '#', 'admin', '2024-04-11 15:45:16', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2074, '网页收藏导出', 2069, 5, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:website:export', '#', 'admin', '2024-04-11 15:45:16', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2081, '备忘录', 0, 4, 'memo', 'system/memo/index', NULL, 1, 0, 'C', '0', '0', 'system:memo:list', '#', 'admin', '2024-04-16 18:29:23', 'admin', '2024-04-16 18:31:54', '备忘录菜单');
+INSERT INTO `sys_menu` VALUES (2082, '备忘录查询', 2081, 1, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:memo:query', '#', 'admin', '2024-04-16 18:29:23', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2083, '备忘录新增', 2081, 2, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:memo:add', '#', 'admin', '2024-04-16 18:29:23', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2084, '备忘录修改', 2081, 3, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:memo:edit', '#', 'admin', '2024-04-16 18:29:23', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2085, '备忘录删除', 2081, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:memo:remove', '#', 'admin', '2024-04-16 18:29:23', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2086, '备忘录导出', 2081, 5, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:memo:export', '#', 'admin', '2024-04-16 18:29:23', '', NULL, '');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -959,7 +905,7 @@ CREATE TABLE `sys_notice`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`notice_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '通知公告表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '通知公告表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_notice
@@ -968,7 +914,6 @@ INSERT INTO `sys_notice` VALUES (10, '系统通知', '1', 0x3C703EE5B0B1E698AFE7
 INSERT INTO `sys_notice` VALUES (11, '系统公告', '2', 0x3C703EE585ACE5918A3C2F703E, '0', 'admin', '2024-04-11 13:50:14', '', NULL, NULL);
 INSERT INTO `sys_notice` VALUES (12, '新的公告', '1', 0x3C703EE68980E69C89E58685E5AEB9E983BDE5858DE8B4B9E4BA863C2F703E, '0', 'admin', '2024-04-11 14:16:54', '', NULL, NULL);
 INSERT INTO `sys_notice` VALUES (13, '测试标题', '1', 0x3C703EE6B58BE8AF953C2F703E, '0', 'admin', '2024-04-11 14:32:34', '', NULL, NULL);
-INSERT INTO `sys_notice` VALUES (15, 'test', '1', 0x3C703E746573743C2F703E, '0', 'sadfasd', '2024-04-15 10:27:21', '', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_oper_log
@@ -996,7 +941,11 @@ CREATE TABLE `sys_oper_log`  (
   INDEX `idx_sys_oper_log_bt`(`business_type` ASC) USING BTREE,
   INDEX `idx_sys_oper_log_s`(`status` ASC) USING BTREE,
   INDEX `idx_sys_oper_log_ot`(`oper_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 343 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 786 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of sys_oper_log
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_post
@@ -1014,7 +963,7 @@ CREATE TABLE `sys_post`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`post_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '岗位信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '岗位信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_post
@@ -1044,14 +993,14 @@ CREATE TABLE `sys_role`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`role_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 101 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 101 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES (1, '超级管理员', 'admin', 1, '1', 1, 1, '0', '0', 'admin', '2024-04-10 15:08:49', '', NULL, '超级管理员');
 INSERT INTO `sys_role` VALUES (2, '普通角色', 'common', 2, '1', 1, 1, '0', '0', 'admin', '2024-04-10 15:08:49', 'admin', '2024-04-10 20:28:12', '普通角色');
-INSERT INTO `sys_role` VALUES (100, '访客', 'visitor', 3, '3', 0, 0, '0', '0', 'admin', '2024-04-10 20:31:02', 'admin', '2024-04-15 10:27:10', '访客，只能访问公开的数据');
+INSERT INTO `sys_role` VALUES (100, '访客', 'visitor', 3, '5', 0, 0, '0', '0', 'admin', '2024-04-10 20:31:02', 'admin', '2024-04-19 16:47:09', '访客，只能访问公开的数据');
 
 -- ----------------------------
 -- Table structure for sys_role_dept
@@ -1061,7 +1010,7 @@ CREATE TABLE `sys_role_dept`  (
   `role_id` bigint NOT NULL COMMENT '角色ID',
   `dept_id` bigint NOT NULL COMMENT '部门ID',
   PRIMARY KEY (`role_id`, `dept_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色和部门关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色和部门关联表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_role_dept
@@ -1077,7 +1026,7 @@ CREATE TABLE `sys_role_menu`  (
   `role_id` bigint NOT NULL COMMENT '角色ID',
   `menu_id` bigint NOT NULL COMMENT '菜单ID',
   PRIMARY KEY (`role_id`, `menu_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色和菜单关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色和菜单关联表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_role_menu
@@ -1087,6 +1036,16 @@ INSERT INTO `sys_role_menu` VALUES (100, 107);
 INSERT INTO `sys_role_menu` VALUES (100, 1035);
 INSERT INTO `sys_role_menu` VALUES (100, 2069);
 INSERT INTO `sys_role_menu` VALUES (100, 2070);
+INSERT INTO `sys_role_menu` VALUES (100, 2071);
+INSERT INTO `sys_role_menu` VALUES (100, 2072);
+INSERT INTO `sys_role_menu` VALUES (100, 2073);
+INSERT INTO `sys_role_menu` VALUES (100, 2074);
+INSERT INTO `sys_role_menu` VALUES (100, 2081);
+INSERT INTO `sys_role_menu` VALUES (100, 2082);
+INSERT INTO `sys_role_menu` VALUES (100, 2083);
+INSERT INTO `sys_role_menu` VALUES (100, 2084);
+INSERT INTO `sys_role_menu` VALUES (100, 2085);
+INSERT INTO `sys_role_menu` VALUES (100, 2086);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -1113,13 +1072,24 @@ CREATE TABLE `sys_user`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 106 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 111 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 103, 'admin', '超级管理员', '00', 'visitor@163.com', '15888888888', '1', '/profile/avatar/2024/04/10/nodejs_20240410182957A001.jpg', '$2a$10$aMw2U1fjT03V2mAwEzwZUePjSjaCEPbt8UiTFIQn8Njr6PgAhpOIe', '0', '0', '127.0.0.1', '2024-04-15 10:22:36', 'admin', '2024-04-10 15:08:49', '', '2024-04-15 10:22:36', '管理员');
+INSERT INTO `sys_user` VALUES (1, 103, 'admin', '超级管理员', '00', 'ax@qq.com', '15888888888', '1', '/profile/avatar/2024/04/18/Stone_20240418104355A001.png', '$2a$10$aMw2U1fjT03V2mAwEzwZUePjSjaCEPbt8UiTFIQn8Njr6PgAhpOIe', '0', '0', '127.0.0.1', '2024-04-19 22:27:38', 'admin', '2024-04-10 15:08:49', '', '2024-04-19 22:27:37', '管理员');
 INSERT INTO `sys_user` VALUES (2, 200, 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '', '$2a$10$8xkL0c8Q2VJBnN.TZ.aXDu.L8a/dD.uXPUHiO94nLo0lZLsLzlyB.', '0', '0', '127.0.0.1', '2024-04-10 21:58:36', 'admin', '2024-04-10 15:08:49', 'admin', '2024-04-10 22:03:44', '访客角色');
+INSERT INTO `sys_user` VALUES (100, 200, 'Annis', 'Annis', '00', '11111111111@123.com', '11111111111', '1', '', '$2a$10$BnRVxbqfdoKJ.5eV9Vv7quABjjEEzYP8qoSxVjgPoH7JyZJEHcnJ6', '0', '0', '127.0.0.1', '2024-04-11 22:07:46', 'admin', '2024-04-10 19:03:08', 'admin', '2024-04-15 09:45:52', '小爱同学');
+INSERT INTO `sys_user` VALUES (101, 103, 'test23', 'test23', '00', '', '', '0', '', '$2a$10$tzw2Jp6jVwdpmgrCFIhIqusXiyryzVLXUYF5n.qLCjj3iWtdhKQRy', '0', '0', '127.0.0.1', '2024-04-17 15:49:33', '', '2024-04-13 19:10:31', 'admin', '2024-04-17 15:49:33', NULL);
+INSERT INTO `sys_user` VALUES (102, 200, '123456', '1234561', '00', '', '', '0', '', '$2a$10$3IxD3FnnYyFiDUYU2nW/beRhrg55uw8zKeeQ3Sa8lrdZoGEfWY9CC', '0', '0', '127.0.0.1', '2024-04-16 14:14:29', '', '2024-04-13 19:20:07', 'admin', '2024-04-16 14:14:28', NULL);
+INSERT INTO `sys_user` VALUES (103, NULL, '123456789', '123456789', '00', '', '', '0', '', '$2a$10$lWCiIsU3eX/HWDvPknRue.cqfiS.Gm8cu0x/UKX3/MJLP9PS4JFP6', '0', '0', '', NULL, '', '2024-04-13 19:22:07', '', NULL, NULL);
+INSERT INTO `sys_user` VALUES (104, NULL, 'sadfasd', 'sadfasd', '00', '', '', '0', '', '$2a$10$c6MgP8LTWKSdrjZyi9eWiuJuCjD3NBMCBEFj5a.CFcxlVva2fOKuu', '0', '0', '127.0.0.1', '2024-04-17 20:28:21', '', '2024-04-13 19:23:43', 'admin', '2024-04-17 20:28:15', NULL);
+INSERT INTO `sys_user` VALUES (105, NULL, 'cabcab', 'cabcab', '00', '444891953@qq.com', '', '1', '', '$2a$10$Sf63Rm2fR8YyGdMV5davAeKa2PNIbjpGUMJvz8ruxXXYTzRiYJr4C', '0', '0', '127.0.0.1', '2024-04-13 20:43:00', '', '2024-04-13 20:42:44', '', '2024-04-13 20:49:13', NULL);
+INSERT INTO `sys_user` VALUES (106, NULL, 'test123', 'test123', '00', '', '', '0', '', '$2a$10$I8aahiOQzlMa9InKlgwo1OjdBViIg.tI31N3glOv8bSS3PDhHQwqK', '0', '0', '127.0.0.1', '2024-04-16 18:20:11', '', '2024-04-16 18:19:57', '', '2024-04-16 18:20:05', NULL);
+INSERT INTO `sys_user` VALUES (107, NULL, 'test003', 'test003', '00', '', '', '0', '', '$2a$10$i2fdB5tn9wyCft4LiI8H3uafB2f8Ab5gWkzIFghZGExC5Hp7BwKYe', '0', '0', '127.0.0.1', '2024-04-17 15:20:28', '', '2024-04-16 18:53:38', '', '2024-04-17 15:20:28', NULL);
+INSERT INTO `sys_user` VALUES (108, NULL, 'test004', 'test004', '00', '', '', '0', '', '$2a$10$X5KCGS254ViguDUP7FHw9eux1dHUG/c9hdWaLd.ZZrlOzWjRsedVG', '0', '0', '127.0.0.1', '2024-04-17 21:38:50', '', '2024-04-16 18:54:16', '', '2024-04-17 21:38:50', NULL);
+INSERT INTO `sys_user` VALUES (109, NULL, 'test006', 'test006', '00', '', '', '0', '', '$2a$10$NiXYgRFJElOrQEQ/edJa2.ewwRbXqVKNSKxN9YgyukTFql0ZZMJwi', '0', '0', '127.0.0.1', '2024-04-16 19:56:33', '', '2024-04-16 19:56:23', '', '2024-04-16 19:56:27', NULL);
+INSERT INTO `sys_user` VALUES (110, NULL, 'test007', 'test007', '00', '', '', '0', '', '$2a$10$mRwKMJ2do471atwgzEGLjOt2Kjwv3Adsf9Sj2YLlrFxgMdUBoLSd.', '0', '0', '127.0.0.1', '2024-04-16 22:03:34', '', '2024-04-16 22:03:24', '', '2024-04-16 22:03:28', NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_post
@@ -1129,7 +1099,7 @@ CREATE TABLE `sys_user_post`  (
   `user_id` bigint NOT NULL COMMENT '用户ID',
   `post_id` bigint NOT NULL COMMENT '岗位ID',
   PRIMARY KEY (`user_id`, `post_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户与岗位关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户与岗位关联表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_user_post
@@ -1146,7 +1116,7 @@ CREATE TABLE `sys_user_role`  (
   `user_id` bigint NOT NULL COMMENT '用户ID',
   `role_id` bigint NOT NULL COMMENT '角色ID',
   PRIMARY KEY (`user_id`, `role_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户和角色关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户和角色关联表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_user_role
@@ -1154,8 +1124,15 @@ CREATE TABLE `sys_user_role`  (
 INSERT INTO `sys_user_role` VALUES (1, 1);
 INSERT INTO `sys_user_role` VALUES (2, 100);
 INSERT INTO `sys_user_role` VALUES (100, 100);
+INSERT INTO `sys_user_role` VALUES (101, 100);
+INSERT INTO `sys_user_role` VALUES (102, 100);
 INSERT INTO `sys_user_role` VALUES (104, 100);
 INSERT INTO `sys_user_role` VALUES (105, 100);
+INSERT INTO `sys_user_role` VALUES (106, 100);
+INSERT INTO `sys_user_role` VALUES (107, 100);
+INSERT INTO `sys_user_role` VALUES (108, 100);
+INSERT INTO `sys_user_role` VALUES (109, 100);
+INSERT INTO `sys_user_role` VALUES (110, 100);
 
 -- ----------------------------
 -- Table structure for sys_website
@@ -1169,30 +1146,106 @@ CREATE TABLE `sys_website`  (
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '网页描述',
   `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '网页类型',
   `update_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `user_id` int NULL DEFAULT NULL COMMENT '用户ID',
+  `dept_id` int NULL DEFAULT NULL COMMENT '部门ID',
   PRIMARY KEY (`website_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 42 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 156 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_website
 -- ----------------------------
-INSERT INTO `sys_website` VALUES (19, '123', '3213', '2024-04-12 11:55:50', '3123', '', NULL);
-INSERT INTO `sys_website` VALUES (20, '213', '321', '2024-04-12 11:56:37', '3123', '', NULL);
-INSERT INTO `sys_website` VALUES (21, '213', '3123', '2024-04-12 11:56:42', '213', '', NULL);
-INSERT INTO `sys_website` VALUES (22, '123', '312', '2024-04-12 12:16:02', '3123', '', NULL);
-INSERT INTO `sys_website` VALUES (23, '123', '3213', '2024-04-12 12:19:16', '附件', '', '2024-04-13 19:25:34');
-INSERT INTO `sys_website` VALUES (24, '213', '312', '2024-04-12 12:20:52', '', '', NULL);
-INSERT INTO `sys_website` VALUES (25, '123', '3123', '2024-04-12 12:20:56', '', '', NULL);
-INSERT INTO `sys_website` VALUES (26, '3213', '3123', '2024-04-12 12:20:58', '', '', NULL);
-INSERT INTO `sys_website` VALUES (27, '321312', '', '2024-04-12 12:21:01', '', '', NULL);
-INSERT INTO `sys_website` VALUES (29, '312', '33123', '2024-04-12 12:23:45', '3123', '', NULL);
-INSERT INTO `sys_website` VALUES (30, '123', '231', '2024-04-12 14:23:20', '323213', '', NULL);
-INSERT INTO `sys_website` VALUES (31, '123', '321', '2024-04-12 14:53:24', '3213', '', NULL);
-INSERT INTO `sys_website` VALUES (32, '321', '321', '2024-04-12 14:53:29', '321', '', NULL);
-INSERT INTO `sys_website` VALUES (33, '发送', '123', '2024-04-12 18:19:56', '额头上', '', NULL);
-INSERT INTO `sys_website` VALUES (34, '12', '3123', '2024-04-12 23:40:44', '12312312', '', NULL);
-INSERT INTO `sys_website` VALUES (36, '1', '1', '2024-04-13 21:16:17', '1', '', NULL);
-INSERT INTO `sys_website` VALUES (39, '测试网页', '测试', '2024-04-14 22:42:30', '123', 'design', NULL);
-INSERT INTO `sys_website` VALUES (40, '测试网页', '', '2024-04-15 08:56:02', '', 'image', NULL);
-INSERT INTO `sys_website` VALUES (41, '测试', '123', '2024-04-15 08:56:15', '123', 'design', NULL);
+INSERT INTO `sys_website` VALUES (63, '4K壁纸', 'https://www.uhdpaper.com/', '2024-04-17 10:50:47', '4K, 3840x2160, 8K, 7680x4320, 1920x1080. UHD Ultra HD Wallpaper for Desktop, iPhone, PC, Laptop, Computer, Android Phone, Smartphone, iMac, MacBook, Tablet, Mobile Device.', 'image', '2024-04-17 18:52:25', 1, 103);
+INSERT INTO `sys_website` VALUES (64, 'WallpaperAccess', 'wallpaperaccess.com', '2024-04-17 13:38:00', 'WallpaperAccess为您提供了数千张高质量图像,可用作您的计算机,平板电脑或手机的墙纸', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (65, 'WallpaperHub | Free wallpapers for your PC, phone and tablet', 'https://www.wallpaperhub.app/', '2024-04-17 13:38:34', 'Download free wallpapers for your PC, phone and tablet. Get official Surface wallpapers and the Bing daily image for your device. 4K, 1080p & Surface Studio resolutions are all available to do1wnload.', 'image', '2024-04-17 15:41:28', 1, 103);
+INSERT INTO `sys_website` VALUES (66, 'FREE for commercial use Images. Download Stock photos CC0', 'https://freeforcommercialuse.net/', '2024-04-17 13:39:16', 'FREE authentic lifestyle imagery for modern creatives. Creative Commons Zero – Public Domain FREE for commercial use. Curated ', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (67, 'Gratisography - Free High-Resolution Stock Photos', 'https://gratisography.com/', '2024-04-17 13:59:17', 'The world\'s quirkiest collection of free high-resolution pictures you can use on your personal and commercial projects. All completely free of copyright restrictions. New photos added every week!', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (68, 'Best Free High Resolution Stock Photos & Videos | ISO Republic', 'https://isorepublic.com/', '2024-04-17 13:59:39', 'ISO Republic offers over 7,000 of the best high-resolution stock images & videos, all free for personal and commercial use. Download your favorites today.', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (69, 'MyLiveWallpapers.com - Best Live Wallpaper For Your Desktop PC and Mobile Phone', 'https://mylivewallpapers.com/', '2024-04-17 13:59:55', 'MyLiveWallpapers.com - Free live wallpapers for your PC and mobile phone. We have anime live wallpapers, cars live wallpapers, video game live wallpapers and more! Install our free MLWapp to play live wallpapers on your PC!', 'image', '2024-04-17 15:43:33', 1, 103);
+INSERT INTO `sys_website` VALUES (70, 'freepik', 'https://www.freepik.com/', '2024-04-17 14:05:03', 'High-quality photos, videos, vectors, PSD, AI images, icons... to go from ideas to outstanding designs', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (71, 'unDraw - Open source illustrations for any idea', 'https://undraw.co/', '2024-04-17 14:05:19', 'The design project with open-source illustrations for any idea you can imagine and create. Create beautiful websites, products and applications with your color, for free.', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (72, 'freevector', 'https://www.freevector.com/', '2024-04-17 14:05:51', '免费矢量图', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (73, 'stocksnap', 'https://stocksnap.io/', '2024-04-17 14:11:18', 'The best source for free, CC0, do-what-you-want-with stock photos. Browse and download thousands of copyright-free stock images. No attribution required.', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (74, '免费图标', 'https://www.streamlinehq.com/', '2024-04-17 14:12:21', '177289 Streamline icons in line, regular, bold, colors, freehand, cyber, and more styles. Download the largest icons sets of the world in one place.', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (75, 'vecteezy', 'https://www.vecteezy.com/', '2024-04-17 14:17:03', 'Professional quality creative resources to get your projects done faster.', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (76, 'The world\'s biggest drone photo and video sharing platform | SkyPixel.com', 'https://www.skypixel.com/', '2024-04-17 14:17:38', 'Join the world\'s biggest drone and aerial photo and video sharing platform. Share your aerial photography and cinematography, find tips and connect with others', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (77, 'Beautiful Free Images & Pictures | Unsplash', 'https://unsplash.com/', '2024-04-17 14:18:07', 'Beautiful, free images and photos that you can download and use for any project. Better than any royalty free or stock photos.', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (78, '闪萌 - 中文GIF搜索引擎 - gif搜索_动图搜索_gif_动图_表情_斗图', 'https://www.weshineapp.com/', '2024-04-17 14:19:33', '闪萌官网，GIF动图中文搜索引擎，发现好玩的gif动图,包括明星、美女、搞笑、微信QQ聊天表情包，可以一键分享到微信QQ新浪微博，支持gif动图下载，表情包下载到手机', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (79, 'ur1.fun', 'https://wallpaper.ur1.fun/', '2024-04-17 14:21:55', '电脑壁纸，中文', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (80, '彼岸壁纸', 'http://www.netbian.com/', '2024-04-17 14:25:11', '中文壁纸网页，可免费下载', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (81, 'zzzmh\'s_blog_上海藏原羚工作室', 'https://bz.zzzmh.cn/index', '2024-04-17 14:27:08', '上海藏原羚工作室程序员的技术主页，分享网站开发设计技术文章，极简系列网站开发日志等', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (82, 'pixabay', 'https://pixabay.com/', '2024-04-17 14:27:42', '超过40000 张关于“Wallpaper 4K”和“背景”的免费图片', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (83, 'Simple Desktops', 'https://simpledesktops.com/', '2024-04-17 14:28:28', 'A collection of wallpapers designed to make your computer beautiful without distraction.', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (84, 'NET牛人', 'https://ss.netnr.com/wallpaper', '2024-04-17 14:30:17', 'NET牛人,Netnr,Gist,Run,Doc,Draw', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (85, 'Justin Maller – Portfolio', 'https://justinmaller.com/', '2024-04-17 14:30:54', '抽象壁纸', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (86, 'ZEDGE - Everything you', 'https://www.zedge.net/', '2024-04-17 14:43:46', 'Download free ringtones, HD wallpapers, backgrounds, icons and games to personalize your cell phone or mobile device using the Zedge app for Android and iPhone.', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (87, 'goodfon', 'https://www.goodfon.com/', '2024-04-17 14:44:56', 'Free mobile and desktop, laptop, hdtv wallpapers\nFree wallpapers for mobile, a whole world of amazing images and photos on various subjects. Download wallpapers and screensavers for mobile.', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (88, 'Desktopography - Beautiful creative nature themed desktop wallpaper by the worlds best artists and designers.', 'https://desktopography.net/', '2024-04-17 14:46:01', 'Desktopography offers free high resolution nature desktop wallpaper. Each one created by the worlds best creative talents, exhibitions are released yearly.', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (89, 'Beauty Your Desktop - 4K,5K Best High Quality Wallpapers Album Free Download Site | 10wallpaper.com', 'https://www.10wallpaper.com/', '2024-04-17 14:46:23', '10wallpaper.com-4K,5K Best High Quality HD Wallpapers Album Free Download, Laptop, Apple, Android, Tablets HD Widescreen 5K Ultra HD, 1080p, 720p, Popular Resolutions Download', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (90, 'wallpaperim', 'https://wallpaperim.net/', '2024-04-17 14:48:39', '国外壁纸网页，可免费下载', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (91, 'wallpapercave', 'https://wallpapercave.com/', '2024-04-17 14:50:10', '国外网页，壁纸丰富可免费下载', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (92, 'Wallpapers and pictures for your desktop on the site www.GdeFon.com', 'http://cn.gde-fon.com/', '2024-04-17 15:05:10', 'Wallpapers and pictures on the desktop for all the free, good quality.E', 'image', '2024-04-17 16:00:42', 107, NULL);
+INSERT INTO `sys_website` VALUES (93, 'wallpaperscraft', 'https://wallpaperscraft.com/', '2024-04-17 18:29:41', '海量高清图下载', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (94, '图片压缩', 'https://squoosh.app/', '2024-04-17 18:39:54', '谷歌出品的图片在线压缩软件，不经过服务器，高效且安全', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (95, 'excalidraw', 'https://excalidraw.com/', '2024-04-17 18:40:53', '免费开源超级强大的绘图工具', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (96, 'Pixso官网 - 新一代UI设计工具，替代Sketch，Figma，支持在线实时协作', 'https://pixso.cn/', '2024-04-17 18:41:15', 'pixso是一体化设计协作工具，助力产研设团队制作原型，ui/ux设计，视觉设计，低代码交付时获得更轻松流畅的工作体验，让团队协作更高效。支持sketch，figma格式。', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (97, 'Powerful, online SVG editor for teams', 'https://vecta.io/', '2024-04-17 18:43:13', 'Vecta is a real time, collaborative SVG editor with a powerful Javascript based plugin system, for teams. ', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (98, 'Framer — The internet is your canvas', 'https://www.framer.com/', '2024-04-17 18:43:39', 'Framer is where teams design and publish stunning sites.', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (99, 'Copixel', 'https://copixel.bytedance.com/', '2024-04-17 18:44:12', '字节跳动成立于2012年3月，目前公司的产品和服务已覆盖全球150个国家和地区、75个语种，曾在40多个国家和地区位居应用商店总榜前列。', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (100, 'tldraw', 'https://www.tldraw.com/', '2024-04-17 18:45:12', '在线绘图工具，简单易用', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (101, 'pixilart', 'https://www.pixilart.com/', '2024-04-17 18:46:17', '像素风绘制网页', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (102, '即时设计 - 可实时协作的专业 UI 设计工具', 'https://js.design/', '2024-04-17 18:46:30', '即时设计是一款支持在线协作的专业级 UI 设计工具，支持 Sketch、Figma、XD 格式导入，海量优质设计资源即拿即用。支持创建交互原型、获取设计标注，为产设研团队提供一站式协同办公体验。', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (103, 'SVGator: Free SVG Animation Creator Online - No Coding', 'https://www.svgator.com/', '2024-04-17 18:47:10', 'It\'s SVG animation made easy - Create impressive SVG animations online, without any coding skills. Add them easily to your website. Get started for free!', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (104, 'Figma: The Collaborative Interface Design Tool', 'https://www.figma.com/', '2024-04-17 18:47:32', 'Figma is the leading collaborative design tool for building meaningful products. Seamlessly design, prototype, develop, and collect feedback in a single platform.', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (105, 'uxpin', 'https://www.uxpin.com/', '2024-04-17 18:48:27', 'Replace designers with a design-less tool.\nBuild functional UI in minutes with your sleek code-backed layouts.', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (106, '一键去除背景', 'https://www.remove.bg/zh', '2024-04-17 18:54:23', 'Remove image backgrounds automatically in 5 seconds with just one click. Don\'t spend hours manually picking pixels. Upload your photo now & see the magic.', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (107, '稿定设计-做图做视频必备_在线设计神器_海量版权素材模板', 'https://ps.gaoding.com/#/', '2024-04-17 18:54:45', '在线快速图片和视频编辑,不会PS也能搞定设计。海报、简历、PPT、公众号配图、电商等海量模板快速出图。三秒抠图实用便捷,抖音快手热门视频轻松搞定。海量正版授权资源,商用无忧。', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (108, '在线svg编辑', 'https://www.jyshare.com/more/svgeditor/', '2024-04-17 18:55:20', 'WebStack - 收集国内外优秀设计网站、UI设计资源网站、灵感创意网站、Resources网站，定时更新分享优质产品设计书签。www.webstack.cc', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (109, 'Overview - Get started - Atlassian Design System', 'https://atlassian.design/', '2024-04-17 18:56:25', 'Use Atlassian\'s end-to-end design language to create simple, intuitive and beautiful experiences.', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (110, '为政府服务的设计系统', 'https://designsystem.digital.gov/', '2024-04-17 18:57:05', 'A design system for the federal government.', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (111, 'Semi Design', 'https://semi.design/zh-CN/', '2024-04-17 18:57:23', 'An easy-to-customize modern design system that helps designers and developers create high-quality products. 由抖音前端与 UED 团队维护，易于定制的现代化设计系统，帮助设计师与开发者打造高质量产品。 ', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (112, 'Adobe', 'https://spectrum.adobe.com/', '2024-04-17 18:57:46', 'adobe 设计系统', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (113, '三星电子设计', 'https://developer.samsung.com/', '2024-04-17 18:58:07', '探索三星让您感受品位生活，在这里您可以找到Galaxy S24 Ultra , Galaxy S24 | S24+，Galaxy Z Fold5 | Z Flip5，Galaxy Tab S9系列，Galaxy Watch6 | Watch6 Classic，Galaxy A54 5G，三星 W23 | W23 Flip等新品，也可以浏览手机、电视、显示器、冰箱、洗衣机等三星官方产品内容，并获得相关产品服务与支持。', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (114, 'thumbprint', 'https://thumbprint.design/', '2024-04-17 18:58:35', 'thumbprint', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (115, 'Material', 'https://m3.material.io/', '2024-04-17 18:58:54', 'Google material', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (116, 'carbondesignsystem', 'https://carbondesignsystem.com/', '2024-04-17 18:59:32', 'carbon design system', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (117, 'Microsoft Design', 'https://fluent2.microsoft.design/', '2024-04-17 18:59:45', 'Journey through the design process for our new default font ', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (118, '京东设计系统', 'https://findesign.jd.com/', '2024-04-17 19:00:25', '京东JD.COM-专业的综合网上购物商城，为您提供正品低价的购物选择、优质便捷的服务体验。商品来自全球数十万品牌商家，囊括家电、手机、电脑、服装、居家、母婴、美妆、个护、食品、生鲜等丰富品类，满足各种购物需求。', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (119, 'DevUI', 'https://devui.design/', '2024-04-17 19:00:44', 'DevUI是一款开源免费的企业中后台产品前端的通用解决方案，其设计价值观基于\'致简\',\'沉浸\',\'灵活\'三种自然与人文相结合的理念，旨在为设计师，前端开发者提供标准的设计体系，并满足各类落地场景，是一款企业级开箱即用的产品。全部代码开源并遵循 MIT 协议，任何企业、组织及个人均可免费使用。目前支持 Angular ^10.0.0 版本。', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (120, 'PC 官网 - 首页', 'https://fusion.design/pc', '2024-04-17 19:01:07', 'Fusion Design is an enterprise-level solution for building web products by improving designer-developer collaboration, product experience consistency, and development efficiency.', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (121, '阿里云设计系统', 'https://design.aliyun.com/', '2024-04-17 19:01:36', '阿里云——阿里巴巴集团旗下公司，是全球领先的云计算及人工智能科技公司之一。提供免费试用、云服务器、云数据库、云安全、云企业应用等云计算服务，以及大数据、人工智能服务、精准定制基于场景的行业解决方案。免费备案，7x24小时售后支持，助企业无忧上云。', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (122, '58同城设计系统', 'https://matrix.58.com/', '2024-04-17 19:02:11', '58同城东莞分类信息网，为你提供房产、招聘、黄页、团购、交友、二手、宠物、车辆、周边游等海量分类信息，充分满足您免费查看/发布信息的需求。东莞58同城，专业的分类信息网。', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (123, '有赞设计系统', 'https://design.youzan.com/', '2024-04-17 19:02:41', '有赞提供电商、零售、美业、教育、酒店等全行业经营增长解决方案，帮助商家全渠道私域营销、直播带货、出海营销，数字化赋能导购管理、会员运营和私域社群运营，带动业务全面增长。', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (124, '京东移动', 'https://nutui.jd.com/', '2024-04-17 19:03:09', '京东JD.COM-专业的综合网上购物商城，为您提供正品低价的购物选择、优质便捷的服务体验。商品来自全球数十万品牌商家，囊括家电、手机、电脑、服装、居家、母婴、美妆、个护、食品、生鲜等丰富品类，满足各种购物需求。', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (125, '腾讯设计系统', 'https://tdesign.tencent.com/', '2024-04-17 19:03:56', '腾讯于1998年11月成立，是一家互联网公司，通过技术丰富互联网用户的生活，助力企业数字化升级。我们的使命是“用户为本 科技向善”', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (126, 'Arco Design', 'https://arco.design/', '2024-04-17 19:04:25', '开源开放，持续迭代\n采用 MIT 许可协议，始终保持开放的心态，期待各方一起共建开源生态。', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (127, 'Shopify设计系统', 'https://polaris.shopify.com/', '2024-04-17 19:04:53', 'Try Shopify free and start a business or grow an existing one. Get more than ecommerce software with tools to manage every part of your business.', 'design', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (128, 'magicstudio', 'https://magicstudio.com/', '2024-04-17 19:15:16', '几秒钟内删除不需要的对象、人物和文本', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (129, '字体传奇网 ZITICQ 字体品牌设计师网', 'http://www.ziticq.com/shufa/', '2024-04-17 19:18:58', '字体传奇网ziticq.com 专注：字体笔画素材产品,商用字库产品,字体72变,字体设计教程学习,字体标志品牌定制为主,他们为了设计不抛弃,不放弃,旨在共同提高大家的设计水平,为设计而坚持！', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (130, 'Sony Corporation - Home', 'https://www.sony.net/united/clock/', '2024-04-17 19:19:25', 'Learn about Sony Corporation\'s information, businesses and products, recent press releases, sustainability and more.', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (131, 'Adobe: Creative, marketing and document management solutions', 'https://color.adobe.com/', '2024-04-17 19:20:17', 'Adobe 调色工具', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (132, 'pattern ', 'https://cn.pattern.monster/', '2024-04-17 19:24:33', '随机背景图生成', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (133, 'pexels', 'https://www.pexels.com/zh-cn/', '2024-04-17 19:25:26', '才华横溢的摄影作者在这里免费分享最精彩的素材图片和视频', 'image', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (134, '即时工具', 'https://www.67tool.com/', '2024-04-17 19:26:09', '部分工具使用要登录', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (135, '帮小忙', 'https://tool.browser.qq.com/', '2024-04-17 19:26:47', '腾讯出品的工具箱', 'tool', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (136, '小诺开源技术', 'https://snowy.xiaonuo.vip/login', '2024-04-18 13:39:35', '集成国密加解密插件，在前后分离框架中，真正做到：前后分离“密”不可分；同时实现国产化机型、中间件、数据库适配，是您的不二之选！', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (137, 'erupt', 'https://www.erupt.xyz/', '2024-04-18 13:41:18', '开源低代码框架，零前端代码，纯注解开发管理后台！', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (138, 'BallCat', 'http://preview.ballcat.cn/', '2024-04-18 13:42:44', '一个简单的项目脚手架', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (139, '项目主页 | mall学习教程', 'https://www.macrozheng.com/admin/', '2024-04-18 13:43:02', 'mall学习教程 友情提示 快速体验项目：在线访问地址 。 全套学习教程：《mall学习教程》。 视频教程（2023最新版）：《mall视频教程》 。 微服务版本：基于Spring Cloud Alibaba的项目：mall-swarm 。 项目交流：想要加群交流项目的朋友，可以加入mall项目交流群。', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (140, '人人开源', 'http://demo.open.renren.io/renren-security/#/login', '2024-04-18 13:43:20', 'renren-security、renren-fast是人人开源社区采用Spring、MyBatis、Shiro编写的后台脚手架框架，支持MySQL、Oracle、SQL Server、PostgreSQL数据库，支持分布式部署，能够有效降低企业开发成本，提升开发效率', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (141, 'JEECG官方网站 - 基于BPM的低代码开发平台(低代码平台_零代码平台_工作流平台优秀服务商)', 'https://www.jeecg.com/', '2024-04-18 13:43:51', 'JeecgBoot低代码平台，基于SpringBoot+Ant Design的前后端分离微服务架构,集成完善的工作流平台、强大的代码生成器、流程设计器、表单设计器、大屏设计器、报表门户设计，可以应用在任何J2EE项目开发中，尤其适合企业信息管理系统（MIS）、办公系统（OA）、企业资源计划系统（ERP）、客户关系管理系统（CRM）等，其半智能+手工Merge的低代码开发方式，可以显著提高开发效率70%以上，极大降低研发成本。', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (142, 'eladmin', 'https://eladmin.vip/demo/', '2024-04-18 13:47:02', '一个基于 Spring Boot 2.6.4 、 Spring Boot Jpa、 JWT、Spring Security、Redis、Vue的前后端分离的后台管理系统', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (143, 'likeadmin', 'https://www.likeadmin.cn/', '2024-04-18 13:47:38', 'likeadmin快速开发通用管理后台，基于Vue3、elementPlus，结合PHP、Java、Python、Go等主流后端语言搭建', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (144, '高品质开源商城系统-CRMEB官网', 'https://www.crmeb.com/', '2024-04-18 13:47:55', 'CRMEB开源商城系统，围绕新零售、品牌连锁、商家入驻等多种商业模式，自主研发B2C商城系统、B2B2C多商户商城系统、连锁多门店商城系统、跨境电商系统等；应用于直播电商、社交新零售、商家入驻等多种应用场景，系统支持多语言、多端登录，代码开源、独立部署、永久免费升级。咨询：400-8888-794', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (145, 'FastAdmin – 基于ThinkPHP和Bootstrap的极速后台开发框架', 'https://demo.fastadmin.net/', '2024-04-18 13:48:07', 'FastAdmin是一款基于ThinkPHP和Bootstrap的快速后台开发框架', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (146, 'PIGCLOUD', 'http://home.pig4cloud.com:38081/', '2024-04-18 13:49:35', '基于 Spring Cloud 、Spring Boot、 OAuth2 的 RBAC 企业快速开发平台， 同时支持微服务架构和单体架构', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (147, 'django', 'https://django-vue3-lyadmin.lybbn.cn/', '2024-04-18 13:52:47', 'django-vue3后台管理模板', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (148, 'django-vue3-admin', 'https://demo.dvadmin.com/', '2024-04-18 13:57:31', 'django-vue3-admin是一套全部开源的快速开发平台，毫无保留给个人免费使用、团体授权使用。 django-vue3-admin 基于RBAC模型的权限控制的一整套基础开发平台，权限粒度达到列级别，前后端分离', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (149, 'Vben Admin', 'https://vben.vvbin.cn/', '2024-04-18 13:58:25', 'Vben Admin ; 最新技术栈. 基于Vue3、Vite、TypeScript等最新技术栈开发 ; ⚡️ 轻量快速的热重载. 无论应用程序大小如何，都始终极快的模块热重', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (150, 'vue-element-admin', 'https://panjiachen.github.io/vue-element-admin', '2024-04-18 13:59:24', 'vue-element-admin 是一个后台前端解决方案，它基于 vue 和 element-ui实现。它使用了最新的前端技术栈', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (151, 'Free Bootstrap Admin Template - AdminLTE.IO', 'https://adminlte.io/', '2024-04-18 14:00:03', 'AdminLTE-是一个完全响应的管理模板。基于Bootstrap 3和4框架', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (152, 'iView / View Design 一套企业级 UI 组件库和前端解决方案', 'https://admin.iviewui.com/', '2024-04-18 14:00:48', '基于 Vue.js 的 UI 组件库，用于研发企业级中后台产品。iView 官网。', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (153, 'catchadmin', 'https://v3.catchadmin.com/', '2024-04-18 14:05:10', '是一个基于Vue3.0、Vite、 ElementPlus 、TypeScript 的后台解决方案，提供了丰富的功能组件，它可以帮助你快速搭建企业级中后台产品原型', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (154, 'vadmire', 'https://vadmire.top/', '2024-04-18 14:06:24', 'VAdmire Admin 是一款基于 Vue3 + TypeScript + NaiveUI 等技术栈搭建的后台系统', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (155, 'gin-vue-admin', 'https://demo.gin-vue-admin.com/', '2024-04-18 14:07:49', 'Vite+Vue3+Gin的开发基础平台，支持TS和JS混用。它集成了JWT鉴权、权限管理、动态路由、显隐可控组件、分页封装、多点登录拦截、资源权限、上传下载、代码生成器、表单生成器和可配置的导入导出等开发必备功能。', 'management', NULL, 1, 103);
 
 SET FOREIGN_KEY_CHECKS = 1;

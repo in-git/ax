@@ -1,28 +1,27 @@
 <template>
-  <a-card class="system-memo" title="备忘录列表">
+  <a-card class="system-memo" title="备忘录列表" :body-style="{ overflow: 'auto' }">
     <template #extra>
+      <a-button class="mr-4" @click="getList">刷新</a-button>
       <a-button type="primary" @click="confirm" :disabled="!currentRow">确定</a-button>
     </template>
-    <a-space class="w-100" direction="vertical">
-      <a-spin :spinning="loading">
-        <a-table
-          sticky
-          @change="pageChange"
-          :pagination="{
-            pageSize: query.pageSize,
-            current: query.pageNum,
-            total: query.total,
-          }"
-          row-key="memoId"
-          :row-selection="{
-            selectedRowKeys: selectedKeys,
-          }"
-          :custom-row="customRow"
-          :columns="formatColumns(columns, false)"
-          :data-source="dictData"
-        ></a-table>
-      </a-spin>
-    </a-space>
+    <a-spin :spinning="loading">
+      <a-table
+        sticky
+        @change="pageChange"
+        :pagination="{
+          pageSize: query.pageSize,
+          current: query.pageNum,
+          total: query.total,
+        }"
+        row-key="memoId"
+        :row-selection="{
+          selectedRowKeys: selectedKeys,
+        }"
+        :custom-row="customRow"
+        :columns="formatColumns(columns, false)"
+        :data-source="dictData"
+      ></a-table>
+    </a-spin>
   </a-card>
 </template>
 
@@ -96,7 +95,7 @@ onMounted(() => {
   :deep(.ant-card-body) {
     padding: 0;
     padding-top: 0;
-    min-height: 300px;
+    max-height: 360px;
   }
 }
 </style>

@@ -21,13 +21,11 @@ public class SysGalleryServiceImpl implements ISysGalleryService
     @Value("${ruoyi.profile}")
     private String iconsPath;
 
-
-
-
     @Override
     public List<String> getSystemImages(String type) {
         try {
             List<String> filePaths = new ArrayList<>();
+            System.out.println(iconsPath + type);
             File directory = new File(iconsPath + type);
             if (!directory.exists()) {
                 directory.mkdirs();
