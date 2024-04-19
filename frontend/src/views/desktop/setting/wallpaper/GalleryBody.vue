@@ -7,14 +7,14 @@
           class="image-item"
           :bordered="false"
           v-for="item in galleryData"
-          :key="item.galleryId"
+          :key="item"
           @click="selectItem(item)"
           justify="center"
         >
-          <div class="selected" v-if="currentGallery?.galleryId === item.galleryId">
+          <div class="selected" v-if="currentGallery === item">
             <CheckOutlined />
           </div>
-          <img :alt="item.imageName" :src="item.imageUrl" height="80px" />
+          <img :src="host + item" :alt="item" height="80px" />
         </div>
       </div>
       <a-empty v-else></a-empty>
@@ -23,12 +23,13 @@
 </template>
 
 <script setup lang="ts">
-import type { SystemGallery } from '@/api/modules/system/gallery/types';
 import { currentGallery, galleryData, galleryLoading, getGallery } from './data/data';
 import GalleryHead from './GalleryHead.vue';
 
-const selectItem = (item: SystemGallery) => {
-  currentGallery.value = item;
+const host = 'http://localhost:8080/profile/wallpaper/';
+
+const selectItem = (item: string) => {
+  currentGallery.value = host + item;
 };
 
 getGallery();

@@ -15,34 +15,7 @@
             label-align="left"
           >
             <a-card :bordered="false">
-              <a-form-item label="用户头像">
-                <div class="flex gc-12">
-                  <div>
-                    <a-avatar
-                      v-if="userProfile.avatar"
-                      :src="getAvatar()"
-                      alt="avatar"
-                      :size="84"
-                    />
-                  </div>
-                  <a-upload
-                    v-model:file-list="fileList"
-                    name="avatarfile"
-                    list-type="picture-card"
-                    class="avatar-uploader"
-                    :show-upload-list="false"
-                    :headers="headers"
-                    :action="`${baseURL}system/user/profile/avatar`"
-                    @change="refresh"
-                  >
-                    <div>
-                      <loading-outlined v-if="loading"></loading-outlined>
-                      <plus-outlined v-else></plus-outlined>
-                      <div>上传头像</div>
-                    </div>
-                  </a-upload>
-                </div>
-              </a-form-item>
+              <Avatar />
               <a-form-item label="用户账号" name="userName" required>
                 <a-input v-model:value="userProfile.userName" disabled></a-input>
               </a-form-item>
@@ -109,12 +82,11 @@ import { updatePassword, updateProfile } from '@/api/modules/system/user/user';
 import { sexOptions } from '@/global/options/system';
 import useSystemStore from '@/store/system';
 import useUserStore from '@/store/user';
-import { getAvatar } from '@/store/user/utils';
 import { message, Modal } from 'ant-design-vue';
-import { getProfile, userProfile } from '../profile/data';
+import { userProfile } from '../profile/data';
 import authPng from './auth.png';
+import Avatar from './Avatar.vue';
 
-const fileList = ref([]);
 const loading = ref(false);
 const passwordForm = ref({
   oldPassword: '',
@@ -123,15 +95,7 @@ const passwordForm = ref({
 
 const userStore = useUserStore();
 const page = useSystemStore();
-const baseURL = page.$state.developer.baseURL;
-// + `system/user/profile/avatar`
-const headers = {
-  Authorization: `Bearer ${userStore.$state.token}`,
-};
 
-const refresh = () => {
-  getProfile();
-};
 const updateUserInfo = async () => {
   loading.value = true;
   if (!userProfile.value) return;

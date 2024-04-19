@@ -12,6 +12,7 @@
     :minWidth="600"
     :minHeight="600"
     enableNativeDrag
+    :id="id"
   >
     <slot name="head">
       <a-card :bordered="false" :bodyStyle="{ padding: 0 }" class="drag-header">

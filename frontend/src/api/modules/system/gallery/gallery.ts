@@ -1,6 +1,6 @@
 import type { IQuery, Response, TableResponse } from '@/api/config/types';
 import axios from 'axios';
-import type { SystemGallery } from './types';
+import type { GalleryType, SystemGallery } from './types';
 
 // 查询系统图库列表
 export const fetchGalleryList = (query: IQuery) => {
@@ -29,6 +29,10 @@ export const deleteGallery = (galleryIds: number[]) => {
 };
 
 // 获取系统图标
-export const geSystemIcons = () => {
-  return axios.get<Response<string[]>>(`system/gallery/getIcons`);
+export const getSystemImages = (type: GalleryType) => {
+  return axios.get<Response<string[]>>(`system/gallery/getImages`, {
+    params: {
+      type,
+    },
+  });
 };

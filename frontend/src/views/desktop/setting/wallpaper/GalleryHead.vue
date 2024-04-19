@@ -27,7 +27,7 @@ import { currentGallery, galleryLoading, galleryQuery, getGallery } from './data
 
 const use = () => {
   if (currentGallery.value) {
-    setBackground(currentGallery.value.imageUrl, 'image');
+    setBackground(currentGallery.value, 'image');
   }
 };
 

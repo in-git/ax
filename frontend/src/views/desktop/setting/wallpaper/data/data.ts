@@ -1,12 +1,12 @@
 import type { IQuery } from '@/api/config/types';
-import { fetchGalleryList } from '@/api/modules/system/gallery/gallery';
-import type { GalleryType, SystemGallery } from '@/api/modules/system/gallery/types';
+import { getSystemImages } from '@/api/modules/system/gallery/gallery';
+import type { GalleryType } from '@/api/modules/system/gallery/types';
 
 interface GalleryQuery {
   type: GalleryType;
 }
 
-export const galleryData = ref<SystemGallery[]>();
+export const galleryData = ref<string[]>();
 
 export const galleryLoading = ref(false);
 
@@ -19,13 +19,15 @@ export const galleryQuery = ref<IQuery<GalleryQuery>>({
 
 export const getGallery = async () => {
   galleryLoading.value = true;
-  const { data } = await fetchGalleryList(galleryQuery.value);
-  galleryData.value = data.rows;
-  galleryQuery.value.total = data.total;
-  galleryLoading.value = false;
+  const { data } = await getSystemImages('wallpaper');
+  if (data.data) {
+    galleryData.value = data.data || [];
+    galleryQuery.value.total = data.data?.length;
+    galleryLoading.value = false;
+  }
 };
 
-export const currentGallery = ref<SystemGallery>();
+export const currentGallery = ref<string>();
 
 interface GalleryConfig {
   category?: '';

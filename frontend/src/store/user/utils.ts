@@ -1,6 +1,7 @@
 import logoPng from '@/assets/logo.png';
 import { userProfile } from '@/views/desktop/toolbar/profile/data';
 import useSystemStore from '../system';
+
 export const getAvatar = (): string => {
   if (userProfile.value) {
     const page = useSystemStore();

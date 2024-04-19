@@ -100,12 +100,18 @@ public class SysGalleryServiceImpl implements ISysGalleryService
         return sysGalleryMapper.deleteSysGalleryByGalleryId(galleryId);
     }
 
+
+
+
     @Override
-    public List<String> getSystemIcons() {
+    public List<String> getSystemImages(String type) {
         try {
             List<String> filePaths = new ArrayList<>();
-            File directory = new File(iconsPath+"icons");
-            if (directory.exists() && directory.isDirectory()) {
+            File directory = new File(iconsPath + type);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+            if (directory.isDirectory()) {
                 File[] files = directory.listFiles();
                 if (files != null) {
                     for (File file : files) {

@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { geSystemIcons } from '@/api/modules/system/gallery/gallery';
+import { getSystemImages } from '@/api/modules/system/gallery/gallery';
 import useSystemStore from '@/store/system';
 import * as IconList from '@ant-design/icons-vue';
 const store = useSystemStore();
@@ -45,7 +45,7 @@ defineProps<{
   modelValue: string;
 }>();
 onMounted(async () => {
-  const { data } = await geSystemIcons();
+  const { data } = await getSystemImages();
   icons.value = data.data!;
 });
 

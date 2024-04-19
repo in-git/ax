@@ -8,6 +8,7 @@ ruoyi:
   copyrightYear: 2024
   # 文件路径 示例（ Windows配置D:/ruoyi/uploadPath，Linux配置 /home/ruoyi/uploadPath）
   profile: G:/RY/
+  # 静态资源目录,包含子目录：icons,wallpaper,avatar
   # 获取ip地址开关
   addressEnabled: true
   # 验证码类型 math 数字计算 char 字符验证

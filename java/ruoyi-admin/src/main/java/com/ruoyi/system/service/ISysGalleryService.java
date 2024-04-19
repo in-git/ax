@@ -61,5 +61,5 @@ public interface ISysGalleryService
     public int deleteSysGalleryByGalleryId(Long galleryId);
 
 
-    public List<String> getSystemIcons();
+    public List<String> getSystemImages(String type);
 }

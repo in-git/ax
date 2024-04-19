@@ -42,10 +42,10 @@ public class SysGalleryController extends BaseController
     /**
      * 获取所有ICON
      */
-    @GetMapping("/getIcons")
-    public AjaxResult getIcons()
+    @GetMapping("/getImages")
+    public AjaxResult getImages( @RequestParam String type)
     {
-        return success(sysGalleryService.getSystemIcons());
+        return success(sysGalleryService.getSystemImages(type));
     }
     /**
      * 导出系统图库列表
