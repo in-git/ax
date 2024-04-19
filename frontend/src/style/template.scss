@@ -61,11 +61,8 @@
 	z-index: 10;
 }
 .card__container {
-	border-radius: 0;
-	position: sticky;
-	bottom: 0;
+	border-radius: 0 !important;
 	box-shadow: none !important;
-
 	&:deep(.ant-card-body) {
 		height: 100%;
 	}

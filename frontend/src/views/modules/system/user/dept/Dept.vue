@@ -1,14 +1,14 @@
 <template>
-  <a-card class="dept">
+  <a-card class="dept mr-4">
     <h3>用户部门</h3>
     <a-input-search
       allow-clear
       v-model:value="keyword"
       placeholder="请输入部门名称"
       @search="search"
+      class="my-8"
     ></a-input-search>
     <a-directory-tree
-      class="mt-8"
       :tree-data="treeData"
       @select="onSelect"
       selectable
@@ -49,6 +49,7 @@ watch(
       await loadDeptTree();
     }
     treeData.value = deptTreeData.value;
+    console.log(treeData.value);
   },
   {
     immediate: true,
@@ -58,10 +59,7 @@ watch(
 
 <style lang="scss" scoped>
 .dept {
-  flex-basis: 200px;
-  padding: 12px;
-  h3 {
-    margin-bottom: 12px;
-  }
+  white-space: nowrap;
+  height: 100%;
 }
 </style>

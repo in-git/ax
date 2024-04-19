@@ -1,29 +1,29 @@
 <template>
-  <div class="tools">
+  <div class="tools flex gc-4">
     <a-dropdown trigger="click">
       <div class="menu-button">工具</div>
       <template #overlay>
         <a-menu :items="items"></a-menu>
       </template>
     </a-dropdown>
-
-    <SystemModal w="400px" h="300px" title="二维码" v-model:visible="qrModal" v-if="qrModal">
-      <a-flex class="w-100 h-100 flex-s">
+    <div class="menu-button px-12" @click="ai">AI一下</div>
+    <a-modal centered title="二维码" v-model:open="modal" getContainer=".system__notepad">
+      <a-flex class="w-100 flex h-100 flex-s">
         <a-qrcode :value="text" />
       </a-flex>
-    </SystemModal>
+    </a-modal>
   </div>
 </template>
 
 <script setup lang="ts">
-import SystemModal from '@/components/modal/SysModal.vue';
 import { getData, setData } from '@/global/config/window';
 import { QrcodeOutlined, RetweetOutlined } from '@ant-design/icons-vue';
 import { message, type ItemType } from 'ant-design-vue';
 
-const qrModal = ref(false);
+const modal = ref(false);
 const notepadId = inject<string>('data')!;
 
+const ai = () => {};
 const text = computed(() => {
   return getData(notepadId) || '';
 });
@@ -51,7 +51,7 @@ const items: ItemType[] = [
         message.warn('文本内容过长');
         return;
       }
-      qrModal.value = true;
+      modal.value = true;
     },
     icon: h(QrcodeOutlined),
   },

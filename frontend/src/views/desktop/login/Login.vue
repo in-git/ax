@@ -11,8 +11,8 @@
 <script setup lang="ts">
 import Welcome from './Welcome.vue';
 import { loginMode } from './data';
-import LoginVue from './login/Login.vue';
-import RegisterVue from './register/Register.vue';
+import LoginVue from './login-register/Login.vue';
+import RegisterVue from './login-register/Register.vue';
 </script>
 
 <style lang="scss" scoped>

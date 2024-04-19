@@ -3,13 +3,16 @@
     <a-dropdown @open-change="getNotepad" trigger="click">
       <div class="menu-button">文件列表</div>
       <template #overlay>
-        <a-card class="card" :body-style="{ padding: '0', boxShadow: 'none' }" title="文件列表">
-          <a-menu>
-            <a-menu-item
-              v-for="(item, key) in notepadList"
-              @click="selectNotepad(item)"
-              :key="item.memoId"
-            >
+        <a-card
+          :bordered="false"
+          title="文件列表"
+          :body-style="{
+            padding: '0',
+            width: '200px',
+          }"
+        >
+          <a-menu :selected-keys="[]">
+            <a-menu-item v-for="(item, key) in notepadList" @click="selectNotepad(item)">
               <template #icon>
                 <div class="icon">
                   {{ key }}
@@ -66,9 +69,5 @@ const selectNotepad = (info: SystemMemo) => {
   line-height: 16px;
   border-radius: 4px;
   font-size: 12px;
-}
-.card {
-  box-shadow: none !important;
-  width: 200px;
 }
 </style>

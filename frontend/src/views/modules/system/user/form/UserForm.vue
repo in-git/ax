@@ -15,18 +15,16 @@
       title="用户中心"
       @update:visible="showUserForm = false"
     >
-      <div class="flex-1 p-8 h-100 flex flex-col">
-        <a-card class="mb-8">
+      <div>
+        <div class="mb-8 px-12 py-8">
           <a-flex justify="space-between">
-            编辑用户信息
-            <div>
-              <a-button type="primary" :loading="loading" htmlType="submit">保存</a-button>
-            </div>
+            <span>编辑用户信息</span>
+            <a-button type="primary" :loading="loading" htmlType="submit">保存</a-button>
           </a-flex>
-        </a-card>
-        <a-row :gutter="12" class="flex-1">
+        </div>
+        <a-row :gutter="12">
           <a-col :span="12">
-            <a-card title="基础信息">
+            <div class="p-8" title="基础信息">
               <a-form-item label="昵称" name="nickName" required>
                 <a-input v-model:value="userForm.nickName" focused placeholder="请输入昵称" />
               </a-form-item>
@@ -38,7 +36,6 @@
                 />
               </a-form-item>
               <template v-if="!userForm.userId">
-                <!-- name="password" -->
                 <a-form-item label="密码" required>
                   <a-input
                     type="password"
@@ -71,7 +68,7 @@
                   v-model:value="userForm.remark"
                 ></a-textarea>
               </a-form-item>
-            </a-card>
+            </div>
           </a-col>
           <a-col :span="12">
             <RightVue></RightVue>
