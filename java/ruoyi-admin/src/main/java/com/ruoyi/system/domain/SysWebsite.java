@@ -1,9 +1,8 @@
 package com.ruoyi.system.domain;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
+import lombok.Data;
 
 /**
  * 网页收藏对象 sys_website
@@ -11,6 +10,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * @author AX
  * @date ${datetime}
  */
+@Data
 public class SysWebsite extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
@@ -42,82 +42,4 @@ public class SysWebsite extends BaseEntity
     @Excel(name = "部门ID")
     private Long deptId;
 
-    public void setWebsiteId(Long websiteId) 
-    {
-        this.websiteId = websiteId;
-    }
-
-    public Long getWebsiteId() 
-    {
-        return websiteId;
-    }
-    public void setName(String name) 
-    {
-        this.name = name;
-    }
-
-    public String getName() 
-    {
-        return name;
-    }
-    public void setUrl(String url) 
-    {
-        this.url = url;
-    }
-
-    public String getUrl() 
-    {
-        return url;
-    }
-    public void setDescription(String description) 
-    {
-        this.description = description;
-    }
-
-    public String getDescription() 
-    {
-        return description;
-    }
-    public void setType(String type) 
-    {
-        this.type = type;
-    }
-
-    public String getType() 
-    {
-        return type;
-    }
-    public void setUserId(Long userId) 
-    {
-        this.userId = userId;
-    }
-
-    public Long getUserId() 
-    {
-        return userId;
-    }
-    public void setDeptId(Long deptId) 
-    {
-        this.deptId = deptId;
-    }
-
-    public Long getDeptId() 
-    {
-        return deptId;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("websiteId", getWebsiteId())
-            .append("name", getName())
-            .append("url", getUrl())
-            .append("createTime", getCreateTime())
-            .append("description", getDescription())
-            .append("type", getType())
-            .append("updateTime", getUpdateTime())
-            .append("userId", getUserId())
-            .append("deptId", getDeptId())
-            .toString();
-    }
 }

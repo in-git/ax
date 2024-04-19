@@ -1,8 +1,6 @@
 package com.ruoyi.system.service.impl;
 
-import com.ruoyi.system.mapper.SysGalleryMapper;
 import com.ruoyi.system.service.ISysGalleryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +17,6 @@ import java.util.List;
 @Service
 public class SysGalleryServiceImpl implements ISysGalleryService 
 {
-    @Autowired
-    private SysGalleryMapper sysGalleryMapper;
 
     @Value("${ruoyi.profile}")
     private String iconsPath;
