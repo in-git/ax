@@ -12,7 +12,7 @@ export const codeList = async () => {
   codeTable.value.loading = false;
 };
 
-export const editCode = async (id?: number) => {
+export const editCode = async (id?: string) => {
   codeTable.value.loading = true;
   let targetId = id ? id : codeKeys.value[0];
   const { data } = await fetchCodeById(targetId);

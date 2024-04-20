@@ -5,7 +5,7 @@
     :label-col="{ span: 4, offset: 4 }"
     @submit="submit"
   >
-    <SystemModal title="部门信息编辑" v-model:visible="showDeptForm">
+    <SystemModal title="部门信息编辑" v-model:visible="deptShowForm">
       <div class="h-100 flex flex-col">
         <a-row>
           <a-col :span="8" :offset="9">
@@ -55,7 +55,7 @@ import SystemModal from '@/components/modal/SysModal.vue';
 import { statusOptions } from '@/global/options/system';
 import { response } from '@/utils/table/table';
 import { deptList } from '../data/curd';
-import { deptForm, showDeptForm } from '../data/form';
+import { deptForm, deptShowForm } from '../data/form';
 import { deptTable } from '../data/table';
 
 const submit = () => {
@@ -64,7 +64,7 @@ const submit = () => {
   } else {
     response(createDept, deptForm.value);
   }
-  showDeptForm.value = false;
+  deptShowForm.value = false;
   deptList();
 };
 </script>

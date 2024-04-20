@@ -10,6 +10,6 @@ export interface Developer {
   urlSelection: URLSelection[];
 }
 export interface SystemStore {
-  readMessages: number[];
+  readMessages: any[];
   developer: Developer;
 }

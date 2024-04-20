@@ -1,4 +1,5 @@
 import type { IQuery } from '@/api/config/types';
+import type { SystemDept } from '@/api/modules/system/dept/types';
 import type { Role } from '@/api/modules/system/role/types';
 import type { TreeNode } from '@/types/system';
 

@@ -2,7 +2,7 @@ export interface DesktopNotice {
   content: string;
   title: string;
   type: 'error' | 'notice';
-  id: number;
+  id: number | string;
 }
 export const showNotice = ref(false);
 

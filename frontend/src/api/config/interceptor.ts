@@ -3,6 +3,7 @@ import { notify } from '@/views/desktop/notice/data';
 import { message } from 'ant-design-vue';
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
+import { nanoid } from 'nanoid';
 import { userLogout } from '../modules/system/user/utils';
 
 /* 取消请求列表 */
@@ -45,6 +46,7 @@ axios.interceptors.response.use(
         content: `和服务器失去链接，具体信息:${error.toString()}`,
         title: '网络错误',
         type: 'error',
+        id: nanoid(),
       });
       message.warn('网络错误');
     } else if (errMsg.includes('canceled')) {

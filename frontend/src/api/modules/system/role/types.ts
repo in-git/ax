@@ -1,3 +1,5 @@
+import type { SystemDept } from '../dept/types';
+
 export interface Role {
   createBy?: any;
   createTime?: any;

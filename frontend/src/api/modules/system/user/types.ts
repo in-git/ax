@@ -1,3 +1,4 @@
+import type { SystemDept } from '../dept/types';
 import type { SystemPost } from '../post/types';
 import type { Role } from '../role/types';
 
