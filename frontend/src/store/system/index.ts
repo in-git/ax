@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { baseUrlOptions } from './options';
 import type { SystemStore } from './types';
 /* 从vite环境变量中读取 `默认后端地址` */
-const baseURL = import.meta.env.VITE_BASEURL || '';
+const baseURL = import.meta.env.VITE_BASEURL || baseUrlOptions[1];
 const useSystemStore = defineStore('system', {
   state: (): SystemStore => ({
     readMessages: [],

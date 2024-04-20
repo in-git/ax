@@ -7,8 +7,8 @@ import { getProfile } from '../toolbar/profile/data';
 export const captchaImage = ref();
 
 let formObject = {
-  username: 'admin',
-  password: 'win123456',
+  username: '',
+  password: '',
   uuid: '',
   code: '',
 };
