@@ -6,9 +6,9 @@ spring:
         druid:
             # 主库数据源
             master:
-                url: jdbc:mysql://150.158.14.110:3306/ax?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-                username: ax
-                password: 5HzN5X5Prk6b5WEr
+                url: jdbc:mysql://localhost:3306/ax?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+                username: root
+                password: 123456
             # 从库数据源
             slave:
                 # 从数据源开关/默认关闭
@@ -47,7 +47,7 @@ spring:
                 allow:
                 url-pattern: /druid/*
                 # 控制台管理用户名和密码
-                login-username: ruoyi
+                login-username: ax
                 login-password: 123456
             filter:
                 stat:

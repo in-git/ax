@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : win
+ Source Server         : ax
  Source Server Type    : MySQL
  Source Server Version : 80024 (8.0.24)
  Source Host           : 150.158.14.110:3306
- Source Schema         : win
+ Source Schema         : ax
 
  Target Server Type    : MySQL
  Target Server Version : 80024 (8.0.24)
  File Encoding         : 65001
 
- Date: 19/04/2024 22:31:58
+ Date: 20/04/2024 19:07:08
 */
 
 SET NAMES utf8mb4;
@@ -67,7 +67,6 @@ INSERT INTO `gen_table` VALUES (27, 'sys_user', '用户信息表', NULL, NULL, '
 INSERT INTO `gen_table` VALUES (28, 'sys_user_role', '用户和角色关联表', NULL, NULL, 'SysUserRole', 'crud', '', 'com.ruoyi.system', 'system', 'role', '用户和角色关联', 'AX', '0', '/', NULL, 'admin', '2024-04-14 21:24:30', '', NULL, NULL);
 INSERT INTO `gen_table` VALUES (29, 'sys_website', '网页收藏', NULL, NULL, 'SysWebsite', 'crud', '', 'com.ruoyi.system', 'system', 'website', '网页收藏', 'AX', '0', '/', '{}', 'admin', '2024-04-14 21:35:12', '', '2024-04-16 11:16:09', '网页收藏');
 INSERT INTO `gen_table` VALUES (30, 'sys_user_post', '用户与岗位关联表', NULL, NULL, 'SysUserPost', 'crud', '', 'com.ruoyi.system', 'system', 'post', '用户与岗位关联', 'AX', '0', '/', NULL, 'admin', '2024-04-14 21:47:14', '', NULL, NULL);
-INSERT INTO `gen_table` VALUES (31, 'sys_gallery', '系统图库', NULL, NULL, 'SysGallery', 'crud', '', 'com.ruoyi.system', 'system', 'gallery', '系统图库', 'AX', '0', '/', '{}', 'admin', '2024-04-15 12:12:31', '', '2024-04-15 12:17:22', '系统图库');
 INSERT INTO `gen_table` VALUES (32, 'sys_memo', '备忘录', NULL, NULL, 'SysMemo', 'crud', '', 'com.ruoyi.system', 'system', 'memo', '备忘录', 'AX', '0', '/', '{}', 'admin', '2024-04-16 18:25:42', '', '2024-04-16 19:33:44', '系统备忘录');
 
 -- ----------------------------
@@ -729,7 +728,7 @@ CREATE TABLE `sys_logininfor`  (
   PRIMARY KEY (`info_id`) USING BTREE,
   INDEX `idx_sys_logininfor_s`(`status` ASC) USING BTREE,
   INDEX `idx_sys_logininfor_lt`(`login_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 330 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 333 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -751,20 +750,11 @@ CREATE TABLE `sys_memo`  (
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`memo_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_memo
 -- ----------------------------
-INSERT INTO `sys_memo` VALUES (1, 'test', 'test', 'tes', 'test', 0, NULL, 0, '2024-04-16 18:36:47', NULL);
-INSERT INTO `sys_memo` VALUES (8, 'test006', 'test006', 'test006', 'test006', 109, '1', NULL, '2024-04-16 19:56:41', NULL);
-INSERT INTO `sys_memo` VALUES (9, '超管的备忘录', '超管的备忘录', '超管的备忘录', '超管的备忘录', 1, '1', 103, '2024-04-16 21:57:58', NULL);
-INSERT INTO `sys_memo` VALUES (11, '超管的备忘录', 'mark', 'test', 'test', 104, '1', NULL, '2024-04-17 21:05:30', NULL);
-INSERT INTO `sys_memo` VALUES (12, '这是私人的值', '这是私人的值', '这是私人的值', '这是私人的值', 108, '1', NULL, '2024-04-17 21:41:05', NULL);
-INSERT INTO `sys_memo` VALUES (17, '测试标题', 's', '测试描述信息', NULL, 108, '2', NULL, '2024-04-17 22:24:20', NULL);
-INSERT INTO `sys_memo` VALUES (18, '测试信息', '测试列表', '测试', NULL, 108, '2', NULL, '2024-04-17 22:31:06', NULL);
-INSERT INTO `sys_memo` VALUES (19, '这是备忘录的值', '背完路', 'bwl', 'extra', 108, '1', NULL, '2024-04-17 22:54:57', NULL);
-INSERT INTO `sys_memo` VALUES (20, '文本渐变', '给我一段文本渐变的css', '文本渐变CSS', NULL, 1, '2', 103, '2024-04-19 10:27:35', NULL);
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -1077,7 +1067,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 103, 'admin', '超级管理员', '00', 'ax@qq.com', '15888888888', '1', '/profile/avatar/2024/04/18/Stone_20240418104355A001.png', '$2a$10$aMw2U1fjT03V2mAwEzwZUePjSjaCEPbt8UiTFIQn8Njr6PgAhpOIe', '0', '0', '127.0.0.1', '2024-04-19 22:27:38', 'admin', '2024-04-10 15:08:49', '', '2024-04-19 22:27:37', '管理员');
+INSERT INTO `sys_user` VALUES (1, 103, 'admin', '超级管理员', '00', 'ax@qq.com', '15888888888', '1', '/profile/avatar/2024/04/18/Stone_20240418104355A001.png', '$2a$10$aMw2U1fjT03V2mAwEzwZUePjSjaCEPbt8UiTFIQn8Njr6PgAhpOIe', '0', '0', '127.0.0.1', '2024-04-20 18:20:14', 'admin', '2024-04-10 15:08:49', '', '2024-04-20 18:20:08', '管理员');
 INSERT INTO `sys_user` VALUES (2, 200, 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '', '$2a$10$8xkL0c8Q2VJBnN.TZ.aXDu.L8a/dD.uXPUHiO94nLo0lZLsLzlyB.', '0', '0', '127.0.0.1', '2024-04-10 21:58:36', 'admin', '2024-04-10 15:08:49', 'admin', '2024-04-10 22:03:44', '访客角色');
 INSERT INTO `sys_user` VALUES (100, 200, 'Annis', 'Annis', '00', '11111111111@123.com', '11111111111', '1', '', '$2a$10$BnRVxbqfdoKJ.5eV9Vv7quABjjEEzYP8qoSxVjgPoH7JyZJEHcnJ6', '0', '0', '127.0.0.1', '2024-04-11 22:07:46', 'admin', '2024-04-10 19:03:08', 'admin', '2024-04-15 09:45:52', '小爱同学');
 INSERT INTO `sys_user` VALUES (101, 103, 'test23', 'test23', '00', '', '', '0', '', '$2a$10$tzw2Jp6jVwdpmgrCFIhIqusXiyryzVLXUYF5n.qLCjj3iWtdhKQRy', '0', '0', '127.0.0.1', '2024-04-17 15:49:33', '', '2024-04-13 19:10:31', 'admin', '2024-04-17 15:49:33', NULL);
