@@ -162,7 +162,7 @@ $hh: 36px;
   padding-right: 8px;
   border-top-left-radius: var(--radius);
   border-top-right-radius: var(--radius);
-  border-bottom: 1px solid #cecdcda1;
+  border-bottom: 1px solid #cecdcd;
 }
 
 .drag-content {
@@ -170,8 +170,9 @@ $hh: 36px;
   position: relative;
   background: url('./assets/background.png');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 400px 400px;
   background-position: center;
+  background-color: #6464643f;
 }
 
 .close {

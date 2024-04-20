@@ -1,6 +1,6 @@
 <template>
-  <a-card class="card__container" :bodyStyle="{ padding: '0' }">
-    <div class="system__head px-12">
+  <a-card class="card__container" :bordered="false" :bodyStyle="{ padding: '0' }">
+    <div class="system__head">
       <div>壁纸选择</div>
     </div>
     <div class="px-12 flex justify-between py-8">

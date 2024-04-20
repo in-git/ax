@@ -1,31 +1,29 @@
 <template>
-  <div class="gallery-body flex-1">
+  <div class="gallery-body h-100">
     <GalleryHead />
-    <a-card class="card__container" :loading="galleryLoading">
-      <div class="list" v-if="galleryData && galleryData.length > 0">
-        <div
-          class="image-item"
-          :bordered="false"
-          v-for="item in galleryData"
-          :key="item"
-          @click="selectItem(item)"
-          justify="center"
-        >
-          <div class="selected" v-if="currentGallery === getStaticHost('wallpaper/' + item)">
-            <CheckOutlined />
-          </div>
-          <img :src="getStaticHost(`wallpaper/${item}`)" :alt="item" height="80px" />
-          {{ getStaticHost(`wallpaper/${item}`) }}
+    <div class="list" v-if="galleryData && galleryData.length > 0">
+      <div
+        class="image-item"
+        :bordered="false"
+        v-for="item in galleryData"
+        :key="item"
+        @click="selectItem(item)"
+        justify="center"
+      >
+        <div class="selected" v-if="currentGallery === getStaticHost('wallpaper/' + item)">
+          <CheckOutlined />
         </div>
+        <img :src="getStaticHost(`wallpaper/${item}`)" :alt="item" height="80px" />
+        {{ getStaticHost(`wallpaper/${item}`) }}
       </div>
-      <a-empty v-else></a-empty>
-    </a-card>
+    </div>
+    <a-empty v-else></a-empty>
   </div>
 </template>
 
 <script setup lang="ts">
 import { getStaticHost } from '@/store/system/utils';
-import { currentGallery, galleryData, galleryLoading, getGallery } from './data/data';
+import { currentGallery, galleryData, getGallery } from './data/data';
 import GalleryHead from './GalleryHead.vue';
 
 const selectItem = (item: string) => {
@@ -39,10 +37,10 @@ getGallery();
 .gallery-body {
   .list {
     display: grid;
-    gap: 12px;
+    gap: 8px;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     place-items: start;
-    height: 80px;
+    height: 90px;
     text-align: center;
   }
   :deep(.ant-card) {
@@ -75,9 +73,8 @@ getGallery();
     padding: 4px;
     width: 100%;
     overflow: hidden;
-    height: 100%;
+    height: 80px;
     img {
-      object-fit: cover;
       width: 100%;
       height: 100%;
       border-radius: var(--radius);

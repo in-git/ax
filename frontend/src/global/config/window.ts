@@ -10,9 +10,8 @@ export const openWindow = (config: SystemWindow) => {
   });
 
   config.hidden = false;
-  config.w = 1000;
-  config.h = 700;
-
+  config.w = config.w ? config.w : 1000;
+  config.h = config.h ? config.h : 700;
   config.z = windowList.value.length;
   if (!config.id) {
     config.id = nanoid();

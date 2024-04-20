@@ -6,7 +6,7 @@
         <li
           class="flex flex-col justify-center align-center"
           @click="item.action(item)"
-          v-for="(item, key) in functionList"
+          v-for="(item, key) in plugins"
           :key="key"
         >
           <img :src="item.icon" :draggable="false" width="36" height="36" />
@@ -14,14 +14,11 @@
         </li>
       </ul>
     </div>
-
-    <Nodejs></Nodejs>
   </div>
 </template>
 
 <script setup lang="ts">
-import { functionList } from './data';
-import Nodejs from './nodejs/Nodejs.vue';
+import { plugins } from '../data';
 </script>
 
 <style lang="scss" scoped>

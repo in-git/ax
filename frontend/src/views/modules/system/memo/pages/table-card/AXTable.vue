@@ -4,6 +4,7 @@
       @change="pageChange"
       table-layout="fixed"
       sticky
+      :loading="memoTable.loading"
       :row-selection="{
         selectedRowKeys: memoKeys,
         onChange: (k: any[]) => (memoKeys = k),
