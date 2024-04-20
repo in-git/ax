@@ -36,7 +36,6 @@
               />
             </div>
           </a-form-item>
-
           <a-button type="primary" html-type="submit" class="mt-24" :loading="loginLoading" block>
             登录
           </a-button>

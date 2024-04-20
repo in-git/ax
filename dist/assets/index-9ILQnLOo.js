@@ -1,0 +1,1 @@
+import{_ as o,o as s,i as t,w as _,b as c,n as a,C as r}from"./index-BKuZjElQ.js";const d={};function p(f,i){const e=a,n=r;return s(),t(n,{class:"system__module flex flex-s w-100 h-100"},{default:_(()=>[c(e,{description:"开发中..."})]),_:1})}const m=o(d,[["render",p]]);export{m as default};

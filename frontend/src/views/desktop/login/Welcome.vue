@@ -7,6 +7,17 @@
       </div>
     </div>
     <div class="media flex-1 flex flex-s">
+      <div class="server">
+        <a-flex justify="space-between" :gap="12" :align="'center'">
+          选择服务器
+          <a-select
+            v-model:value="store.$state.developer.baseURL"
+            :options="baseUrlOptions"
+            style="width: 200px"
+            @change="onChange"
+          ></a-select>
+        </a-flex>
+      </div>
       <video-background
         :poster="posterImg"
         src="https://mylivewallpapers.com/wp-content/uploads/Cute/PREVIEW-Beach-Cat.mp4"
@@ -17,8 +28,15 @@
 </template>
 
 <script setup lang="ts">
+import useSystemStore from '@/store/system';
+import { baseUrlOptions } from '@/store/system/options';
 import VideoBackground from 'vue-responsive-video-background-player';
 import posterImg from '../assets/welcome.webp';
+const store = useSystemStore();
+
+const onChange = () => {
+  window.location.reload();
+};
 </script>
 
 <style lang="scss" scoped>
@@ -48,6 +66,7 @@ import posterImg from '../assets/welcome.webp';
   .media {
     overflow: hidden;
     width: 100%;
+    position: relative;
     height: 100%;
     border-radius: var(--radius);
     video {
@@ -57,6 +76,13 @@ import posterImg from '../assets/welcome.webp';
       object-fit: cover;
       pointer-events: none;
     }
+  }
+  .server {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    color: white;
   }
 }
 </style>
