@@ -1,0 +1,1 @@
+import{a}from"./index-FS4tF_OB.js";const e=t=>a.get("system/dict/data/list",{params:t}),c=t=>a.get(`system/dict/data/${t}`),d=t=>a.delete(`system/dict/data/${t.join(",")}`),i=t=>a.put("system/dict/data",t),r=t=>a.post("system/dict/data",t),n=t=>a.get(`system/dict/data/type/${t}`);export{d as a,r as c,e as d,n as g,c as s,i as u};

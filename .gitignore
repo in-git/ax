@@ -32,7 +32,7 @@ rebel.xml
 nbproject/private/
 build/*
 nbbuild/
-dist/
+
 nbdist/
 .nb-gradle/
 
@@ -58,7 +58,6 @@ lerna-debug.log*
 
 node_modules
 .DS_Store
-dist
 dist-ssr
 coverage
 *.local
