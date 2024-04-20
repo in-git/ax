@@ -1,5 +1,5 @@
 <template>
-  <div class="apps flex-1 p-4" ref="apps" @contextmenu="openContextMenu" :style="style">
+  <div class="apps flex-1 p-12" ref="apps" @contextmenu="openContextMenu" :style="style">
     <div class="flex h-100">
       <ul ref="appRef">
         <li

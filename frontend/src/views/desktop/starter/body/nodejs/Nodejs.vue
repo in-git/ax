@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import { openWindow } from '@/global/config/window';
 import NodejsPanel from '@/views/node/panel/Panel.vue';
-import { showWindowMenu } from '../../data';
+import { showStarter } from '../../data';
 
 const enter = () => {
   openWindow({
@@ -35,7 +35,7 @@ const enter = () => {
     component: markRaw(NodejsPanel),
     icon: `https://nodejs.org/static/images/favicons/favicon.png`,
   });
-  showWindowMenu.value = false;
+  showStarter.value = false;
 };
 </script>
 

@@ -3,7 +3,7 @@ import notepad from '@/assets/system/notepad.png';
 import { openWindow } from '@/global/config/window';
 import AI from '@/views/widget/ai/AI.vue';
 import Notepad from '@/views/widget/notepad/Notepad.vue';
-import { showWindowMenu } from '../data';
+import { showStarter } from '../data';
 
 interface Plugin {
   title: string;
@@ -21,7 +21,7 @@ export const functionList: Plugin[] = [
         component: markRaw(AI),
         ...item,
       });
-      showWindowMenu.value = false;
+      showStarter.value = false;
     },
   },
   {
@@ -33,7 +33,7 @@ export const functionList: Plugin[] = [
         component: markRaw(Notepad),
         ...item,
       });
-      showWindowMenu.value = false;
+      showStarter.value = false;
     },
   },
 ];
