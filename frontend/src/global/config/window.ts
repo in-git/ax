@@ -1,3 +1,4 @@
+import usePageStore from '@/store/page';
 import type { SystemWindow } from '@/types/system';
 import { nanoid } from 'nanoid';
 
@@ -5,13 +6,14 @@ import { nanoid } from 'nanoid';
 export const windowList = ref<SystemWindow[]>([]);
 
 export const openWindow = (config: SystemWindow) => {
+  const pageStore = usePageStore();
   const isExist = windowList.value.find(e => {
     return e.id === config.id;
   });
 
   config.hidden = false;
-  config.w = config.w ? config.w : 1000;
-  config.h = config.h ? config.h : 700;
+  config.w = config.w ? config.w : pageStore.$state.window.width;
+  config.h = config.h ? config.h : pageStore.$state.window.height;
   config.z = windowList.value.length;
   if (!config.id) {
     config.id = nanoid();

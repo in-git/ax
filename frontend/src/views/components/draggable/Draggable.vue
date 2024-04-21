@@ -12,6 +12,7 @@
     :minWidth="400"
     :minHeight="400"
     enableNativeDrag
+    @resizestop="resizestop"
     :id="id"
   >
     <slot name="head">
@@ -50,6 +51,7 @@
 
 <script setup lang="ts">
 import { hiddenWindow, setCurrentWindow, toTop, windowList } from '@/global/config/window';
+import usePageStore from '@/store/page';
 import { CompressOutlined, ExpandOutlined, MinusOutlined } from '@ant-design/icons-vue';
 import { useCloned } from '@vueuse/core';
 import VueDraggable from 'draggable-resizable-vue3';
@@ -66,7 +68,7 @@ type DragType = {
   y: number;
 };
 const emit = defineEmits(['close']);
-
+const pageStore = usePageStore();
 const props = withDefaults(
   defineProps<{
     w?: number;
@@ -95,7 +97,6 @@ const moveTop = () => {
 const close = () => {
   emit('close', props.id);
 };
-
 const offset = windowList.value.length * 40;
 const maxHeight = window.innerHeight;
 const isFullscreen = ref(false);
@@ -140,7 +141,11 @@ const dragstop = () => {
     windowProps.value.y = maxHeight - 100;
   }
 };
-
+/* 用户拖拽结束后记录窗口大小，作为默认值 */
+const resizestop = (left: number, top: number, width: number, height: number) => {
+  pageStore.$state.window.width = width;
+  pageStore.$state.window.height = height;
+};
 onMounted(() => {
   if (props.id) setCurrentWindow(props.id);
   windowProps.value.w = props.w;

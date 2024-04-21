@@ -28,6 +28,10 @@ const usePageStore = defineStore('page', {
         borderOpacity: 1,
       },
     },
+    window: {
+      width: 1000,
+      height: 700,
+    },
   }),
   persist: true,
 });

@@ -26,4 +26,9 @@ export interface PageSettings {
       borderOpacity: number;
     };
   };
+  /* 在用户拖拽后，记录Window 的宽/高度 */
+  window: {
+    width: number;
+    height: number;
+  };
 }
