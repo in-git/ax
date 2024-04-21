@@ -100,12 +100,12 @@ const localTheme = computed(() => {
   z-index: 60;
 }
 
-@media screen and (max-width: 975px) {
+@media screen and (max-width: 875px) {
   .desktop {
     display: none;
   }
 }
-@media screen and (min-width: 974px) {
+@media screen and (min-width: 874px) {
   .phone {
     display: none;
   }

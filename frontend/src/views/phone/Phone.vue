@@ -4,8 +4,8 @@
     <div class="phone">
       <a-flex class="flex-s h-100" :gap="24" vertical>
         <h2 class="text-linear-gradient">AX 后台管理系统</h2>
-        <div>当前不支持小屏设备显示</div>
-        <div class="system__subtitle">建议屏幕宽度尺寸大于 975px</div>
+        <div class="system__subtitle">当前不支持小屏设备显示</div>
+        <div class="system__subtitle">建议屏幕宽度尺寸大于 875px</div>
         <div>
           <a-button type="link" @click="copyLink">
             <template #icon>
