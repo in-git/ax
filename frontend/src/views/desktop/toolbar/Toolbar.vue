@@ -5,7 +5,7 @@
       AX
     </a-flex>
     <a-flex :gap="4">
-      <div class="system-icon-dark" @click="setting">
+      <div class="system__icon" @click="setting">
         <SettingOutlined />
       </div>
       <Profile />

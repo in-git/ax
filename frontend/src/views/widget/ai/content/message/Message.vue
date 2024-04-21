@@ -8,14 +8,14 @@
           </div>
           <div class="msg-item" :class="[expand ? 'expand-text' : '']">
             <div class="flex gc-4 align-center msg-head" style="width: fit-content">
-              <div class="system-subtitle">
+              <div class="system__subtitle">
                 {{ item.role }}
               </div>
-              <div class="actions flex gc-2 system-subtitle">
+              <div class="actions flex gc-2 system__subtitle">
                 <template v-for="(v, k) in messageActions" :key="k">
                   <a-tooltip :title="v.tips">
                     <div
-                      class="system-icon"
+                      class="system__icon"
                       v-show="v.show && v.show(item)"
                       @click="v.action(item, key)"
                     >

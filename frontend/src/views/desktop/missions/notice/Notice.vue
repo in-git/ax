@@ -1,6 +1,6 @@
 <template>
   <div class="notice flex gc-4">
-    <div class="system-icon" @click="showNotice = true">
+    <div class="system__icon" @click="showNotice = true">
       <a-badge :dot="noticeList.length > 0">
         <BellOutlined class="icon" />
       </a-badge>
@@ -42,7 +42,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.system-icon {
+.system__icon {
   width: 40px;
   color: white;
   height: 40px;

@@ -101,7 +101,7 @@ import {
   left: 10%;
   box-shadow: 0 0 12px #8080804f;
 }
-.system-icon {
+.system__icon {
   &:hover {
     background: #eee;
   }

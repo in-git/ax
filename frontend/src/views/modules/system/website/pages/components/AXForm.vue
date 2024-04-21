@@ -15,10 +15,10 @@
             @search="search"
           >
             <template #prefix>
-              <div class="system-subtitle">http(s)://</div>
+              <div class="system__subtitle">http(s)://</div>
             </template>
           </a-input-search>
-          <div class="system-subtitle mt-4">
+          <div class="system__subtitle mt-4">
             <InfoCircleFilled />
             点击搜索能自动获取网页信息
           </div>

@@ -2,7 +2,7 @@
   <div>
     <TableHead title="用户列表">
       <div class="flex-1">
-        <div class="mb-8 flex gc-8 system-subtitle">
+        <div class="mb-8 flex gc-8 system__subtitle">
           <div>
             用户名
             <a-input allow-clear style="width: 180px" v-model:value="userQuery.userName"></a-input>

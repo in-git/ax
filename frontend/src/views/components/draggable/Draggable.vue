@@ -25,17 +25,17 @@
             <div>{{ title }}</div>
           </div>
           <div class="flex">
-            <div class="system-icon" @click="hidden">
+            <div class="system__icon" @click="hidden">
               <MinusOutlined />
             </div>
-            <div class="system-icon" @click="minimize" v-if="isFullscreen">
+            <div class="system__icon" @click="minimize" v-if="isFullscreen">
               <CompressOutlined />
             </div>
-            <div class="system-icon" @click="expand" v-else>
+            <div class="system__icon" @click="expand" v-else>
               <ExpandOutlined />
             </div>
 
-            <div class="system-icon close" @click="close">
+            <div class="system__icon close" @click="close">
               <CloseOutlined />
             </div>
           </div>

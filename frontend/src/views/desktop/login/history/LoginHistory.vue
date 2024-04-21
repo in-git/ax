@@ -28,7 +28,7 @@
                     @click="use(item)"
                   >
                     <div>{{ item.username }}</div>
-                    <div class="system-icon delete-icon" @click.stop="delHistory(item)">
+                    <div class="system__icon delete-icon" @click.stop="delHistory(item)">
                       <DeleteOutlined />
                     </div>
                   </li>

@@ -11,9 +11,7 @@
         </div>
       </div>
 
-      <div>
-        <ButtonVue></ButtonVue>
-      </div>
+      <ButtonVue @onClick="introModal = true"></ButtonVue>
       <a-row :gutter="12" class="mb-12 frame">
         <a-col :span="24">
           <a-carousel class="carousel" autoplay>
@@ -23,22 +21,20 @@
           </a-carousel>
         </a-col>
       </a-row>
-      <div class="media frame">
-        <video-background
-          :poster="posterImg"
-          src="https://mylivewallpapers.com/wp-content/uploads/Cute/PREVIEW-Beach-Cat.mp4"
-          class="w-100 h-100"
-        ></video-background>
-      </div>
     </a-space>
+
+    <a-modal centered title="常见问题" v-model:open="introModal" get-container=".welcome">
+      <Intro />
+    </a-modal>
   </div>
 </template>
 
 <script setup lang="ts">
 import { resourceUrl } from '@/store/system/utils';
-import VideoBackground from 'vue-responsive-video-background-player';
-import posterImg from '../assets/welcome.webp';
 import ButtonVue from './welcome/Button.vue';
+import Intro from './welcome/Intro.vue';
+
+const introModal = ref(false);
 </script>
 
 <style lang="scss" scoped>

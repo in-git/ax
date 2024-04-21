@@ -1,7 +1,7 @@
 <template>
   <a-card class="folder system__module">
     <a-card>
-      <div class="system-subtitle">
+      <div class="system__subtitle">
         数量:
         <span class="ml-8">{{ data.length }}</span>
       </div>
@@ -37,7 +37,7 @@
             <a-flex justify="space-between" :align="'center'" class="flex-1 info">
               <div>
                 <div>{{ item.meta.title }}</div>
-                <div class="system-subtitle mt-8">路径： {{ item.path }}</div>
+                <div class="system__subtitle mt-8">路径： {{ item.path }}</div>
               </div>
               <a-button shape="round" class="open" @click="openApp(item)">打开</a-button>
             </a-flex>

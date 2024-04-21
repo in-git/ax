@@ -22,7 +22,7 @@
             </a-menu-item>
             <a-menu-divider />
             <a-menu-item disabled>
-              <div class="system-subtitle">
+              <div class="system__subtitle">
                 <info-circle-filled />
                 前往备忘录中进行编辑
               </div>

@@ -19,7 +19,7 @@
         <slot :value="{ column, record }"></slot>
         <template v-if="column.key === 'status'">
           <slot name="status">
-            <span class="text-12 system-subtitle">
+            <span class="text-12 system__subtitle">
               <span v-if="record.status === '1'">
                 失效
                 <a-badge color="red"></a-badge>

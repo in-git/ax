@@ -1,7 +1,7 @@
 <template>
   <a-card class="card__container" :bordered="false">
     <template #title>
-      <div class="system-subtitle">选择服务器</div>
+      <div class="system__subtitle">选择服务器</div>
     </template>
     <template #extra>
       <a-button type="primary" @click="create">

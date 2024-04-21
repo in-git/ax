@@ -9,7 +9,7 @@
       </a-form-item>
       <a-form-item :label="menuForm.isFrame !== '0' ? '路径' : '链接'" name="path">
         <a-input v-model:value="menuForm.path"></a-input>
-        <div class="system-subtitle text-12">
+        <div class="system__subtitle text-12">
           <InfoCircleFilled />
           用户访问的路径
         </div>
@@ -20,7 +20,7 @@
       <!--  -->
       <a-form-item label="权限标识" name="perms">
         <a-input v-model:value="menuForm.perms"></a-input>
-        <div class="system-subtitle text-12 mt-4">
+        <div class="system__subtitle text-12 mt-4">
           <InfoCircleFilled />
           对按钮级别的控制
         </div>
@@ -40,7 +40,7 @@
           :checked-value="'0'"
           v-model:checked="menuForm.isCache"
         ></a-switch>
-        <div class="text-12 system-subtitle">关闭窗口后是否缓存数据</div>
+        <div class="text-12 system__subtitle">关闭窗口后是否缓存数据</div>
       </a-form-item>
     </template>
   </div>

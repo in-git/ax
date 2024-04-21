@@ -43,6 +43,10 @@
               @change="onChange"
             ></a-select>
           </a-form-item>
+          <div class="system__subtitle">
+            <InfoCircleFilled />
+            如果使用的是AX体验服务器，请务必在http下使用
+          </div>
           <a-button type="primary" html-type="submit" class="mt-24" :loading="loginLoading" block>
             登录
           </a-button>

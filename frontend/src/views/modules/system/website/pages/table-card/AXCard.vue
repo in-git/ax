@@ -19,7 +19,7 @@
               </a-button>
             </div>
           </a-flex>
-          <div class="system-subtitle">
+          <div class="system__subtitle">
             {{ item.description }}
           </div>
         </a-flex>
@@ -92,7 +92,7 @@ nextTick(() => {
     text-overflow: ellipsis;
     width: 100px;
   }
-  .system-subtitle {
+  .system__subtitle {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;

@@ -26,26 +26,14 @@
 	border-radius: var(--radius);
 }
 
-.system-icon {
+.system__icon {
 	@extend %icon;
 	&:hover {
 		background: var(--color-primary-hover-bg);
 		color: #111;
 	}
 }
-
-.system-icon-dark {
-	@extend %icon;
-	color: #fff;
-	&:hover {
-		color: white;
-		background: #77777791;
-	}
-}
-
-.system-close {
-	&:hover {
-		background-color: #fc3333;
-		color: white;
-	}
+.system__subtitle {
+	font-size: 12px;
+	color: #999;
 }

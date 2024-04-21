@@ -28,7 +28,7 @@
                       class="w-100"
                       v-model:value="currentRole.roleSort"
                     ></a-input-number>
-                    <div class="text-12 system-subtitle">
+                    <div class="text-12 system__subtitle">
                       <InfoCircleFilled />
                       数字越小，排序靠前
                     </div>
@@ -57,7 +57,7 @@
                 <a-card class="mt-8" :bordered="false">
                   <a-form-item label="分配菜单" :label-col="{ span: 24 }">
                     <div class="flex align-center mb-8">
-                      <span class="text-12 system-subtitle mr-4">父子关联</span>
+                      <span class="text-12 system__subtitle mr-4">父子关联</span>
                       <a-switch v-model:checked="checkStrictly"></a-switch>
                     </div>
                     <a-card :body-style="{ height: '370px', overflowY: 'auto' }">

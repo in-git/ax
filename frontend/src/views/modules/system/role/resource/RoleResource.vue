@@ -36,7 +36,7 @@
             v-if="currentRole.dataScope === '2'"
           >
             <div @click="reload" class="mb-12 flex justify-between">
-              <span class="system-subtitle">部门列表</span>
+              <span class="system__subtitle">部门列表</span>
               <a-tooltip title="刷新">
                 <a-button type="ghost">
                   <ReloadOutlined />

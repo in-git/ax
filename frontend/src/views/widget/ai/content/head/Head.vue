@@ -37,7 +37,7 @@ const AIStore = useAIStore();
   height: 32px;
   border-bottom: 1px solid #ddd;
 
-  .system-icon {
+  .system__icon {
     width: 24px;
     height: 24px;
     &:hover {

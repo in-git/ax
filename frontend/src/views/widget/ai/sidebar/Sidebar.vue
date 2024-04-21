@@ -29,7 +29,7 @@
         </div>
         <div class="flex gc-4">
           <a-dropdown trigger="click" placement="bottomLeft">
-            <div class="actions system-icon" @click.stop>
+            <div class="actions system__icon" @click.stop>
               <EllipsisOutlined />
             </div>
             <template #overlay>

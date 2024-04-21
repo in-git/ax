@@ -1,12 +1,14 @@
 <template>
   <div class="text-center">
-    <a href="javascript:void(0)" class="button">
+    <a href="javascript:void(0)" class="button" @click="emit('onClick')">
       <span>使用必看</span>
     </a>
   </div>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+const emit = defineEmits(['onClick']);
+</script>
 
 <style lang="scss" scoped>
 .button {
