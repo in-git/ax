@@ -11,3 +11,10 @@ getSystemImages:读取目录下所有文件，并返回
 [GIT地址]: https://gitee.com/in-git/ax-resource.git
 
 可以将静态资源放置nginx目录下
+
+```
+sys-icon：系统图标
+wallpaper:系统壁纸
+public:公共资源
+```
+

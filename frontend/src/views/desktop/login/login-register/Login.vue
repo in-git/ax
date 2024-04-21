@@ -36,6 +36,13 @@
               />
             </div>
           </a-form-item>
+          <a-form-item label="选择服务器">
+            <a-select
+              v-model:value="store.$state.developer.baseURL"
+              :options="baseUrlOptions"
+              @change="onChange"
+            ></a-select>
+          </a-form-item>
           <a-button type="primary" html-type="submit" class="mt-24" :loading="loginLoading" block>
             登录
           </a-button>
@@ -46,6 +53,8 @@
 </template>
 
 <script setup lang="ts">
+import useSystemStore from '@/store/system';
+import { baseUrlOptions } from '@/store/system/options';
 import {
   captchaImage,
   changeMode,
@@ -56,7 +65,10 @@ import {
   loginRules,
 } from '../data';
 import LoginHistory from '../history/LoginHistory.vue';
-
+const store = useSystemStore();
+const onChange = () => {
+  window.location.reload();
+};
 onMounted(() => {
   getCaptcha();
 });
