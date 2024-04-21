@@ -29,8 +29,8 @@ const usePageStore = defineStore('page', {
       },
     },
     window: {
-      width: 1000,
-      height: 700,
+      width: window.innerWidth * 0.7,
+      height: window.innerHeight * 0.7,
     },
   }),
   persist: true,

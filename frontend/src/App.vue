@@ -10,8 +10,9 @@
     :virtual="store.$state.theme.virtual"
     :autoInsertSpaceInButton="store.$state.theme.autoInsertSpaceInButton"
   >
+    <!-- PC显示 -->
     <Desktop />
-
+    <PhoneVue />
     <!--  -->
     <div class="windows">
       <Draggable
@@ -50,6 +51,7 @@ import usePageStore from './store/page';
 import Contextmenu from './views/components/contextmenu/Contextmenu.vue';
 import Draggable from './views/components/draggable/Draggable.vue';
 import Desktop from './views/desktop/Desktop.vue';
+import PhoneVue from './views/phone/Phone.vue';
 
 const locale = ref(zh_CN);
 const { compactAlgorithm, darkAlgorithm, defaultAlgorithm } = theme;
@@ -96,5 +98,16 @@ const localTheme = computed(() => {
   top: 0;
   left: 0;
   z-index: 60;
+}
+
+@media screen and (max-width: 975px) {
+  .desktop {
+    display: none;
+  }
+}
+@media screen and (min-width: 974px) {
+  .phone {
+    display: none;
+  }
 }
 </style>
