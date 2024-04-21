@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col desktop">
+  <div class="desktop">
     <template v-if="tokens">
       <div class="flex-1 h-100 flex flex-col">
         <Toolbar />
