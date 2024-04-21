@@ -20,7 +20,6 @@ const emit = defineEmits(['onClick']);
   span {
     display: inline-block;
     background: #191919;
-    color: white;
     text-transform: uppercase;
     padding: 12px 18px;
     border-radius: 5px;

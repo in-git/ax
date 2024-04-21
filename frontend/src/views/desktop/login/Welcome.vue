@@ -1,5 +1,5 @@
 <template>
-  <div class="welcome">
+  <div class="welcome relative">
     <a-space class="w-100" :size="24" direction="vertical">
       <h1 class="text-white title">AX 后台管理系统</h1>
       <div class="mb-12">
@@ -12,9 +12,10 @@
       </div>
 
       <ButtonVue @onClick="introModal = true"></ButtonVue>
+
       <a-row :gutter="12" class="mb-12 frame">
         <a-col :span="24">
-          <a-carousel class="carousel" autoplay>
+          <a-carousel dotsClass="carousel-dot" dot-position="left" class="carousel" autoplay>
             <div class="carousel-item" v-for="item in 5">
               <img :src="`${resourceUrl}/public/cover-${item}.webp`" alt="" />
             </div>
