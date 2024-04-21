@@ -1,5 +1,5 @@
 <template>
-  <div class="gallery-body h-100">
+  <a-card class="gallery-body h-100" :body-style="{ paddingTop: '0' }">
     <GalleryHead />
     <div class="list" v-if="galleryData && galleryData.length > 0">
       <div
@@ -18,7 +18,7 @@
       </div>
     </div>
     <a-empty v-else></a-empty>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">
@@ -35,6 +35,7 @@ getGallery();
 
 <style lang="scss" scoped>
 .gallery-body {
+  margin-left: 8px;
   .list {
     display: grid;
     gap: 8px;

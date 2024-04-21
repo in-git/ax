@@ -9,8 +9,8 @@
     @dragstop="dragstop"
     @mousedown="moveTop"
     handles-type="borders"
-    :minWidth="600"
-    :minHeight="600"
+    :minWidth="400"
+    :minHeight="400"
     enableNativeDrag
     :id="id"
   >

@@ -29,7 +29,7 @@
 	background-position: center;
 
 	.title {
-		background-image: linear-gradient(to right bottom, #8064ff, #07a6f0, #9307f0);
+		background-image: var(--linear-gradient);
 		-webkit-background-clip: text;
 		color: transparent;
 		font-size: 48px;

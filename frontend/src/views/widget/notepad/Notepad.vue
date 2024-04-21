@@ -106,7 +106,7 @@ textarea {
   position: absolute;
   bottom: 0;
   right: 0;
-  background-image: -webkit-linear-gradient(bottom left, var(--primary), #817931, green);
+  background-image: var(--linear-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   user-select: none;

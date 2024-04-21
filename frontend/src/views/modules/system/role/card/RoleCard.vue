@@ -1,5 +1,5 @@
 <template>
-  <div class="role-card">
+  <a-card class="role-card">
     <CardHead />
     <div class="card-list">
       <a-spin :spinning="roleSpinning">
@@ -28,7 +28,7 @@
         <span class="system__subtitle">没有更多了</span>
       </a-divider>
     </div>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">

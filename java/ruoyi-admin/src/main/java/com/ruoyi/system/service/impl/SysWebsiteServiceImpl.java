@@ -52,7 +52,7 @@ public class SysWebsiteServiceImpl implements ISysWebsiteService
     public List<SysWebsite> selectSysWebsiteList(SysWebsite sysWebsite)
     {
         SysUser user = SecurityUtils.getLoginUser().getUser();
-        if (user.getUserId()==1L){
+        if (user.isAdmin()){
             return  sysWebsiteMapper.selectSysWebsiteList(sysWebsite);
         }else{
             /*把超级管理员的数据查询出来，共享给别人用户*/

@@ -12,7 +12,7 @@ const emit = defineEmits(['onClick']);
 
 <style lang="scss" scoped>
 .button {
-  background-image: linear-gradient(to right bottom, #8064ff, #07a6f0, #9307f0);
+  background-image: var(--linear-gradient);
   position: relative;
   padding: 4px;
   display: inline-block;
