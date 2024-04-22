@@ -25,7 +25,24 @@
           >
             <EditOutlined />
             <template #overlay>
-              <a-menu :items="feedbackOperationList"></a-menu>
+              <a-menu>
+                <div v-perm="'system:feedback:remove'">
+                  <a-menu-item @click="feedbackDelete(record.feedbackId)">
+                    <template #icon>
+                      <DeleteOutlined />
+                    </template>
+                    删除
+                  </a-menu-item>
+                </div>
+                <div v-perm="'system:feedback:export'">
+                  <a-menu-item @click="feedbackExport">
+                    <template #icon>
+                      <ExportOutlined />
+                    </template>
+                    导出
+                  </a-menu-item>
+                </div>
+              </a-menu>
             </template>
           </a-dropdown-button>
         </template>
@@ -41,14 +58,9 @@ import { useArrayFilter } from '@vueuse/core';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { feedbackColumns } from '../../data/column';
-import { feedbackEdit } from '../../data/curd';
+import { feedbackDelete, feedbackEdit, feedbackExport } from '../../data/curd';
 import { feedbackForm } from '../../data/form';
-import {
-  feedbackKeys,
-  feedbackOperationList,
-  feedbackQuery,
-  feedbackTable,
-} from '../../data/table';
+import { feedbackKeys, feedbackQuery, feedbackTable } from '../../data/table';
 
 const openChange = (record: SystemFeedback) => {
   feedbackForm.value = record;

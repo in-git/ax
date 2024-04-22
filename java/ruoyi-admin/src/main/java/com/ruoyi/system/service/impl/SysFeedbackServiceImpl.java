@@ -1,12 +1,15 @@
 package com.ruoyi.system.service.impl;
 
-import java.util.List;
+import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.common.utils.DateUtils;
+import com.ruoyi.common.utils.SecurityUtils;
+import com.ruoyi.system.domain.SysFeedback;
+import com.ruoyi.system.mapper.SysFeedbackMapper;
+import com.ruoyi.system.service.ISysFeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.system.mapper.SysFeedbackMapper;
-import com.ruoyi.system.domain.SysFeedback;
-import com.ruoyi.system.service.ISysFeedbackService;
+
+import java.util.List;
 
 /**
  * 系统反馈Service业务层处理
@@ -79,7 +82,8 @@ public class SysFeedbackServiceImpl implements ISysFeedbackService
     @Override
     public int deleteSysFeedbackByFeedbackIds(Long[] feedbackIds)
     {
-        return sysFeedbackMapper.deleteSysFeedbackByFeedbackIds(feedbackIds);
+        SysUser user = SecurityUtils.getLoginUser().getUser();
+        return sysFeedbackMapper.deleteSysFeedbackByFeedbackIds(feedbackIds,user.getUserId());
     }
 
     /**

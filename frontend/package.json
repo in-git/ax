@@ -1,5 +1,5 @@
 {
-  "name": "ant_template",
+  "name": "AX",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -69,10 +69,11 @@
     "vue-tsc": "^1.8.27"
   },
   "author": {
-    "email": "18x@loacg.com",
-    "name": "Sendya",
-    "url": "https://github.com/sendya"
+    "email": "444891953@qq.com",
+    "name": "吴文龙",
+    "url": "https://gitee.com/in-git"
   },
+  "description": "",
   "vite": {
     "optimizeDeps": {
       "include": [

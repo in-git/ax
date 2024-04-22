@@ -1,3 +1,8 @@
+#foreach($column in $columns)
+#if($column.isPk == "1")
+#set($Key=$column.javaField)
+#end
+#end
 <template>
   <a-form
      :rules="${businessName}Rules"
@@ -98,11 +103,7 @@ const loading = ref(false)
 
 const submit = async () => {
   loading.value = true
-   #foreach($column in $columns)
-    #if($column.isPk == "1")
-      if (${businessName}Form.value.$column.javaField) {
-    #end
-    #end
+    if (${businessName}Form.value.$Key) {
     await response(update${BusinessName}, ${businessName}Form.value);
   } else {
     await response(create${BusinessName}, ${businessName}Form.value);

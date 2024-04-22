@@ -75,5 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <foreach item="feedbackId" collection="array" open="(" separator="," close=")">
             #{feedbackId}
         </foreach>
+        <!--     只能删除自己的数据    -->
+        and user_id = #{userId}
     </delete>
 </mapper>

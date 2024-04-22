@@ -2,7 +2,7 @@
   <div>
     <a-card>
       <a-spin :spinning="loginLogData.loading">
-        <ul class="list">
+        <ul class="list" v-if="loginLogData.data.length > 0">
           <li v-for="(item, key) in loginLogData.data" :key="key">
             <a-space class="w-100" direction="vertical">
               <img :src="applePng" width="32" v-if="item.os.includes('Mac OS X')" />
@@ -24,6 +24,7 @@
             </a-space>
           </li>
         </ul>
+        <a-empty v-else />
       </a-spin>
     </a-card>
 

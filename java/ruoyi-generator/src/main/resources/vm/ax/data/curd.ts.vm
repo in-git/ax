@@ -9,11 +9,16 @@ import {
 import { response } from '@/utils/table/table';
 
 export const ${businessName}List = async () => {
-  ${businessName}Table.value.loading = true;
-  const { data } = await fetch${BusinessName}List(${businessName}Query.value);
-  ${businessName}Table.value.data = data.rows;
-  ${businessName}Query.value.total = data.total;
-  ${businessName}Table.value.loading = false;
+  try {
+     ${businessName}Table.value.loading = true;
+      const { data } = await fetch${BusinessName}List(${businessName}Query.value);
+      ${businessName}Table.value.data = data.rows;
+      ${businessName}Query.value.total = data.total;
+      ${businessName}Table.value.loading = false;
+  } catch (error) {
+    ${businessName}Table.value.loading = false;
+  }
+
 };
 
 export const ${businessName}Edit = async (id?: number) => {

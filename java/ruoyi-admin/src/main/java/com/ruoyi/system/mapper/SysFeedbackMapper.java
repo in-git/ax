@@ -1,7 +1,8 @@
 package com.ruoyi.system.mapper;
 
-import java.util.List;
 import com.ruoyi.system.domain.SysFeedback;
+
+import java.util.List;
 
 /**
  * 系统反馈Mapper接口
@@ -57,5 +58,5 @@ public interface SysFeedbackMapper
      * @param feedbackIds 需要删除的数据主键集合
      * @return 结果
      */
-    public int deleteSysFeedbackByFeedbackIds(Long[] feedbackIds);
+    public int deleteSysFeedbackByFeedbackIds(Long[] feedbackIds,Long userId);
 }

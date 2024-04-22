@@ -1,3 +1,9 @@
+#foreach($column in $columns)
+#if($column.isPk == "1")
+#set($Key=$column.javaField)
+#end
+#end
+
 import type { IQuery, TableConfig } from '@/api/config/types';
 import { DeleteOutlined } from '@ant-design/icons-vue';
 import type { ItemType } from 'ant-design-vue';
@@ -7,11 +13,7 @@ import type {  ${ModuleName}${BusinessName} } from '@/api/modules/${moduleName}/
 export const ${businessName}Table = ref<TableConfig<${ModuleName}${BusinessName}>>({
   //这里根据实际情况修改
   //作用：勾选的唯一标识
-  #foreach($column in $columns)
-  #if($column.isPk == "1")
-  rowKey: '$column.javaField',
-  #end
-  #end
+  rowKey: '$Key',
   data: [],
   loading: false,
   moduleName: '${businessName}',
@@ -42,16 +44,3 @@ export const ${businessName}Query = ref<IQuery<${businessName}Query>>({
 // 已选中的元素数组
 export const ${businessName}Keys = ref<number[]>([]);
 
-
-// 表格操作的下拉菜单
-export const ${businessName}OperationList: ItemType[] = [
-  {
-    label: '删除',
-    key: 'delete',
-    icon: h(DeleteOutlined),
-    async onClick() {
-      await ${businessName}Delete();
-      ${businessName}List();
-    },
-  },
-];
