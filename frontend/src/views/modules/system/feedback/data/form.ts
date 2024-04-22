@@ -1,15 +1,16 @@
 export const feedbackShowForm = ref(false);
-import type {  SystemFeedback } from '@/api/modules/system/feedback/types';
+import type { SystemFeedback } from '@/api/modules/system/feedback/types';
 import type { Rule } from 'ant-design-vue/es/form/interface';
 
-const form:  SystemFeedback = {
-    feedbackId: 0 ,
-    feedbackContent: "" ,
-    type: "" ,
-    nickname: "" ,
-    createTime: null ,
-    updateTime: null ,
-    deptId: 0 ,
+const form: SystemFeedback = {
+  feedbackId: 0,
+  feedbackContent: '',
+  type: '',
+  nickname: '',
+  createTime: null,
+  updateTime: null,
+  deptId: 0,
+  avatar: '',
 };
 
 // 当前选中的一项，用于删除，编辑
@@ -27,6 +28,6 @@ export const feedbackResetForm = () => {
 // 表格校验
 export const feedbackRules: Record<string, Rule[]> = {
   feedbackContent: [{ required: true, trigger: 'change' }],
-  type: [{ required: false , trigger: 'change' }],
-  nickname: [{ required: false , trigger: 'change' }],
+  type: [{ required: false, trigger: 'change' }],
+  nickname: [{ required: false, trigger: 'change' }],
 };
