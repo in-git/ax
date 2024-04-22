@@ -16,7 +16,7 @@
         <a-flex vertical :gap="8">
           <a-card v-for="item in feedbackData">
             <template #title>
-              <a-avatar :size="24" :src="getSysIcon(`avatar/${item.avatar}`)"></a-avatar>
+              <a-avatar :size="24" :src="getSysImage(`avatar/${item.avatar}`)"></a-avatar>
               {{ item.nickname }}
             </template>
             {{ item.feedbackContent }}
@@ -46,7 +46,7 @@
 import type { IQuery } from '@/api/config/types';
 import { createFeedback, fetchFeedbackList } from '@/api/modules/system/feedback/feedback';
 import type { SystemFeedback } from '@/api/modules/system/feedback/types';
-import { getSysIcon } from '@/api/utils/image';
+import { getSysImage } from '@/api/utils/image';
 import useUserStore from '@/store/user';
 
 const feedbackData = ref<SystemFeedback[]>([]);

@@ -36,4 +36,4 @@ export interface TreeNode {
 export interface ColumnProps extends TableColumnProps {
   show?: boolean;
 }
-export type IconType = 'svg-icon' | 'image-icon' | 'avatar';
+export type IconType = 'svg-icon' | 'image-icon' | 'avatar' | 'wallpaper';

@@ -1,6 +1,6 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import { getRouters } from '@/api/modules/system/user/user';
-import { getSysIcon } from '@/api/utils/image';
+import { getSysImage } from '@/api/utils/image';
 import logo from '@/assets/logo.png';
 import edge from '@/assets/system/edge.png';
 import folderPng from '@/assets/system/folder.png';
@@ -28,7 +28,7 @@ export const getIconByName = (item: Routers) => {
   let image = '';
 
   if (item.meta.icon.includes('image-icon')) {
-    return getSysIcon(item.meta.icon);
+    return getSysImage(item.meta.icon);
   }
   if (item.name) {
     image = new URL(`../../../assets/system/${item.name.toLocaleLowerCase()}.png`, import.meta.url)

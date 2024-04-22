@@ -10,7 +10,7 @@
           <a-card :loading="loading" :bordered="false" :body-style="{ padding: '0' }">
             <div v-if="!!userProfile">
               <div class="flex align-center gc-12">
-                <a-avatar :src="getSysIcon(`avatar/${userProfile.avatar}`)"></a-avatar>
+                <a-avatar :src="getSysImage(`avatar/${userProfile.avatar}`)"></a-avatar>
                 {{ userProfile.userName }}
               </div>
               <a-divider class="my-12"></a-divider>
@@ -51,7 +51,7 @@
 <script setup lang="ts">
 import type { UserProfileData } from '@/api/modules/system/user/types';
 import { userLogout } from '@/api/modules/system/user/utils';
-import { getSysIcon } from '@/api/utils/image';
+import { getSysImage } from '@/api/utils/image';
 import userCenterPng from '@/assets/system/user-center.png';
 import { openWindow } from '@/global/config/window';
 import { sexOptions } from '@/global/options/system';

@@ -14,12 +14,12 @@ export const galleryQuery = ref<IQuery<GalleryQuery>>({
   pageNum: 1,
   pageSize: 20,
   total: 0,
-  type: 'avatar',
+  type: 'wallpaper',
 });
 
 export const getGallery = async () => {
   galleryLoading.value = true;
-  const { data } = await getSystemImages('avatar');
+  const { data } = await getSystemImages('wallpaper');
   if (data.data) {
     galleryData.value = data.data || [];
     galleryQuery.value.total = data.data?.length;
