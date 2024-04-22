@@ -3,6 +3,7 @@ export interface SystemFeedback {
   feedbackContent: string;
   type: string;
   nickname: string;
+  avatar: string;
   createTime: any;
   updateTime: any;
   deptId?: number;

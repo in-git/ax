@@ -2,7 +2,9 @@
   <div>
     <a-card title="图像选择">
       <template #extra>
-        <a-button type="primary" @click="confirm">确定</a-button>
+        <a-button type="primary" @click="confirm" :disabled="selectedSet.length === 0">
+          确定
+        </a-button>
       </template>
       <ul :class="[type]" v-if="galleryData.data.length > 0">
         <li
@@ -10,7 +12,7 @@
           @click="selectItem(item)"
           :class="[{ active: selectedSet.includes(item) }]"
         >
-          <img :src="getStaticHost(`/${type}/${item}`)" />
+          <img :src="getStaticHost(`${type}/${item}`)" />
         </li>
       </ul>
       <a-empty v-else />
@@ -26,7 +28,7 @@ import type { IconType } from '@/types/system';
 
 const props = withDefaults(
   defineProps<{
-    limit: number;
+    limit?: number;
     value: string;
     type: IconType;
   }>(),
@@ -44,7 +46,7 @@ const query = ref<IQuery<{ type: IconType }>>({
   pageNum: 1,
   pageSize: 20,
   total: 0,
-  type: 'wallpaper',
+  type: 'avatar',
 });
 const galleryData = ref<TableConfig<string>>({
   rowKey: 'galleryId',
@@ -85,10 +87,20 @@ onMounted(() => {
 .sys-icon,
 .avatar {
   grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(64px, 1fr));
+  li {
+    width: 100%;
+    height: 100%;
+  }
 }
 .wallpaper {
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
 }
+:deep(.ant-card-body) {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
 ul {
   display: grid;
   gap: 8px;

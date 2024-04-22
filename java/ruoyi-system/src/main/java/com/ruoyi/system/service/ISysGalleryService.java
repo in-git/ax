@@ -10,6 +10,5 @@ import java.util.List;
  */
 public interface ISysGalleryService 
 {
-
     public List<String> getSystemImages(String type);
 }

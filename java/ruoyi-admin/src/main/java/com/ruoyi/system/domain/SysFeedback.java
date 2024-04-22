@@ -34,4 +34,8 @@ public class SysFeedback extends BaseEntity
     @Excel(name = "部门名称")
     private Long deptId;
 
+    /** 头像 */
+    @Excel(name = "头像")
+    private String avatar;
+
 }

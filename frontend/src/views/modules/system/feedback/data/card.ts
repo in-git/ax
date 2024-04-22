@@ -1,6 +1,6 @@
+import type { SystemFeedback } from '@/api/modules/system/feedback/types';
 import { feedbackColumns } from './column';
 import { feedbackKeys, feedbackTable } from './table';
-import type {  SystemFeedback } from '@/api/modules/system/feedback/types';
 
 interface CardData {
   id: number;

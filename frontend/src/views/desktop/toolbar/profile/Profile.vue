@@ -10,7 +10,7 @@
           <a-card :loading="loading" :bordered="false" :body-style="{ padding: '0' }">
             <div v-if="!!userProfile">
               <div class="flex align-center gc-12">
-                <a-avatar :src="getAvatar()"></a-avatar>
+                <a-avatar :src="getStaticHost(`avatar/${userProfile.avatar}`)"></a-avatar>
                 {{ userProfile.userName }}
               </div>
               <a-divider class="my-12"></a-divider>
@@ -54,7 +54,7 @@ import { userLogout } from '@/api/modules/system/user/utils';
 import userCenterPng from '@/assets/system/user-center.png';
 import { openWindow } from '@/global/config/window';
 import { sexOptions } from '@/global/options/system';
-import { getAvatar } from '@/store/user/utils';
+import { getStaticHost } from '@/store/system/utils';
 import { getLabel } from '@/utils/common/utils';
 import { Modal } from 'ant-design-vue';
 import ProFileForm from '../profile-form/ProfileForm.vue';

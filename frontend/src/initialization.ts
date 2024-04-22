@@ -24,7 +24,6 @@ export const loadSystemIcons = () => {
 export const loadSystemComponents = () => {
   for (const path in modules) {
     const result = path.match(/.*\/(.+).vue$/);
-    console.log(path);
 
     if (result) {
       const component: any = modules[path];

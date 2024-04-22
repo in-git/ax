@@ -14,7 +14,11 @@
     <div vertical class="list flex-1">
       <a-spin :spinning="loading">
         <a-flex vertical :gap="8">
-          <a-card v-for="item in feedbackData" :title="item.nickname">
+          <a-card v-for="item in feedbackData">
+            <template #title>
+              <a-avatar :size="24" :src="getStaticHost(`avatar/${item.avatar}`)"></a-avatar>
+              {{ item.nickname }}
+            </template>
             {{ item.feedbackContent }}
             <template #extra>
               <span class="system__subtitle">{{ item.createTime }}</span>
@@ -42,6 +46,7 @@
 import type { IQuery } from '@/api/config/types';
 import { createFeedback, fetchFeedbackList } from '@/api/modules/system/feedback/feedback';
 import type { SystemFeedback } from '@/api/modules/system/feedback/types';
+import { getStaticHost } from '@/store/system/utils';
 import useUserStore from '@/store/user';
 
 const feedbackData = ref<SystemFeedback[]>([]);
@@ -72,11 +77,13 @@ const getData = async () => {
 
 const send = async () => {
   loading.value = true;
+  if (!userStore.$state.userInfo) return;
   await createFeedback({
     feedbackContent: text.value,
     type: '',
-    nickname: userStore.$state.userInfo?.nickName || '匿名用户',
-    deptId: userStore.$state.userInfo?.deptId,
+    nickname: userStore.$state.userInfo.nickName || '匿名用户',
+    deptId: userStore.$state.userInfo.deptId,
+    avatar: userStore.$state.userInfo.avatar,
   });
   text.value = '';
   getData();

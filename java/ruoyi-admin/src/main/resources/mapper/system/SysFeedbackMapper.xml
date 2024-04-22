@@ -12,10 +12,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="createTime"    column="create_time"    />
         <result property="updateTime"    column="update_time"    />
         <result property="deptId"    column="dept_id"    />
+        <result property="avatar"    column="avatar"    />
     </resultMap>
 
     <sql id="selectSysFeedbackVo">
-        select feedback_id, feedback_content, type, nickname, create_time, update_time, dept_id from sys_feedback
+        select feedback_id, feedback_content, type,avatar, nickname, create_time, update_time, dept_id from sys_feedback
     </sql>
 
     <select id="selectSysFeedbackList" parameterType="SysFeedback" resultMap="SysFeedbackResult">
@@ -38,6 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="feedbackContent != null and feedbackContent != ''">feedback_content,</if>
             <if test="type != null">type,</if>
+            <if test="avatar != null">avatar,</if>
             <if test="nickname != null">nickname,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateTime != null">update_time,</if>
@@ -46,6 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="feedbackContent != null and feedbackContent != ''">#{feedbackContent},</if>
             <if test="type != null">#{type},</if>
+            <if test="avatar != null">#{avatar},</if>
             <if test="nickname != null">#{nickname},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateTime != null">#{updateTime},</if>
@@ -59,6 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="feedbackContent != null and feedbackContent != ''">feedback_content = #{feedbackContent},</if>
             <if test="type != null">type = #{type},</if>
             <if test="nickname != null">nickname = #{nickname},</if>
+            <if test="avatar != null">avatar = #{avatar},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
             <if test="deptId != null">dept_id = #{deptId},</if>

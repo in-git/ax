@@ -80,8 +80,6 @@
 <script setup lang="ts">
 import { updatePassword, updateProfile } from '@/api/modules/system/user/user';
 import { sexOptions } from '@/global/options/system';
-import useSystemStore from '@/store/system';
-import useUserStore from '@/store/user';
 import { message, Modal } from 'ant-design-vue';
 import { userProfile } from '../profile/data';
 import authPng from './auth.png';
@@ -93,9 +91,6 @@ const passwordForm = ref({
   newPassword: '',
 });
 
-const userStore = useUserStore();
-const page = useSystemStore();
-
 const updateUserInfo = async () => {
   loading.value = true;
   if (!userProfile.value) return;
@@ -104,6 +99,7 @@ const updateUserInfo = async () => {
     phonenumber: userProfile.value.phonenumber,
     email: userProfile.value.email,
     sex: userProfile.value.sex,
+    avatar: userProfile.value.avatar,
   });
   loading.value = false;
   message.success(data.msg);
