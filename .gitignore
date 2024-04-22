@@ -74,5 +74,8 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+# nodejs
 nodejs/src/assets/
 /resource/
+application-local.yml
