@@ -4,6 +4,7 @@ import { message } from 'ant-design-vue';
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
+import { userLogout } from '../modules/system/user/utils';
 
 /* 取消请求列表 */
 const cancelList = ref<AbortController[]>([]);
@@ -30,10 +31,11 @@ axios.interceptors.response.use(
     if (res.code === 500) {
       message.warn(res.msg || 'System Error');
       throw new Error(res.msg || '系统内部错误');
-    }
-    if (res.code === 403) {
+    } else if (res.code === 403) {
       message.warn('没有权限');
       throw new Error(res.msg || '没有权限');
+    } else if (res.code === 401) {
+      userLogout();
     }
     return response;
   },

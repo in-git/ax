@@ -22,8 +22,8 @@
               <a-input v-model:value="menuForm.menuName"></a-input>
             </a-form-item>
 
-            <a-form-item label="图标" name="icon" required>
-              <a-input v-model:value="menuForm.icon">
+            <a-form-item label="图标" name="icon">
+              <a-input allow-clear v-model:value="menuForm.icon">
                 <template #addonAfter>
                   <a-popover trigger="click" placement="leftBottom" v-model:open="visible">
                     <a-tooltip title="选择图标">

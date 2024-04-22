@@ -67,7 +67,7 @@ export const enter = async () => {
       });
     }
     await getProfile();
-    finish();
+    changeMode('login');
     store.$state.token = data.token;
   } catch (error) {
     onError();
