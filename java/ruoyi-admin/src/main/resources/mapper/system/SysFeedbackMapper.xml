@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.SysFeedbackMapper">
+    
+    <resultMap type="SysFeedback" id="SysFeedbackResult">
+        <result property="feedbackId"    column="feedback_id"    />
+        <result property="feedbackContent"    column="feedback_content"    />
+        <result property="type"    column="type"    />
+        <result property="nickname"    column="nickname"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="deptId"    column="dept_id"    />
+    </resultMap>
+
+    <sql id="selectSysFeedbackVo">
+        select feedback_id, feedback_content, type, nickname, create_time, update_time, dept_id from sys_feedback
+    </sql>
+
+    <select id="selectSysFeedbackList" parameterType="SysFeedback" resultMap="SysFeedbackResult">
+        <include refid="selectSysFeedbackVo"/>
+        <where>  
+            <if test="feedbackContent != null  and feedbackContent != ''"> and feedback_content = #{feedbackContent}</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+            <if test="nickname != null  and nickname != ''"> and nickname like concat('%', #{nickname}, '%')</if>
+            <if test="deptId != null "> and dept_id = #{deptId}</if>
+        </where>
+    </select>
+    
+    <select id="selectSysFeedbackByFeedbackId" parameterType="Long" resultMap="SysFeedbackResult">
+        <include refid="selectSysFeedbackVo"/>
+        where feedback_id = #{feedbackId}
+    </select>
+        
+    <insert id="insertSysFeedback" parameterType="SysFeedback" useGeneratedKeys="true" keyProperty="feedbackId">
+        insert into sys_feedback
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="feedbackContent != null and feedbackContent != ''">feedback_content,</if>
+            <if test="type != null">type,</if>
+            <if test="nickname != null">nickname,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="deptId != null">dept_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="feedbackContent != null and feedbackContent != ''">#{feedbackContent},</if>
+            <if test="type != null">#{type},</if>
+            <if test="nickname != null">#{nickname},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="deptId != null">#{deptId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSysFeedback" parameterType="SysFeedback">
+        update sys_feedback
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="feedbackContent != null and feedbackContent != ''">feedback_content = #{feedbackContent},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="nickname != null">nickname = #{nickname},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="deptId != null">dept_id = #{deptId},</if>
+        </trim>
+        where feedback_id = #{feedbackId}
+    </update>
+
+    <delete id="deleteSysFeedbackByFeedbackId" parameterType="Long">
+        delete from sys_feedback where feedback_id = #{feedbackId}
+    </delete>
+
+    <delete id="deleteSysFeedbackByFeedbackIds" parameterType="String">
+        delete from sys_feedback where feedback_id in 
+        <foreach item="feedbackId" collection="array" open="(" separator="," close=")">
+            #{feedbackId}
+        </foreach>
+    </delete>
+</mapper>

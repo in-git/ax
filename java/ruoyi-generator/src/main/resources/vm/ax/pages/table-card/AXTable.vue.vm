@@ -18,7 +18,13 @@
     >
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'operation'">
-          <a-dropdown-button trigger="click" @open-change="openChange(record as ${ModuleName}${BusinessName})">
+          <a-dropdown-button trigger="click"
+          #foreach($column in $columns)
+          #if($column.isPk == "1")
+          @click="${businessName}Edit(record.$column.javaField)"
+          #end
+          #end
+          @open-change="openChange(record as ${ModuleName}${BusinessName})">
             <EditOutlined />
             <template #overlay>
               <a-menu :items="${businessName}OperationList"></a-menu>
@@ -49,18 +55,17 @@ const openChange = (record: ${ModuleName}${BusinessName}) => {
 const customRow = (record: ${ModuleName}${BusinessName}) => {
   return {
     onClick() {
-      const id= record[${businessName}Table.rowKey]
-      if (!codeKeys.value.includes(id) {
-         codeKeys.value.push(id);
+      const id= (record as any)[${businessName}Table.rowKey]
+      if (!${businessName}Keys.value.includes(id) {
+         ${businessName}Keys.value.push(id);
       } else {
-         codeKeys.value = useArrayFilter(codeKeys.value, e => e !== id).value;
+         ${businessName}Keys.value = useArrayFilter(${businessName}Keys.value, e => e !== id).value;
      }
      #foreach($column in $columns)
      #if($column.isPk == "1")
      ${businessName}Keys.value = [record.$column.javaField];
      #end
      #end
-
     },
     onDblclick() {
       #foreach($column in $columns)
