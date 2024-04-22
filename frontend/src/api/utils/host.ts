@@ -1,1 +1,1 @@
-export const giteeResourceHost = `http://in-git.gitee.io/ax-resource/`;
+export const resourceUrl = `http://in-git.gitee.io/ax-resource`;

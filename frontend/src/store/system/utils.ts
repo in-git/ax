@@ -1,6 +1,5 @@
 import useSystemStore from '.';
 /* 外部资源链接 */
-export const resourceUrl = `http://in-git.gitee.io/ax-resource`;
 
 /* 获取当前后台的根目录 */
 export const getHost = (path: string = '') => {

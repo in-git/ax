@@ -61,8 +61,6 @@ export const openApp = (item: Routers) => {
     if (item.path === '/') {
       return;
     }
-    console.log(systemComponents.value);
-
     systemComponents.value.forEach(e => {
       if (e.path.includes(item.component)) {
         openWindow({

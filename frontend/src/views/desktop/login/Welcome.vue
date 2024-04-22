@@ -31,10 +31,9 @@
 </template>
 
 <script setup lang="ts">
-import { resourceUrl } from '@/store/system/utils';
+import { resourceUrl } from '@/api/utils/host';
 import ButtonVue from './welcome/Button.vue';
 import Intro from './welcome/Intro.vue';
-
 const introModal = ref(false);
 </script>
 
