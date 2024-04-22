@@ -1,5 +1,6 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import { getRouters } from '@/api/modules/system/user/user';
+import { getSysIcon } from '@/api/utils/image';
 import logo from '@/assets/logo.png';
 import edge from '@/assets/system/edge.png';
 import folderPng from '@/assets/system/folder.png';
@@ -40,6 +41,9 @@ export const getIconByName = (item: Routers) => {
 
 export const openApp = (item: Routers) => {
   console.log(item);
+  const [type, icon] = item.meta.icon.split(',');
+  const url = getSysIcon(type, icon);
+  console.log(url);
 
   if (item.children && item.children.length > 0) {
     openWindow({

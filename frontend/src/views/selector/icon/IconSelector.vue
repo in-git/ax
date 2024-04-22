@@ -6,7 +6,7 @@
           <li
             v-for="(item, key) in icons"
             :key="key"
-            @click="selectItem(item, 'image')"
+            @click="selectItem(item, 'sys-image')"
             :class="{ active: item === active }"
           >
             <img :src="host + item" :alt="item" width="32" />
@@ -18,7 +18,7 @@
           <li
             v-for="item in Object.values(IconList).slice(0, 780)"
             :class="{ active: item.name === active }"
-            @click="selectItem(item.name, 'icon')"
+            @click="selectItem(item.name, 'sys-icon')"
           >
             <template v-if="item.name !== 'create'">
               <component :is="item" class="text-20"></component>
@@ -33,12 +33,12 @@
 <script setup lang="ts">
 import { getSystemImages } from '@/api/utils/file';
 import { getHost } from '@/store/system/utils';
+import type { IconType } from '@/types/system';
 import * as IconList from '@ant-design/icons-vue';
 
 const host = getHost('profile/sys-icon/');
 const icons = ref<string[]>([]);
 
-type IconType = 'icon' | 'image';
 const emit = defineEmits(['update:modelValue']);
 const active = ref<string>('');
 defineProps<{

@@ -37,3 +37,4 @@ export interface ColumnProps extends TableColumnProps {
   show?: boolean;
 }
 export type GalleryType = 'sys-icon' | 'wallpaper' | 'avatar';
+export type IconType = 'sys-icon' | 'sys-image';
