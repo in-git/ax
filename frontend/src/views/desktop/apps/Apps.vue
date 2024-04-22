@@ -13,7 +13,12 @@
         >
           <div>
             <div class="logo">
-              <img :src="getIconByName(item) || logoPng" :draggable="false" width="48" />
+              <img
+                :src="getIconByName(item) || logoPng"
+                @error="onError(item)"
+                :draggable="false"
+                width="48"
+              />
             </div>
             <div class="title">{{ item.meta?.title || 'Untitled' }}</div>
           </div>
@@ -35,6 +40,10 @@ const selected = ref<string>('');
 const appRef = ref();
 const menuList = ref<Routers[]>([]);
 const apps = ref<HTMLElement>();
+
+const onError = (item: Routers) => {
+  item.meta.icon = logoPng;
+};
 
 onMounted(async () => {
   const data = await getUserRouters();

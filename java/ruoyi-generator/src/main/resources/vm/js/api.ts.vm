@@ -31,6 +31,11 @@ export const delete${BusinessName} = (${pkColumn.javaField}s:number[]) => {
   return axios.delete<Response<${ModuleName}${BusinessName}>>(`${moduleName}/${businessName}/${${pkColumn.javaField}s.join(',')}`);
 };
 
+type Page = {
+  pageSize: number;
+  pageNum: number;
+};
+
 // 导出${functionName}
 export const export${BusinessName} = async (page: Page) => {
   await exportFile({

@@ -23,8 +23,13 @@ export const getUserRouters = async () => {
   return data.data || [];
 };
 
+/* 兼容若依的图标和自定义图标 */
 export const getIconByName = (item: Routers) => {
   let image = '';
+
+  if (item.meta.icon.includes('image-icon')) {
+    return getSysIcon(item.meta.icon);
+  }
   if (item.name) {
     image = new URL(`../../../assets/system/${item.name.toLocaleLowerCase()}.png`, import.meta.url)
       .href;
@@ -41,9 +46,6 @@ export const getIconByName = (item: Routers) => {
 
 export const openApp = (item: Routers) => {
   console.log(item);
-  const [type, icon] = item.meta.icon.split(',');
-  const url = getSysIcon(type, icon);
-  console.log(url);
 
   if (item.children && item.children.length > 0) {
     openWindow({
@@ -59,8 +61,10 @@ export const openApp = (item: Routers) => {
     if (item.path === '/') {
       return;
     }
+    console.log(systemComponents.value);
+
     systemComponents.value.forEach(e => {
-      if (e.path.includes(item.path)) {
+      if (e.path.includes(item.component)) {
         openWindow({
           title: item.meta.title,
           component: e.component,

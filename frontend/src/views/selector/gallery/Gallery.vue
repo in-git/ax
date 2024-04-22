@@ -22,13 +22,13 @@
 import type { IQuery, TableConfig } from '@/api/config/types';
 import { getSystemImages } from '@/api/utils/file';
 import { getStaticHost } from '@/store/system/utils';
-import type { GalleryType } from '@/types/system';
+import type { IconType } from '@/types/system';
 
 const props = withDefaults(
   defineProps<{
     limit: number;
     value: string;
-    type: GalleryType;
+    type: IconType;
   }>(),
   {
     limit: 1,
@@ -40,7 +40,7 @@ const props = withDefaults(
 const emit = defineEmits(['update:value']);
 const selectedSet = ref<string[]>([]);
 
-const query = ref<IQuery<{ type: GalleryType }>>({
+const query = ref<IQuery<{ type: IconType }>>({
   pageNum: 1,
   pageSize: 20,
   total: 0,

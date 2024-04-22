@@ -1,9 +1,9 @@
 import type { IQuery } from '@/api/config/types';
 import { getSystemImages } from '@/api/utils/file';
-import type { GalleryType } from '@/types/system';
+import type { IconType } from '@/types/system';
 
 interface GalleryQuery {
-  type: GalleryType;
+  type: IconType;
 }
 
 export const galleryData = ref<string[]>();
@@ -32,7 +32,7 @@ export const currentGallery = ref<string>();
 interface GalleryConfig {
   category?: '';
   maximum?: number;
-  type?: GalleryType | undefined;
+  type?: IconType | undefined;
 }
 export const galleryConfig = ref<GalleryConfig>({
   category: '',

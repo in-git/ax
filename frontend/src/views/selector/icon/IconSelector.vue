@@ -6,23 +6,10 @@
           <li
             v-for="(item, key) in icons"
             :key="key"
-            @click="selectItem(item, 'sys-image')"
+            @click="selectItem(item)"
             :class="{ active: item === active }"
           >
             <img :src="host + item" :alt="item" width="32" />
-          </li>
-        </ul>
-      </a-tab-pane>
-      <a-tab-pane key="icon" tab="SVG图标" class="icon-container">
-        <ul>
-          <li
-            v-for="item in Object.values(IconList).slice(0, 780)"
-            :class="{ active: item.name === active }"
-            @click="selectItem(item.name, 'sys-icon')"
-          >
-            <template v-if="item.name !== 'create'">
-              <component :is="item" class="text-20"></component>
-            </template>
           </li>
         </ul>
       </a-tab-pane>
@@ -33,10 +20,8 @@
 <script setup lang="ts">
 import { getSystemImages } from '@/api/utils/file';
 import { getHost } from '@/store/system/utils';
-import type { IconType } from '@/types/system';
-import * as IconList from '@ant-design/icons-vue';
 
-const host = getHost('profile/sys-icon/');
+const host = getHost('profile/image-icon/');
 const icons = ref<string[]>([]);
 
 const emit = defineEmits(['update:modelValue']);
@@ -45,12 +30,12 @@ defineProps<{
   modelValue: string;
 }>();
 onMounted(async () => {
-  const { data } = await getSystemImages('sys-icon');
+  const { data } = await getSystemImages('image-icon');
   icons.value = data.data!;
 });
 
-const selectItem = (iconPath: string, type: IconType) => {
-  emit('update:modelValue', `${type},${iconPath}`);
+const selectItem = (iconPath: string) => {
+  emit('update:modelValue', `image-icon/${iconPath}`);
   active.value = iconPath;
 };
 </script>

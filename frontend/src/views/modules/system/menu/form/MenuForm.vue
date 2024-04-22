@@ -10,7 +10,6 @@
       }"
       label-align="left"
       @finish="submit"
-      class="flex-1 flex flex-col"
     >
       <a-card class="flex-1" :body-style="{ height: `500px`, overflowY: 'auto' }" title="基础配置">
         <template #extra>
@@ -143,6 +142,4 @@ watch(
 );
 </script>
 
-<style lang="scss" scoped>
-@import './style';
-</style>
+<style lang="scss" scoped></style>

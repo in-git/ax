@@ -1,9 +1,8 @@
-
 import type { IQuery, Response, TableResponse } from '@/api/config/types';
-import axios from 'axios';
-import type {SystemFeedback} from "./types"
-import { message } from 'ant-design-vue';
 import { exportFile } from '@/api/utils/file';
+import { message } from 'ant-design-vue';
+import axios from 'axios';
+import type { SystemFeedback } from './types';
 
 // 查询系统反馈列表
 export const fetchFeedbackList = (query: IQuery) => {
@@ -17,7 +16,7 @@ export const fetchFeedbackById = (feedbackId: number) => {
 };
 
 // 新增系统反馈
-export const createFeedback= (data: SystemFeedback) => {
+export const createFeedback = (data: Partial<SystemFeedback>) => {
   return axios.post<Response<SystemFeedback>>(`system/feedback`, data);
 };
 
@@ -27,10 +26,14 @@ export const updateFeedback = (data: SystemFeedback) => {
 };
 
 // 删除系统反馈
-export const deleteFeedback = (feedbackIds:number[]) => {
+export const deleteFeedback = (feedbackIds: number[]) => {
   return axios.delete<Response<SystemFeedback>>(`system/feedback/${feedbackIds.join(',')}`);
 };
 
+type Page = {
+  pageSize: number;
+  pageNum: number;
+};
 // 导出系统反馈
 export const exportFeedback = async (page: Page) => {
   await exportFile({

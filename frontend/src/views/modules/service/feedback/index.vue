@@ -1,0 +1,97 @@
+<template>
+  <a-card class="system__template" title="反馈中心">
+    <template #extra>
+      <a-button @click="getData">刷新</a-button>
+    </template>
+    <template #title>
+      <a-pagination :total="query.total"></a-pagination>
+    </template>
+
+    <a-flex vertical :gap="8" class="list flex-1">
+      <a-card v-for="item in feedbackData" :title="item.nickname">
+        {{ item.feedbackContent }}
+      </a-card>
+    </a-flex>
+    <a-flex class="relative">
+      <a-textarea
+        :maxlength="140"
+        :disabled="loading"
+        v-model:value="text"
+        placeholder="请输入"
+        :auto-size="{
+          minRows: 3,
+        }"
+      ></a-textarea>
+      <a-button class="send" :loading="loading" type="primary" @click="send">发送</a-button>
+    </a-flex>
+  </a-card>
+</template>
+
+<script setup lang="ts">
+import type { IQuery } from '@/api/config/types';
+import { createFeedback, fetchFeedbackList } from '@/api/modules/system/feedback/feedback';
+import type { SystemFeedback } from '@/api/modules/system/feedback/types';
+import useUserStore from '@/store/user';
+
+const feedbackData = ref<SystemFeedback[]>([]);
+
+const loading = ref(false);
+const text = ref<string>('');
+const userStore = useUserStore();
+
+const query = ref<IQuery>({
+  pageNum: 1,
+  pageSize: 20,
+  total: 0,
+  orderByColumn: 'create_time',
+  isAsc: 'desc',
+});
+
+const getData = async () => {
+  try {
+    loading.value = true;
+    const { data } = await fetchFeedbackList(query.value);
+    feedbackData.value = data.rows;
+    query.value.total = data.total;
+    loading.value = false;
+  } catch (error) {
+    loading.value = false;
+  }
+};
+
+const send = async () => {
+  loading.value = true;
+  await createFeedback({
+    feedbackContent: text.value,
+    type: '',
+    nickname: userStore.$state.userInfo?.nickName || '匿名用户',
+    deptId: userStore.$state.userInfo?.deptId,
+  });
+  text.value = '';
+  getData();
+};
+onMounted(() => {
+  getData();
+});
+</script>
+
+<style lang="scss" scoped>
+.system__template {
+  :deep(.ant-card-body) {
+    height: calc(100% - 38px);
+    display: flex;
+    padding-top: 0;
+    gap: 8px;
+    flex-direction: column;
+  }
+  .list {
+    overflow-y: auto;
+    height: calc(100% - 38px);
+  }
+  .send {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+  }
+}
+</style>
