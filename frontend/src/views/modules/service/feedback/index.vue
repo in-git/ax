@@ -1,17 +1,28 @@
 <template>
-  <a-card class="system__template" title="反馈中心">
+  <a-card class="system__template">
     <template #extra>
-      <a-button @click="getData">刷新</a-button>
+      <a-button @click="getData" :loading="loading">刷新</a-button>
     </template>
     <template #title>
-      <a-pagination :total="query.total"></a-pagination>
+      <a-pagination
+        :current="query.pageNum"
+        :page-size="query.pageSize"
+        :total="query.total"
+      ></a-pagination>
     </template>
 
-    <a-flex vertical :gap="8" class="list flex-1">
-      <a-card v-for="item in feedbackData" :title="item.nickname">
-        {{ item.feedbackContent }}
-      </a-card>
-    </a-flex>
+    <div vertical class="list flex-1">
+      <a-spin :spinning="loading">
+        <a-flex vertical :gap="8">
+          <a-card v-for="item in feedbackData" :title="item.nickname">
+            {{ item.feedbackContent }}
+            <template #extra>
+              <span class="system__subtitle">{{ item.createTime }}</span>
+            </template>
+          </a-card>
+        </a-flex>
+      </a-spin>
+    </div>
     <a-flex class="relative">
       <a-textarea
         :maxlength="140"
