@@ -172,7 +172,7 @@ $hh: 36px;
 .drag-content {
   height: calc(100% - $hh);
   position: relative;
-  background: url('./assets/background.png');
+  background: url('./assets/background.webp');
   background-repeat: no-repeat;
   background-size: 400px 400px;
   background-position: center;

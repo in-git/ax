@@ -11,7 +11,7 @@
             @dblclick="selectRole(item.roleId)"
             class="text-center"
           >
-            <img :src="rolePng" width="32" height="32" />
+            <img :src="getSysImage(`image-icon/role.png`)" width="32" height="32" />
             <div>
               <div class="text-14">
                 {{ item.roleName }}
@@ -33,11 +33,13 @@
 
 <script setup lang="ts">
 import type { Role } from '@/api/modules/system/role/types';
-import rolePng from '@/assets/system/role.png';
+
+import { getSysImage } from '@/api/utils/image';
 import { useCloned } from '@vueuse/core';
 import CardHead from './card-head/CardHead.vue';
 import { getRoles, selectRole } from './curd';
 import { currentRole, roleData, roleSpinning } from './data';
+
 const select = (item: Role) => {
   currentRole.value = useCloned(item).cloned.value;
 };

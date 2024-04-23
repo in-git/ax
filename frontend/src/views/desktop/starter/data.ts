@@ -1,10 +1,8 @@
 import { getSysImage } from '@/api/utils/image';
 import aiPng from '@/assets/apps/gpt.png';
-import xterm from '@/assets/apps/xterm.png';
 import { openWindow } from '@/global/config/window';
 import AI from '@/views/widget/ai/AI.vue';
 import Notepad from '@/views/widget/notepad/Notepad.vue';
-import Xterm from '@/views/widget/xterm/Xterm.vue';
 
 export const showStarter = ref(false);
 interface Plugin {
@@ -34,20 +32,6 @@ export const plugins: Plugin[] = [
       openWindow({
         component: markRaw(Notepad),
         ...item,
-      });
-      showStarter.value = false;
-    },
-  },
-  {
-    title: '控制台',
-    id: 'xterm',
-    icon: xterm,
-    action(item: Plugin) {
-      openWindow({
-        component: markRaw(Xterm),
-        ...item,
-        w: 700,
-        h: 460,
       });
       showStarter.value = false;
     },
