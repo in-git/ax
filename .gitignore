@@ -75,7 +75,9 @@ coverage
 *.sln
 *.sw?
 
+
 # nodejs
 nodejs/src/assets/
 /resource/
 application-local.yml
+dist

@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia';
 import type { PageSettings } from './types';
 
+const maxWidth = window.innerWidth * 0.7;
+const maxHeight = window.innerHeight * 0.7;
 const usePageStore = defineStore('page', {
   state: (): PageSettings => ({
     theme: {
@@ -29,8 +31,8 @@ const usePageStore = defineStore('page', {
       },
     },
     window: {
-      width: window.innerWidth * 0.7,
-      height: window.innerHeight * 0.7,
+      width: maxWidth > 1000 ? 1000 : maxWidth,
+      height: maxHeight > 800 ? 800 : maxHeight,
     },
   }),
   persist: true,

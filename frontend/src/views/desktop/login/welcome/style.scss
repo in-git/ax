@@ -1,8 +1,9 @@
 .frame {
-	padding: 42px;
+	padding: 0 42px;
 	border: 16px solid #000;
 	height: fit-content;
 	border-radius: 22px;
+	min-height: 500px;
 }
 .carousel {
 	.carousel-item {
