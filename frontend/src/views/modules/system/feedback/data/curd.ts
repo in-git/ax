@@ -1,12 +1,12 @@
-import { feedbackResetForm, feedbackShowForm,feedbackForm } from './form';
-import { feedbackKeys, feedbackQuery, feedbackTable } from './table';
 import {
   deleteFeedback,
-  fetchFeedbackById ,
+  exportFeedback,
+  fetchFeedbackById,
   fetchFeedbackList,
-  exportFeedback
 } from '@/api/modules/system/feedback/feedback';
 import { response } from '@/utils/table/table';
+import { feedbackForm, feedbackResetForm, feedbackShowForm } from './form';
+import { feedbackKeys, feedbackQuery, feedbackTable } from './table';
 
 export const feedbackList = async () => {
   feedbackTable.value.loading = true;
@@ -17,14 +17,14 @@ export const feedbackList = async () => {
 };
 
 export const feedbackEdit = async (id?: number) => {
-    let targetId: number = id ? id : feedbackKeys.value[0];
-    feedbackTable.value.loading = true;
-    const { data } = await fetchFeedbackById(targetId);
-    if (data.data) {
-        feedbackForm.value = data.data;
-        feedbackShowForm.value = true;
-    }
-    feedbackTable.value.loading = false;
+  let targetId: number = id ? id : feedbackKeys.value[0];
+  feedbackTable.value.loading = true;
+  const { data } = await fetchFeedbackById(targetId);
+  if (data.data) {
+    feedbackForm.value = data.data;
+    feedbackShowForm.value = true;
+  }
+  feedbackTable.value.loading = false;
 };
 
 export const feedbackCreate = async () => {
@@ -36,7 +36,7 @@ export const feedbackDelete = async (id?: number) => {
   let ids = id ? [id] : feedbackKeys.value;
   await response(deleteFeedback, ids);
   await feedbackList();
-   feedbackKeys.value=[]
+  feedbackKeys.value = [];
 };
 // 导出EXCEL文件
 export const feedbackExport = () => {

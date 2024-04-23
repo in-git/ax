@@ -30,15 +30,11 @@ export const deleteFeedback = (feedbackIds: number[]) => {
   return axios.delete<Response<SystemFeedback>>(`system/feedback/${feedbackIds.join(',')}`);
 };
 
-type Page = {
-  pageSize: number;
-  pageNum: number;
-};
 // 导出系统反馈
-export const exportFeedback = async (page: Page) => {
+export const exportFeedback = async (query: Partial<IQuery>) => {
   await exportFile({
     url: 'system/feedback/export',
-    data: page,
+    data: query,
     fileName: '系统反馈.xls',
     method: 'POST',
   });

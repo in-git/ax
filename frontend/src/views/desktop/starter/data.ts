@@ -2,6 +2,7 @@ import { getSysImage } from '@/api/utils/image';
 import aiPng from '@/assets/apps/gpt.png';
 import { openWindow } from '@/global/config/window';
 import AI from '@/views/widget/ai/AI.vue';
+import Help from '@/views/widget/help/Help.vue';
 import Notepad from '@/views/widget/notepad/Notepad.vue';
 
 export const showStarter = ref(false);
@@ -31,6 +32,18 @@ export const plugins: Plugin[] = [
     action(item: Plugin) {
       openWindow({
         component: markRaw(Notepad),
+        ...item,
+      });
+      showStarter.value = false;
+    },
+  },
+  {
+    title: '帮助',
+    id: 'help',
+    icon: getSysImage('image-icon/help.png'),
+    action(item: Plugin) {
+      openWindow({
+        component: markRaw(Help),
         ...item,
       });
       showStarter.value = false;
