@@ -14,8 +14,8 @@
 </template>
 
 <script setup lang="ts">
+import { getSysImage } from '@/api/utils/image';
 import logo from '@/assets/logo.png';
-import settingPng from '@/assets/system/system_setting.png';
 import { openWindow } from '@/global/config/window';
 import usePageStore from '@/store/page';
 import PageSetting from '@/views/desktop/setting/PageSetting.vue';
@@ -30,7 +30,7 @@ const setting = () => {
     id: 'system_setting',
     w: 800,
     h: 600,
-    icon: settingPng,
+    icon: getSysImage('image-icon/system_setting.png'),
   });
 };
 const store = usePageStore();

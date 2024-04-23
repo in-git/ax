@@ -2,8 +2,6 @@ import type { Routers } from '@/api/modules/system/user/types';
 import { getRouters } from '@/api/modules/system/user/user';
 import { getSysImage } from '@/api/utils/image';
 import logo from '@/assets/logo.png';
-import edge from '@/assets/system/edge.png';
-import folderPng from '@/assets/system/folder.png';
 import { openWindow, setCurrentWindow } from '@/global/config/window';
 import { systemComponents } from '@/initialization';
 import { openLink } from '@/utils/common/utils';
@@ -31,15 +29,14 @@ export const getIconByName = (item: Routers) => {
     return getSysImage(item.meta.icon);
   }
   if (item.name) {
-    image = new URL(`../../../assets/system/${item.name.toLocaleLowerCase()}.png`, import.meta.url)
-      .href;
+    image = getSysImage(`image-icon/${item.name.toLocaleLowerCase()}.png`);
   }
   if (item.children) {
-    return folderPng;
+    return getSysImage('image-icon/folder.png');
   } else if (!image.includes('undefined')) {
     return image;
   } else if (item.meta.link) {
-    return edge;
+    return getSysImage('image-icon/edge.png');
   }
   return logo;
 };

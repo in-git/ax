@@ -5,10 +5,6 @@
       <div class="mb-12">
         <div class="desc">Windows操作风格的管理系统</div>
         <div class="desc">一键生成CURD代码,高效开发</div>
-        <div class="desc">
-          权限控制，精确到
-          <a-button type="primary">按钮</a-button>
-        </div>
       </div>
 
       <ButtonVue @onClick="introModal = true"></ButtonVue>

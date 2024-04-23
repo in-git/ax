@@ -52,7 +52,6 @@
 import type { UserProfileData } from '@/api/modules/system/user/types';
 import { userLogout } from '@/api/modules/system/user/utils';
 import { getSysImage } from '@/api/utils/image';
-import userCenterPng from '@/assets/system/user-center.png';
 import { openWindow } from '@/global/config/window';
 import { sexOptions } from '@/global/options/system';
 import { getLabel } from '@/utils/common/utils';
@@ -75,7 +74,7 @@ const editProfile = () => {
     title: '用户中心',
     component: markRaw(ProFileForm),
     id: 'user-center',
-    icon: userCenterPng,
+    icon: getSysImage('image-icon/user-center.png'),
   });
   popoverVisible.value = false;
 };

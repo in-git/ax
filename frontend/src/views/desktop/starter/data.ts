@@ -1,6 +1,6 @@
+import { getSysImage } from '@/api/utils/image';
 import aiPng from '@/assets/apps/gpt.png';
 import xterm from '@/assets/apps/xterm.png';
-import notepad from '@/assets/system/notepad.png';
 import { openWindow } from '@/global/config/window';
 import AI from '@/views/widget/ai/AI.vue';
 import Notepad from '@/views/widget/notepad/Notepad.vue';
@@ -29,7 +29,7 @@ export const plugins: Plugin[] = [
   {
     title: '记事本',
     id: 'notepad',
-    icon: notepad,
+    icon: getSysImage('image-icon/notepad.png'),
     action(item: Plugin) {
       openWindow({
         component: markRaw(Notepad),
