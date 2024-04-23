@@ -7,6 +7,9 @@ export const windowList = ref<SystemWindow[]>([]);
 
 export const openWindow = (config: SystemWindow) => {
   const pageStore = usePageStore();
+  if (!config.id) {
+    config.id = nanoid();
+  }
   const isExist = windowList.value.find(e => {
     return e.id === config.id;
   });
@@ -15,9 +18,6 @@ export const openWindow = (config: SystemWindow) => {
   config.w = config.w ? config.w : pageStore.$state.window.width;
   config.h = config.h ? config.h : pageStore.$state.window.height;
   config.z = windowList.value.length;
-  if (!config.id) {
-    config.id = nanoid();
-  }
 
   if (!isExist) {
     windowList.value.push(config);

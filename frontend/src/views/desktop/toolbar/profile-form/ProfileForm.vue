@@ -12,6 +12,7 @@
             :label-col="{
               span: 4,
             }"
+            :rules="formRule"
             label-align="left"
           >
             <a-card :bordered="false">
@@ -20,12 +21,12 @@
                 <a-input v-model:value="userProfile.userName" disabled></a-input>
               </a-form-item>
               <a-form-item label="用户昵称">
-                <a-input v-model:value="userProfile.nickName"></a-input>
+                <a-input v-model:value="userProfile.nickName" :maxlength="16"></a-input>
               </a-form-item>
-              <a-form-item label="用户手机">
-                <a-input v-model:value="userProfile.phonenumber"></a-input>
+              <a-form-item label="用户手机" name="phonenumber">
+                <a-input v-model:value="userProfile.phonenumber" :maxLength="11"></a-input>
               </a-form-item>
-              <a-form-item label="用户邮箱">
+              <a-form-item label="用户邮箱" name="email">
                 <a-input v-model:value="userProfile.email"></a-input>
               </a-form-item>
               <a-form-item label="用户性别" required name="sex">
@@ -81,6 +82,7 @@
 import { updatePassword, updateProfile } from '@/api/modules/system/user/user';
 import { sexOptions } from '@/global/options/system';
 import { message, Modal } from 'ant-design-vue';
+import type { Rule } from 'ant-design-vue/es/form';
 import { userProfile } from '../profile/data';
 import authPng from './auth.png';
 import Avatar from './Avatar.vue';
@@ -118,6 +120,11 @@ const resetPassword = async () => {
       window.location.reload();
     },
   });
+};
+
+const formRule: Record<string, Rule[]> = {
+  phonenumber: [{ trigger: 'blur', len: 11 }],
+  email: [{ trigger: 'blur', type: 'email' }],
 };
 </script>
 

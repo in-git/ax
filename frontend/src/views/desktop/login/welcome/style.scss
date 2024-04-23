@@ -1,9 +1,8 @@
 .frame {
-	padding: 0 42px;
 	border: 16px solid #000;
 	height: fit-content;
 	border-radius: 22px;
-	min-height: 500px;
+	padding: 12px;
 }
 .carousel {
 	.carousel-item {
@@ -14,6 +13,8 @@
 	img {
 		width: 100%;
 		object-fit: cover;
+		height: 100%;
+		border-radius: 12px;
 	}
 }
 .welcome {

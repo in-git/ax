@@ -9,7 +9,16 @@
     <SystemModal title="备忘录" v-model:visible="memoShowForm">
       <a-card title="编辑/新增">
         <a-form-item label="备忘录标题" name="title">
-          <a-input placeholder="请输入备忘录标题" v-model:value="memoForm.title"></a-input>
+          <a-input placeholder="请输入备忘录标题" v-model:value="memoForm.title">
+            <template #addonAfter>
+              <a-popover trigger="click" title="快速录入">
+                <BookOutlined />
+                <template #content>
+                  <Memo v-model:value="memoForm.title" />
+                </template>
+              </a-popover>
+            </template>
+          </a-input>
         </a-form-item>
         <a-form-item label="备忘录的值" name="value">
           <a-textarea
@@ -36,6 +45,7 @@
 import { createMemo, updateMemo } from '@/api/modules/system/memo/memo';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { response } from '@/utils/table/table';
+import Memo from '@/views/selector/memo/Memo.vue';
 import { memoList } from '../../data/curd';
 import { memoForm, memoRules, memoShowForm } from '../../data/form';
 import {} from '../../data/options';

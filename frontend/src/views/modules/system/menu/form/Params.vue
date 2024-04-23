@@ -11,7 +11,7 @@
         <a-input v-model:value="menuForm.path"></a-input>
         <div class="system__subtitle text-12">
           <InfoCircleFilled />
-          文件夹/文件的唯一标识
+          文件夹/文件的唯一标识,作为窗口的ID,不填会打开多个窗口
         </div>
       </a-form-item>
     </template>

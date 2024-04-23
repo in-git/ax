@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { closeWindow, windowList } from '@/global/config/window';
-import { ConfigProvider, theme } from 'ant-design-vue';
+import { ConfigProvider, Modal, theme } from 'ant-design-vue';
 import zh_CN from 'ant-design-vue/es/locale/zh_CN';
 import {
   loadGoogleFont,
@@ -72,8 +72,20 @@ nextTick(async () => {
   setEvent();
   /* 设置主题变量 */
   setCssVar();
-});
 
+  /* 当前不支持https访问 */
+  if (window.location.href.startsWith('https')) {
+    Modal.confirm({
+      title: '警告',
+      content: '当前不支持https访问,请前往http',
+      onOk() {
+        window.location.href = 'https://in-git.gitee.io/ax-view/';
+      },
+      centered: true,
+    });
+  }
+});
+/* 设置本地主题 */
 const localTheme = computed(() => {
   let algorithm = store.$state.theme.algorithm;
   let map = {

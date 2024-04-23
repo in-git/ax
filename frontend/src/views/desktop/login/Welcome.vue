@@ -4,7 +4,7 @@
       <h1 class="text-white title">AX 后台管理系统</h1>
       <div class="mb-12">
         <div class="desc">Windows操作风格的管理系统</div>
-        <div class="desc">一键生成CURD代码,高效开发</div>
+        <div class="desc">一键生成增删改查代码,可二次开发</div>
         <div class="text-center">
           <a target="_blank" href="https://gitee.com/in-git/ax-view">
             <img src="https://favicon.qqsuu.cn/https://gitee.com/in-git/ax-view" width="32" />
@@ -17,15 +17,13 @@
 
       <ButtonVue @onClick="introModal = true"></ButtonVue>
 
-      <a-row :gutter="12" class="mb-12 frame">
-        <a-col :span="24">
-          <a-carousel dotsClass="carousel-dot" dot-position="left" class="carousel" autoplay>
-            <div class="carousel-item" v-for="item in 5">
-              <img :src="`${resourceUrl}/public/cover-${item}.webp`" alt="" />
-            </div>
-          </a-carousel>
-        </a-col>
-      </a-row>
+      <div class="mb-12 frame">
+        <a-carousel dotsClass="carousel-dot" dot-position="left" class="carousel" autoplay>
+          <div class="carousel-item" v-for="item in 5">
+            <img :src="`${resourceUrl}/public/cover-${item}.webp`" />
+          </div>
+        </a-carousel>
+      </div>
     </a-space>
 
     <a-modal centered title="常见问题" v-model:open="introModal" get-container=".welcome">

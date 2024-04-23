@@ -29,7 +29,16 @@
             </a-form-item>
          #elseif($column.htmlType == "input")
            <a-form-item label="${comment}" name="$field">
-             <a-input placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}"></a-input>
+             <a-input placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}">
+                <template #addonAfter>
+                  <a-popover trigger="click" title="快速录入">
+                    <BookOutlined />
+                    <template #content>
+                      <Memo v-model:value="${businessName}Form.${column.javaField}" />
+                    </template>
+                  </a-popover>
+                </template>
+             </a-input>
            </a-form-item>
          #elseif($column.htmlType == "textarea")
            <a-form-item label="${comment}" name="$field">
@@ -79,6 +88,7 @@
 </template>
 
 <script setup lang="ts">
+import Memo from '@/views/selector/memo/Memo.vue';
 import {
 #foreach($column in $columns)
 #if($column.dictType != "")

@@ -1,7 +1,9 @@
 <template>
   <a-card class="system-memo" title="备忘录列表" :body-style="{ overflow: 'auto' }">
     <template #extra>
-      <a-button class="mr-4" @click="getList">刷新</a-button>
+      <a-button class="mr-4" @click="getList">
+        <reload-outlined />
+      </a-button>
       <a-button type="primary" @click="confirm" :disabled="!currentRow">确定</a-button>
     </template>
     <a-spin :spinning="loading">
@@ -87,7 +89,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .system-memo {
-  width: 500px;
+  width: 300px;
   max-height: 400px;
   :deep(.ant-pagination) {
     margin: 8px;
