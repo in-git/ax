@@ -4,64 +4,45 @@
       <h3 class="text-14">系统反馈</h3>
     </template>
 
-   <a-flex class="mb-12" :gap="12" wrap="wrap">
-    <div>
-       <a-input
-         @blur="feedbackList"
-         v-model:value="feedbackQuery.feedbackContent"
-         style="width: 160px"
-         placeholder="请输入反馈内容"
-         allow-clear
-       ></a-input>
-     </div>
-    <div>
-       <a-input
-         @blur="feedbackList"
-         v-model:value="feedbackQuery.type"
-         style="width: 160px"
-         placeholder="请输入类型"
-         allow-clear
-       ></a-input>
-     </div>
-    <div>
-       <a-input
-         @blur="feedbackList"
-         v-model:value="feedbackQuery.nickname"
-         style="width: 160px"
-         placeholder="请输入用户昵称"
-         allow-clear
-       ></a-input>
-     </div>
-    <div>
-       <a-input
-         @blur="feedbackList"
-         v-model:value="feedbackQuery.deptId"
-         style="width: 160px"
-         placeholder="请输入部门名称"
-         allow-clear
-       ></a-input>
-     </div>
+    <a-flex class="mb-12" :gap="12" wrap="wrap">
+      <div>
+        <a-input
+          @blur="feedbackList"
+          v-model:value="feedbackQuery.feedbackContent"
+          style="width: 160px"
+          placeholder="请输入反馈内容"
+          allow-clear
+        ></a-input>
+      </div>
+      <div>
+        <a-input
+          @blur="feedbackList"
+          v-model:value="feedbackQuery.nickname"
+          style="width: 160px"
+          placeholder="请输入用户昵称"
+          allow-clear
+        ></a-input>
+      </div>
       <a-button type="primary" @click="feedbackList">搜索</a-button>
     </a-flex>
 
     <a-flex justify="space-between" :align="'center'">
-        <a-flex justify="space-between" :align="'center'">
+      <a-flex justify="space-between" :align="'center'">
         <a-flex :align="'center'" :gap="4">
-
-         <div v-perm="'system:feedback:add'">
-             <a-tooltip title="新建">
-                <a-button type="primary" @click="feedbackCreate">
-                  <PlusOutlined />
-                </a-button>
+          <div v-perm="'system:feedback:add'">
+            <a-tooltip title="新建">
+              <a-button type="primary" @click="feedbackCreate">
+                <PlusOutlined />
+              </a-button>
             </a-tooltip>
-         </div>
+          </div>
 
-         <div v-perm="'system:feedback:edit'">
-              <a-tooltip title="编辑(双击)">
-                <a-button type="link" @click="feedbackEdit()" :disabled="feedbackKeys.length !== 1">
-                  <EditOutlined />
-                </a-button>
-              </a-tooltip>
+          <div v-perm="'system:feedback:edit'">
+            <a-tooltip title="编辑(双击)">
+              <a-button type="link" @click="feedbackEdit()" :disabled="feedbackKeys.length !== 1">
+                <EditOutlined />
+              </a-button>
+            </a-tooltip>
           </div>
 
           <a-tooltip title="刷新">
@@ -69,32 +50,30 @@
               <ReloadOutlined />
             </a-button>
           </a-tooltip>
-         </a-flex>
-
         </a-flex>
-       <a-flex>
-
-       <div v-perm="'system:feedback:export'">
-         <a-tooltip title="导出">
-           <a-button type="link" @click="feedbackExport" >
-             <ExportOutlined />
-           </a-button>
-         </a-tooltip>
-       </div>
-
-       <div v-perm="'system:feedback:remove'">
-        <a-popconfirm
-          title="确定要删除吗"
-          :disabled="feedbackKeys.length === 0"
-          placement="bottomRight"
-          @confirm="feedbackDelete()"
-        >
-          <a-tooltip title="批量删除">
-            <a-button danger type="link" :disabled="feedbackKeys.length === 0">
-              <DeleteOutlined />
+      </a-flex>
+      <a-flex>
+        <div v-perm="'system:feedback:export'">
+          <a-tooltip title="导出">
+            <a-button type="link" @click="feedbackExport">
+              <ExportOutlined />
             </a-button>
           </a-tooltip>
-        </a-popconfirm>
+        </div>
+
+        <div v-perm="'system:feedback:remove'">
+          <a-popconfirm
+            title="确定要删除吗"
+            :disabled="feedbackKeys.length === 0"
+            placement="bottomRight"
+            @confirm="feedbackDelete()"
+          >
+            <a-tooltip title="批量删除">
+              <a-button danger type="link" :disabled="feedbackKeys.length === 0">
+                <DeleteOutlined />
+              </a-button>
+            </a-tooltip>
+          </a-popconfirm>
         </div>
 
         <FieldVue :columns="feedbackColumns" :module-name="feedbackTable.moduleName" />
@@ -111,14 +90,12 @@
             </a-button>
           </a-tooltip>
         </div>
-       </a-flex>
+      </a-flex>
     </a-flex>
   </a-card>
 </template>
 
 <script setup lang="ts">
-import {
-} from '../../data/options';
 import FieldVue from '@/views/components/table/Field.vue';
 import {
   AppstoreAddOutlined,
@@ -131,15 +108,11 @@ import {
   feedbackCreate,
   feedbackDelete,
   feedbackEdit,
+  feedbackExport,
   feedbackList,
-feedbackExport } from '../../data/curd';
-import { viewMode,
-  feedbackKeys,
-  feedbackTable,
-  feedbackQuery
-} from '../../data/table';
-
-
+} from '../../data/curd';
+import {} from '../../data/options';
+import { feedbackKeys, feedbackQuery, feedbackTable, viewMode } from '../../data/table';
 </script>
 
 <style lang="scss" scoped></style>

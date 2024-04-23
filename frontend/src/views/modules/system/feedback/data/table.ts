@@ -15,9 +15,7 @@ export const feedbackTable = ref<TableConfig<SystemFeedback>>({
 //查询参数接口
 interface feedbackQuery {
   feedbackContent: '';
-  type: '';
   nickname: '';
-  deptId: 0;
 }
 // 预览模式:卡片|表格
 export const viewMode = ref<'card' | 'table'>('table');
@@ -28,9 +26,7 @@ export const feedbackQuery = ref<IQuery<feedbackQuery>>({
   pageSize: 10,
   total: 0,
   feedbackContent: '',
-  type: '',
   nickname: '',
-  deptId: 0,
 });
 
 // 已选中的元素数组

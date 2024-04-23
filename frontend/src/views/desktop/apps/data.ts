@@ -27,6 +27,8 @@ export const getIconByName = (item: Routers) => {
 
   if (item.meta.icon.includes('image-icon')) {
     return getSysImage(item.meta.icon);
+  } else if (item.meta.link) {
+    return getSysImage('image-icon/edge.png');
   }
   if (item.name) {
     image = getSysImage(`image-icon/${item.name.toLocaleLowerCase()}.png`);
@@ -35,8 +37,6 @@ export const getIconByName = (item: Routers) => {
     return getSysImage('image-icon/folder.png');
   } else if (!image.includes('undefined')) {
     return image;
-  } else if (item.meta.link) {
-    return getSysImage('image-icon/edge.png');
   }
   return logo;
 };
