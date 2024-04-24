@@ -1,13 +1,15 @@
 <template>
-  <Transition
-    enter-active-class="animate__animated animate__fadeInUp"
-    leave-active-class="animate__animated animate__fadeOutDown"
-  >
-    <div class="system-starter flex" v-if="showStarter" ref="menuRef">
-      <MenuSidebar />
-      <MenuBody />
-    </div>
-  </Transition>
+  <Teleport to="body">
+    <Transition
+      enter-active-class="animate__animated animate__fadeInUp"
+      leave-active-class="animate__animated animate__fadeOutDown"
+    >
+      <div class="system-starter flex" v-if="showStarter" ref="menuRef">
+        <MenuSidebar />
+        <MenuBody />
+      </div>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -32,7 +34,7 @@ nextTick(() => {
   height: 650px;
   left: 0;
   width: 550px;
-  z-index: 1000;
+  z-index: 100;
   background: #07071bde;
   backdrop-filter: blur(4px);
 }

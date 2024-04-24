@@ -28,7 +28,7 @@ const openMenu = () => {
   backdrop-filter: blur(2px);
   border-top: 1px solid #dddddd79;
 
-  z-index: 100;
+  z-index: 10;
   .window {
     width: 42px;
     height: 42px;

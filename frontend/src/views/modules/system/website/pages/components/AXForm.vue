@@ -19,6 +19,7 @@
               <div class="system__subtitle">http(s)://</div>
             </template>
           </a-input-search>
+
           <div class="system__subtitle mt-4">
             <div v-if="!loading">
               <InfoCircleFilled />
@@ -33,6 +34,7 @@
         <a-form-item label="网页名称" name="name">
           <a-input placeholder="请输入网页名称" v-model:value="websiteForm.name"></a-input>
         </a-form-item>
+
         <a-form-item label="网页描述" name="description">
           <a-textarea
             placeholder="请输入网页描述"
@@ -45,6 +47,7 @@
             v-model:value="websiteForm.description"
           ></a-textarea>
         </a-form-item>
+
         <a-form-item label="网页类型" name="type">
           <a-select
             v-model:value="websiteForm.type"
@@ -56,6 +59,7 @@
             :options="typeOptions"
           ></a-select>
         </a-form-item>
+
         <template #extra>
           <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
         </template>
@@ -109,6 +113,7 @@ const search = async () => {
     }
   }
 };
+
 const submit = async () => {
   loading.value = true;
   if (websiteForm.value.websiteId) {
