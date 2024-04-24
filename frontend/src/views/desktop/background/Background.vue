@@ -3,9 +3,9 @@
     class="app-background flex-1 flex flex-col"
     v-if="pageStore.$state.desktop.background.type === 'video'"
   >
-    <VideoBackground :src="pageStore.$state.desktop.background.src"></VideoBackground>
+    <VideoBackground class="h-100" :src="pageStore.$state.desktop.background.src"></VideoBackground>
   </div>
-  <div v-else :style="style" class="app-background"></div>
+  <div v-else class="app-background" :style="style"></div>
 </template>
 
 <script setup lang="ts">
@@ -13,6 +13,7 @@ import usePageStore from '@/store/page';
 import type { CSSProperties } from 'vue';
 import VideoBackground from 'vue-responsive-video-background-player';
 import defaultBackground from '../assets/background.webp';
+
 const pageStore = usePageStore();
 
 const style = computed((): CSSProperties => {

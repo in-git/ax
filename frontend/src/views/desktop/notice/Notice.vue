@@ -33,7 +33,9 @@
     </a-drawer>
     <!-- 查看通知具体内容 -->
     <a-modal @ok="viewer = false" v-model:open="viewer" centered :title="currentNotice?.title">
-      <div class="content" v-html="currentNotice?.content"></div>
+      <a-card class="content">
+        <div v-html="currentNotice?.content"></div>
+      </a-card>
     </a-modal>
   </div>
 </template>
@@ -62,8 +64,8 @@ const view = (item: DesktopNotice) => {
 
 <style lang="scss" scoped>
 .content {
-  background: #f5f2f3;
-  min-height: 100px;
   padding: 12px;
+  min-height: 240px;
+  overflow-y: auto;
 }
 </style>

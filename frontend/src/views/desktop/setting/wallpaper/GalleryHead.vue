@@ -30,6 +30,8 @@ import {
 } from './data/data';
 
 const use = () => {
+  console.log(currentGallery.value);
+
   if (currentGallery.value) {
     setBackground(currentGallery.value, galleryType.value);
   }

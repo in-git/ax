@@ -11,15 +11,10 @@
           @click="selectItem(item)"
           justify="center"
         >
-          <div class="selected" v-if="currentGallery === getSysImage('wallpaper/' + item)">
+          <div class="selected" v-if="currentGallery === item">
             <CheckOutlined />
           </div>
-          <img
-            :src="getSysImage(`wallpaper/${item}`)"
-            v-if="galleryType === 'image'"
-            :alt="item"
-            height="80"
-          />
+          <img :src="item" v-if="galleryType === 'image'" :alt="item" height="80" />
           <video
             muted
             ref="videoRefs"
@@ -37,13 +32,12 @@
 </template>
 
 <script setup lang="ts">
-import { getSysImage } from '@/api/utils/image';
 import { currentGallery, galleryData, galleryType, getGallery } from './data/data';
 import GalleryHead from './GalleryHead.vue';
 
 const videoRefs = ref<HTMLVideoElement[]>();
 const selectItem = (item: string) => {
-  currentGallery.value = getSysImage('wallpaper/' + item);
+  currentGallery.value = item;
 };
 const mouseenter = (index: number) => {
   if (videoRefs.value) {
@@ -55,6 +49,9 @@ const mouseleave = (index: number) => {
     videoRefs.value[index].pause();
   }
 };
+onUnmounted(() => {
+  galleryType.value = 'image';
+});
 getGallery();
 </script>
 
