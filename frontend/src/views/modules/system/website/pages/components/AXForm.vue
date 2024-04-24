@@ -13,14 +13,20 @@
             placeholder="请输入网页URL"
             v-model:value="websiteForm.url"
             @search="search"
+            enter-button="一键查询"
           >
             <template #prefix>
               <div class="system__subtitle">http(s)://</div>
             </template>
           </a-input-search>
           <div class="system__subtitle mt-4">
-            <InfoCircleFilled />
-            点击搜索能自动获取网页信息
+            <div v-if="!loading">
+              <InfoCircleFilled />
+              点击一键查询能自动获取网页信息
+            </div>
+            <div v-else class="text-center pt-12">
+              <a-button @click="cancelAllRequest" danger>取消搜索</a-button>
+            </div>
           </div>
         </a-form-item>
 
@@ -33,6 +39,7 @@
             :auto-size="{
               minRows: 5,
             }"
+            :disabled="loading"
             :maxlength="140"
             show-count
             v-model:value="websiteForm.description"
@@ -44,6 +51,7 @@
             class="w-100"
             placeholder="请选择网页类型"
             allow-clear
+            :disabled="loading"
             @change="websiteList"
             :options="typeOptions"
           ></a-select>
@@ -57,6 +65,7 @@
 </template>
 
 <script setup lang="ts">
+import { cancelAllRequest } from '@/api/config/interceptor';
 import { createWebsite, getSiteInfo, updateWebsite } from '@/api/modules/system/website/website';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { response } from '@/utils/table/table';
@@ -83,15 +92,19 @@ const extractDomain = (url: string): string => {
 };
 
 const search = async () => {
+  message.success('正在搜索，如果是国外网页，速度可能非常慢');
+  loading.value = true;
   if (websiteForm.value.url) {
     let url = extractDomain(websiteForm.value.url);
     try {
       const { data } = await getSiteInfo(url);
+      loading.value = false;
       if (data.data && url) {
         websiteForm.value.description = data.data.description;
         websiteForm.value.name = data.data.title;
       }
     } catch (error) {
+      loading.value = false;
       message.warn('获取失败，请手动填写信息');
     }
   }

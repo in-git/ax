@@ -22,7 +22,7 @@
     </a-spin>
 
     <a-modal v-model:open="open" get-container="#Cache" centered width="600px" title="缓存列表">
-      <Content />
+      <Content :data="kvData" />
     </a-modal>
   </a-card>
 </template>
@@ -33,14 +33,18 @@ import Content from './content/Content.vue';
 
 const open = ref(false);
 const cacheData = ref<SystemCache[]>([]);
-const kvData = ref<SystemCache[]>([]);
+const kvData = ref();
 const loading = ref(false);
 
 const selectItem = async (key: string) => {
   const { data } = await getKey(key);
   open.value = true;
   if (data.data) {
-    kvData.value = data.data;
+    kvData.value = data.data.map(e => {
+      return {
+        title: e,
+      };
+    });
   }
 };
 

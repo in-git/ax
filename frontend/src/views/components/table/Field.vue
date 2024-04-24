@@ -21,7 +21,7 @@
           <div class="divider text-right">
             <a-tooltip title="更新本地数据">
               <a-button type="link" @click="reset">
-                同步
+                更新
                 <template #icon>
                   <ReloadOutlined />
                 </template>
