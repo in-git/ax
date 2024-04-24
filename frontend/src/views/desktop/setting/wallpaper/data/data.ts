@@ -1,13 +1,12 @@
 import type { IQuery } from '@/api/config/types';
 import { getSystemImages } from '@/api/utils/file';
 import type { IconType } from '@/types/system';
-
+import videoUrl from './video.url';
 interface GalleryQuery {
   type: IconType;
 }
-
 export const galleryData = ref<string[]>();
-
+export const galleryType = ref<'video' | 'image'>('image');
 export const galleryLoading = ref(false);
 
 export const galleryQuery = ref<IQuery<GalleryQuery>>({
@@ -24,6 +23,14 @@ export const getGallery = async () => {
     galleryData.value = data.data || [];
     galleryQuery.value.total = data.data?.length;
     galleryLoading.value = false;
+  }
+};
+
+export const changeGalleryType = () => {
+  if (galleryType.value === 'image') {
+    getGallery();
+  } else {
+    galleryData.value = videoUrl;
   }
 };
 

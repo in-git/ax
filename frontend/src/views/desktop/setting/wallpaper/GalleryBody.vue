@@ -1,34 +1,60 @@
 <template>
   <a-card class="gallery-body h-100" :body-style="{ paddingTop: '0' }">
     <GalleryHead />
-    <div class="list" v-if="galleryData && galleryData.length > 0">
-      <div
-        class="image-item"
-        :bordered="false"
-        v-for="item in galleryData"
-        :key="item"
-        @click="selectItem(item)"
-        justify="center"
-      >
-        <div class="selected" v-if="currentGallery === getSysImage('wallpaper/' + item)">
-          <CheckOutlined />
+    <template v-if="galleryData && galleryData.length > 0">
+      <div class="list">
+        <div
+          class="source-item"
+          :bordered="false"
+          v-for="(item, key) in galleryData"
+          :key="item"
+          @click="selectItem(item)"
+          justify="center"
+        >
+          <div class="selected" v-if="currentGallery === getSysImage('wallpaper/' + item)">
+            <CheckOutlined />
+          </div>
+          <img
+            :src="getSysImage(`wallpaper/${item}`)"
+            v-if="galleryType === 'image'"
+            :alt="item"
+            height="80"
+          />
+          <video
+            muted
+            ref="videoRefs"
+            @mouseenter="mouseenter(key)"
+            @mouseleave="mouseleave(key)"
+            :src="item"
+            height="80"
+          ></video>
         </div>
-        <img :src="getSysImage(`wallpaper/${item}`)" :alt="item" height="80px" />
       </div>
-    </div>
+    </template>
+
     <a-empty v-else></a-empty>
   </a-card>
 </template>
 
 <script setup lang="ts">
 import { getSysImage } from '@/api/utils/image';
-import { currentGallery, galleryData, getGallery } from './data/data';
+import { currentGallery, galleryData, galleryType, getGallery } from './data/data';
 import GalleryHead from './GalleryHead.vue';
 
+const videoRefs = ref<HTMLVideoElement[]>();
 const selectItem = (item: string) => {
   currentGallery.value = getSysImage('wallpaper/' + item);
 };
-
+const mouseenter = (index: number) => {
+  if (videoRefs.value) {
+    videoRefs.value[index].play();
+  }
+};
+const mouseleave = (index: number) => {
+  if (videoRefs.value) {
+    videoRefs.value[index].pause();
+  }
+};
 getGallery();
 </script>
 
@@ -67,18 +93,24 @@ getGallery();
     z-index: 10;
   }
 
-  .image-item {
+  .source-item {
     position: relative;
     text-align: center;
     padding: 4px;
     width: 100%;
     overflow: hidden;
     height: 80px;
+    background-image: url('../assets/loading.png');
+    background-position: center;
+    background-size: 64px 64px;
+    background-repeat: no-repeat;
+    video,
     img {
       width: 100%;
       height: 100%;
       border-radius: var(--radius);
       overflow: hidden;
+      border: 1px solid #b4b4b473;
     }
   }
 }
