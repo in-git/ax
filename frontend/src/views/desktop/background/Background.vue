@@ -3,7 +3,7 @@
     class="app-background flex-1 flex flex-col"
     v-if="pageStore.$state.desktop.background.type === 'video'"
   >
-    <VideoBackground :src="pageStore.$state.desktop.background"></VideoBackground>
+    <VideoBackground :src="pageStore.$state.desktop.background.src"></VideoBackground>
   </div>
   <div v-else :style="style" class="app-background"></div>
 </template>
