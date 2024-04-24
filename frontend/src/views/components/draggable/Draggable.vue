@@ -140,6 +140,8 @@ const dragstop = () => {
   if (windowProps.value.y > maxHeight - 100) {
     windowProps.value.y = maxHeight - 100;
   }
+  windowProps.value.x = Math.round(windowProps.value.x!);
+  windowProps.value.y = Math.round(windowProps.value.y);
 };
 /* 用户拖拽结束后记录窗口大小，作为默认值 */
 const resizestop = (left: number, top: number, width: number, height: number) => {
@@ -159,6 +161,11 @@ $hh: 36px;
   border-radius: var(--radius);
   border: 1px solid #99999962;
   box-shadow: 0 0 16px 0 #6464643f;
+  &:active {
+    .drag-content * {
+      pointer-events: none;
+    }
+  }
 }
 
 .drag-header {
