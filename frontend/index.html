@@ -21,14 +21,31 @@
       position: fixed;
       top: 0;
       left: 0;
+      flex-direction: column;
+    }
+
+    .text-linear-gradient {
+      background-image: -webkit-linear-gradient(bottom left, #8064ff, #07a6f0, #9307f0);
+      -webkit-background-clip: text;
+      color: transparent;
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .system__subtitle {
+      font-size: 12px;
+      color: #999;
     }
   </style>
 </head>
 
 <body>
   <div id="app">
-    <div class="loading">loading...</div>
-
+    <div class="loading">
+      <div class="text-linear-gradient">AX 管理系统</div>
+      <div class="system__subtitle">正在加载...</div>
+    </div>
   </div>
   <script type="module" src="/src/main.ts"></script>
   <script>
