@@ -6,5 +6,4 @@ export const gotoUrl = (src: string) => {
   browserSrc.value = src;
   browserHistory.value.push(src);
   pointerIndex.value++;
-  console.clear();
 };

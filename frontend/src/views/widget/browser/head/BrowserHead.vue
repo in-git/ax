@@ -47,13 +47,21 @@ const inputRef = ref<HTMLInputElement>();
 const src = ref('');
 
 const enter = () => {
-  gotoUrl(src.value);
+  gotoUrl(addUrlPrefix(src.value));
 };
 
 const focus = () => {
   inputRef.value && inputRef.value.select();
 };
-
+const addUrlPrefix = (url: string): string => {
+  // 检查是否已经包含了 http:// 或 https:// 前缀
+  if (!url.startsWith('http://') && !url.startsWith('https://')) {
+    // 如果没有前缀，则添加 https:// 前缀
+    return 'https://' + url;
+  }
+  // 如果已经包含了前缀，则直接返回原始的网址
+  return url;
+};
 const update = () => {
   browserLoading.value = true;
   forceUpdate.value = nanoid();

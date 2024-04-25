@@ -10,7 +10,7 @@ const form: SystemWebsite = {
   description: '',
   type: '',
   updateTime: null,
-  logo: '',
+  icon: '',
 };
 
 export const websiteForm = ref<SystemWebsite>({

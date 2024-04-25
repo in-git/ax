@@ -61,15 +61,15 @@
         </a-form-item>
 
         <a-form-item label="网页LOGO" name="logo">
-          <a-input v-model:value="websiteForm.logo">
-            <template #addonBefore v-if="websiteForm.logo">
-              <img :src="websiteForm.logo" width="16" alt="" />
+          <a-input v-model:value="websiteForm.icon">
+            <template #addonBefore v-if="websiteForm.icon">
+              <img :src="websiteForm.icon" width="16" alt="" />
             </template>
             <template #addonAfter>
               <a-popover trigger="click">
                 <SmileOutlined />
                 <template #content>
-                  <IconSelector v-model="websiteForm.logo" />
+                  <IconSelector v-model="websiteForm.icon" />
                 </template>
               </a-popover>
             </template>

@@ -9,16 +9,18 @@
         @click="selectItem(item)"
         :class="{ active: websiteKeys.includes(item.websiteId) }"
       >
-        <img :src="`https://favicon.qqsuu.cn/${item.url}`" width="36" height="36" />
+        <img :src="item.icon || `https://favicon.qqsuu.cn/${item.url}`" width="36" height="36" />
         <a-flex class="flex-1" vertical :gap="2">
           <a-flex justify="space-between">
             <div class="site-title">
               {{ item.name }}
             </div>
             <div class="text-right">
-              <a-button target="_blank" :href="restoreDomain(item.url)" type="link" class="open">
-                打开
-              </a-button>
+              <a-tooltip title="外部浏览器打开">
+                <a-button target="_blank" :href="restoreDomain(item.url)" type="link" class="open">
+                  <LinkOutlined />
+                </a-button>
+              </a-tooltip>
             </div>
           </a-flex>
           <div class="system__subtitle">
@@ -56,11 +58,8 @@ function restoreDomain(domain: string, protocol: string = 'http'): string {
 }
 
 const selectItem = (item: SystemWebsite) => {
-  if (websiteKeys.value.includes(item.websiteId)) {
-    websiteKeys.value = websiteKeys.value.filter(e => e !== item.websiteId);
-  } else {
-    websiteKeys.value.push(item.websiteId);
-  }
+  websiteKeys.value = [];
+  websiteKeys.value.push(item.websiteId);
 };
 nextTick(() => {
   useSortable(cardRef, websiteCardData.value, {

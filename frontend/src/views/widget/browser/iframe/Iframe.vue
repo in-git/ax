@@ -14,7 +14,7 @@
       </div>
     </a-flex>
     <iframe
-      @load="browserLoading = !browserLoading"
+      @load="onLoad"
       v-show="!browserLoading"
       :src="browserSrc"
       ref="iframeRef"
@@ -27,6 +27,11 @@
 import { browserLoading, browserSrc, forceUpdate } from '../data/browser';
 
 const iframeRef = ref<HTMLIFrameElement>();
+
+const onLoad = () => {
+  browserLoading.value = !browserLoading.value;
+  console.clear();
+};
 </script>
 
 <style lang="scss" scoped>

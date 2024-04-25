@@ -57,7 +57,7 @@ const loading = ref(false);
 const active = ref<string>();
 
 defineProps<{
-  modelValue: string;
+  modelValue: string | null;
 }>();
 
 const getImages = async () => {

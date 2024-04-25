@@ -45,6 +45,6 @@ public class SysWebsite extends BaseEntity
 
     /** 网页LOGO */
     @Excel(name = "网页LOGO")
-    private String logo;
+    private String icon;
 
 }

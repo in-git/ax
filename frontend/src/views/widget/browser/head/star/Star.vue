@@ -1,5 +1,5 @@
 <template>
-  <a-popover trigger="click" placement="bottomRight">
+  <a-popover trigger="click" placement="bottomRight" v-model:open="visible">
     <div class="system__icon star relative" @click="getList">
       <StarOutlined />
     </div>
@@ -26,11 +26,14 @@
               <a-tooltip :title="item.name">
                 <li
                   class="flex flex-s"
-                  @dblclick="gotoUrl(item.url)"
+                  @dblclick="
+                    gotoUrl(item.url);
+                    visible = false;
+                  "
                   @click="selectItem(item.url)"
                   :class="{ active: currentSrc === item.url }"
                 >
-                  <img :src="getFavicon(item.url)" width="32" />
+                  <img :src="item.icon || getFavicon(item.url)" width="32" />
                 </li>
               </a-tooltip>
             </template>
@@ -53,6 +56,7 @@ const currentSrc = ref<string>('');
 
 const list = ref<SystemWebsite[]>([]);
 
+const visible = ref(false);
 const query = ref<IQuery>({
   pageNum: 1,
   pageSize: 20,
