@@ -6,6 +6,8 @@
         v-for="item in websiteTable.data"
         :key="item.websiteId"
         @dblclick="openLink(item.url)"
+        @click="selectItem(item)"
+        :class="{ active: websiteKeys.includes(item.websiteId) }"
       >
         <img :src="`https://favicon.qqsuu.cn/${item.url}`" width="36" height="36" />
         <a-flex class="flex-1" vertical :gap="2">
@@ -31,10 +33,11 @@
 </template>
 
 <script setup lang="ts">
+import type { SystemWebsite } from '@/api/modules/system/website/types';
 import { openLink } from '@/utils/common/utils';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import { websiteCardData } from '../../data/card';
-import { websiteTable } from '../../data/table';
+import { websiteKeys, websiteTable } from '../../data/table';
 
 const cardRef = ref();
 
@@ -52,6 +55,13 @@ function restoreDomain(domain: string, protocol: string = 'http'): string {
   return `${protocol}://${domain}/`;
 }
 
+const selectItem = (item: SystemWebsite) => {
+  if (websiteKeys.value.includes(item.websiteId)) {
+    websiteKeys.value = websiteKeys.value.filter(e => e !== item.websiteId);
+  } else {
+    websiteKeys.value.push(item.websiteId);
+  }
+};
 nextTick(() => {
   useSortable(cardRef, websiteCardData.value, {
     animation: 200,
@@ -73,6 +83,7 @@ nextTick(() => {
     column-gap: 8px;
     height: 80px;
     cursor: pointer;
+    border: 1px solid transparent;
     max-width: 220px;
     &:hover {
       color: black;
@@ -85,6 +96,9 @@ nextTick(() => {
       border: 1px solid #ddd;
       padding: 2px;
     }
+  }
+  li.active {
+    border: 1px solid var(--primary);
   }
   .site-title {
     white-space: nowrap;

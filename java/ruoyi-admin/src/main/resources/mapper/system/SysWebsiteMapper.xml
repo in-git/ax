@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectSysWebsiteVo">
-        select website_id, name, url, create_time, description, type, update_time, user_id, dept_id from sys_website sys_website
+        select website_id, name, url, create_time, description, type, update_time,icon, user_id, dept_id from sys_website sys_website
     </sql>
 
     <select id="selectSysWebsiteList" parameterType="SysWebsite" resultMap="SysWebsiteResult">
@@ -48,11 +48,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="type != null">type,</if>
             <if test="updateTime != null">update_time,</if>
             <if test="userId != null">user_id,</if>
+            <if test="icon != null">icon,</if>
             <if test="deptId != null">dept_id,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="name != null">#{name},</if>
             <if test="url != null">#{url},</if>
+            <if test="icon != null">#{icon},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="description != null">#{description},</if>
             <if test="type != null">#{type},</if>
@@ -67,6 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="SET" suffixOverrides=",">
             <if test="name != null">name = #{name},</if>
             <if test="url != null">url = #{url},</if>
+            <if test="icon != null">url = #{icon},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="description != null">description = #{description},</if>
             <if test="type != null">type = #{type},</if>

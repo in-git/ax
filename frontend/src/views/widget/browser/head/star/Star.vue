@@ -6,11 +6,16 @@
     <template #content>
       <a-card style="width: 500px" title="网页收藏夹">
         <template #extra>
-          <a-pagination></a-pagination>
+          <a-pagination
+            :current="query.pageNum"
+            :pageSize="query.pageSize"
+            :total="query.total"
+            @change="pageChange"
+          ></a-pagination>
         </template>
         <a-flex :gap="8">
           <a-segmented
-            @change="getList"
+            @change="changeType"
             v-model:value="query.type"
             :options="typeOptions"
           ></a-segmented>
@@ -45,6 +50,7 @@ import { typeOptions, typeOptionsFetch } from '@/views/modules/system/website/da
 import { gotoUrl } from '../../data/browser.methods';
 
 const currentSrc = ref<string>('');
+
 const list = ref<SystemWebsite[]>([]);
 
 const query = ref<IQuery>({
@@ -54,8 +60,22 @@ const query = ref<IQuery>({
   type: 'image',
 });
 
+const pageChange = (pageNum: number, pageSize: number) => {
+  query.value.pageNum = pageNum;
+  query.value.pageSize = pageSize;
+  getList();
+};
+onMounted(async () => {
+  if (!typeOptions.value) {
+    await typeOptionsFetch();
+  }
+});
+
+const changeType = () => {
+  query.value.pageNum = 1;
+  getList();
+};
 const getList = async () => {
-  await typeOptionsFetch();
   const { data } = await fetchWebsiteList(query.value);
   if (data.rows) {
     list.value = data.rows;

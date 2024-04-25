@@ -42,4 +42,9 @@ public class SysWebsite extends BaseEntity
     @Excel(name = "部门ID")
     private Long deptId;
 
+
+    /** 网页LOGO */
+    @Excel(name = "网页LOGO")
+    private String logo;
+
 }

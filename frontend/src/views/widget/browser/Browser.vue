@@ -9,13 +9,15 @@
 import { browserSrc } from './data/browser';
 import BrowserHead from './head/BrowserHead.vue';
 import IFrameVue from './iframe/Iframe.vue';
-const props = defineProps<{ src?: string }>();
+const props = defineProps<{ src?: string; html?: string }>();
 
 watch(
   props,
   () => {
     if (props.src) {
       browserSrc.value = props.src;
+    } else if (props.html) {
+      /* 处理传入的html */
     }
   },
   {

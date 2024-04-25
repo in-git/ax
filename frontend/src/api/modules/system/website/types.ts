@@ -5,6 +5,7 @@ export interface SystemWebsite {
   createTime: any;
   description: string;
   type: string;
+  logo: string;
   updateTime: any;
   userId?: number;
   deptId?: number;

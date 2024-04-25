@@ -60,6 +60,22 @@
           ></a-select>
         </a-form-item>
 
+        <a-form-item label="网页LOGO" name="logo">
+          <a-input v-model:value="websiteForm.logo">
+            <template #addonBefore v-if="websiteForm.logo">
+              <img :src="websiteForm.logo" width="16" alt="" />
+            </template>
+            <template #addonAfter>
+              <a-popover trigger="click">
+                <SmileOutlined />
+                <template #content>
+                  <IconSelector v-model="websiteForm.logo" />
+                </template>
+              </a-popover>
+            </template>
+          </a-input>
+        </a-form-item>
+
         <template #extra>
           <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
         </template>
@@ -73,6 +89,8 @@ import { cancelAllRequest } from '@/api/config/interceptor';
 import { createWebsite, getSiteInfo, updateWebsite } from '@/api/modules/system/website/website';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { response } from '@/utils/table/table';
+import IconSelector from '@/views/selector/icon/IconSelector.vue';
+import { SmileOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
 import { websiteList } from '../../data/curd';
 import { websiteForm, websiteRules, websiteShowForm } from '../../data/form';
