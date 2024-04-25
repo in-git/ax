@@ -55,7 +55,7 @@ export const enter = async () => {
     const store = useUserStore();
 
     loginLoading.value = false;
-    message.success('操作成功');
+    message.success('登陆成功');
     const index = store.$state.history.findIndex(e => {
       return e.username === loginForm.value.username && loginForm.value.password === e.password;
     });

@@ -66,10 +66,10 @@
               <img :src="websiteForm.icon" width="16" alt="" />
             </template>
             <template #addonAfter>
-              <a-popover trigger="click">
+              <a-popover trigger="click" v-model:open="visible">
                 <SmileOutlined />
                 <template #content>
-                  <IconSelector v-model="websiteForm.icon" />
+                  <IconSelector v-model="websiteForm.icon" @update:model-value="visible = false" />
                 </template>
               </a-popover>
             </template>
@@ -98,6 +98,7 @@ import { typeOptions } from '../../data/options';
 
 const loading = ref(false);
 
+const visible = ref(false);
 /* 获取精确域名 */
 const extractDomain = (url: string): string => {
   try {

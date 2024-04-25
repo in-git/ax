@@ -1,5 +1,5 @@
 <template>
-  <a-card class="table__card">
+  <a-card class="table__card" :loading="websiteTable.loading">
     <ul class="table_card_list flex-1" ref="cardRef" v-show="websiteTable.data.length > 0">
       <li
         :draggable="true"

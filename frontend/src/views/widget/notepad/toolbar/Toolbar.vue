@@ -1,11 +1,11 @@
 <template>
-  <a-card class="flex toolbar gc-4">
-    <div class="flex align-center">
+  <a-card>
+    <a-flex :align="'center'">
       <FileVue />
       <List />
       <Tool />
       <slot></slot>
-    </div>
+    </a-flex>
   </a-card>
 </template>
 
@@ -19,8 +19,8 @@ import Tool from './tool/Tool.vue';
 .toolbar {
   justify-content: space-between;
   align-items: center;
-  :deep(.ant-card-body) {
-    padding: 0;
-  }
+}
+:deep(.ant-card-body) {
+  padding: 0;
 }
 </style>
