@@ -10,7 +10,10 @@
         v-show="browserLoading"
       >
         <div class="text-linear-gradient text-16">AX 管理系统</div>
-        <div class="system__subtitle">正在加载...</div>
+        <div class="system__subtitle">
+          正在加载
+          <LoadingOutlined spin class="ml-2" />
+        </div>
       </a-flex>
       <iframe
         @load="browserLoading = !browserLoading"
