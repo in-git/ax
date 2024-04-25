@@ -1,0 +1,27 @@
+.star {
+	width: 28px;
+	height: 28px;
+}
+:deep(.ant-list-item) {
+	padding: 0px;
+}
+:deep(.ant-card) {
+	box-shadow: none;
+}
+ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	li {
+		width: 42px;
+		height: 42px;
+		border: 1px solid transparent;
+		border-radius: var(--radius);
+		img {
+			border-radius: var(--radius);
+		}
+	}
+	li.active {
+		border: 1px solid var(--primary);
+	}
+}

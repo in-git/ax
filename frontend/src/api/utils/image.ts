@@ -4,3 +4,6 @@ import { resourceUrl } from './host';
 export const getSysImage = (path: string) => {
   return `${resourceUrl}/${path}`;
 };
+export const getFavicon = (src: string) => {
+  return `https://favicon.qqsuu.cn/${src}`;
+};

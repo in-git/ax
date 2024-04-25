@@ -6,6 +6,9 @@ import { nanoid } from 'nanoid';
 import { getProfile } from '../toolbar/profile/data';
 
 export const captchaImage = ref();
+type Mode = 'login' | 'register';
+export const loginLoading = ref<boolean>(false);
+export const loginMode = ref<Mode>('login');
 
 let formObject = {
   username: '',
@@ -24,11 +27,6 @@ export const getCaptcha = async () => {
   loginForm.value.uuid = data.uuid;
 };
 
-export const loginLoading = ref<boolean>(false);
-
-type Mode = 'login' | 'register';
-export const loginMode = ref<Mode>('login');
-
 export const changeMode = (mode: Mode) => {
   if (mode === 'register') {
     loginForm.value = {
@@ -43,6 +41,7 @@ const onError = () => {
   loginForm.value.code = '';
   getCaptcha();
 };
+
 /* 登录 */
 export const enter = async () => {
   try {
@@ -87,6 +86,7 @@ export const finish = async () => {
   message.success(data.msg);
   changeMode('login');
 };
+
 export const loginRules: Record<string, Rule[]> = {
   password: [
     {
