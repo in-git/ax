@@ -1,4 +1,4 @@
-import { getSysImage } from '@/api/utils/image';
+import { getGiteeImage } from '@/api/utils/image';
 import aiPng from '@/assets/apps/gpt.png';
 import { openWindow } from '@/global/config/window';
 import AI from '@/views/widget/ai/AI.vue';
@@ -29,7 +29,7 @@ export const plugins: Plugin[] = [
   {
     title: '记事本',
     id: 'notepad',
-    icon: getSysImage('image-icon/notepad.png'),
+    icon: getGiteeImage('image-icon/notepad.png'),
     action(item: Plugin) {
       openWindow({
         component: markRaw(Notepad),
@@ -41,7 +41,7 @@ export const plugins: Plugin[] = [
   {
     title: '帮助',
     id: 'help',
-    icon: getSysImage('image-icon/help.png'),
+    icon: getGiteeImage('image-icon/help.png'),
     action(item: Plugin) {
       openWindow({
         component: markRaw(Help),
@@ -53,7 +53,7 @@ export const plugins: Plugin[] = [
   {
     title: '浏览器',
     id: 'browser',
-    icon: getSysImage('image-icon/edge.png'),
+    icon: getGiteeImage('image-icon/edge.png'),
     action(item: Plugin) {
       openWindow({
         component: markRaw(Browser),

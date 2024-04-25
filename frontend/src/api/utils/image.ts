@@ -1,7 +1,7 @@
 import { resourceUrl } from './host';
 
 /* 根据类型获取系统图标 */
-export const getSysImage = (path: string) => {
+export const getGiteeImage = (path: string) => {
   return `${resourceUrl}/${path}`;
 };
 export const getFavicon = (src: string) => {

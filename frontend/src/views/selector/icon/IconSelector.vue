@@ -21,7 +21,7 @@
         @click="selectItem(item)"
         :class="{ active: item === active }"
       >
-        <img :src="getStaticHost(`${currentType}/${item}`)" :alt="item" width="32" />
+        <img :src="getGiteeImage(`${currentType}/${item}`)" :alt="item" width="32" />
       </li>
     </ul>
     <div class="text-right">
@@ -32,14 +32,15 @@
 
 <script setup lang="ts">
 import { getSystemImages } from '@/api/utils/file';
-import { getStaticHost } from '@/store/system/utils';
+import { getGiteeImage } from '@/api/utils/image';
 import type { IconType } from '@/types/system';
-// 'image-icon', 'logos'
-
 interface TypeList {
   label: string;
   value: IconType;
 }
+
+const loading = ref(false);
+const active = ref<string>();
 
 const typeList = ref<TypeList[]>([
   {
@@ -52,9 +53,6 @@ const currentType = ref<IconType>('image-icon');
 const icons = ref<string[]>([]);
 
 const emit = defineEmits(['update:modelValue']);
-
-const loading = ref(false);
-const active = ref<string>();
 
 defineProps<{
   modelValue: string | null;
@@ -70,15 +68,11 @@ const getImages = async () => {
 };
 
 const confirm = () => {
-  emit('update:modelValue', getStaticHost(`${currentType.value}/${active.value}`));
+  emit('update:modelValue', getGiteeImage(`${currentType.value}/${active.value}`));
 };
 onMounted(async () => {
   getImages();
 });
-
-const selectType = () => {
-  getImages();
-};
 
 const selectItem = (iconPath: string) => {
   active.value = iconPath;

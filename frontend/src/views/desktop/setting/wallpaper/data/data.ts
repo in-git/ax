@@ -1,6 +1,6 @@
 import type { IQuery } from '@/api/config/types';
 import { getSystemImages } from '@/api/utils/file';
-import { getSysImage } from '@/api/utils/image';
+import { getGiteeImage } from '@/api/utils/image';
 import type { IconType } from '@/types/system';
 import videoUrl from './video.url';
 
@@ -24,7 +24,7 @@ export const getGallery = async () => {
   if (data.data) {
     galleryData.value =
       data.data.map(e => {
-        e = getSysImage('wallpaper/' + e);
+        e = getGiteeImage('wallpaper/' + e);
         return e;
       }) || [];
     galleryQuery.value.total = data.data?.length;

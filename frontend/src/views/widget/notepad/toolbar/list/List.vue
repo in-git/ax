@@ -58,16 +58,19 @@ const changeType = () => {
   query.value.type = memoType.value;
   getNotepad();
 };
+
 const getNotepad = async () => {
   const { data } = await fetchMemoList(query.value);
   notepadList.value = data.rows;
   query.value.total = data.total;
 };
+
 const onChange = (num: number, pageSize: number) => {
   query.value.pageNum = num;
   query.value.pageSize = pageSize;
   getNotepad();
 };
+
 const selectNotepad = (info: SystemMemo) => {
   setData(notepadId, info.value);
 };

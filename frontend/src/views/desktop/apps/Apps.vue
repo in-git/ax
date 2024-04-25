@@ -53,6 +53,7 @@ onMounted(async () => {
     }
     return e;
   });
+
   nextTick(() => {
     useSortable(appRef, menuList, {
       animation: 200,
@@ -66,7 +67,7 @@ const select = (item: Routers) => {
 const pageStore = usePageStore();
 const style = computed(() => {
   return {
-    backdropFilter: ` blur(${pageStore.$state.desktop.background.blur}px)`,
+    backdropFilter: `blur(${pageStore.$state.desktop.background.blur}px)`,
   };
 });
 </script>

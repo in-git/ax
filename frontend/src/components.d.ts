@@ -100,6 +100,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Selection: typeof import('./components/selection/Selection.vue')['default']
+    SmileOutlined: typeof import('@ant-design/icons-vue')['SmileOutlined']
     StarOutlined: typeof import('@ant-design/icons-vue')['StarOutlined']
     SysModal: typeof import('./components/modal/SysModal.vue')['default']
     Table: typeof import('./components/template/table/table.vue')['default']

@@ -70,7 +70,6 @@ ul.list {
 .footer {
   position: sticky;
   bottom: 0;
-  background: white;
   width: 100%;
   z-index: 100;
   padding: 8px 12px;

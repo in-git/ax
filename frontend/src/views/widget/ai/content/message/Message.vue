@@ -5,7 +5,7 @@
         <div class="message-item flex gc-4" :class="[item.role]">
           <div class="avatar flex flex-s">
             <img
-              :src="isSystem(item.role) ? logoPng : getSysImage('image-icon/user.png')"
+              :src="isSystem(item.role) ? logoPng : getGiteeImage('image-icon/user.png')"
               class="w-100 h-100"
             />
           </div>
@@ -44,7 +44,7 @@
 <script setup lang="ts">
 import logoPng from '@/assets/logo.png';
 
-import { getSysImage } from '@/api/utils/image';
+import { getGiteeImage } from '@/api/utils/image';
 import { MdPreview } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
 import { conversation } from '../../sidebar/sidebar';

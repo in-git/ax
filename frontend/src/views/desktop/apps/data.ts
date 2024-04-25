@@ -1,6 +1,6 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import { getRouters } from '@/api/modules/system/user/user';
-import { getSysImage } from '@/api/utils/image';
+import { getGiteeImage } from '@/api/utils/image';
 import logo from '@/assets/logo.png';
 import { openWindow, setCurrentWindow } from '@/global/config/window';
 import { systemComponents } from '@/initialization';
@@ -25,16 +25,16 @@ export const getUserRouters = async () => {
 export const getIconByName = (item: Routers) => {
   let image = '';
 
-  if (item.meta.icon.includes('image-icon')) {
-    return getSysImage(item.meta.icon);
+  if (item.meta.icon.startsWith('http')) {
+    return item.meta.icon;
   } else if (item.meta.link) {
-    return getSysImage('image-icon/edge.png');
+    return getGiteeImage('image-icon/edge.png');
   }
   if (item.name) {
-    image = getSysImage(`image-icon/${item.name.toLocaleLowerCase()}.png`);
+    image = getGiteeImage(`image-icon/${item.name.toLocaleLowerCase()}.png`);
   }
   if (item.children) {
-    return getSysImage('image-icon/folder.png');
+    return getGiteeImage('image-icon/folder.png');
   } else if (!image.includes('undefined')) {
     return image;
   }

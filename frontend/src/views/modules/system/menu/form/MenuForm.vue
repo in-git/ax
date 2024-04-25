@@ -22,19 +22,23 @@
             </a-form-item>
 
             <a-form-item label="图标" name="icon">
-              <a-popover trigger="click" placement="leftBottom" v-model:open="visible">
-                <a-tooltip title="选择图标">
-                  <span class="cursor-pointer">
-                    <img v-if="menuForm.icon.startsWith('http')" :src="menuForm.icon" width="32" />
-                    <a-input allow-clear v-model:value="menuForm.icon" v-else></a-input>
-                  </span>
-                </a-tooltip>
-                <template #content>
-                  <div>
-                    <IconSelector @update:model-value="visible = false" v-model="menuForm.icon" />
-                  </div>
+              <a-input allow-clear v-model:value="menuForm.icon">
+                <template #addonAfter>
+                  <a-popover trigger="click" placement="bottom" v-model:open="visible">
+                    <span class="cursor-pointer">
+                      <SmileOutlined />
+                    </span>
+                    <template #content>
+                      <div>
+                        <IconSelector
+                          @update:model-value="visible = false"
+                          v-model="menuForm.icon"
+                        />
+                      </div>
+                    </template>
+                  </a-popover>
                 </template>
-              </a-popover>
+              </a-input>
             </a-form-item>
 
             <a-form-item label="选择父级菜单" name="parentId" required>
@@ -87,6 +91,7 @@ import { createMenu, updateMenu } from '@/api/modules/system/menu/menu';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { statusOptions, visibleOptions } from '@/global/options/system';
 import IconSelector from '@/views/selector/icon/IconSelector.vue';
+import type { SmileOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
 import { loadMenuData } from '../data/curd';
 import { listMenu, menuTableConfig } from '../data/data';

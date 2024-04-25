@@ -31,7 +31,7 @@
                 <img :src="getIconByName(item) || logoPng" :draggable="false" />
               </div>
               <div v-else>
-                <img :src="getSysImage('image-icon/edge.png')" :draggable="false" />
+                <img :src="getGiteeImage('image-icon/edge.png')" :draggable="false" />
               </div>
             </a-flex>
             <a-flex justify="space-between" :align="'center'" class="flex-1 info">
@@ -50,7 +50,7 @@
 
 <script setup lang="ts">
 import type { Routers } from '@/api/modules/system/user/types';
-import { getSysImage } from '@/api/utils/image';
+import { getGiteeImage } from '@/api/utils/image';
 import logoPng from '@/assets/logo.png';
 import { getIconByName, openApp } from '@/views/desktop/apps/data';
 
