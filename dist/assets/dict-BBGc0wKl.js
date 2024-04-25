@@ -1,1 +1,0 @@
-import{a as e}from"./index-BKuZjElQ.js";const c=t=>e.get("system/dict/type/list",{params:t}),i=t=>e.delete(`system/dict/type/${t.join(",")}`),o=t=>e.get(`system/dict/type/${t}`),r=t=>e.put("system/dict/type",t),n=t=>e.post("system/dict/type",t),p=()=>e.get("system/dict/type/optionselect");export{n as c,i as d,c as l,p as o,o as s,r as u};

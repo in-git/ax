@@ -62,15 +62,18 @@
 		}
 	}
 }
+
 .msg-item {
 	max-width: 60%;
 	position: relative;
 }
+
 .actions {
 	opacity: 0;
 	width: fit-content;
 	left: 0;
 }
+
 .system__icon {
 	&:hover {
 		background: #ddd;

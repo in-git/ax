@@ -1,1 +1,0 @@
-import{_ as o,o as s,c,a as n,b as t}from"./index-HxNFWFwR.js";const _={},a={class:"system-module flex flex-s"};function r(d,i){const e=t;return s(),c("div",a,[n(e,{description:"开发中..."})])}const m=o(_,[["render",r]]);export{m as default};

@@ -15,7 +15,7 @@ export default defineConfig(() => {
   const lifecycle = process.env.npm_lifecycle_event;
 
   return {
-    base: '/ax/',
+    base: '/ax-view/',
     plugins: [
       vue(),
       viteMockServe({
