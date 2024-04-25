@@ -59,7 +59,7 @@ const use = (item: UserHistory) => {
 };
 const delHistory = (item: UserHistory) => {
   store.$state.history = store.$state.history.filter(e => {
-    return e.password !== item.password && item.username !== e.username;
+    return e.id !== item.id;
   });
 };
 </script>

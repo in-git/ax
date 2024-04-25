@@ -10,6 +10,12 @@
           v-model:value="galleryType"
           :options="typeOptions"
         ></a-radio-group>
+        <a-button @click="upload">
+          <template #icon>
+            <UploadOutlined />
+          </template>
+          上传
+        </a-button>
       </div>
       <div class="flex gc-4">
         <a-button size="small" @click="getGallery" :loading="galleryLoading">刷新</a-button>
@@ -21,6 +27,9 @@
 
 <script setup lang="ts">
 import { setBackground } from '@/store/page/utils';
+import { toBase64 } from '@/utils/file/file';
+import { UploadOutlined } from '@ant-design/icons-vue';
+import { useFileDialog } from '@vueuse/core';
 import {
   changeGalleryType,
   currentGallery,
@@ -29,9 +38,11 @@ import {
   getGallery,
 } from './data/data';
 
+const { files, open, onChange } = useFileDialog({
+  accept: 'image/*',
+  directory: false,
+});
 const use = () => {
-  console.log(currentGallery.value);
-
   if (currentGallery.value) {
     setBackground(currentGallery.value, galleryType.value);
   }
@@ -47,6 +58,19 @@ const typeOptions = [
     value: 'video',
   },
 ];
+
+const upload = async () => {
+  open();
+};
+
+onChange(async () => {
+  if (!files.value) return;
+  const file = files.value[0];
+  const image = await toBase64(file);
+
+  setBackground(image, 'image');
+  console.log(files.value);
+});
 </script>
 
 <style lang="scss" scoped>

@@ -2,6 +2,7 @@ import { captcha, login, register } from '@/api/modules/system/user/user';
 import useUserStore from '@/store/user';
 import { message } from 'ant-design-vue';
 import type { Rule } from 'ant-design-vue/es/form';
+import { nanoid } from 'nanoid';
 import { getProfile } from '../toolbar/profile/data';
 
 export const captchaImage = ref();
@@ -64,6 +65,7 @@ export const enter = async () => {
       store.$state.history.push({
         username: loginForm.value.username,
         password: loginForm.value.password,
+        id: nanoid(),
       });
     }
     await getProfile();
