@@ -1,5 +1,16 @@
 <template>
   <div class="browser-head">
+    <a-tabs>
+      <a-tab-pane key="1" tab="标签1"></a-tab-pane>
+      <a-tab-pane key="2">
+        <template #tab>
+          <div class="flex">
+            <div>标签3</div>
+            <CloseOutlined class="close-icon" />
+          </div>
+        </template>
+      </a-tab-pane>
+    </a-tabs>
     <a-flex :gap="8">
       <div class="system__icon" @click="goBack">
         <LeftOutlined />
@@ -90,5 +101,14 @@ input {
   border-radius: 24px;
   width: 100%;
   height: 100%;
+}
+.browser-head {
+  margin-bottom: 8px;
+}
+.close-icon {
+  opacity: 0;
+  &:hover {
+    opacity: 1;
+  }
 }
 </style>

@@ -17,8 +17,6 @@ const props = defineProps<Props>();
 watch(
   props,
   () => {
-    console.log('run', props);
-
     if (props.data?.src) {
       gotoUrl(props.data?.src);
     } else if (props.data?.html) {
@@ -38,7 +36,6 @@ watch(
   padding: 4px 8px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 .disable {
   pointer-events: none;

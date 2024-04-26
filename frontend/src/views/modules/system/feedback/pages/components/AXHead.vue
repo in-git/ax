@@ -38,7 +38,7 @@
           </div>
 
           <div v-perm="'system:feedback:edit'">
-            <a-tooltip title="编辑(双击)">
+            <a-tooltip title="编辑">
               <a-button type="link" @click="feedbackEdit()" :disabled="feedbackKeys.length !== 1">
                 <EditOutlined />
               </a-button>
