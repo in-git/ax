@@ -88,6 +88,7 @@
 import { cancelAllRequest } from '@/api/config/interceptor';
 import { createWebsite, getSiteInfo, updateWebsite } from '@/api/modules/system/website/website';
 import SystemModal from '@/components/modal/SysModal.vue';
+import { extractDomain } from '@/utils/common/format';
 import { response } from '@/utils/table/table';
 import IconSelector from '@/views/selector/icon/IconSelector.vue';
 import { SmileOutlined } from '@ant-design/icons-vue';
@@ -99,20 +100,6 @@ import { typeOptions } from '../../data/options';
 const loading = ref(false);
 
 const visible = ref(false);
-/* 获取精确域名 */
-const extractDomain = (url: string): string => {
-  try {
-    const domain = new URL(url).hostname;
-    const parts = domain.split('.');
-    if (parts.length > 2) {
-      return parts.slice(-2).join('.');
-    }
-    return domain;
-  } catch (error) {
-    console.error('Invalid URL:', error);
-    return '';
-  }
-};
 
 const search = async () => {
   message.success('正在搜索，如果是国外网页，速度可能非常慢');

@@ -14,10 +14,10 @@
     </a-tabs>
 
     <a-flex :gap="8">
-      <div class="system__icon" @click="goBack">
+      <div class="system__icon">
         <LeftOutlined />
       </div>
-      <div class="system__icon" @click="goAhead">
+      <div class="system__icon">
         <RightOutlined />
       </div>
       <div class="system__icon" @click="update">
@@ -49,35 +49,20 @@
 </template>
 
 <script setup lang="ts">
-import { getSiteInfo } from '@/api/modules/system/website/website';
 import { EllipsisOutlined, InboxOutlined, RightOutlined } from '@ant-design/icons-vue';
 import { useCloned } from '@vueuse/core';
 import { nanoid } from 'nanoid';
 import { browserLoading, currentBrowserTab, forceUpdate, homePage } from '../data/browser';
-import { createBrowserTab, gotoUrl } from '../data/browser.methods';
-import { activeTab, browserTabs, goAhead, goBack, removeById } from '../data/browser.tabs';
+import { createBrowserTab, enterUrl } from '../data/browser.methods';
+import { activeTab, browserTabs, removeById } from '../data/browser.tabs';
 import StarVue from './star/Star.vue';
-
-const addUrlPrefix = (url: string): string => {
-  if (!url.startsWith('http://') && !url.startsWith('https://')) {
-    return 'https://' + url;
-  }
-  return url;
-};
 
 const inputRef = ref<HTMLInputElement>();
 
 const src = ref('');
 
 const enter = async () => {
-  const { data } = await getSiteInfo(src.value);
-  if (data.data) {
-    gotoUrl({
-      title: data.data.title || '无标题',
-      id: nanoid(),
-      url: addUrlPrefix(src.value),
-    });
-  }
+  enterUrl(src.value);
 };
 const editTab = (v: any, action: 'add' | 'remove') => {
   if (action === 'add') {
@@ -97,14 +82,15 @@ const onChange = (v: any) => {
 };
 const update = () => {
   browserLoading.value = true;
-  forceUpdate.value = nanoid();
+  forceUpdate();
   console.clear();
 };
 const gotoHome = () => {
-  currentBrowserTab.value = homePage.value;
+  currentBrowserTab.value = useCloned(homePage.value).cloned.value;
 };
 watch(currentBrowserTab, () => (src.value = currentBrowserTab.value.url), {
   immediate: true,
+  deep: true,
 });
 </script>
 

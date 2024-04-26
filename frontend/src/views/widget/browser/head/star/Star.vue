@@ -4,7 +4,7 @@
       <StarOutlined />
     </div>
     <template #content>
-      <a-card style="width: 500px" title="网页收藏夹">
+      <a-card style="width: 400px" title="网页收藏夹">
         <template #extra>
           <a-pagination
             :current="query.pageNum"
@@ -26,10 +26,7 @@
               <a-tooltip :title="item.name">
                 <li
                   class="flex flex-s"
-                  @dblclick="
-                    gotoUrl(item.url, item.name);
-                    visible = false;
-                  "
+                  @dblclick="openLink(item)"
                   @click="selectItem(item.url)"
                   :class="{ active: currentSrc === item.url }"
                 >
@@ -50,7 +47,7 @@ import type { SystemWebsite } from '@/api/modules/system/website/types';
 import { fetchWebsiteList } from '@/api/modules/system/website/website';
 import { getFavicon } from '@/api/utils/image';
 import { typeOptions, typeOptionsFetch } from '@/views/modules/system/website/data/options';
-import { gotoUrl } from '../../data/browser.methods';
+import { enterUrl } from '../../data/browser.methods';
 
 const currentSrc = ref<string>('');
 
@@ -74,7 +71,11 @@ onMounted(async () => {
     await typeOptionsFetch();
   }
 });
-
+const openLink = (item: SystemWebsite) => {
+  //
+  enterUrl(item.url, item.name);
+  visible.value = false;
+};
 const changeType = () => {
   query.value.pageNum = 1;
   getList();

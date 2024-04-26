@@ -18,18 +18,18 @@
       v-show="!browserLoading"
       :src="currentBrowserTab.url"
       ref="iframeRef"
-      :key="currentBrowserTab + forceUpdate"
+      :key="updateBrowserFlag"
     ></iframe>
   </div>
 </template>
 
 <script setup lang="ts">
-import { browserLoading, currentBrowserTab, forceUpdate } from '../data/browser';
+import { browserLoading, currentBrowserTab, updateBrowserFlag } from '../data/browser';
 
 const iframeRef = ref<HTMLIFrameElement>();
 
 const onLoad = () => {
-  browserLoading.value = !browserLoading.value;
+  browserLoading.value = false;
   // console.clear();
 };
 </script>

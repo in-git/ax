@@ -6,10 +6,10 @@
 </template>
 
 <script setup lang="ts">
-import { nanoid } from 'nanoid';
-import { createBrowserTab } from './data/browser.methods';
+import { enterUrl } from './data/browser.methods';
 import BrowserHead from './head/BrowserHead.vue';
 import IFrameVue from './iframe/Iframe.vue';
+
 type Props = {
   data?: { src?: string; html?: string; title?: string };
 };
@@ -19,11 +19,7 @@ watch(
   props,
   () => {
     if (props.data && props.data.src) {
-      createBrowserTab({
-        title: props.data.title || '无标题',
-        id: nanoid(),
-        url: props.data.src,
-      });
+      enterUrl(props.data.src, props.data.title);
     } else if (props.data?.html) {
       /* 处理传入的html */
     }
