@@ -27,7 +27,7 @@
                 <li
                   class="flex flex-s"
                   @dblclick="
-                    gotoUrl(item.url);
+                    gotoUrl(item.url, item.name);
                     visible = false;
                   "
                   @click="selectItem(item.url)"

@@ -16,15 +16,15 @@
     <iframe
       @load="onLoad"
       v-show="!browserLoading"
-      :src="browserSrc"
+      :src="currentBrowserTab.url"
       ref="iframeRef"
-      :key="browserSrc + forceUpdate"
+      :key="currentBrowserTab + forceUpdate"
     ></iframe>
   </div>
 </template>
 
 <script setup lang="ts">
-import { browserLoading, browserSrc, forceUpdate } from '../data/browser';
+import { browserLoading, currentBrowserTab, forceUpdate } from '../data/browser';
 
 const iframeRef = ref<HTMLIFrameElement>();
 

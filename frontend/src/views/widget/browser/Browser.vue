@@ -6,19 +6,24 @@
 </template>
 
 <script setup lang="ts">
-import { gotoUrl } from './data/browser.methods';
+import { nanoid } from 'nanoid';
+import { createBrowserTab } from './data/browser.methods';
 import BrowserHead from './head/BrowserHead.vue';
 import IFrameVue from './iframe/Iframe.vue';
 type Props = {
-  data: { src?: string; html?: string };
+  data?: { src?: string; html?: string; title?: string };
 };
 const props = defineProps<Props>();
 
 watch(
   props,
   () => {
-    if (props.data?.src) {
-      gotoUrl(props.data?.src);
+    if (props.data && props.data.src) {
+      createBrowserTab({
+        title: props.data.title || '无标题',
+        id: nanoid(),
+        url: props.data.src,
+      });
     } else if (props.data?.html) {
       /* 处理传入的html */
     }
@@ -36,6 +41,7 @@ watch(
   padding: 4px 8px;
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 .disable {
   pointer-events: none;
