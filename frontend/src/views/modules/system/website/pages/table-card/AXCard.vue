@@ -104,7 +104,6 @@ nextTick(() => {
     display: flex;
     padding: 8px;
     column-gap: 8px;
-    height: fit-content;
     cursor: pointer;
     border: 1px solid transparent;
     max-width: 220px;
@@ -136,7 +135,7 @@ nextTick(() => {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 90px;
+    max-width: 80px;
   }
   .system__subtitle {
     display: -webkit-box;

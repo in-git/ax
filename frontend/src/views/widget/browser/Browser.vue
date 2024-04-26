@@ -17,7 +17,7 @@ const props = defineProps<Props>();
 watch(
   props,
   () => {
-    console.log(props);
+    console.log('run', props);
 
     if (props.data?.src) {
       gotoUrl(props.data?.src);

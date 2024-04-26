@@ -96,3 +96,7 @@ export const minWindow = () => {
     }
   });
 };
+
+export const windowIsExist = (id: string) => {
+  return windowList.value.findIndex(e => e.id === id) > -1;
+};
