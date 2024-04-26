@@ -30,7 +30,7 @@ const iframeRef = ref<HTMLIFrameElement>();
 
 const onLoad = () => {
   browserLoading.value = !browserLoading.value;
-  console.clear();
+  // console.clear();
 };
 </script>
 

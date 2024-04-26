@@ -13,8 +13,8 @@
 	position: relative;
 	overflow: auto;
 }
-
-%icon {
+/* 系统通用图标 */
+.system__icon {
 	height: 32px;
 	padding: 0 8px;
 	cursor: pointer;
@@ -24,16 +24,27 @@
 	align-content: center;
 	font-size: 16px;
 	border-radius: var(--radius);
-}
 
-.system__icon {
-	@extend %icon;
 	&:hover {
 		background: var(--color-primary-hover-bg);
-		color: #111;
+		svg {
+			animation: system-icon var(--transition) ease-in-out;
+		}
 	}
 }
+
 .system__subtitle {
 	font-size: 12px;
 	color: #999;
+}
+
+@keyframes system-icon {
+	0% {
+		opacity: 0;
+		transform: scale(0.9);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1.1);
+	}
 }

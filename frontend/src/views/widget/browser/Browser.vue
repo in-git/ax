@@ -6,22 +6,28 @@
 </template>
 
 <script setup lang="ts">
-import { browserSrc } from './data/browser';
+import { gotoUrl } from './data/browser.methods';
 import BrowserHead from './head/BrowserHead.vue';
 import IFrameVue from './iframe/Iframe.vue';
-const props = defineProps<{ src?: string; html?: string }>();
+type Props = {
+  data: { src?: string; html?: string };
+};
+const props = defineProps<Props>();
 
 watch(
   props,
   () => {
-    if (props.src) {
-      browserSrc.value = props.src;
-    } else if (props.html) {
+    console.log(props);
+
+    if (props.data?.src) {
+      gotoUrl(props.data?.src);
+    } else if (props.data?.html) {
       /* 处理传入的html */
     }
   },
   {
     deep: true,
+    immediate: true,
   },
 );
 </script>

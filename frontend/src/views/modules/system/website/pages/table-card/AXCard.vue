@@ -9,19 +9,31 @@
         @click="selectItem(item)"
         :class="{ active: websiteKeys.includes(item.websiteId) }"
       >
-        <img :src="item.icon || `https://favicon.qqsuu.cn/${item.url}`" width="36" height="36" />
         <a-flex class="flex-1" vertical :gap="2">
-          <a-flex justify="space-between">
-            <div class="site-title">
+          <a-flex :gap="8" :align="'center'" :justify="'space-between'">
+            <img :src="item.icon || getFavicon(item.url)" width="32" height="32" />
+            <div class="site-title flex-1">
               {{ item.name }}
             </div>
-            <div class="text-right">
-              <a-tooltip title="外部浏览器打开">
-                <a-button target="_blank" :href="restoreDomain(item.url)" type="link" class="open">
-                  <LinkOutlined />
-                </a-button>
-              </a-tooltip>
-            </div>
+            <a-flex class="actions">
+              <div class="text-right flex gc-4">
+                <a-tooltip title="内部浏览器打开">
+                  <a-button @click="open(item)" type="link" class="open">
+                    <GoogleOutlined />
+                  </a-button>
+                </a-tooltip>
+                <a-tooltip title="外部浏览器打开">
+                  <a-button
+                    target="_blank"
+                    :href="restoreDomain(item.url)"
+                    type="link"
+                    class="open"
+                  >
+                    <LinkOutlined />
+                  </a-button>
+                </a-tooltip>
+              </div>
+            </a-flex>
           </a-flex>
           <div class="system__subtitle">
             {{ item.description }}
@@ -36,7 +48,10 @@
 
 <script setup lang="ts">
 import type { SystemWebsite } from '@/api/modules/system/website/types';
+import { getFavicon } from '@/api/utils/image';
 import { openLink } from '@/utils/common/utils';
+import { openInternet } from '@/views/widget/browser/data/browser.methods';
+import type { GoogleOutlined } from '@ant-design/icons-vue';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import { websiteCardData } from '../../data/card';
 import { websiteKeys, websiteTable } from '../../data/table';
@@ -47,6 +62,7 @@ interface SortConfig {
   oldIndex: number;
   newIndex: number;
 }
+
 function restoreDomain(domain: string, protocol: string = 'http'): string {
   // 如果域名已经包含了协议，则直接返回
   if (domain.startsWith('http://') || domain.startsWith('https://')) {
@@ -60,6 +76,14 @@ function restoreDomain(domain: string, protocol: string = 'http'): string {
 const selectItem = (item: SystemWebsite) => {
   websiteKeys.value = [];
   websiteKeys.value.push(item.websiteId);
+};
+const open = (item: SystemWebsite) => {
+  openInternet({
+    icon: item.icon || getFavicon(item.url),
+    src: item.url,
+    title: item.name,
+    id: `${item.websiteId}`,
+  });
 };
 nextTick(() => {
   useSortable(cardRef, websiteCardData.value, {
@@ -80,7 +104,7 @@ nextTick(() => {
     display: flex;
     padding: 8px;
     column-gap: 8px;
-    height: 80px;
+    height: fit-content;
     cursor: pointer;
     border: 1px solid transparent;
     max-width: 220px;
@@ -95,6 +119,15 @@ nextTick(() => {
       border: 1px solid #ddd;
       padding: 2px;
     }
+    .actions {
+      opacity: 0;
+      transition: var(--transition);
+    }
+    &:hover {
+      .actions {
+        opacity: 1;
+      }
+    }
   }
   li.active {
     border: 1px solid var(--primary);
@@ -103,7 +136,7 @@ nextTick(() => {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 100px;
+    max-width: 90px;
   }
   .system__subtitle {
     display: -webkit-box;
