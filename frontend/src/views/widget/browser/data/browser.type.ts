@@ -3,4 +3,6 @@ export type BrowserTabItem = {
   id: string;
   url: string;
   history: BrowserTabItem[];
+  /* 前进后退的指针 */
+  pointer: number;
 };

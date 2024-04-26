@@ -52,7 +52,7 @@
 import { EllipsisOutlined, InboxOutlined, RightOutlined } from '@ant-design/icons-vue';
 import { useCloned } from '@vueuse/core';
 import { nanoid } from 'nanoid';
-import { browserLoading, currentBrowserTab, forceUpdate, homePage } from '../data/browser';
+import { browserLoading, currentBrowserTab, homePage } from '../data/browser';
 import { createBrowserTab, enterUrl } from '../data/browser.methods';
 import { activeTab, browserTabs, removeById } from '../data/browser.tabs';
 import StarVue from './star/Star.vue';
@@ -82,7 +82,6 @@ const onChange = (v: any) => {
 };
 const update = () => {
   browserLoading.value = true;
-  forceUpdate();
   console.clear();
 };
 const gotoHome = () => {

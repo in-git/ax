@@ -8,6 +8,7 @@ export const browserTabs = ref<BrowserTabItem[]>([
     id: 'home',
     url: 'https://cn.bing.com/',
     history: [],
+    pointer: 0,
   },
 ]);
 

@@ -13,37 +13,18 @@
         <LoadingOutlined spin class="ml-2" />
       </div>
     </a-flex>
-    <iframe
-      @load="onLoad"
-      v-show="!browserLoading"
-      :src="currentBrowserTab.url"
-      ref="iframeRef"
-      :key="updateBrowserFlag"
-    ></iframe>
+    <template v-for="item in browserTabs">
+      <KeepAlive :max="10">
+        <FrameComponent :src="item.url" v-if="currentBrowserTab.url === item.url"></FrameComponent>
+      </KeepAlive>
+    </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import { browserLoading, currentBrowserTab, updateBrowserFlag } from '../data/browser';
-
-const iframeRef = ref<HTMLIFrameElement>();
-
-const onLoad = () => {
-  browserLoading.value = false;
-  // console.clear();
-};
+import { browserLoading, currentBrowserTab } from '../data/browser';
+import { browserTabs } from '../data/browser.tabs';
+import FrameComponent from './IframeComponent.vue';
 </script>
 
-<style lang="scss" scoped>
-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.loading {
-  width: 100%;
-  height: 100%;
-  color: #999;
-}
-</style>
+<style lang="scss" scoped></style>

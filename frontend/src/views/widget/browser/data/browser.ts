@@ -9,10 +9,6 @@ export const homePage = ref({
   id: nanoid(),
   url: 'https://cn.bing.com/',
   history: [],
+  pointer: 0,
 });
-export const updateBrowserFlag = ref();
 export const browserLoading = ref(true);
-/* 更新KEY，强制刷新 */
-export const forceUpdate = () => {
-  updateBrowserFlag.value = nanoid();
-};

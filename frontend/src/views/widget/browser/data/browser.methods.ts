@@ -1,19 +1,17 @@
 import { openWindow, setData, windowIsExist } from '@/global/config/window';
 import Browser from '../Browser.vue';
-import { browserLoading, currentBrowserTab, forceUpdate } from './browser';
+import { browserLoading, currentBrowserTab } from './browser';
 import { browserTabs, setBrowserTitle } from './browser.tabs';
 import type { BrowserTabItem } from './browser.type';
 
 /* 统一跳转方法，必须调用，否则无法使用前进后退功能 */
 export const gotoUrl = (config: BrowserTabItem) => {
-  browserLoading.value = true;
   currentBrowserTab.value = config;
 };
 
 export const createBrowserTab = (config: BrowserTabItem) => {
   gotoUrl(config);
   browserTabs.value.push(config);
-  forceUpdate();
 };
 
 type BrowserParams = {
@@ -55,5 +53,4 @@ export const enterUrl = (src: string, title?: string) => {
   currentBrowserTab.value.url = addUrlPrefix(src);
   browserLoading.value = true;
   setBrowserTitle(currentBrowserTab.value.id, title || src);
-  forceUpdate();
 };
