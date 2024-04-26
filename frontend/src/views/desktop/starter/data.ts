@@ -4,6 +4,7 @@ import { openWindow } from '@/global/config/window';
 import AI from '@/views/widget/ai/AI.vue';
 import Browser from '@/views/widget/browser/Browser.vue';
 import Help from '@/views/widget/help/Help.vue';
+import ImageVue from '@/views/widget/image/Image.vue';
 import Notepad from '@/views/widget/notepad/Notepad.vue';
 
 export const showStarter = ref(false);
@@ -57,6 +58,18 @@ export const plugins: Plugin[] = [
     action(item: Plugin) {
       openWindow({
         component: markRaw(Browser),
+        ...item,
+      });
+      showStarter.value = false;
+    },
+  },
+  {
+    title: '图形',
+    id: 'image',
+    icon: getGiteeImage('image-icon/gallery.png'),
+    action(item: Plugin) {
+      openWindow({
+        component: markRaw(ImageVue),
         ...item,
       });
       showStarter.value = false;
