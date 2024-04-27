@@ -29,4 +29,5 @@ interface Flip {
 export type CropperData = {
   coordinates: Coordinates;
   image: CropperImage;
+  canvas: HTMLCanvasElement;
 };

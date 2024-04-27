@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1 relative">
+  <div class="flex-1 relative cover-container">
     <template v-if="cropperImage">
       <cropper
         class="cover"
@@ -86,6 +86,7 @@ const drop = async (e: DragEvent) => {
 .cover {
   height: 100%;
   overflow-y: hidden;
+  width: 100%;
 }
 
 .upload-button {
@@ -99,5 +100,8 @@ const drop = async (e: DragEvent) => {
   right: 2px;
   background-color: #6b6b6b86;
   border-radius: var(--radius);
+}
+.cover-container {
+  background-color: rgb(24, 24, 24);
 }
 </style>
