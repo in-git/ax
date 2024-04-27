@@ -18,7 +18,7 @@
       <ButtonVue @onClick="introModal = true"></ButtonVue>
 
       <div class="mb-12 frame">
-        <a-carousel dotsClass="carousel-dot" dot-position="left" class="carousel" autoplay>
+        <a-carousel dotsClass="carousel-dot" class="carousel" autoplay>
           <div class="carousel-item" v-for="item in 5">
             <img :src="`${resourceUrl}/public/cover-${item}.webp`" />
           </div>
