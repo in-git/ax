@@ -39,8 +39,8 @@
         </a-button>
       </div>
     </div>
-    <CropperTools />
   </div>
+  <CropperTools />
 </template>
 
 <script setup lang="ts">

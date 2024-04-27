@@ -31,9 +31,9 @@ nextTick(() => {
 .system-starter {
   position: absolute;
   bottom: 40px;
-  height: 650px;
+  height: 450px;
   left: 0;
-  width: 550px;
+  width: 350px;
   z-index: 100;
   background: #07071bde;
   backdrop-filter: blur(4px);

@@ -2,9 +2,12 @@
 	color: white;
 	ul {
 		display: flex;
+		flex-wrap: wrap;
 		li {
 			width: 84px;
 			padding: 8px 0;
+			flex: 1;
+			flex-basis: 84px;
 			border-radius: var(--radius);
 			&:hover {
 				background: #333;
