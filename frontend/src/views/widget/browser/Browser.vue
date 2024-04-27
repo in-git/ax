@@ -6,7 +6,10 @@
 </template>
 
 <script setup lang="ts">
-import { enterUrl } from './data/browser.methods';
+import { useTimeout } from '@vueuse/core';
+import { nanoid } from 'nanoid';
+import { browserLoading } from './data/browser';
+import { createBrowserTab } from './data/browser.methods';
 import BrowserHead from './head/BrowserHead.vue';
 import IFrameVue from './iframe/Iframe.vue';
 
@@ -19,7 +22,14 @@ watch(
   props,
   () => {
     if (props.data && props.data.src) {
-      enterUrl(props.data.src, props.data.title);
+      createBrowserTab({
+        title: props.data.title || '新标签页',
+        id: nanoid(),
+        url: props.data.src,
+        history: [],
+        pointer: 0,
+      });
+      // enterUrl(props.data.src, props.data.title);
     } else if (props.data?.html) {
       /* 处理传入的html */
     }
@@ -29,6 +39,14 @@ watch(
     immediate: true,
   },
 );
+
+watch(browserLoading, () => {
+  useTimeout(3000, {
+    callback() {
+      browserLoading.value = false;
+    },
+  });
+});
 </script>
 
 <style lang="scss" scoped>

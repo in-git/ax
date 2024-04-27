@@ -5,10 +5,11 @@
       :activeKey="currentBrowserTab.id"
       @tabClick="onChange"
       @edit="editTab"
+      :tabBarStyle="{ whiteSpace: 'nowrap' }"
     >
       <a-tab-pane v-for="v in browserTabs" :key="v.id" forceRender>
         <template #tab>
-          <div class="web-title">{{ v.title }}</div>
+          <span class="web-title">{{ v.title }}</span>
         </template>
       </a-tab-pane>
     </a-tabs>
@@ -85,7 +86,9 @@ const update = () => {
   console.clear();
 };
 const gotoHome = () => {
-  currentBrowserTab.value = useCloned(homePage.value).cloned.value;
+  browserLoading.value = true;
+  const newTab = useCloned(homePage.value).cloned.value;
+  enterUrl(newTab.url, newTab.title);
 };
 watch(currentBrowserTab, () => (src.value = currentBrowserTab.value.url), {
   immediate: true,
@@ -120,10 +123,10 @@ input {
   }
 }
 .web-title {
-  max-width: 80px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  display: inline-flex;
+  max-width: 80px;
 }
 </style>
-../data/browser.tabs

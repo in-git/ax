@@ -10,5 +10,5 @@ interface ImportMetaEnv {
 }
 declare module 'draggable-resizable-vue3';
 declare module 'splitpanes';
-// declare module 'vue-advanced-cropper';
+declare module 'vue3-video-play';
 declare module 'vue-responsive-video-background-player';

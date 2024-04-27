@@ -15,7 +15,10 @@
     </a-flex>
     <template v-for="item in browserTabs">
       <KeepAlive :max="10">
-        <FrameComponent :src="item.url" v-if="currentBrowserTab.url === item.url"></FrameComponent>
+        <FrameComponent
+          :src="currentBrowserTab.url"
+          v-if="currentBrowserTab.id === item.id"
+        ></FrameComponent>
       </KeepAlive>
     </template>
   </div>
