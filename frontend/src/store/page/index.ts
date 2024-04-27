@@ -30,10 +30,7 @@ const usePageStore = defineStore('page', {
         borderOpacity: 1,
       },
     },
-    window: {
-      width: maxWidth > 1000 ? 1000 : maxWidth,
-      height: maxHeight > 800 ? 800 : maxHeight,
-    },
+    window: {},
   }),
   persist: true,
 });

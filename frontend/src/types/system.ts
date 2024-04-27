@@ -24,6 +24,8 @@ export interface SystemWindow {
   data?: any;
   hidden?: boolean;
   icon?: string;
+  x?: number;
+  y?: number;
 }
 
 export interface TreeNode {

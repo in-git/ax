@@ -21,6 +21,8 @@
         :w="item.w"
         :h="item.h"
         :z="item.z"
+        :x="item.x"
+        :y="item.y"
         :title="item.title"
         v-show="!item.hidden"
         :id="item.id"

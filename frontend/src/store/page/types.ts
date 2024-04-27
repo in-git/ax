@@ -28,7 +28,12 @@ export interface PageSettings {
   };
   /* 在用户拖拽后，记录Window 的宽/高度 */
   window: {
-    width: number;
-    height: number;
+    /* 动态模块名 */
+    [key: string]: {
+      width: number;
+      height: number;
+      x?: number;
+      y?: number;
+    };
   };
 }

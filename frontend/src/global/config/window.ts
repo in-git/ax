@@ -1,22 +1,32 @@
-import usePageStore from '@/store/page';
+import { initModuleWH } from '@/store/page/utils';
 import type { SystemWindow } from '@/types/system';
-import { nanoid } from 'nanoid';
+import { message } from 'ant-design-vue';
 
 /*    */
 export const windowList = ref<SystemWindow[]>([]);
 
 export const openWindow = (config: SystemWindow) => {
-  const pageStore = usePageStore();
   if (!config.id) {
-    config.id = nanoid();
+    config.id = 'system-default-window';
+    message.warn('窗口没有设置ID');
   }
   const isExist = windowList.value.find(e => {
     return e.id === config.id;
   });
 
   config.hidden = false;
-  config.w = config.w ? config.w : pageStore.$state.window.width;
-  config.h = config.h ? config.h : pageStore.$state.window.height;
+
+  const { width, height, x, y } = initModuleWH(config.id);
+  config.w = width;
+  config.h = height;
+  /* 如果之前有记录，则提取坐标 */
+  if (x) {
+    config.x = x;
+  }
+  if (y) {
+    config.y = y;
+  }
+
   config.z = windowList.value.length;
 
   if (!isExist) {

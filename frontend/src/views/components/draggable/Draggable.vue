@@ -52,6 +52,7 @@
 <script setup lang="ts">
 import { hiddenWindow, setCurrentWindow, toTop, windowList } from '@/global/config/window';
 import usePageStore from '@/store/page';
+import { initModuleWH } from '@/store/page/utils';
 import { CompressOutlined, ExpandOutlined, MinusOutlined } from '@ant-design/icons-vue';
 import { useCloned } from '@vueuse/core';
 import VueDraggable from 'draggable-resizable-vue3';
@@ -78,6 +79,8 @@ const props = withDefaults(
     id?: string;
     resizable?: boolean;
     icon?: string;
+    x?: number;
+    y?: number;
   }>(),
   {
     w: 1000,
@@ -133,25 +136,37 @@ const hidden = () => {
     hiddenWindow(props.id);
   }
 };
-const dragstop = () => {
+const dragstop = (left: number, top: number) => {
+  console.log(left, top);
+
   if (windowProps.value.y < 0) {
     windowProps.value.y = 0;
   }
   if (windowProps.value.y > maxHeight - 100) {
     windowProps.value.y = maxHeight - 100;
   }
+  if (props.id) {
+    initModuleWH(props.id);
+    pageStore.$state.window[props.id].x = left;
+    pageStore.$state.window[props.id].y = top;
+  }
+
   windowProps.value.x = Math.round(windowProps.value.x!);
   windowProps.value.y = Math.round(windowProps.value.y);
 };
 /* 用户拖拽结束后记录窗口大小，作为默认值 */
 const resizestop = (left: number, top: number, width: number, height: number) => {
-  pageStore.$state.window.width = width;
-  pageStore.$state.window.height = height;
+  if (!props.id) return;
+  initModuleWH(props.id);
+  pageStore.$state.window[props.id].width = width;
+  pageStore.$state.window[props.id].height = height;
 };
 onMounted(() => {
   if (props.id) setCurrentWindow(props.id);
   windowProps.value.w = props.w;
   windowProps.value.h = props.h;
+  if (props.x) windowProps.value.x = props.x;
+  if (props.y) windowProps.value.y = props.y;
 });
 </script>
 
