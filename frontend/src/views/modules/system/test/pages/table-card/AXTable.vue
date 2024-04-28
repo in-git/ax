@@ -48,10 +48,10 @@
 import type { SystemTest } from '@/api/modules/system/test/types';
 import { formatColumns } from '@/utils/table/table';
 import { useArrayFilter } from '@vueuse/core';
+import { useChangeCase } from '@vueuse/integrations/useChangeCase';
 import type { TablePaginationConfig } from 'ant-design-vue';
-import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { testColumns } from '../../data/column';
-import { testEdit, testExport } from '../../data/curd';
+import { testEdit, testExport, testList } from '../../data/curd';
 import { testForm } from '../../data/form';
 import { testKeys, testQuery, testTable } from '../../data/table';
 
@@ -81,14 +81,19 @@ const customRow = (record: SystemTest) => {
 const handleResizeColumn = (w: number, col: any) => {
   col.width = w;
 };
+
 /* 分页事件触发 */
-const pageChange = (
-  pagination: TablePaginationConfig,
-  filters: Record<string, FilterValue>,
-  sorter: SorterResult<SystemTest> | SorterResult<SystemTest>[],
-) => {
-  testQuery.value.pageNum = pagination.current!;
-  testQuery.value.pageSize = pagination.pageSize!;
+const pageChange = async (page: TablePaginationConfig, filters: any, sorter: any) => {
+  const tableField = useChangeCase(sorter.columnKey, 'snakeCase');
+  if (page.current && page.pageSize) {
+    testQuery.value.pageNum = page.current;
+    testQuery.value.pageSize = page.pageSize;
+  }
+  if (sorter && sorter.order) {
+    testQuery.value.orderByColumn = tableField.value;
+    testQuery.value.isAsc = sorter.order.includes('asc') ? 'asc' : 'desc';
+  }
+  await testList();
 };
 </script>
 
