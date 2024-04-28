@@ -8,7 +8,7 @@
       @update:visible="allocateUserModal = false"
     >
       <div>
-        <a-page-header :title="modeConfig.title" class="py-0 page-border px-12" />
+        <a-card :title="modeConfig.title"></a-card>
         <div class="py-8 px-12 flex justify-between">
           <div>
             <a-input-search placeholder="请输入身份名"></a-input-search>

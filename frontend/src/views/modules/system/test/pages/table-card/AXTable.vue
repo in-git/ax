@@ -1,4 +1,3 @@
-
 <template>
   <a-card :style="{ boxShadow: 'none' }" :bordered="false" :bodyStyle="{ padding: '0' }">
     <a-table
@@ -19,20 +18,22 @@
     >
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'operation'">
-          <a-dropdown-button trigger="click"
-          @click="testEdit(record.testId)"
-          @open-change="openChange(record as SystemTest)">
+          <a-dropdown-button
+            trigger="click"
+            @click="testEdit(record.testId)"
+            @open-change="openChange(record as SystemTest)"
+          >
             <EditOutlined />
             <template #overlay>
               <a-menu>
-                 <div v-perm="'system:test:export'">
-                    <a-menu-item @click="testExport">
-                      <template #icon>
-                        <ExportOutlined />
-                      </template>
-                      导出
-                    </a-menu-item>
-                 </div>
+                <div v-perm="'system:test:export'">
+                  <a-menu-item @click="testExport">
+                    <template #icon>
+                      <ExportOutlined />
+                    </template>
+                    导出
+                  </a-menu-item>
+                </div>
               </a-menu>
             </template>
           </a-dropdown-button>
@@ -49,9 +50,9 @@ import { useArrayFilter } from '@vueuse/core';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { testColumns } from '../../data/column';
-import { testEdit,testDelete,testExport } from '../../data/curd';
+import { testEdit, testExport } from '../../data/curd';
 import { testForm } from '../../data/form';
-import { testKeys,  testQuery, testTable } from '../../data/table';
+import { testKeys, testQuery, testTable } from '../../data/table';
 
 const openChange = (record: SystemTest) => {
   testForm.value = record;
@@ -61,16 +62,16 @@ const openChange = (record: SystemTest) => {
 const customRow = (record: SystemTest) => {
   return {
     onClick() {
-      const id= (record as any)[testTable.rowKey]
+      const id = (record as any)[testTable.value.rowKey];
       if (!testKeys.value.includes(id)) {
-         testKeys.value.push(id);
+        testKeys.value.push(id);
       } else {
-         testKeys.value = useArrayFilter(testKeys.value, e => e !== id).value;
-     }
-     testKeys.value = [record.testId];
+        testKeys.value = useArrayFilter(testKeys.value, e => e !== id).value;
+      }
+      testKeys.value = [record.testId];
     },
     onDblclick() {
-       testEdit(record.testId);
+      testEdit(record.testId);
     },
   };
 };

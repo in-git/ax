@@ -1,5 +1,5 @@
 <template>
-  <a-form :model="currentRole" @finish="submit" :label-col="{ span: 6 }" label-align="left">
+  <a-form :model="roleForm" @finish="submit" :label-col="{ span: 6 }" label-align="left">
     <SystemModal
       w="90%"
       h="90%"
@@ -7,7 +7,7 @@
       title="管理身份"
       @update:visible="showRoleForm = false"
     >
-      <div v-if="showRoleForm && currentRole" class="h-100 flex flex-col">
+      <div v-if="roleForm" class="h-100 flex flex-col">
         <div class="flex-1">
           <a-card class="table__head">
             <a-flex justify="space-between">
@@ -20,13 +20,13 @@
               <a-col :span="12">
                 <a-card :bordered="false">
                   <a-form-item label="身份名称" name="roleName" required>
-                    <a-input v-model:value="currentRole.roleName"></a-input>
+                    <a-input v-model:value="roleForm.roleName"></a-input>
                   </a-form-item>
 
                   <a-form-item label="排序" name="roleSort" required>
                     <a-input-number
                       class="w-100"
-                      v-model:value="currentRole.roleSort"
+                      v-model:value="roleForm.roleSort"
                     ></a-input-number>
                     <div class="text-12 system__subtitle">
                       <InfoCircleFilled />
@@ -35,20 +35,20 @@
                   </a-form-item>
 
                   <a-form-item label="身份标识" name="roleKey" required>
-                    <a-input class="w-100" v-model:value="currentRole.roleKey"></a-input>
+                    <a-input class="w-100" v-model:value="roleForm.roleKey"></a-input>
                   </a-form-item>
 
                   <a-form-item label="身份描叙" name="remark">
                     <a-textarea
                       :autoSize="{ minRows: 2, maxRows: 4 }"
-                      v-model:value="currentRole.remark"
+                      v-model:value="roleForm.remark"
                       placeholder="用于描述该身份的作用"
                     ></a-textarea>
                   </a-form-item>
                   <a-form-item label="状态" required>
                     <a-segmented
                       :options="setOptions('启用', '禁用')"
-                      v-model:value="currentRole.status"
+                      v-model:value="roleForm.status"
                     />
                   </a-form-item>
                 </a-card>
@@ -59,7 +59,7 @@
                     <template #extra>
                       <div class="flex align-center mb-8">
                         <span class="text-12 system__subtitle mr-4">父子关联</span>
-                        <a-switch v-model:checked="currentRole.menuCheckStrictly"></a-switch>
+                        <a-switch v-model:checked="roleForm.menuCheckStrictly"></a-switch>
                       </div>
                     </template>
 
@@ -68,13 +68,13 @@
                       checkable
                       block-node
                       :selectable="false"
-                      v-model:checked-keys="currentRole.menuIds"
+                      v-model:checked-keys="roleForm.menuIds"
                       :fieldNames="{
                         key: 'id',
                         title: 'label',
                       }"
                       default-expand-parent
-                      :check-strictly="!currentRole.menuCheckStrictly"
+                      :check-strictly="!roleForm.menuCheckStrictly"
                       ref="treeRef"
                     ></a-tree>
                   </a-card>
@@ -93,10 +93,10 @@ import { createRole, updateRole } from '@/api/modules/system/role/role';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { setOptions } from '@/global/options/system';
 import { message } from 'ant-design-vue';
-import { resetRoleForm } from '../card/curd';
-import { currentRole, roleData } from '../card/data';
-import { roleList } from '../data/curd';
-import { showRoleForm } from '../data/form';
+
+import { roleList } from '../../data/curd';
+import { roleForm, roleResetForm, showRoleForm } from '../../data/form';
+import { roleMenus } from '../../data/table';
 const treeData = ref<any[]>([]);
 const loading = ref(false);
 
@@ -104,14 +104,14 @@ const treeRef = ref();
 
 const submit = async () => {
   loading.value = true;
-  if (currentRole.value) {
-    let data: any = currentRole.value.menuIds;
+  if (roleForm.value) {
+    let data: any = roleForm.value.menuIds;
     const halfCheckedKeys: number[] = treeRef.value.halfCheckedKeys;
     let menuIds: number[] = [];
     if (data.checked) {
       menuIds = data.checked.concat(data.halfCheckedKeys || []);
     } else {
-      menuIds = currentRole.value.menuIds;
+      menuIds = roleForm.value.menuIds;
     }
     if (halfCheckedKeys && halfCheckedKeys.length > 0) {
       menuIds = menuIds.concat(halfCheckedKeys);
@@ -119,26 +119,26 @@ const submit = async () => {
 
     menuIds = Array.from(new Set(menuIds));
 
-    if (currentRole.value.roleId) {
+    if (roleForm.value.roleId) {
       const { data } = await updateRole({
-        ...currentRole.value,
+        ...roleForm.value,
         menuIds,
       });
       message.success(data.msg);
     } else {
-      const { data } = await createRole(currentRole.value);
+      const { data } = await createRole(roleForm.value);
       message.success(data.msg);
     }
     loading.value = false;
     await roleList();
-    resetRoleForm();
+    roleResetForm();
     showRoleForm.value = false;
   }
 };
 watch(
-  roleData,
+  roleMenus,
   () => {
-    treeData.value = roleData.value.roleMenus;
+    treeData.value = roleMenus.value;
   },
   {
     deep: true,

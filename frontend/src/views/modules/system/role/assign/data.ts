@@ -9,14 +9,14 @@ import type { UserProfileData } from '@/api/modules/system/user/types';
 import { response } from '@/utils/table/table';
 import { Modal } from 'ant-design-vue';
 import type { Key } from 'ant-design-vue/es/_util/type';
-import { currentRole } from '../card/data';
+import { roleForm } from '../data/form';
 
 export const allocateUserModal = ref(false);
 
 export const allocateUsers = async () => {
-  if (currentRole.value) {
+  if (roleForm.value) {
     loading.value = true;
-    userQuery.value.roleId = currentRole.value.roleId;
+    userQuery.value.roleId = roleForm.value.roleId;
     const { data } = await unallocatedList(userQuery.value);
     userData.value.data = data.rows;
     userQuery.value.total = data.total;
@@ -30,8 +30,8 @@ export const allocateUsers = async () => {
 };
 
 export const unassignUsers = async () => {
-  if (!currentRole.value) return;
-  userQuery.value.roleId = currentRole.value.roleId;
+  if (!roleForm.value) return;
+  userQuery.value.roleId = roleForm.value.roleId;
   const { data } = await allocatedList(userQuery.value);
 
   allocateUserModal.value = true;
@@ -71,9 +71,9 @@ export const modeConfig = ref({
   mode: '',
 });
 export const assign = async (userId?: number) => {
-  if (!currentRole.value) return;
+  if (!roleForm.value) return;
   let ids = userId ? [userId] : userData.value.selectedKeys;
-  await response(assignAuthUser, currentRole.value.roleId, [ids]);
+  await response(assignAuthUser, roleForm.value.roleId, [ids]);
   await allocateUsers();
   userData.value.selectedKeys = [];
 };
@@ -84,8 +84,8 @@ export const unassign = async (userId?: number) => {
     title: '警告',
     content: '该操作可能影响系统运行',
     async onOk() {
-      if (!currentRole.value) return;
-      await authUserCancel(currentRole.value.roleId, ids);
+      if (!roleForm.value) return;
+      await authUserCancel(roleForm.value.roleId, ids);
       await unassignUsers();
       userData.value.selectedKeys = [];
     },

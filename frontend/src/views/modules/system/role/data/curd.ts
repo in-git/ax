@@ -1,9 +1,14 @@
-import { deleteRole, fetchRoleList, roleMenuTreeSelect } from '@/api/modules/system/role/role';
+import {
+  deleteRole,
+  deptTree,
+  fetchRoleList,
+  getRoleById,
+  roleMenuTreeSelect,
+} from '@/api/modules/system/role/role';
 import { response } from '@/utils/table/table';
-import { getDeptTree } from '../card/curd';
-import { currentRole, roleData } from '../card/data';
-import { resourceModal, roleResetForm, roleShowForm, showRoleForm } from './form';
-import { roleKeys, roleQuery, roleTable } from './table';
+import { message, Modal } from 'ant-design-vue';
+import { resourceModal, roleForm, roleResetForm, roleShowForm, showRoleForm } from './form';
+import { deptList, roleKeys, roleMenus, roleQuery, roleTable } from './table';
 
 export const roleList = async () => {
   try {
@@ -20,14 +25,15 @@ export const selectRole = async (id?: number) => {
   let targetId = 0;
   if (id) {
     targetId = id;
-  } else if (currentRole.value) {
-    targetId = currentRole.value.roleId;
+  } else if (roleForm.value) {
+    targetId = roleForm.value.roleId;
   }
-
+  const { data: roleInfo } = await getRoleById(targetId);
+  if (roleInfo.data) roleForm.value = roleInfo.data;
   const { data } = await roleMenuTreeSelect(targetId);
-  if (currentRole.value) {
-    roleData.value.roleMenus = data.menus;
-    currentRole.value.menuIds = data.checkedKeys;
+  if (roleForm.value) {
+    roleMenus.value = data.menus;
+    roleForm.value.menuIds = data.checkedKeys;
   }
   showRoleForm.value = true;
 };
@@ -45,8 +51,31 @@ export const roleDelete = async (id?: number) => {
 };
 
 export const allocatingResource = async () => {
-  if (currentRole.value) {
-    await getDeptTree(currentRole.value.roleId);
+  if (roleForm.value) {
+    await getDeptTree(roleForm.value.roleId);
     resourceModal.value = true;
   }
+};
+
+export const getDeptTree = async (id: number) => {
+  if (roleForm.value) {
+    const { data } = await deptTree(id);
+    deptList.value = data.depts;
+    roleForm.value.deptIds = data.checkedKeys;
+  }
+};
+
+export const delRoles = () => {
+  Modal.confirm({
+    title: '警告',
+    content: '该操作可能影响系统运行',
+    async onOk() {
+      if (roleForm.value && roleForm.value.roleId) {
+        const { data } = await deleteRole(roleForm.value?.roleId);
+        await roleList();
+        message.success(data.msg);
+      }
+    },
+    centered: true,
+  });
 };

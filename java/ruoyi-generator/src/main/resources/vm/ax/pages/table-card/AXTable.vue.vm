@@ -70,7 +70,7 @@ const openChange = (record: ${ModuleName}${BusinessName}) => {
 const customRow = (record: ${ModuleName}${BusinessName}) => {
   return {
     onClick() {
-      const id= (record as any)[${businessName}Table.rowKey]
+      const id= (record as any)[${businessName}Table.value.rowKey]
       if (!${businessName}Keys.value.includes(id)) {
          ${businessName}Keys.value.push(id);
       } else {

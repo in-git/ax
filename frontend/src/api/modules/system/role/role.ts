@@ -25,6 +25,9 @@ export const roleTreeSelect = () => {
   return axios.get<Response<TreeNode[]>>(`system/menu/treeselect`);
 };
 
+export const getRoleById = (id: number) => {
+  return axios.get<Response<SystemRole>>(`system/role/${id}`);
+};
 export const deptTree = (id: number) => {
   return axios.get<RoleDeptTreeData>(`system/role/deptTree/${id}`);
 };

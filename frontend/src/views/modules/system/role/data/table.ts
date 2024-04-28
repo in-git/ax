@@ -13,6 +13,8 @@ export const roleTable = ref<TableConfig<SystemRole>>({
 interface roleQuery {
   roleName: '';
 }
+export const roleMenus = ref();
+export const deptList = ref();
 // 预览模式:卡片|表格
 export const viewMode = ref<'card' | 'table'>('table');
 
