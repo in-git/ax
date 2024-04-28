@@ -6,7 +6,7 @@ const roleColumns = ref<TableColumnProps[]>([
     dataIndex: 'roleName',
   },
   {
-    title: '角色权限字符串',
+    title: '权限标识',
     dataIndex: 'roleKey',
   },
   {

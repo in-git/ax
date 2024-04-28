@@ -38,7 +38,6 @@ onMounted(async () => {
 .role {
   :deep(.ant-card-body) {
     height: 100%;
-    overflow: hidden;
   }
 }
 </style>

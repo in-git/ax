@@ -31,12 +31,9 @@
 
           <template v-if="roleForm.dataScope === '2'">
             <a-form-item label="父子关联">
-              <a-flex :align="'center'">
-                <span class="system__subtitle">
-                  父子关联
-                  <a-switch v-model:checked="roleForm.deptCheckStrictly"></a-switch>
-                </span>
-              </a-flex>
+              <span class="system__subtitle">
+                <a-switch v-model:checked="roleForm.deptCheckStrictly"></a-switch>
+              </span>
             </a-form-item>
             <a-form-item name="deptIds" required label="选择部门">
               <a-flex justify="space-between" class="mb-12 flex justify-between">
@@ -50,14 +47,15 @@
               <a-spin :spinning="loading">
                 <a-tree-select
                   :tree-data="deptList"
+                  tree-checkable
                   :field-names="{
                     value: 'id',
                     label: 'label',
                   }"
                   multiple
                   :show-checked-strategy="SHOW_PARENT"
-                  :check-strictly="roleForm.deptCheckStrictly"
-                  v-model:selected-keys="roleForm.deptIds"
+                  :treeCheckStrictly="!roleForm.deptCheckStrictly"
+                  v-model:value="roleForm.deptIds"
                 ></a-tree-select>
               </a-spin>
             </a-form-item>

@@ -8,11 +8,14 @@
       @update:visible="allocateUserModal = false"
     >
       <div>
-        <a-card :title="modeConfig.title"></a-card>
+        <a-card :title="modeConfig.title" :body-style="{ overflow: 'auto' }">
+          <template #extra>
+            <div>
+              <a-input-search placeholder="请输入身份名"></a-input-search>
+            </div>
+          </template>
+        </a-card>
         <div class="py-8 px-12 flex justify-between">
-          <div>
-            <a-input-search placeholder="请输入身份名"></a-input-search>
-          </div>
           <template v-if="modeConfig.mode !== 'unassign'">
             <a-button
               :disabled="userData.selectedKeys.length === 0"
@@ -105,5 +108,8 @@ import {
   &:hover {
     background: #eee;
   }
+}
+.user-list {
+  overflow: auto;
 }
 </style>
