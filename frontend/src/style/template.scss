@@ -70,3 +70,15 @@
 .table__card {
 	box-shadow: none !important;
 }
+.form__tips {
+	height: fit-content;
+	background-color: var(--color-primary-bg);
+	padding: 8px;
+	margin-bottom: 12px;
+	border-radius: var(--radius);
+	.form__title {
+		font-size: 14px;
+		font-weight: bold;
+		color: #333;
+	}
+}

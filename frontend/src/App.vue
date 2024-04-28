@@ -95,6 +95,7 @@ const localTheme = computed(() => {
     compact: compactAlgorithm,
     default: defaultAlgorithm,
   };
+
   return {
     token: {
       colorPrimary: store.$state.theme.theme,

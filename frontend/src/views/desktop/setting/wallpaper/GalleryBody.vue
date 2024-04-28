@@ -17,6 +17,7 @@
           <img :src="item" v-if="galleryType === 'image'" :alt="item" height="80" />
           <video
             muted
+            v-else
             ref="videoRefs"
             @mouseenter="mouseenter(key)"
             @mouseleave="mouseleave(key)"

@@ -12,9 +12,6 @@
     </div>
     <div class="flex-1">
       <a-card title="缓存内容">
-        <template #extra>
-          <a-button @click="clearCacheAll" danger>清除</a-button>
-        </template>
         <a-form v-if="vk">
           <a-form-item label="缓存名称">
             <a-input v-model:value="vk.cacheName" />
@@ -36,9 +33,10 @@
 </template>
 
 <script setup lang="ts">
-import { clearCacheAll, getValue } from '@/api/modules/monitor/cache/cache';
+import { getValue } from '@/api/modules/monitor/cache/cache';
+import type { TableColumnProps } from 'ant-design-vue';
 
-defineProps<{
+const props = defineProps<{
   data: SystemCache[];
 }>();
 
@@ -52,16 +50,23 @@ const customRow = (record: { title: string }) => {
     },
   };
 };
-const columns = [
+const columns: TableColumnProps[] = [
   {
     title: '缓存键名',
     dataIndex: 'title',
+    ellipsis: true,
   },
 ];
-
-watchEffect(() => {
-  console.log('===');
-});
+watch(
+  props,
+  () => {
+    vk.value = undefined;
+  },
+  {
+    deep: true,
+    immediate: true,
+  },
+);
 </script>
 
 <style lang="scss" scoped>

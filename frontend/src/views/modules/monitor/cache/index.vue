@@ -9,7 +9,12 @@
     <!--  -->
     <a-spin :spinning="loading">
       <ul>
-        <li v-for="(item, key) in cacheData" :key="key" @click="selectItem(item.cacheName)">
+        <li
+          class="cursor-pointer"
+          v-for="(item, key) in cacheData"
+          :key="key"
+          @click="selectItem(item.cacheName)"
+        >
           <a-card>
             <a-descriptions :title="item.cacheName.replace(':', '')" :column="1">
               <a-descriptions-item label="缓存名字">{{ item.cacheName }}</a-descriptions-item>

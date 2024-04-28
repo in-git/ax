@@ -13,5 +13,5 @@ export const getValue = (key: string) => {
   return axios.get<Response<SystemCache>>(`monitor/cache/getValue/sys_config/${key}`);
 };
 export const clearCacheAll = () => {
-  return axios.get(`monitor/cache/clearCacheAl`);
+  return axios.get(`monitor/cache/clearCacheAll`);
 };
