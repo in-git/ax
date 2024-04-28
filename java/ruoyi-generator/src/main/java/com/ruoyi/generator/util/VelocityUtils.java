@@ -311,7 +311,7 @@ public class VelocityUtils
          * */
         else if (template.contains("readme.md.vm"))
         {
-            fileName = StringUtils.format("{}/views/modules/{}/{}/readme.md.vm", vuePath, moduleName, businessName);
+            fileName = StringUtils.format("{}/views/modules/{}/{}/readme.md", vuePath, moduleName, businessName);
         }
         return fileName;
     }
