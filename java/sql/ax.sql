@@ -3,15 +3,15 @@
 
  Source Server         : ax
  Source Server Type    : MySQL
- Source Server Version : 80024 (8.0.24)
+ Source Server Version : 80024
  Source Host           : 150.158.14.110:3306
  Source Schema         : ax
 
  Target Server Type    : MySQL
- Target Server Version : 80024 (8.0.24)
+ Target Server Version : 80024
  File Encoding         : 65001
 
- Date: 20/04/2024 19:07:08
+ Date: 28/04/2024 13:44:25
 */
 
 SET NAMES utf8mb4;
@@ -44,7 +44,7 @@ CREATE TABLE `gen_table`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`table_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of gen_table
@@ -68,6 +68,8 @@ INSERT INTO `gen_table` VALUES (28, 'sys_user_role', '用户和角色关联表',
 INSERT INTO `gen_table` VALUES (29, 'sys_website', '网页收藏', NULL, NULL, 'SysWebsite', 'crud', '', 'com.ruoyi.system', 'system', 'website', '网页收藏', 'AX', '0', '/', '{}', 'admin', '2024-04-14 21:35:12', '', '2024-04-16 11:16:09', '网页收藏');
 INSERT INTO `gen_table` VALUES (30, 'sys_user_post', '用户与岗位关联表', NULL, NULL, 'SysUserPost', 'crud', '', 'com.ruoyi.system', 'system', 'post', '用户与岗位关联', 'AX', '0', '/', NULL, 'admin', '2024-04-14 21:47:14', '', NULL, NULL);
 INSERT INTO `gen_table` VALUES (32, 'sys_memo', '备忘录', NULL, NULL, 'SysMemo', 'crud', '', 'com.ruoyi.system', 'system', 'memo', '备忘录', 'AX', '0', '/', '{}', 'admin', '2024-04-16 18:25:42', '', '2024-04-16 19:33:44', '系统备忘录');
+INSERT INTO `gen_table` VALUES (33, 'sys_feedback', '系统反馈', NULL, NULL, 'SysFeedback', 'crud', '', 'com.ruoyi.system', 'system', 'feedback', '系统反馈', 'AX', '0', '/', '{}', 'admin', '2024-04-22 10:15:05', '', '2024-04-22 10:15:58', '系统反馈');
+INSERT INTO `gen_table` VALUES (34, 'sys_test', '系统测试专用表', NULL, NULL, 'SysTest', 'crud', '', 'com.ruoyi.system', 'system', 'test', '系统测试表', 'AX', '0', '/', '{}', 'admin', '2024-04-28 10:29:55', '', '2024-04-28 10:32:47', '系统测试专用表');
 
 -- ----------------------------
 -- Table structure for gen_table_column
@@ -97,7 +99,7 @@ CREATE TABLE `gen_table_column`  (
   `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`column_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 326 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 344 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of gen_table_column
@@ -302,6 +304,24 @@ INSERT INTO `gen_table_column` VALUES (322, 32, 'dept_id', '部门ID', 'int', 'L
 INSERT INTO `gen_table_column` VALUES (323, 32, 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', '0', '0', NULL, NULL, NULL, 'EQ', 'datetime', '', 9, 'admin', '2024-04-16 18:25:42', '', '2024-04-16 19:33:45');
 INSERT INTO `gen_table_column` VALUES (324, 32, 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', '0', '0', '1', NULL, NULL, 'EQ', 'datetime', '', 10, 'admin', '2024-04-16 18:25:42', '', '2024-04-16 19:33:45');
 INSERT INTO `gen_table_column` VALUES (325, 32, 'type', '1：备忘录，2：记事本', 'varchar(1)', 'String', 'type', '0', '0', '0', '0', '1', '0', '0', 'EQ', 'select', '', 7, '', '2024-04-16 19:32:46', '', '2024-04-16 19:33:44');
+INSERT INTO `gen_table_column` VALUES (326, 33, 'feedback_id', '主键', 'int', 'Long', 'feedbackId', '1', '1', '0', '0', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2024-04-22 10:15:05', '', '2024-04-22 10:15:58');
+INSERT INTO `gen_table_column` VALUES (327, 33, 'feedback_content', '反馈内容', 'varchar(255)', 'String', 'feedbackContent', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'editor', '', 2, 'admin', '2024-04-22 10:15:05', '', '2024-04-22 10:15:58');
+INSERT INTO `gen_table_column` VALUES (328, 33, 'type', '类型', 'varchar(255)', 'String', 'type', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'select', '', 3, 'admin', '2024-04-22 10:15:05', '', '2024-04-22 10:15:58');
+INSERT INTO `gen_table_column` VALUES (329, 33, 'nickname', '用户昵称', 'varchar(255)', 'String', 'nickname', '0', '0', '0', '1', '1', '1', '1', 'LIKE', 'input', '', 4, 'admin', '2024-04-22 10:15:05', '', '2024-04-22 10:15:58');
+INSERT INTO `gen_table_column` VALUES (330, 33, 'create_time', NULL, 'datetime', 'Date', 'createTime', '0', '0', '0', '0', NULL, NULL, NULL, 'EQ', 'datetime', '', 5, 'admin', '2024-04-22 10:15:05', '', '2024-04-22 10:15:58');
+INSERT INTO `gen_table_column` VALUES (331, 33, 'update_time', NULL, 'datetime', 'Date', 'updateTime', '0', '0', '0', '0', '1', NULL, NULL, 'EQ', 'datetime', '', 6, 'admin', '2024-04-22 10:15:05', '', '2024-04-22 10:15:58');
+INSERT INTO `gen_table_column` VALUES (332, 33, 'dept_id', '部门名称', 'int', 'Long', 'deptId', '0', '0', '0', '0', '1', '1', '1', 'EQ', 'input', '', 7, 'admin', '2024-04-22 10:15:05', '', '2024-04-22 10:15:58');
+INSERT INTO `gen_table_column` VALUES (333, 34, 'test_id', '测试ID', 'int', 'Long', 'testId', '1', '0', '0', '0', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2024-04-28 10:29:55', '', '2024-04-28 10:32:47');
+INSERT INTO `gen_table_column` VALUES (334, 34, 'text_field', '文本字段', 'varchar(255)', 'String', 'textField', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2024-04-28 10:29:55', '', '2024-04-28 10:32:47');
+INSERT INTO `gen_table_column` VALUES (335, 34, 'number_field', '数字字段', 'int', 'Long', 'numberField', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2024-04-28 10:29:55', '', '2024-04-28 10:32:47');
+INSERT INTO `gen_table_column` VALUES (336, 34, 'date_field', '日期字段', 'datetime', 'Date', 'dateField', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'datetime', '', 4, 'admin', '2024-04-28 10:29:55', '', '2024-04-28 10:32:47');
+INSERT INTO `gen_table_column` VALUES (337, 34, 'rich_text_field', '富文本字段', 'varchar(255)', 'String', 'richTextField', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'editor', '', 5, 'admin', '2024-04-28 10:29:55', '', '2024-04-28 10:32:47');
+INSERT INTO `gen_table_column` VALUES (338, 34, 'select_field', '下拉框字段', 'varchar(255)', 'String', 'selectField', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'select', '', 6, 'admin', '2024-04-28 10:29:55', '', '2024-04-28 10:32:47');
+INSERT INTO `gen_table_column` VALUES (339, 34, 'boolean_field', '布尔字段', 'char(1)', 'String', 'booleanField', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 7, 'admin', '2024-04-28 10:29:55', '', '2024-04-28 10:32:47');
+INSERT INTO `gen_table_column` VALUES (340, 34, 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', '0', '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 8, 'admin', '2024-04-28 10:29:55', '', '2024-04-28 10:32:47');
+INSERT INTO `gen_table_column` VALUES (341, 34, 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', '0', '1', '1', NULL, NULL, 'EQ', 'datetime', '', 9, 'admin', '2024-04-28 10:29:55', '', '2024-04-28 10:32:47');
+INSERT INTO `gen_table_column` VALUES (342, 34, 'textarea_field', '文本域', 'varchar(255)', 'String', 'textareaField', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'textarea', '', 10, 'admin', '2024-04-28 10:29:55', '', '2024-04-28 10:32:47');
+INSERT INTO `gen_table_column` VALUES (343, 34, 'tree_field', '树形选择器', 'varchar(255)', 'String', 'treeField', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 11, 'admin', '2024-04-28 10:29:55', '', '2024-04-28 10:32:47');
 
 -- ----------------------------
 -- Table structure for qrtz_calendars
@@ -528,7 +548,7 @@ INSERT INTO `sys_config` VALUES (3, '主框架页-侧边栏主题', 'sys.index.s
 INSERT INTO `sys_config` VALUES (4, '账号自助-验证码开关', 'sys.account.captchaEnabled', 'true', 'Y', 'admin', '2024-04-10 15:08:50', '', NULL, '是否开启验证码功能（true开启，false关闭）');
 INSERT INTO `sys_config` VALUES (5, '账号自助-是否开启用户注册功能', 'sys.account.registerUser', 'true', 'Y', 'admin', '2024-04-10 15:08:50', 'admin', '2024-04-13 00:19:45', '是否开启注册用户功能（true开启，false关闭）');
 INSERT INTO `sys_config` VALUES (6, '用户登录-黑名单列表', 'sys.login.blackIPList', '', 'Y', 'admin', '2024-04-10 15:08:50', '', NULL, '设置登录IP黑名单限制，多个匹配项以;分隔，支持匹配（*通配、网段）');
-INSERT INTO `sys_config` VALUES (101, '输入记录', 'record', 'JSON', 'Y', 'admin', '2024-04-10 23:53:17', '', NULL, '记录所有用户的输入值');
+INSERT INTO `sys_config` VALUES (101, '输入记录', 'sys.record', 'JSON', 'Y', 'admin', '2024-04-10 23:53:17', '', NULL, '记录所有用户的输入值');
 
 -- ----------------------------
 -- Table structure for sys_dept
@@ -587,7 +607,7 @@ CREATE TABLE `sys_dict_data`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`dict_code`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 109 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典数据表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 110 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典数据表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_dict_data
@@ -628,6 +648,7 @@ INSERT INTO `sys_dict_data` VALUES (103, 0, '头像', 'avatar', 'sys_gallery', N
 INSERT INTO `sys_dict_data` VALUES (104, 0, '图标', 'sys-icon', 'sys_gallery', NULL, NULL, '0', '0', 'admin', '2024-04-15 12:32:06', '', NULL, '系统应用图标，在菜单栏配置');
 INSERT INTO `sys_dict_data` VALUES (106, 3, '在线工具', 'tool', 'website_type', NULL, NULL, '0', '0', 'admin', '2024-04-17 18:37:29', '', NULL, '在线工具');
 INSERT INTO `sys_dict_data` VALUES (108, 0, '管理系统', 'management', 'website_type', NULL, NULL, '0', '0', 'admin', '2024-04-18 13:38:15', '', NULL, '后台管理系统模板');
+INSERT INTO `sys_dict_data` VALUES (109, 0, '有趣开源', 'github', 'website_type', NULL, NULL, '0', '0', 'admin', '2024-04-24 09:49:15', '', NULL, '有意思的开源项目');
 
 -- ----------------------------
 -- Table structure for sys_dict_type
@@ -662,6 +683,37 @@ INSERT INTO `sys_dict_type` VALUES (9, '操作类型', 'sys_oper_type', '0', 'ad
 INSERT INTO `sys_dict_type` VALUES (10, '系统状态', 'sys_common_status', '0', 'admin', '2024-04-10 15:08:50', '', NULL, '登录状态列表');
 INSERT INTO `sys_dict_type` VALUES (100, '网址分类', 'website_type', '0', 'admin', '2024-04-10 22:57:53', '', NULL, '网页分类列表');
 INSERT INTO `sys_dict_type` VALUES (102, '图片分类', 'sys_gallery', '0', 'admin', '2024-04-15 12:23:56', '', NULL, '图片分类,系统用');
+
+-- ----------------------------
+-- Table structure for sys_feedback
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_feedback`;
+CREATE TABLE `sys_feedback`  (
+  `feedback_id` int NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `feedback_content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '反馈内容',
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '类型',
+  `nickname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户昵称',
+  `create_time` datetime NULL DEFAULT NULL,
+  `update_time` datetime NULL DEFAULT NULL,
+  `dept_id` int NULL DEFAULT NULL COMMENT '部门名称',
+  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '头像',
+  PRIMARY KEY (`feedback_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_feedback
+-- ----------------------------
+INSERT INTO `sys_feedback` VALUES (10, 'Hello', '', 'AX最终管理员', '2024-04-22 20:59:56', NULL, 103, '3DDD-4.png');
+INSERT INTO `sys_feedback` VALUES (11, '功能和BUG都可以在这里反馈', '', 'AX最终管理员', '2024-04-22 21:24:03', NULL, 103, '3DDD-4.png');
+INSERT INTO `sys_feedback` VALUES (12, 'test02发言', '', 'test02', '2024-04-22 21:59:42', NULL, NULL, '');
+INSERT INTO `sys_feedback` VALUES (13, 'test02', '', 'test02', '2024-04-22 21:59:59', NULL, NULL, '3DDD.png');
+INSERT INTO `sys_feedback` VALUES (14, 'yi', '', 'Annis', '2024-04-22 23:05:13', NULL, 200, 'Delivery boy-4.png');
+INSERT INTO `sys_feedback` VALUES (15, '咦', '', 'Annis', '2024-04-22 23:05:26', NULL, 200, 'Delivery boy-4.png');
+INSERT INTO `sys_feedback` VALUES (16, '111', '', 'AX最终管理员', '2024-04-23 16:41:54', NULL, 103, '3DDD-4.png');
+INSERT INTO `sys_feedback` VALUES (17, 'test04测试', '', 'test04', '2024-04-23 16:48:00', NULL, 200, '');
+INSERT INTO `sys_feedback` VALUES (18, '哎呀\n', '', 'Annis', '2024-04-23 18:26:44', NULL, 200, 'Delivery boy-4.png');
+INSERT INTO `sys_feedback` VALUES (19, 'AI用不了吗？\n\n', '', 'Annis', '2024-04-23 18:33:12', NULL, 200, 'Delivery boy-4.png');
+INSERT INTO `sys_feedback` VALUES (20, '回车键可以发送，就方便很多了\n', '', 'Annis', '2024-04-23 18:33:51', NULL, 200, 'Delivery boy-4.png');
 
 -- ----------------------------
 -- Table structure for sys_job
@@ -728,7 +780,7 @@ CREATE TABLE `sys_logininfor`  (
   PRIMARY KEY (`info_id`) USING BTREE,
   INDEX `idx_sys_logininfor_s`(`status` ASC) USING BTREE,
   INDEX `idx_sys_logininfor_lt`(`login_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 333 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 579 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -750,11 +802,15 @@ CREATE TABLE `sys_memo`  (
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`memo_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_memo
 -- ----------------------------
+INSERT INTO `sys_memo` VALUES (21, '记事本', '测试记事本', '测试记事本', NULL, 115, '2', NULL, '2024-04-23 14:17:10', '2024-04-25 16:17:13');
+INSERT INTO `sys_memo` VALUES (22, '测试备忘录', '测试备忘录3424', '测试备忘录', '测试备忘录213', 113, '1', NULL, '2024-04-23 14:20:59', '2024-04-25 16:17:31');
+INSERT INTO `sys_memo` VALUES (23, '测试', '找到约 427,000 条结果 （用时 0.33 秒） \n您是不是要找： antd vue3 design\n\n\nAnt Design Vue — An enterprise-class UI components based ...\n\nAnt Design Vue\nhttps://antdv.com\n·\n翻译此页\nAn enterprise-class UI components based on Ant Design and Vue.\n', '这是超长文本内容', '', 1, '1', 103, '2024-04-23 16:39:09', NULL);
+INSERT INTO `sys_memo` VALUES (24, '测试记事本1', '测试记事本2', '测试记事本3', NULL, 1, '2', 103, '2024-04-23 19:23:33', '2024-04-25 16:17:20');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -781,7 +837,7 @@ CREATE TABLE `sys_menu`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2087 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单权限表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单权限表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -866,18 +922,31 @@ INSERT INTO `sys_menu` VALUES (1057, '生成删除', 116, 3, '#', '', '', 1, 0, 
 INSERT INTO `sys_menu` VALUES (1058, '导入代码', 116, 4, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:import', '#', 'admin', '2024-04-10 15:08:49', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (1059, '预览代码', 116, 5, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:preview', '#', 'admin', '2024-04-10 15:08:49', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (1060, '生成代码', 116, 6, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:code', '#', 'admin', '2024-04-10 15:08:49', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2069, '网页收藏', 0, 3, 'website', 'system/website/index', NULL, 1, 0, 'C', '0', '0', 'system:website:list', '#', 'admin', '2024-04-11 15:45:16', 'admin', '2024-04-16 18:32:01', '网页收藏菜单');
+INSERT INTO `sys_menu` VALUES (2069, '网页收藏', 0, 3, 'website', 'system/website/index', NULL, 1, 0, 'C', '0', '0', 'system:website:list', 'http://in-git.gitee.io/ax-resource/image-icon/net.png', 'admin', '2024-04-11 15:45:16', 'admin', '2024-04-25 17:02:17', '网页收藏菜单');
 INSERT INTO `sys_menu` VALUES (2070, '网页收藏查询', 2069, 1, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:website:query', '#', 'admin', '2024-04-11 15:45:16', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2071, '网页收藏新增', 2069, 2, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:website:add', '#', 'admin', '2024-04-11 15:45:16', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2072, '网页收藏修改', 2069, 3, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:website:edit', '#', 'admin', '2024-04-11 15:45:16', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2073, '网页收藏删除', 2069, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:website:remove', '#', 'admin', '2024-04-11 15:45:16', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2074, '网页收藏导出', 2069, 5, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:website:export', '#', 'admin', '2024-04-11 15:45:16', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2081, '备忘录', 0, 4, 'memo', 'system/memo/index', NULL, 1, 0, 'C', '0', '0', 'system:memo:list', '#', 'admin', '2024-04-16 18:29:23', 'admin', '2024-04-16 18:31:54', '备忘录菜单');
+INSERT INTO `sys_menu` VALUES (2081, '备忘录', 0, 4, 'memo', 'system/memo/index', NULL, 1, 0, 'C', '0', '0', 'system:memo:list', 'http://in-git.gitee.io/ax-resource/image-icon/notes.png', 'admin', '2024-04-16 18:29:23', 'admin', '2024-04-25 17:01:59', '备忘录菜单');
 INSERT INTO `sys_menu` VALUES (2082, '备忘录查询', 2081, 1, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:memo:query', '#', 'admin', '2024-04-16 18:29:23', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2083, '备忘录新增', 2081, 2, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:memo:add', '#', 'admin', '2024-04-16 18:29:23', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2084, '备忘录修改', 2081, 3, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:memo:edit', '#', 'admin', '2024-04-16 18:29:23', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2085, '备忘录删除', 2081, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:memo:remove', '#', 'admin', '2024-04-16 18:29:23', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2086, '备忘录导出', 2081, 5, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:memo:export', '#', 'admin', '2024-04-16 18:29:23', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2087, '反馈管理', 1, 5, 'feedback', 'system/feedback/index', NULL, 1, 0, 'C', '0', '0', 'system:feedback:list', 'image-icon/mail.png', 'admin', '2024-04-22 10:22:50', 'admin', '2024-04-22 16:55:30', '系统反馈菜单');
+INSERT INTO `sys_menu` VALUES (2088, '系统反馈查询', 2087, 1, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:feedback:query', '#', 'admin', '2024-04-22 10:22:50', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2089, '系统反馈新增', 2087, 2, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:feedback:add', '#', 'admin', '2024-04-22 10:22:50', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2090, '系统反馈修改', 2087, 3, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:feedback:edit', '#', 'admin', '2024-04-22 10:22:50', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2091, '系统反馈删除', 2087, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:feedback:remove', '#', 'admin', '2024-04-22 10:22:50', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2092, '系统反馈导出', 2087, 5, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:feedback:export', '#', 'admin', '2024-04-22 10:22:50', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2093, '反馈', 0, 5, 'feedback', 'service/feedback/index', NULL, 1, 1, 'C', '0', '0', '', 'http://in-git.gitee.io/ax-resource/image-icon/255.png', 'admin', '2024-04-22 16:56:15', 'admin', '2024-04-25 17:00:31', '');
+INSERT INTO `sys_menu` VALUES (2094, '系统测试表', 0, 7, 'test', 'system/test/index', NULL, 1, 0, 'C', '0', '0', 'system:test:list', 'http://in-git.gitee.io/ax-resource/image-icon/swagger.png', 'admin', '2024-04-28 10:35:15', 'admin', '2024-04-28 12:21:19', '系统测试表菜单');
+INSERT INTO `sys_menu` VALUES (2095, '系统测试表查询', 2094, 1, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:test:query', '#', 'admin', '2024-04-28 10:35:15', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2096, '系统测试表新增', 2094, 2, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:test:add', '#', 'admin', '2024-04-28 10:35:15', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2097, '系统测试表修改', 2094, 3, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:test:edit', '#', 'admin', '2024-04-28 10:35:15', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2098, '系统测试表删除', 2094, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:test:remove', '#', 'admin', '2024-04-28 10:35:15', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2099, '系统测试表导出', 2094, 5, '#', '', NULL, 1, 0, 'F', '0', '0', 'system:test:export', '#', 'admin', '2024-04-28 10:35:15', '', NULL, '');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -900,10 +969,7 @@ CREATE TABLE `sys_notice`  (
 -- ----------------------------
 -- Records of sys_notice
 -- ----------------------------
-INSERT INTO `sys_notice` VALUES (10, '系统通知', '1', 0x3C703EE5B0B1E698AFE7AE80E58D95E79A84E9809AE79FA5E58685E5AEB93C2F703E, '1', 'admin', '2024-04-11 13:49:11', 'cabcab', '2024-04-13 20:43:36', NULL);
-INSERT INTO `sys_notice` VALUES (11, '系统公告', '2', 0x3C703EE585ACE5918A3C2F703E, '0', 'admin', '2024-04-11 13:50:14', '', NULL, NULL);
-INSERT INTO `sys_notice` VALUES (12, '新的公告', '1', 0x3C703EE68980E69C89E58685E5AEB9E983BDE5858DE8B4B9E4BA863C2F703E, '0', 'admin', '2024-04-11 14:16:54', '', NULL, NULL);
-INSERT INTO `sys_notice` VALUES (13, '测试标题', '1', 0x3C703EE6B58BE8AF953C2F703E, '0', 'admin', '2024-04-11 14:32:34', '', NULL, NULL);
+INSERT INTO `sys_notice` VALUES (10, '系统通知', '1', 0x3C703E3C7374726F6E673EE983A8E58886E9A1B5E99DA2E6ADA3E59CA8E5BC80E58F91E4B8ADEFBC8CE6849FE8B0A2E4BDBFE794A83C2F7374726F6E673E3C2F703E, '0', 'admin', '2024-04-11 13:49:11', 'admin', '2024-04-24 13:50:54', NULL);
 
 -- ----------------------------
 -- Table structure for sys_oper_log
@@ -931,7 +997,7 @@ CREATE TABLE `sys_oper_log`  (
   INDEX `idx_sys_oper_log_bt`(`business_type` ASC) USING BTREE,
   INDEX `idx_sys_oper_log_s`(`status` ASC) USING BTREE,
   INDEX `idx_sys_oper_log_ot`(`oper_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 786 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 962 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -989,8 +1055,8 @@ CREATE TABLE `sys_role`  (
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES (1, '超级管理员', 'admin', 1, '1', 1, 1, '0', '0', 'admin', '2024-04-10 15:08:49', '', NULL, '超级管理员');
-INSERT INTO `sys_role` VALUES (2, '普通角色', 'common', 2, '1', 1, 1, '0', '0', 'admin', '2024-04-10 15:08:49', 'admin', '2024-04-10 20:28:12', '普通角色');
-INSERT INTO `sys_role` VALUES (100, '访客', 'visitor', 3, '5', 0, 0, '0', '0', 'admin', '2024-04-10 20:31:02', 'admin', '2024-04-19 16:47:09', '访客，只能访问公开的数据');
+INSERT INTO `sys_role` VALUES (2, '观察员', 'observer', 2, '1', 1, 1, '0', '0', 'admin', '2024-04-10 15:08:49', 'admin', '2024-04-28 13:40:30', '能看到整个系统完整功能的身份');
+INSERT INTO `sys_role` VALUES (100, '访客', 'visitor', 3, '5', 0, 0, '0', '0', 'admin', '2024-04-10 20:31:02', 'admin', '2024-04-28 13:38:04', '访客，只能访问公开的数据');
 
 -- ----------------------------
 -- Table structure for sys_role_dept
@@ -1021,7 +1087,53 @@ CREATE TABLE `sys_role_menu`  (
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `sys_role_menu` VALUES (100, 1);
+INSERT INTO `sys_role_menu` VALUES (2, 1);
+INSERT INTO `sys_role_menu` VALUES (2, 2);
+INSERT INTO `sys_role_menu` VALUES (2, 100);
+INSERT INTO `sys_role_menu` VALUES (2, 101);
+INSERT INTO `sys_role_menu` VALUES (2, 102);
+INSERT INTO `sys_role_menu` VALUES (2, 103);
+INSERT INTO `sys_role_menu` VALUES (2, 104);
+INSERT INTO `sys_role_menu` VALUES (2, 105);
+INSERT INTO `sys_role_menu` VALUES (2, 106);
+INSERT INTO `sys_role_menu` VALUES (2, 107);
+INSERT INTO `sys_role_menu` VALUES (2, 108);
+INSERT INTO `sys_role_menu` VALUES (2, 109);
+INSERT INTO `sys_role_menu` VALUES (2, 110);
+INSERT INTO `sys_role_menu` VALUES (2, 111);
+INSERT INTO `sys_role_menu` VALUES (2, 112);
+INSERT INTO `sys_role_menu` VALUES (2, 114);
+INSERT INTO `sys_role_menu` VALUES (2, 116);
+INSERT INTO `sys_role_menu` VALUES (2, 1000);
+INSERT INTO `sys_role_menu` VALUES (2, 1007);
+INSERT INTO `sys_role_menu` VALUES (2, 1012);
+INSERT INTO `sys_role_menu` VALUES (2, 1016);
+INSERT INTO `sys_role_menu` VALUES (2, 1020);
+INSERT INTO `sys_role_menu` VALUES (2, 1025);
+INSERT INTO `sys_role_menu` VALUES (2, 1030);
+INSERT INTO `sys_role_menu` VALUES (2, 1035);
+INSERT INTO `sys_role_menu` VALUES (2, 1039);
+INSERT INTO `sys_role_menu` VALUES (2, 1042);
+INSERT INTO `sys_role_menu` VALUES (2, 1044);
+INSERT INTO `sys_role_menu` VALUES (2, 1049);
+INSERT INTO `sys_role_menu` VALUES (2, 1055);
+INSERT INTO `sys_role_menu` VALUES (2, 1056);
+INSERT INTO `sys_role_menu` VALUES (2, 1057);
+INSERT INTO `sys_role_menu` VALUES (2, 1058);
+INSERT INTO `sys_role_menu` VALUES (2, 1059);
+INSERT INTO `sys_role_menu` VALUES (2, 1060);
+INSERT INTO `sys_role_menu` VALUES (2, 2069);
+INSERT INTO `sys_role_menu` VALUES (2, 2070);
+INSERT INTO `sys_role_menu` VALUES (2, 2082);
+INSERT INTO `sys_role_menu` VALUES (2, 2087);
+INSERT INTO `sys_role_menu` VALUES (2, 2088);
+INSERT INTO `sys_role_menu` VALUES (2, 2093);
+INSERT INTO `sys_role_menu` VALUES (2, 2094);
+INSERT INTO `sys_role_menu` VALUES (2, 2095);
+INSERT INTO `sys_role_menu` VALUES (2, 2096);
+INSERT INTO `sys_role_menu` VALUES (2, 2097);
+INSERT INTO `sys_role_menu` VALUES (2, 2098);
+INSERT INTO `sys_role_menu` VALUES (2, 2099);
 INSERT INTO `sys_role_menu` VALUES (100, 107);
 INSERT INTO `sys_role_menu` VALUES (100, 1035);
 INSERT INTO `sys_role_menu` VALUES (100, 2069);
@@ -1036,6 +1148,40 @@ INSERT INTO `sys_role_menu` VALUES (100, 2083);
 INSERT INTO `sys_role_menu` VALUES (100, 2084);
 INSERT INTO `sys_role_menu` VALUES (100, 2085);
 INSERT INTO `sys_role_menu` VALUES (100, 2086);
+INSERT INTO `sys_role_menu` VALUES (100, 2087);
+INSERT INTO `sys_role_menu` VALUES (100, 2088);
+INSERT INTO `sys_role_menu` VALUES (100, 2089);
+INSERT INTO `sys_role_menu` VALUES (100, 2093);
+INSERT INTO `sys_role_menu` VALUES (100, 2094);
+INSERT INTO `sys_role_menu` VALUES (100, 2095);
+INSERT INTO `sys_role_menu` VALUES (100, 2096);
+INSERT INTO `sys_role_menu` VALUES (100, 2097);
+INSERT INTO `sys_role_menu` VALUES (100, 2098);
+INSERT INTO `sys_role_menu` VALUES (100, 2099);
+
+-- ----------------------------
+-- Table structure for sys_test
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_test`;
+CREATE TABLE `sys_test`  (
+  `test_id` int NOT NULL COMMENT '测试ID',
+  `text_field` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '文本字段',
+  `number_field` int NULL DEFAULT NULL COMMENT '数字字段',
+  `date_field` datetime NULL DEFAULT NULL COMMENT '日期字段',
+  `rich_text_field` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '富文本字段',
+  `select_field` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '下拉框字段',
+  `boolean_field` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '布尔字段',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `textarea_field` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '文本域',
+  `tree_field` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '树形选择器',
+  PRIMARY KEY (`test_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_test
+-- ----------------------------
+INSERT INTO `sys_test` VALUES (0, '测试记事本', 0, NULL, '', '', '', '2024-04-28 12:22:21', NULL, '', '测试记事本2');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -1062,24 +1208,23 @@ CREATE TABLE `sys_user`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 111 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户信息表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 121 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 103, 'admin', '超级管理员', '00', 'ax@qq.com', '15888888888', '1', '/profile/avatar/2024/04/18/Stone_20240418104355A001.png', '$2a$10$aMw2U1fjT03V2mAwEzwZUePjSjaCEPbt8UiTFIQn8Njr6PgAhpOIe', '0', '0', '127.0.0.1', '2024-04-20 18:20:14', 'admin', '2024-04-10 15:08:49', '', '2024-04-20 18:20:08', '管理员');
-INSERT INTO `sys_user` VALUES (2, 200, 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '', '$2a$10$8xkL0c8Q2VJBnN.TZ.aXDu.L8a/dD.uXPUHiO94nLo0lZLsLzlyB.', '0', '0', '127.0.0.1', '2024-04-10 21:58:36', 'admin', '2024-04-10 15:08:49', 'admin', '2024-04-10 22:03:44', '访客角色');
-INSERT INTO `sys_user` VALUES (100, 200, 'Annis', 'Annis', '00', '11111111111@123.com', '11111111111', '1', '', '$2a$10$BnRVxbqfdoKJ.5eV9Vv7quABjjEEzYP8qoSxVjgPoH7JyZJEHcnJ6', '0', '0', '127.0.0.1', '2024-04-11 22:07:46', 'admin', '2024-04-10 19:03:08', 'admin', '2024-04-15 09:45:52', '小爱同学');
-INSERT INTO `sys_user` VALUES (101, 103, 'test23', 'test23', '00', '', '', '0', '', '$2a$10$tzw2Jp6jVwdpmgrCFIhIqusXiyryzVLXUYF5n.qLCjj3iWtdhKQRy', '0', '0', '127.0.0.1', '2024-04-17 15:49:33', '', '2024-04-13 19:10:31', 'admin', '2024-04-17 15:49:33', NULL);
-INSERT INTO `sys_user` VALUES (102, 200, '123456', '1234561', '00', '', '', '0', '', '$2a$10$3IxD3FnnYyFiDUYU2nW/beRhrg55uw8zKeeQ3Sa8lrdZoGEfWY9CC', '0', '0', '127.0.0.1', '2024-04-16 14:14:29', '', '2024-04-13 19:20:07', 'admin', '2024-04-16 14:14:28', NULL);
-INSERT INTO `sys_user` VALUES (103, NULL, '123456789', '123456789', '00', '', '', '0', '', '$2a$10$lWCiIsU3eX/HWDvPknRue.cqfiS.Gm8cu0x/UKX3/MJLP9PS4JFP6', '0', '0', '', NULL, '', '2024-04-13 19:22:07', '', NULL, NULL);
-INSERT INTO `sys_user` VALUES (104, NULL, 'sadfasd', 'sadfasd', '00', '', '', '0', '', '$2a$10$c6MgP8LTWKSdrjZyi9eWiuJuCjD3NBMCBEFj5a.CFcxlVva2fOKuu', '0', '0', '127.0.0.1', '2024-04-17 20:28:21', '', '2024-04-13 19:23:43', 'admin', '2024-04-17 20:28:15', NULL);
-INSERT INTO `sys_user` VALUES (105, NULL, 'cabcab', 'cabcab', '00', '444891953@qq.com', '', '1', '', '$2a$10$Sf63Rm2fR8YyGdMV5davAeKa2PNIbjpGUMJvz8ruxXXYTzRiYJr4C', '0', '0', '127.0.0.1', '2024-04-13 20:43:00', '', '2024-04-13 20:42:44', '', '2024-04-13 20:49:13', NULL);
-INSERT INTO `sys_user` VALUES (106, NULL, 'test123', 'test123', '00', '', '', '0', '', '$2a$10$I8aahiOQzlMa9InKlgwo1OjdBViIg.tI31N3glOv8bSS3PDhHQwqK', '0', '0', '127.0.0.1', '2024-04-16 18:20:11', '', '2024-04-16 18:19:57', '', '2024-04-16 18:20:05', NULL);
-INSERT INTO `sys_user` VALUES (107, NULL, 'test003', 'test003', '00', '', '', '0', '', '$2a$10$i2fdB5tn9wyCft4LiI8H3uafB2f8Ab5gWkzIFghZGExC5Hp7BwKYe', '0', '0', '127.0.0.1', '2024-04-17 15:20:28', '', '2024-04-16 18:53:38', '', '2024-04-17 15:20:28', NULL);
-INSERT INTO `sys_user` VALUES (108, NULL, 'test004', 'test004', '00', '', '', '0', '', '$2a$10$X5KCGS254ViguDUP7FHw9eux1dHUG/c9hdWaLd.ZZrlOzWjRsedVG', '0', '0', '127.0.0.1', '2024-04-17 21:38:50', '', '2024-04-16 18:54:16', '', '2024-04-17 21:38:50', NULL);
-INSERT INTO `sys_user` VALUES (109, NULL, 'test006', 'test006', '00', '', '', '0', '', '$2a$10$NiXYgRFJElOrQEQ/edJa2.ewwRbXqVKNSKxN9YgyukTFql0ZZMJwi', '0', '0', '127.0.0.1', '2024-04-16 19:56:33', '', '2024-04-16 19:56:23', '', '2024-04-16 19:56:27', NULL);
-INSERT INTO `sys_user` VALUES (110, NULL, 'test007', 'test007', '00', '', '', '0', '', '$2a$10$mRwKMJ2do471atwgzEGLjOt2Kjwv3Adsf9Sj2YLlrFxgMdUBoLSd.', '0', '0', '127.0.0.1', '2024-04-16 22:03:34', '', '2024-04-16 22:03:24', '', '2024-04-16 22:03:28', NULL);
+INSERT INTO `sys_user` VALUES (1, 103, 'admin', 'AX最终管理员', '00', 'ax@qq.com', '15888888888', '1', '3DDD-4.png', '$2a$10$XABVK1mlV04Gxc6Dg/T7V.ic9O.vbBo06pWamUxexuNiK8Ua0C9We', '0', '0', '127.0.0.1', '2024-04-28 13:37:11', 'admin', '2024-04-10 15:08:49', '', '2024-04-28 13:37:11', '管理员');
+INSERT INTO `sys_user` VALUES (2, 200, 'ax-test', 'AX-测试账号', '00', 'ry@qq.com', '15666666666', '1', '', '$2a$10$8xkL0c8Q2VJBnN.TZ.aXDu.L8a/dD.uXPUHiO94nLo0lZLsLzlyB.', '0', '0', '127.0.0.1', '2024-04-10 21:58:36', 'admin', '2024-04-10 15:08:49', 'admin', '2024-04-22 11:08:12', '访客角色');
+INSERT INTO `sys_user` VALUES (100, 200, 'Annis', 'Annis', '00', '11111111111@123.com', '11111111111', '1', 'Delivery boy-4.png', '$2a$10$BnRVxbqfdoKJ.5eV9Vv7quABjjEEzYP8qoSxVjgPoH7JyZJEHcnJ6', '0', '0', '124.240.33.47', '2024-04-27 21:11:17', 'admin', '2024-04-10 19:03:08', 'admin', '2024-04-27 21:11:16', '小爱同学');
+INSERT INTO `sys_user` VALUES (112, 100, 'observer', '观察员', '00', '', '17666666666', '0', '', '$2a$10$UtS5NtjZkVKpc7M..VaDC.ZOzdCRDXj51HdtAIRPqvbZVnJZnX4bq', '0', '0', '124.240.33.47', '2024-04-27 23:39:45', 'admin', '2024-04-21 18:08:19', 'admin', '2024-04-27 23:39:45', '能看到完整的系统信息');
+INSERT INTO `sys_user` VALUES (113, 200, 'test02', 'test02', '00', '', '', '0', '3DDD.png', '$2a$10$K2Gm1xsPdJ4qSOfH22PTDOm.wGgAgd0T4HTM5D9qflkDrEolo3Rga', '0', '0', '14.19.7.164', '2024-04-28 09:47:00', '', '2024-04-22 19:40:59', '', '2024-04-28 09:46:59', NULL);
+INSERT INTO `sys_user` VALUES (114, 200, 'test03', 'test03', '00', '', '', '0', '', '$2a$10$fUAgSud/PzMLxrIHezWeBunM3dLmSKOz22zHUcdxC1t2zTSI8iFiW', '0', '0', '14.19.134.221', '2024-04-23 09:55:08', '', '2024-04-23 09:53:46', '', '2024-04-23 09:55:07', NULL);
+INSERT INTO `sys_user` VALUES (115, 200, 'qweqwe', 'qweqwe', '00', '', '', '0', '', '$2a$10$seWJa6VRz4dUu.yjxkZlMeOwTa1zGZQ0.3uhhub6kbjz9bp9M.ugO', '0', '0', '183.4.21.128', '2024-04-23 14:11:53', '', '2024-04-23 14:11:44', '', '2024-04-23 14:11:52', NULL);
+INSERT INTO `sys_user` VALUES (116, 200, 'qwe123', 'qwe123', '00', '', '', '0', '', '$2a$10$3WAe.SAjXPbhwvlYlTQd4uWev2rTN4LaKsdcJepqneCxv.oujDCTC', '0', '0', '183.4.21.128', '2024-04-23 14:32:34', '', '2024-04-23 14:32:30', '', '2024-04-23 14:32:34', NULL);
+INSERT INTO `sys_user` VALUES (117, 200, 'zkx123', 'zkx123', '00', '', '', '0', '', '$2a$10$4iYAP/A5m9/BaM2k4C1z7ufl4vodc2LBH9M4JTasxtMSjCeL0l1EG', '0', '0', '58.208.39.123', '2024-04-23 14:52:17', '', '2024-04-23 14:52:05', '', '2024-04-23 14:52:17', NULL);
+INSERT INTO `sys_user` VALUES (118, 200, 'test04', 'test04', '00', '', '', '0', '3DDD-1.png', '$2a$10$oL3d9Cm6NcYaDUnMyyUc3uyNrMd/rkc7WQBwUxH9onHsA9bAVc6jG', '0', '0', '127.0.0.1', '2024-04-23 16:57:48', '', '2024-04-23 16:10:42', '', '2024-04-23 16:57:48', NULL);
+INSERT INTO `sys_user` VALUES (119, 200, 'test05', 'test05', '00', '', '', '0', '', '$2a$10$SqZSEc65yYM5OoeCkMipXeCcCdZuqDNPxaiVAb1H4A0GLca0LJFRy', '0', '0', '127.0.0.1', '2024-04-23 16:11:53', '', '2024-04-23 16:11:47', '', '2024-04-23 16:11:53', NULL);
+INSERT INTO `sys_user` VALUES (120, 200, 'test06', 'test06', '00', '', '', '0', '', '$2a$10$MhvGWBbiD4lnzXLflQsA7.hWMiQPO1J8qUKrytqvnZN6K2RrnmUZe', '0', '0', '127.0.0.1', '2024-04-23 16:13:43', '', '2024-04-23 16:13:39', '', '2024-04-23 16:13:43', NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_post
@@ -1097,6 +1242,7 @@ CREATE TABLE `sys_user_post`  (
 INSERT INTO `sys_user_post` VALUES (1, 1);
 INSERT INTO `sys_user_post` VALUES (2, 2);
 INSERT INTO `sys_user_post` VALUES (100, 1);
+INSERT INTO `sys_user_post` VALUES (112, 4);
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -1123,6 +1269,16 @@ INSERT INTO `sys_user_role` VALUES (107, 100);
 INSERT INTO `sys_user_role` VALUES (108, 100);
 INSERT INTO `sys_user_role` VALUES (109, 100);
 INSERT INTO `sys_user_role` VALUES (110, 100);
+INSERT INTO `sys_user_role` VALUES (111, 100);
+INSERT INTO `sys_user_role` VALUES (112, 2);
+INSERT INTO `sys_user_role` VALUES (113, 100);
+INSERT INTO `sys_user_role` VALUES (114, 100);
+INSERT INTO `sys_user_role` VALUES (115, 100);
+INSERT INTO `sys_user_role` VALUES (116, 100);
+INSERT INTO `sys_user_role` VALUES (117, 100);
+INSERT INTO `sys_user_role` VALUES (118, 100);
+INSERT INTO `sys_user_role` VALUES (119, 100);
+INSERT INTO `sys_user_role` VALUES (120, 100);
 
 -- ----------------------------
 -- Table structure for sys_website
@@ -1138,104 +1294,122 @@ CREATE TABLE `sys_website`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `user_id` int NULL DEFAULT NULL COMMENT '用户ID',
   `dept_id` int NULL DEFAULT NULL COMMENT '部门ID',
+  `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '图标',
   PRIMARY KEY (`website_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 156 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 173 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_website
 -- ----------------------------
-INSERT INTO `sys_website` VALUES (63, '4K壁纸', 'https://www.uhdpaper.com/', '2024-04-17 10:50:47', '4K, 3840x2160, 8K, 7680x4320, 1920x1080. UHD Ultra HD Wallpaper for Desktop, iPhone, PC, Laptop, Computer, Android Phone, Smartphone, iMac, MacBook, Tablet, Mobile Device.', 'image', '2024-04-17 18:52:25', 1, 103);
-INSERT INTO `sys_website` VALUES (64, 'WallpaperAccess', 'wallpaperaccess.com', '2024-04-17 13:38:00', 'WallpaperAccess为您提供了数千张高质量图像,可用作您的计算机,平板电脑或手机的墙纸', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (65, 'WallpaperHub | Free wallpapers for your PC, phone and tablet', 'https://www.wallpaperhub.app/', '2024-04-17 13:38:34', 'Download free wallpapers for your PC, phone and tablet. Get official Surface wallpapers and the Bing daily image for your device. 4K, 1080p & Surface Studio resolutions are all available to do1wnload.', 'image', '2024-04-17 15:41:28', 1, 103);
-INSERT INTO `sys_website` VALUES (66, 'FREE for commercial use Images. Download Stock photos CC0', 'https://freeforcommercialuse.net/', '2024-04-17 13:39:16', 'FREE authentic lifestyle imagery for modern creatives. Creative Commons Zero – Public Domain FREE for commercial use. Curated ', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (67, 'Gratisography - Free High-Resolution Stock Photos', 'https://gratisography.com/', '2024-04-17 13:59:17', 'The world\'s quirkiest collection of free high-resolution pictures you can use on your personal and commercial projects. All completely free of copyright restrictions. New photos added every week!', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (68, 'Best Free High Resolution Stock Photos & Videos | ISO Republic', 'https://isorepublic.com/', '2024-04-17 13:59:39', 'ISO Republic offers over 7,000 of the best high-resolution stock images & videos, all free for personal and commercial use. Download your favorites today.', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (69, 'MyLiveWallpapers.com - Best Live Wallpaper For Your Desktop PC and Mobile Phone', 'https://mylivewallpapers.com/', '2024-04-17 13:59:55', 'MyLiveWallpapers.com - Free live wallpapers for your PC and mobile phone. We have anime live wallpapers, cars live wallpapers, video game live wallpapers and more! Install our free MLWapp to play live wallpapers on your PC!', 'image', '2024-04-17 15:43:33', 1, 103);
-INSERT INTO `sys_website` VALUES (70, 'freepik', 'https://www.freepik.com/', '2024-04-17 14:05:03', 'High-quality photos, videos, vectors, PSD, AI images, icons... to go from ideas to outstanding designs', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (71, 'unDraw - Open source illustrations for any idea', 'https://undraw.co/', '2024-04-17 14:05:19', 'The design project with open-source illustrations for any idea you can imagine and create. Create beautiful websites, products and applications with your color, for free.', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (72, 'freevector', 'https://www.freevector.com/', '2024-04-17 14:05:51', '免费矢量图', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (73, 'stocksnap', 'https://stocksnap.io/', '2024-04-17 14:11:18', 'The best source for free, CC0, do-what-you-want-with stock photos. Browse and download thousands of copyright-free stock images. No attribution required.', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (74, '免费图标', 'https://www.streamlinehq.com/', '2024-04-17 14:12:21', '177289 Streamline icons in line, regular, bold, colors, freehand, cyber, and more styles. Download the largest icons sets of the world in one place.', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (75, 'vecteezy', 'https://www.vecteezy.com/', '2024-04-17 14:17:03', 'Professional quality creative resources to get your projects done faster.', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (76, 'The world\'s biggest drone photo and video sharing platform | SkyPixel.com', 'https://www.skypixel.com/', '2024-04-17 14:17:38', 'Join the world\'s biggest drone and aerial photo and video sharing platform. Share your aerial photography and cinematography, find tips and connect with others', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (77, 'Beautiful Free Images & Pictures | Unsplash', 'https://unsplash.com/', '2024-04-17 14:18:07', 'Beautiful, free images and photos that you can download and use for any project. Better than any royalty free or stock photos.', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (78, '闪萌 - 中文GIF搜索引擎 - gif搜索_动图搜索_gif_动图_表情_斗图', 'https://www.weshineapp.com/', '2024-04-17 14:19:33', '闪萌官网，GIF动图中文搜索引擎，发现好玩的gif动图,包括明星、美女、搞笑、微信QQ聊天表情包，可以一键分享到微信QQ新浪微博，支持gif动图下载，表情包下载到手机', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (79, 'ur1.fun', 'https://wallpaper.ur1.fun/', '2024-04-17 14:21:55', '电脑壁纸，中文', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (80, '彼岸壁纸', 'http://www.netbian.com/', '2024-04-17 14:25:11', '中文壁纸网页，可免费下载', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (81, 'zzzmh\'s_blog_上海藏原羚工作室', 'https://bz.zzzmh.cn/index', '2024-04-17 14:27:08', '上海藏原羚工作室程序员的技术主页，分享网站开发设计技术文章，极简系列网站开发日志等', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (82, 'pixabay', 'https://pixabay.com/', '2024-04-17 14:27:42', '超过40000 张关于“Wallpaper 4K”和“背景”的免费图片', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (83, 'Simple Desktops', 'https://simpledesktops.com/', '2024-04-17 14:28:28', 'A collection of wallpapers designed to make your computer beautiful without distraction.', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (84, 'NET牛人', 'https://ss.netnr.com/wallpaper', '2024-04-17 14:30:17', 'NET牛人,Netnr,Gist,Run,Doc,Draw', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (85, 'Justin Maller – Portfolio', 'https://justinmaller.com/', '2024-04-17 14:30:54', '抽象壁纸', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (86, 'ZEDGE - Everything you', 'https://www.zedge.net/', '2024-04-17 14:43:46', 'Download free ringtones, HD wallpapers, backgrounds, icons and games to personalize your cell phone or mobile device using the Zedge app for Android and iPhone.', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (87, 'goodfon', 'https://www.goodfon.com/', '2024-04-17 14:44:56', 'Free mobile and desktop, laptop, hdtv wallpapers\nFree wallpapers for mobile, a whole world of amazing images and photos on various subjects. Download wallpapers and screensavers for mobile.', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (88, 'Desktopography - Beautiful creative nature themed desktop wallpaper by the worlds best artists and designers.', 'https://desktopography.net/', '2024-04-17 14:46:01', 'Desktopography offers free high resolution nature desktop wallpaper. Each one created by the worlds best creative talents, exhibitions are released yearly.', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (89, 'Beauty Your Desktop - 4K,5K Best High Quality Wallpapers Album Free Download Site | 10wallpaper.com', 'https://www.10wallpaper.com/', '2024-04-17 14:46:23', '10wallpaper.com-4K,5K Best High Quality HD Wallpapers Album Free Download, Laptop, Apple, Android, Tablets HD Widescreen 5K Ultra HD, 1080p, 720p, Popular Resolutions Download', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (90, 'wallpaperim', 'https://wallpaperim.net/', '2024-04-17 14:48:39', '国外壁纸网页，可免费下载', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (91, 'wallpapercave', 'https://wallpapercave.com/', '2024-04-17 14:50:10', '国外网页，壁纸丰富可免费下载', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (92, 'Wallpapers and pictures for your desktop on the site www.GdeFon.com', 'http://cn.gde-fon.com/', '2024-04-17 15:05:10', 'Wallpapers and pictures on the desktop for all the free, good quality.E', 'image', '2024-04-17 16:00:42', 107, NULL);
-INSERT INTO `sys_website` VALUES (93, 'wallpaperscraft', 'https://wallpaperscraft.com/', '2024-04-17 18:29:41', '海量高清图下载', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (94, '图片压缩', 'https://squoosh.app/', '2024-04-17 18:39:54', '谷歌出品的图片在线压缩软件，不经过服务器，高效且安全', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (95, 'excalidraw', 'https://excalidraw.com/', '2024-04-17 18:40:53', '免费开源超级强大的绘图工具', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (96, 'Pixso官网 - 新一代UI设计工具，替代Sketch，Figma，支持在线实时协作', 'https://pixso.cn/', '2024-04-17 18:41:15', 'pixso是一体化设计协作工具，助力产研设团队制作原型，ui/ux设计，视觉设计，低代码交付时获得更轻松流畅的工作体验，让团队协作更高效。支持sketch，figma格式。', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (97, 'Powerful, online SVG editor for teams', 'https://vecta.io/', '2024-04-17 18:43:13', 'Vecta is a real time, collaborative SVG editor with a powerful Javascript based plugin system, for teams. ', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (98, 'Framer — The internet is your canvas', 'https://www.framer.com/', '2024-04-17 18:43:39', 'Framer is where teams design and publish stunning sites.', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (99, 'Copixel', 'https://copixel.bytedance.com/', '2024-04-17 18:44:12', '字节跳动成立于2012年3月，目前公司的产品和服务已覆盖全球150个国家和地区、75个语种，曾在40多个国家和地区位居应用商店总榜前列。', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (100, 'tldraw', 'https://www.tldraw.com/', '2024-04-17 18:45:12', '在线绘图工具，简单易用', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (101, 'pixilart', 'https://www.pixilart.com/', '2024-04-17 18:46:17', '像素风绘制网页', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (102, '即时设计 - 可实时协作的专业 UI 设计工具', 'https://js.design/', '2024-04-17 18:46:30', '即时设计是一款支持在线协作的专业级 UI 设计工具，支持 Sketch、Figma、XD 格式导入，海量优质设计资源即拿即用。支持创建交互原型、获取设计标注，为产设研团队提供一站式协同办公体验。', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (103, 'SVGator: Free SVG Animation Creator Online - No Coding', 'https://www.svgator.com/', '2024-04-17 18:47:10', 'It\'s SVG animation made easy - Create impressive SVG animations online, without any coding skills. Add them easily to your website. Get started for free!', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (104, 'Figma: The Collaborative Interface Design Tool', 'https://www.figma.com/', '2024-04-17 18:47:32', 'Figma is the leading collaborative design tool for building meaningful products. Seamlessly design, prototype, develop, and collect feedback in a single platform.', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (105, 'uxpin', 'https://www.uxpin.com/', '2024-04-17 18:48:27', 'Replace designers with a design-less tool.\nBuild functional UI in minutes with your sleek code-backed layouts.', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (106, '一键去除背景', 'https://www.remove.bg/zh', '2024-04-17 18:54:23', 'Remove image backgrounds automatically in 5 seconds with just one click. Don\'t spend hours manually picking pixels. Upload your photo now & see the magic.', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (107, '稿定设计-做图做视频必备_在线设计神器_海量版权素材模板', 'https://ps.gaoding.com/#/', '2024-04-17 18:54:45', '在线快速图片和视频编辑,不会PS也能搞定设计。海报、简历、PPT、公众号配图、电商等海量模板快速出图。三秒抠图实用便捷,抖音快手热门视频轻松搞定。海量正版授权资源,商用无忧。', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (108, '在线svg编辑', 'https://www.jyshare.com/more/svgeditor/', '2024-04-17 18:55:20', 'WebStack - 收集国内外优秀设计网站、UI设计资源网站、灵感创意网站、Resources网站，定时更新分享优质产品设计书签。www.webstack.cc', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (109, 'Overview - Get started - Atlassian Design System', 'https://atlassian.design/', '2024-04-17 18:56:25', 'Use Atlassian\'s end-to-end design language to create simple, intuitive and beautiful experiences.', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (110, '为政府服务的设计系统', 'https://designsystem.digital.gov/', '2024-04-17 18:57:05', 'A design system for the federal government.', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (111, 'Semi Design', 'https://semi.design/zh-CN/', '2024-04-17 18:57:23', 'An easy-to-customize modern design system that helps designers and developers create high-quality products. 由抖音前端与 UED 团队维护，易于定制的现代化设计系统，帮助设计师与开发者打造高质量产品。 ', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (112, 'Adobe', 'https://spectrum.adobe.com/', '2024-04-17 18:57:46', 'adobe 设计系统', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (113, '三星电子设计', 'https://developer.samsung.com/', '2024-04-17 18:58:07', '探索三星让您感受品位生活，在这里您可以找到Galaxy S24 Ultra , Galaxy S24 | S24+，Galaxy Z Fold5 | Z Flip5，Galaxy Tab S9系列，Galaxy Watch6 | Watch6 Classic，Galaxy A54 5G，三星 W23 | W23 Flip等新品，也可以浏览手机、电视、显示器、冰箱、洗衣机等三星官方产品内容，并获得相关产品服务与支持。', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (114, 'thumbprint', 'https://thumbprint.design/', '2024-04-17 18:58:35', 'thumbprint', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (115, 'Material', 'https://m3.material.io/', '2024-04-17 18:58:54', 'Google material', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (116, 'carbondesignsystem', 'https://carbondesignsystem.com/', '2024-04-17 18:59:32', 'carbon design system', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (117, 'Microsoft Design', 'https://fluent2.microsoft.design/', '2024-04-17 18:59:45', 'Journey through the design process for our new default font ', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (118, '京东设计系统', 'https://findesign.jd.com/', '2024-04-17 19:00:25', '京东JD.COM-专业的综合网上购物商城，为您提供正品低价的购物选择、优质便捷的服务体验。商品来自全球数十万品牌商家，囊括家电、手机、电脑、服装、居家、母婴、美妆、个护、食品、生鲜等丰富品类，满足各种购物需求。', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (119, 'DevUI', 'https://devui.design/', '2024-04-17 19:00:44', 'DevUI是一款开源免费的企业中后台产品前端的通用解决方案，其设计价值观基于\'致简\',\'沉浸\',\'灵活\'三种自然与人文相结合的理念，旨在为设计师，前端开发者提供标准的设计体系，并满足各类落地场景，是一款企业级开箱即用的产品。全部代码开源并遵循 MIT 协议，任何企业、组织及个人均可免费使用。目前支持 Angular ^10.0.0 版本。', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (120, 'PC 官网 - 首页', 'https://fusion.design/pc', '2024-04-17 19:01:07', 'Fusion Design is an enterprise-level solution for building web products by improving designer-developer collaboration, product experience consistency, and development efficiency.', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (121, '阿里云设计系统', 'https://design.aliyun.com/', '2024-04-17 19:01:36', '阿里云——阿里巴巴集团旗下公司，是全球领先的云计算及人工智能科技公司之一。提供免费试用、云服务器、云数据库、云安全、云企业应用等云计算服务，以及大数据、人工智能服务、精准定制基于场景的行业解决方案。免费备案，7x24小时售后支持，助企业无忧上云。', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (122, '58同城设计系统', 'https://matrix.58.com/', '2024-04-17 19:02:11', '58同城东莞分类信息网，为你提供房产、招聘、黄页、团购、交友、二手、宠物、车辆、周边游等海量分类信息，充分满足您免费查看/发布信息的需求。东莞58同城，专业的分类信息网。', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (123, '有赞设计系统', 'https://design.youzan.com/', '2024-04-17 19:02:41', '有赞提供电商、零售、美业、教育、酒店等全行业经营增长解决方案，帮助商家全渠道私域营销、直播带货、出海营销，数字化赋能导购管理、会员运营和私域社群运营，带动业务全面增长。', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (124, '京东移动', 'https://nutui.jd.com/', '2024-04-17 19:03:09', '京东JD.COM-专业的综合网上购物商城，为您提供正品低价的购物选择、优质便捷的服务体验。商品来自全球数十万品牌商家，囊括家电、手机、电脑、服装、居家、母婴、美妆、个护、食品、生鲜等丰富品类，满足各种购物需求。', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (125, '腾讯设计系统', 'https://tdesign.tencent.com/', '2024-04-17 19:03:56', '腾讯于1998年11月成立，是一家互联网公司，通过技术丰富互联网用户的生活，助力企业数字化升级。我们的使命是“用户为本 科技向善”', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (126, 'Arco Design', 'https://arco.design/', '2024-04-17 19:04:25', '开源开放，持续迭代\n采用 MIT 许可协议，始终保持开放的心态，期待各方一起共建开源生态。', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (127, 'Shopify设计系统', 'https://polaris.shopify.com/', '2024-04-17 19:04:53', 'Try Shopify free and start a business or grow an existing one. Get more than ecommerce software with tools to manage every part of your business.', 'design', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (128, 'magicstudio', 'https://magicstudio.com/', '2024-04-17 19:15:16', '几秒钟内删除不需要的对象、人物和文本', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (129, '字体传奇网 ZITICQ 字体品牌设计师网', 'http://www.ziticq.com/shufa/', '2024-04-17 19:18:58', '字体传奇网ziticq.com 专注：字体笔画素材产品,商用字库产品,字体72变,字体设计教程学习,字体标志品牌定制为主,他们为了设计不抛弃,不放弃,旨在共同提高大家的设计水平,为设计而坚持！', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (130, 'Sony Corporation - Home', 'https://www.sony.net/united/clock/', '2024-04-17 19:19:25', 'Learn about Sony Corporation\'s information, businesses and products, recent press releases, sustainability and more.', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (131, 'Adobe: Creative, marketing and document management solutions', 'https://color.adobe.com/', '2024-04-17 19:20:17', 'Adobe 调色工具', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (132, 'pattern ', 'https://cn.pattern.monster/', '2024-04-17 19:24:33', '随机背景图生成', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (133, 'pexels', 'https://www.pexels.com/zh-cn/', '2024-04-17 19:25:26', '才华横溢的摄影作者在这里免费分享最精彩的素材图片和视频', 'image', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (134, '即时工具', 'https://www.67tool.com/', '2024-04-17 19:26:09', '部分工具使用要登录', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (135, '帮小忙', 'https://tool.browser.qq.com/', '2024-04-17 19:26:47', '腾讯出品的工具箱', 'tool', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (136, '小诺开源技术', 'https://snowy.xiaonuo.vip/login', '2024-04-18 13:39:35', '集成国密加解密插件，在前后分离框架中，真正做到：前后分离“密”不可分；同时实现国产化机型、中间件、数据库适配，是您的不二之选！', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (137, 'erupt', 'https://www.erupt.xyz/', '2024-04-18 13:41:18', '开源低代码框架，零前端代码，纯注解开发管理后台！', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (138, 'BallCat', 'http://preview.ballcat.cn/', '2024-04-18 13:42:44', '一个简单的项目脚手架', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (139, '项目主页 | mall学习教程', 'https://www.macrozheng.com/admin/', '2024-04-18 13:43:02', 'mall学习教程 友情提示 快速体验项目：在线访问地址 。 全套学习教程：《mall学习教程》。 视频教程（2023最新版）：《mall视频教程》 。 微服务版本：基于Spring Cloud Alibaba的项目：mall-swarm 。 项目交流：想要加群交流项目的朋友，可以加入mall项目交流群。', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (140, '人人开源', 'http://demo.open.renren.io/renren-security/#/login', '2024-04-18 13:43:20', 'renren-security、renren-fast是人人开源社区采用Spring、MyBatis、Shiro编写的后台脚手架框架，支持MySQL、Oracle、SQL Server、PostgreSQL数据库，支持分布式部署，能够有效降低企业开发成本，提升开发效率', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (141, 'JEECG官方网站 - 基于BPM的低代码开发平台(低代码平台_零代码平台_工作流平台优秀服务商)', 'https://www.jeecg.com/', '2024-04-18 13:43:51', 'JeecgBoot低代码平台，基于SpringBoot+Ant Design的前后端分离微服务架构,集成完善的工作流平台、强大的代码生成器、流程设计器、表单设计器、大屏设计器、报表门户设计，可以应用在任何J2EE项目开发中，尤其适合企业信息管理系统（MIS）、办公系统（OA）、企业资源计划系统（ERP）、客户关系管理系统（CRM）等，其半智能+手工Merge的低代码开发方式，可以显著提高开发效率70%以上，极大降低研发成本。', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (142, 'eladmin', 'https://eladmin.vip/demo/', '2024-04-18 13:47:02', '一个基于 Spring Boot 2.6.4 、 Spring Boot Jpa、 JWT、Spring Security、Redis、Vue的前后端分离的后台管理系统', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (143, 'likeadmin', 'https://www.likeadmin.cn/', '2024-04-18 13:47:38', 'likeadmin快速开发通用管理后台，基于Vue3、elementPlus，结合PHP、Java、Python、Go等主流后端语言搭建', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (144, '高品质开源商城系统-CRMEB官网', 'https://www.crmeb.com/', '2024-04-18 13:47:55', 'CRMEB开源商城系统，围绕新零售、品牌连锁、商家入驻等多种商业模式，自主研发B2C商城系统、B2B2C多商户商城系统、连锁多门店商城系统、跨境电商系统等；应用于直播电商、社交新零售、商家入驻等多种应用场景，系统支持多语言、多端登录，代码开源、独立部署、永久免费升级。咨询：400-8888-794', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (145, 'FastAdmin – 基于ThinkPHP和Bootstrap的极速后台开发框架', 'https://demo.fastadmin.net/', '2024-04-18 13:48:07', 'FastAdmin是一款基于ThinkPHP和Bootstrap的快速后台开发框架', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (146, 'PIGCLOUD', 'http://home.pig4cloud.com:38081/', '2024-04-18 13:49:35', '基于 Spring Cloud 、Spring Boot、 OAuth2 的 RBAC 企业快速开发平台， 同时支持微服务架构和单体架构', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (147, 'django', 'https://django-vue3-lyadmin.lybbn.cn/', '2024-04-18 13:52:47', 'django-vue3后台管理模板', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (148, 'django-vue3-admin', 'https://demo.dvadmin.com/', '2024-04-18 13:57:31', 'django-vue3-admin是一套全部开源的快速开发平台，毫无保留给个人免费使用、团体授权使用。 django-vue3-admin 基于RBAC模型的权限控制的一整套基础开发平台，权限粒度达到列级别，前后端分离', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (149, 'Vben Admin', 'https://vben.vvbin.cn/', '2024-04-18 13:58:25', 'Vben Admin ; 最新技术栈. 基于Vue3、Vite、TypeScript等最新技术栈开发 ; ⚡️ 轻量快速的热重载. 无论应用程序大小如何，都始终极快的模块热重', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (150, 'vue-element-admin', 'https://panjiachen.github.io/vue-element-admin', '2024-04-18 13:59:24', 'vue-element-admin 是一个后台前端解决方案，它基于 vue 和 element-ui实现。它使用了最新的前端技术栈', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (151, 'Free Bootstrap Admin Template - AdminLTE.IO', 'https://adminlte.io/', '2024-04-18 14:00:03', 'AdminLTE-是一个完全响应的管理模板。基于Bootstrap 3和4框架', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (152, 'iView / View Design 一套企业级 UI 组件库和前端解决方案', 'https://admin.iviewui.com/', '2024-04-18 14:00:48', '基于 Vue.js 的 UI 组件库，用于研发企业级中后台产品。iView 官网。', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (153, 'catchadmin', 'https://v3.catchadmin.com/', '2024-04-18 14:05:10', '是一个基于Vue3.0、Vite、 ElementPlus 、TypeScript 的后台解决方案，提供了丰富的功能组件，它可以帮助你快速搭建企业级中后台产品原型', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (154, 'vadmire', 'https://vadmire.top/', '2024-04-18 14:06:24', 'VAdmire Admin 是一款基于 Vue3 + TypeScript + NaiveUI 等技术栈搭建的后台系统', 'management', NULL, 1, 103);
-INSERT INTO `sys_website` VALUES (155, 'gin-vue-admin', 'https://demo.gin-vue-admin.com/', '2024-04-18 14:07:49', 'Vite+Vue3+Gin的开发基础平台，支持TS和JS混用。它集成了JWT鉴权、权限管理、动态路由、显隐可控组件、分页封装、多点登录拦截、资源权限、上传下载、代码生成器、表单生成器和可配置的导入导出等开发必备功能。', 'management', NULL, 1, 103);
+INSERT INTO `sys_website` VALUES (63, '4K壁纸', 'https://www.uhdpaper.com/', '2024-04-17 10:50:47', '4K, 3840x2160, 8K, 7680x4320, 1920x1080. UHD Ultra HD Wallpaper for Desktop, iPhone, PC, Laptop, Computer, Android Phone, Smartphone, iMac, MacBook, Tablet, Mobile Device.', 'image', '2024-04-17 18:52:25', 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (64, 'WallpaperAccess', 'http://wallpaperaccess.com', '2024-04-17 13:38:00', 'WallpaperAccess为您提供了数千张高质量图像,可用作您的计算机,平板电脑或手机的墙纸', 'image', '2024-04-26 18:23:28', 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (65, 'WallpaperHub | Free wallpapers for your PC, phone and tablet', 'https://www.wallpaperhub.app/', '2024-04-17 13:38:34', 'Download free wallpapers for your PC, phone and tablet. Get official Surface wallpapers and the Bing daily image for your device. 4K, 1080p & Surface Studio resolutions are all available to do1wnload.', 'image', '2024-04-17 15:41:28', 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (66, 'FREE for commercial use Images. Download Stock photos CC0', 'https://freeforcommercialuse.net/', '2024-04-17 13:39:16', 'FREE authentic lifestyle imagery for modern creatives. Creative Commons Zero – Public Domain FREE for commercial use. Curated ', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (67, 'Gratisography - Free High-Resolution Stock Photos', 'https://gratisography.com/', '2024-04-17 13:59:17', 'The world\'s quirkiest collection of free high-resolution pictures you can use on your personal and commercial projects. All completely free of copyright restrictions. New photos added every week!', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (68, 'Best Free High Resolution Stock Photos & Videos | ISO Republic', 'https://isorepublic.com/', '2024-04-17 13:59:39', 'ISO Republic offers over 7,000 of the best high-resolution stock images & videos, all free for personal and commercial use. Download your favorites today.', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (69, 'MyLiveWallpapers.com - Best Live Wallpaper For Your Desktop PC and Mobile Phone', 'https://mylivewallpapers.com/', '2024-04-17 13:59:55', 'MyLiveWallpapers.com - Free live wallpapers for your PC and mobile phone. We have anime live wallpapers, cars live wallpapers, video game live wallpapers and more! Install our free MLWapp to play live wallpapers on your PC!', 'image', '2024-04-17 15:43:33', 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (70, 'freepik', 'https://www.freepik.com/', '2024-04-17 14:05:03', 'High-quality photos, videos, vectors, PSD, AI images, icons... to go from ideas to outstanding designs', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (71, 'unDraw - Open source illustrations for any idea', 'https://undraw.co/', '2024-04-17 14:05:19', 'The design project with open-source illustrations for any idea you can imagine and create. Create beautiful websites, products and applications with your color, for free.', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (72, 'freevector', 'https://www.freevector.com/', '2024-04-17 14:05:51', '免费矢量图', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (73, 'stocksnap', 'https://stocksnap.io/', '2024-04-17 14:11:18', 'The best source for free, CC0, do-what-you-want-with stock photos. Browse and download thousands of copyright-free stock images. No attribution required.', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (74, '免费图标', 'https://www.streamlinehq.com/', '2024-04-17 14:12:21', '177289 Streamline icons in line, regular, bold, colors, freehand, cyber, and more styles. Download the largest icons sets of the world in one place.', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (75, 'vecteezy', 'https://www.vecteezy.com/', '2024-04-17 14:17:03', 'Professional quality creative resources to get your projects done faster.', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (76, 'The world\'s biggest drone photo and video sharing platform | SkyPixel.com', 'https://www.skypixel.com/', '2024-04-17 14:17:38', 'Join the world\'s biggest drone and aerial photo and video sharing platform. Share your aerial photography and cinematography, find tips and connect with others', 'image', '2024-04-26 10:27:45', 1, 103, 'http://localhost:8080/profile/image-icon/google.png');
+INSERT INTO `sys_website` VALUES (77, 'Beautiful Free Images & Pictures | Unsplash', 'https://unsplash.com/', '2024-04-17 14:18:07', 'Beautiful, free images and photos that you can download and use for any project. Better than any royalty free or stock photos.', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (78, '闪萌 - 中文GIF搜索引擎 - gif搜索_动图搜索_gif_动图_表情_斗图', 'https://www.weshineapp.com/', '2024-04-17 14:19:33', '闪萌官网，GIF动图中文搜索引擎，发现好玩的gif动图,包括明星、美女、搞笑、微信QQ聊天表情包，可以一键分享到微信QQ新浪微博，支持gif动图下载，表情包下载到手机', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (79, 'ur1.fun', 'https://wallpaper.ur1.fun/', '2024-04-17 14:21:55', '电脑壁纸，中文', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (80, '彼岸壁纸', 'http://www.netbian.com/', '2024-04-17 14:25:11', '中文壁纸网页，可免费下载', 'image', '2024-04-25 15:15:51', 1, 103, 'http://localhost:8080/profile/image-icon/google.png');
+INSERT INTO `sys_website` VALUES (81, 'zzzmh\'s_blog_上海藏原羚工作室', 'https://bz.zzzmh.cn/index', '2024-04-17 14:27:08', '上海藏原羚工作室程序员的技术主页，分享网站开发设计技术文章，极简系列网站开发日志等', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (82, 'pixabay', 'https://pixabay.com/', '2024-04-17 14:27:42', '超过40000 张关于“Wallpaper 4K”和“背景”的免费图片', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (83, 'Simple Desktops', 'https://simpledesktops.com/', '2024-04-17 14:28:28', 'A collection of wallpapers designed to make your computer beautiful without distraction.', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (84, 'NET牛人', 'https://ss.netnr.com/wallpaper', '2024-04-17 14:30:17', 'NET牛人,Netnr,Gist,Run,Doc,Draw', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (85, 'Justin Maller – Portfolio', 'https://justinmaller.com/', '2024-04-17 14:30:54', '抽象壁纸', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (86, 'ZEDGE - Everything you', 'https://www.zedge.net/', '2024-04-17 14:43:46', 'Download free ringtones, HD wallpapers, backgrounds, icons and games to personalize your cell phone or mobile device using the Zedge app for Android and iPhone.', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (87, 'goodfon', 'https://www.goodfon.com/', '2024-04-17 14:44:56', 'Free mobile and desktop, laptop, hdtv wallpapers\nFree wallpapers for mobile, a whole world of amazing images and photos on various subjects. Download wallpapers and screensavers for mobile.', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (88, 'Desktopography - Beautiful creative nature themed desktop wallpaper by the worlds best artists and designers.', 'https://desktopography.net/', '2024-04-17 14:46:01', 'Desktopography offers free high resolution nature desktop wallpaper. Each one created by the worlds best creative talents, exhibitions are released yearly.', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (89, 'Beauty Your Desktop - 4K,5K Best High Quality Wallpapers Album Free Download Site | 10wallpaper.com', 'https://www.10wallpaper.com/', '2024-04-17 14:46:23', '10wallpaper.com-4K,5K Best High Quality HD Wallpapers Album Free Download, Laptop, Apple, Android, Tablets HD Widescreen 5K Ultra HD, 1080p, 720p, Popular Resolutions Download', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (90, 'wallpaperim', 'https://wallpaperim.net/', '2024-04-17 14:48:39', '国外壁纸网页，可免费下载', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (91, 'wallpapercave', 'https://wallpapercave.com/', '2024-04-17 14:50:10', '国外网页，壁纸丰富可免费下载', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (92, 'Wallpapers and pictures for your desktop on the site www.GdeFon.com', 'http://cn.gde-fon.com/', '2024-04-17 15:05:10', 'Wallpapers and pictures on the desktop for all the free, good quality.E', 'image', '2024-04-17 16:00:42', 107, NULL, NULL);
+INSERT INTO `sys_website` VALUES (93, 'wallpaperscraft', 'https://wallpaperscraft.com/', '2024-04-17 18:29:41', '海量高清图下载', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (94, '图片压缩', 'https://squoosh.app/', '2024-04-17 18:39:54', '谷歌出品的图片在线压缩软件，不经过服务器，高效且安全', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (95, 'excalidraw', 'https://excalidraw.com/', '2024-04-17 18:40:53', '免费开源超级强大的绘图工具', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (96, 'Pixso官网 - 新一代UI设计工具，替代Sketch，Figma，支持在线实时协作', 'https://pixso.cn/', '2024-04-17 18:41:15', 'pixso是一体化设计协作工具，助力产研设团队制作原型，ui/ux设计，视觉设计，低代码交付时获得更轻松流畅的工作体验，让团队协作更高效。支持sketch，figma格式。', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (97, 'Powerful, online SVG editor for teams', 'https://vecta.io/', '2024-04-17 18:43:13', 'Vecta is a real time, collaborative SVG editor with a powerful Javascript based plugin system, for teams. ', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (98, 'Framer — The internet is your canvas', 'https://www.framer.com/', '2024-04-17 18:43:39', 'Framer is where teams design and publish stunning sites.', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (99, 'Copixel', 'https://copixel.bytedance.com/', '2024-04-17 18:44:12', '字节跳动成立于2012年3月，目前公司的产品和服务已覆盖全球150个国家和地区、75个语种，曾在40多个国家和地区位居应用商店总榜前列。', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (100, 'tldraw', 'https://www.tldraw.com/', '2024-04-17 18:45:12', '在线绘图工具，简单易用', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (101, 'pixilart', 'https://www.pixilart.com/', '2024-04-17 18:46:17', '像素风绘制网页', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (102, '即时设计 - 可实时协作的专业 UI 设计工具', 'https://js.design/', '2024-04-17 18:46:30', '即时设计是一款支持在线协作的专业级 UI 设计工具，支持 Sketch、Figma、XD 格式导入，海量优质设计资源即拿即用。支持创建交互原型、获取设计标注，为产设研团队提供一站式协同办公体验。', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (103, 'SVGator: Free SVG Animation Creator Online - No Coding', 'https://www.svgator.com/', '2024-04-17 18:47:10', 'It\'s SVG animation made easy - Create impressive SVG animations online, without any coding skills. Add them easily to your website. Get started for free!', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (104, 'Figma: The Collaborative Interface Design Tool', 'https://www.figma.com/', '2024-04-17 18:47:32', 'Figma is the leading collaborative design tool for building meaningful products. Seamlessly design, prototype, develop, and collect feedback in a single platform.', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (105, 'uxpin', 'https://www.uxpin.com/', '2024-04-17 18:48:27', 'Replace designers with a design-less tool.\nBuild functional UI in minutes with your sleek code-backed layouts.', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (106, '一键去除背景', 'https://www.remove.bg/zh', '2024-04-17 18:54:23', 'Remove image backgrounds automatically in 5 seconds with just one click. Don\'t spend hours manually picking pixels. Upload your photo now & see the magic.', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (107, '稿定设计-做图做视频必备_在线设计神器_海量版权素材模板', 'https://ps.gaoding.com/#/', '2024-04-17 18:54:45', '在线快速图片和视频编辑,不会PS也能搞定设计。海报、简历、PPT、公众号配图、电商等海量模板快速出图。三秒抠图实用便捷,抖音快手热门视频轻松搞定。海量正版授权资源,商用无忧。', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (108, '在线svg编辑', 'https://www.jyshare.com/more/svgeditor/', '2024-04-17 18:55:20', 'WebStack - 收集国内外优秀设计网站、UI设计资源网站、灵感创意网站、Resources网站，定时更新分享优质产品设计书签。www.webstack.cc', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (109, 'Overview - Get started - Atlassian Design System', 'https://atlassian.design/', '2024-04-17 18:56:25', 'Use Atlassian\'s end-to-end design language to create simple, intuitive and beautiful experiences.', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (110, '为政府服务的设计系统', 'https://designsystem.digital.gov/', '2024-04-17 18:57:05', 'A design system for the federal government.', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (111, 'Semi Design', 'https://semi.design/zh-CN/', '2024-04-17 18:57:23', 'An easy-to-customize modern design system that helps designers and developers create high-quality products. 由抖音前端与 UED 团队维护，易于定制的现代化设计系统，帮助设计师与开发者打造高质量产品。 ', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (112, 'Adobe', 'https://spectrum.adobe.com/', '2024-04-17 18:57:46', 'adobe 设计系统', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (113, '三星电子设计', 'https://developer.samsung.com/', '2024-04-17 18:58:07', '探索三星让您感受品位生活，在这里您可以找到Galaxy S24 Ultra , Galaxy S24 | S24+，Galaxy Z Fold5 | Z Flip5，Galaxy Tab S9系列，Galaxy Watch6 | Watch6 Classic，Galaxy A54 5G，三星 W23 | W23 Flip等新品，也可以浏览手机、电视、显示器、冰箱、洗衣机等三星官方产品内容，并获得相关产品服务与支持。', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (114, 'thumbprint', 'https://thumbprint.design/', '2024-04-17 18:58:35', 'thumbprint', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (115, 'Material', 'https://m3.material.io/', '2024-04-17 18:58:54', 'Google material', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (116, 'carbondesignsystem', 'https://carbondesignsystem.com/', '2024-04-17 18:59:32', 'carbon design system', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (117, 'Microsoft Design', 'https://fluent2.microsoft.design/', '2024-04-17 18:59:45', 'Journey through the design process for our new default font ', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (118, '京东设计系统', 'https://findesign.jd.com/', '2024-04-17 19:00:25', '京东JD.COM-专业的综合网上购物商城，为您提供正品低价的购物选择、优质便捷的服务体验。商品来自全球数十万品牌商家，囊括家电、手机、电脑、服装、居家、母婴、美妆、个护、食品、生鲜等丰富品类，满足各种购物需求。', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (119, 'DevUI', 'https://devui.design/', '2024-04-17 19:00:44', 'DevUI是一款开源免费的企业中后台产品前端的通用解决方案，其设计价值观基于\'致简\',\'沉浸\',\'灵活\'三种自然与人文相结合的理念，旨在为设计师，前端开发者提供标准的设计体系，并满足各类落地场景，是一款企业级开箱即用的产品。全部代码开源并遵循 MIT 协议，任何企业、组织及个人均可免费使用。目前支持 Angular ^10.0.0 版本。', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (120, 'PC 官网 - 首页', 'https://fusion.design/pc', '2024-04-17 19:01:07', 'Fusion Design is an enterprise-level solution for building web products by improving designer-developer collaboration, product experience consistency, and development efficiency.', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (121, '阿里云设计系统', 'https://design.aliyun.com/', '2024-04-17 19:01:36', '阿里云——阿里巴巴集团旗下公司，是全球领先的云计算及人工智能科技公司之一。提供免费试用、云服务器、云数据库、云安全、云企业应用等云计算服务，以及大数据、人工智能服务、精准定制基于场景的行业解决方案。免费备案，7x24小时售后支持，助企业无忧上云。', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (122, '58同城设计系统', 'https://matrix.58.com/', '2024-04-17 19:02:11', '58同城东莞分类信息网，为你提供房产、招聘、黄页、团购、交友、二手、宠物、车辆、周边游等海量分类信息，充分满足您免费查看/发布信息的需求。东莞58同城，专业的分类信息网。', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (123, '有赞设计系统', 'https://design.youzan.com/', '2024-04-17 19:02:41', '有赞提供电商、零售、美业、教育、酒店等全行业经营增长解决方案，帮助商家全渠道私域营销、直播带货、出海营销，数字化赋能导购管理、会员运营和私域社群运营，带动业务全面增长。', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (124, '京东移动', 'https://nutui.jd.com/', '2024-04-17 19:03:09', '京东JD.COM-专业的综合网上购物商城，为您提供正品低价的购物选择、优质便捷的服务体验。商品来自全球数十万品牌商家，囊括家电、手机、电脑、服装、居家、母婴、美妆、个护、食品、生鲜等丰富品类，满足各种购物需求。', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (125, '腾讯设计系统', 'https://tdesign.tencent.com/', '2024-04-17 19:03:56', '腾讯于1998年11月成立，是一家互联网公司，通过技术丰富互联网用户的生活，助力企业数字化升级。我们的使命是“用户为本 科技向善”', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (126, 'Arco Design', 'https://arco.design/', '2024-04-17 19:04:25', '开源开放，持续迭代\n采用 MIT 许可协议，始终保持开放的心态，期待各方一起共建开源生态。', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (127, 'Shopify设计系统', 'https://polaris.shopify.com/', '2024-04-17 19:04:53', 'Try Shopify free and start a business or grow an existing one. Get more than ecommerce software with tools to manage every part of your business.', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (128, 'magicstudio', 'https://magicstudio.com/', '2024-04-17 19:15:16', '几秒钟内删除不需要的对象、人物和文本', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (129, '字体传奇网 ZITICQ 字体品牌设计师网', 'http://www.ziticq.com/shufa/', '2024-04-17 19:18:58', '字体传奇网ziticq.com 专注：字体笔画素材产品,商用字库产品,字体72变,字体设计教程学习,字体标志品牌定制为主,他们为了设计不抛弃,不放弃,旨在共同提高大家的设计水平,为设计而坚持！', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (130, 'Sony Corporation - Home', 'https://www.sony.net/united/clock/', '2024-04-17 19:19:25', 'Learn about Sony Corporation\'s information, businesses and products, recent press releases, sustainability and more.', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (131, 'Adobe: Creative, marketing and document management solutions', 'https://color.adobe.com/', '2024-04-17 19:20:17', 'Adobe 调色工具', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (132, 'pattern ', 'https://cn.pattern.monster/', '2024-04-17 19:24:33', '随机背景图生成', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (133, 'pexels', 'https://www.pexels.com/zh-cn/', '2024-04-17 19:25:26', '才华横溢的摄影作者在这里免费分享最精彩的素材图片和视频', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (134, '即时工具', 'https://www.67tool.com/', '2024-04-17 19:26:09', '部分工具使用要登录', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (135, '帮小忙', 'https://tool.browser.qq.com/', '2024-04-17 19:26:47', '腾讯出品的工具箱', 'tool', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (136, '小诺开源技术', 'https://snowy.xiaonuo.vip/login', '2024-04-18 13:39:35', '集成国密加解密插件，在前后分离框架中，真正做到：前后分离“密”不可分；同时实现国产化机型、中间件、数据库适配，是您的不二之选！', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (137, 'erupt', 'https://www.erupt.xyz/', '2024-04-18 13:41:18', '开源低代码框架，零前端代码，纯注解开发管理后台！', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (138, 'BallCat', 'http://preview.ballcat.cn/', '2024-04-18 13:42:44', '一个简单的项目脚手架', 'management', '2024-04-25 14:02:41', 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (139, '项目主页 | mall学习教程', 'https://www.macrozheng.com/admin/', '2024-04-18 13:43:02', 'mall学习教程 友情提示 快速体验项目：在线访问地址 。 全套学习教程：《mall学习教程》。 视频教程（2023最新版）：《mall视频教程》 。 微服务版本：基于Spring Cloud Alibaba的项目：mall-swarm 。 项目交流：想要加群交流项目的朋友，可以加入mall项目交流群。', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (140, '人人开源', 'http://demo.open.renren.io/renren-security/#/login', '2024-04-18 13:43:20', 'renren-security、renren-fast是人人开源社区采用Spring、MyBatis、Shiro编写的后台脚手架框架，支持MySQL、Oracle、SQL Server、PostgreSQL数据库，支持分布式部署，能够有效降低企业开发成本，提升开发效率', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (141, 'JEECG官方网站 - 基于BPM的低代码开发平台(低代码平台_零代码平台_工作流平台优秀服务商)', 'https://www.jeecg.com/', '2024-04-18 13:43:51', 'JeecgBoot低代码平台，基于SpringBoot+Ant Design的前后端分离微服务架构,集成完善的工作流平台、强大的代码生成器、流程设计器、表单设计器、大屏设计器、报表门户设计，可以应用在任何J2EE项目开发中，尤其适合企业信息管理系统（MIS）、办公系统（OA）、企业资源计划系统（ERP）、客户关系管理系统（CRM）等，其半智能+手工Merge的低代码开发方式，可以显著提高开发效率70%以上，极大降低研发成本。', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (142, 'eladmin', 'https://eladmin.vip/demo/', '2024-04-18 13:47:02', '一个基于 Spring Boot 2.6.4 、 Spring Boot Jpa、 JWT、Spring Security、Redis、Vue的前后端分离的后台管理系统', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (143, 'likeadmin', 'https://www.likeadmin.cn/', '2024-04-18 13:47:38', 'likeadmin快速开发通用管理后台，基于Vue3、elementPlus，结合PHP、Java、Python、Go等主流后端语言搭建', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (144, '高品质开源商城系统-CRMEB官网', 'https://www.crmeb.com/', '2024-04-18 13:47:55', 'CRMEB开源商城系统，围绕新零售、品牌连锁、商家入驻等多种商业模式，自主研发B2C商城系统、B2B2C多商户商城系统、连锁多门店商城系统、跨境电商系统等；应用于直播电商、社交新零售、商家入驻等多种应用场景，系统支持多语言、多端登录，代码开源、独立部署、永久免费升级。咨询：400-8888-794', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (145, 'FastAdmin – 基于ThinkPHP和Bootstrap的极速后台开发框架', 'https://demo.fastadmin.net/', '2024-04-18 13:48:07', 'FastAdmin是一款基于ThinkPHP和Bootstrap的快速后台开发框架', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (146, 'PIGCLOUD', 'http://home.pig4cloud.com:38081/', '2024-04-18 13:49:35', '基于 Spring Cloud 、Spring Boot、 OAuth2 的 RBAC 企业快速开发平台， 同时支持微服务架构和单体架构', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (147, 'django', 'https://django-vue3-lyadmin.lybbn.cn/', '2024-04-18 13:52:47', 'django-vue3后台管理模板', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (148, 'django-vue3-admin', 'https://demo.dvadmin.com/', '2024-04-18 13:57:31', 'django-vue3-admin是一套全部开源的快速开发平台，毫无保留给个人免费使用、团体授权使用。 django-vue3-admin 基于RBAC模型的权限控制的一整套基础开发平台，权限粒度达到列级别，前后端分离', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (149, 'Vben Admin', 'https://vben.vvbin.cn/', '2024-04-18 13:58:25', 'Vben Admin ; 最新技术栈. 基于Vue3、Vite、TypeScript等最新技术栈开发 ; ⚡️ 轻量快速的热重载. 无论应用程序大小如何，都始终极快的模块热重', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (150, 'vue-element-admin', 'https://panjiachen.github.io/vue-element-admin', '2024-04-18 13:59:24', 'vue-element-admin 是一个后台前端解决方案，它基于 vue 和 element-ui实现。它使用了最新的前端技术栈', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (151, 'Free Bootstrap Admin Template - AdminLTE.IO', 'https://adminlte.io/', '2024-04-18 14:00:03', 'AdminLTE-是一个完全响应的管理模板。基于Bootstrap 3和4框架', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (152, 'iView / View Design 一套企业级 UI 组件库和前端解决方案', 'https://admin.iviewui.com/', '2024-04-18 14:00:48', '基于 Vue.js 的 UI 组件库，用于研发企业级中后台产品。iView 官网。', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (153, 'catchadmin', 'https://v3.catchadmin.com/', '2024-04-18 14:05:10', '是一个基于Vue3.0、Vite、 ElementPlus 、TypeScript 的后台解决方案，提供了丰富的功能组件，它可以帮助你快速搭建企业级中后台产品原型', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (154, 'vadmire', 'https://vadmire.top/', '2024-04-18 14:06:24', 'VAdmire Admin 是一款基于 Vue3 + TypeScript + NaiveUI 等技术栈搭建的后台系统', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (155, 'gin-vue-admin', 'https://demo.gin-vue-admin.com/', '2024-04-18 14:07:49', 'Vite+Vue3+Gin的开发基础平台，支持TS和JS混用。它集成了JWT鉴权、权限管理、动态路由、显隐可控组件、分页封装、多点登录拦截、资源权限、上传下载、代码生成器、表单生成器和可配置的导入导出等开发必备功能。', 'management', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (156, 'Free Stock Photos and Images - StockSnap.io', 'https://stocksnap.io/', '2024-04-22 20:13:31', 'The best source for free, CC0, do-what-you-want-with stock photos. Browse and download thousands of copyright-free stock images. No attribution required.', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (157, 'visualhunt', 'https://visualhunt.com/', '2024-04-22 20:14:06', 'Visual Hunt 号称是图片资源最多的网站，据说是超过三亿张！其中收录了海量的CC0授权图片整合后生成的站点，用户可以通过内置的搜索引擎来查询海量的免费图片它可以通过颜色来查找图片，而且无需注册和登录就可以在线下载图片。', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (158, 'photock', 'https://photock.jp/', '2024-04-22 20:14:47', '日本的无版权图片网站，免费图片资源达5000+，种类有很多，天空、水、河、海、草坪、火、山、动物、建筑、夜景、日本景点、日本历史文化图片等等', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (159, 'pngimg', 'https://pngimg.com/', '2024-04-22 20:15:21', '专业设计师的最爱，可以当作素材模板来使用，几万张不同种类的无背景素材图片，直接可以免费用。', 'image', '2024-04-25 14:31:56', 1, 103, 'http://localhost:8080/profile/image-icon/google.png');
+INSERT INTO `sys_website` VALUES (160, 'Reshot | Free icons & illustrations', 'https://www.reshot.com/', '2024-04-22 20:18:26', 'Design freely with instant downloads of curated SVG icons and vector illustrations. All free with commercial licensing. No attribution required.', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (161, 'rawpixel', 'https://www.rawpixel.com/', '2024-04-22 20:19:06', '1、高品质的图库\n2、支持可商用免费下载\n3、致力改变人们看照片的习惯', 'image', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (162, '优设网官网 - UISDC - 国内专业设计师平台 - 看设计文章，学AIGC教程，找灵感素材，尽在优设网！', 'https://www.uisdc.com/', '2024-04-22 20:19:38', '优设网 (uisdc.com) 是国内设计师入门到进阶的专业设计网站。AIGC及设计内容全面及时，全网粉丝过千万。专注前沿设计趋势和设计方法论，拥有原创独家设计内容和设计师网站导航。提供AIGC教程、灵感素材、UI设计、平面设计、网页设计、电商设计、SDC网站推荐。', 'design', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (163, '高仿Win11', 'https://win11.blueedge.me/', '2024-04-24 09:51:28', 'Blue Edge - Create some chaos', 'github', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (164, '进化', 'https://yx.g8hh.com/evolve/', '2024-04-24 09:57:51', '一款非常有意思的游戏，从单细胞生物进化到超现代文明', 'github', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (165, '在线音乐', 'https://sioxas.github.io/', '2024-04-24 12:31:00', '用vue实现', 'github', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (166, 'Windows 96', 'https://windows96.net/', '2024-04-24 12:31:25', 'MIKESOFT presents you WINDOWS 96, the latest release of your favorite operating system!', 'github', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (167, 'OS.js Web Desktop', 'https://www.os-js.org/', '2024-04-24 12:31:46', 'JavaScript Cloud/Web Desktop Platform', 'github', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (168, 'daedalOS', 'https://dustinbrett.com/', '2024-04-24 12:32:10', 'Desktop environment in the browser', 'github', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (169, '新标签页', 'https://funtabs.cn/', '2024-04-24 12:33:33', 'funtabs新标签页（原：趣标签页、方格桌面），简约导航，予你分享！卡片收藏，个性自创！支持自定义您新标签页上的导航卡片、文章收藏、精美壁纸以及搜索引擎，创建、编辑及分享属于您自己的浏览器标签页,美化您的浏览器主页与newtab新标签页，清新、简约、高度的可自定义操作，让您设置属于您专属的小而美的独特导航页面！', 'github', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (170, 'MallChat', 'https://www.mallchat.cn/', '2024-04-24 12:34:03', '抹茶聊天', 'github', NULL, 1, 103, NULL);
+INSERT INTO `sys_website` VALUES (171, '免费的图标、剪贴画插图、照片和音乐', 'https://igoutu.cn/', '2024-04-24 15:14:08', '免费下载设计素材：图标、照片、矢量插图和视频音乐。所有素材均由设计师制作 → 质量始终如一⚡️', 'image', '2024-04-25 14:27:08', 1, 103, 'http://localhost:8080/profile/image-icon/google.png');
+INSERT INTO `sys_website` VALUES (172, '小象农庄', 'http://mall.weixinai.cn/', '2024-04-24 17:57:26', '小象农庄生态农业发展有限公司', 'management', NULL, 1, 103, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
