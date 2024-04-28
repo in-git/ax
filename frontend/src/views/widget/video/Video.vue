@@ -17,6 +17,7 @@ video {
 .system__module {
   :deep(.ant-card-body) {
     height: 100%;
+    background: black;
   }
 }
 </style>

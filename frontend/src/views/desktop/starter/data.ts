@@ -8,13 +8,15 @@ import ImageVue from '@/views/widget/image/Image.vue';
 import Notepad from '@/views/widget/notepad/Notepad.vue';
 import Video from '@/views/widget/video/Video.vue';
 
-export const showStarter = ref(false);
 interface Plugin {
   title: string;
   icon: string;
   action: any;
   id: string;
 }
+
+export const showStarter = ref(false);
+
 export const plugins: Plugin[] = [
   {
     title: 'AI',

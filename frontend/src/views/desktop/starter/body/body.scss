@@ -6,6 +6,7 @@
 		li {
 			width: 84px;
 			padding: 8px 0;
+			user-select: none;
 			flex: 1;
 			flex-basis: 84px;
 			border-radius: var(--radius);

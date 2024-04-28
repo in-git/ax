@@ -16,10 +16,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="updateTime"    column="update_time"    />
         <result property="textareaField"    column="textarea_field"    />
         <result property="treeField"    column="tree_field"    />
+        <result property="sort"    column="sort"    />
     </resultMap>
 
     <sql id="selectSysTestVo">
-        select test_id, text_field, number_field, date_field, rich_text_field, select_field, boolean_field, create_time, update_time, textarea_field, tree_field from sys_test
+        select test_id, text_field, number_field, date_field, rich_text_field, select_field, boolean_field, create_time, update_time, textarea_field, tree_field,sort from sys_test
     </sql>
 
     <select id="selectSysTestList" parameterType="SysTest" resultMap="SysTestResult">
@@ -55,6 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">update_time,</if>
             <if test="textareaField != null">textarea_field,</if>
             <if test="treeField != null">tree_field,</if>
+            <if test="sort != null">sort,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="testId != null">#{testId},</if>
@@ -68,6 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">#{updateTime},</if>
             <if test="textareaField != null">#{textareaField},</if>
             <if test="treeField != null">#{treeField},</if>
+            <if test="sort != null">#{sort},</if>
          </trim>
     </insert>
 
@@ -84,6 +87,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">update_time = #{updateTime},</if>
             <if test="textareaField != null">textarea_field = #{textareaField},</if>
             <if test="treeField != null">tree_field = #{treeField},</if>
+            <if test="sort != null">sort = #{sort},</if>
         </trim>
         where test_id = #{testId}
     </update>

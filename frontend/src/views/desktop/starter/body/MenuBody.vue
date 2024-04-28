@@ -2,7 +2,7 @@
   <div class="menu-body flex-1">
     <div class="title">辅助工具</div>
     <div>
-      <ul class="p-12">
+      <ul class="p-12" ref="sortRef">
         <li
           class="flex flex-col justify-center align-center"
           @click="item.action(item)"
@@ -18,7 +18,16 @@
 </template>
 
 <script setup lang="ts">
+import { useSortable } from '@vueuse/integrations/useSortable';
 import { plugins } from '../data';
+
+const sortRef = ref();
+
+nextTick(() => {
+  useSortable(sortRef, plugins, {
+    animation: 200,
+  });
+});
 </script>
 
 <style lang="scss" scoped>
