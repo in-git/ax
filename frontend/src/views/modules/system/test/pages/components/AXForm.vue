@@ -3,11 +3,16 @@
     :rules="testRules"
     :model="testForm"
     @finish="submit"
-    :wrapper-col="{ span: 8, offset: 1 }"
+    :wrapper-col="{ span: 8 }"
     :label-col="{ span: 4, offset: 4 }"
   >
     <SystemModal title="系统测试表" v-model:visible="testShowForm">
-      <a-card title="编辑/新增">
+      <a-card title="编辑/新增" class="form__head">
+        <template #extra>
+          <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
+        </template>
+      </a-card>
+      <a-card class="mt-8">
         <a-form-item label="文本字段" name="textField">
           <a-input placeholder="请输入文本字段" v-model:value="testForm.textField">
             <template #addonAfter>
@@ -25,7 +30,7 @@
         <a-form-item label="数字字段" name="numberField">
           <a-input placeholder="请输入数字字段" v-model:value="testForm.numberField">
             <template #addonAfter>
-              <a-popover trigger="click" title="快速录入">
+              <a-popover trigger="click">
                 <BookOutlined />
                 <template #content>
                   <Memo v-model:value="testForm.numberField" />
@@ -82,9 +87,6 @@
             </template>
           </a-input>
         </a-form-item>
-        <template #extra>
-          <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
-        </template>
       </a-card>
     </SystemModal>
   </a-form>

@@ -1,5 +1,6 @@
 import type { ColumnProps } from '@/types/system';
 import { message } from 'ant-design-vue';
+import { compareDateStrings } from '../common/utils';
 
 export const response = async (request: (...arg: any) => any, ...arg: any) => {
   try {
@@ -25,6 +26,7 @@ export const formatColumns = (data: ColumnProps[], operationSlot = true) => {
     fixed: 'right',
     show: true,
   };
+
   if (data.findIndex(e => e.dataIndex === operation.key) <= -1 && operationSlot) {
     data.push(operation);
   }
@@ -32,8 +34,14 @@ export const formatColumns = (data: ColumnProps[], operationSlot = true) => {
   return data.filter(e => {
     if (typeof e.show === 'undefined') {
       e.show = true;
+    } else if (e.dataIndex === 'createTime' || e.dataIndex === 'updateTime') {
+      /* 处理自带的两个时间字段排序 */
+      e.sorter = {
+        compare: (a: any, b: any) => compareDateStrings(a.createTime, b.createTime),
+      };
     }
     if (!e.show) return;
+
     e.align = 'center';
     e.ellipsis = true;
     e.key = `${e.dataIndex}`;

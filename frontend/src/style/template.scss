@@ -51,11 +51,9 @@
 .card__footer {
 	box-shadow: 0 0 1px transparent !important;
 	border-radius: 0;
-	:deep(.ant-card-body) {
-		padding: 4px 12px !important;
-	}
 }
-.table__head {
+.table__head,
+.form__head {
 	position: sticky;
 	top: 0;
 	z-index: 10;
@@ -63,9 +61,6 @@
 .card__container {
 	border-radius: 0 !important;
 	box-shadow: none !important;
-	&:deep(.ant-card-body) {
-		height: 100%;
-	}
 }
 .table__card {
 	box-shadow: none !important;

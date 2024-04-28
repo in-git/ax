@@ -8,15 +8,6 @@
   >
     <SystemModal title="网页收藏" v-model:visible="websiteShowForm">
       <a-card title="编辑/新增">
-        <a-row>
-          <a-col :span="8" :offset="8">
-            <div class="form__tips">
-              <div class="form__title">表单录入提示</div>
-              <div class="system__subtitle">在这里写下一些描述</div>
-            </div>
-          </a-col>
-        </a-row>
-
         <a-form-item label="网页URL" name="url">
           <a-input-search
             placeholder="请输入网页URL"

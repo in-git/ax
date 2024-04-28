@@ -10,8 +10,6 @@
       </div>
       <!-- 底部分页信息 -->
       <FooterVue></FooterVue>
-
-      <!-- 绝对定位模块 -->
       <!-- 表单编辑 -->
       <FormVue />
     </a-flex>
@@ -22,7 +20,6 @@
 
 <script setup lang="ts">
 import { testList } from './data/curd';
-import {} from './data/options';
 import { viewMode } from './data/table';
 import FooterVue from './pages/components/AXFooter.vue';
 import FormVue from './pages/components/AXForm.vue';
@@ -39,5 +36,8 @@ onMounted(async () => {
 .test {
   height: 100%;
   overflow-y: hidden;
+  :deep(.ant-card-body) {
+    height: 100%;
+  }
 }
 </style>

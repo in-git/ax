@@ -60,3 +60,17 @@ export const getLabel = (items: any[], value: string) => {
     }
   })?.label;
 };
+
+export const compareDateStrings = (dateString1: string, dateString2: string): number => {
+  const date1 = new Date(dateString1);
+  const date2 = new Date(dateString2);
+
+  // 使用 getTime() 方法将日期转换为时间戳进行比较
+  if (date1.getTime() < date2.getTime()) {
+    return -1; // dateString1 比 dateString2 小
+  } else if (date1.getTime() > date2.getTime()) {
+    return 1; // dateString1 比 dateString2 大
+  } else {
+    return 0; // dateString1 和 dateString2 相等
+  }
+};

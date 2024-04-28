@@ -4,6 +4,7 @@
       @change="pageChange"
       table-layout="fixed"
       sticky
+      @resizeColumn="handleResizeColumn"
       :row-selection="{
         selectedRowKeys: testKeys,
         onChange: (k: any[]) => (testKeys = k),
@@ -76,6 +77,10 @@ const customRow = (record: SystemTest) => {
   };
 };
 
+/* 拖拽列 */
+const handleResizeColumn = (w: number, col: any) => {
+  col.width = w;
+};
 /* 分页事件触发 */
 const pageChange = (
   pagination: TablePaginationConfig,

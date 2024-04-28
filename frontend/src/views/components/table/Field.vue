@@ -48,6 +48,7 @@ const props = defineProps<{
   /* 模块名，必须，用于区分本地存储的列 */
   moduleName: string;
 }>();
+
 const onChange = () => {
   emit('update:columns', cols.value);
 };
