@@ -6,76 +6,13 @@
 
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
-        <a-input
-          @blur="testList"
-          v-model:value="testQuery.textField"
-          style="width: 160px"
-          placeholder="请输入文本字段"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-input
-          @blur="testList"
-          v-model:value="testQuery.numberField"
-          style="width: 160px"
-          placeholder="请输入数字字段"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-input-number
-          @blur="testList"
-          v-model:value="testQuery.dateField!"
-          style="width: 160px"
-          placeholder="请输入日期字段"
-          allow-clear
-        ></a-input-number>
-      </div>
-      <div>
-        <a-input
-          @blur="testList"
-          v-model:value="testQuery.richTextField"
-          style="width: 160px"
-          placeholder="请输入富文本字段"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-input
-          @blur="testList"
-          v-model:value="testQuery.selectField"
-          style="width: 160px"
-          placeholder="请输入下拉框字段"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-input
-          @blur="testList"
-          v-model:value="testQuery.booleanField"
-          style="width: 160px"
-          placeholder="请输入布尔字段"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-input
-          @blur="testList"
-          v-model:value="testQuery.textareaField"
-          style="width: 160px"
-          placeholder="请输入文本域"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-input
-          @blur="testList"
-          v-model:value="testQuery.treeField"
-          style="width: 160px"
-          placeholder="请输入树形选择器"
-          allow-clear
-        ></a-input>
+        <a-range-picker
+          @change="onChange"
+          v-model:value="date"
+          class="w-100"
+          :format="dateFormat"
+          :locale="locale"
+        ></a-range-picker>
       </div>
       <a-button type="primary" @click="testList">搜索</a-button>
     </a-flex>
@@ -92,7 +29,7 @@
           </div>
 
           <div v-perm="'system:test:edit'">
-            <a-tooltip title="编辑(双击)">
+            <a-tooltip title="编辑">
               <a-button type="link" @click="testEdit()" :disabled="testKeys.length !== 1">
                 <EditOutlined />
               </a-button>
@@ -157,10 +94,23 @@ import {
   type DeleteOutlined,
   type ReloadOutlined,
 } from '@ant-design/icons-vue';
+import locale from 'ant-design-vue/es/date-picker/locale/zh_CN';
+import type { Dayjs } from 'dayjs';
 import { testColumns } from '../../data/column';
 import { testCreate, testDelete, testEdit, testExport, testList } from '../../data/curd';
-import {} from '../../data/options';
 import { testKeys, testQuery, testTable, viewMode } from '../../data/table';
+
+const dateFormat = 'YYYY-MM-DD';
+type RangeValue = [Dayjs, Dayjs];
+const date = ref<RangeValue>();
+
+const onChange = (_: any, dateStrings: [string, string]) => {
+  testQuery.value.params = {
+    beginTime: dateStrings[0],
+    endTime: dateStrings[1],
+  };
+  testList();
+};
 </script>
 
 <style lang="scss" scoped></style>

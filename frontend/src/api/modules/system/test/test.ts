@@ -1,9 +1,8 @@
-
 import type { IQuery, Response, TableResponse } from '@/api/config/types';
-import axios from 'axios';
-import type {SystemTest} from "./types"
-import { message } from 'ant-design-vue';
 import { exportFile } from '@/api/utils/file';
+import { message } from 'ant-design-vue';
+import axios from 'axios';
+import type { SystemTest } from './types';
 
 // 查询系统测试表列表
 export const fetchTestList = (query: IQuery) => {
@@ -17,7 +16,7 @@ export const fetchTestById = (testId: number) => {
 };
 
 // 新增系统测试表
-export const createTest= (data: SystemTest) => {
+export const createTest = (data: SystemTest) => {
   return axios.post<Response<SystemTest>>(`system/test`, data);
 };
 
@@ -27,7 +26,7 @@ export const updateTest = (data: SystemTest) => {
 };
 
 // 删除系统测试表
-export const deleteTest = (testIds:number[]) => {
+export const deleteTest = (testIds: number[]) => {
   return axios.delete<Response<SystemTest>>(`system/test/${testIds.join(',')}`);
 };
 

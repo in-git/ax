@@ -1,4 +1,5 @@
 import useUserStore from '@/store/user';
+import { convertParamsToFormat } from '@/utils/common/format';
 import { notify } from '@/views/desktop/notice/data';
 import { message } from 'ant-design-vue';
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -12,6 +13,10 @@ const cancelList = ref<AbortController[]>([]);
 axios.interceptors.request.use(
   (config: AxiosRequestConfig | any) => {
     if (config.headers) {
+      if (config.params && config.params.params) {
+        config.url = config.url + '?' + convertParamsToFormat(config.params.params);
+        delete config.params.params;
+      }
       const userStore = useUserStore();
       config.headers.Authorization = `Bearer ${userStore.$state.token}`;
       const controller = new AbortController();

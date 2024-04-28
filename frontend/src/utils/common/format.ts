@@ -1,3 +1,5 @@
+import type { IQuery } from '@/api/config/types';
+
 export function bytesToSize(bytes: number): string {
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
   if (bytes === 0) return '0 Byte';
@@ -17,4 +19,20 @@ export const extractDomain = (url: string): string => {
     console.error('Invalid URL:', error);
     return url;
   }
+};
+export const convertParamsToFormat = (params: IQuery) => {
+  let queryString = '';
+
+  for (const key in params) {
+    if (params.hasOwnProperty(key)) {
+      const encodedKey = encodeURIComponent(`params[${key}]`);
+      const encodedValue = encodeURIComponent(params[key]);
+      queryString += `${encodedKey}=${encodedValue}&`;
+    }
+  }
+
+  // 删除末尾的 "&" 符号
+  queryString = queryString.slice(0, -1);
+
+  return queryString;
 };

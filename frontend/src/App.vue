@@ -54,6 +54,10 @@ import Contextmenu from './views/components/contextmenu/Contextmenu.vue';
 import Draggable from './views/components/draggable/Draggable.vue';
 import Desktop from './views/desktop/Desktop.vue';
 import PhoneVue from './views/phone/Phone.vue';
+/* 设置Dayjs，用于日期选择 */
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
+dayjs.locale('zh-cn');
 
 const locale = ref(zh_CN);
 const { compactAlgorithm, darkAlgorithm, defaultAlgorithm } = theme;
