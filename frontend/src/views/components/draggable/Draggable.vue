@@ -66,10 +66,11 @@ type DragType = {
   resizable?: boolean;
   icon?: string;
   x?: number;
-  y: number;
+  y?: number;
 };
 const emit = defineEmits(['close']);
 const pageStore = usePageStore();
+
 const props = withDefaults(
   defineProps<{
     w?: number;
@@ -103,6 +104,7 @@ const close = () => {
 const offset = windowList.value.length * 40;
 const maxHeight = window.innerHeight;
 const isFullscreen = ref(false);
+
 const windowProps = ref<DragType>({
   x: window.innerWidth / 2 - props.w / 2 + offset - 32,
   y: window.innerHeight / 2 - props.h / 2 + offset,
@@ -126,19 +128,19 @@ const expand = () => {
   windowProps.value.w = window.innerWidth;
   windowProps.value.h = window.innerHeight - 40;
 };
-
+/* 最小化 */
 const minimize = () => {
   windowProps.value = beforeExpandData;
   isFullscreen.value = !isFullscreen.value;
 };
+/* 窗口隐藏 */
 const hidden = () => {
   if (props.id) {
     hiddenWindow(props.id);
   }
 };
+/* 移动后记录最后的位置 */
 const dragstop = (left: number, top: number) => {
-  console.log(left, top);
-
   if (windowProps.value.y < 0) {
     windowProps.value.y = 0;
   }
@@ -154,13 +156,14 @@ const dragstop = (left: number, top: number) => {
   windowProps.value.x = Math.round(windowProps.value.x!);
   windowProps.value.y = Math.round(windowProps.value.y);
 };
-/* 用户拖拽结束后记录窗口大小，作为默认值 */
+/* 调整结束后记录窗口大小，作为默认值 */
 const resizestop = (left: number, top: number, width: number, height: number) => {
   if (!props.id) return;
   initModuleWH(props.id);
   pageStore.$state.window[props.id].width = width;
   pageStore.$state.window[props.id].height = height;
 };
+
 onMounted(() => {
   if (props.id) setCurrentWindow(props.id);
   windowProps.value.w = props.w;

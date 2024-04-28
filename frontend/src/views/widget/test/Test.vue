@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <a-card class="system__module"></a-card>
 </template>
 
 <script setup></script>
