@@ -7,7 +7,7 @@
         </a-button>
 
         <a-tooltip title="重新加载">
-          <a-button type="link" @click="getRoles">
+          <a-button type="link" @click="roleList">
             <ReloadOutlined />
           </a-button>
         </a-tooltip>
@@ -15,7 +15,7 @@
         <a-input-search
           placeholder="请输入角色名"
           v-model:value="roleQuery.roleName"
-          @search="getRoles"
+          @search="roleList"
           allow-clear
         ></a-input-search>
 
@@ -24,25 +24,34 @@
         <div class="flex gc-2 text-nowrap align-center" :class="[!isActive() ? 'active' : 'gray']">
           <span class="system__subtitle">编辑/权限:</span>
           <a-tooltip title="编辑基础信息">
-            <a-button type="text" @click="selectRole()" :disabled="!currentRole">
-              <EditOutlined class="icon" />
+            <a-button type="link" @click="selectRole()" :disabled="!currentRole">
+              <template #icon>
+                <EditOutlined />
+              </template>
+              基础信息
             </a-button>
           </a-tooltip>
-          <a-tooltip title="分配资源" @click="allocatingResource">
-            <a-button type="text" :disabled="!currentRole">
-              <ClusterOutlined class="icon" />
-            </a-button>
-          </a-tooltip>
-          <a-tooltip title="分配人员">
-            <a-button type="text" :disabled="!currentRole" @click="allocateUsers">
-              <UserAddOutlined class="icon" />
-            </a-button>
-          </a-tooltip>
-          <a-tooltip title="取消分配">
-            <a-button type="text" :disabled="!currentRole" @click="unassignUsers">
-              <UserDeleteOutlined class="text-danger" />
-            </a-button>
-          </a-tooltip>
+
+          <a-button type="text" :disabled="!currentRole" @click="allocatingResource">
+            分配资源
+            <template #icon>
+              <ClusterOutlined />
+            </template>
+          </a-button>
+
+          <a-button type="text" :disabled="!currentRole" @click="allocateUsers">
+            分配人员
+            <template #icon>
+              <UserAddOutlined />
+            </template>
+          </a-button>
+
+          <a-button type="text" :disabled="!currentRole" @click="unassignUsers">
+            取消分配
+            <template #icon>
+              <UserDeleteOutlined />
+            </template>
+          </a-button>
         </div>
       </div>
       <div>
@@ -63,21 +72,20 @@ import {
   UserDeleteOutlined,
 } from '@ant-design/icons-vue';
 import { allocateUsers, unassignUsers } from '../../assign/data';
-import { showRoleForm } from '../../info/data';
-import { allocatingResource } from '../../resource/data';
-import { delRoles, getRoles, resetRoleForm, selectRole } from '../curd';
+import { allocatingResource, roleList, selectRole } from '../../data/curd';
+import { roleResetForm, showRoleForm } from '../../data/form';
+import { delRoles } from '../curd';
 import { currentRole, roleData, roleQuery } from '../data';
-
 const create = async () => {
   const { data } = await roleTreeSelect();
   if (data.data) {
     roleData.value.roleMenus = data.data;
   }
   showRoleForm.value = true;
-  resetRoleForm();
+  roleResetForm();
 };
 onMounted(async () => {
-  await getRoles();
+  await roleList();
 });
 
 const isActive = () => {

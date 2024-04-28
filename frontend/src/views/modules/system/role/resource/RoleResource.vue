@@ -10,7 +10,7 @@
       <a-card>
         <a-flex :justify="'space-between'">
           <div>
-            <h2>资源分配</h2>
+            <div>资源分配</div>
           </div>
           <a-button type="primary" :loading="loading" htmlType="submit">保存</a-button>
         </a-flex>
@@ -35,13 +35,19 @@
             label="选择部门"
             v-if="currentRole.dataScope === '2'"
           >
-            <div @click="reload" class="mb-12 flex justify-between">
+            <div class="mb-12 flex justify-between">
               <span class="system__subtitle">部门列表</span>
-              <a-tooltip title="刷新">
-                <a-button type="ghost">
-                  <ReloadOutlined />
-                </a-button>
-              </a-tooltip>
+              <a-flex :align="'center'">
+                <span class="system__subtitle">
+                  父子关联
+                  <a-switch v-model:checked="currentRole.deptCheckStrictly"></a-switch>
+                </span>
+                <a-tooltip title="刷新">
+                  <a-button type="ghost" @click="reload">
+                    <ReloadOutlined />
+                  </a-button>
+                </a-tooltip>
+              </a-flex>
             </div>
             <a-spin :spinning="loading">
               <a-directory-tree
@@ -51,6 +57,7 @@
                   title: 'label',
                 }"
                 selectable
+                :check-strictly="currentRole.deptCheckStrictly"
                 v-model:selected-keys="currentRole.deptIds"
                 ref="treeRef"
               ></a-directory-tree>
@@ -66,10 +73,10 @@
 import { roleDataScope } from '@/api/modules/system/role/role';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { message } from 'ant-design-vue';
-import { getRoles } from '../card/curd';
 import { currentRole, roleData } from '../card/data';
-import { allocatingResource, resourceModal, scopedOptions } from './data';
-
+import { allocatingResource, roleList } from '../data/curd';
+import { resourceModal } from '../data/form';
+import { scopedOptions } from '../data/options';
 const treeData = ref<any>();
 const treeRef = ref();
 const loading = ref();
@@ -82,7 +89,7 @@ const submit = async () => {
   const { data } = await roleDataScope(currentRole.value);
   message.success(data.msg);
   resourceModal.value = false;
-  getRoles();
+  roleList();
 };
 const reload = async () => {
   loading.value = true;

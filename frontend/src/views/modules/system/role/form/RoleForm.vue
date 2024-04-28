@@ -1,5 +1,5 @@
 <template>
-  <a-form :model="currentRole" @finish="submit" layout="vertical">
+  <a-form :model="currentRole" @finish="submit" :label-col="{ span: 6 }" label-align="left">
     <SystemModal
       w="90%"
       h="90%"
@@ -19,7 +19,7 @@
             <a-row>
               <a-col :span="12">
                 <a-card :bordered="false">
-                  <a-form-item label="身份名" name="roleName" required>
+                  <a-form-item label="身份名称" name="roleName" required>
                     <a-input v-model:value="currentRole.roleName"></a-input>
                   </a-form-item>
 
@@ -54,30 +54,31 @@
                 </a-card>
               </a-col>
               <a-col :span="12">
-                <a-card class="mt-8" :bordered="false">
-                  <a-form-item label="分配菜单" :label-col="{ span: 24 }">
-                    <div class="flex align-center mb-8">
-                      <span class="text-12 system__subtitle mr-4">父子关联</span>
-                      <a-switch v-model:checked="checkStrictly"></a-switch>
-                    </div>
-                    <a-card :body-style="{ height: '370px', overflowY: 'auto' }">
-                      <a-tree
-                        :treeData="treeData"
-                        checkable
-                        block-node
-                        :selectable="false"
-                        v-model:checked-keys="currentRole.menuIds"
-                        :fieldNames="{
-                          key: 'id',
-                          title: 'label',
-                        }"
-                        default-expand-parent
-                        :check-strictly="!checkStrictly"
-                        ref="treeRef"
-                      ></a-tree>
-                    </a-card>
-                  </a-form-item>
-                </a-card>
+                <a-form-item :label-col="{ span: 24 }">
+                  <a-card :body-style="{ height: '370px', overflowY: 'auto' }" title="分配菜单">
+                    <template #extra>
+                      <div class="flex align-center mb-8">
+                        <span class="text-12 system__subtitle mr-4">父子关联</span>
+                        <a-switch v-model:checked="currentRole.menuCheckStrictly"></a-switch>
+                      </div>
+                    </template>
+
+                    <a-tree
+                      :treeData="treeData"
+                      checkable
+                      block-node
+                      :selectable="false"
+                      v-model:checked-keys="currentRole.menuIds"
+                      :fieldNames="{
+                        key: 'id',
+                        title: 'label',
+                      }"
+                      default-expand-parent
+                      :check-strictly="!currentRole.menuCheckStrictly"
+                      ref="treeRef"
+                    ></a-tree>
+                  </a-card>
+                </a-form-item>
               </a-col>
             </a-row>
           </a-card>
@@ -92,15 +93,14 @@ import { createRole, updateRole } from '@/api/modules/system/role/role';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { setOptions } from '@/global/options/system';
 import { message } from 'ant-design-vue';
-import { getRoles, resetRoleForm } from '../card/curd';
+import { resetRoleForm } from '../card/curd';
 import { currentRole, roleData } from '../card/data';
-import { showRoleForm } from './data';
-
+import { roleList } from '../data/curd';
+import { showRoleForm } from '../data/form';
 const treeData = ref<any[]>([]);
 const loading = ref(false);
 
 const treeRef = ref();
-const checkStrictly = ref(false);
 
 const submit = async () => {
   loading.value = true;
@@ -130,7 +130,7 @@ const submit = async () => {
       message.success(data.msg);
     }
     loading.value = false;
-    await getRoles();
+    await roleList();
     resetRoleForm();
     showRoleForm.value = false;
   }

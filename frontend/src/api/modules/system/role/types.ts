@@ -1,6 +1,6 @@
 import type { SystemDept } from '../dept/types';
 
-export interface Role {
+export interface SystemRole {
   createBy?: any;
   createTime?: any;
   updateBy?: any;

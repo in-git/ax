@@ -3,25 +3,26 @@
     <CardHead />
     <div class="card-list">
       <a-spin :spinning="roleSpinning">
-        <ul>
-          <li
+        <a-row :gutter="16" wrap>
+          <a-col
+            :span="6"
             v-for="item in roleData.data"
-            :class="{ active: currentRole?.roleId === item.roleId }"
             @click="select(item)"
             @dblclick="selectRole(item.roleId)"
-            class="text-center"
           >
-            <img :src="getGiteeImage(`image-icon/role.png`)" width="32" height="32" />
-            <div>
-              <div class="text-14">
-                {{ item.roleName }}
-              </div>
-              <div class="desc mt-8 text-12">
-                {{ item.remark }}
-              </div>
-            </div>
-          </li>
-        </ul>
+            <a-card :class="{ active: currentRole?.roleId === item.roleId }">
+              <template #title>
+                <a-flex :align="'center'">
+                  <img :src="getGiteeImage(`image-icon/role.png`)" width="24" height="24" />
+                  <span class="ml-8">
+                    {{ item.roleName }}
+                  </span>
+                </a-flex>
+              </template>
+              {{ item.remark || '没有描述' }}
+            </a-card>
+          </a-col>
+        </a-row>
       </a-spin>
 
       <a-divider dashed>
@@ -32,15 +33,16 @@
 </template>
 
 <script setup lang="ts">
-import type { Role } from '@/api/modules/system/role/types';
+import type { SystemRole } from '@/api/modules/system/role/types';
 
 import { getGiteeImage } from '@/api/utils/image';
 import { useCloned } from '@vueuse/core';
+import { selectRole } from '../data/curd';
 import CardHead from './card-head/CardHead.vue';
-import { getRoles, selectRole } from './curd';
+import { getRoles } from './curd';
 import { currentRole, roleData, roleSpinning } from './data';
 
-const select = (item: Role) => {
+const select = (item: SystemRole) => {
   currentRole.value = useCloned(item).cloned.value;
 };
 onMounted(async () => {
@@ -49,5 +51,14 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-@import './style';
+.role-card {
+  flex: 1;
+  border-right: 1px solid #ddd;
+  height: 100%;
+  $wh: 144px;
+}
+.active {
+  border: 1px solid var(--primary) !important;
+  color: #111 !important;
+}
 </style>

@@ -1,10 +1,10 @@
 import type { IQuery } from '@/api/config/types';
 import type { SystemDept } from '@/api/modules/system/dept/types';
-import type { Role } from '@/api/modules/system/role/types';
+import type { SystemRole } from '@/api/modules/system/role/types';
 import type { TreeNode } from '@/types/system';
 
 interface RoleData {
-  data: Role[];
+  data: SystemRole[];
   roleMenus: TreeNode[];
   deptList: SystemDept[];
 }
@@ -24,8 +24,8 @@ export const roleQuery = ref<IQuery<RoleQuery>>({
   total: 0,
 });
 
-export const currentRole = ref<Role>();
-export const roleObject: Role = {
+export const currentRole = ref<SystemRole>();
+export const roleObject: SystemRole = {
   roleId: 0,
   roleName: '',
   roleKey: '',

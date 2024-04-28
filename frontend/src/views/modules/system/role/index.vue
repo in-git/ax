@@ -1,7 +1,7 @@
 <template>
   <div class="role system__module flex">
     <RoleCard />
-    <RoleInfo />
+    <RoleForm />
     <RoleResource />
     <RoleAssign />
   </div>
@@ -11,7 +11,7 @@
 import 'splitpanes/dist/splitpanes.css';
 import RoleAssign from './assign/RoleAssign.vue';
 import RoleCard from './card/RoleCard.vue';
-import RoleInfo from './info/RoleInfo.vue';
+import RoleForm from './form/RoleForm.vue';
 import RoleResource from './resource/RoleResource.vue';
 </script>
 

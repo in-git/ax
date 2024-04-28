@@ -179,11 +179,11 @@ $hh: 36px;
   border-radius: var(--radius);
   border: 1px solid #99999962;
   box-shadow: 0 0 16px 0 #6464643f;
-  &:active {
-    .drag-content * {
-      pointer-events: none;
-    }
-  }
+  // &:active {
+  //   .drag-content * {
+  //     pointer-events: none;
+  //   }
+  // }
 }
 
 .drag-header {
