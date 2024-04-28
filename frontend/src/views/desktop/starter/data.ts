@@ -6,6 +6,7 @@ import Browser from '@/views/widget/browser/Browser.vue';
 import Help from '@/views/widget/help/Help.vue';
 import ImageVue from '@/views/widget/image/Image.vue';
 import Notepad from '@/views/widget/notepad/Notepad.vue';
+import Test from '@/views/widget/test/Test.vue';
 import Video from '@/views/widget/video/Video.vue';
 
 interface Plugin {
@@ -85,6 +86,18 @@ export const plugins: Plugin[] = [
     action(item: Plugin) {
       openWindow({
         component: markRaw(Video),
+        ...item,
+      });
+      showStarter.value = false;
+    },
+  },
+  {
+    title: '测试',
+    id: 'video',
+    icon: getGiteeImage('image-icon/getstarted.png'),
+    action(item: Plugin) {
+      openWindow({
+        component: markRaw(Test),
         ...item,
       });
       showStarter.value = false;

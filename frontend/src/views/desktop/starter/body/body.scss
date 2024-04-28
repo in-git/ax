@@ -4,12 +4,14 @@
 		display: flex;
 		flex-wrap: wrap;
 		li {
-			width: 84px;
+			width: 30%;
 			padding: 8px 0;
 			user-select: none;
 			flex: 1;
 			flex-basis: 84px;
 			border-radius: var(--radius);
+			max-width: 33%;
+
 			&:hover {
 				background: #333;
 			}
