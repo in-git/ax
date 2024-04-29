@@ -60,7 +60,7 @@ node_modules
 .DS_Store
 dist-ssr
 coverage
-*.local
+/java/**/application-local.yml
 
 /cypress/videos/
 /cypress/screenshots/

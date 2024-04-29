@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectSysTestVo">
-        select test_id, text_field, number_field, date_field, rich_text_field, select_field, boolean_field, create_time, update_time, textarea_field, tree_field,sort from sys_test
+        select test_id, text_field, number_field, date_field, rich_text_field, select_field, boolean_field, create_time, update_time, textarea_field, tree_field,sort from sys_test s
     </sql>
 
     <select id="selectSysTestList" parameterType="SysTest" resultMap="SysTestResult">
@@ -34,6 +34,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="booleanField != null  and booleanField != ''"> and boolean_field = #{booleanField}</if>
             <if test="textareaField != null  and textareaField != ''"> and textarea_field = #{textareaField}</if>
             <if test="treeField != null  and treeField != ''"> and tree_field = #{treeField}</if>
+
+            <if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+                and date_format(s.create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+            </if>
+            <if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+                and date_format(s.create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+            </if>
         </where>
     </select>
     

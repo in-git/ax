@@ -11,7 +11,11 @@
      :wrapper-col="{ span: 8, offset: 1 }"
      :label-col="{ span: 4, offset: 4 }">
     <SystemModal title="$functionName" v-model:visible="${businessName}ShowForm">
-      <a-card title="编辑/新增">
+      <a-card title="编辑/新增" class="form__head">
+        <template #extra>
+          <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
+        </template>
+      <a-card class="mt-8">
 #foreach($column in $columns)
 #set($comment=$column.columnComment)
 #set($field=$column.javaField)
@@ -79,9 +83,7 @@
            </a-form-item>
          #end
          #end
-         <template #extra>
-           <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
-         </template>
+
          </a-card>
     </SystemModal>
   </a-form>
