@@ -11,7 +11,6 @@ import { ${businessName}Delete, ${businessName}List } from './curd';
 import type {  ${ModuleName}${BusinessName} } from '@/api/modules/${moduleName}/${businessName}/types';
 
 export const ${businessName}Table = ref<TableConfig<${ModuleName}${BusinessName}>>({
-  //这里根据实际情况修改
   //作用：勾选的唯一标识
   rowKey: '$Key',
   data: [],

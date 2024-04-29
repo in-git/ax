@@ -26,7 +26,9 @@ const form: SystemRole = {
 export const roleForm = ref<SystemRole>({
   ...form,
 });
+
 export const resourceModal = ref(false);
+
 export const showRoleForm = ref(false);
 // 重置表格
 export const roleResetForm = () => {

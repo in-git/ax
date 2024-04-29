@@ -50,6 +50,7 @@
               selectedRowKeys: userData.selectedKeys,
               onChange,
             }"
+            @change="pageChange"
             row-key="userId"
           >
             <template #bodyCell="{ column, record }">
@@ -80,17 +81,30 @@
 <script setup lang="ts">
 import SystemModal from '@/components/modal/SysModal.vue';
 import { formatColumns } from '@/utils/table/table';
+import type { PaginationProps } from 'ant-design-vue/es/pagination';
 import { userColumns } from './columns';
 import {
   allocateUserModal,
+  allocateUsers,
   assign,
   loading,
   modeConfig,
   onChange,
   unassign,
+  unassignUsers,
   userData,
   userQuery,
 } from './data';
+
+const pageChange = (page: PaginationProps) => {
+  userQuery.value.pageNum = page.current!;
+  userQuery.value.pageSize = page.pageSize!;
+  if (modeConfig.value.mode === 'unassign') {
+    unassignUsers();
+  } else {
+    allocateUsers();
+  }
+};
 </script>
 
 <style lang="scss" scoped>
