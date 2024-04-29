@@ -25,7 +25,7 @@ export const selectRole = async (id?: number) => {
   let targetId = 0;
   if (id) {
     targetId = id;
-  } else if (roleForm.value) {
+  } else if (roleForm.value && roleForm.value.roleId) {
     targetId = roleForm.value.roleId;
   }
   const { data: roleInfo } = await getRoleById(targetId);
@@ -51,7 +51,7 @@ export const roleDelete = async (id?: number) => {
 };
 
 export const allocatingResource = async () => {
-  if (roleForm.value) {
+  if (roleForm.value && roleForm.value.roleId) {
     await getDeptTree(roleForm.value.roleId);
     resourceModal.value = true;
   }

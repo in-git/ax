@@ -6,7 +6,7 @@ export interface SystemRole {
   updateBy?: any;
   updateTime?: any;
   remark?: any;
-  roleId: number;
+  roleId: number | undefined;
   roleName: string;
   roleKey: string;
   roleSort: number;

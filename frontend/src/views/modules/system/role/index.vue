@@ -14,18 +14,20 @@
     <RoleForm />
     <RoleResource />
     <RoleAssign />
+    <RoleUnAssign />
     <!-- end -->
   </a-card>
 </template>
 
 <script setup lang="ts">
-import RoleAssign from './assign/RoleAssign.vue';
 import { roleList } from './data/curd';
 import { viewMode } from './data/table';
+import RoleAssign from './pages/assign/RoleAssign.vue';
+import RoleResource from './pages/assign/RoleResource.vue';
+import RoleUnAssign from './pages/assign/RoleUnassign.vue';
 import FooterVue from './pages/components/AXFooter.vue';
 import RoleForm from './pages/components/AXForm.vue';
 import HeadVue from './pages/components/AXHead.vue';
-import RoleResource from './pages/components/RoleResource.vue';
 import CardVue from './pages/table-card/AXCard.vue';
 import TableVue from './pages/table-card/AXTable.vue';
 

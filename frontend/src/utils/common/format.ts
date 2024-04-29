@@ -36,3 +36,7 @@ export const convertParamsToFormat = (params: IQuery) => {
 
   return queryString;
 };
+/* 驼峰转下划线 */
+export const toLine = (name: string) => {
+  return name.replace(/([A-Z])/g, '_$1').toLowerCase();
+};

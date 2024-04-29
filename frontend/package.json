@@ -21,7 +21,7 @@
     "animate.css": "^4.1.1",
     "ant-design-vue": "^4.1.2",
     "axios": "^1.6.8",
-    "change-case": "^4.1.2",
+    "change-case": "^5.4.4",
     "consola": "^3.2.3",
     "dayjs": "^1.11.10",
     "draggable-resizable-vue3": "^1.0.94-beta",

@@ -8,13 +8,14 @@
 :deep(.ant-card) {
 	box-shadow: none;
 }
-ul {
-	display: flex;
-	flex-wrap: wrap;
+ul.list {
 	gap: 8px;
+	justify-content: space-between;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 42px);
 	li {
-		width: 42px;
 		height: 42px;
+		width: 42px;
 		border: 1px solid transparent;
 		border-radius: var(--radius);
 		img {

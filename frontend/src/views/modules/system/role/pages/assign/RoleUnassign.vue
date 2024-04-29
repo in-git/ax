@@ -3,38 +3,32 @@
     <SystemModal
       w="90%"
       h="90%"
-      v-model:visible="allocateUserModal"
-      title="【新增|取消】授权"
-      @update:visible="allocateUserModal = false"
+      v-model:visible="unAssignModal"
+      title="取消授权"
+      @update:visible="unAssignModal = false"
     >
       <div>
-        <a-card :title="modeConfig.title" :body-style="{ overflow: 'auto' }">
+        <a-card title="取消授权" :body-style="{ overflow: 'auto' }">
           <template #extra>
             <div>
-              <a-input-search placeholder="请输入身份名"></a-input-search>
+              <a-input-search
+                v-model:value="userQuery.userName"
+                placeholder="请输入用户名"
+                allow-clear
+                @search="unassignUsers"
+              ></a-input-search>
             </div>
           </template>
         </a-card>
         <div class="py-8 px-12 flex justify-between">
-          <template v-if="modeConfig.mode !== 'unassign'">
-            <a-button
-              :disabled="userData.selectedKeys.length === 0"
-              type="primary"
-              @click="assign()"
-            >
-              批量授权
-            </a-button>
-          </template>
-          <template v-else>
-            <a-button
-              type="primary"
-              :disabled="userData.selectedKeys.length === 0"
-              @click="unassign()"
-              danger
-            >
-              批量取消
-            </a-button>
-          </template>
+          <a-button
+            type="primary"
+            :disabled="userData.selectedKeys.length === 0"
+            @click="unassign()"
+            danger
+          >
+            批量取消
+          </a-button>
         </div>
         <div class="user-list p-8">
           <a-table
@@ -50,24 +44,16 @@
               selectedRowKeys: userData.selectedKeys,
               onChange,
             }"
+            @change="pageChange"
             row-key="userId"
           >
             <template #bodyCell="{ column, record }">
               <template v-if="column.dataIndex === 'operation'">
-                <template v-if="modeConfig.mode === 'unassign'">
-                  <a-tooltip title="">
-                    <a-button type="link" style="color: #fc6d6d" @click="unassign(record.userId)">
-                      取消授权
-                    </a-button>
-                  </a-tooltip>
-                </template>
-                <template v-else>
-                  <a-tooltip title="">
-                    <a-button type="link" style="color: green" @click="assign(record.userId)">
-                      授权
-                    </a-button>
-                  </a-tooltip>
-                </template>
+                <a-tooltip title="">
+                  <a-button type="link" style="color: #fc6d6d" @click="unassign(record.userId)">
+                    取消授权
+                  </a-button>
+                </a-tooltip>
               </template>
             </template>
           </a-table>
@@ -80,17 +66,23 @@
 <script setup lang="ts">
 import SystemModal from '@/components/modal/SysModal.vue';
 import { formatColumns } from '@/utils/table/table';
+import type { PaginationProps } from 'ant-design-vue/es/pagination';
 import { userColumns } from './columns';
 import {
-  allocateUserModal,
-  assign,
   loading,
-  modeConfig,
   onChange,
   unassign,
+  unAssignModal,
+  unassignUsers,
   userData,
   userQuery,
 } from './data';
+
+const pageChange = (page: PaginationProps) => {
+  userQuery.value.pageNum = page.current!;
+  userQuery.value.pageSize = page.pageSize!;
+  unassignUsers();
+};
 </script>
 
 <style lang="scss" scoped>

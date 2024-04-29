@@ -41,7 +41,7 @@ const props = withDefaults(
     w?: string;
     h?: string;
     showMask?: boolean;
-    position?: 'absolute' | 'fixed';
+    position?: 'absolute' | 'fixed' | 'sticky';
     toBody?: boolean;
   }>(),
   {

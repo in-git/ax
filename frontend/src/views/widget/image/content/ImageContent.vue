@@ -30,7 +30,7 @@
       @dragover="(e: DragEvent) => e.preventDefault()"
     >
       <div>
-        <img :src="uploadPng" width="200" />
+        <img :src="uploadPng" width="120" />
       </div>
       <div class="system__subtitle text-16">拖拽文件到此上传</div>
       <div>
@@ -77,31 +77,31 @@ const drop = async (e: DragEvent) => {
 </script>
 
 <style lang="scss" scoped>
-.upload {
-  height: 100%;
-  border: 2px dashed #6b6b6b86;
-  border-radius: var(--radius);
-}
-
-.cover {
-  height: 100%;
-  overflow-y: hidden;
-  width: 100%;
-}
-
-.upload-button {
-  width: 240px;
-  margin-top: 34px;
-}
-.preview {
-  position: absolute;
-  bottom: 2px;
-  z-index: 10;
-  right: 2px;
-  background-color: #6b6b6b86;
-  border-radius: var(--radius);
-}
 .cover-container {
-  background-color: rgb(24, 24, 24);
+  background-color: #181818;
+  .upload {
+    height: 100%;
+    border: 2px dashed #6b6b6b86;
+    border-radius: var(--radius);
+  }
+
+  .cover {
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .upload-button {
+    width: 240px;
+    margin-top: 34px;
+  }
+  .preview {
+    position: absolute;
+    bottom: 2px;
+    z-index: 10;
+    right: 2px;
+    background-color: #6b6b6b86;
+    border-radius: var(--radius);
+  }
 }
 </style>

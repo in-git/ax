@@ -103,7 +103,6 @@ public class SysWebsiteController extends BaseController
     @Log(title = "网页收藏", businessType = BusinessType.OTHER)
     public  AjaxResult getSiteInfo(@PathVariable String url){
         WebInfo info = sysWebsiteService.getWebsiteInfoByUrl("http://"+url);
-        System.out.println(info.toString());
         return success(info);
     }
 }

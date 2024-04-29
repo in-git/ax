@@ -1,5 +1,5 @@
 <template>
-  <a-card class="system__module flex flex-col">
+  <a-card class="system__module" :body-style="{ height: '100%', padding: '0' }">
     <LoginHead />
     <LoginInfoCard />
   </a-card>

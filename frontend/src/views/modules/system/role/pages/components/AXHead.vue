@@ -51,38 +51,36 @@
       </a-flex>
 
       <a-flex :gap="2" :align="'center'" class="text-nowrap">
-        <a-flex>
-          <span class="system__subtitle">编辑/权限:</span>
-          <a-tooltip title="编辑基础信息">
-            <a-button type="link" @click="selectRole()" :disabled="roleKeys.length !== 1">
-              <template #icon>
-                <EditOutlined />
-              </template>
-              基础信息
-            </a-button>
-          </a-tooltip>
-
-          <a-button type="text" :disabled="roleKeys.length !== 1" @click="allocatingResource">
-            分配资源
+        <span class="system__subtitle">编辑/权限:</span>
+        <a-tooltip title="编辑基础信息">
+          <a-button type="link" @click="selectRole()" :disabled="roleKeys.length !== 1">
             <template #icon>
-              <ClusterOutlined />
+              <EditOutlined />
             </template>
+            基础信息
           </a-button>
+        </a-tooltip>
 
-          <a-button type="text" :disabled="roleKeys.length !== 1" @click="allocateUsers">
-            分配人员
-            <template #icon>
-              <UserAddOutlined />
-            </template>
-          </a-button>
+        <a-button type="text" :disabled="roleKeys.length !== 1" @click="allocatingResource">
+          分配资源
+          <template #icon>
+            <ClusterOutlined />
+          </template>
+        </a-button>
 
-          <a-button type="text" :disabled="roleKeys.length !== 1" @click="unassignUsers">
-            取消分配
-            <template #icon>
-              <UserDeleteOutlined />
-            </template>
-          </a-button>
-        </a-flex>
+        <a-button type="text" :disabled="roleKeys.length !== 1" @click="allocateUsers">
+          分配人员
+          <template #icon>
+            <UserAddOutlined />
+          </template>
+        </a-button>
+
+        <a-button type="text" :disabled="roleKeys.length !== 1" @click="unassignUsers">
+          取消分配
+          <template #icon>
+            <UserDeleteOutlined />
+          </template>
+        </a-button>
       </a-flex>
     </a-card>
   </div>
@@ -97,11 +95,11 @@ import {
   ReloadOutlined,
   UserDeleteOutlined,
 } from '@ant-design/icons-vue';
-import { allocateUsers, unassignUsers } from '../../assign/data';
 import { roleColumns } from '../../data/column';
 import { allocatingResource, delRoles, roleList, selectRole } from '../../data/curd';
 import { roleForm, roleResetForm, showRoleForm } from '../../data/form';
 import { roleKeys, roleMenus, roleQuery, roleTable, viewMode } from '../../data/table';
+import { allocateUsers, unassignUsers } from '../assign/data';
 
 const create = async () => {
   const { data } = await roleTreeSelect();
@@ -121,3 +119,4 @@ const isActive = () => {
 </script>
 
 <style lang="scss" scoped></style>
+../assign/data

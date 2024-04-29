@@ -47,9 +47,9 @@
 import { clearLogs } from '@/api/modules/monitor/operlog/operlog';
 import { successStatus } from '@/global/options/system';
 import { message } from 'ant-design-vue';
-import { getLogs } from '../../data/curd';
-import { logQuery } from '../../data/data';
-import { operationType } from '../../data/options';
+import { getLogs } from '../data/curd';
+import { logQuery } from '../data/data';
+import { operationType } from '../data/options';
 
 const clear = async () => {
   const { data } = await clearLogs();

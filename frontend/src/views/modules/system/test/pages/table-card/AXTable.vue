@@ -46,9 +46,9 @@
 
 <script setup lang="ts">
 import type { SystemTest } from '@/api/modules/system/test/types';
+import { toLine } from '@/utils/common/format';
 import { formatColumns } from '@/utils/table/table';
 import { useArrayFilter } from '@vueuse/core';
-import { useChangeCase } from '@vueuse/integrations/useChangeCase';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import { testColumns } from '../../data/column';
 import { testEdit, testExport, testList } from '../../data/curd';
@@ -84,13 +84,12 @@ const handleResizeColumn = (w: number, col: any) => {
 
 /* 分页事件触发 */
 const pageChange = async (page: TablePaginationConfig, filters: any, sorter: any) => {
-  const tableField = useChangeCase(sorter.columnKey, 'snakeCase');
   if (page.current && page.pageSize) {
     testQuery.value.pageNum = page.current;
     testQuery.value.pageSize = page.pageSize;
   }
   if (sorter && sorter.order) {
-    testQuery.value.orderByColumn = tableField.value;
+    testQuery.value.orderByColumn = toLine(sorter.columnKey);
     testQuery.value.isAsc = sorter.order.includes('asc') ? 'asc' : 'desc';
   }
   await testList();
