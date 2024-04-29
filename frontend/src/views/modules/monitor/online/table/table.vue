@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import SystemTable from '@/views/components/table/SystemTable.vue';
-import TableHeadVue from './table-head/head.vue';
+import TableHeadVue from './head.vue';
 
 import { forceLogout } from '@/api/modules/monitor/online/online';
 import type { LogoutOutlined } from '@ant-design/icons-vue';
