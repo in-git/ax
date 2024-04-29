@@ -80,4 +80,5 @@ coverage
 nodejs/src/assets/
 /resource/
 application-local.yml
+application-build.yml
 dist

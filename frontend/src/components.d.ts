@@ -99,8 +99,6 @@ declare module 'vue' {
     PlusOutlined: typeof import('@ant-design/icons-vue')['PlusOutlined']
     PoweroffOutlined: typeof import('@ant-design/icons-vue')['PoweroffOutlined']
     ReloadOutlined: typeof import('@ant-design/icons-vue')['ReloadOutlined']
-    RobotOutlined: typeof import('@ant-design/icons-vue')['RobotOutlined']
-    RotateRightOutlined: typeof import('@ant-design/icons-vue')['RotateRightOutlined']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Selection: typeof import('./components/selection/Selection.vue')['default']

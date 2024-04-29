@@ -141,6 +141,7 @@ const hidden = () => {
 };
 /* 移动后记录最后的位置 */
 const dragstop = (left: number, top: number) => {
+  if (!windowProps.value.y) return;
   if (windowProps.value.y < 0) {
     windowProps.value.y = 0;
   }

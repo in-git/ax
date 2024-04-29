@@ -1,5 +1,5 @@
 import type { SystemPost } from '@/api/modules/system/post/types';
-import type { Role } from '@/api/modules/system/role/types';
+import type { SystemRole } from '@/api/modules/system/role/types';
 import type { UserProfileData } from '@/api/modules/system/user/types';
 import { editUserConfig } from './curd';
 
@@ -31,7 +31,7 @@ let userFormObj: UserProfileData = {
 export const userForm = ref<UserProfileData>({
   ...userFormObj,
 });
-export const userRoles = ref<Role[]>([]);
+export const userRoles = ref<SystemRole[]>([]);
 export const userPosts = ref<SystemPost[]>([]);
 
 export const resetUserForm = async () => {
