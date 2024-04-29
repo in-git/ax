@@ -119,4 +119,3 @@ const submit = async () => {
   height: 100%;
 }
 </style>
-../data/curd ./form

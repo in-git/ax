@@ -1,10 +1,10 @@
 <template>
-  <a-card class="system__module card__container" :body-style="{ padding: '0', height: '100%' }">
-    <a-flex class="h-100 flex-1">
+  <a-card class="system__module card__container">
+    <a-flex class="h-100">
       <Dept />
       <UserTable />
-      <UserForm></UserForm>
     </a-flex>
+    <UserForm></UserForm>
   </a-card>
 </template>
 

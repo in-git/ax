@@ -61,9 +61,9 @@
         </a-form-item>
 
         <a-form-item label="网页LOGO" name="logo">
-          <a-input v-model:value="websiteForm.icon">
+          <a-input allow-clear v-model:value="websiteForm.icon">
             <template #addonBefore v-if="websiteForm.icon">
-              <img :src="websiteForm.icon" width="16" alt="" />
+              <img :src="websiteForm.icon" width="16" />
             </template>
             <template #addonAfter>
               <a-popover trigger="click" v-model:open="visible">
@@ -102,7 +102,7 @@ const loading = ref(false);
 const visible = ref(false);
 
 const search = async () => {
-  message.success('正在搜索，如果是国外网页，速度可能非常慢');
+  message.success('正在搜索，如果是国外网页，需要等待');
   loading.value = true;
   if (websiteForm.value.url) {
     let url = extractDomain(websiteForm.value.url);
@@ -111,6 +111,7 @@ const search = async () => {
       loading.value = false;
       if (data.data && url) {
         websiteForm.value.description = data.data.description;
+        websiteForm.value.icon = data.data.logo;
         websiteForm.value.name = data.data.title;
       }
     } catch (error) {

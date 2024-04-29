@@ -5,5 +5,5 @@ export const getGiteeImage = (path: string) => {
   return `${resourceUrl}/${path}`;
 };
 export const getFavicon = (src: string) => {
-  return `https://favicon.qqsuu.cn/${src}`;
+  return `https://www.favicon.vip/get.php?url=${src}`;
 };

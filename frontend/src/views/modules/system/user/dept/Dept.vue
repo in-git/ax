@@ -1,6 +1,6 @@
 <template>
   <a-card class="dept mr-4">
-    <h3>用户部门</h3>
+    <div>用户部门</div>
     <a-input-search
       allow-clear
       v-model:value="keyword"
@@ -8,7 +8,7 @@
       @search="search"
       class="my-8"
     ></a-input-search>
-    <a-directory-tree
+    <a-tree
       :tree-data="treeData"
       @select="onSelect"
       selectable
@@ -18,7 +18,7 @@
       blockNode
       :default-expand-all="true"
       :fieldNames="{ title: 'label', key: 'id' }"
-    ></a-directory-tree>
+    ></a-tree>
   </a-card>
 </template>
 

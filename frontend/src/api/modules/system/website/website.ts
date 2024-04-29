@@ -45,6 +45,7 @@ export const exportWebsite = async (page: Page) => {
 interface SiteInfo {
   title: string;
   description: string;
+  logo: string;
 }
 export const getSiteInfo = (url: string) => {
   return axios.get<Response<SiteInfo>>(`system/website/siteInfo/${url}`);

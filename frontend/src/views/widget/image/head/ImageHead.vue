@@ -17,7 +17,9 @@
             <a-card style="width: 300px">
               <a-form :label-col="{ span: 8 }" label-align="left">
                 <a-form-item label="裁剪类型">
-                  <a-select v-model:value="cropperProps.stencil" :options="stencilOptions" />
+                  <a-flex :justify="'end'">
+                    <a-radio-group v-model:value="cropperProps.stencil" :options="stencilOptions" />
+                  </a-flex>
                 </a-form-item>
                 <a-form-item label="调整大小">
                   <div class="text-right">

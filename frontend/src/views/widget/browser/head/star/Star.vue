@@ -5,37 +5,35 @@
     </div>
     <template #content>
       <a-card style="width: 400px" title="网页收藏夹">
-        <template #extra>
+        <a-flex :justify="'space-between'" :align="'center'" class="pb-8">
+          <a-flex :gap="8">
+            <a-select
+              @change="changeType"
+              v-model:value="query.type"
+              :options="typeOptions"
+            ></a-select>
+          </a-flex>
           <a-pagination
             :current="query.pageNum"
             :pageSize="query.pageSize"
             :total="query.total"
             @change="pageChange"
           ></a-pagination>
-        </template>
-        <a-flex :gap="8">
-          <a-segmented
-            @change="changeType"
-            v-model:value="query.type"
-            :options="typeOptions"
-          ></a-segmented>
         </a-flex>
-        <a-card class="mt-8">
-          <ul>
-            <template v-for="item in list" :key="item.websiteId">
-              <a-tooltip :title="item.name">
-                <li
-                  class="flex flex-s"
-                  @dblclick="openLink(item)"
-                  @click="selectItem(item.url)"
-                  :class="{ active: currentSrc === item.url }"
-                >
-                  <img :src="item.icon || getFavicon(item.url)" width="32" />
-                </li>
-              </a-tooltip>
-            </template>
-          </ul>
-        </a-card>
+        <ul class="list">
+          <template v-for="item in list" :key="item.websiteId">
+            <a-tooltip :title="item.name">
+              <li
+                class="flex flex-s"
+                @dblclick="openLink(item)"
+                @click="selectItem(item.url)"
+                :class="{ active: currentSrc === item.url }"
+              >
+                <img :src="item.icon || getFavicon(item.url)" width="32" />
+              </li>
+            </a-tooltip>
+          </template>
+        </ul>
       </a-card>
     </template>
   </a-popover>

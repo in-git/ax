@@ -139,13 +139,10 @@ public class SysWebsiteServiceImpl implements ISysWebsiteService
         try {
             // 从URL加载网页
             Document doc = Jsoup.connect(url).get();
-
             // 获取网页标题
             String title = doc.title();
-
             // 获取网页描述
             String description = doc.select("meta[name=description]").attr("content");
-
             // 获取网页 logo
             String logoUrl = null;
             Elements links = doc.select("link[rel~=(?i)^(shortcut )?icon$]");
@@ -153,9 +150,8 @@ public class SysWebsiteServiceImpl implements ISysWebsiteService
                 // 获取第一个匹配的 link 标签中的 href 属性值作为 logoUrl
                 logoUrl = links.get(0).attr("href");
             }
-
             // 返回标题、描述信息和 logoUrl
-            return new WebInfo(title, description, logoUrl);
+            return new WebInfo(title, description, url+"/"+logoUrl);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
