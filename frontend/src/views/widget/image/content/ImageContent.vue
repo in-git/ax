@@ -30,7 +30,7 @@
       @dragover="(e: DragEvent) => e.preventDefault()"
     >
       <div>
-        <img :src="uploadPng" width="200" />
+        <img :src="uploadPng" width="120" />
       </div>
       <div class="system__subtitle text-16">拖拽文件到此上传</div>
       <div>

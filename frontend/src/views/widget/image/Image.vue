@@ -22,7 +22,7 @@ const props = defineProps<{
     box-shadow: none;
   }
   :deep(.ant-card-body) {
-    padding: 4px;
+    padding: 4px 8px;
     height: 100%;
     overflow: hidden;
   }
