@@ -51,12 +51,15 @@ const customRow = (record: SystemRole) => {
   return {
     onClick() {
       const id = (record as any)[roleTable.value.rowKey];
+      roleForm.value = record;
       if (!roleKeys.value.includes(id)) {
         roleKeys.value.push(id);
       } else {
         roleKeys.value = useArrayFilter(roleKeys.value, e => e !== id).value;
       }
-      roleKeys.value = [record.roleId];
+      if (record.roleId) {
+        roleKeys.value = [record.roleId];
+      }
     },
     onDblclick() {
       selectRole(record.roleId);

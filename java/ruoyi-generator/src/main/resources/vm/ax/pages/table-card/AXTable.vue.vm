@@ -71,6 +71,7 @@ const customRow = (record: ${ModuleName}${BusinessName}) => {
   return {
     onClick() {
       const id= (record as any)[${businessName}Table.value.rowKey]
+      ${businessName}Form .value = record;
       if (!${businessName}Keys.value.includes(id)) {
          ${businessName}Keys.value.push(id);
       } else {

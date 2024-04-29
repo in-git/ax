@@ -3,7 +3,7 @@ import type { SystemRole } from '@/api/modules/system/role/types';
 import type { Rule } from 'ant-design-vue/es/form/interface';
 
 const form: SystemRole = {
-  roleId: 0,
+  roleId: undefined,
   roleName: '',
   roleKey: '',
   roleSort: 0,
