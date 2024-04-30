@@ -1,14 +1,18 @@
 <template>
-  <Transition>
+  <div>
     <div class="app-background flex-1 flex flex-col" v-if="backgroundType.type === 'video'">
       <VideoBackground class="h-100" :src="backgroundType.src"></VideoBackground>
     </div>
-    <div v-else-if="backgroundType.type === 'image'" class="app-background" :style="style"></div>
-  </Transition>
+    <div v-else-if="backgroundType.type === 'image'" class="app-background" :style="style">
+      <Loading v-if="backgroundLoading" desc="正在加载背景图片"></Loading>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
+import Loading from '@/components/loading/Loading.vue';
 import usePageStore from '@/store/page';
+import { backgroundLoading } from '@/store/page/utils';
 import type { CSSProperties } from 'vue';
 import VideoBackground from 'vue-responsive-video-background-player';
 
@@ -19,6 +23,7 @@ const pageStore = usePageStore();
 const backgroundType = computed(() => {
   return pageStore.$state.desktop.background;
 });
+
 const style = computed((): CSSProperties => {
   if (backgroundType.value.type === 'image') {
     return {
