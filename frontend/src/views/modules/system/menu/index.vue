@@ -1,12 +1,9 @@
 <template>
   <a-card class="system__module">
     <MenuTable></MenuTable>
-    <Transition
-      enter-active-class="animate__animated animate__zoomIn"
-      leave-active-class="animate__animated animate__zoomOut"
-    >
+    <Animation>
       <MenuForm v-if="showMenuForm"></MenuForm>
-    </Transition>
+    </Animation>
   </a-card>
 </template>
 

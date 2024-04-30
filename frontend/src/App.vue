@@ -29,7 +29,13 @@
         @close="closeWindow(item.id || '')"
         :icon="item.icon"
       >
-        <component :data="item.data" :id="item.id" :is="item.component"></component>
+        <Animation
+          appear
+          enter-active-class="animate__animated animate__fadeIn"
+          leave-active-class="animate__animated animate__fadeOut"
+        >
+          <component :data="item.data" :id="item.id" :is="item.component"></component>
+        </Animation>
       </Draggable>
     </div>
   </ConfigProvider>

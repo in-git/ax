@@ -1,11 +1,8 @@
 <template>
-  <Transition
-    enter-active-class="animate__animated animate__zoomIn"
-    leave-active-class="animate__animated animate__zoomOut"
-  >
+  <Animation>
     <div
       class="system__modal"
-      v-show="visible"
+      v-if="visible"
       :class="[boolValue(showMask, 'model__mask', 'model__mask__none')]"
     >
       <div class="modal__container" :style="style">
@@ -25,7 +22,7 @@
         </div>
       </div>
     </div>
-  </Transition>
+  </Animation>
 </template>
 
 <script setup lang="ts">

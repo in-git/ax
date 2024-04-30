@@ -1,18 +1,7 @@
 <template>
   <div class="iframe flex-1">
-    <a-flex
-      class="h-100 flex-col"
-      justify="center"
-      :align="'center'"
-      lass="loading"
-      v-show="browserLoading"
-    >
-      <div class="text-linear-gradient text-16">AX 管理系统</div>
-      <div class="system__subtitle">
-        正在加载
-        <LoadingOutlined spin class="ml-2" />
-      </div>
-    </a-flex>
+    <Loading v-show="browserLoading"></Loading>
+
     <template v-for="item in browserTabs">
       <KeepAlive :max="10">
         <FrameComponent
@@ -25,6 +14,7 @@
 </template>
 
 <script setup lang="ts">
+import type Loading from '@/components/loading/Loading.vue';
 import { browserLoading, currentBrowserTab } from '../data/browser';
 import { browserTabs } from '../data/browser.tabs';
 import FrameComponent from './IframeComponent.vue';

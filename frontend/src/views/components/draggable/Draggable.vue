@@ -15,41 +15,42 @@
     @resizestop="resizestop"
     :id="id"
   >
-    <slot name="head">
-      <a-card :bordered="false" :bodyStyle="{ padding: 0 }" class="drag-header">
-        <div class="flex justify-between align-center">
-          <div class="flex align-center">
-            <div class="win-icon flex flex-s">
-              <img :draggable="false" :src="icon" width="20" height="20" v-if="icon" />
-            </div>
-
-            <div>{{ title }}</div>
+    <a-card :bordered="false" :bodyStyle="{ padding: 0 }" class="drag-header">
+      <div class="flex justify-between align-center">
+        <div class="flex align-center">
+          <div class="win-icon flex flex-s">
+            <img :draggable="false" :src="icon" width="20" height="20" v-if="icon" />
           </div>
-          <div class="flex">
-            <div class="system__icon" @click="hidden">
-              <MinusOutlined />
-            </div>
-            <div class="system__icon" @click="minimize" v-if="isFullscreen">
-              <CompressOutlined />
-            </div>
-            <div class="system__icon" @click="expand" v-else>
-              <ExpandOutlined />
-            </div>
 
-            <div class="system__icon close" @click="close">
-              <CloseOutlined />
-            </div>
+          <div>{{ title }}</div>
+        </div>
+        <div class="flex">
+          <div class="system__icon" @click="hidden">
+            <MinusOutlined />
+          </div>
+          <div class="system__icon" @click="minimize" v-if="isFullscreen">
+            <CompressOutlined />
+          </div>
+          <div class="system__icon" @click="expand" v-else>
+            <ExpandOutlined />
+          </div>
+
+          <div class="system__icon close" @click="close">
+            <CloseOutlined />
           </div>
         </div>
-      </a-card>
-    </slot>
+      </div>
+    </a-card>
     <div class="drag-content">
-      <slot></slot>
+      <slot>
+        <Loading class="w-100 h-100" />
+      </slot>
     </div>
   </VueDraggable>
 </template>
 
 <script setup lang="ts">
+import Loading from '@/components/loading/Loading.vue';
 import { hiddenWindow, setCurrentWindow, toTop, windowList } from '@/global/config/window';
 import usePageStore from '@/store/page';
 import { initModuleWH } from '@/store/page/utils';
@@ -198,11 +199,10 @@ $hh: 36px;
 .drag-content {
   height: calc(100% - $hh);
   position: relative;
-  background: url('./assets/background.webp');
   background-repeat: no-repeat;
   background-size: 400px 400px;
   background-position: center;
-  background-color: #6464643f;
+  background-color: #e2e2e2a1;
 }
 
 .close {

@@ -38,8 +38,8 @@
         />
         <StarVue />
       </div>
-      <div class="system__icon">
-        <InboxOutlined />
+      <div class="system__icon" @click="open">
+        <LinkOutlined />
       </div>
 
       <div class="system__icon">
@@ -50,7 +50,8 @@
 </template>
 
 <script setup lang="ts">
-import { EllipsisOutlined, InboxOutlined, RightOutlined } from '@ant-design/icons-vue';
+import { openLink } from '@/utils/common/utils';
+import { EllipsisOutlined, RightOutlined } from '@ant-design/icons-vue';
 import { useCloned } from '@vueuse/core';
 import { nanoid } from 'nanoid';
 import { browserLoading, currentBrowserTab, homePage } from '../data/browser';
@@ -90,6 +91,11 @@ const gotoHome = () => {
   const newTab = useCloned(homePage.value).cloned.value;
   enterUrl(newTab.url, newTab.title);
 };
+
+const open = () => {
+  openLink(currentBrowserTab.value.url);
+};
+
 watch(currentBrowserTab, () => (src.value = currentBrowserTab.value.url), {
   immediate: true,
   deep: true,

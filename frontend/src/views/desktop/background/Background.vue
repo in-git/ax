@@ -1,11 +1,10 @@
 <template>
-  <div
-    class="app-background flex-1 flex flex-col"
-    v-if="pageStore.$state.desktop.background.type === 'video'"
-  >
-    <VideoBackground class="h-100" :src="pageStore.$state.desktop.background.src"></VideoBackground>
-  </div>
-  <div v-else class="app-background" :style="style"></div>
+  <Transition>
+    <div class="app-background flex-1 flex flex-col" v-if="backgroundType.type === 'video'">
+      <VideoBackground class="h-100" :src="backgroundType.src"></VideoBackground>
+    </div>
+    <div v-else-if="backgroundType.type === 'image'" class="app-background" :style="style"></div>
+  </Transition>
 </template>
 
 <script setup lang="ts">
@@ -17,13 +16,16 @@ const defaultBackground = `http://in-git.gitee.io/ax-resource/wallpaper/windows-
 
 const pageStore = usePageStore();
 
+const backgroundType = computed(() => {
+  return pageStore.$state.desktop.background;
+});
 const style = computed((): CSSProperties => {
-  if (pageStore.$state.desktop.background.type === 'image') {
+  if (backgroundType.value.type === 'image') {
     return {
-      background: `url('${pageStore.$state.desktop.background.src || defaultBackground}')`,
+      background: `url('${backgroundType.value.src || defaultBackground}')`,
       filter: `
-      brightness(${100 - pageStore.$state.desktop.background.brightness}%)
-      grayscale(${pageStore.$state.desktop.background.grayscale}%)`,
+      brightness(${100 - backgroundType.value.brightness}%)
+      grayscale(${backgroundType.value.grayscale}%)`,
     };
   }
   return {};

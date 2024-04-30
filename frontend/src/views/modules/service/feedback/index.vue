@@ -12,7 +12,7 @@
     </template>
 
     <div vertical class="list flex-1">
-      <a-spin :spinning="loading">
+      <a-spin :spinning="loading" class="h-100">
         <a-flex vertical :gap="8">
           <a-card v-for="item in feedbackData">
             <template #title>
