@@ -1,7 +1,6 @@
-
 import type { IQuery, Response, TableResponse } from '@/api/config/types';
 import axios from 'axios';
-import type {SystemConfig} from "./types"
+import type { SystemConfig } from './types';
 
 // 查询参数配置列表
 export const fetchConfigList = (query: IQuery) => {
@@ -15,7 +14,7 @@ export const fetchConfigById = (configId: number) => {
 };
 
 // 新增参数配置
-export const createConfig= (data: SystemConfig) => {
+export const createConfig = (data: SystemConfig) => {
   return axios.post<Response<SystemConfig>>(`system/config`, data);
 };
 
@@ -25,9 +24,11 @@ export const updateConfig = (data: SystemConfig) => {
 };
 
 // 删除参数配置
-export const deleteConfig = (configIds:number[]) => {
+export const deleteConfig = (configIds: number[]) => {
   return axios.delete<Response<SystemConfig>>(`system/config/${configIds.join(',')}`);
 };
 
-
-
+/* 根据key获取参数 */
+export const getConfigByKey = (key: string) => {
+  return axios.get<Response<SystemConfig>>(`system/configKey/${key}`);
+};

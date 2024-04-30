@@ -6,9 +6,9 @@
           确定
         </a-button>
       </template>
-      <ul :class="[type]" v-if="galleryData.data.length > 0">
+      <ul :class="[type]" v-if="galleryData.length > 0">
         <li
-          v-for="item in galleryData.data"
+          v-for="item in galleryData"
           @click="selectItem(item)"
           :class="[{ active: selectedSet.includes(item) }]"
         >
@@ -21,8 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import type { IQuery, TableConfig } from '@/api/config/types';
-import { getSystemImages } from '@/api/utils/file';
+import { avatars, imageIcons, wallpaperList } from '@/global/data/resource.list';
 import { getStaticHost } from '@/store/system/utils';
 import type { IconType } from '@/types/system';
 
@@ -42,18 +41,7 @@ const props = withDefaults(
 const emit = defineEmits(['update:value']);
 const selectedSet = ref<string[]>([]);
 
-const query = ref<IQuery<{ type: IconType }>>({
-  pageNum: 1,
-  pageSize: 20,
-  total: 0,
-  type: 'avatar',
-});
-const galleryData = ref<TableConfig<string>>({
-  rowKey: 'galleryId',
-  data: [],
-  loading: false,
-  moduleName: '',
-});
+const galleryData = ref<string[]>([]);
 const selectItem = (item: string) => {
   if (props.limit <= selectedSet.value.length) {
     selectedSet.value.shift();
@@ -69,17 +57,14 @@ const confirm = () => {
   emit('update:value', selectedSet.value);
 };
 
-const getData = async () => {
-  const { data } = await getSystemImages(props.type);
-  if (data.data) {
-    galleryData.value.data = data.data;
-    query.value.total = data.data.length;
-  }
-};
-
 onMounted(() => {
-  query.value.type = props.type;
-  getData();
+  if (props.type === 'avatar') {
+    galleryData.value = avatars;
+  } else if (props.type === 'wallpaper') {
+    galleryData.value = wallpaperList;
+  } else if (props.type === 'image-icon') {
+    galleryData.value = imageIcons;
+  }
 });
 </script>
 

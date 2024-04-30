@@ -1,54 +1,16 @@
-import type { IQuery } from '@/api/config/types';
-import { getSystemImages } from '@/api/utils/file';
-import { getGiteeImage } from '@/api/utils/image';
-import type { IconType } from '@/types/system';
-import videoUrl from './video.url';
+import { videoWallpaperList, wallpaperList } from '@/global/data/resource.list';
 
-interface GalleryQuery {
-  type: IconType;
-}
-export const galleryData = ref<string[]>();
+export const galleryData = ref<string[]>([]);
 export const galleryType = ref<'video' | 'image'>('image');
 export const galleryLoading = ref(false);
 
-export const galleryQuery = ref<IQuery<GalleryQuery>>({
-  pageNum: 1,
-  pageSize: 20,
-  total: 0,
-  type: 'wallpaper',
-});
-
-export const getGallery = async () => {
-  galleryLoading.value = true;
-  const { data } = await getSystemImages('wallpaper');
-  if (data.data) {
-    galleryData.value =
-      data.data.map(e => {
-        e = getGiteeImage('wallpaper/' + e);
-        return e;
-      }) || [];
-    galleryQuery.value.total = data.data?.length;
-    galleryLoading.value = false;
-  }
-};
-
 export const changeGalleryType = () => {
+  galleryData.value = [];
   if (galleryType.value === 'image') {
-    getGallery();
+    galleryData.value = wallpaperList;
   } else {
-    galleryData.value = videoUrl;
+    galleryData.value = videoWallpaperList;
   }
 };
 
 export const currentGallery = ref<string>();
-
-interface GalleryConfig {
-  category?: '';
-  maximum?: number;
-  type?: IconType | undefined;
-}
-export const galleryConfig = ref<GalleryConfig>({
-  category: '',
-  maximum: 1,
-  type: undefined,
-});

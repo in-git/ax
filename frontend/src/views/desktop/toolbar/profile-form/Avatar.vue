@@ -23,22 +23,12 @@
 import { getStaticHost } from '@/store/system/utils';
 import useUserStore from '@/store/user';
 import Gallery from '@/views/selector/gallery/Gallery.vue';
-import { getProfile, userProfile } from '../profile/data';
+import { userProfile } from '../profile/data';
 
 const visible = ref(false);
-const loading = ref(false);
-const fileList = ref([]);
 const userStore = useUserStore();
 const uploadFile = () => {
   visible.value = false;
-};
-const refresh = () => {
-  getProfile();
-};
-
-// + `system/user/profile/avatar`
-const headers = {
-  Authorization: `Bearer ${userStore.$state.token}`,
 };
 </script>
 

@@ -1,22 +1,8 @@
 <template>
-  <a-card
-    title="选择图标"
-    class="icon-selector"
-    :body-style="{ paddingTop: '8px' }"
-    :loading="loading"
-  >
-    <template #extra>
-      <a-flex :gap="4">
-        <a-radio-group v-model:value="currentType" @change="getImages">
-          <a-radio-button v-for="item in typeList" :key="item.value" :value="item.value">
-            {{ item.label }}
-          </a-radio-button>
-        </a-radio-group>
-      </a-flex>
-    </template>
+  <a-card title="选择图标" class="icon-selector" :body-style="{ paddingTop: '8px' }">
     <ul class="icon-selector">
       <li
-        v-for="(item, key) in icons"
+        v-for="(item, key) in imageIcons"
         :key="key"
         @click="selectItem(item)"
         :class="{ active: item === active }"
@@ -31,26 +17,13 @@
 </template>
 
 <script setup lang="ts">
-import { getSystemImages } from '@/api/utils/file';
 import { getGiteeImage } from '@/api/utils/image';
+import { imageIcons } from '@/global/data/resource.list';
 import type { IconType } from '@/types/system';
-interface TypeList {
-  label: string;
-  value: IconType;
-}
 
-const loading = ref(false);
 const active = ref<string>();
 
-const typeList = ref<TypeList[]>([
-  {
-    label: '自定义',
-    value: 'image-icon',
-  },
-]);
 const currentType = ref<IconType>('image-icon');
-
-const icons = ref<string[]>([]);
 
 const emit = defineEmits(['update:modelValue']);
 
@@ -58,21 +31,9 @@ defineProps<{
   modelValue: string | null;
 }>();
 
-const getImages = async () => {
-  loading.value = true;
-  const { data } = await getSystemImages(currentType.value);
-  if (data.data) {
-    icons.value = data.data;
-    loading.value = false;
-  }
-};
-
 const confirm = () => {
   emit('update:modelValue', getGiteeImage(`${currentType.value}/${active.value}`));
 };
-onMounted(async () => {
-  getImages();
-});
 
 const selectItem = (iconPath: string) => {
   active.value = iconPath;
@@ -96,6 +57,7 @@ ul.icon-selector {
     place-items: center;
     place-content: center;
     border-radius: var(--radius);
+    background-color: #f0f0f096;
     &:hover {
       background-color: var(--color-primary-bg);
     }
@@ -111,3 +73,4 @@ ul.icon-selector {
   width: 400px;
 }
 </style>
+@/global/data/resource.list

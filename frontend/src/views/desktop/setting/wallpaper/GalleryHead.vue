@@ -18,7 +18,6 @@
         </a-button>
       </div>
       <div class="flex gc-4">
-        <a-button size="small" @click="getGallery" :loading="galleryLoading">刷新</a-button>
         <a-button size="small" type="primary" @click="use">使用</a-button>
       </div>
     </div>
@@ -30,13 +29,7 @@ import { setBackground } from '@/store/page/utils';
 import { toBase64 } from '@/utils/file/file';
 import { UploadOutlined } from '@ant-design/icons-vue';
 import { useFileDialog } from '@vueuse/core';
-import {
-  changeGalleryType,
-  currentGallery,
-  galleryLoading,
-  galleryType,
-  getGallery,
-} from './data/data';
+import { changeGalleryType, currentGallery, galleryType } from './data/data';
 
 const { files, open, onChange } = useFileDialog({
   accept: 'image/*',

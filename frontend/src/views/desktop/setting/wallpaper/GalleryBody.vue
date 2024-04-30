@@ -1,7 +1,7 @@
 <template>
   <a-card class="gallery-body h-100" :body-style="{ paddingTop: '0' }">
     <GalleryHead />
-    <template v-if="galleryData && galleryData.length > 0">
+    <template v-if="galleryData.length > 0">
       <div class="list">
         <div
           class="source-item"
@@ -14,7 +14,12 @@
           <div class="selected" v-if="currentGallery === item">
             <CheckOutlined />
           </div>
-          <img :src="item" v-if="galleryType === 'image'" :alt="item" height="80" />
+          <img
+            :src="getGiteeImage(`wallpaper/${item}`)"
+            v-if="galleryType === 'image'"
+            :alt="item"
+            height="80"
+          />
           <video
             muted
             v-else
@@ -33,27 +38,31 @@
 </template>
 
 <script setup lang="ts">
-import { currentGallery, galleryData, galleryType, getGallery } from './data/data';
+import { getGiteeImage } from '@/api/utils/image';
+import { currentGallery, galleryData, galleryType } from './data/data';
 import GalleryHead from './GalleryHead.vue';
 
 const videoRefs = ref<HTMLVideoElement[]>();
+
 const selectItem = (item: string) => {
   currentGallery.value = item;
 };
+
 const mouseenter = (index: number) => {
   if (videoRefs.value) {
     videoRefs.value[index].play();
   }
 };
+
 const mouseleave = (index: number) => {
   if (videoRefs.value) {
     videoRefs.value[index].pause();
   }
 };
+
 onUnmounted(() => {
   galleryType.value = 'image';
 });
-getGallery();
 </script>
 
 <style lang="scss" scoped>
@@ -113,3 +122,4 @@ getGallery();
   }
 }
 </style>
+@/global/data/resource.list

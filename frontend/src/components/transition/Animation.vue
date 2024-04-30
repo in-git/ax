@@ -7,8 +7,8 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    enterActiveClass: string;
-    leaveActiveClass: string;
+    enterActiveClass?: string;
+    leaveActiveClass?: string;
   }>(),
   {
     enterActiveClass: 'animate__animated animate__fadeIn',
