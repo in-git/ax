@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-popover trigger="click" placement="bottomRight" v-model:open="popoverVisible">
-      <div class="system__icon px-12">
+      <div class="system__icon icon">
         <span class="text-12">用户中心</span>
         <DownOutlined class="text-12 ml-8" />
       </div>
@@ -93,6 +93,9 @@ const logout = async () => {
 </script>
 
 <style lang="scss" scoped>
+.icon {
+  color: white;
+}
 .profile {
   width: 200px;
 }

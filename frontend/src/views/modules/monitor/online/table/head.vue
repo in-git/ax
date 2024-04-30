@@ -3,19 +3,8 @@
     <template #title>
       <h3 class="text-14">在线用户</h3>
     </template>
-    <template #extra>
-      <a-flex>
-        <TableField module-name="online" v-model:columns="onlineColumns" />
-        <a-tooltip title="刷新">
-          <a-button type="link" @click="onlineList">
-            <ReloadOutlined />
-          </a-button>
-        </a-tooltip>
-      </a-flex>
-    </template>
     <a-flex justify="space-between" :align="'center'">
       <a-flex :gap="4" :align="'center'">
-        <a-divider type="vertical" />
         <a-input-search
           placeholder="请输入登录地址"
           allow-clear
@@ -30,12 +19,14 @@
         ></a-input-search>
       </a-flex>
 
-      <a-pagination
-        :total="onlineQuery.total"
-        :current="onlineQuery.pageNum"
-        :pageSize="onlineQuery.pageSize"
-        @change="pageChange"
-      ></a-pagination>
+      <a-flex>
+        <TableField module-name="online" v-model:columns="onlineColumns" />
+        <a-tooltip title="刷新">
+          <a-button type="link" @click="onlineList">
+            <ReloadOutlined />
+          </a-button>
+        </a-tooltip>
+      </a-flex>
     </a-flex>
   </a-card>
 </template>
@@ -46,12 +37,6 @@ import { ReloadOutlined } from '@ant-design/icons-vue';
 import { onlineColumns } from '../data/column';
 import { onlineList } from '../data/curd';
 import { onlineQuery } from '../data/table';
-
-const pageChange = (num: number, pageSize: number) => {
-  onlineQuery.value.pageNum = num;
-  onlineQuery.value.pageSize = pageSize;
-  onlineList();
-};
 </script>
 
 <style lang="scss" scoped></style>

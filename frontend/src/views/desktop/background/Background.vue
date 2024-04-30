@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="fixed">
     <div class="app-background flex-1 flex flex-col" v-if="backgroundType.type === 'video'">
       <VideoBackground class="h-100" :src="backgroundType.src"></VideoBackground>
     </div>
@@ -25,7 +25,7 @@ const backgroundType = computed(() => {
 });
 
 const style = computed((): CSSProperties => {
-  if (backgroundType.value.type === 'image') {
+  if (backgroundType.value.type === 'image' && backgroundLoading) {
     return {
       background: `url('${backgroundType.value.src || defaultBackground}')`,
       filter: `
@@ -33,7 +33,9 @@ const style = computed((): CSSProperties => {
       grayscale(${backgroundType.value.grayscale}%)`,
     };
   }
-  return {};
+  return {
+    background: '#333',
+  };
 });
 </script>
 
@@ -41,12 +43,13 @@ const style = computed((): CSSProperties => {
 .app-background {
   height: 100vh;
   width: 100vw;
-  z-index: 0;
+  z-index: 10;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   position: fixed;
   top: 0;
   left: 0;
+  pointer-events: none;
 }
 </style>

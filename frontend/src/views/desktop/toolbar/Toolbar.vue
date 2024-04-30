@@ -2,11 +2,11 @@
   <div class="top-toolbar system__head px-12" :style="style">
     <a-flex :align="'center'" :gap="4">
       <img :src="logo" width="28" style="object-fit: contain" />
-      AX
+      <div class="text-linear-gradient">AX</div>
     </a-flex>
     <a-flex :gap="4">
       <div class="system__icon" @click="setting">
-        <SettingOutlined />
+        <SettingOutlined class="text-white" />
       </div>
       <Profile />
     </a-flex>
@@ -45,12 +45,7 @@ const style = computed((): CSSProperties => {
 
 <style lang="scss" scoped>
 .top-toolbar {
-  border-bottom: 1px solid white;
   position: relative;
-  color: white;
   z-index: 10;
-  .power-off {
-    color: #fa2727da;
-  }
 }
 </style>

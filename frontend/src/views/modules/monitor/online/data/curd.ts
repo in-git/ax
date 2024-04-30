@@ -14,6 +14,7 @@ export const onlineList = async () => {
 export const onlineEdit = async (id?: number) => {
   onlineShowForm.value = true;
 };
+
 export const onlineCreate = async () => {
   resetOnlineForm();
   onlineShowForm.value = true;
