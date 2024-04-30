@@ -59,6 +59,7 @@ import type { SystemWebsite } from '@/api/modules/system/website/types';
 import useUserStore from '@/store/user';
 import { openLink } from '@/utils/common/utils';
 import { formatColumns } from '@/utils/table/table';
+import { useCloned } from '@vueuse/core';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { websiteColumns } from '../../data/column';
@@ -68,14 +69,14 @@ import { websiteKeys, websiteQuery, websiteTable } from '../../data/table';
 const userStore = useUserStore();
 
 const openChange = (record: SystemWebsite) => {
-  websiteForm.value = record;
+  websiteForm.value = useCloned(record).cloned.value;
 };
 
 /* 行事件 */
 const customRow = (record: SystemWebsite) => {
   return {
     onClick() {
-      websiteKeys.value = [record.websiteId];
+      websiteKeys.value = [record.websiteId!];
     },
     onDblclick() {
       websiteEdit(record.websiteId);

@@ -3,13 +3,11 @@ import type { SystemWebsite } from '@/api/modules/system/website/types';
 import type { Rule } from 'ant-design-vue/es/form/interface';
 
 const form: SystemWebsite = {
-  websiteId: 0,
+  websiteId: undefined,
   name: '',
   url: '',
-  createTime: null,
   description: '',
   type: '',
-  updateTime: null,
   icon: '',
 };
 

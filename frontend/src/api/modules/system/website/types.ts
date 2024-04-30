@@ -1,12 +1,12 @@
 export interface SystemWebsite {
-  websiteId: number;
+  websiteId: number | undefined;
   name: string;
   url: string;
-  createTime: any;
+  createTime?: any;
   description: string;
   type: string;
   icon: string;
-  updateTime: any;
+  updateTime?: any;
   userId?: number;
   deptId?: number;
 }

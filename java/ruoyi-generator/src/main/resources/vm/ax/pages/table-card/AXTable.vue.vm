@@ -61,9 +61,10 @@ import { ${businessName}Columns } from '../../data/column';
 import { ${businessName}Edit,${businessName}Delete,${businessName}Export } from '../../data/curd';
 import { ${businessName}Form } from '../../data/form';
 import { ${businessName}Keys,  ${businessName}Query, ${businessName}Table } from '../../data/table';
+import { useCloned } from '@vueuse/core';
 
 const openChange = (record: ${ModuleName}${BusinessName}) => {
-  ${businessName}Form.value = record;
+  ${businessName}Form.value = useCloned(record).cloned.value;
 };
 
 /* 行事件 */

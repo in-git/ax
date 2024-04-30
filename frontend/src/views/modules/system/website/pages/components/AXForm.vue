@@ -55,7 +55,6 @@
             placeholder="请选择网页类型"
             allow-clear
             :disabled="loading"
-            @change="websiteList"
             :options="typeOptions"
           ></a-select>
         </a-form-item>
