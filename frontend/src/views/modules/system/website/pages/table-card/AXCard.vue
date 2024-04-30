@@ -7,7 +7,7 @@
         :key="item.websiteId"
         @dblclick="openLink(item.url)"
         @click="selectItem(item)"
-        :class="{ active: websiteKeys.includes(item.websiteId) }"
+        :class="{ active: websiteKeys.includes(item.websiteId!) }"
       >
         <a-flex class="flex-1" vertical :gap="2">
           <a-flex :gap="8" :align="'center'" :justify="'space-between'">
@@ -75,7 +75,7 @@ function restoreDomain(domain: string, protocol: string = 'http'): string {
 
 const selectItem = (item: SystemWebsite) => {
   websiteKeys.value = [];
-  websiteKeys.value.push(item.websiteId);
+  websiteKeys.value.push(item.websiteId!);
 };
 const open = (item: SystemWebsite) => {
   openInternet({

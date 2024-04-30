@@ -1,6 +1,7 @@
 package com.ruoyi.system.mapper;
 
 import com.ruoyi.system.domain.SysWebsite;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -58,5 +59,5 @@ public interface SysWebsiteMapper
      * @param websiteIds 需要删除的数据主键集合
      * @return 结果
      */
-    public int deleteSysWebsiteByWebsiteIds(Long[] websiteIds,Long userId);
+    public int deleteSysWebsiteByWebsiteIds(@Param("websiteIds")Long[] websiteIds, @Param("userId") Long userId);
 }

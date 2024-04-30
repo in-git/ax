@@ -28,7 +28,7 @@
               <a-menu>
                 <a-menu-item
                   :disabled="websiteDisable(record.userId)"
-                  @click="websiteDelete(record.userId)"
+                  @click="websiteDelete(record.websiteId)"
                 >
                   <template #icon>
                     <DeleteOutlined />
