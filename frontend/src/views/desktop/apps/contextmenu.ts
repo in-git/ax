@@ -1,5 +1,5 @@
 import type { Routers } from '@/api/modules/system/user/types';
-import { getGiteeImage } from '@/api/utils/image';
+import { getStaticImage } from '@/api/utils/image';
 import { minWindow, openWindow } from '@/global/config/window';
 import { setContextMenu } from '@/views/components/contextmenu/data';
 import {
@@ -62,7 +62,7 @@ export const openContextMenu = (e: MouseEvent) => {
             id: 'system_setting',
             w: 800,
             h: 600,
-            icon: getGiteeImage('image-icon/system_setting.png'),
+            icon: getStaticImage('image-icon/system_setting.png'),
           });
         },
       },

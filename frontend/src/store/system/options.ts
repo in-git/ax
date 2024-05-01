@@ -15,3 +15,17 @@ export const baseUrlOptions = [
     id: 'ruo-yi',
   },
 ];
+export const staticOptions = [
+  {
+    url: `http://in-git.gitee.io/ax-resource`,
+    label: 'GITEE',
+  },
+  {
+    url: `http://localhost`,
+    label: '本地',
+  },
+  {
+    url: `http://150.158.14.110:8000`,
+    label: '测试服务器',
+  },
+];

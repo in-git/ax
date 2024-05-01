@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 import { createMemo } from '@/api/modules/system/memo/memo';
-import { getGiteeImage } from '@/api/utils/image';
+import { getStaticImage } from '@/api/utils/image';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { getData, openWindow } from '@/global/config/window';
 import { response } from '@/utils/table/table';
@@ -56,7 +56,7 @@ const menuList = [
         component: markRaw(NotepadVue),
         title: '记事本',
         id: `notepad${nanoid(8)}`,
-        icon: getGiteeImage('image-icon/notepad.png'),
+        icon: getStaticImage('image-icon/notepad.png'),
       });
     },
   },

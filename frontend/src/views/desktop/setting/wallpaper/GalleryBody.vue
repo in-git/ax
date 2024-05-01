@@ -15,7 +15,7 @@
             <CheckOutlined />
           </div>
           <img
-            :src="getGiteeImage(`wallpaper/${item}`)"
+            :src="getStaticImage(`wallpaper/${item}`)"
             v-if="galleryType === 'image'"
             :alt="item"
             height="80"
@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { getGiteeImage } from '@/api/utils/image';
+import { getStaticImage } from '@/api/utils/image';
 import { currentGallery, galleryData, galleryType } from './data/data';
 import GalleryHead from './GalleryHead.vue';
 

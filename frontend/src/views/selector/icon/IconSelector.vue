@@ -7,7 +7,7 @@
         @click="selectItem(item)"
         :class="{ active: item === active }"
       >
-        <img :src="getGiteeImage(`${currentType}/${item}`)" :alt="item" width="32" />
+        <img :src="getStaticImage(`${currentType}/${item}`)" :alt="item" width="32" />
       </li>
     </ul>
     <div class="text-right">
@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { getGiteeImage } from '@/api/utils/image';
+import { getStaticImage } from '@/api/utils/image';
 import { imageIcons } from '@/global/data/resource.list';
 import type { IconType } from '@/types/system';
 
@@ -32,7 +32,7 @@ defineProps<{
 }>();
 
 const confirm = () => {
-  emit('update:modelValue', getGiteeImage(`${currentType.value}/${active.value}`));
+  emit('update:modelValue', getStaticImage(`${currentType.value}/${active.value}`));
 };
 
 const selectItem = (iconPath: string) => {

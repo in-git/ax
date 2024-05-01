@@ -10,6 +10,7 @@ const useSystemStore = defineStore('system', {
       baseURL,
       urlSelection: baseUrlOptions,
       timeout: 8000,
+      resourceHost: '',
     },
   }),
   persist: true,

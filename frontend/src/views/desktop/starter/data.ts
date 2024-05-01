@@ -1,4 +1,4 @@
-import { getGiteeImage } from '@/api/utils/image';
+import { getStaticImage } from '@/api/utils/image';
 import aiPng from '@/assets/apps/gpt.png';
 import { openWindow } from '@/global/config/window';
 import AI from '@/views/widget/ai/AI.vue';
@@ -34,7 +34,7 @@ export const plugins: Plugin[] = [
   {
     title: '记事本',
     id: 'notepad',
-    icon: getGiteeImage('image-icon/notepad.png'),
+    icon: getStaticImage('image-icon/notepad.png'),
     action(item: Plugin) {
       openWindow({
         component: markRaw(Notepad),
@@ -46,7 +46,7 @@ export const plugins: Plugin[] = [
   {
     title: '帮助',
     id: 'help',
-    icon: getGiteeImage('image-icon/help.png'),
+    icon: getStaticImage('image-icon/help.png'),
     action(item: Plugin) {
       openWindow({
         component: markRaw(Help),
@@ -58,7 +58,7 @@ export const plugins: Plugin[] = [
   {
     title: '浏览器',
     id: 'browser',
-    icon: getGiteeImage('image-icon/edge.png'),
+    icon: getStaticImage('image-icon/edge.png'),
     action(item: Plugin) {
       openWindow({
         component: markRaw(Browser),
@@ -70,7 +70,7 @@ export const plugins: Plugin[] = [
   {
     title: '图形',
     id: 'image',
-    icon: getGiteeImage('image-icon/gallery.png'),
+    icon: getStaticImage('image-icon/gallery.png'),
     action(item: Plugin) {
       openWindow({
         component: markRaw(ImageVue),
@@ -82,7 +82,7 @@ export const plugins: Plugin[] = [
   {
     title: '视频',
     id: 'video',
-    icon: getGiteeImage('image-icon/movies.png'),
+    icon: getStaticImage('image-icon/movies.png'),
     action(item: Plugin) {
       openWindow({
         component: markRaw(Video),
@@ -94,7 +94,7 @@ export const plugins: Plugin[] = [
   {
     title: '测试',
     id: 'video',
-    icon: getGiteeImage('image-icon/getstarted.png'),
+    icon: getStaticImage('image-icon/getstarted.png'),
     action(item: Plugin) {
       openWindow({
         component: markRaw(Test),

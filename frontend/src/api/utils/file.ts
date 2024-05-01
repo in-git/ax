@@ -1,9 +1,6 @@
 import { getHost } from '@/store/system/utils';
 import useUserStore from '@/store/user';
-import type { IconType } from '@/types/system';
 import { message } from 'ant-design-vue';
-import axios from 'axios';
-import type { Response } from '../config/types';
 
 interface ExportData {
   url: string;
@@ -63,14 +60,6 @@ export const uploadToOss = (file: File) => {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${userStore.$state.token}`,
-    },
-  });
-};
-// 获取系统图标
-export const getSystemImages = (type: IconType) => {
-  return axios.get<Response<string[]>>(`system/gallery/getImages`, {
-    params: {
-      type,
     },
   });
 };

@@ -1,6 +1,6 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import { getRouters } from '@/api/modules/system/user/user';
-import { getGiteeImage } from '@/api/utils/image';
+import { getStaticImage } from '@/api/utils/image';
 import logo from '@/assets/logo.png';
 import { openWindow, setCurrentWindow } from '@/global/config/window';
 import { systemComponents } from '@/initialization';
@@ -28,13 +28,13 @@ export const getIconByName = (item: Routers) => {
   if (item.meta.icon.startsWith('http')) {
     return item.meta.icon;
   } else if (item.meta.link) {
-    return getGiteeImage('image-icon/edge.png');
+    return getStaticImage('image-icon/edge.png');
   }
   if (item.name) {
-    image = getGiteeImage(`image-icon/${item.name.toLocaleLowerCase()}.png`);
+    image = getStaticImage(`image-icon/${item.name.toLocaleLowerCase()}.png`);
   }
   if (item.children) {
-    return getGiteeImage('image-icon/folder.png');
+    return getStaticImage('image-icon/folder.png');
   } else if (!image.includes('undefined')) {
     return image;
   }

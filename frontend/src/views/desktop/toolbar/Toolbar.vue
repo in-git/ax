@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { getGiteeImage } from '@/api/utils/image';
+import { getStaticImage } from '@/api/utils/image';
 import logo from '@/assets/logo.png';
 import { openWindow } from '@/global/config/window';
 import usePageStore from '@/store/page';
@@ -30,7 +30,7 @@ const setting = () => {
     id: 'system_setting',
     w: 800,
     h: 600,
-    icon: getGiteeImage('image-icon/system_setting.png'),
+    icon: getStaticImage('image-icon/system_setting.png'),
   });
 };
 const store = usePageStore();

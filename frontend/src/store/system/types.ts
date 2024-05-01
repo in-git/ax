@@ -7,6 +7,8 @@ export interface URLSelection {
 export interface Developer {
   baseURL: string;
   timeout: number;
+  /* 静态资源地址 */
+  resourceHost: string;
   urlSelection: URLSelection[];
 }
 export interface SystemStore {
