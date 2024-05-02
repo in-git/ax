@@ -21,7 +21,7 @@
           <div class="divider text-right">
             <a-tooltip title="更新本地数据">
               <a-button type="link" @click="reset">
-                同步
+                更新
                 <template #icon>
                   <ReloadOutlined />
                 </template>
@@ -48,6 +48,7 @@ const props = defineProps<{
   /* 模块名，必须，用于区分本地存储的列 */
   moduleName: string;
 }>();
+
 const onChange = () => {
   emit('update:columns', cols.value);
 };

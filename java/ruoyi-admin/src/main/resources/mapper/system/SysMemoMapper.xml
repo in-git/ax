@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.SysMemoMapper">
+    
+    <resultMap type="SysMemo" id="SysMemoResult">
+        <result property="memoId"    column="memo_id"    />
+        <result property="title"    column="title"    />
+        <result property="value"    column="value"    />
+        <result property="description"    column="description"    />
+        <result property="extra"    column="extra"    />
+        <result property="userId"    column="user_id"    />
+        <result property="type"    column="type"    />
+        <result property="deptId"    column="dept_id"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectSysMemoVo">
+        select memo_id, title, value, description, extra, user_id, type, dept_id, create_time, update_time from sys_memo sys_memo
+    </sql>
+
+    <select id="selectSysMemoList" parameterType="SysMemo" resultMap="SysMemoResult">
+        <include refid="selectSysMemoVo"/>
+        <where>  
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+            ${params.dataScope}
+        </where>
+    </select>
+    
+    <select id="selectSysMemoByMemoId" parameterType="Long" resultMap="SysMemoResult">
+        <include refid="selectSysMemoVo"/>
+        where memo_id = #{memoId}
+    </select>
+        
+    <insert id="insertSysMemo" parameterType="SysMemo" useGeneratedKeys="true" keyProperty="memoId">
+        insert into sys_memo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null and title != ''">title,</if>
+            <if test="value != null and value != ''">value,</if>
+            <if test="description != null">description,</if>
+            <if test="extra != null">extra,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="type != null">type,</if>
+            <if test="deptId != null">dept_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null and title != ''">#{title},</if>
+            <if test="value != null and value != ''">#{value},</if>
+            <if test="description != null">#{description},</if>
+            <if test="extra != null">#{extra},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="type != null">#{type},</if>
+            <if test="deptId != null">#{deptId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSysMemo" parameterType="SysMemo">
+        update sys_memo
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null and title != ''">title = #{title},</if>
+            <if test="value != null and value != ''">value = #{value},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="extra != null">extra = #{extra},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="deptId != null">dept_id = #{deptId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where memo_id = #{memoId}
+    </update>
+
+    <delete id="deleteSysMemoByMemoId" parameterType="Long">
+        delete from sys_memo where memo_id = #{memoId}
+    </delete>
+
+    <delete id="deleteSysMemoByMemoIds" parameterType="String">
+        delete from sys_memo where memo_id in 
+        <foreach item="memoId" collection="array" open="(" separator="," close=")">
+            #{memoId}
+        </foreach>
+    </delete>
+</mapper>

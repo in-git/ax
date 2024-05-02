@@ -1,39 +1,43 @@
 <template>
   <a-card class="table__head">
     <template #title>
-      <h3 class="text-14">网页收藏</h3>
+      <h3 class="text-14">网页收藏列表</h3>
     </template>
 
-    <a-flex class="mb-12" :gap="12" wrap="wrap">
+    <a-flex class="mb-12" wrap="wrap" justify="space-between">
       <div>
-        <a-input
-          @blur="websiteList"
-          v-model:value="websiteQuery.name"
-          style="width: 160px"
-          placeholder="请输入网页名称"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-input
-          @blur="websiteList"
-          v-model:value="websiteQuery.url"
-          style="width: 160px"
-          placeholder="请输入网页URL"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-select
+        <a-radio-group
           v-model:value="websiteQuery.type"
-          style="width: 160px"
           placeholder="请选择网页类型"
           allow-clear
-          @blur="websiteList"
-          :options="typeOptions"
-        ></a-select>
+          @change="selectType"
+        >
+          <a-radio-button v-for="item in typeOptions" :value="item.value">
+            {{ item.label }}
+          </a-radio-button>
+        </a-radio-group>
       </div>
-      <a-button type="primary" @click="websiteList">搜索</a-button>
+      <a-flex :gap="12">
+        <div>
+          <a-input
+            @blur="websiteList"
+            v-model:value="websiteQuery.name"
+            style="width: 160px"
+            placeholder="请输入网页名称"
+            allow-clear
+          ></a-input>
+        </div>
+        <div>
+          <a-input
+            @blur="websiteList"
+            v-model:value="websiteQuery.url"
+            style="width: 160px"
+            placeholder="请输入网页URL"
+            allow-clear
+          ></a-input>
+        </div>
+        <a-button type="primary" @click="websiteList">搜索</a-button>
+      </a-flex>
     </a-flex>
 
     <a-flex justify="space-between" :align="'center'">
@@ -48,7 +52,7 @@
           </div>
 
           <div v-perm="'system:website:edit'">
-            <a-tooltip title="编辑">
+            <a-tooltip title="编辑 ">
               <a-button type="link" @click="websiteEdit()" :disabled="websiteKeys.length !== 1">
                 <EditOutlined />
               </a-button>
@@ -68,7 +72,7 @@
             <ExportOutlined />
           </a-button>
         </a-tooltip>
-        <div v-perm="'system:website:delete'">
+        <div v-perm="'system:website:remove'">
           <a-popconfirm
             title="确定要删除吗"
             :disabled="websiteKeys.length === 0"
@@ -120,6 +124,11 @@ import {
 } from '../../data/curd';
 import { typeOptions } from '../../data/options';
 import { viewMode, websiteKeys, websiteQuery, websiteTable } from '../../data/table';
+
+const selectType = () => {
+  websiteQuery.value.pageNum = 1;
+  websiteList();
+};
 </script>
 
 <style lang="scss" scoped></style>

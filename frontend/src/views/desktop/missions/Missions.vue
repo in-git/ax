@@ -3,7 +3,7 @@
     <div class="window flex flex-s" @click.ca="openMenu">
       <img :src="logo" width="32" alt="" />
     </div>
-    <MenuVue />
+    <Starter />
     <Tabs />
     <Notice />
   </div>
@@ -11,13 +11,13 @@
 
 <script setup lang="ts">
 import logo from '@/assets/logo.png';
-import { showWindowMenu } from './menu/data';
-import MenuVue from './menu/Menu.vue';
+import { showStarter } from '../starter/data';
+import Starter from '../starter/Starter.vue';
 import Notice from './notice/Notice.vue';
 import Tabs from './tabs/Tabs.vue';
 
 const openMenu = () => {
-  showWindowMenu.value = !showWindowMenu.value;
+  showStarter.value = !showStarter.value;
 };
 </script>
 
@@ -28,7 +28,7 @@ const openMenu = () => {
   backdrop-filter: blur(2px);
   border-top: 1px solid #dddddd79;
 
-  z-index: 100;
+  z-index: 10;
   .window {
     width: 42px;
     height: 42px;

@@ -8,4 +8,10 @@
 import OperlogTable from './table/OperlogTable.vue';
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.system__module {
+  :deep(.ant-card-body) {
+    height: 100%;
+  }
+}
+</style>

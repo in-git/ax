@@ -48,6 +48,7 @@ import TableVue from './pages/table-card/AXTable.vue';
 #end
 #end
 } from './data/options';
+
 onMounted(async() => {
   await ${businessName}List();
   #foreach($column in $columns)

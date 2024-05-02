@@ -2,7 +2,7 @@
   <div>
     <a-card>
       <template #title>
-        <div class="text-999 text-12">控件属性</div>
+        <div class="system__subtitle">控件属性</div>
       </template>
       <a-space class="w-100" direction="vertical" :size="24">
         <a-flex class="w-100" justify="space-between">

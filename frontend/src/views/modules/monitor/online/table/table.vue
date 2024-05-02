@@ -1,41 +1,42 @@
 <template>
   <div>
     <TableHeadVue />
-    <SystemTable
-      :columns="onlineColumns"
-      :table="onlineTable"
-      v-model:query="onlineQuery"
-      v-model:selected-keys="onlineKeys"
-      @reload="onlineList"
+    <a-table
+      :columns="formatColumns(onlineColumns)"
+      :data-source="onlineTable.data"
+      :loading="onlineTable.loading"
       class="mt-12"
+      :row-key="onlineTable.rowKey"
+      @change="pageChange"
     >
-      <template v-slot="{ value }">
-        <template v-if="value.column.dataIndex === 'operation'">
+      <template #bodyCell="{ record, column }">
+        <template v-if="column.dataIndex === 'operation'">
           <a-tooltip title="强制下线">
-            <a-button type="text" danger @click="logout(value.record.tokenId)">
+            <a-button type="text" danger @click="logout(record.tokenId)">
               <LogoutOutlined />
             </a-button>
           </a-tooltip>
         </template>
-        <template v-else-if="value.column.dataIndex === 'loginTime'">
-          {{ useDateFormat(value.record.loginTime, 'YYYY-MM-DD HH:mm:ss').value }}
+        <template v-else-if="column.dataIndex === 'loginTime'">
+          {{ useDateFormat(record.loginTime, 'YYYY-MM-DD HH:mm:ss').value }}
         </template>
       </template>
-    </SystemTable>
+    </a-table>
   </div>
 </template>
 
 <script setup lang="ts">
-import SystemTable from '@/views/components/table/SystemTable.vue';
-import TableHeadVue from './table-head/head.vue';
+import TableHeadVue from './head.vue';
 
 import { forceLogout } from '@/api/modules/monitor/online/online';
+import { formatColumns } from '@/utils/table/table';
 import type { LogoutOutlined } from '@ant-design/icons-vue';
 import { useDateFormat } from '@vueuse/core';
-import { Modal } from 'ant-design-vue';
+import { Modal, type TablePaginationConfig } from 'ant-design-vue';
+import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { onlineColumns } from '../data/column';
 import { onlineList } from '../data/curd';
-import { onlineKeys, onlineQuery, onlineTable } from '../data/table';
+import { onlineQuery, onlineTable } from '../data/table';
 
 const logout = (id: string) => {
   Modal.confirm({
@@ -54,6 +55,16 @@ const logout = (id: string) => {
 onMounted(() => {
   onlineList();
 });
+
+const pageChange = (
+  pagination: TablePaginationConfig,
+  filters: Record<string, FilterValue>,
+  sorter: SorterResult<any> | SorterResult<any>[],
+) => {
+  onlineQuery.value.pageNum = pagination.current!;
+  onlineQuery.value.pageSize = pagination.pageSize!;
+  onlineList();
+};
 </script>
 
 <style lang="scss" scoped></style>

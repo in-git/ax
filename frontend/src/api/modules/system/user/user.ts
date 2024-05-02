@@ -41,6 +41,7 @@ interface UpdateProfileData {
   phonenumber: string;
   email: string;
   sex: string;
+  avatar: string;
 }
 export const updateProfile = (data: UpdateProfileData) => {
   return axios.put<Response>(`/system/user/profile`, data);

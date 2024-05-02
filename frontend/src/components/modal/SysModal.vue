@@ -1,27 +1,20 @@
 <template>
-  <Transition
-    enter-active-class="animate__animated animate__zoomIn"
-    leave-active-class="animate__animated animate__zoomOut"
-  >
+  <Animation>
     <div
       class="system__modal"
-      v-show="visible"
+      v-if="visible"
       :class="[boolValue(showMask, 'model__mask', 'model__mask__none')]"
     >
       <div class="modal__container" :style="style">
-        <a-card :body-style="{ padding: '8px' }" class="model__head">
-          <a-flex justify="space-between" :align="'center'">
-            <slot name="title">{{ title }}</slot>
-            <div>
-              <slot name="extra"></slot>
-              <div class="close-icon" @click="close">
-                <CloseOutlined class="text-12" />
-              </div>
+        <a-card class="model__head" :bordered="false" :title="title">
+          <template #extra>
+            <div class="close-icon" @click="close">
+              <CloseOutlined />
             </div>
-          </a-flex>
+          </template>
         </a-card>
 
-        <a-card :bordered="false" class="modal__content">
+        <a-card class="modal__content">
           <slot></slot>
         </a-card>
         <div>
@@ -29,7 +22,7 @@
         </div>
       </div>
     </div>
-  </Transition>
+  </Animation>
 </template>
 
 <script setup lang="ts">
@@ -45,7 +38,7 @@ const props = withDefaults(
     w?: string;
     h?: string;
     showMask?: boolean;
-    position?: 'absolute' | 'fixed';
+    position?: 'absolute' | 'fixed' | 'sticky';
     toBody?: boolean;
   }>(),
   {
@@ -105,12 +98,17 @@ const style = computed((): CSSProperties => {
   .modal__container {
     border-radius: var(--radius);
     display: flex;
+    overflow: hidden;
     flex-direction: column;
+    height: 100%;
   }
   .modal__content {
     overflow-y: auto;
     flex: 1;
     border-radius: 0;
+    :deep(.ant-card-body) {
+      height: 100%;
+    }
   }
 }
 </style>

@@ -4,6 +4,7 @@ import {
   fetchWebsiteById,
   fetchWebsiteList,
 } from '@/api/modules/system/website/website';
+import useUserStore from '@/store/user';
 import { response } from '@/utils/table/table';
 import { websiteForm, websiteResetForm, websiteShowForm } from './form';
 import { websiteKeys, websiteQuery, websiteTable } from './table';
@@ -38,9 +39,14 @@ export const websiteDelete = async (id?: number) => {
   await websiteList();
   websiteKeys.value = [];
 };
+
 export const websiteExport = () => {
   return exportWebsite({
     pageNum: websiteQuery.value.pageNum,
     pageSize: websiteQuery.value.pageSize,
   });
+};
+export const websiteDisable = (userId: number) => {
+  const userStore = useUserStore();
+  return userId !== userStore.$state.userInfo?.userId;
 };

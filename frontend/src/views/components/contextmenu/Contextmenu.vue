@@ -21,7 +21,6 @@ const style = computed(() => {
 
   const maxY = window.innerHeight - contextMenu.value.items.length * 50;
   const maxX = window.innerWidth - 140;
-  console.log(maxX);
 
   if (top > maxY) {
     top = maxY;
@@ -44,6 +43,7 @@ onClickOutside(contextMenuRef, () => {
 <style lang="scss" scoped>
 .contextmenu {
   border: 1px solid #eee;
+  border-radius: var(--radius);
   position: fixed;
   overflow-y: hidden;
   z-index: 120;

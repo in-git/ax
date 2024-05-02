@@ -2,13 +2,17 @@ import { captcha, login, register } from '@/api/modules/system/user/user';
 import useUserStore from '@/store/user';
 import { message } from 'ant-design-vue';
 import type { Rule } from 'ant-design-vue/es/form';
+import { nanoid } from 'nanoid';
 import { getProfile } from '../toolbar/profile/data';
 
 export const captchaImage = ref();
+type Mode = 'login' | 'register';
+export const loginLoading = ref<boolean>(false);
+export const loginMode = ref<Mode>('login');
 
 let formObject = {
-  username: 'admin',
-  password: 'win123456',
+  username: 'test02',
+  password: '123456',
   uuid: '',
   code: '',
 };
@@ -22,11 +26,6 @@ export const getCaptcha = async () => {
   captchaImage.value = `data:image/gif;base64,${data.img}`;
   loginForm.value.uuid = data.uuid;
 };
-
-export const loginLoading = ref<boolean>(false);
-
-type Mode = 'login' | 'register';
-export const loginMode = ref<Mode>('login');
 
 export const changeMode = (mode: Mode) => {
   if (mode === 'register') {
@@ -42,6 +41,7 @@ const onError = () => {
   loginForm.value.code = '';
   getCaptcha();
 };
+
 /* 登录 */
 export const enter = async () => {
   try {
@@ -55,7 +55,7 @@ export const enter = async () => {
     const store = useUserStore();
 
     loginLoading.value = false;
-    message.success('操作成功');
+    message.success('登陆成功');
     const index = store.$state.history.findIndex(e => {
       return e.username === loginForm.value.username && loginForm.value.password === e.password;
     });
@@ -64,10 +64,11 @@ export const enter = async () => {
       store.$state.history.push({
         username: loginForm.value.username,
         password: loginForm.value.password,
+        id: nanoid(),
       });
     }
     await getProfile();
-    finish();
+    changeMode('login');
     store.$state.token = data.token;
   } catch (error) {
     onError();
@@ -85,6 +86,7 @@ export const finish = async () => {
   message.success(data.msg);
   changeMode('login');
 };
+
 export const loginRules: Record<string, Rule[]> = {
   password: [
     {

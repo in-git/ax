@@ -6,7 +6,7 @@
           <a-popover
             trigger="click"
             placement="bottomRight"
-            title="History List"
+            title="历史登陆账号"
             v-model:open="visible"
           >
             <div>
@@ -15,8 +15,8 @@
             </div>
             <template #content>
               <div class="history-content">
-                <ul v-if="store.$state.history.length > 0">
-                  <li
+                <a-list>
+                  <a-list-item
                     :class="{
                       active:
                         item.password === loginForm.password &&
@@ -28,12 +28,11 @@
                     @click="use(item)"
                   >
                     <div>{{ item.username }}</div>
-                    <div class="system-icon delete-icon" @click.stop="delHistory(item)">
+                    <div class="system__icon" @click.stop="delHistory(item)">
                       <DeleteOutlined />
                     </div>
-                  </li>
-                </ul>
-                <a-empty v-else />
+                  </a-list-item>
+                </a-list>
               </div>
             </template>
           </a-popover>
@@ -60,7 +59,7 @@ const use = (item: UserHistory) => {
 };
 const delHistory = (item: UserHistory) => {
   store.$state.history = store.$state.history.filter(e => {
-    return e.password !== item.password && item.username !== e.username;
+    return e.id !== item.id;
   });
 };
 </script>
@@ -68,30 +67,20 @@ const delHistory = (item: UserHistory) => {
 <style lang="scss" scoped>
 .history-content {
   width: 200px;
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    li {
-      background: #f8f8f8;
-      padding: 4px 12px;
-      cursor: pointer;
-      &:hover {
-        background: #eee;
-        .delete-icon {
-          opacity: 1;
-        }
+  max-height: 400px;
+  overflow-y: auto;
+  :deep(.ant-list-item) {
+    padding: 4px;
+    &:hover {
+      color: var(--primary);
+      .system__icon {
+        opacity: 1;
       }
     }
-    .delete-icon {
-      width: 24px;
-      height: 24px;
-      opacity: 0;
-    }
-    li.active {
-      color: var(--primary);
-      border-bottom: 1px solid var(--primary);
-    }
+  }
+  .system__icon {
+    transition: opacity var(--transition);
+    opacity: 0;
   }
 }
 </style>

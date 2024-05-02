@@ -1,45 +1,65 @@
 <template>
   <PageContainer title="桌面配置">
-    <a-card :body-style="{ paddingTop: '0' }">
+    <a-card class="card__container" :bordered="false">
       <template #title>
-        <div class="text-12 text-999">顶部导航</div>
+        <div class="text-12 system__subtitle">顶部导航</div>
       </template>
-      <div class="blur-card mb-12">
+      <a-form class="blur-card mb-12">
         <div class="fade-background">
           <div :style="style" class="text-white px-12 w-100 h-100 flex flex-s">AX</div>
         </div>
-        <div class="flex align-center gc-12">
-          背景模糊
-          <a-slider
-            v-model:value="store.$state.desktop.topNavigationBar.blur"
-            :step="1"
-            :max="10"
-            :min="0"
-            class="flex-1"
-          ></a-slider>
-          {{ store.$state.desktop.topNavigationBar.blur }}px
-        </div>
-        <div class="flex align-center gc-12">
+        <a-flex :align="'center'" :gap="12" justify="space-between">
+          <div>背景模糊</div>
+          <a-flex>
+            <a-slider
+              v-model:value="store.$state.desktop.topNavigationBar.blur"
+              :step="1"
+              :max="10"
+              :min="0"
+              style="width: 200px"
+            ></a-slider>
+            <div class="label">{{ store.$state.desktop.topNavigationBar.blur }}px</div>
+          </a-flex>
+        </a-flex>
+        <a-flex :align="'center'" :gap="12" justify="space-between">
           背景透明
-          <a-slider
-            v-model:value="store.$state.desktop.topNavigationBar.opacity"
-            :step="0.1"
-            :max="1"
-            :min="0"
-            class="flex-1"
-          ></a-slider>
-          {{ store.$state.desktop.topNavigationBar.opacity * 100 }}%
-        </div>
-      </div>
+          <a-flex>
+            <a-slider
+              v-model:value="store.$state.desktop.topNavigationBar.opacity"
+              :step="0.1"
+              :max="1"
+              :min="0"
+              style="width: 200px"
+            ></a-slider>
+            <div class="label">{{ store.$state.desktop.topNavigationBar.opacity * 100 }}%</div>
+          </a-flex>
+        </a-flex>
+
+        <a-flex :align="'center'" :gap="12" justify="space-between">
+          边框透明度
+          <a-flex>
+            <a-slider
+              v-model:value="store.$state.desktop.topNavigationBar.borderOpacity"
+              :step="0.1"
+              :max="1"
+              :min="0"
+              style="width: 200px"
+            ></a-slider>
+            <div class="label">
+              {{ store.$state.desktop.topNavigationBar.borderOpacity * 100 }}%
+            </div>
+          </a-flex>
+        </a-flex>
+      </a-form>
     </a-card>
 
-    <a-card class="mt-12">
+    <a-card class="card__container" :bordered="false">
       <template #title>
-        <div class="text-12 text-999">桌面配置</div>
+        <div class="text-12 system__subtitle">桌面配置</div>
       </template>
       <a-space class="w-100" direction="vertical">
         <div class="flex justify-between align-center">
-          <div>桌面明亮度</div>
+          <div>明亮度</div>
           <div class="flex align-center">
             <a-slider
               v-model:value="store.$state.desktop.background.brightness"
@@ -53,7 +73,7 @@
         </div>
 
         <div class="flex justify-between align-center">
-          <div>桌面模糊</div>
+          <div>模糊</div>
           <div class="flex align-center">
             <a-slider
               v-model:value="store.$state.desktop.background.blur"
@@ -61,6 +81,19 @@
               :max="12"
             ></a-slider>
             <div class="label">{{ store.$state.desktop.background.blur }}px</div>
+          </div>
+        </div>
+
+        <div class="flex justify-between align-center">
+          <div>灰度</div>
+          <div class="flex align-center">
+            <a-slider
+              v-model:value="store.$state.desktop.background.grayscale"
+              style="width: 200px"
+              :max="100"
+              :step="5"
+            ></a-slider>
+            <div class="label">{{ store.$state.desktop.background.grayscale }}%</div>
           </div>
         </div>
       </a-space>
@@ -96,6 +129,7 @@ const style = computed((): CSSProperties => {
     background-attachment: fixed;
     background-repeat: no-repeat;
     font-size: 24px;
+    // filter: grayscale()
   }
 }
 .label {

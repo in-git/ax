@@ -12,6 +12,7 @@
 	flex-direction: column;
 	overflow: hidden;
 	border-radius: 0;
+
 	/* 避免出现滚动条 */
 	&::-webkit-scrollbar {
 		display: none;
@@ -34,8 +35,8 @@
 		div.active {
 			$wh: 20px;
 			position: absolute;
-			right: -4px;
-			top: -4px;
+			right: 4px;
+			top: 4px;
 			z-index: 10;
 			background: var(--primary);
 			color: white;
@@ -50,24 +51,29 @@
 .card__footer {
 	box-shadow: 0 0 1px transparent !important;
 	border-radius: 0;
-	:deep(.ant-card-body) {
-		padding: 4px 12px !important;
-	}
 }
-.table__head {
+.table__head,
+.form__head {
 	position: sticky;
 	top: 0;
 	z-index: 10;
 }
 .card__container {
-	border-radius: 0;
-	height: 100%;
-	position: sticky;
-	bottom: 0;
-	:deep(.ant-card) {
-		box-shadow: none;
-	}
-	:deep(.ant-card-body) {
-		height: 100%;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+.table__card {
+	box-shadow: none !important;
+}
+.form__tips {
+	height: fit-content;
+	background-color: var(--color-primary-bg);
+	padding: 8px;
+	margin-bottom: 12px;
+	border-radius: var(--radius);
+	.form__title {
+		font-size: 14px;
+		font-weight: bold;
+		color: #333;
 	}
 }

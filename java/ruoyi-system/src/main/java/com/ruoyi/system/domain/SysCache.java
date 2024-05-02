@@ -7,6 +7,7 @@ import com.ruoyi.common.utils.StringUtils;
  * 
  * @author ruoyi
  */
+
 public class SysCache
 {
     /** 缓存名称 */
@@ -35,6 +36,7 @@ public class SysCache
     public SysCache(String cacheName, String cacheKey, String cacheValue)
     {
         this.cacheName = StringUtils.replace(cacheName, ":", "");
+        System.out.println(this.cacheName);
         this.cacheKey = StringUtils.replace(cacheKey, cacheName, "");
         this.cacheValue = cacheValue;
     }

@@ -1,12 +1,12 @@
 <template>
   <div class="flex gc-4 align-center">
     <a-popover title="历史消息" trigger="click">
-      <div class="system-icon">
+      <div class="system__icon">
         <HistoryOutlined />
       </div>
       <template #content>
         <div class="content">
-          <div class="text-999 text-12">
+          <div class="system__subtitle text-12">
             <div>你的描述越详细,chatgpt回答的越准确</div>
             <div>你能把话术存储起来，方便复用</div>
           </div>
@@ -20,7 +20,7 @@
               <div class="text">
                 {{ item.text }}
               </div>
-              <div class="system-icon delete" @click.stop="del(item.id)">
+              <div class="system__icon delete" @click.stop="del(item.id)">
                 <DeleteOutlined />
               </div>
             </li>
@@ -96,7 +96,7 @@ const del = (id: string) => {
     opacity: 0;
   }
 }
-.system-icon {
+.system__icon {
   width: 24px;
   height: 24px;
 }

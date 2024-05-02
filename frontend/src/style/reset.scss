@@ -1,14 +1,8 @@
-* {
-  box-sizing: border-box !important;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-}
 *::selection {
-  background-color: var(--primary, #00a6fb);
+  background-color: var(--primary, #fb00d1);
   color: white;
+  box-sizing: border-box !important;
 }
-
 html,
 body {
   width: 100%;
@@ -16,26 +10,32 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f8f8f8;
-  -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  box-sizing: border-box !important;
+  text-rendering: optimizeLegibility;
   overflow: hidden;
-  color: #303133;
   font-size: var(--font-size);
 
   *::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
     height: 6px;
   }
 
   /* 自定义滚动条轨道 */
   *::-webkit-scrollbar-track {
     background-color: var(--color-primary-bg);
-    border-radius: 10px;
+    border-radius: 0;
   }
 
   /* 自定义滚动条滑块 */
   *::-webkit-scrollbar-thumb {
-    background-color: var(--primary);
+    background: #74ebd5; /* fallback for old browsers */
+    background: linear-gradient(
+      to bottom,
+      #acb6e5,
+      #74ebd5
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     border-radius: 10px;
   }
 
@@ -64,7 +64,4 @@ h6 {
 a {
   text-decoration: none;
   color: var(--primary);
-}
-*:deep(.ant-card) {
-  border-radius: 0;
 }

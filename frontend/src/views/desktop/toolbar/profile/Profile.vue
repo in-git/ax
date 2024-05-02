@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-popover trigger="click" placement="bottomRight" v-model:open="popoverVisible">
-      <div class="system-icon-dark px-12">
+      <div class="system__icon icon">
         <span class="text-12">用户中心</span>
         <DownOutlined class="text-12 ml-8" />
       </div>
@@ -10,7 +10,7 @@
           <a-card :loading="loading" :bordered="false" :body-style="{ padding: '0' }">
             <div v-if="!!userProfile">
               <div class="flex align-center gc-12">
-                <a-avatar :src="getAvatar()"></a-avatar>
+                <a-avatar :src="getStaticImage(`avatar/${userProfile.avatar}`)"></a-avatar>
                 {{ userProfile.userName }}
               </div>
               <a-divider class="my-12"></a-divider>
@@ -51,10 +51,9 @@
 <script setup lang="ts">
 import type { UserProfileData } from '@/api/modules/system/user/types';
 import { userLogout } from '@/api/modules/system/user/utils';
-import userCenterPng from '@/assets/system/user-center.png';
+import { getStaticImage } from '@/api/utils/image';
 import { openWindow } from '@/global/config/window';
 import { sexOptions } from '@/global/options/system';
-import { getAvatar } from '@/store/user/utils';
 import { getLabel } from '@/utils/common/utils';
 import { Modal } from 'ant-design-vue';
 import ProFileForm from '../profile-form/ProfileForm.vue';
@@ -75,7 +74,7 @@ const editProfile = () => {
     title: '用户中心',
     component: markRaw(ProFileForm),
     id: 'user-center',
-    icon: userCenterPng,
+    icon: getStaticImage('image-icon/user-center.png'),
   });
   popoverVisible.value = false;
 };
@@ -94,6 +93,9 @@ const logout = async () => {
 </script>
 
 <style lang="scss" scoped>
+.icon {
+  color: white;
+}
 .profile {
   width: 200px;
 }

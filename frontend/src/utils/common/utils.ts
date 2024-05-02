@@ -60,3 +60,16 @@ export const getLabel = (items: any[], value: string) => {
     }
   })?.label;
 };
+
+export const compareDateStrings = (dateString1: string, dateString2: string): number => {
+  const date1 = new Date(dateString1);
+  const date2 = new Date(dateString2);
+
+  if (date1.getTime() < date2.getTime()) {
+    return -1;
+  } else if (date1.getTime() > date2.getTime()) {
+    return 1;
+  } else {
+    return 0;
+  }
+};

@@ -24,6 +24,8 @@ export interface SystemWindow {
   data?: any;
   hidden?: boolean;
   icon?: string;
+  x?: number;
+  y?: number;
 }
 
 export interface TreeNode {
@@ -36,3 +38,4 @@ export interface TreeNode {
 export interface ColumnProps extends TableColumnProps {
   show?: boolean;
 }
+export type IconType = 'svg-icon' | 'image-icon' | 'avatar' | 'wallpaper';

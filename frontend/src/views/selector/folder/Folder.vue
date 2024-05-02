@@ -1,7 +1,7 @@
 <template>
   <a-card class="folder system__module">
     <a-card>
-      <div class="text-999">
+      <div class="system__subtitle">
         数量:
         <span class="ml-8">{{ data.length }}</span>
       </div>
@@ -31,13 +31,13 @@
                 <img :src="getIconByName(item) || logoPng" :draggable="false" />
               </div>
               <div v-else>
-                <img :src="folderPng" :draggable="false" />
+                <img :src="getStaticImage('image-icon/edge.png')" :draggable="false" />
               </div>
             </a-flex>
             <a-flex justify="space-between" :align="'center'" class="flex-1 info">
               <div>
                 <div>{{ item.meta.title }}</div>
-                <div class="text-999 mt-8">路径： {{ item.path }}</div>
+                <div class="system__subtitle mt-8">路径： {{ item.path }}</div>
               </div>
               <a-button shape="round" class="open" @click="openApp(item)">打开</a-button>
             </a-flex>
@@ -50,8 +50,8 @@
 
 <script setup lang="ts">
 import type { Routers } from '@/api/modules/system/user/types';
+import { getStaticImage } from '@/api/utils/image';
 import logoPng from '@/assets/logo.png';
-import folderPng from '@/assets/system/folder.png';
 import { getIconByName, openApp } from '@/views/desktop/apps/data';
 
 const imageRef = ref<HTMLImageElement[]>();

@@ -1,5 +1,5 @@
 <template>
-  <a-card class="system__module">
+  <a-card class="system__template" :body-style="{ height: '100%' }">
     <TableVue></TableVue>
     <FormVue></FormVue>
   </a-card>

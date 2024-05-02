@@ -14,6 +14,7 @@ export interface DesktopBackground {
   src: string;
   brightness: number;
   blur: number;
+  grayscale: number;
 }
 export interface PageSettings {
   theme: Theme;
@@ -22,6 +23,17 @@ export interface PageSettings {
     topNavigationBar: {
       blur: number;
       opacity: number;
+      borderOpacity: number;
+    };
+  };
+  /* 在用户拖拽后，记录Window 的宽/高度 */
+  window: {
+    /* 动态模块名 */
+    [key: string]: {
+      width: number;
+      height: number;
+      x?: number;
+      y?: number;
     };
   };
 }

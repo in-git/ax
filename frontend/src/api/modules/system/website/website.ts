@@ -42,3 +42,11 @@ export const exportWebsite = async (page: Page) => {
   });
   message.success(`成功下载`);
 };
+interface SiteInfo {
+  title: string;
+  description: string;
+  logo: string;
+}
+export const getSiteInfo = (url: string) => {
+  return axios.get<Response<SiteInfo>>(`system/website/siteInfo/${url}`);
+};

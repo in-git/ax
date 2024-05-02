@@ -17,7 +17,7 @@ public class MimeTypeUtils
 
     public static final String IMAGE_GIF = "image/gif";
     
-    public static final String[] IMAGE_EXTENSION = { "bmp", "gif", "jpg", "jpeg", "png" };
+    public static final String[] IMAGE_EXTENSION = { "bmp", "gif", "jpg", "jpeg", "png","webp" };
 
     public static final String[] FLASH_EXTENSION = { "swf", "flv" };
 
@@ -28,7 +28,7 @@ public class MimeTypeUtils
 
     public static final String[] DEFAULT_ALLOWED_EXTENSION = {
             // 图片
-            "bmp", "gif", "jpg", "jpeg", "png",
+            "bmp", "gif", "jpg", "jpeg", "png","webp",
             // word excel powerpoint
             "doc", "docx", "xls", "xlsx", "ppt", "pptx", "html", "htm", "txt",
             // 压缩文件

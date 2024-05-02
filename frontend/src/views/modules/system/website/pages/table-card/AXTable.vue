@@ -1,5 +1,5 @@
 <template>
-  <a-card :style="{ boxShadow: 'none' }">
+  <a-card :style="{ boxShadow: 'none' }" :body-style="{ padding: '0' }">
     <a-table
       @change="pageChange"
       table-layout="fixed"
@@ -8,6 +8,8 @@
         selectedRowKeys: websiteKeys,
         onChange: (k: any[]) => (websiteKeys = k),
       }"
+      :loading="websiteTable.loading"
+      :bordered="false"
       :pagination="false"
       :customRow="customRow"
       :rowKey="websiteTable.rowKey"
@@ -16,12 +18,36 @@
     >
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'operation'">
-          <Operation
-            :loading="websiteTable.loading"
-            @open-change="openChange(record as any)"
-            @edit="websiteEdit(record.configId)"
-            :items="websiteOperationList"
-          />
+          <a-dropdown-button
+            trigger="click"
+            @click="openLink(record.url)"
+            @open-change="openChange(record as SystemWebsite)"
+          >
+            <LinkOutlined />
+            <template #overlay>
+              <a-menu>
+                <a-menu-item
+                  :disabled="websiteDisable(record.userId)"
+                  @click="websiteDelete(record.websiteId)"
+                >
+                  <template #icon>
+                    <DeleteOutlined />
+                  </template>
+                  删除
+                </a-menu-item>
+              </a-menu>
+            </template>
+          </a-dropdown-button>
+        </template>
+        <template v-else-if="column.key === 'from'">
+          <a-tag
+            :bordered="false"
+            v-if="record.userId === userStore.$state.userInfo?.userId"
+            color="green"
+          >
+            自己
+          </a-tag>
+          <a-tag v-else color="orange" :bordered="false">超管</a-tag>
         </template>
       </template>
     </a-table>
@@ -30,24 +56,27 @@
 
 <script setup lang="ts">
 import type { SystemWebsite } from '@/api/modules/system/website/types';
+import useUserStore from '@/store/user';
+import { openLink } from '@/utils/common/utils';
 import { formatColumns } from '@/utils/table/table';
-import Operation from '@/views/components/table/Operation.vue';
+import { useCloned } from '@vueuse/core';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { websiteColumns } from '../../data/column';
-import { websiteEdit } from '../../data/curd';
+import { websiteDelete, websiteDisable, websiteEdit } from '../../data/curd';
 import { websiteForm } from '../../data/form';
-import { websiteKeys, websiteOperationList, websiteQuery, websiteTable } from '../../data/table';
+import { websiteKeys, websiteQuery, websiteTable } from '../../data/table';
+const userStore = useUserStore();
 
 const openChange = (record: SystemWebsite) => {
-  websiteForm.value = record;
+  websiteForm.value = useCloned(record).cloned.value;
 };
 
 /* 行事件 */
 const customRow = (record: SystemWebsite) => {
   return {
     onClick() {
-      websiteKeys.value = [record.websiteId];
+      websiteKeys.value = [record.websiteId!];
     },
     onDblclick() {
       websiteEdit(record.websiteId);

@@ -36,23 +36,11 @@ export interface TableResponse<T> {
 }
 
 /* 不分页的数据列表返回 */
-export interface IDataResponse<T> {
-  data: T[];
-  msg: string;
-  code: 200 | 500;
-}
-
-/* 统一反馈 */
 export interface Response<T = undefined> {
   msg: string;
   code: number;
   data?: T;
 }
-
-export type FormEvent = {
-  values: Record<string, any>;
-  errors: Record<string, any> | undefined;
-};
 
 export interface TableConfig<T = {}> {
   rowKey: string;

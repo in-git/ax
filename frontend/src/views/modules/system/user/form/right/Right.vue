@@ -51,8 +51,8 @@
 </template>
 
 <script setup lang="ts">
-import { deptTreeData, loadDeptTree } from '@/views/components/department/data';
 import { userForm, userPosts, userRoles } from '../../data/form';
+import { deptTreeData, loadDeptTree } from '../../dept/data';
 
 const treeData = ref();
 

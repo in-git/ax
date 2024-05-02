@@ -19,6 +19,7 @@ public class MetaVo
      */
     private String icon;
 
+
     /**
      * 设置为true，则不会被 <keep-alive>缓存
      */

@@ -1,9 +1,9 @@
 <template>
   <PageContainer title="网络设置">
     <BaseURL />
-    <a-card class="mt-8 h-100" :body-style="{ height: '100%' }">
+    <a-card class="mt-8 h-100 card__container" :body-style="{ height: '100%' }" :bordered="false">
       <template #title>
-        <div class="subtitle">其他配置</div>
+        <div class="system__subtitle">其他配置</div>
       </template>
       <a-flex justify="space-between" class="mb-8">
         <div>超时</div>
@@ -13,7 +13,7 @@
             v-model:value="devStore.$state.developer.timeout"
             :options="timeoutOptions"
           ></a-auto-complete>
-          <div class="text-12 text-999 mt-8">
+          <div class="text-12 system__subtitle mt-8">
             <InfoCircleFilled />
             当请求超时则放弃请求
           </div>

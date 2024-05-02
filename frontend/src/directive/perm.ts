@@ -8,8 +8,6 @@ export default {
       userInfo.roles.forEach(e => {
         if (!e.permissions) return;
         const hasPermissions = e.permissions.includes(binding.value);
-        console.log(hasPermissions, binding.value, e.permissions);
-
         if (!hasPermissions) {
           el.style.display = 'none';
           el.remove();

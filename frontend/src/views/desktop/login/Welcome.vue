@@ -1,63 +1,51 @@
 <template>
-  <div class="welcome flex flex-col">
-    <h1 class="text-32 text-white">欢迎来到德莱联盟</h1>
-    <div class="desc">
-      <div class="mb-12 text-16">
-        后端管理系统的设计和开发是为了实现对应用程序后端的全面管理和控制。通过后端管理系统，管理员可以管理用户账户、权限和角色，监控和分析系统的运行状况，查看和导出数据报表，管理系统配置和设置，以及进行必要的维护和更新。此外，后端管理系统还提供了对数据的有效管理，包括数据的录入、编辑、删除和查询，以及数据的备份和恢复功能，确保数据的安全性和完整性。
+  <div class="welcome relative">
+    <a-space class="w-100" :size="18" direction="vertical">
+      <h1 class="text-white title">AX 后台管理系统</h1>
+      <div class="mb-12">
+        <div class="desc">Windows操作风格的管理系统</div>
+        <div class="desc">一键生成增删改查代码,可二次开发</div>
+        <div class="text-center">
+          <a target="_blank" href="https://gitee.com/in-git/ax-view">
+            <img :src="getFavicon(`https://gitee.com/in-git/ax-view`)" width="32" />
+          </a>
+          <a target="_blank" class="ml-12" @click="tips">
+            <img :src="getFavicon('https://space.bilibili.com/301733306')" width="32" />
+          </a>
+        </div>
       </div>
-      <a-divider></a-divider>
-    </div>
-    <div class="media flex-1 flex flex-s">
-      <video-background
-        :poster="posterImg"
-        src="https://mylivewallpapers.com/wp-content/uploads/Cute/PREVIEW-Beach-Cat.mp4"
-        class="w-100 h-100"
-      ></video-background>
-    </div>
+
+      <ButtonVue @onClick="introModal = true"></ButtonVue>
+
+      <div class="frame">
+        <a-carousel dotsClass="carousel-dot" class="carousel" autoplay>
+          <div class="carousel-item" v-for="item in 5">
+            <img :src="getStaticImage(`/public/cover-${item}.webp`)" />
+          </div>
+        </a-carousel>
+      </div>
+    </a-space>
+
+    <a-modal centered title="常见问题" v-model:open="introModal" get-container=".welcome">
+      <Intro />
+    </a-modal>
   </div>
 </template>
 
 <script setup lang="ts">
-import VideoBackground from 'vue-responsive-video-background-player';
-import posterImg from '../assets/welcome.webp';
+import { getFavicon, getStaticImage } from '@/api/utils/image';
+import { message } from 'ant-design-vue';
+import ButtonVue from './welcome/Button.vue';
+import Intro from './welcome/Intro.vue';
+const introModal = ref(false);
+const tips = () => {
+  message.info('教程正在建设中');
+};
 </script>
 
 <style lang="scss" scoped>
+@import './welcome/style';
 .welcome {
-  flex-basis: 70%;
-  background: #f8f8f8;
-  border-right: 1px solid #ddd;
-  padding: 64px;
   background: url('../assets/welcome-background.webp');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  .desc {
-    margin-top: 24px;
-    color: #aaa;
-  }
-  ul {
-    list-style: disc;
-    padding-left: 20px;
-    li {
-      margin-bottom: 12px;
-    }
-    span {
-      font-weight: bold;
-    }
-  }
-  .media {
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    border-radius: var(--radius);
-    video {
-      border-radius: var(--radius);
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      pointer-events: none;
-    }
-  }
 }
 </style>

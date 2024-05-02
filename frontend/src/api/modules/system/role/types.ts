@@ -1,10 +1,12 @@
-export interface Role {
+import type { SystemDept } from '../dept/types';
+
+export interface SystemRole {
   createBy?: any;
   createTime?: any;
   updateBy?: any;
   updateTime?: any;
   remark?: any;
-  roleId: number;
+  roleId: number | undefined;
   roleName: string;
   roleKey: string;
   roleSort: number;

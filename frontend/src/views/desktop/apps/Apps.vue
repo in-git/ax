@@ -1,5 +1,5 @@
 <template>
-  <div class="apps flex-1 p-4" ref="apps" @contextmenu="openContextMenu" :style="style">
+  <div class="apps flex-1 p-12" ref="apps" @contextmenu="openContextMenu" :style="style">
     <div class="flex h-100">
       <ul ref="appRef">
         <li
@@ -13,7 +13,12 @@
         >
           <div>
             <div class="logo">
-              <img :src="getIconByName(item) || logoPng" :draggable="false" width="48" />
+              <img
+                :src="getIconByName(item) || logoPng"
+                @error="onError(item)"
+                :draggable="false"
+                width="48"
+              />
             </div>
             <div class="title">{{ item.meta?.title || 'Untitled' }}</div>
           </div>
@@ -36,6 +41,10 @@ const appRef = ref();
 const menuList = ref<Routers[]>([]);
 const apps = ref<HTMLElement>();
 
+const onError = (item: Routers) => {
+  item.meta.icon = logoPng;
+};
+
 onMounted(async () => {
   const data = await getUserRouters();
   menuList.value = data.map(e => {
@@ -44,6 +53,7 @@ onMounted(async () => {
     }
     return e;
   });
+
   nextTick(() => {
     useSortable(appRef, menuList, {
       animation: 200,
@@ -57,7 +67,7 @@ const select = (item: Routers) => {
 const pageStore = usePageStore();
 const style = computed(() => {
   return {
-    backdropFilter: ` blur(${pageStore.$state.desktop.background.blur}px)`,
+    backdropFilter: `blur(${pageStore.$state.desktop.background.blur}px)`,
   };
 });
 </script>

@@ -2,6 +2,8 @@
 import type { IQuery, Response, TableResponse } from '@/api/config/types';
 import axios from 'axios';
 import type {${ModuleName}${BusinessName}} from "./types"
+import { message } from 'ant-design-vue';
+import { exportFile } from '@/api/utils/file';
 
 // 查询${functionName}列表
 export const fetch${BusinessName}List = (query: IQuery) => {
@@ -27,6 +29,11 @@ export const update${BusinessName} = (data: ${ModuleName}${BusinessName}) => {
 // 删除${functionName}
 export const delete${BusinessName} = (${pkColumn.javaField}s:number[]) => {
   return axios.delete<Response<${ModuleName}${BusinessName}>>(`${moduleName}/${businessName}/${${pkColumn.javaField}s.join(',')}`);
+};
+
+type Page = {
+  pageSize: number;
+  pageNum: number;
 };
 
 // 导出${functionName}

@@ -1,15 +1,17 @@
 # 项目相关配置
 ruoyi:
   # 名称
-  name: RuoYi
+  name: AX
   # 版本
-  version: 3.8.7
+  version: 1.0.0
   # 版权年份
   copyrightYear: 2024
   # 文件路径 示例（ Windows配置D:/ruoyi/uploadPath，Linux配置 /home/ruoyi/uploadPath）
-  profile: D:/ruoyi/uploadPath
+  # 静态资源目录,包含子目录：icons,wallpaper,avatar
+  # profile: E:/ax/resource/
+
   # 获取ip地址开关
-  addressEnabled: false
+  addressEnabled: true
   # 验证码类型 math 数字计算 char 字符验证
   captchaType: math
 
@@ -52,7 +54,7 @@ spring:
     # 国际化资源文件路径
     basename: i18n/messages
   profiles:
-    active: druid
+    active: local
   # 文件上传
   servlet:
     multipart:
@@ -95,7 +97,7 @@ token:
   # 令牌密钥
   secret: httplocalhostwin
   # 令牌有效期（默认30分钟）
-  expireTime: 30
+  expireTime: 300
 
 # MyBatis配置
 mybatis:
@@ -127,3 +129,18 @@ xss:
   excludes: /system/notice
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
+# 阿里云对象存储配置
+# 把下面配置直接追加到配置文件中，修改对应的值即可
+aliyunoss:
+  # 地域节点
+  endpoint:
+  # AccessKey
+  accessKeyId:
+  # AccessKey 秘钥
+  accessKeySecret:
+  # bucket名称
+  bucketName:
+  # bucket下文件夹的路径
+  filehost:
+  # 访问域名
+  url:

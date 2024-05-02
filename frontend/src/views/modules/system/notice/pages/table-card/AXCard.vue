@@ -17,7 +17,7 @@
           <div class="index">{{ key + 1 }}</div>
 
           <a-card-meta title="Europe Street beat" class="mb-8">
-            <template #description>www.axxxxxxx.com</template>
+            <template #description>详细信息</template>
           </a-card-meta>
           <a-descriptions
             :column="1"

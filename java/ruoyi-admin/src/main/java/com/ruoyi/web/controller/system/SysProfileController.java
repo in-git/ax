@@ -63,6 +63,7 @@ public class SysProfileController extends BaseController
         SysUser currentUser = loginUser.getUser();
         currentUser.setNickName(user.getNickName());
         currentUser.setEmail(user.getEmail());
+        currentUser.setAvatar(user.getAvatar());
         currentUser.setPhonenumber(user.getPhonenumber());
         currentUser.setSex(user.getSex());
         if (StringUtils.isNotEmpty(user.getPhonenumber()) && !userService.checkPhoneUnique(currentUser))

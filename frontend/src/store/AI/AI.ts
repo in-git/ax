@@ -20,6 +20,7 @@ const useAIStore = defineStore('AI', {
       messages: [],
       prompt: '',
       baseUrl: '',
+      splitSize: 30,
     },
     conversation: {
       list: [],

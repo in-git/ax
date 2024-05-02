@@ -2,7 +2,6 @@
 
 declare module '*.vue' {
   import { DefineComponent } from 'vue';
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
@@ -11,4 +10,6 @@ interface ImportMetaEnv {
 }
 declare module 'draggable-resizable-vue3';
 declare module 'splitpanes';
+declare module 'vue3-video-play';
+declare module '@he-tree/vue';
 declare module 'vue-responsive-video-background-player';

@@ -1,32 +1,84 @@
 <template>
-  <div class="tools">
+  <div class="tools flex gc-4">
     <a-dropdown trigger="click">
       <div class="menu-button">工具</div>
       <template #overlay>
         <a-menu :items="items"></a-menu>
       </template>
     </a-dropdown>
+    <a-button @click="ai" :disabled="loading">
+      <div class="menu-button">AI一下</div>
+    </a-button>
 
-    <SystemModal w="400px" h="300px" title="二维码" v-model:visible="qrModal" v-if="qrModal">
-      <div class="w-100 h-100 flex flex-s">
-        <a-qrcode :value="text" />
-      </div>
-    </SystemModal>
+    <a-modal centered title="二维码" v-model:open="qrModal" getContainer=".system__notepad">
+      <a-flex class="w-100 flex h-100 flex-s">
+        <a-qrcode :value="qrText" />
+      </a-flex>
+    </a-modal>
+    <a-modal
+      centered
+      title="AI处理结果"
+      width="600px"
+      v-model:open="aiModal"
+      getContainer=".system__notepad"
+    >
+      <a-card class="md-card">
+        <MdPreview previewTheme="default" :modelValue="aiText" />
+      </a-card>
+      <template #footer>
+        <a-button type="ghost" @click="append">追加</a-button>
+        <a-button type="primary" @click="cover">覆盖</a-button>
+      </template>
+    </a-modal>
   </div>
 </template>
 
 <script setup lang="ts">
-import SystemModal from '@/components/modal/SysModal.vue';
+import { qfMsg } from '@/api/external/qian-fan/qian-fan';
 import { getData, setData } from '@/global/config/window';
 import { QrcodeOutlined, RetweetOutlined } from '@ant-design/icons-vue';
 import { message, type ItemType } from 'ant-design-vue';
+import { MdPreview } from 'md-editor-v3';
 
 const qrModal = ref(false);
+const aiModal = ref(false);
+const loading = ref(false);
+const aiText = ref('');
 const notepadId = inject<string>('data')!;
 
-const text = computed(() => {
+const qrText = computed(() => {
   return getData(notepadId) || '';
 });
+
+const ai = async () => {
+  try {
+    const content = getData(notepadId);
+    if (content.length > 1000) {
+      message.warn('字数超过1000');
+      return;
+    }
+    loading.value = true;
+    message.success('正在响应');
+    const { data } = await qfMsg([
+      {
+        role: 'user',
+        content,
+      },
+    ]);
+    aiModal.value = true;
+    aiText.value = data.result;
+    loading.value = false;
+  } catch (error) {
+    loading.value = false;
+  }
+};
+const cover = () => {
+  setData(notepadId, aiText.value);
+};
+const append = () => {
+  const oldText = getData(notepadId);
+  setData(notepadId, oldText + aiText.value);
+};
 const items: ItemType[] = [
   {
     label: '字符串反转',
@@ -60,4 +112,18 @@ const items: ItemType[] = [
 
 <style lang="scss" scoped>
 @import '../common.scss';
+
+:deep(.ant-btn) {
+  border: none;
+  padding: 0;
+  height: fit-content !important;
+  background: none;
+  white-space: nowrap !important;
+}
+.md-card {
+  :deep(.ant-card-body) {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+}
 </style>

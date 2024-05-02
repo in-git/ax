@@ -1,5 +1,5 @@
 <template>
-  <div class="loading w-100 flex-s flex absolute flex-col text-999">
+  <div class="loading w-100 flex-s flex absolute flex-col system__subtitle">
     <LoadingOutlined spin class="text-16" />
     <div class="my-12">正在响应,请稍后...</div>
     <div>

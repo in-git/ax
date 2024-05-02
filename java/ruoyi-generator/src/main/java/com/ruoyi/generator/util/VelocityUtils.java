@@ -307,7 +307,7 @@ public class VelocityUtils
             fileName = StringUtils.format("{}/views/modules/{}/{}/pages/table-card/AXTable.vue", vuePath, moduleName, businessName);
         }
         /**
-         *  AX readme.md 生成
+         *  AX readme.md.vm 生成
          * */
         else if (template.contains("readme.md.vm"))
         {

@@ -32,7 +32,7 @@ rebel.xml
 nbproject/private/
 build/*
 nbbuild/
-dist/
+
 nbdist/
 .nb-gradle/
 
@@ -58,10 +58,9 @@ lerna-debug.log*
 
 node_modules
 .DS_Store
-dist
 dist-ssr
 coverage
-*.local
+/java/**/application-local.yml
 
 /cypress/videos/
 /cypress/screenshots/
@@ -75,4 +74,11 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+
+# nodejs
 nodejs/src/assets/
+/resource/
+application-local.yml
+application-build.yml
+dist

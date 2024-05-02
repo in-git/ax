@@ -1,6 +1,6 @@
 <template>
   <div class="table__head">
-    <TableHead title="登陆日志">
+    <a-card title="登陆日志">
       <div class="flex">
         <div class="flex gc-4">
           <a-input
@@ -16,12 +16,11 @@
           <a-button type="primary" @click="loadLoginList">搜索</a-button>
         </div>
       </div>
-    </TableHead>
+    </a-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import TableHead from '@/components/table/table-head/TableHead.vue';
 import { loadLoginList, loginLogQuery } from '../card/data';
 </script>
 

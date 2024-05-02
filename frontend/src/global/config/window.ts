@@ -1,19 +1,33 @@
+import { initModuleWH } from '@/store/page/utils';
 import type { SystemWindow } from '@/types/system';
-import { nanoid } from 'nanoid';
+import { message } from 'ant-design-vue';
 
 /*    */
 export const windowList = ref<SystemWindow[]>([]);
 
 export const openWindow = (config: SystemWindow) => {
+  if (!config.id) {
+    config.id = 'system-default-window';
+    message.warn('窗口没有设置ID');
+  }
   const isExist = windowList.value.find(e => {
     return e.id === config.id;
   });
 
   config.hidden = false;
-  config.z = windowList.value.length;
-  if (!config.id) {
-    config.id = nanoid();
+
+  const { width, height, x, y } = initModuleWH(config.id);
+  config.w = width;
+  config.h = height;
+  /* 如果之前有记录，则提取坐标 */
+  if (x) {
+    config.x = x;
   }
+  if (y) {
+    config.y = y;
+  }
+
+  config.z = windowList.value.length;
 
   if (!isExist) {
     windowList.value.push(config);
@@ -91,4 +105,8 @@ export const minWindow = () => {
       e.hidden = true;
     }
   });
+};
+
+export const windowIsExist = (id: string) => {
+  return windowList.value.findIndex(e => e.id === id) > -1;
 };

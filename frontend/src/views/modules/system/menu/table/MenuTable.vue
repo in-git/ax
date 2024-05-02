@@ -12,7 +12,7 @@
         <template v-if="value.column.dataIndex === 'operation'">
           <Operation
             :loading="menuTableConfig.loading"
-            @edit="editMenu(value.record as any)"
+            @on-click="editMenu(value.record as any)"
             :items="menuItems"
           />
         </template>

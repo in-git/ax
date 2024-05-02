@@ -1,17 +1,9 @@
 <template>
-  <a-card class="system__module">
-    <Transition
-      enter-active-class="animate__animated animate__fadeInLeft"
-      leave-active-class="animate__animated animate__fadeOutRight"
-    >
+  <a-card class="system__template" :body-style="{ height: '100%' }">
+    <Animation>
       <TableVue v-if="!editDictConfig"></TableVue>
-    </Transition>
-    <Transition
-      enter-active-class="animate__animated animate__fadeInLeft"
-      leave-active-class="animate__animated animate__fadeOutRight"
-    >
-      <DictData v-if="editDictConfig"></DictData>
-    </Transition>
+      <DictData v-else-if="editDictConfig"></DictData>
+    </Animation>
 
     <FormVue></FormVue>
   </a-card>

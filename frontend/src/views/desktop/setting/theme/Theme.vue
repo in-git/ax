@@ -4,7 +4,7 @@
       <div>
         <a-card>
           <template #title>
-            <div class="subtitle">主题颜色</div>
+            <div class="system__subtitle">主题颜色</div>
           </template>
           <div class="color-palette">
             <ul class="flex gc-4 align-center">
@@ -20,7 +20,7 @@
               </li>
               <a-divider type="vertical"></a-divider>
               <a-popover title="自定颜色" trigger="click">
-                <div class="system-icon text-999">
+                <div class="system__icon system__subtitle">
                   <BgColorsOutlined />
                   <span class="text-12 mx-8">自定义</span>
                   <div class="custom-color" :style="{ background: store.$state.theme.theme }"></div>

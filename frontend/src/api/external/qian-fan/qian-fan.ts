@@ -11,12 +11,8 @@ const http = axios.create({
   },
 });
 
-interface QFConfig {
-  messages: any[];
-}
-
 /* 发送信息 */
-export const sendMsg = async (config: QFConfig) => {
+export const qfMsg = async (messages: QFMessage[]) => {
   const AIStore = useAIStore();
   const access_token = AIStore.$state.qianFan.access_token;
   if (!access_token) {
@@ -24,9 +20,12 @@ export const sendMsg = async (config: QFConfig) => {
     throw new Error('没有填写Token');
   }
   const url = `https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions?access_token=${access_token}`;
-  return http.post<QFMessage>(url, {
-    messages: config.messages,
-    disable_search: false,
-    enable_citation: false,
+  return http.post<QFResponse>(url, {
+    temperature: AIStore.$state.qianFan.temperature,
+    top_p: AIStore.$state.qianFan.top_p,
+    penalty_score: AIStore.$state.qianFan.penalty_score,
+    stream: AIStore.$state.qianFan.stream,
+    prompt: AIStore.$state.qianFan.prompt,
+    messages,
   });
 };

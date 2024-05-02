@@ -1,5 +1,5 @@
 <template>
-  <div class="pl-8">
+  <div class="pl-8 h-100">
     <a-card :title="title">
       <slot></slot>
     </a-card>

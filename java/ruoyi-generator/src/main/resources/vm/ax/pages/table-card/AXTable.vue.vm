@@ -1,5 +1,11 @@
+#foreach($column in $columns)
+#if($column.isPk == "1")
+#set($Key=$column.javaField)
+#end
+#end
+
 <template>
-  <a-card :style="{ boxShadow: 'none' }">
+  <a-card :style="{ boxShadow: 'none' }" :bordered="false" :bodyStyle="{ padding: '0' }">
     <a-table
       @change="pageChange"
       table-layout="fixed"
@@ -8,6 +14,8 @@
         selectedRowKeys: ${businessName}Keys,
         onChange: (k: any[]) => (${businessName}Keys = k),
       }"
+      bordered
+      :loading="${businessName}Table.loading"
       :pagination="false"
       :customRow="customRow"
       :rowKey="${businessName}Table.rowKey"
@@ -16,12 +24,27 @@
     >
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'operation'">
-          <Operation
-            :loading="${businessName}Table.loading"
-            @open-change="openChange(record as any)"
-            @edit="${businessName}Edit(record.configId)"
-            :items="${businessName}OperationList"
-          />
+          <a-dropdown-button trigger="click"
+          #foreach($column in $columns)
+          #if($column.isPk == "1")
+          @click="${businessName}Edit(record.$column.javaField)"
+          #end
+          #end
+          @open-change="openChange(record as ${ModuleName}${BusinessName})">
+            <EditOutlined />
+            <template #overlay>
+              <a-menu>
+                 <div v-perm="'${moduleName}:${businessName}:export'">
+                    <a-menu-item @click="${businessName}Export">
+                      <template #icon>
+                        <ExportOutlined />
+                      </template>
+                      导出
+                    </a-menu-item>
+                 </div>
+              </a-menu>
+            </template>
+          </a-dropdown-button>
         </template>
       </template>
     </a-table>
@@ -31,35 +54,34 @@
 <script setup lang="ts">
 import type { ${ModuleName}${BusinessName} } from '@/api/modules/${moduleName}/${businessName}/types';
 import { formatColumns } from '@/utils/table/table';
-import Operation from '@/views/components/table/Operation.vue';
+import { useArrayFilter } from '@vueuse/core';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { ${businessName}Columns } from '../../data/column';
-import { ${businessName}Edit } from '../../data/curd';
+import { ${businessName}Edit,${businessName}Delete,${businessName}Export } from '../../data/curd';
 import { ${businessName}Form } from '../../data/form';
-import { ${businessName}Keys, ${businessName}OperationList, ${businessName}Query, ${businessName}Table } from '../../data/table';
+import { ${businessName}Keys,  ${businessName}Query, ${businessName}Table } from '../../data/table';
+import { useCloned } from '@vueuse/core';
 
 const openChange = (record: ${ModuleName}${BusinessName}) => {
-  ${businessName}Form.value = record;
+  ${businessName}Form.value = useCloned(record).cloned.value;
 };
 
 /* 行事件 */
 const customRow = (record: ${ModuleName}${BusinessName}) => {
   return {
     onClick() {
-     #foreach($column in $columns)
-     #if($column.isPk == "1")
-     ${businessName}Keys.value = [record.$column.javaField];
-     #end
-     #end
-
+      const id= (record as any)[${businessName}Table.value.rowKey]
+      ${businessName}Form .value = record;
+      if (!${businessName}Keys.value.includes(id)) {
+         ${businessName}Keys.value.push(id);
+      } else {
+         ${businessName}Keys.value = useArrayFilter(${businessName}Keys.value, e => e !== id).value;
+     }
+     ${businessName}Keys.value = [record.$Key];
     },
     onDblclick() {
-      #foreach($column in $columns)
-      #if($column.isPk == "1")
-      ${businessName}Edit(record.$column.javaField);
-      #end
-      #end
+       ${businessName}Edit(record.$Key);
     },
   };
 };

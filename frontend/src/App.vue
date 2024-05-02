@@ -10,8 +10,9 @@
     :virtual="store.$state.theme.virtual"
     :autoInsertSpaceInButton="store.$state.theme.autoInsertSpaceInButton"
   >
+    <!-- PC显示 -->
     <Desktop />
-
+    <PhoneVue />
     <!--  -->
     <div class="windows">
       <Draggable
@@ -20,26 +21,31 @@
         :w="item.w"
         :h="item.h"
         :z="item.z"
+        :x="item.x"
+        :y="item.y"
         :title="item.title"
         v-show="!item.hidden"
         :id="item.id"
         @close="closeWindow(item.id || '')"
         :icon="item.icon"
       >
-        <component :data="item.data" :id="item.id" :is="item.component"></component>
+        <Animation
+          appear
+          enter-active-class="animate__animated animate__fadeIn"
+          leave-active-class="animate__animated animate__fadeOut"
+        >
+          <component :data="item.data" :id="item.id" :is="item.component"></component>
+        </Animation>
       </Draggable>
     </div>
   </ConfigProvider>
   <!-- 通用右键菜单 -->
   <Contextmenu />
-  <!-- 图片选择器 -->
-  <Gallery />
 </template>
 
 <script setup lang="ts">
 import { closeWindow, windowList } from '@/global/config/window';
-import Gallery from '@/views/selector/gallery/Gallery.vue';
-import { ConfigProvider, theme } from 'ant-design-vue';
+import { ConfigProvider, Modal, theme } from 'ant-design-vue';
 import zh_CN from 'ant-design-vue/es/locale/zh_CN';
 import {
   loadGoogleFont,
@@ -53,6 +59,11 @@ import usePageStore from './store/page';
 import Contextmenu from './views/components/contextmenu/Contextmenu.vue';
 import Draggable from './views/components/draggable/Draggable.vue';
 import Desktop from './views/desktop/Desktop.vue';
+import PhoneVue from './views/phone/Phone.vue';
+/* 设置Dayjs，用于日期选择 */
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
+dayjs.locale('zh-cn');
 
 const locale = ref(zh_CN);
 const { compactAlgorithm, darkAlgorithm, defaultAlgorithm } = theme;
@@ -73,8 +84,20 @@ nextTick(async () => {
   setEvent();
   /* 设置主题变量 */
   setCssVar();
-});
 
+  /* 当前不支持https访问 */
+  if (window.location.href.startsWith('https')) {
+    Modal.confirm({
+      title: '警告',
+      content: '当前访问的是https的网址,暂时不支持。请手动粘贴http的网址进行浏览，后续会解决该问题',
+      onOk() {
+        window.location.href = 'http://in-git.gitee.io/ax-view/';
+      },
+      centered: true,
+    });
+  }
+});
+/* 设置本地主题 */
 const localTheme = computed(() => {
   let algorithm = store.$state.theme.algorithm;
   let map = {
@@ -82,6 +105,7 @@ const localTheme = computed(() => {
     compact: compactAlgorithm,
     default: defaultAlgorithm,
   };
+
   return {
     token: {
       colorPrimary: store.$state.theme.theme,
@@ -99,5 +123,16 @@ const localTheme = computed(() => {
   top: 0;
   left: 0;
   z-index: 60;
+}
+
+@media screen and (max-width: 875px) {
+  .desktop {
+    display: none;
+  }
+}
+@media screen and (min-width: 874px) {
+  .phone {
+    display: none;
+  }
 }
 </style>

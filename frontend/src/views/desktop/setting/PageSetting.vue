@@ -1,9 +1,5 @@
 <template>
-  <a-card
-    class="h-100 card__container"
-    :bordered="false"
-    :body-style="{ height: '100%', padding: '0' }"
-  >
+  <a-card class="h-100 card__container" :bordered="false" :body-style="{ height: '100%' }">
     <a-flex class="settings flex h-100 w-100">
       <a-card :body-style="{ height: '100%' }">
         <a-menu v-model:selectedKeys="selectedKeys">
@@ -24,7 +20,7 @@
 
 <script setup lang="ts">
 import {
-  AimOutlined,
+  AreaChartOutlined,
   BgColorsOutlined,
   DesktopOutlined,
   GlobalOutlined,
@@ -32,11 +28,10 @@ import {
 } from '@ant-design/icons-vue';
 import { nanoid } from 'nanoid';
 import AI from './ai/AI.vue';
-import ApiVue from './api/Api.vue';
 import DesktopSetting from './desktop/DesktopSetting.vue';
 import Net from './net/Net.vue';
 import ThemeVue from './theme/Theme.vue';
-
+import GalleryBody from './wallpaper/GalleryBody.vue';
 interface Nav {
   title: string;
   icon: any;
@@ -52,6 +47,12 @@ const nav: Nav[] = [
     component: markRaw(ThemeVue),
   },
   {
+    title: '壁纸设置',
+    icon: markRaw(AreaChartOutlined),
+    id: nanoid(),
+    component: markRaw(GalleryBody),
+  },
+  {
     title: '网络设置',
     icon: markRaw(GlobalOutlined),
     id: nanoid(),
@@ -62,12 +63,6 @@ const nav: Nav[] = [
     icon: markRaw(DesktopOutlined),
     id: nanoid(),
     component: markRaw(DesktopSetting),
-  },
-  {
-    title: '三方接口',
-    icon: markRaw(AimOutlined),
-    id: nanoid(),
-    component: markRaw(ApiVue),
   },
   {
     title: '千帆设置',
@@ -96,8 +91,5 @@ const selectNav = (item: Nav) => {
 }
 .content {
   overflow-y: auto;
-}
-.card {
-  border-radius: 0;
 }
 </style>

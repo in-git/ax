@@ -1,13 +1,14 @@
 import type { Routers } from '@/api/modules/system/user/types';
-import { minWindow } from '@/global/config/window';
+import { getStaticImage } from '@/api/utils/image';
+import { minWindow, openWindow } from '@/global/config/window';
 import { setContextMenu } from '@/views/components/contextmenu/data';
-import { setGallery } from '@/views/selector/gallery/data';
 import {
-  BgColorsOutlined,
   DesktopOutlined,
   FolderFilled,
   ReloadOutlined,
+  SettingOutlined,
 } from '@ant-design/icons-vue';
+import PageSetting from '../setting/PageSetting.vue';
 import { openApp } from './data';
 
 export const appContextMenu = (item: Routers) => {
@@ -44,19 +45,24 @@ export const openContextMenu = (e: MouseEvent) => {
       },
       {
         label: '显示桌面',
-        key: '3',
+        key: '2',
         icon: h(DesktopOutlined),
         onClick() {
           minWindow();
         },
       },
       {
-        label: '选择壁纸',
-        key: '4',
-        icon: h(BgColorsOutlined),
+        label: '系统设置',
+        key: '2',
+        icon: h(SettingOutlined),
         onClick() {
-          setGallery({
-            show: true,
+          openWindow({
+            title: '系统设置',
+            component: markRaw(PageSetting),
+            id: 'system_setting',
+            w: 800,
+            h: 600,
+            icon: getStaticImage('image-icon/system_setting.png'),
           });
         },
       },

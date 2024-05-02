@@ -1,44 +1,108 @@
 <template>
-  <Teleport to="body">
-    <div class="system__module gallery flex" v-if="galleryConfig.show">
-      <div class="gallery-container flex">
-        <GalleryNav />
-        <GalleryBody />
-      </div>
-    </div>
-  </Teleport>
+  <div>
+    <a-card title="图像选择">
+      <template #extra>
+        <a-button type="primary" @click="confirm" :disabled="selectedSet.length === 0">
+          确定
+        </a-button>
+      </template>
+      <ul :class="[type]" v-if="galleryData.length > 0">
+        <li
+          v-for="item in galleryData"
+          @click="selectItem(item)"
+          :class="[{ active: selectedSet.includes(item) }]"
+        >
+          <img :src="getStaticHost(`${type}/${item}`)" />
+        </li>
+      </ul>
+      <a-empty v-else />
+    </a-card>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { useEventBus } from '@vueuse/core';
-import GalleryBody from './body/GalleryBody.vue';
-import { galleryConfig } from './data';
-import GalleryNav from './nav/GalleryNav.vue';
-const bus = useEventBus('gallery');
-const emit = defineEmits(['update:visible']);
+import { avatars, imageIcons, wallpaperList } from '@/global/data/resource.list';
+import { getStaticHost } from '@/store/system/utils';
+import type { IconType } from '@/types/system';
 
-bus.on(() => {
-  close();
+const props = withDefaults(
+  defineProps<{
+    limit?: number;
+    value: string;
+    type: IconType;
+  }>(),
+  {
+    limit: 1,
+    value: '',
+    type: 'avatar',
+  },
+);
+
+const emit = defineEmits(['update:value']);
+const selectedSet = ref<string[]>([]);
+
+const galleryData = ref<string[]>([]);
+const selectItem = (item: string) => {
+  if (props.limit <= selectedSet.value.length) {
+    selectedSet.value.shift();
+  }
+  selectedSet.value.push(item);
+};
+
+const confirm = () => {
+  if (props.limit === 1) {
+    emit('update:value', selectedSet.value[0]);
+    return;
+  }
+  emit('update:value', selectedSet.value);
+};
+
+onMounted(() => {
+  if (props.type === 'avatar') {
+    galleryData.value = avatars;
+  } else if (props.type === 'wallpaper') {
+    galleryData.value = wallpaperList;
+  } else if (props.type === 'image-icon') {
+    galleryData.value = imageIcons;
+  }
 });
 </script>
 
 <style lang="scss" scoped>
-.gallery {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  background-color: #616161b9;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  .gallery-container {
+.sys-icon,
+.avatar {
+  grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(64px, 1fr));
+  li {
+    width: 100%;
+    height: 100%;
+  }
+}
+.wallpaper {
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+:deep(.ant-card-body) {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+ul {
+  display: grid;
+  gap: 8px;
+  li {
+    height: 80px;
+    border: 1px solid transparent;
+    padding: 4px;
     border-radius: var(--radius);
-    overflow: hidden;
-    width: 800px;
-    height: 600px;
-    background-color: #f5f2f3;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius);
+  }
+  li.active {
+    border: 1px solid var(--primary);
+    background: var(--color-primary-bg);
   }
 }
 </style>

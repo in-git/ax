@@ -6,16 +6,17 @@ interface LoginLogData {
   selectedKeys: string[];
   loading: boolean;
 }
+interface LogQuery {
+  ipaddr: string;
+  userName: string;
+}
 
 export const loginLogData = ref<LoginLogData>({
   data: [],
   selectedKeys: [],
   loading: false,
 });
-interface LogQuery {
-  ipaddr: string;
-  userName: string;
-}
+
 export const loginLogQuery = ref<IQuery<LogQuery>>({
   pageSize: 50,
   pageNum: 1,
@@ -26,10 +27,16 @@ export const loginLogQuery = ref<IQuery<LogQuery>>({
 
 export const loadLoginList = async () => {
   loginLogData.value.loading = true;
-  const { data } = await loginLogList(loginLogQuery.value);
-  loginLogData.value.data = data.rows;
-  loginLogQuery.value.total = data.total;
-  loginLogData.value.loading = false;
+  try {
+    const { data } = await loginLogList(loginLogQuery.value);
+    if (data.rows) {
+      loginLogData.value.data = data.rows;
+      loginLogQuery.value.total = data.total;
+    }
+    loginLogData.value.loading = false;
+  } catch (error) {
+    loginLogData.value.loading = false;
+  }
 };
 
 export const pageSizeChange = (pageNum: number, pageSize: number) => {

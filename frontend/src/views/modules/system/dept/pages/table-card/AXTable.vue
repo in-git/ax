@@ -19,7 +19,7 @@
           <Operation
             :loading="deptTable.loading"
             @open-change="openChange(record as any)"
-            @edit="deptEdit(record.configId)"
+            @on-click="deptEdit(record.deptId)"
             :items="deptOperationList"
           />
         </template>
@@ -47,8 +47,7 @@ const openChange = (record: SystemDept) => {
 const customRow = (record: SystemDept) => {
   return {
     onClick() {
-     deptKeys.value = [record.deptId];
-
+      deptKeys.value = [record.deptId];
     },
     onDblclick() {
       deptEdit(record.deptId);

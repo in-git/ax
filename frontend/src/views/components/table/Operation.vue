@@ -18,12 +18,12 @@
 <script setup lang="ts">
 import type { SelectInfo } from 'ant-design-vue/es/menu/src/interface';
 
-const emit = defineEmits(['edit', 'openChange']);
+const emit = defineEmits(['onClick', 'openChange']);
 const openChange = () => {
   emit('openChange');
 };
 const onClick = () => {
-  emit('edit');
+  emit('onClick');
 };
 defineProps<{ items: any; loading: boolean }>();
 

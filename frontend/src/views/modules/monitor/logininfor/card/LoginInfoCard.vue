@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="mt-8">
     <a-card>
       <a-spin :spinning="loginLogData.loading">
-        <ul class="list">
+        <ul class="list" v-if="loginLogData.data.length > 0">
           <li v-for="(item, key) in loginLogData.data" :key="key">
             <a-space class="w-100" direction="vertical">
               <img :src="applePng" width="32" v-if="item.os.includes('Mac OS X')" />
@@ -24,20 +24,21 @@
             </a-space>
           </li>
         </ul>
+        <a-empty v-else />
       </a-spin>
     </a-card>
-
-    <a-card :bodyStyle="{ padding: '0' }" class="footer text-right">
-      <a-pagination
-        :total="loginLogQuery.total"
-        v-model:current="loginLogQuery.pageNum"
-        show-quick-jumper
-        show-size-changer
-        :page-size="loginLogQuery.pageSize"
-        @change="pageSizeChange"
-      ></a-pagination>
-    </a-card>
   </div>
+
+  <a-card :bodyStyle="{ padding: '0' }" class="footer text-right">
+    <a-pagination
+      :total="loginLogQuery.total"
+      v-model:current="loginLogQuery.pageNum"
+      show-quick-jumper
+      show-size-changer
+      :page-size="loginLogQuery.pageSize"
+      @change="pageSizeChange"
+    ></a-pagination>
+  </a-card>
 </template>
 
 <script setup lang="ts">
@@ -69,7 +70,6 @@ ul.list {
 .footer {
   position: sticky;
   bottom: 0;
-  background: white;
   width: 100%;
   z-index: 100;
   padding: 8px 12px;

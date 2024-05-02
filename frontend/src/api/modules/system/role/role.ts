@@ -2,10 +2,10 @@ import type { IQuery, Response, TableResponse } from '@/api/config/types';
 import type { TreeNode } from '@/types/system';
 import axios from 'axios';
 import type { UserProfileData } from '../user/types';
-import type { Role, RoleDeptTreeData } from './types';
+import type { RoleDeptTreeData, SystemRole } from './types';
 
-export const roleList = (query: IQuery) => {
-  return axios.get<TableResponse<Role>>(`system/role/list`, {
+export const fetchRoleList = (query: IQuery) => {
+  return axios.get<TableResponse<SystemRole>>(`system/role/list`, {
     params: query,
   });
 };
@@ -25,23 +25,26 @@ export const roleTreeSelect = () => {
   return axios.get<Response<TreeNode[]>>(`system/menu/treeselect`);
 };
 
+export const getRoleById = (id: number) => {
+  return axios.get<Response<SystemRole>>(`system/role/${id}`);
+};
 export const deptTree = (id: number) => {
   return axios.get<RoleDeptTreeData>(`system/role/deptTree/${id}`);
 };
 
-export const roleDataScope = (data: Role) => {
+export const roleDataScope = (data: SystemRole) => {
   return axios.put<Response>(`system/role/dataScope`, data);
 };
 
-export const updateRole = (data: Role) => {
+export const updateRole = (data: SystemRole) => {
   return axios.put<Response>(`system/role`, data);
 };
 
-export const createRole = (data: Role) => {
+export const createRole = (data: SystemRole) => {
   return axios.post<Response>(`system/role`, data);
 };
 
-export const delRole = (id: number) => {
+export const deleteRole = (id: number) => {
   return axios.delete<Response>(`system/role/${id}`);
 };
 

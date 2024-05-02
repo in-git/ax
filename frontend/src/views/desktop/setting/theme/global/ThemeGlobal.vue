@@ -2,7 +2,7 @@
   <div class="theme-global">
     <a-card>
       <template #title>
-        <div class="text-999 text-12">全局配置</div>
+        <div class="system__subtitle text-12">全局配置</div>
       </template>
       <a-space direction="vertical" class="w-100" :size="24">
         <a-flex justify="space-between" :align="'center'">

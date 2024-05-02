@@ -1,6 +1,23 @@
-#### AX后台管理系统
 
-[TOC]
+
+<div align="center"><h1 align="center">AX</h3></div>
+<div align="center"><h3 align="center">Windows 操作风格的后台管理系统</h3></div>
+
+<p align="center">     
+    <p align="center">
+        <a>
+            <img src="https://img.shields.io/badge/AX-V1.0-green" alt="AX">
+        </a>
+        <a href="https://gitee.com/in-git/ax.git">
+            <img src="https://gitee.com/in-git/ax/badge/star.svg?theme=dark" alt="Gitee star">
+        </a>
+        <a href="https://gitee.com/in-git/ax">
+            <img src="https://gitee.com/in-git/ax/badge/fork.svg?theme=dark" alt="Gitee fork">
+        </a>
+    </p>
+</p>
+
+
 
 
 
@@ -63,7 +80,7 @@
 - ###### 表单功能
 
   - [x] 字段筛选：可动态配置表头，自带记忆
-  - [x] 模式切换：提供表格模式，卡片模式，卡片模式部分内容可能要修改代码
+  - [x] 模式切换：提供表格模式，卡片模式，卡片模式需要自定义
   - [x] 搜索记忆：记录用于曾经搜索过的内容，可快速方便的录入
   - [x] 快捷方式
     1. 双击卡片内容编辑
@@ -74,4 +91,3 @@
 ```
 这些配置可能会影响到其他用于，或者系统运行
 ```
-
