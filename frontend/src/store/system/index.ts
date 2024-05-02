@@ -9,7 +9,7 @@ const useSystemStore = defineStore('system', {
     developer: {
       baseURL,
       urlSelection: baseUrlOptions,
-      timeout: 8000,
+      timeout: 8,
       resourceHost: 'http://in-git.gitee.io/ax-resource',
     },
   }),

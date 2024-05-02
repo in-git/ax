@@ -1,7 +1,7 @@
 <template>
   <div class="top-toolbar system__head px-12" :style="style">
     <a-flex :align="'center'" :gap="4">
-      <img :src="logo" width="28" style="object-fit: contain" />
+      <img :src="logo" width="28" height="28" style="object-fit: contain" />
       <div class="text-linear-gradient">AX</div>
     </a-flex>
     <a-flex :gap="4">

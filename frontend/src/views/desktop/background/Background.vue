@@ -28,11 +28,13 @@ const backgroundType = computed(() => {
 });
 
 const style = computed((): CSSProperties => {
-  console.log(backgroundType.value.src);
-
+  /* 判断是否有背景图片，有就加载，没有就设置默认背景 */
+  let background = backgroundType.value.src
+    ? getStaticImage(`${backgroundType.value.src}`)
+    : defaultBackground;
   if (backgroundType.value.type === 'image' && backgroundLoading) {
     return {
-      background: `url('${getStaticImage(`${backgroundType.value.src}`) || defaultBackground}')`,
+      background: `url('${background}')`,
       filter: `
       brightness(${100 - backgroundType.value.brightness}%)
       grayscale(${backgroundType.value.grayscale}%)`,
