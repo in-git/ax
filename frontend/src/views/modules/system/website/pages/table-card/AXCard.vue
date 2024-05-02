@@ -11,10 +11,8 @@
       >
         <a-flex class="flex-1" vertical :gap="2">
           <a-flex :gap="8" :align="'center'" :justify="'space-between'">
-            <img :src="item.icon || getFavicon(item.url)" width="32" height="32" />
-            <div class="site-title flex-1">
-              {{ item.name }}
-            </div>
+            <img :src="getIcon(item)" width="32" height="32" />
+            <div class="site-title flex-1">{{ item.name }}{{ item.icon }}</div>
             <a-flex class="actions">
               <div class="text-right flex gc-4">
                 <a-tooltip title="内部浏览器打开">
@@ -48,7 +46,7 @@
 
 <script setup lang="ts">
 import type { SystemWebsite } from '@/api/modules/system/website/types';
-import { getFavicon } from '@/api/utils/image';
+import { getFavicon, getStaticImage } from '@/api/utils/image';
 import { openLink } from '@/utils/common/utils';
 import { openInternet } from '@/views/widget/browser/data/browser.methods';
 import type { GoogleOutlined } from '@ant-design/icons-vue';
@@ -62,8 +60,13 @@ interface SortConfig {
   oldIndex: number;
   newIndex: number;
 }
-
-function restoreDomain(domain: string, protocol: string = 'http'): string {
+const getIcon = (item: SystemWebsite) => {
+  if (item.icon) {
+    return getStaticImage(item.icon);
+  }
+  return getFavicon(item.url);
+};
+const restoreDomain = (domain: string, protocol: string = 'http'): string => {
   // 如果域名已经包含了协议，则直接返回
   if (domain.startsWith('http://') || domain.startsWith('https://')) {
     return domain;
@@ -71,7 +74,7 @@ function restoreDomain(domain: string, protocol: string = 'http'): string {
 
   // 如果域名不包含协议，则拼接成完整的 URL
   return `${protocol}://${domain}/`;
-}
+};
 
 const selectItem = (item: SystemWebsite) => {
   websiteKeys.value = [];

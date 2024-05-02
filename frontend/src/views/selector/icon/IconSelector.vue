@@ -32,7 +32,7 @@ defineProps<{
 }>();
 
 const confirm = () => {
-  emit('update:modelValue', getStaticImage(`${currentType.value}/${active.value}`));
+  emit('update:modelValue', `${currentType.value}/${active.value}`);
 };
 
 const selectItem = (iconPath: string) => {

@@ -20,7 +20,7 @@
       <div class="frame">
         <a-carousel dotsClass="carousel-dot" class="carousel" autoplay>
           <div class="carousel-item" v-for="item in 5">
-            <img :src="`${resourceUrl}/public/cover-${item}.webp`" />
+            <img :src="getStaticImage(`/public/cover-${item}.webp`)" />
           </div>
         </a-carousel>
       </div>
@@ -33,8 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { resourceUrl } from '@/api/utils/host';
-import { getFavicon } from '@/api/utils/image';
+import { getFavicon, getStaticImage } from '@/api/utils/image';
 import { message } from 'ant-design-vue';
 import ButtonVue from './welcome/Button.vue';
 import Intro from './welcome/Intro.vue';

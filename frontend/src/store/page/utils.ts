@@ -1,10 +1,12 @@
+import { getStaticImage } from '@/api/utils/image';
 import usePageStore from '.';
 /* 桌面背景加载 */
 export const backgroundLoading = ref(false);
 
 export const setBackground = (src: string, type: 'image' | 'video') => {
   const store = usePageStore();
-  store.$state.desktop.background.src = src;
+
+  store.$state.desktop.background.src = getStaticImage(`wallpaper/${src}`);
   store.$state.desktop.background.type = type;
   backgroundLoading.value = true;
   const img = new Image();

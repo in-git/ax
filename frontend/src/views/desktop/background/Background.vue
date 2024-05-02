@@ -10,13 +10,16 @@
 </template>
 
 <script setup lang="ts">
+import { getStaticImage } from '@/api/utils/image';
 import Loading from '@/components/loading/Loading.vue';
 import usePageStore from '@/store/page';
 import { backgroundLoading } from '@/store/page/utils';
 import type { CSSProperties } from 'vue';
 import VideoBackground from 'vue-responsive-video-background-player';
 
-const defaultBackground = `http://in-git.gitee.io/ax-resource/wallpaper/windows-11-logo-colorful-background-digital-art-hd-wallpaper-uhdpaper.com-127@0@h.jpg`;
+const defaultBackground = getStaticImage(
+  `wallpaper/windows-11-logo-colorful-background-digital-art-hd-wallpaper-uhdpaper.com-127@0@h.jpg`,
+);
 
 const pageStore = usePageStore();
 
@@ -26,8 +29,10 @@ const backgroundType = computed(() => {
 
 const style = computed((): CSSProperties => {
   if (backgroundType.value.type === 'image' && backgroundLoading) {
+    console.log(backgroundType.value.src);
+
     return {
-      background: `url('${backgroundType.value.src || defaultBackground}')`,
+      background: `url('${getStaticImage(`wallpaper/${backgroundType.value.src}`) || defaultBackground}')`,
       filter: `
       brightness(${100 - backgroundType.value.brightness}%)
       grayscale(${backgroundType.value.grayscale}%)`,

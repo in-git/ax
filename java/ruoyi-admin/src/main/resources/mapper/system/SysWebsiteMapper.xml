@@ -76,6 +76,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="description != null">description = #{description},</if>
             <if test="type != null">type = #{type},</if>
+            <if test="icon != null">icon = #{icon},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
             <if test="userId != null">user_id = #{userId},</if>
             <if test="deptId != null">dept_id = #{deptId},</if>

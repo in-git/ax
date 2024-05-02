@@ -62,7 +62,7 @@
         <a-form-item label="网页LOGO" name="logo">
           <a-input allow-clear v-model:value="websiteForm.icon">
             <template #addonBefore v-if="websiteForm.icon">
-              <img :src="websiteForm.icon" width="16" />
+              <img :src="getStaticImage(websiteForm.icon)" width="16" />
             </template>
             <template #addonAfter>
               <a-popover trigger="click" v-model:open="visible">
@@ -86,6 +86,7 @@
 <script setup lang="ts">
 import { cancelAllRequest } from '@/api/config/interceptor';
 import { createWebsite, getSiteInfo, updateWebsite } from '@/api/modules/system/website/website';
+import { getStaticImage } from '@/api/utils/image';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { extractDomain } from '@/utils/common/format';
 import { response } from '@/utils/table/table';

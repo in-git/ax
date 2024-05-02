@@ -29,6 +29,8 @@ export const getIconByName = (item: Routers) => {
     return item.meta.icon;
   } else if (item.meta.link) {
     return getStaticImage('image-icon/edge.png');
+  } else if (item.meta.icon && item.meta.icon.includes('/')) {
+    return getStaticImage(item.meta.icon);
   }
   if (item.name) {
     image = getStaticImage(`image-icon/${item.name.toLocaleLowerCase()}.png`);
@@ -42,8 +44,6 @@ export const getIconByName = (item: Routers) => {
 };
 
 export const openApp = (item: Routers) => {
-  console.log(item);
-
   if (item.children && item.children.length > 0) {
     openWindow({
       component: markRaw(FolderVue),
