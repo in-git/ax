@@ -28,11 +28,11 @@ const backgroundType = computed(() => {
 });
 
 const style = computed((): CSSProperties => {
-  if (backgroundType.value.type === 'image' && backgroundLoading) {
-    console.log(backgroundType.value.src);
+  console.log(backgroundType.value.src);
 
+  if (backgroundType.value.type === 'image' && backgroundLoading) {
     return {
-      background: `url('${getStaticImage(`wallpaper/${backgroundType.value.src}`) || defaultBackground}')`,
+      background: `url('${getStaticImage(`${backgroundType.value.src}`) || defaultBackground}')`,
       filter: `
       brightness(${100 - backgroundType.value.brightness}%)
       grayscale(${backgroundType.value.grayscale}%)`,

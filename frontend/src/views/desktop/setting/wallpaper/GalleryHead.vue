@@ -37,7 +37,7 @@ const { files, open, onChange } = useFileDialog({
 });
 const use = () => {
   if (currentGallery.value) {
-    setBackground(currentGallery.value, galleryType.value);
+    setBackground(`wallpaper/${currentGallery.value}`, galleryType.value);
   }
 };
 
