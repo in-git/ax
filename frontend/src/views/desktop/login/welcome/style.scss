@@ -1,10 +1,25 @@
-.frame {
-	border: 16px solid #000;
-	height: fit-content;
+.grid-container {
+	display: grid;
+	gap: 24px;
+	margin-top: 32px;
+	grid-template-columns: repeat(2, 0.5fr);
+}
+
+.grid-item {
+	background: linear-gradient(to bottom left, #080053, #000c13);
+	border: 2px solid #353535;
 	border-radius: 22px;
 	padding: 12px;
-	margin-bottom: 32px;
+	color: white;
+	height: 300px;
 }
+.grid-item-a {
+	grid-area: a;
+}
+.grid-item-b {
+	grid-area: b;
+}
+
 .carousel {
 	.carousel-item {
 		text-align: center;
@@ -27,9 +42,10 @@
 	height: 100vh;
 	overflow-y: auto;
 	width: 70%;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
+	background-size: cover !important;
+	background-repeat: no-repeat !important;
+	background-position: center !important;
+	background-attachment: fixed;
 
 	.title {
 		background-image: var(--linear-gradient);

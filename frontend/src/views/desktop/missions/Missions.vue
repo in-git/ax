@@ -34,7 +34,6 @@ const openMenu = () => {
     height: 42px;
     &:hover {
       background: #ffffff5e;
-      filter: grayscale(0%);
     }
   }
 }

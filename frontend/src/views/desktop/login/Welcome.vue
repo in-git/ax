@@ -17,12 +17,28 @@
 
       <ButtonVue @onClick="introModal = true"></ButtonVue>
 
-      <div class="frame">
-        <a-carousel dotsClass="carousel-dot" class="carousel" autoplay>
-          <div class="carousel-item" v-for="item in 5">
-            <img :src="getStaticImage(`/public/cover-${item}.webp`)" />
-          </div>
-        </a-carousel>
+      <div class="grid-container">
+        <div class="grid-item">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, beatae. Quas
+          repellendus optio praesentium dolorum nam blanditiis sed facilis sint quod minima alias,
+          maiores nobis quia odit facere eveniet nostrum.
+        </div>
+        <div class="grid-item">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, beatae. Quas
+          repellendus optio praesentium dolorum nam blanditiis sed facilis sint quod minima alias,
+          maiores nobis quia odit facere eveniet nostrum.
+        </div>
+        <div class="grid-item">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, beatae. Quas
+          repellendus optio praesentium dolorum nam blanditiis sed facilis sint quod minima alias,
+          maiores nobis quia odit facere eveniet nostrum.
+        </div>
+
+        <div class="grid-item">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, beatae. Quas
+          repellendus optio praesentium dolorum nam blanditiis sed facilis sint quod minima alias,
+          maiores nobis quia odit facere eveniet nostrum.
+        </div>
       </div>
     </a-space>
 
@@ -33,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import { getFavicon, getStaticImage } from '@/api/utils/image';
+import { getFavicon } from '@/api/utils/image';
 import { message } from 'ant-design-vue';
 import ButtonVue from './welcome/Button.vue';
 import Intro from './welcome/Intro.vue';

@@ -1,15 +1,14 @@
 <template>
   <a-card class="system__module">
     <a-button @click="test">测试壁纸读取</a-button>
+    计数：{{ count }}
   </a-card>
 </template>
 
 <script setup lang="ts">
-import { initWallpaper } from '@/api/modules/system/config/utils';
-
+const count = ref(0);
 const test = async () => {
-  const data = await initWallpaper();
-  console.log(data);
+  count.value++;
 };
 </script>
 

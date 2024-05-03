@@ -90,9 +90,6 @@ nextTick(async () => {
     Modal.confirm({
       title: '警告',
       content: '当前访问的是https的网址,暂时不支持。请手动粘贴http的网址进行浏览，后续会解决该问题',
-      onOk() {
-        window.location.href = 'http://in-git.gitee.io/ax-view/';
-      },
       centered: true,
     });
   }

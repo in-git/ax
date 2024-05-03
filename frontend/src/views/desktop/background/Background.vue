@@ -29,9 +29,14 @@ const backgroundType = computed(() => {
 
 const style = computed((): CSSProperties => {
   /* 判断是否有背景图片，有就加载，没有就设置默认背景 */
-  let background = backgroundType.value.src
-    ? getStaticImage(`${backgroundType.value.src}`)
-    : defaultBackground;
+  let background = '';
+  if (backgroundType.value.src.startsWith('data:image')) {
+    background = backgroundType.value.src;
+  } else {
+    background = backgroundType.value.src
+      ? getStaticImage(`${backgroundType.value.src}`)
+      : defaultBackground;
+  }
   if (backgroundType.value.type === 'image' && backgroundLoading) {
     return {
       background: `url('${background}')`,
@@ -51,9 +56,9 @@ const style = computed((): CSSProperties => {
   height: 100vh;
   width: 100vw;
   z-index: 10;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
   position: fixed;
   top: 0;
   left: 0;

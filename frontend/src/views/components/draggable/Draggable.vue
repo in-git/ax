@@ -170,8 +170,8 @@ onMounted(() => {
   if (props.id) setCurrentWindow(props.id);
   windowProps.value.w = props.w;
   windowProps.value.h = props.h;
-  if (props.x) windowProps.value.x = props.x;
-  if (props.y) windowProps.value.y = props.y;
+  if (props.x) windowProps.value.x = props.x < 0 ? 0 : props.x;
+  if (props.y) windowProps.value.y = props.y < 0 ? 0 : props.y;
 });
 </script>
 

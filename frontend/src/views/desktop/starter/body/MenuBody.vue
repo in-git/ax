@@ -9,7 +9,7 @@
           v-for="(item, key) in plugins"
           :key="key"
         >
-          <img :src="item.icon" :draggable="false" width="36" height="36" />
+          <img :src="item.icon" :draggable="false" width="28" height="28" />
           <div class="mt-8">{{ item.title }}</div>
         </li>
       </ul>
