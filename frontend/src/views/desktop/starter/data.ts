@@ -75,6 +75,7 @@ export const plugins: Plugin[] = [
       openWindow({
         component: markRaw(ImageVue),
         ...item,
+        dark: true,
       });
       showStarter.value = false;
     },
@@ -87,6 +88,7 @@ export const plugins: Plugin[] = [
       openWindow({
         component: markRaw(Video),
         ...item,
+        dark: true,
       });
       showStarter.value = false;
     },

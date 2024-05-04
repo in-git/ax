@@ -13,6 +13,7 @@
     :minHeight="400"
     enableNativeDrag
     @resizestop="resizestop"
+    :class="[dark ? 'window-dark' : '']"
     :id="id"
   >
     <a-card :bordered="false" :bodyStyle="{ padding: 0 }" class="drag-header">
@@ -83,6 +84,7 @@ const props = withDefaults(
     icon?: string;
     x?: number;
     y?: number;
+    dark?: boolean;
   }>(),
   {
     w: 1000,
@@ -90,6 +92,7 @@ const props = withDefaults(
     resizable: false,
     y: 0,
     x: 0,
+    dark: false,
   },
 );
 
@@ -211,5 +214,11 @@ $hh: 36px;
   font-size: 14px !important;
   width: 40px;
   height: 36px;
+}
+.window-dark {
+  .drag-header {
+    background-color: #222;
+    color: white;
+  }
 }
 </style>

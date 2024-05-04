@@ -7,7 +7,7 @@ export const cropperImage = ref('');
 export const cropperResult = ref<CropperData>();
 
 export const cropperProps = ref({
-  zoom: true,
+  zoom: false,
   stencilProps: {
     movable: true,
     resizable: true,

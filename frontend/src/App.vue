@@ -28,6 +28,7 @@
         :id="item.id"
         @close="closeWindow(item.id || '')"
         :icon="item.icon"
+        :dark="item.dark"
       >
         <Animation
           appear

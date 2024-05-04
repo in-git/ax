@@ -2,12 +2,12 @@
   <a-card :bordered="false" :body-style="{ padding: '8px 0' }">
     <a-flex :justify="'space-between'">
       <a-flex :gap="4">
-        <a-button @click="clear">清除</a-button>
+        <a-button @click="clear" ghost>清除</a-button>
       </a-flex>
 
       <a-flex :gap="8">
         <a-popover trigger="click" placement="bottomRight">
-          <a-button>
+          <a-button ghost>
             <template #icon>
               <SettingOutlined />
             </template>
@@ -37,7 +37,7 @@
         </a-popover>
 
         <a-popover trigger="click" placement="bottomRight">
-          <a-button>
+          <a-button ghost>
             <div>
               <span>导出</span>
               <down-outlined class="system__subtitle" />
@@ -99,6 +99,9 @@ const clear = () => {
   cropperImage.value = '';
 };
 
+onUnmounted(() => {
+  clear();
+});
 const download = () => {
   nextTick(async () => {
     if (cropperResult.value) {
