@@ -39,7 +39,8 @@
     "vue-advanced-cropper": "^2.8.8",
     "vue-i18n": "^9.11.0",
     "vue-responsive-video-background-player": "^2.3.1",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vue3-tree-org": "^4.2.2"
   },
   "devDependencies": {
     "@types/mockjs": "^1.0.10",
