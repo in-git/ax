@@ -16,10 +16,7 @@ import usePageStore from '@/store/page';
 import { backgroundLoading } from '@/store/page/utils';
 import type { CSSProperties } from 'vue';
 import VideoBackground from 'vue-responsive-video-background-player';
-
-const defaultBackground = getStaticImage(
-  `wallpaper/windows-11-logo-colorful-background-digital-art-hd-wallpaper-uhdpaper.com-127@0@h.jpg`,
-);
+import defaultBackground from '../assets/background.webp';
 
 const pageStore = usePageStore();
 
