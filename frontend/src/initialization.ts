@@ -35,15 +35,6 @@ export const loadSystemComponents = () => {
   }
 };
 
-/* 加载谷歌字体 */
-export const loadGoogleFont = () => {
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href =
-    'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap';
-  document.head.appendChild(link);
-};
-
 /* 设置请求 */
 export const setAxios = () => {
   const store = useSystemStore();

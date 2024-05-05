@@ -29,7 +29,7 @@
                 @click="selectItem(item.url)"
                 :class="{ active: currentSrc === item.url }"
               >
-                <img :src="item.icon || getFavicon(item.url)" width="32" />
+                <img :src="getStaticImage(item.icon) || getFavicon(item.url)" width="32" />
               </li>
             </a-tooltip>
           </template>
@@ -43,7 +43,7 @@
 import type { IQuery } from '@/api/config/types';
 import type { SystemWebsite } from '@/api/modules/system/website/types';
 import { fetchWebsiteList } from '@/api/modules/system/website/website';
-import { getFavicon } from '@/api/utils/image';
+import { getFavicon, getStaticImage } from '@/api/utils/image';
 import { typeOptions, typeOptionsFetch } from '@/views/modules/system/website/data/options';
 import { enterUrl } from '../../data/browser.methods';
 

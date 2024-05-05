@@ -38,20 +38,18 @@
         />
         <StarVue />
       </div>
-      <div class="system__icon" @click="open">
-        <LinkOutlined />
-      </div>
-
-      <div class="system__icon">
-        <EllipsisOutlined />
-      </div>
+      <a-tooltip title="外部链接打开">
+        <div class="system__icon" @click="open">
+          <LinkOutlined />
+        </div>
+      </a-tooltip>
     </a-flex>
   </div>
 </template>
 
 <script setup lang="ts">
 import { openLink } from '@/utils/common/utils';
-import { EllipsisOutlined, RightOutlined } from '@ant-design/icons-vue';
+import { RightOutlined } from '@ant-design/icons-vue';
 import { useCloned } from '@vueuse/core';
 import { nanoid } from 'nanoid';
 import { browserLoading, currentBrowserTab, homePage } from '../data/browser';

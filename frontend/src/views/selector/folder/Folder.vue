@@ -1,13 +1,7 @@
 <template>
   <a-card class="folder system__module">
-    <a-card>
-      <div class="system__subtitle">
-        数量:
-        <span class="ml-8">{{ data.length }}</span>
-      </div>
-    </a-card>
     <a-card class="mt-8">
-      <ul class="flex-wrap" ref="ulRef">
+      <ul>
         <li
           v-for="(item, key) in props.data"
           :key="key"
@@ -17,31 +11,33 @@
           v-show="!item.hidden"
           class="flex justify-between align-center"
         >
-          <div class="flex gc-16 flex-1">
-            <a-flex justify="space-between" :align="'center'">
-              <div v-if="item.meta.link" class="link h-100">
-                <img
-                  ref="imageRef"
-                  :src="`https://favicon.qqsuu.cn/${item.meta.link}`"
-                  @error="onError(key)"
-                  :draggable="false"
-                />
-              </div>
-              <div v-else-if="item.meta">
-                <img :src="getIconByName(item) || logoPng" :draggable="false" />
-              </div>
-              <div v-else>
-                <img :src="getStaticImage('image-icon/edge.png')" :draggable="false" />
-              </div>
+          <a-card class="w-100">
+            <a-flex class="gc-16">
+              <a-flex justify="space-between" :align="'center'">
+                <div v-if="item.meta.link" class="link h-100">
+                  <img
+                    ref="imageRef"
+                    :src="`https://favicon.qqsuu.cn/${item.meta.link}`"
+                    @error="onError(key)"
+                    :draggable="false"
+                  />
+                </div>
+                <div v-else-if="item.meta">
+                  <img :src="getIconByName(item) || logoPng" :draggable="false" />
+                </div>
+                <div v-else>
+                  <img :src="getStaticImage('image-icon/edge.png')" :draggable="false" />
+                </div>
+              </a-flex>
+              <a-flex justify="space-between" :align="'center'" class="flex-1 info">
+                <div>
+                  <div>{{ item.meta.title }}</div>
+                  <div class="system__subtitle mt-8">路径： {{ item.path }}</div>
+                </div>
+                <a-button class="open" @click="openApp(item)">打开</a-button>
+              </a-flex>
             </a-flex>
-            <a-flex justify="space-between" :align="'center'" class="flex-1 info">
-              <div>
-                <div>{{ item.meta.title }}</div>
-                <div class="system__subtitle mt-8">路径： {{ item.path }}</div>
-              </div>
-              <a-button shape="round" class="open" @click="openApp(item)">打开</a-button>
-            </a-flex>
-          </div>
+          </a-card>
         </li>
       </ul>
     </a-card>
@@ -64,7 +60,6 @@ const onError = (key: number) => {
 };
 
 const current = ref<Routers>();
-const ulRef = ref();
 
 const selectItem = (item: Routers) => {
   current.value = item;

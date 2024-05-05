@@ -49,7 +49,6 @@ import { closeWindow, windowList } from '@/global/config/window';
 import { ConfigProvider, Modal, theme } from 'ant-design-vue';
 import zh_CN from 'ant-design-vue/es/locale/zh_CN';
 import {
-  loadGoogleFont,
   loadSystemComponents,
   loadSystemIcons,
   setAxios,
@@ -78,8 +77,6 @@ nextTick(async () => {
   loadSystemIcons();
   /* 初始化系统本地组件 */
   loadSystemComponents();
-  /* 初始化字体 */
-  loadGoogleFont();
 
   /* 初始化事件 */
   setEvent();

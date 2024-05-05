@@ -3,7 +3,8 @@
     <div class="app-background flex-1 flex flex-col" v-if="backgroundType.type === 'video'">
       <VideoBackground class="h-100" :src="backgroundType.src"></VideoBackground>
     </div>
-    <div v-else-if="backgroundType.type === 'image'" class="app-background" :style="style">
+    <div v-else-if="backgroundType.type === 'image'" class="app-background">
+      <div class="w-100 h-100 background" :style="style"></div>
       <Loading v-if="backgroundLoading" desc="正在加载背景图片"></Loading>
     </div>
   </div>
@@ -49,16 +50,30 @@ const style = computed((): CSSProperties => {
 </script>
 
 <style lang="scss" scoped>
+.background {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
 .app-background {
   height: 100vh;
   width: 100vw;
   z-index: 10;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
+
   position: fixed;
   top: 0;
   left: 0;
   pointer-events: none;
+  animation: app-background 2s forwards;
+  @keyframes app-background {
+    0% {
+      opacity: 0;
+      filter: brightness(0%);
+    }
+    100% {
+      opacity: 1;
+      filter: brightness(100%);
+    }
+  }
 }
 </style>
