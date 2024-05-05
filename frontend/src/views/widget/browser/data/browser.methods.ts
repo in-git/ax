@@ -1,4 +1,4 @@
-import { openWindow, setData, windowIsExist } from '@/global/config/window';
+import { openWindow, setData, windowIsExist } from '@/global/window/window';
 import Browser from '../Browser.vue';
 import { browserLoading, currentBrowserTab } from './browser';
 import { browserTabs, setBrowserTitle } from './browser.tabs';

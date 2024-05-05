@@ -45,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { closeWindow, windowList } from '@/global/config/window';
+import { closeWindow, windowList } from '@/global/window/window';
 import { ConfigProvider, Modal, theme } from 'ant-design-vue';
 import zh_CN from 'ant-design-vue/es/locale/zh_CN';
 import {
@@ -131,3 +131,4 @@ const localTheme = computed(() => {
   }
 }
 </style>
+@/global/windows/window

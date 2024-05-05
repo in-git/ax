@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { setAttr } from '@/global/config/window';
+import { setAttr } from '@/global/window/window';
 import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { MdPreview } from 'md-editor-v3';
@@ -115,3 +115,4 @@ textarea {
   user-select: none;
 }
 </style>
+@/global/windows/window

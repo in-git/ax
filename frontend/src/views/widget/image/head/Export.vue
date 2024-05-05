@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { openNotepad } from '@/global/config/widget';
+import { openNotepad } from '@/global/window/widget';
 import { downloadBase64Image } from '@/utils/file/file';
 import { ExportOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
@@ -86,3 +86,4 @@ const getBas64 = () => {
 </script>
 
 <style lang="scss" scoped></style>
+@/global/windows/widget

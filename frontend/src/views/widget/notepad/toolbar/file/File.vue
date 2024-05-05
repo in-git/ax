@@ -34,7 +34,7 @@
 import { createMemo } from '@/api/modules/system/memo/memo';
 import { getStaticImage } from '@/api/utils/image';
 import SystemModal from '@/components/modal/SysModal.vue';
-import { getData, openWindow } from '@/global/config/window';
+import { getData, openWindow } from '@/global/window/window';
 import { response } from '@/utils/table/table';
 import { nanoid } from 'nanoid';
 import NotepadVue from '../../Notepad.vue';
@@ -87,3 +87,4 @@ const saveText = async () => {
 <style lang="scss" scoped>
 @import '../common';
 </style>
+@/global/windows/window

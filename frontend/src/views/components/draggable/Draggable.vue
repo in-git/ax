@@ -52,7 +52,7 @@
 
 <script setup lang="ts">
 import Loading from '@/components/loading/Loading.vue';
-import { hiddenWindow, setCurrentWindow, toTop, windowList } from '@/global/config/window';
+import { hiddenWindow, setCurrentWindow, toTop, windowList } from '@/global/window/window';
 import usePageStore from '@/store/page';
 import { initModuleWH } from '@/store/page/utils';
 import { CompressOutlined, ExpandOutlined, MinusOutlined } from '@ant-design/icons-vue';
@@ -222,3 +222,4 @@ $hh: 36px;
   }
 }
 </style>
+@/global/windows/window

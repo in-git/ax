@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { getStaticImage } from '@/api/utils/image';
 import logo from '@/assets/logo.png';
-import { openWindow } from '@/global/config/window';
+import { openWindow } from '@/global/window/window';
 import usePageStore from '@/store/page';
 import PageSetting from '@/views/desktop/setting/PageSetting.vue';
 import { SettingOutlined } from '@ant-design/icons-vue';
@@ -49,3 +49,4 @@ const style = computed((): CSSProperties => {
   z-index: 10;
 }
 </style>
+@/global/windows/window

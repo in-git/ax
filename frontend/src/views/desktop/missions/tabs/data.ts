@@ -1,4 +1,4 @@
-import { closeWindow, setCurrentWindow, windowList } from '@/global/config/window';
+import { closeWindow, setCurrentWindow, windowList } from '@/global/window/window';
 import type { SystemWindow } from '@/types/system';
 import { setContextMenu } from '@/views/components/contextmenu/data';
 import { CloseOutlined, DeleteOutlined } from '@ant-design/icons-vue';

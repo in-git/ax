@@ -1,6 +1,6 @@
 import type { Routers } from '@/api/modules/system/user/types';
 import { getStaticImage } from '@/api/utils/image';
-import { minWindow, openWindow } from '@/global/config/window';
+import { minWindow, openWindow } from '@/global/window/window';
 import { setContextMenu } from '@/views/components/contextmenu/data';
 import {
   DesktopOutlined,

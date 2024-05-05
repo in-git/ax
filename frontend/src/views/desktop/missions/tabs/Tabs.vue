@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import logoPng from '@/assets/logo.png';
-import { closeWindow, currentWindow, toTop, windowList } from '@/global/config/window';
+import { closeWindow, currentWindow, toTop, windowList } from '@/global/window/window';
 import type { SystemWindow } from '@/types/system';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import { tabContextmenu } from './data';
@@ -49,3 +49,4 @@ const onError = (item: SystemWindow) => {
 <style lang="scss" scoped>
 @import './style';
 </style>
+@/global/windows/window

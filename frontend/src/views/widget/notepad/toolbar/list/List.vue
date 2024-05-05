@@ -39,7 +39,7 @@
 import type { IQuery } from '@/api/config/types';
 import { fetchMemoList } from '@/api/modules/system/memo/memo';
 import type { SystemMemo } from '@/api/modules/system/memo/types';
-import { setData } from '@/global/config/window';
+import { setData } from '@/global/window/window';
 import { memoTypeOptions } from '@/views/modules/system/memo/data/options';
 
 const notepadList = ref<SystemMemo[]>([]);
@@ -104,3 +104,4 @@ const selectNotepad = (info: SystemMemo) => {
   }
 }
 </style>
+@/global/windows/window

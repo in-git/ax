@@ -52,8 +52,8 @@
 import type { UserProfileData } from '@/api/modules/system/user/types';
 import { userLogout } from '@/api/modules/system/user/utils';
 import { getStaticImage } from '@/api/utils/image';
-import { openWindow } from '@/global/config/window';
 import { sexOptions } from '@/global/options/system';
+import { openWindow } from '@/global/window/window';
 import { getLabel } from '@/utils/common/utils';
 import { Modal } from 'ant-design-vue';
 import ProFileForm from '../profile-form/ProfileForm.vue';
@@ -103,3 +103,4 @@ const logout = async () => {
   box-shadow: none !important;
 }
 </style>
+@/global/windows/window

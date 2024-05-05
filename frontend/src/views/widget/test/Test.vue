@@ -72,7 +72,7 @@
 
 <script setup lang="ts">
 import { getStaticImage } from '@/api/utils/image';
-import { openWindow } from '@/global/config/window';
+import { openWindow } from '@/global/window/window';
 import Gallery from '@/views/selector/gallery/Gallery.vue';
 import IconSelector from '@/views/selector/icon/IconSelector.vue';
 import Memo from '@/views/selector/memo/Memo.vue';
@@ -127,3 +127,4 @@ const openImage = () => {
 </script>
 
 <style lang="scss" scoped></style>
+@/global/windows/window
