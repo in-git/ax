@@ -1,6 +1,6 @@
 <template>
   <a-card class="system__module">
-    <video controls :src="src" v-if="src"></video>
+    <video controls :src="data.src" v-if="data"></video>
     <div v-else class="h-100 empty flex flex-s">
       <div class="text-linear-gradient">AX视频播放器</div>
     </div>
@@ -9,7 +9,9 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  src?: string;
+  data?: {
+    src: string;
+  };
 }>();
 </script>
 

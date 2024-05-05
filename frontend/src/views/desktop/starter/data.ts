@@ -95,7 +95,7 @@ export const plugins: Plugin[] = [
   },
   {
     title: '测试',
-    id: 'video',
+    id: 'test',
     icon: getStaticImage('image-icon/getstarted.png'),
     action(item: Plugin) {
       openWindow({
