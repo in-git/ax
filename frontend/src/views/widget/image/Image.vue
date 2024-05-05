@@ -13,16 +13,14 @@ import { cropperImage } from './data/data';
 import ImageHead from './head/ImageHead.vue';
 
 const props = defineProps<{
-  src?: string;
+  data?: { src: string };
 }>();
 
 watch(
   props,
   () => {
-    console.log(props);
-
-    if (props.src) {
-      cropperImage.value = props.src;
+    if (props.data) {
+      cropperImage.value = props.data.src;
     }
   },
   {

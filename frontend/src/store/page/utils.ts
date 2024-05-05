@@ -26,7 +26,7 @@ export const initModuleWH = (id: string) => {
   const module = pageStore.$state.window[id];
   /* 当模块不存在，初始化 */
   if (!module) {
-    const w = Math.floor(window.innerWidth * 0.7);
+    const w = Math.floor(window.innerWidth * 0.6);
     const h = Math.floor(window.innerHeight * 0.7);
     pageStore.$state.window[id] = {
       width: w > 1000 ? 1000 : w,
