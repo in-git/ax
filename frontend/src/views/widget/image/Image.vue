@@ -9,11 +9,27 @@
 
 <script setup lang="ts">
 import ImageContent from './content/ImageContent.vue';
+import { cropperImage } from './data/data';
 import ImageHead from './head/ImageHead.vue';
 
 const props = defineProps<{
   src?: string;
 }>();
+
+watch(
+  props,
+  () => {
+    console.log(props);
+
+    if (props.src) {
+      cropperImage.value = props.src;
+    }
+  },
+  {
+    deep: true,
+    immediate: true,
+  },
+);
 </script>
 
 <style lang="scss" scoped>

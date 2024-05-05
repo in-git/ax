@@ -103,6 +103,7 @@ textarea {
   width: 100%;
   word-break: break-all;
   overflow-x: hidden;
+  white-space: pre-wrap;
 }
 .count {
   position: absolute;
