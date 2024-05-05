@@ -1,4 +1,5 @@
 import { getStaticImage } from '@/api/utils/image';
+import Browser from '@/views/widget/browser/Browser.vue';
 import ImageVue from '@/views/widget/image/Image.vue';
 import Notepad from '@/views/widget/notepad/Notepad.vue';
 import Video from '@/views/widget/video/Video.vue';
@@ -39,5 +40,18 @@ export const openVideo = (src: string) => {
     data: {
       src,
     },
+  });
+};
+
+type BrowserProps = { src?: string; html?: string; title?: string };
+
+export const openBrowser = (config: BrowserProps) => {
+  openWindow({
+    title: '浏览器',
+    component: markRaw(Browser),
+    id: 'video',
+    icon: getStaticImage('image-icon/edge.png'),
+    dark: true,
+    data: config,
   });
 };

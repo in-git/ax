@@ -49,4 +49,3 @@ const onError = (item: SystemWindow) => {
 <style lang="scss" scoped>
 @import './style';
 </style>
-@/global/windows/window

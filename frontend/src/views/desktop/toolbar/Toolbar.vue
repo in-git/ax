@@ -49,4 +49,3 @@ const style = computed((): CSSProperties => {
   z-index: 10;
 }
 </style>
-@/global/windows/window

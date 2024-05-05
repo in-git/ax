@@ -15,6 +15,12 @@
           </a-input>
         </div>
       </a-card>
+      <a-card title="浏览器测试">
+        <a-flex>
+          <input v-model="link" type="text" placeholder="请输入链接" />
+          <button @click="showBrowser">打开链接</button>
+        </a-flex>
+      </a-card>
       <a-card title="视频测试">
         <a-flex>
           <input v-model="videoSrc" type="text" placeholder="请输入视频地址" />
@@ -72,6 +78,7 @@
 
 <script setup lang="ts">
 import { getStaticImage } from '@/api/utils/image';
+import { openBrowser } from '@/global/window/widget';
 import { openWindow } from '@/global/window/window';
 import Gallery from '@/views/selector/gallery/Gallery.vue';
 import IconSelector from '@/views/selector/icon/IconSelector.vue';
@@ -85,6 +92,7 @@ const textarea = ref('AX后台管理');
 const base64 = ref(
   `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAAXNSR0IArs4c6QAAACpJREFUGFdjZLbp//+PkYHh////DMwMjAyMzDYT//9jQABsAv3/kRQwAABSkg05zdHXzgAAAABJRU5ErkJggg==`,
 );
+const link = ref('https://win11.blueedge.me/');
 const icon = ref();
 const gallery = ref();
 const memo = ref();
@@ -124,7 +132,11 @@ const openImage = () => {
     },
   });
 };
+const showBrowser = () => {
+  openBrowser({
+    src: link.value,
+  });
+};
 </script>
 
 <style lang="scss" scoped></style>
-@/global/windows/window

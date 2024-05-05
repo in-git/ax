@@ -103,4 +103,3 @@ const logout = async () => {
   box-shadow: none !important;
 }
 </style>
-@/global/windows/window

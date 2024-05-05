@@ -104,4 +104,3 @@ const selectNotepad = (info: SystemMemo) => {
   }
 }
 </style>
-@/global/windows/window

@@ -131,4 +131,3 @@ const localTheme = computed(() => {
   }
 }
 </style>
-@/global/windows/window

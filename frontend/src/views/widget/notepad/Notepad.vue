@@ -115,4 +115,3 @@ textarea {
   user-select: none;
 }
 </style>
-@/global/windows/window

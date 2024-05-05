@@ -87,4 +87,3 @@ const saveText = async () => {
 <style lang="scss" scoped>
 @import '../common';
 </style>
-@/global/windows/window

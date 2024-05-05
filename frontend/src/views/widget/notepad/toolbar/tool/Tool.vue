@@ -127,4 +127,3 @@ const items: ItemType[] = [
   }
 }
 </style>
-@/global/windows/window
