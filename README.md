@@ -1,25 +1,50 @@
 
 
 <div align="center"><h1 align="center">AX</h3></div>
-<div align="center"><h3 align="center">Windows 操作风格的后台管理系统</h3></div>
+<div align="center"><h3 align="center">Windows 操作风格的后台管理系统</h3>
+</div>
 
 <p align="center">     
     <p align="center">
         <a>
             <img src="https://img.shields.io/badge/AX-V1.0-green" alt="AX">
         </a>
-        <a href="https://gitee.com/in-git/ax.git">
-            <img src="https://gitee.com/in-git/ax/badge/star.svg?theme=dark" alt="Gitee star">
+        <a href="https://gitee.com/in-git/ax-view.git">
+            <img src="https://gitee.com/in-git/ax-view/badge/star.svg?theme=dark" alt="Gitee star">
         </a>
-        <a href="https://gitee.com/in-git/ax">
-            <img src="https://gitee.com/in-git/ax/badge/fork.svg?theme=dark" alt="Gitee fork">
+        <a href="https://gitee.com/in-git/ax-view">
+            <img src="https://gitee.com/in-git/ax-view/badge/fork.svg?theme=dark" alt="Gitee fork">
         </a>
     </p>
 </p>
 
 
 
+#### 前言
 
+网上有不少仿windows的项目，但基本上都是demo，没有多大实际意义。而AX是一款具备windows操作风格，而且能投入生产的管理系统。
+
+#### 状态
+
+内测中，当前链接为预览版，不支持移动端访问，部分功能正在完善中...
+
+#### 功能
+
+1. 后端fork自若依，数据有所改动，前端界面，交互完全重构
+
+2. 新注册的用户为访客，能使用备忘录，网页收藏，反馈功能，用户数据独立
+
+3. ```
+   `观察者账号： observer
+   `观察者密码： axobserver
+   `观察者能看到整个系统的功能，但不能进行任何操作
+   ```
+
+#### 预览
+
+<img src="public/cover-1.webp">
+
+<img src="public/cover-2.webp">
 
 #### 本地功能
 
@@ -80,7 +105,7 @@
 - ###### 表单功能
 
   - [x] 字段筛选：可动态配置表头，自带记忆
-  - [x] 模式切换：提供表格模式，卡片模式，卡片模式需要自定义
+  - [x] 模式切换：提供表格模式，卡片模式，卡片模式部分内容可能要修改代码
   - [x] 搜索记忆：记录用于曾经搜索过的内容，可快速方便的录入
   - [x] 快捷方式
     1. 双击卡片内容编辑
