@@ -1,7 +1,7 @@
 <template>
   <a-card class="system-memo" title="备忘录列表" :body-style="{ overflow: 'auto' }">
     <template #extra>
-      <a-button class="mr-4" @click="getList">
+      <a-button @click="getList">
         <reload-outlined />
       </a-button>
     </template>

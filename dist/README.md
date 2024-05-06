@@ -42,9 +42,9 @@
 
 #### 预览
 
-<img src="http://in-git.gitee.io/ax-resource/public/cover-1.webp">
+<img src="public/cover-1.webp">
 
-<img src="http://in-git.gitee.io/ax-resource/public/cover-2.webp">
+<img src="public/cover-2.webp">
 
 #### 本地功能
 
