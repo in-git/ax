@@ -1,3 +1,52 @@
+######################################################################
+# Build Tools
+
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+######################################################################
+# IDE
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### JRebel ###
+rebel.xml
+
+### NetBeans ###
+nbproject/private/
+build/*
+nbbuild/
+
+nbdist/
+.nb-gradle/
+
+######################################################################
+# Others
+*.log
+*.xml.versionsBackup
+*.swp
+
+!*/build/*.java
+!*/build/*.html
+!*/build/*.xml
+
+
 # Logs
 logs
 *.log
@@ -9,10 +58,9 @@ lerna-debug.log*
 
 node_modules
 .DS_Store
-dist
 dist-ssr
 coverage
-*.local
+/java/**/application-local.yml
 
 /cypress/videos/
 /cypress/screenshots/
@@ -26,3 +74,11 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+
+# nodejs
+nodejs/src/assets/
+/resource/
+application-local.yml
+application-build.yml
+dist

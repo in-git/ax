@@ -1,0 +1,32 @@
+.folder {
+	ul {
+		display: grid;
+		gap: 12px;
+		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	}
+	li {
+		img {
+			width: 42px;
+		}
+	}
+	.title {
+		height: 54px;
+		padding-bottom: 8px;
+	}
+	.folder-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 8px;
+		background: white;
+	}
+}
+
+.open {
+	border: 1px solid var(--primary);
+	color: var(--primary);
+	&:hover {
+		background-color: var(--primary);
+		color: white;
+	}
+}

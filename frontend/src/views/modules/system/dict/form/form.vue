@@ -1,0 +1,65 @@
+<template>
+  <a-form
+    :model="dictForm"
+    :wrapper-col="{ span: 8, offset: 1 }"
+    :label-col="{ span: 4, offset: 4 }"
+    label-align="right"
+    @finish="submit"
+  >
+    <SystemModal title="字典配置/新增" v-model:visible="showDictForm">
+      <div class="h-100 flex flex-col">
+        <a-row>
+          <a-col :span="8" :offset="9">
+            <div class="py-12 text-center">
+              <img :src="TeamWork" width="160" />
+            </div>
+          </a-col>
+        </a-row>
+        <div class="flex-1 p-8">
+          <a-form-item label="字典名称" name="dictName" required>
+            <a-input v-model:value="dictForm.dictName" placeholder="请输入字典名称"></a-input>
+          </a-form-item>
+          <a-form-item label="字典类型" required name="dictType">
+            <a-input v-model:value="dictForm.dictType" 请输入字典类型></a-input>
+          </a-form-item>
+          <a-form-item label="状态" required name="status">
+            <a-radio-group v-model:value="dictForm.status" :options="statusOptions"></a-radio-group>
+          </a-form-item>
+          <a-form-item label="备注" name="remark">
+            <a-textarea v-model:value="dictForm.remark"></a-textarea>
+          </a-form-item>
+          <a-row>
+            <a-col :span="8" :offset="9">
+              <a-button :loading="loading" type="primary" htmlType="submit" block>提交</a-button>
+            </a-col>
+          </a-row>
+        </div>
+      </div>
+    </SystemModal>
+  </a-form>
+</template>
+
+<script setup lang="ts">
+import { createDict, updateDict } from '@/api/modules/system/dict/dict';
+import SystemModal from '@/components/modal/SysModal.vue';
+import { statusOptions } from '@/global/options/system';
+import { response } from '@/utils/table/table';
+import TeamWork from '../assets/TeamWork.png';
+import { dictList } from '../data/curd';
+import { dictForm, showDictForm } from '../data/form';
+
+const loading = ref(false);
+const submit = async () => {
+  loading.value = true;
+  if (dictForm.value.dictId) {
+    await response(updateDict, dictForm.value);
+  } else {
+    await response(createDict, dictForm.value);
+  }
+  loading.value = false;
+  await dictList();
+  showDictForm.value = false;
+};
+</script>
+
+<style lang="scss" scoped></style>

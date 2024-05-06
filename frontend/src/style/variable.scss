@@ -1,0 +1,30 @@
+:root {
+  --secondary: #ece9ea;
+
+  --radius: 4px;
+  --box-shadow: 0 6px 16px 0 #00000014, 0 3px 6px -4px #0000001f, 0 9px 28px 8px #0000000d;
+
+  /* 间距 */
+  --padding: 8px;
+  --margin: 8px;
+  --transition: 0.2s;
+  /* 动画效果 */
+  --animate-duration: var(--transition);
+
+  /* 文本 */
+  --title: 14px;
+  --subtitle: 12px;
+  --desc: 12px;
+  --font-size: 12px;
+  --gap: 8px;
+  /* 主题样式 */
+  --primary: #3785fa;
+  /* 主题背景色 */
+  --color-primary-bg: #e6f4ff;
+  /* 鼠标hover的背景色 */
+  --color-primary-hover-bg: #9999994f;
+  /* 通用白板背景色 */
+  --color-background: #f0f2f5;
+
+  --linear-gradient: -webkit-linear-gradient(bottom left, #8064ff, #07a6f0, #9307f0);
+}

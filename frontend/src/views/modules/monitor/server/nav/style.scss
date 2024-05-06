@@ -1,0 +1,33 @@
+.nav {
+	position: absolute;
+	color: white;
+	top: 10px;
+	left: 0;
+	z-index: 100;
+	ul {
+		%center {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		li {
+			width: 100px;
+			line-height: 32px;
+			cursor: pointer;
+			@extend %center;
+			color: #777;
+			&:hover {
+				color: #aaa;
+			}
+		}
+	}
+	.icon {
+		width: 24px;
+		height: 24px;
+		@extend %center;
+	}
+	li.active {
+		font-weight: bold;
+		color: white;
+	}
+}

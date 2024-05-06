@@ -1,0 +1,17 @@
+import { getOptionsByName } from '@/api/modules/system/dict/dict.data';
+import { dictDataToOptions } from '@/utils/table/table';
+// 从系统字典中获取字段数据
+#foreach($column in $columns)
+#set($dictType=$column.dictType)
+#set($javaField=$column.javaField)
+#if($dictType != "")
+export const ${javaField}Options = ref()
+
+export const ${javaField}OptionsFetch = async () => {
+  const { data } = await getOptionsByName('$dictType');
+  if (data.data) {
+    ${javaField}Options.value = dictDataToOptions(data.data);
+  }
+};
+#end
+#end

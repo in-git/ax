@@ -1,0 +1,54 @@
+<template>
+  <div class="theme-global">
+    <a-card>
+      <template #title>
+        <div class="system__subtitle text-12">全局配置</div>
+      </template>
+      <a-space direction="vertical" class="w-100" :size="24">
+        <a-flex justify="space-between" :align="'center'">
+          <div>字体大小</div>
+          <div>
+            <a-select
+              @change="setCssVar"
+              style="width: 120px"
+              v-model:value="pageStore.$state.theme.fontSize"
+              :options="fontSizeOptions"
+            ></a-select>
+          </div>
+        </a-flex>
+
+        <a-flex justify="space-between" :align="'center'">
+          <div>圆角</div>
+          <div>
+            <a-select
+              @change="setCssVar"
+              v-model:value="pageStore.$state.theme.borderRadius"
+              style="width: 120px"
+              :options="borderRadiusOptions"
+            ></a-select>
+          </div>
+        </a-flex>
+      </a-space>
+    </a-card>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { setCssVar } from '@/initialization';
+import usePageStore from '@/store/page';
+import { borderRadiusOptions, fontSizeOptions } from './options';
+const pageStore = usePageStore();
+</script>
+
+<style lang="scss" scoped>
+.theme-global {
+  li {
+    height: 80px;
+    border: 1px solid #ddd;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+</style>

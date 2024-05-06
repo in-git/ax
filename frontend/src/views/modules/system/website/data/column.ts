@@ -1,0 +1,26 @@
+import type { TableColumnProps } from 'ant-design-vue';
+
+const websiteColumns = ref<TableColumnProps[]>([
+  {
+    title: '网页名称',
+    dataIndex: 'name',
+  },
+  {
+    title: '网页URL',
+    dataIndex: 'url',
+  },
+  {
+    title: '网页描述',
+    dataIndex: 'description',
+  },
+  {
+    title: '网页类型',
+    dataIndex: 'type',
+  },
+  {
+    title: '来源',
+    dataIndex: 'from',
+  },
+]);
+
+export { websiteColumns };

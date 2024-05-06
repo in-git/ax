@@ -1,0 +1,129 @@
+#foreach($column in $columns)
+#if($column.isPk == "1")
+#set($Key=$column.javaField)
+#end
+#end
+<template>
+  <a-form
+     :rules="${businessName}Rules"
+     :model="${businessName}Form"
+     @finish="submit"
+     :wrapper-col="{ span: 8, offset: 1 }"
+     :label-col="{ span: 4, offset: 4 }">
+    <SystemModal title="$functionName" v-model:visible="${businessName}ShowForm">
+      <a-card title="编辑/新增" class="form__head">
+        <template #extra>
+          <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
+        </template>
+      <a-card class="mt-8">
+#foreach($column in $columns)
+#set($comment=$column.columnComment)
+#set($field=$column.javaField)
+         #if($column.isInsert == '0')
+         #elseif($column.isQuery == '1' && $column.htmlType == "select" && "" != $column.dictType)
+           <a-form-item label="${comment}" name="$field" >
+             <a-select
+               v-model:value="${businessName}Form.$column.javaField"
+               class="w-100"
+               placeholder="请选择$column.columnComment"
+               allow-clear
+               @change="${businessName}List"
+               :options="${column.javaField}Options"
+             ></a-select>
+            </a-form-item>
+         #elseif($column.htmlType == "input")
+           <a-form-item label="${comment}" name="$field">
+             <a-input placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}">
+                <template #addonAfter>
+                  <a-popover trigger="click" title="快速录入">
+                    <BookOutlined />
+                    <template #content>
+                      <Memo v-model:value="${businessName}Form.${column.javaField}" />
+                    </template>
+                  </a-popover>
+                </template>
+             </a-input>
+           </a-form-item>
+         #elseif($column.htmlType == "textarea")
+           <a-form-item label="${comment}" name="$field">
+             <a-textarea placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}"></a-textarea>
+           </a-form-item>
+         #elseif($column.htmlType == "select")
+           <a-form-item label="${comment}" name="$field">
+             <a-select placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}">
+             </a-select>
+           </a-form-item>
+         #elseif($column.htmlType == "radio")
+           <a-form-item label="${comment}" name="$field">
+             <a-radio-group v-model:value="${businessName}Form.${column.javaField}">
+               <!-- Radio options here -->
+             </a-radio-group>
+           </a-form-item>
+         #elseif($column.htmlType == "checkbox")
+           <a-form-item label="${comment}" name="$field">
+             <a-checkbox-group v-model:value="${businessName}Form.${column.javaField}">
+               <!-- Checkbox options here -->
+             </a-checkbox-group>
+           </a-form-item>
+         #elseif($column.htmlType == "datetime")
+           <a-form-item label="${comment}" name="$field">
+             <a-date-picker  class="w-100"></a-date-picker>
+           </a-form-item>
+         #elseif($column.htmlType == "imageUpload")
+           <a-form-item label="${comment}" name="$field">
+             <a-image-upload v-model:value="${businessName}Form.${column.javaField}"></a-image-upload>
+           </a-form-item>
+         #elseif($column.htmlType == "fileUpload")
+           <a-form-item label="${comment}" name="$field">
+             <a-file-upload v-model:value="${businessName}Form.${column.javaField}"></a-file-upload>
+           </a-form-item>
+         #elseif($column.htmlType == "editor")
+           <a-form-item label="${comment}" name="$field">
+             <a-textarea placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}"></a-textarea>
+           </a-form-item>
+         #end
+         #end
+
+         </a-card>
+    </SystemModal>
+  </a-form>
+</template>
+
+<script setup lang="ts">
+import Memo from '@/views/selector/memo/Memo.vue';
+import {
+#foreach($column in $columns)
+#if($column.dictType != "")
+   ${column.javaField}Options,
+#end
+#end
+} from '../../data/options';
+import SystemModal from '@/components/modal/SysModal.vue';
+import {
+  ${businessName}Form,
+  ${businessName}ShowForm,
+  ${businessName}Rules
+} from '../../data/form';
+import { response } from '@/utils/table/table';
+import {  ${businessName}List } from '../../data/curd';
+import {
+  create${BusinessName},
+  update${BusinessName}} from
+'@/api/modules/${moduleName}/${businessName}/${businessName}';
+
+const loading = ref(false)
+
+const submit = async () => {
+  loading.value = true
+    if (${businessName}Form.value.$Key) {
+    await response(update${BusinessName}, ${businessName}Form.value);
+  } else {
+    await response(create${BusinessName}, ${businessName}Form.value);
+  }
+  await ${businessName}List();
+  loading.value = false
+  ${businessName}ShowForm.value = false;
+};
+</script>
+
+<style lang="scss" scoped></style>

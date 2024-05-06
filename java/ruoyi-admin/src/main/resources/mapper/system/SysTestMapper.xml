@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.SysTestMapper">
+    
+    <resultMap type="SysTest" id="SysTestResult">
+        <result property="testId"    column="test_id"    />
+        <result property="textField"    column="text_field"    />
+        <result property="numberField"    column="number_field"    />
+        <result property="dateField"    column="date_field"    />
+        <result property="richTextField"    column="rich_text_field"    />
+        <result property="selectField"    column="select_field"    />
+        <result property="booleanField"    column="boolean_field"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="textareaField"    column="textarea_field"    />
+        <result property="treeField"    column="tree_field"    />
+        <result property="sort"    column="sort"    />
+    </resultMap>
+
+    <sql id="selectSysTestVo">
+        select test_id, text_field, number_field, date_field, rich_text_field, select_field, boolean_field, create_time, update_time, textarea_field, tree_field,sort from sys_test s
+    </sql>
+
+    <select id="selectSysTestList" parameterType="SysTest" resultMap="SysTestResult">
+        <include refid="selectSysTestVo"/>
+        <where>  
+            <if test="textField != null  and textField != ''"> and text_field = #{textField}</if>
+            <if test="numberField != null "> and number_field = #{numberField}</if>
+            <if test="dateField != null "> and date_field = #{dateField}</if>
+            <if test="richTextField != null  and richTextField != ''"> and rich_text_field = #{richTextField}</if>
+            <if test="selectField != null  and selectField != ''"> and select_field = #{selectField}</if>
+            <if test="booleanField != null  and booleanField != ''"> and boolean_field = #{booleanField}</if>
+            <if test="textareaField != null  and textareaField != ''"> and textarea_field = #{textareaField}</if>
+            <if test="treeField != null  and treeField != ''"> and tree_field = #{treeField}</if>
+
+            <if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+                and date_format(s.create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+            </if>
+            <if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+                and date_format(s.create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+            </if>
+        </where>
+    </select>
+    
+    <select id="selectSysTestByTestId" parameterType="Long" resultMap="SysTestResult">
+        <include refid="selectSysTestVo"/>
+        where test_id = #{testId}
+    </select>
+        
+    <insert id="insertSysTest" parameterType="SysTest">
+        insert into sys_test
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="testId != null">test_id,</if>
+            <if test="textField != null">text_field,</if>
+            <if test="numberField != null">number_field,</if>
+            <if test="dateField != null">date_field,</if>
+            <if test="richTextField != null">rich_text_field,</if>
+            <if test="selectField != null">select_field,</if>
+            <if test="booleanField != null">boolean_field,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="textareaField != null">textarea_field,</if>
+            <if test="treeField != null">tree_field,</if>
+            <if test="sort != null">sort,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="testId != null">#{testId},</if>
+            <if test="textField != null">#{textField},</if>
+            <if test="numberField != null">#{numberField},</if>
+            <if test="dateField != null">#{dateField},</if>
+            <if test="richTextField != null">#{richTextField},</if>
+            <if test="selectField != null">#{selectField},</if>
+            <if test="booleanField != null">#{booleanField},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="textareaField != null">#{textareaField},</if>
+            <if test="treeField != null">#{treeField},</if>
+            <if test="sort != null">#{sort},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSysTest" parameterType="SysTest">
+        update sys_test
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="textField != null">text_field = #{textField},</if>
+            <if test="numberField != null">number_field = #{numberField},</if>
+            <if test="dateField != null">date_field = #{dateField},</if>
+            <if test="richTextField != null">rich_text_field = #{richTextField},</if>
+            <if test="selectField != null">select_field = #{selectField},</if>
+            <if test="booleanField != null">boolean_field = #{booleanField},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="textareaField != null">textarea_field = #{textareaField},</if>
+            <if test="treeField != null">tree_field = #{treeField},</if>
+            <if test="sort != null">sort = #{sort},</if>
+        </trim>
+        where test_id = #{testId}
+    </update>
+
+    <delete id="deleteSysTestByTestId" parameterType="Long">
+        delete from sys_test where test_id = #{testId}
+    </delete>
+
+    <delete id="deleteSysTestByTestIds" parameterType="String">
+        delete from sys_test where test_id in 
+        <foreach item="testId" collection="array" open="(" separator="," close=")">
+            #{testId}
+        </foreach>
+    </delete>
+</mapper>
