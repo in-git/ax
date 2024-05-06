@@ -1,4 +1,4 @@
-import { windowList } from '@/global/config/window';
+import { windowList } from '@/global/window/window';
 import useSystemStore from '@/store/system';
 import useUserStore from '@/store/user';
 import { logout } from './user';

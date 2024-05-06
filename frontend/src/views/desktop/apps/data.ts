@@ -2,7 +2,7 @@ import type { Routers } from '@/api/modules/system/user/types';
 import { getRouters } from '@/api/modules/system/user/user';
 import { getStaticImage } from '@/api/utils/image';
 import logo from '@/assets/logo.png';
-import { openWindow, setCurrentWindow } from '@/global/config/window';
+import { openWindow, setCurrentWindow } from '@/global/window/window';
 import { systemComponents } from '@/initialization';
 import { openLink } from '@/utils/common/utils';
 import FolderVue from '@/views/selector/folder/Folder.vue';

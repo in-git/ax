@@ -24,7 +24,7 @@ body {
   /* 自定义滚动条轨道 */
   *::-webkit-scrollbar-track {
     background-color: var(--color-primary-bg);
-    border-radius: 0;
+    border-radius: 2px;
   }
 
   /* 自定义滚动条滑块 */
@@ -36,7 +36,7 @@ body {
       #74ebd5
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-    border-radius: 10px;
+    border-radius: 2px;
   }
 
   /* 当鼠标悬停在滚动条上时滑块的样式 */

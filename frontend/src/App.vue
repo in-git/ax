@@ -28,6 +28,7 @@
         :id="item.id"
         @close="closeWindow(item.id || '')"
         :icon="item.icon"
+        :dark="item.dark"
       >
         <Animation
           appear
@@ -44,11 +45,10 @@
 </template>
 
 <script setup lang="ts">
-import { closeWindow, windowList } from '@/global/config/window';
+import { closeWindow, windowList } from '@/global/window/window';
 import { ConfigProvider, Modal, theme } from 'ant-design-vue';
 import zh_CN from 'ant-design-vue/es/locale/zh_CN';
 import {
-  loadGoogleFont,
   loadSystemComponents,
   loadSystemIcons,
   setAxios,
@@ -77,8 +77,6 @@ nextTick(async () => {
   loadSystemIcons();
   /* 初始化系统本地组件 */
   loadSystemComponents();
-  /* 初始化字体 */
-  loadGoogleFont();
 
   /* 初始化事件 */
   setEvent();
@@ -90,9 +88,6 @@ nextTick(async () => {
     Modal.confirm({
       title: '警告',
       content: '当前访问的是https的网址,暂时不支持。请手动粘贴http的网址进行浏览，后续会解决该问题',
-      onOk() {
-        window.location.href = 'http://in-git.gitee.io/ax-view/';
-      },
       centered: true,
     });
   }

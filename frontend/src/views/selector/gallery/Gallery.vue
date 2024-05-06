@@ -12,7 +12,7 @@
           @click="selectItem(item)"
           :class="[{ active: selectedSet.includes(item) }]"
         >
-          <img :src="getStaticHost(`${type}/${item}`)" />
+          <img :src="getStaticImage(`${type}/${item}`)" />
         </li>
       </ul>
       <a-empty v-else />
@@ -21,8 +21,8 @@
 </template>
 
 <script setup lang="ts">
+import { getStaticImage } from '@/api/utils/image';
 import { avatars, imageIcons, wallpaperList } from '@/global/data/resource.list';
-import { getStaticHost } from '@/store/system/utils';
 import type { IconType } from '@/types/system';
 
 const props = withDefaults(
@@ -51,7 +51,7 @@ const selectItem = (item: string) => {
 
 const confirm = () => {
   if (props.limit === 1) {
-    emit('update:value', selectedSet.value[0]);
+    emit('update:value', `${props.type}/${selectedSet.value[0]}`);
     return;
   }
   emit('update:value', selectedSet.value);
@@ -80,9 +80,13 @@ onMounted(() => {
 }
 .wallpaper {
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  li {
+    height: 100px;
+  }
 }
 :deep(.ant-card-body) {
   max-height: 400px;
+  min-width: 400px;
   overflow-y: auto;
 }
 

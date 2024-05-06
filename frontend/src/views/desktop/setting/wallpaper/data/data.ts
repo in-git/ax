@@ -1,6 +1,6 @@
 import { videoWallpaperList, wallpaperList } from '@/global/data/resource.list';
 
-export const galleryData = ref<string[]>([]);
+export const galleryData = ref<string[]>(wallpaperList);
 export const galleryType = ref<'video' | 'image'>('image');
 export const galleryLoading = ref(false);
 

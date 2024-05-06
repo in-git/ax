@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import { qfMsg } from '@/api/external/qian-fan/qian-fan';
-import { getData, setData } from '@/global/config/window';
+import { getData, setData } from '@/global/window/window';
 import { QrcodeOutlined, RetweetOutlined } from '@ant-design/icons-vue';
 import { message, type ItemType } from 'ant-design-vue';
 import { MdPreview } from 'md-editor-v3';

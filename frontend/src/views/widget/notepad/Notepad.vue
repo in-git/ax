@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { setAttr } from '@/global/config/window';
+import { setAttr } from '@/global/window/window';
 import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { MdPreview } from 'md-editor-v3';
@@ -72,6 +72,8 @@ provide('data', props.id || '');
 watch(
   props,
   () => {
+    console.log(props);
+
     content.value = props.data || '';
   },
   {
@@ -101,6 +103,7 @@ textarea {
   width: 100%;
   word-break: break-all;
   overflow-x: hidden;
+  white-space: pre-wrap;
 }
 .count {
   position: absolute;

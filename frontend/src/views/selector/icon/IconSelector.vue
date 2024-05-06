@@ -6,6 +6,7 @@
         :key="key"
         @click="selectItem(item)"
         :class="{ active: item === active }"
+        @dblclick="confirm"
       >
         <img :src="getStaticImage(`${currentType}/${item}`)" :alt="item" width="32" />
       </li>
@@ -28,7 +29,7 @@ const currentType = ref<IconType>('image-icon');
 const emit = defineEmits(['update:modelValue']);
 
 defineProps<{
-  modelValue: string | null;
+  modelValue: string | undefined;
 }>();
 
 const confirm = () => {

@@ -1,18 +1,15 @@
 .folder {
 	ul {
-		display: flex;
-		gap: 28px;
+		display: grid;
+		gap: 12px;
+		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 	}
 	li {
-		min-width: 240px;
-		flex: 1;
 		img {
 			width: 42px;
 		}
-		max-width: 280px;
 	}
 	.title {
-		border-bottom: 1px solid #ddd;
 		height: 54px;
 		padding-bottom: 8px;
 	}
@@ -24,11 +21,7 @@
 		background: white;
 	}
 }
-.info {
-	height: 68px;
-	position: relative;
-	border-bottom: 1px solid #ddd;
-}
+
 .open {
 	border: 1px solid var(--primary);
 	color: var(--primary);

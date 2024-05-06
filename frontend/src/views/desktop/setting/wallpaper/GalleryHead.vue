@@ -25,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+import usePageStore from '@/store/page';
 import { setBackground } from '@/store/page/utils';
 import { toBase64 } from '@/utils/file/file';
 import { UploadOutlined } from '@ant-design/icons-vue';
@@ -37,7 +38,7 @@ const { files, open, onChange } = useFileDialog({
 });
 const use = () => {
   if (currentGallery.value) {
-    setBackground(currentGallery.value, galleryType.value);
+    setBackground(`wallpaper/${currentGallery.value}`, galleryType.value);
   }
 };
 
@@ -61,8 +62,9 @@ onChange(async () => {
   const file = files.value[0];
   const image = await toBase64(file);
 
-  setBackground(image, 'image');
-  console.log(files.value);
+  const store = usePageStore();
+  store.$state.desktop.background.src = image;
+  store.$state.desktop.background.type = 'image';
 });
 </script>
 

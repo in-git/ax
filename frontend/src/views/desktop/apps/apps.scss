@@ -9,10 +9,7 @@
 		height: 100%;
 		flex-wrap: wrap;
 	}
-	%selected {
-		border: 1px solid #8db1e4;
-		background: #7091c098;
-	}
+
 	li {
 		height: fit-content;
 		width: $app-width;
@@ -24,7 +21,9 @@
 		border-radius: var(--radius);
 
 		&:hover {
-			@extend %selected;
+			.title {
+				color: var(--primary);
+			}
 		}
 		.logo {
 			padding: 2px 0;
@@ -47,6 +46,7 @@
 		}
 	}
 	li.selected {
-		@extend %selected;
+		border: 1px solid #8db1e4;
+		background: #8ea7ca69;
 	}
 }

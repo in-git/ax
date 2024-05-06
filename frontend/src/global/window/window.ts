@@ -4,15 +4,17 @@ import { message } from 'ant-design-vue';
 
 /*    */
 export const windowList = ref<SystemWindow[]>([]);
-
+/**
+ * @author 吴文龙
+ * @param config.component是必填项
+ * @param config.title是必填项
+ * @description 打开/新建一个窗口
+ */
 export const openWindow = (config: SystemWindow) => {
   if (!config.id) {
     config.id = 'system-default-window';
     message.warn('窗口没有设置ID');
   }
-  const isExist = windowList.value.find(e => {
-    return e.id === config.id;
-  });
 
   config.hidden = false;
 
@@ -29,10 +31,15 @@ export const openWindow = (config: SystemWindow) => {
 
   config.z = windowList.value.length;
 
-  if (!isExist) {
+  const target = windowList.value.find(e => {
+    return e.id === config.id;
+  });
+  console.log(target, windowList);
+
+  if (!target) {
     windowList.value.push(config);
   } else {
-    isExist.hidden = false;
+    target.hidden = false;
   }
 };
 

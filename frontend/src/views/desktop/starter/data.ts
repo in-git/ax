@@ -1,6 +1,6 @@
 import { getStaticImage } from '@/api/utils/image';
 import aiPng from '@/assets/apps/gpt.png';
-import { openWindow } from '@/global/config/window';
+import { openWindow } from '@/global/window/window';
 import AI from '@/views/widget/ai/AI.vue';
 import Browser from '@/views/widget/browser/Browser.vue';
 import Help from '@/views/widget/help/Help.vue';
@@ -75,6 +75,7 @@ export const plugins: Plugin[] = [
       openWindow({
         component: markRaw(ImageVue),
         ...item,
+        dark: true,
       });
       showStarter.value = false;
     },
@@ -87,13 +88,14 @@ export const plugins: Plugin[] = [
       openWindow({
         component: markRaw(Video),
         ...item,
+        dark: true,
       });
       showStarter.value = false;
     },
   },
   {
     title: '测试',
-    id: 'video',
+    id: 'test',
     icon: getStaticImage('image-icon/getstarted.png'),
     action(item: Plugin) {
       openWindow({

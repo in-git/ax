@@ -1,5 +1,10 @@
 <template>
   <a-card class="system-memo" title="备忘录列表" :body-style="{ overflow: 'auto' }">
+    <template #extra>
+      <a-button @click="getList">
+        <reload-outlined />
+      </a-button>
+    </template>
     <a-flex :gap="2" class="px-4 py-8" :justify="'space-between'">
       <a-segmented
         @change="getList"
@@ -7,9 +12,6 @@
         v-model:value="query.type"
       ></a-segmented>
       <a-flex>
-        <a-button class="mr-4" @click="getList">
-          <reload-outlined />
-        </a-button>
         <a-button type="primary" @click="confirm" :disabled="!currentRow">确定</a-button>
       </a-flex>
     </a-flex>

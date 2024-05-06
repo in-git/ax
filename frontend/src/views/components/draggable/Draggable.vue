@@ -13,6 +13,7 @@
     :minHeight="400"
     enableNativeDrag
     @resizestop="resizestop"
+    :class="[dark ? 'window-dark' : '']"
     :id="id"
   >
     <a-card :bordered="false" :bodyStyle="{ padding: 0 }" class="drag-header">
@@ -51,7 +52,7 @@
 
 <script setup lang="ts">
 import Loading from '@/components/loading/Loading.vue';
-import { hiddenWindow, setCurrentWindow, toTop, windowList } from '@/global/config/window';
+import { hiddenWindow, setCurrentWindow, toTop, windowList } from '@/global/window/window';
 import usePageStore from '@/store/page';
 import { initModuleWH } from '@/store/page/utils';
 import { CompressOutlined, ExpandOutlined, MinusOutlined } from '@ant-design/icons-vue';
@@ -83,6 +84,7 @@ const props = withDefaults(
     icon?: string;
     x?: number;
     y?: number;
+    dark?: boolean;
   }>(),
   {
     w: 1000,
@@ -90,6 +92,7 @@ const props = withDefaults(
     resizable: false,
     y: 0,
     x: 0,
+    dark: false,
   },
 );
 
@@ -170,8 +173,8 @@ onMounted(() => {
   if (props.id) setCurrentWindow(props.id);
   windowProps.value.w = props.w;
   windowProps.value.h = props.h;
-  if (props.x) windowProps.value.x = props.x;
-  if (props.y) windowProps.value.y = props.y;
+  if (props.x) windowProps.value.x = props.x < 0 ? 0 : props.x;
+  if (props.y) windowProps.value.y = props.y < 0 ? 0 : props.y;
 });
 </script>
 
@@ -211,5 +214,11 @@ $hh: 36px;
   font-size: 14px !important;
   width: 40px;
   height: 36px;
+}
+.window-dark {
+  .drag-header {
+    background-color: #222;
+    color: white;
+  }
 }
 </style>
