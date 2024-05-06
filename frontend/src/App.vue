@@ -82,15 +82,6 @@ nextTick(async () => {
   setEvent();
   /* 设置主题变量 */
   setCssVar();
-
-  /* 当前不支持https访问 */
-  if (window.location.href.startsWith('https')) {
-    Modal.confirm({
-      title: '警告',
-      content: '当前访问的是https的网址,暂时不支持。请手动粘贴http的网址进行浏览，后续会解决该问题',
-      centered: true,
-    });
-  }
 });
 /* 设置本地主题 */
 const localTheme = computed(() => {

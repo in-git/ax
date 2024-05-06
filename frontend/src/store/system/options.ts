@@ -11,7 +11,7 @@ export const baseUrlOptions = [
   },
   {
     label: '若依官网',
-    value: 'http://vue.ruoyi.vip/prod-api/',
+    value: 'https://vue.ruoyi.vip/prod-api/',
     id: 'ruo-yi',
   },
 ];
