@@ -100,6 +100,7 @@ declare module 'vue' {
     OrderedListOutlined: typeof import('@ant-design/icons-vue')['OrderedListOutlined']
     PlusOutlined: typeof import('@ant-design/icons-vue')['PlusOutlined']
     PoweroffOutlined: typeof import('@ant-design/icons-vue')['PoweroffOutlined']
+    QrcodeOutlined: typeof import('@ant-design/icons-vue')['QrcodeOutlined']
     ReloadOutlined: typeof import('@ant-design/icons-vue')['ReloadOutlined']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

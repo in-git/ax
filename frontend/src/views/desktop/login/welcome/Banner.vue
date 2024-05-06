@@ -43,8 +43,6 @@
 import { getStaticImage } from '@/api/utils/image';
 import { getStars, startedList } from './banner/data';
 
-import 'vue3-tree-org/lib/vue3-tree-org.css';
-
 onMounted(() => {
   getStars();
 });
