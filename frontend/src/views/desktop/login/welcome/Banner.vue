@@ -96,6 +96,7 @@ h3 {
   overflow-y: auto;
   position: relative;
   height: 100%;
+  min-width: 240px;
 }
 .preview {
   width: 100%;

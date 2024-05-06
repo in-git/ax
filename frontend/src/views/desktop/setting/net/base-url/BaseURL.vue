@@ -38,6 +38,27 @@
       </a-card>
     </a-flex>
   </a-card>
+  <a-card :bordered="false" class="card__container">
+    <a-flex :justify="'space-between'">
+      <div>资源服务器</div>
+      <a-flex style="width: 200px" :align="'center'" :gap="12">
+        <div class="w-100">
+          <a-select
+            allowClear
+            class="w-100"
+            v-model:value="developer.$state.developer.resourceHost"
+            :options="staticOptions"
+            @change="changeResourceHost"
+          ></a-select>
+        </div>
+        <div>
+          <a-tooltip title="将会影响到整个页面的图标,壁纸选择，图标选择" placement="topRight">
+            <InfoCircleFilled />
+          </a-tooltip>
+        </div>
+      </a-flex>
+    </a-flex>
+  </a-card>
   <a-modal :footer="false" title="创建服务器" centered v-model:open="open" width="400px">
     <a-card>
       <a-form layout="vertical" @finish="submit" :model="serverForm">
@@ -58,6 +79,7 @@
 <script setup lang="ts">
 import { userLogout } from '@/api/modules/system/user/utils';
 import useSystemStore from '@/store/system';
+import { staticOptions } from '@/store/system/options';
 import type { URLSelection } from '@/store/system/types';
 import { getHost } from '@/store/system/utils';
 import { useCloned } from '@vueuse/core';
@@ -100,7 +122,17 @@ const submit = () => {
   }
   open.value = false;
 };
-
+/* 设置静态资源服务器 */
+const changeResourceHost = () => {
+  Modal.confirm({
+    title: '切换静态资源服务器',
+    content: '刷新界面后生效',
+    centered: true,
+    async onOk() {
+      window.location.reload();
+    },
+  });
+};
 const setBaseurl = (url: string) => {
   Modal.confirm({
     title: '切换服务器',

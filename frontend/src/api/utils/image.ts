@@ -1,9 +1,15 @@
+import type { SystemStore } from '@/store/system/types';
+
 /* 获取静态资源目录 */
-export const getStaticImage = (path: string) => {
+export const getStaticImage = (path: string): string => {
   if (!path) {
     return '';
   }
-  const resourceUrl = 'http://150.158.14.110:8002';
+  const systemStore = localStorage.getItem('system');
+  if (!systemStore) return '';
+  const { developer } = JSON.parse(systemStore) as SystemStore;
+  if (!developer) return '';
+  const resourceUrl = developer.resourceHost || 'http://150.158.14.110:8002';
   return `${resourceUrl}/${path}`;
 };
 
