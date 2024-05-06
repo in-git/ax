@@ -9,11 +9,11 @@
         <a>
             <img src="https://img.shields.io/badge/AX-V1.0-green" alt="AX">
         </a>
-        <a href="https://gitee.com/in-git/ax-view.git">
-            <img src="https://gitee.com/in-git/ax-view/badge/star.svg?theme=dark" alt="Gitee star">
+        <a href="https://gitee.com/in-git/ax.git">
+            <img src="https://gitee.com/in-git/ax/badge/star.svg?theme=dark" alt="Gitee star">
         </a>
-        <a href="https://gitee.com/in-git/ax-view">
-            <img src="https://gitee.com/in-git/ax-view/badge/fork.svg?theme=dark" alt="Gitee fork">
+        <a href="https://gitee.com/in-git/ax">
+            <img src="https://gitee.com/in-git/ax/badge/fork.svg?theme=dark" alt="Gitee fork">
         </a>
     </p>
 </p>
@@ -22,11 +22,7 @@
 
 #### 前言
 
-网上有不少仿windows的项目，但基本上都是demo，没有多大实际意义。而AX是一款具备windows操作风格，而且能投入生产的管理系统。
-
-#### 状态
-
-内测中，当前链接为预览版，不支持移动端访问，部分功能正在完善中...
+网上有不少仿windows的项目，但基本上都是demo，没有多大实际意义。而AX是一款具备windows操作风格，而且能投入生产的管理系统。当前为基础版，没有绑定任何业务。
 
 #### 功能
 

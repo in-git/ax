@@ -22,6 +22,7 @@
           />
           <video
             muted
+            controlslist="nodownload"
             v-else
             ref="videoRefs"
             @mouseenter="mouseenter(key)"

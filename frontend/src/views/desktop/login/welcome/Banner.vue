@@ -19,9 +19,11 @@
     <div class="grid-item starred">
       <a-flex :justify="'space-between'">
         <h3>Star的用户</h3>
-        <a target="_blank" href="https://gitee.com/in-git/ax.git">
-          <img src="https://gitee.com/in-git/ax/badge/star.svg?theme=dark" alt="Gitee star" />
-        </a>
+        <span>
+          <a target="_blank" href="https://gitee.com/in-git/ax.git">
+            <img src="https://gitee.com/in-git/ax/badge/star.svg?theme=dark" alt="Gitee star" />
+          </a>
+        </span>
       </a-flex>
       <div class="starred-list">
         <div v-for="item in startedList" :key="item.id">
