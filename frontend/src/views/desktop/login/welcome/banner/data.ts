@@ -26,7 +26,7 @@ export const startedList = ref<Stared[]>([]);
 
 export const getStars = async () => {
   const { data } = await http.get<Stared[]>(
-    `https://gitee.com/api/v5/repos/in-git/ax-view/stargazers?page=1&per_page=20`,
+    `https://gitee.com/api/v5/repos/in-git/ax/stargazers?page=1&per_page=20`,
   );
   startedList.value = data;
 };

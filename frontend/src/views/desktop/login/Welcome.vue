@@ -6,8 +6,8 @@
         <div class="desc">Windows操作风格的管理系统</div>
         <div class="desc">一键生成增删改查代码,可二次开发</div>
         <div class="text-center">
-          <a target="_blank" href="https://gitee.com/in-git/ax-view">
-            <img :src="getFavicon(`https://gitee.com/in-git/ax-view`)" width="32" />
+          <a target="_blank" href="https://gitee.com/in-git/ax">
+            <img :src="getFavicon(`https://gitee.com/in-git/ax`)" width="32" />
           </a>
           <a target="_blank" class="ml-12" @click="tips">
             <img :src="getFavicon('https://space.bilibili.com/301733306')" width="32" />
