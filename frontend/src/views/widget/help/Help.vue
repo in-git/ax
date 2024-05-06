@@ -2,7 +2,7 @@
   <a-card class="system__module help">
     <a-row :gutter="12" class="h-100">
       <a-col :span="6">
-        <a-card title="帮助列表" :bordered="false">
+        <a-card title="帮助列表" :bordered="false" :body-style="{ padding: 0 }">
           <a-menu
             v-model:selected-keys="selectedKeys"
             :items="urlList"
@@ -11,7 +11,7 @@
         </a-card>
       </a-col>
       <a-col :span="18">
-        <iframe
+        <!-- <iframe
           v-if="currentUrl"
           class="w-100 h-100"
           :src="currentUrl"
@@ -19,7 +19,8 @@
           frameborder="no"
           framespacing="0"
           allowfullscreen="true"
-        ></iframe>
+        ></iframe> -->
+        <a-empty v-if="currentUrl" description="正在建设中"></a-empty>
         <a-card v-else :bordered="false">
           <a-row>
             <a-col :span="12" :offset="6">

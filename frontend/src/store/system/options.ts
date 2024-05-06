@@ -11,21 +11,25 @@ export const baseUrlOptions = [
   },
   {
     label: '若依官网',
-    value: 'http://vue.ruoyi.vip/prod-api/',
+    value: 'https://vue.ruoyi.vip/prod-api/',
     id: 'ruo-yi',
   },
 ];
 export const staticOptions = [
   {
-    url: `http://in-git.gitee.io/ax-resource`,
+    value: `http://in-git.gitee.io/ax-resource`,
     label: 'GITEE',
   },
   {
-    url: `http://localhost`,
+    value: `http://localhost:8080`,
     label: '本地',
   },
   {
-    url: `http://150.158.14.110:8000`,
-    label: '测试服务器',
+    value: `https://in-git.github.io/ax-resource/nodejs/images`,
+    label: 'GITHUB',
+  },
+  {
+    value: `http://150.158.14.110:8002`,
+    label: 'AX测试服务器',
   },
 ];

@@ -1,8 +1,8 @@
 <template>
   <div class="banner">
     <div class="grid-item ad">
-      <div class="relative" style="max-width: 600px">
-        <div class="absolute w-100 h-100 p-12">
+      <div class="preview-container" style="max-width: 600px">
+        <div class="preview">
           <a-carousel autoplay>
             <div v-for="item in 5" :key="item">
               <a-image :src="getStaticImage(`public/cover-${item}.webp`)"></a-image>
@@ -11,7 +11,7 @@
 
           <h3 class="mt-16">AX简介</h3>
           <p class="description">
-            我们为您提供了一个全面的功能套件，其中包括多项内置基础功能，以满足您的各种需求。首先，我们的记事本功能让您可以轻松记录重要的想法、备忘录和待办事项。而浏览器功能则让您能够方便地浏览互联网上的各种信息和资源。此外，我们还提供了先进的人工智能对话功能，可以与您进行智能对话，并为您提供相关的信息和建议。而视频播放功能则使您能够观看各种视频内容，包括电影、剧集和在线课程。最后，我们的图片处理功能让您能够轻松编辑和优化您的照片，以满足您的个性化需求。这些功能的集合使您能够更加高效地完成各种任务，并且提升您的数字生活体验。
+            为您提供了一个全面的功能套件，其中包括多项内置基础功能，以满足您的各种需求。首先，记事本功能让您可以轻松记录重要的想法、备忘录和待办事项。而浏览器功能则让您能够方便地浏览互联网上的各种信息和资源。此外，我们还提供了先进的人工智能对话功能，可以与您进行智能对话，并为您提供相关的信息和建议。而视频播放功能则使您能够观看各种视频内容，包括电影、剧集和在线课程。最后，图片处理功能让您能够轻松编辑和优化您的照片，以满足您的个性化需求。这些功能的集合使您能够更加高效地完成各种任务，并且提升您的数字生活体验。
           </p>
         </div>
       </div>
@@ -19,9 +19,11 @@
     <div class="grid-item starred">
       <a-flex :justify="'space-between'">
         <h3>Star的用户</h3>
-        <a target="_blank" href="https://gitee.com/in-git/ax.git">
-          <img src="https://gitee.com/in-git/ax/badge/star.svg?theme=dark" alt="Gitee star" />
-        </a>
+        <span>
+          <a target="_blank" href="https://gitee.com/in-git/ax.git">
+            <img src="https://gitee.com/in-git/ax/badge/star.svg?theme=dark" alt="Gitee star" />
+          </a>
+        </span>
       </a-flex>
       <div class="starred-list">
         <div v-for="item in startedList" :key="item.id">
@@ -89,8 +91,20 @@ h3 {
     }
   }
 }
-.description {
-  color: #999;
-  letter-spacing: 2px;
+.preview-container {
+  max-height: 600px;
+  overflow-y: auto;
+  position: relative;
+  height: 100%;
+  min-width: 240px;
+}
+.preview {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  .description {
+    color: #999;
+    letter-spacing: 2px;
+  }
 }
 </style>

@@ -47,6 +47,16 @@
             <InfoCircleFilled />
             如果使用的是AX体验服务器，请务必在http下使用
           </div>
+          <div class="system__subtitle">
+            <InfoCircleFilled />
+            若依官网账号:admin；密码:admin123
+          </div>
+          <div class="system__subtitle">
+            <InfoCircleFilled />
+            登录成功后，可在历史记录
+            <HistoryOutlined />
+            中切换账号
+          </div>
           <a-button type="primary" html-type="submit" class="mt-24" :loading="loginLoading" block>
             登录
           </a-button>
@@ -59,6 +69,7 @@
 <script setup lang="ts">
 import useSystemStore from '@/store/system';
 import { baseUrlOptions } from '@/store/system/options';
+import { HistoryOutlined } from '@ant-design/icons-vue';
 import {
   captchaImage,
   changeMode,

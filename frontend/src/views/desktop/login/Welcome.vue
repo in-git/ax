@@ -5,12 +5,22 @@
       <div class="mb-12">
         <div class="desc">Windows操作风格的管理系统</div>
         <div class="desc">一键生成增删改查代码,可二次开发</div>
-        <div class="text-center">
-          <a target="_blank" href="https://gitee.com/in-git/ax">
+        <div class="text-center flex gc-12 justify-center">
+          <a target="_blank" href="https://gitee.com/in-git/ax" title="gitee">
             <img :src="getFavicon(`https://gitee.com/in-git/ax`)" width="32" />
           </a>
-          <a target="_blank" class="ml-12" @click="tips">
-            <img :src="getFavicon('https://space.bilibili.com/301733306')" width="32" />
+          <a target="_blank" href="https://github.com/in-git/ax.git" title="github">
+            <img :src="getFavicon(`https://github.com`)" width="32" />
+          </a>
+          <a target="_blank" @click="tips">
+            <img
+              :src="getFavicon('https://space.bilibili.com/301733306')"
+              width="32"
+              title="bilibili"
+            />
+          </a>
+          <a target="_blank" href="https://gitcode.com/in-git/ax/" title="gitcode">
+            <img :src="getFavicon('https://gitcode.com/')" width="32" />
           </a>
         </div>
       </div>
