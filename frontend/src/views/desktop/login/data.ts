@@ -32,6 +32,7 @@ export const getCaptcha = async () => {
   loginForm.value.uuid = data.uuid;
 };
 
+/* 修改登陆注册模式 */
 export const changeMode = (mode: Mode) => {
   if (mode === 'register') {
     loginForm.value = {
@@ -41,6 +42,7 @@ export const changeMode = (mode: Mode) => {
 
   loginMode.value = mode;
 };
+/* 出错后重新拉取二维码 */
 const onError = () => {
   loginLoading.value = false;
   loginForm.value.code = '';

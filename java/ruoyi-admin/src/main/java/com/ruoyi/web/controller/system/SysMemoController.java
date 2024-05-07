@@ -1,4 +1,4 @@
-package com.ruoyi.system.controller;
+package com.ruoyi.web.controller.system;
 
 import com.ruoyi.common.annotation.DataScope;
 import com.ruoyi.common.annotation.Log;
