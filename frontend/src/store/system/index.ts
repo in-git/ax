@@ -10,7 +10,7 @@ const useSystemStore = defineStore('system', {
       baseURL,
       urlSelection: baseUrlOptions,
       timeout: 8,
-      resourceHost: '',
+      resourceHost: 'https://in-git.github.io/ax-resource/nodejs/images',
     },
   }),
   persist: true,

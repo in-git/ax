@@ -23,7 +23,12 @@
             ></a-input-password>
           </a-form-item>
 
-          <a-form-item label="验证码" name="code" required>
+          <a-form-item
+            label="验证码"
+            name="code"
+            :required="requiredCaptcha"
+            v-if="requiredCaptcha"
+          >
             <div class="flex gc-12">
               <a-input placeholder="请输入验证码" :maxlength="2" v-model:value="loginForm.code" />
               <a-image
@@ -78,8 +83,10 @@ import {
   loginForm,
   loginLoading,
   loginRules,
+  requiredCaptcha,
 } from '../data';
 import LoginHistory from '../history/LoginHistory.vue';
+
 const store = useSystemStore();
 const onChange = () => {
   window.location.reload();

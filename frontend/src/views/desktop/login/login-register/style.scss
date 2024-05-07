@@ -2,9 +2,12 @@
 	padding: 24px;
 	min-width: 400px;
 	width: 30%;
+	overflow-y: auto;
+	height: 100%;
 	.form-container {
 		height: 100%;
 		width: 100%;
+		overflow-y: auto;
 	}
 	h4 {
 		font-size: 16px;
@@ -17,4 +20,8 @@
 		border-bottom: 4px solid var(--primary);
 		cursor: pointer;
 	}
+}
+.card__content {
+	height: 100vh;
+	overflow-y: auto;
 }
