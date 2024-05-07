@@ -7,7 +7,7 @@
       <a-space class="w-100" direction="vertical" :size="24">
         <a-flex class="w-100" justify="space-between">
           <div class="flex align-center">
-            <div>紧凑模式</div>
+            <div>模式切换</div>
           </div>
           <div>
             <a-select

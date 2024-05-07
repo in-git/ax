@@ -10,7 +10,7 @@
 
     <name>ruoyi</name>
     <url><!--  --></url>
-    <description>若依管理系统</description>
+    <description>AX管理系统</description>
     
     <properties>
         <ruoyi.version>3.8.7</ruoyi.version>
