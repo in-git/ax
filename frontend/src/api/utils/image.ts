@@ -6,10 +6,10 @@ export const getStaticImage = (path: string): string => {
     return '';
   }
   const systemStore = localStorage.getItem('system');
-  if (!systemStore) return '';
+  if (!systemStore) return `http://150.158.14.110:8002/${path}`;
   const { developer } = JSON.parse(systemStore) as SystemStore;
   if (!developer) return '';
-  const resourceUrl = developer.resourceHost || 'http://150.158.14.110:8002';
+  const resourceUrl = developer.resourceHost;
   return `${resourceUrl}/${path}`;
 };
 

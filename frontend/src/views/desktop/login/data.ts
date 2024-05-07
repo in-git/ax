@@ -5,6 +5,7 @@ import type { Rule } from 'ant-design-vue/es/form';
 import { nanoid } from 'nanoid';
 import { getProfile } from '../toolbar/profile/data';
 
+export const requiredCaptcha = ref<boolean>(true);
 export const captchaImage = ref();
 type Mode = 'login' | 'register';
 export const loginLoading = ref<boolean>(false);
@@ -23,6 +24,10 @@ export const loginForm = ref({
 
 export const getCaptcha = async () => {
   const { data } = await captcha();
+  if (!data.captchaEnabled) {
+    requiredCaptcha.value = false;
+    return;
+  }
   captchaImage.value = `data:image/gif;base64,${data.img}`;
   loginForm.value.uuid = data.uuid;
 };
@@ -42,7 +47,7 @@ const onError = () => {
   getCaptcha();
 };
 
-/* 登录 */
+/* 登录,登陆成功后，会记住账号密码 */
 export const enter = async () => {
   try {
     loginLoading.value = true;
@@ -67,9 +72,9 @@ export const enter = async () => {
         id: nanoid(),
       });
     }
+    store.$state.token = data.token;
     await getProfile();
     changeMode('login');
-    store.$state.token = data.token;
   } catch (error) {
     onError();
   }
@@ -91,14 +96,12 @@ export const loginRules: Record<string, Rule[]> = {
   password: [
     {
       required: true,
-      min: 6,
       max: 18,
     },
   ],
   username: [
     {
       required: true,
-      min: 5,
     },
   ],
 };
