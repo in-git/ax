@@ -60,10 +60,6 @@ const mouseleave = (index: number) => {
     videoRefs.value[index].pause();
   }
 };
-
-onUnmounted(() => {
-  galleryType.value = 'image';
-});
 </script>
 
 <style lang="scss" scoped>

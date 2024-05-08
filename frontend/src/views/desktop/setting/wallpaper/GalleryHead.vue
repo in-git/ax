@@ -61,10 +61,15 @@ onChange(async () => {
   if (!files.value) return;
   const file = files.value[0];
   const image = await toBase64(file);
-
   const store = usePageStore();
   store.$state.desktop.background.src = image;
   store.$state.desktop.background.type = 'image';
+});
+
+onMounted(() => {
+  const pageStore = usePageStore();
+  galleryType.value = pageStore.$state.desktop.background.type;
+  changeGalleryType();
 });
 </script>
 
