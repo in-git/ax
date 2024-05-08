@@ -31,10 +31,10 @@
               </a-divider>
               <a-typography-paragraph type="secondary">
                 <ul class="flex flex-col gr-12">
-                  <li>内置图片，图标选择器，方便用户快速录入</li>
-                  <li>重新定义记事本,接入AI,让它空前强大</li>
-                  <li>系统工具，互相调用,输入更快捷</li>
-                  <li>权限管理，等级分明，见证超管威力</li>
+                  <li>账号test02 是访客权限,能新建数据,数据私有,但被屏蔽了大部分功能</li>
+                  <li>账号observer 是观察者账号,能看不能用</li>
+                  <li>系统测试表是低代码生成的样板</li>
+                  <li>功能很多,目前实现的是基础操作优化,目的是能快速录入</li>
                 </ul>
               </a-typography-paragraph>
             </a-col>

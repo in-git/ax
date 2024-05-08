@@ -12,8 +12,8 @@ export const loginLoading = ref<boolean>(false);
 export const loginMode = ref<Mode>('login');
 
 let formObject = {
-  username: 'test02',
-  password: '123456',
+  username: 'observer',
+  password: 'axobserver',
   uuid: '',
   code: '',
 };

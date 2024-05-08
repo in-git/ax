@@ -5,7 +5,7 @@ export const baseUrlOptions = [
     id: 'test',
   },
   {
-    label: 'AX体验服务器',
+    label: 'AX测试服务器',
     value: 'http://150.158.14.110:8080/',
     id: 'AX',
   },
