@@ -1,11 +1,11 @@
 import { range } from '@/utils/common/utils';
 
-/* 使用:
-    需要在元素上添加 data-drag就能拖动
-    <div v-draggable>
-        <div data-drag>这里是拖拽区域</div>
-        <div>这里是内容区域</div>
-    </div>
+/**
+ * @description 需要在元素上添加 data-drag就能拖动
+ * @example     <div v-draggable>
+                    <div data-drag>这里是拖拽区域</div>
+                    <div>这里是内容区域</div>
+                </div>
 */
 export default {
   mounted(el: HTMLElement) {
