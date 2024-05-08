@@ -2,7 +2,7 @@
   <div v-if="userProfile">
     <a-form-item label="用户头像">
       <div @click="visible = true">
-        <a-avatar :src="getStaticImage(`avatar/${userProfile.avatar}`)" alt="avatar" :size="84" />
+        <a-avatar :src="getStaticImage(`${userProfile.avatar}`)" alt="avatar" :size="84" />
       </div>
     </a-form-item>
 
@@ -21,12 +21,10 @@
 
 <script setup lang="ts">
 import { getStaticImage } from '@/api/utils/image';
-import useUserStore from '@/store/user';
 import Gallery from '@/views/selector/gallery/Gallery.vue';
 import { userProfile } from '../profile/data';
 
 const visible = ref(false);
-const userStore = useUserStore();
 const uploadFile = () => {
   visible.value = false;
 };
