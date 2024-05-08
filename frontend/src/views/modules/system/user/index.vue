@@ -14,4 +14,8 @@ import UserForm from './form/UserForm.vue';
 import UserTable from './table/UserTable.vue';
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.card__container {
+  overflow: hidden;
+}
+</style>
