@@ -6,18 +6,24 @@ export const backgroundLoading = ref(false);
 
 export const setBackground = (src: string, type: 'image' | 'video') => {
   const store = usePageStore();
-  store.$state.desktop.background.src = src;
+  console.log(src);
+
   store.$state.desktop.background.type = type;
+  if (type === 'image') {
+    store.$state.desktop.background.src = `wallpaper/${src}`;
+    const img = new Image();
+    img.src = getStaticImage(`wallpaper/${src}`);
+    const closeLoading = () => {
+      backgroundLoading.value = false;
+    };
+    img.onload = () => closeLoading;
+    useTimeout(5000, {
+      callback: closeLoading,
+    });
+  } else {
+    store.$state.desktop.background.src = src;
+  }
   backgroundLoading.value = true;
-  const img = new Image();
-  img.src = getStaticImage(`${src}`);
-  const closeLoading = () => {
-    backgroundLoading.value = false;
-  };
-  img.onload = () => closeLoading;
-  useTimeout(5000, {
-    callback: closeLoading,
-  });
 };
 
 /* 初始化模块宽高 ,在打开窗口和拖拽停止两个地方调用 */
