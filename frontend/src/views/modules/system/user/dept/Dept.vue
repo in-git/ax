@@ -61,5 +61,6 @@ watch(
 .dept {
   white-space: nowrap;
   height: 100%;
+  min-width: 200px;
 }
 </style>
