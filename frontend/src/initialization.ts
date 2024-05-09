@@ -1,23 +1,30 @@
 import { useCssVar } from '@vueuse/core';
 import axios from 'axios';
+import localforage from 'localforage';
+import { imageTypes } from './global/data/resource.list';
 import usePageStore from './store/page';
 import useSystemStore from './store/system';
 
-const images = import.meta.glob('./assets/system/*.*');
 let modules = import.meta.glob('./views/modules/**/index.vue');
 
 interface DynamicComponents {
   component: any;
   path: string;
 }
-export const systemImages = ref<string[]>([]);
 
 export const systemComponents = ref<DynamicComponents[]>([]);
 
-export const loadSystemIcons = () => {
-  Object.keys(images).forEach(path => {
-    systemImages.value.push(path);
-  });
+export const loadSystemIcons = async () => {
+  try {
+    const promiseMap = imageTypes.map(async type => {
+      const response = await fetch(`https://in-git.github.io/ax-resource/json/${type}.json`);
+      const data = await response.json();
+      await localforage.setItem(type, data);
+    });
+    Promise.all(promiseMap);
+  } catch (error) {
+    console.error('Error fetching avatar data:', error);
+  }
 };
 
 /* 加载系统组件 */

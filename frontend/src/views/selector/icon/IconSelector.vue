@@ -8,7 +8,7 @@
         :class="{ active: item === active }"
         @dblclick="confirm"
       >
-        <img :src="getStaticImage(`${currentType}/${item}`)" :alt="item" width="32" />
+        <img :src="getStaticImage(item)" :alt="item" width="32" />
       </li>
     </ul>
     <div class="text-right">
@@ -19,12 +19,11 @@
 
 <script setup lang="ts">
 import { getStaticImage } from '@/api/utils/image';
-import { imageIcons } from '@/global/data/resource.list';
-import type { IconType } from '@/types/system';
+import localforage from 'localforage';
 
 const active = ref<string>();
 
-const currentType = ref<IconType>('image-icon');
+const imageIcons = ref<string[]>([]);
 
 const emit = defineEmits(['update:modelValue']);
 
@@ -33,9 +32,16 @@ defineProps<{
 }>();
 
 const confirm = () => {
-  emit('update:modelValue', `${currentType.value}/${active.value}`);
+  emit('update:modelValue', `image-icon/${active.value}`);
 };
+onMounted(async () => {
+  const data = await localforage.getItem('image-icon');
+  console.log(data);
 
+  if (data) {
+    imageIcons.value = JSON.parse(JSON.stringify(data));
+  }
+});
 const selectItem = (iconPath: string) => {
   active.value = iconPath;
 };

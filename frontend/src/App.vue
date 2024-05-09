@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 import { closeWindow, windowList } from '@/global/window/window';
-import { ConfigProvider, Modal, theme } from 'ant-design-vue';
+import { ConfigProvider, theme } from 'ant-design-vue';
 import zh_CN from 'ant-design-vue/es/locale/zh_CN';
 import {
   loadSystemComponents,
@@ -77,7 +77,6 @@ nextTick(async () => {
   loadSystemIcons();
   /* 初始化系统本地组件 */
   loadSystemComponents();
-
   /* 初始化事件 */
   setEvent();
   /* 设置主题变量 */

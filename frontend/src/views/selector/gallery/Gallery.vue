@@ -12,7 +12,7 @@
           @click="selectItem(item)"
           :class="[{ active: selectedSet.includes(item) }]"
         >
-          <img :src="getStaticImage(`${type}/${item}`)" />
+          <img :src="getStaticImage(`${item}`)" />
         </li>
       </ul>
       <a-empty v-else />
@@ -22,8 +22,9 @@
 
 <script setup lang="ts">
 import { getStaticImage } from '@/api/utils/image';
-import { avatars, imageIcons, wallpaperList } from '@/global/data/resource.list';
+import { imageTypes } from '@/global/data/resource.list';
 import type { IconType } from '@/types/system';
+import localforage from 'localforage';
 
 const props = withDefaults(
   defineProps<{
@@ -39,9 +40,11 @@ const props = withDefaults(
 );
 
 const emit = defineEmits(['update:value']);
+
 const selectedSet = ref<string[]>([]);
 
 const galleryData = ref<string[]>([]);
+
 const selectItem = (item: string) => {
   if (props.limit <= selectedSet.value.length) {
     selectedSet.value.shift();
@@ -51,20 +54,22 @@ const selectItem = (item: string) => {
 
 const confirm = () => {
   if (props.limit === 1) {
-    emit('update:value', `${props.type}/${selectedSet.value[0]}`);
+    emit('update:value', `${selectedSet.value[0]}`);
     return;
   }
   emit('update:value', selectedSet.value);
 };
 
 onMounted(() => {
-  if (props.type === 'avatar') {
-    galleryData.value = avatars;
-  } else if (props.type === 'wallpaper') {
-    galleryData.value = wallpaperList;
-  } else if (props.type === 'image-icon') {
-    galleryData.value = imageIcons;
-  }
+  const arr = imageTypes.map(async e => {
+    if (props.type === e) {
+      const data = await localforage.getItem(e);
+      const json = JSON.parse(JSON.stringify(data));
+      galleryData.value = json;
+    }
+    return e;
+  });
+  Promise.all(arr);
 });
 </script>
 

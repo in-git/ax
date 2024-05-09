@@ -14,12 +14,7 @@
           <div class="selected" v-if="currentGallery === item">
             <CheckOutlined />
           </div>
-          <img
-            :src="getStaticImage(`wallpaper/${item}`)"
-            v-if="galleryType === 'image'"
-            :alt="item"
-            height="80"
-          />
+          <img :src="getStaticImage(item)" v-if="galleryType === 'image'" :alt="item" height="80" />
           <video
             muted
             controlslist="nodownload"

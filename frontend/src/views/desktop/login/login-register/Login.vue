@@ -44,7 +44,7 @@
           <a-form-item label="选择服务器">
             <a-select
               v-model:value="store.$state.developer.baseURL"
-              :options="baseUrlOptions"
+              :options="store.$state.developer.urlSelection"
               @change="onChange"
             ></a-select>
           </a-form-item>
@@ -73,7 +73,6 @@
 
 <script setup lang="ts">
 import useSystemStore from '@/store/system';
-import { baseUrlOptions } from '@/store/system/options';
 import { HistoryOutlined } from '@ant-design/icons-vue';
 import {
   captchaImage,

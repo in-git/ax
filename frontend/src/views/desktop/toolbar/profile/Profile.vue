@@ -10,7 +10,7 @@
           <a-card :loading="loading" :bordered="false" :body-style="{ padding: '0' }">
             <div v-if="!!userProfile">
               <div class="flex align-center gc-12">
-                <a-avatar :src="getStaticImage(`avatar/${userProfile.avatar}`)"></a-avatar>
+                <a-avatar :src="getStaticImage(`${userProfile.avatar}`)"></a-avatar>
                 {{ userProfile.userName }}
               </div>
               <a-divider class="my-12"></a-divider>
