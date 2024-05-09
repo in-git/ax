@@ -64,7 +64,7 @@ const style = computed((): CSSProperties => {
   top: 0;
   left: 0;
   pointer-events: none;
-  animation: app-background 1s forwards;
+  animation: app-background 0.8s forwards;
   @keyframes app-background {
     0% {
       opacity: 0;

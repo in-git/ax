@@ -17,7 +17,7 @@ export const baseUrlOptions = [
 ];
 export const staticOptions = [
   {
-    value: `http://in-git.gitee.io/ax-resource`,
+    value: `https://in-git.gitee.io/ax-resource/images`,
     label: 'GITEE',
   },
   {
@@ -25,7 +25,7 @@ export const staticOptions = [
     label: '本地',
   },
   {
-    value: `https://in-git.github.io/ax-resource/nodejs/images`,
+    value: `https://in-git.github.io/ax-resource/images`,
     label: 'GITHUB',
   },
   {
