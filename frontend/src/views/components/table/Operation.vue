@@ -27,7 +27,5 @@ const onClick = () => {
 };
 defineProps<{ items: any; loading: boolean }>();
 
-const onSelect = (info: SelectInfo) => {
-  console.log(info.item);
-};
+const onSelect = (info: SelectInfo) => {};
 </script>

@@ -34,7 +34,6 @@ export const openWindow = (config: SystemWindow) => {
   const target = windowList.value.find(e => {
     return e.id === config.id;
   });
-  console.log(target, windowList);
 
   if (!target) {
     windowList.value.push(config);

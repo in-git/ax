@@ -45,7 +45,7 @@ const rules: RuleObject = {
 </script>
 
 <style lang="scss" scoped>
-::v-deep(.ant-card) {
+:deep(.ant-card) {
   box-shadow: none;
 }
 </style>

@@ -25,8 +25,6 @@ import { websiteKeys, websiteQuery } from '../../data/table';
 const pageChange = (page: number, pageSize: number) => {
   websiteQuery.value.pageNum = page;
   websiteQuery.value.pageSize = pageSize;
-  console.log(page, pageSize);
-
   websiteList();
 };
 </script>

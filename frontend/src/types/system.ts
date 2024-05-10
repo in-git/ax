@@ -40,3 +40,9 @@ export interface ColumnProps extends TableColumnProps {
   show?: boolean;
 }
 export type IconType = 'svg-icon' | 'image-icon' | 'avatar' | 'wallpaper';
+export interface SystemImages {
+  avatar: string[];
+  'image-icon': string[];
+  public: string[];
+  wallpaper: string[];
+}

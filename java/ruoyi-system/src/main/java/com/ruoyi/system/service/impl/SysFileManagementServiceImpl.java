@@ -1,0 +1,277 @@
+package com.ruoyi.system.service.impl;
+
+import cn.hutool.core.io.FileUtil;
+import com.ruoyi.common.utils.file.FileUtils;
+import com.ruoyi.common.utils.file.ImageUtils;
+import com.ruoyi.system.domain.vo.FileInfoVo;
+import com.ruoyi.system.service.ISysFileManagementService;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.util.ResourceUtils;
+
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.util.ResourceUtils;
+import org.springframework.util.StringUtils;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.util.*;
+
+@Service
+public class SysFileManagementServiceImpl implements ISysFileManagementService {
+
+    public static void sortFileInfoList(List<FileInfoVo> fileInfoList) {
+        Collections.sort(fileInfoList, new Comparator<FileInfoVo>() {
+            @Override
+            public int compare(FileInfoVo fileInfo1, FileInfoVo fileInfo2) {
+                // 首先比较isLeaf属性，isLeaf为false的排在前面
+                if (!fileInfo1.getIsLeaf() && fileInfo2.getIsLeaf()) {
+                    return -1;
+                } else if (fileInfo1.getIsLeaf() && !fileInfo2.getIsLeaf()) {
+                    return 1;
+                } else {
+                    // 如果isLeaf属性相同，则按照其他属性排序，这里可以根据具体情况进行修改
+                    // 例如，按照文件标题排序
+                    return fileInfo1.getTitle().compareTo(fileInfo2.getTitle());
+                }
+            }
+        });
+    }
+
+    /**
+     * 根据路径查询所有文件
+     *
+     * @param path 路径
+     * @return 树形目录
+     */
+    public List<FileInfoVo> listFiles(String path, Boolean onlyFolder) {
+        try {
+            List<FileInfoVo> fileList = new ArrayList<>();
+            if (path == null || path.isEmpty()) {
+                // 如果路径为空，则根据不同操作系统获取根目录路径
+                return getRootDirectoryPath();
+            }
+            File directory = new File(path);
+            if (!directory.exists() || !directory.isDirectory()) {
+                // 如果路径不存在或者不是文件夹，返回空列表
+                return fileList;
+            }
+            // 获取目录下的所有文件和子文件夹
+            File[] files = directory.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    boolean isImage = ImageUtils.isImage(file);
+
+                    // 创建 FileInfoVo 对象
+                    FileInfoVo fileInfo = new FileInfoVo();
+                    fileInfo.setTitle(file.getName());
+                    fileInfo.setKey(file.getPath());
+                    // 判断是否为文件夹
+                    if (file.isDirectory()) {
+                        // 如果是文件夹，直接添加到列表中
+                        fileInfo.setType("folder");
+                        fileInfo.setIsLeaf(false);
+                        fileList.add(fileInfo);
+                    } else if (!onlyFolder) {
+                        // 如果不仅获取文件夹，并且是文件，则添加到列表中
+                        fileInfo.setIsLeaf(true);
+
+                        if (isImage) {
+                            fileInfo.setSrc(ImageUtils.convertImageToBase64(file.getPath()));
+                            fileInfo.setType("image");
+                        } else if (file.getName().endsWith(".txt") || FileUtils.isCodeFile(file)) {
+                            String strings = FileUtils.readFileAsString(file.getPath());
+                            // 当为文本类型的时候，读取内容
+                            if (file.getName().endsWith(".txt")) {
+                                fileInfo.setType("text");
+                            } else if (FileUtils.isCodeFile(file)) {
+                                String type = FileUtils.getFileExtension(file.getName());
+                                fileInfo.setType(type);
+                            }
+                            fileInfo.setSrc(strings);
+                        } else {
+                            fileInfo.setType("file");
+                        }
+                        fileList.add(fileInfo);
+                    }
+                }
+            }
+            sortFileInfoList(fileList);
+            return fileList;
+        } catch (Error | IOException ignored) {
+
+        }
+        return null;
+    }
+
+
+    /**
+     * 根据路径删除文件
+     *
+     * @param paths 路径
+     * @return 是否成功
+     */
+    @Override
+    public boolean deleteFile(String paths) {
+        if (StringUtils.isEmpty(paths)) {
+            return false;
+        }
+
+        // 按逗号分隔路径
+        String[] pathArray = paths.split(",");
+        boolean allDeleted = true;
+
+        for (String path : pathArray) {
+            try {
+                boolean isDelete = FileUtil.del(new File(path));
+                if (isDelete) {
+                    allDeleted = true;
+                }
+
+            } catch (Exception e) {
+                allDeleted = false;
+            }
+        }
+        return allDeleted;
+    }
+
+    public ResponseEntity<byte[]> viewFile(String path) throws IOException {
+        // 根据文件路径创建文件对象
+        File file = new File(path);
+
+        // 检查文件是否存在
+        if (!file.exists() || !file.isFile()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        // 设置响应头，告诉客户端文件类型
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        headers.setContentDispositionFormData("attachment", file.getName());
+
+        // 获取文件输入流
+        InputStream inputStream = Files.newInputStream(file.toPath());
+
+        // 返回文件流作为响应体
+        return new ResponseEntity<>(FileCopyUtils.copyToByteArray(inputStream), headers, HttpStatus.OK);
+
+    }
+
+    /**
+     * 根据路径创建文件
+     *
+     * @param path 路径
+     * @param type file:文件，folder：文件夹
+     * @return 是否成功
+     */
+    @Override
+    public boolean createFile(String path, String type) {
+        File file = new File(path);
+
+        if ("file".equalsIgnoreCase(type)) {
+            try {
+                // 尝试创建文件
+                return file.createNewFile();
+            } catch (Exception e) {
+                return false;
+            }
+        } else if ("folder".equalsIgnoreCase(type)) {
+            // 尝试创建文件夹
+            return file.mkdirs();
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 根据路径创建文件
+     *
+     * @param oldPath 旧的路径
+     * @param newPath 新的路径
+     * @return 是否成功
+     */
+    @Override
+    public boolean renameFile(String oldPath, String newPath) {
+        File oldFile = new File(oldPath);
+        File newFile = new File(newPath);
+        // 检查旧文件是否存在
+        if (!oldFile.exists() || !oldFile.isFile()) {
+            return false;
+        }
+        if (newFile.exists()) {
+            return false;
+        }
+        return oldFile.renameTo(newFile);
+    }
+
+    /**
+     * 复制文件
+     *
+     * @param targetPath 目标路径
+     * @param files      复制的文件列表
+     * @return 是否成功
+     */
+    @Override
+    public boolean cloneFiles(String targetPath, String files) {
+        File targetDirectory = new File(targetPath);
+        if (!targetDirectory.exists() || !targetDirectory.isDirectory()) {
+            System.err.println("目标路径不存在或不是一个有效的目录。");
+            return false;
+        }
+
+        File sourceFile = new File(files);
+        if (!sourceFile.exists() || !sourceFile.isFile()) {
+            System.err.println("要复制的文件不存在或不是一个有效的文件。");
+            return false;
+        }
+
+        String fileName = sourceFile.getName();
+        File targetFile = new File(targetPath + File.separator + fileName);
+
+        try (InputStream inputStream = Files.newInputStream(sourceFile.toPath());
+             OutputStream outputStream = Files.newOutputStream(targetFile.toPath())) {
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+            System.out.println("文件复制成功。");
+            return true;
+
+        } catch (IOException e) {
+            System.err.println("文件复制失败：" + e.getMessage());
+            return false;
+        }
+    }
+
+
+    /**
+     * 获取系统根目录
+     */
+    public static List<FileInfoVo> getRootDirectoryPath() {
+        List<FileInfoVo> rootPaths = new ArrayList<>();
+        File[] roots = File.listRoots();
+        for (File root : roots) {
+            // 创建 FileInfoVo 对象
+            FileInfoVo fileInfo = new FileInfoVo();
+            fileInfo.setTitle(root.getPath());
+            fileInfo.setType("folder");
+            fileInfo.setKey(root.getPath());
+            fileInfo.setIsLeaf(false);
+            // 将 FileInfoVo 对象添加到列表中
+            rootPaths.add(fileInfo);
+        }
+        // 其他操作系统暂不支持
+        return rootPaths;
+    }
+}

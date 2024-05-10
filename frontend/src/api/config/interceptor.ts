@@ -55,7 +55,7 @@ axios.interceptors.response.use(
       });
       message.warn('网络错误');
     } else if (errMsg.includes('canceled')) {
-      console.log('用户取消请求');
+      // 用户取消请求
     } else {
       message.error(error.message);
     }

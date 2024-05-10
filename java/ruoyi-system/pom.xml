@@ -23,6 +23,7 @@
             <artifactId>ruoyi-common</artifactId>
         </dependency>
 
+
     </dependencies>
 
 </project>

@@ -171,7 +171,7 @@ watch(
   background: white;
   border-bottom: 1px solid #ddd;
 }
-::v-deep(.ant-card) {
+:deep(.ant-card) {
   box-shadow: none;
 }
 </style>
