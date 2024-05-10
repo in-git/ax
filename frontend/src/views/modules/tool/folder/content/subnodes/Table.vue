@@ -5,6 +5,7 @@
       :columns="fileColumns"
       rowKey="key"
       :customRow="customRow"
+      :loading="folderLoading"
       :rowSelection="{
         onChange: (k: any[]) => (selectedFolders = k),
         selectedRowKeys: selectedFolders,
@@ -25,7 +26,7 @@
 <script setup lang="ts">
 import type { DataNode } from 'ant-design-vue/es/vc-tree-select/interface';
 import { fileColumns } from '../../data/columns';
-import { currentFolder, selectedFolders } from '../../data/data';
+import { currentFolder, folderLoading, selectedFolders } from '../../data/data';
 import FileRender from './FileRender.vue';
 
 /* 行事件 */

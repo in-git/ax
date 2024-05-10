@@ -2,7 +2,7 @@ import { deleteFiles, getSystemPath } from '@/api/modules/tool/file/file';
 import { settleFile } from '@/global/window/file';
 import { response } from '@/utils/table/table';
 import type { DataNode } from 'ant-design-vue/es/tree';
-import { currentFolder, currentPath, selectedFolders } from './data';
+import { currentFolder, currentPath, folderLoading, selectedFolders } from './data';
 
 export const openFile = (item: DataNode) => {
   settleFile(`${item.type}`, item.src);
@@ -13,10 +13,16 @@ export const openFile = (item: DataNode) => {
  * @return
  */
 export const loadPath = async (path: string = '') => {
-  let target = path ? path : currentPath.value;
-  const { data } = await getSystemPath(target);
-  if (data.data) {
-    currentFolder.value = data.data;
+  try {
+    folderLoading.value = true;
+    let target = path ? path : currentPath.value;
+    const { data } = await getSystemPath(target);
+    if (data.data) {
+      currentFolder.value = data.data;
+    }
+    folderLoading.value = false;
+  } catch (error) {
+    folderLoading.value = false;
   }
 };
 

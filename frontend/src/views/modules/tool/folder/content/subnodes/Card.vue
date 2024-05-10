@@ -1,19 +1,22 @@
 <template>
   <div class="card">
-    <ul v-if="currentFolder">
-      <li
-        v-for="(item, key) in currentFolder"
-        :key="key"
-        :class="{ active: selectedFolders.includes(item.key) }"
-        @click="selectItem(item)"
-        @dblclick="open(item)"
-      >
-        <FileRender v-bind="item" :width="58" />
-        <div class="folder-title">
-          {{ item.title }}
-        </div>
-      </li>
-    </ul>
+    <a-card v-if="currentFolder" :loading="folderLoading" :bordered="false">
+      <ul>
+        <li
+          v-for="(item, key) in currentFolder"
+          :key="key"
+          :class="{ active: selectedFolders.includes(item.key) }"
+          @click="selectItem(item)"
+          @dblclick="open(item)"
+        >
+          <FileRender v-bind="item" :width="58" />
+          <div class="folder-title">
+            {{ item.title }}
+          </div>
+        </li>
+      </ul>
+    </a-card>
+
     <a-empty v-else />
   </div>
 </template>
@@ -21,7 +24,13 @@
 <script setup lang="ts">
 import type { DataNode } from 'ant-design-vue/es/tree';
 import { loadPath, openFile } from '../../data/action';
-import { currentFolder, currentPath, selectedFolders, selectedPaths } from '../../data/data';
+import {
+  currentFolder,
+  currentPath,
+  folderLoading,
+  selectedFolders,
+  selectedPaths,
+} from '../../data/data';
 import FileRender from './FileRender.vue';
 const selectItem = (item: DataNode) => {
   selectedFolders.value = [item.key];
@@ -84,5 +93,9 @@ ul {
   .active {
     border: 1px solid var(--primary);
   }
+}
+
+:deep(.ant-card) {
+  box-shadow: none;
 }
 </style>

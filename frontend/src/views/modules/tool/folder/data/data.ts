@@ -11,3 +11,4 @@ export const currentPath = ref<string>('');
 export const selectedPaths = ref();
 /* 已复制的文件夹 */
 export const copiedPaths = ref<Key[]>([]);
+export const folderLoading = ref(false);
