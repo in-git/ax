@@ -111,7 +111,7 @@ const submit = async () => {
 </script>
 
 <style lang="scss" scoped>
-::v-deep(.ant-card) {
+:deep(.ant-card) {
   box-shadow: none;
 }
 .form {

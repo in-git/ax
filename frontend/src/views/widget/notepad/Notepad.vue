@@ -72,8 +72,6 @@ provide('data', props.id || '');
 watch(
   props,
   () => {
-    console.log(props);
-
     content.value = props.data || '';
   },
   {

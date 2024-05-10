@@ -99,7 +99,7 @@ const logout = async () => {
 .profile {
   width: 200px;
 }
-::v-deep(.ant-card-body) {
+:deep(.ant-card-body) {
   box-shadow: none !important;
 }
 </style>

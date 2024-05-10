@@ -36,7 +36,6 @@ export const menuItems: ItemType[] = [
       let parentId = menuForm.value.menuId;
       resetMenuForm();
       menuForm.value.parentId = parentId;
-      console.log(menuForm.value);
       showMenuForm.value = true;
     },
   },

@@ -54,7 +54,7 @@ nextTick(() => {
   useSortable(cardRef, ${businessName}CardData.value, {
     animation: 200,
     onUpdate(e: SortConfig) {
-      // console.log(e.oldIndex, e.newIndex);
+   // 拖拽结束触发
     },
   });
 });

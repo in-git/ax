@@ -6,8 +6,6 @@ export const backgroundLoading = ref(false);
 
 export const setBackground = (src: string, type: 'image' | 'video') => {
   const store = usePageStore();
-  console.log(src);
-
   store.$state.desktop.background.type = type;
   if (type === 'image') {
     store.$state.desktop.background.src = `wallpaper/${src}`;

@@ -1,5 +1,5 @@
 <template>
-    <a-card class="table__card" :bordered="false" :body-style="{ padding: '0' }">
+  <a-card class="table__card" :bordered="false" :body-style="{ padding: '0' }">
     <ul class="table_card_list flex-1" ref="cardRef">
       <li
         v-for="(item, key) in deptCardData"
@@ -34,12 +34,12 @@
         </a-card>
       </li>
     </ul>
-   </a-card>
+  </a-card>
 </template>
 
 <script setup lang="ts">
 import { useSortable } from '@vueuse/integrations/useSortable';
-import { dragstart, drop, selectSystemDept, deptCardData } from '../../data/card';
+import { deptCardData, dragstart, drop, selectSystemDept } from '../../data/card';
 import { deptEdit } from '../../data/curd';
 import { deptKeys } from '../../data/table';
 
@@ -53,9 +53,7 @@ interface SortConfig {
 nextTick(() => {
   useSortable(cardRef, deptCardData.value, {
     animation: 200,
-    onUpdate(e: SortConfig) {
-      // console.log(e.oldIndex, e.newIndex);
-    },
+    onUpdate(e: SortConfig) {},
   });
 });
 </script>

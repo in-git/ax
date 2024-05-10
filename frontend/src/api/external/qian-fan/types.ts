@@ -1,3 +1,6 @@
+/*
+ * @LastEditors: 吴文龙
+ */
 interface QFMessage {
   role: string;
   content: string;
@@ -25,4 +28,13 @@ interface Usage {
   prompt_tokens: number;
   completion_tokens: number;
   total_tokens: number;
+}
+
+interface QFResponse {
+  refresh_token: string;
+  expires_in: number;
+  session_key: string;
+  access_token: string;
+  scope: string;
+  session_secret: string;
 }

@@ -82,7 +82,7 @@
 </template>
 
 <script setup lang="ts">
-import { getQFToken } from '@/api/modules/tool/api/api';
+import { getQFToken } from '@/api/external/qian-fan/qian-fan';
 import useAIStore from '@/store/AI/AI';
 import { copyText } from '@/utils/common/utils';
 import MemoVue from '@/views/selector/memo/Memo.vue';

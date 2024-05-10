@@ -1,3 +1,7 @@
+/*
+ * @LastEditors: 吴文龙
+ */
+import type { Response } from '@/api/config/types';
 import useAIStore from '@/store/AI/AI';
 import { message } from 'ant-design-vue';
 import axios from 'axios';
@@ -27,5 +31,16 @@ export const qfMsg = async (messages: QFMessage[]) => {
     stream: AIStore.$state.qianFan.stream,
     prompt: AIStore.$state.qianFan.prompt,
     messages,
+  });
+};
+
+/* 获取千帆模型TOKEN */
+
+export const getQFToken = (ak: string, sk: string) => {
+  return axios.get<Response<QFResponse>>(`tool/api/qf-token`, {
+    params: {
+      ak,
+      sk,
+    },
   });
 };

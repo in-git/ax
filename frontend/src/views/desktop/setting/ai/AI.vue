@@ -47,7 +47,7 @@ const activeKey = ref<'token' | 'settings'>('token');
       background-color: #2a2b2e69;
     }
   }
-  ::v-deep(.ant-card) {
+  :deep(.ant-card) {
     box-shadow: none;
     padding-top: 0;
   }
