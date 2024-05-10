@@ -7,9 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
+import static com.ruoyi.common.core.domain.AjaxResult.error;
 import static com.ruoyi.common.core.domain.AjaxResult.success;
 
 @RestController
@@ -64,5 +69,28 @@ public class SysFileManagementController {
     @PostMapping("/cloneFile")
     public AjaxResult cloneFile(@RequestBody CloneFile cloneFile) {
         return success(fileManagementService.cloneFiles(cloneFile.getTargetPath(), cloneFile.getFiles()));
+    }
+
+
+    @PostMapping("/upload")
+    public AjaxResult uploadFile(@RequestParam("files") MultipartFile[] files, @RequestParam("path") String path) {
+        if (files.length == 0) {
+            return error("请选择要上传的文件");
+        }
+        try {
+            Path destFolderPath = Paths.get(path);
+            if (!Files.exists(destFolderPath)) {
+                Files.createDirectories(destFolderPath);
+            }
+            for (MultipartFile file : files) {;
+                if (!file.isEmpty()) {
+                    Path destFilePath = destFolderPath.resolve(file.getOriginalFilename());
+                    file.transferTo(destFilePath);
+                }
+            }
+            return success("文件上传成功");
+        } catch (IOException e) {
+            return error("文件上传失败: " + e.getMessage());
+        }
     }
 }

@@ -2,12 +2,12 @@
   <div class="tool-container">
     <a-flex class="tool w-100" :justify="'space-between'" :align="'center'">
       <a-flex :gap="4">
+        <UploadButton />
         <a-dropdown trigger="click">
           <a-button :disabled="!currentPath">
             新建
             <DownOutlined class="text-8" />
           </a-button>
-
           <template #overlay>
             <a-flex :gap="4" vertical class="dropdown">
               <a-button
@@ -82,6 +82,7 @@ import { useCloned } from '@vueuse/core';
 import { message } from 'ant-design-vue';
 import { delFile, loadPath } from '../../../data/action';
 import { copiedPaths, currentPath, mode, selectedFolders } from '../../../data/data';
+import UploadButton from './UploadButton.vue';
 import { fileTypeOptions } from './options';
 import type { FileOptions } from './types';
 
@@ -94,6 +95,7 @@ const newFileForm = ref<FileOptions>({
   name: '',
   newName: '',
 });
+
 const resetForm = () => {
   newFileForm.value = {
     type: 'folder',
@@ -101,6 +103,7 @@ const resetForm = () => {
     newName: '',
   };
 };
+
 const updateName = () => {
   updateMode.value = 'update';
   const file = selectedFolders.value[0];

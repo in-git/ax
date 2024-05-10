@@ -5,26 +5,26 @@ import com.ruoyi.common.utils.file.FileUtils;
 import com.ruoyi.common.utils.file.ImageUtils;
 import com.ruoyi.system.domain.vo.FileInfoVo;
 import com.ruoyi.system.service.ISysFileManagementService;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.util.ResourceUtils;
-
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
-import org.springframework.util.ResourceUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 @Service
 public class SysFileManagementServiceImpl implements ISysFileManagementService {
@@ -262,7 +262,6 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
         List<FileInfoVo> rootPaths = new ArrayList<>();
         File[] roots = File.listRoots();
         for (File root : roots) {
-            // 创建 FileInfoVo 对象
             FileInfoVo fileInfo = new FileInfoVo();
             fileInfo.setTitle(root.getPath());
             fileInfo.setType("folder");
@@ -271,7 +270,9 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
             // 将 FileInfoVo 对象添加到列表中
             rootPaths.add(fileInfo);
         }
-        // 其他操作系统暂不支持
         return rootPaths;
     }
+
+
+
 }
