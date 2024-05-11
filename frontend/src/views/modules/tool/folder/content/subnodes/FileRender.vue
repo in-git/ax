@@ -1,7 +1,7 @@
 <template>
-  <a-flex :justify="'center'" class="inline-block">
-    <div :style="style">
-      <img :src="getImageSource(type)" />
+  <a-flex :justify="'center'" class="file-render">
+    <div class="flex flex-s">
+      <a-image :src="getImageSource(type)" :preview="type === 'image'" :width="width" />
     </div>
   </a-flex>
 </template>
@@ -14,18 +14,12 @@ interface SystemFile {
   type?: string;
   isLeaf: boolean;
   src?: string;
-  width: number;
+  width: string;
 }
+
 import { getStaticImage } from '@/api/utils/image';
 import logo from '@/assets/logo.png';
 const props = defineProps<SystemFile>();
-
-const style = computed(() => {
-  return {
-    width: `${props.width}px`,
-    height: `${props.width}px`,
-  };
-});
 
 const getImageSource = (type?: string) => {
   // 定义type和对应的图片路径映射关系
@@ -46,9 +40,4 @@ const getImageSource = (type?: string) => {
 };
 </script>
 
-<style lang="scss" scoped>
-img {
-  width: 100%;
-  height: 100%;
-}
-</style>
+<style lang="scss" scoped></style>

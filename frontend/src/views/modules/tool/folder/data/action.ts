@@ -22,7 +22,7 @@ export const openFile = (item: DataNode) => {
     currentPath.value = `${item.key}`;
     loadPath(`${item.key}`);
   } else {
-    settleFile(`${item.type}`, item.src);
+    settleFile(item);
   }
 };
 

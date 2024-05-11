@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import type { LeftOutlined } from '@ant-design/icons-vue';
-import { getSeparator, isWindows, loadPath } from '../data/action';
+import { getSeparator, loadPath } from '../data/action';
 import { currentPath } from '../data/data';
 
 /* 激活：input，未激活：面包屑导航 */
@@ -67,9 +67,7 @@ const selectPath = (index: number) => {
   const selectedPath = pathParts.slice(0, index + 1).join(getSeparator());
   if (selectedPath) {
     currentPath.value = selectedPath;
-    if (isWindows()) {
-      currentPath.value = `/${selectedPath}`;
-    }
+
     loadPath();
   }
 };

@@ -14,7 +14,7 @@
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'title'">
           <div>
-            <FileRender :width="24" v-bind="{ ...(record as any) }" />
+            <FileRender width="24px" v-bind="{ ...(record as any) }" />
             {{ record.title }}
           </div>
         </template>

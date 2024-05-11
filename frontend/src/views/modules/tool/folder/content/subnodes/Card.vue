@@ -14,7 +14,10 @@
           @click="selectItem(item)"
           @dblclick="openFile(item)"
         >
-          <FileRender v-bind="item" :width="58" />
+          <div class="flex-1">
+            <FileRender v-bind="item" width="58px" />
+          </div>
+
           <div class="folder-title">
             {{ item.title }}
           </div>
@@ -68,16 +71,15 @@ ul {
   li {
     width: 100%;
     max-width: 100px;
+    height: 92px;
     margin: 0;
     overflow-y: hidden;
     text-align: center;
-    padding: 4px 8px;
     border-radius: var(--radius);
     border: 1px solid transparent;
     &:hover {
       background-color: var(--color-primary-hover-bg);
       cursor: pointer;
-
       .folder-title {
         -webkit-line-clamp: 2; //需要裁剪的行数
       }
@@ -85,12 +87,14 @@ ul {
   }
   .folder-title {
     white-space: wrap;
-    text-overflow: ellipsis;
     line-height: 16px;
+    word-break: break-all;
+
     display: -webkit-box;
-    -webkit-line-clamp: 2; //需要裁剪的行数
     -webkit-box-orient: vertical;
     overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2; /* 指定最多显示的行数 */
   }
   .active {
     border: 1px solid var(--primary);
