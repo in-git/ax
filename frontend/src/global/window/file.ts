@@ -1,23 +1,20 @@
+import { viewFile } from '@/api/modules/tool/file/file';
 import { Modal } from 'ant-design-vue';
+import type { DataNode } from 'ant-design-vue/es/tree';
 import { openImage, openNotepad } from './widget';
 
 /**
  * @description: 处理文件，根据不同的类型，调用不同的程序
- * @param {string} type 文件类型
- * @param {string} data 文件数据
  */
-export const settleFile = async (type: string, data: string) => {
-  if (fileMap[type]) {
-    fileMap[type](data);
+export const settleFile = async (item: DataNode) => {
+  if (fileMap[item.type]) {
+    fileMap[item.type](item);
   } else {
     Modal.confirm({
       title: '没有找到合适的程序',
       content: '是否用记事本强制打开,如果文件内容是二进制,则会乱码',
       onOk() {
-        openNotepad({
-          data,
-          allowSave: true,
-        });
+        fileMap['text'](item);
       },
       centered: true,
     });
@@ -25,17 +22,39 @@ export const settleFile = async (type: string, data: string) => {
 };
 
 type Map = {
-  [key: string]: (content: string) => any;
+  [key: string]: (content: DataNode) => any;
 };
+function blobToText(blob: Blob): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
 
+    // 设置FileReader的加载完成事件处理程序
+    reader.onload = (event: ProgressEvent<FileReader>) => {
+      // 在加载完成时，将结果解析为文本并传递给 resolve 函数
+      const text = event.target?.result as string;
+      resolve(text);
+    };
+
+    // 设置FileReader的错误事件处理程序
+    reader.onerror = (event: ProgressEvent<FileReader>) => {
+      // 如果发生错误，通过 reject 函数传递错误信息
+      reject(event.target?.error);
+    };
+
+    // 读取Blob对象中的数据为文本
+    reader.readAsText(blob);
+  });
+}
 const fileMap: Map = {
-  text(text: string) {
-    openNotepad({
-      data: text,
-      allowSave: true,
-    });
+  async text(data: DataNode) {
+    console.log(data);
+
+    const resp = await viewFile(`${data.key}`);
+    console.log(resp);
+    const text = await blobToText(resp);
+    openNotepad({ data: text, allowSave: true });
   },
-  image(src: string) {
-    openImage(src);
+  image(data: DataNode) {
+    openImage(data.src);
   },
 };
