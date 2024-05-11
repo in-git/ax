@@ -42,11 +42,14 @@
   </ConfigProvider>
   <!-- 通用右键菜单 -->
   <Contextmenu />
+  <!-- 框选 -->
+  <Selection />
 </template>
 
 <script setup lang="ts">
+import Selection from '@/components/selection/Selection.vue';
 import { closeWindow, windowList } from '@/global/window/window';
-import { ConfigProvider, Modal, theme } from 'ant-design-vue';
+import { ConfigProvider, theme } from 'ant-design-vue';
 import zh_CN from 'ant-design-vue/es/locale/zh_CN';
 import {
   loadSystemComponents,

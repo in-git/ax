@@ -86,15 +86,26 @@ public class SysFileManagementController {
                 Files.createDirectories(destFolderPath);
             }
             for (MultipartFile file : files) {
-                Path destFilePath = destFolderPath.resolve(Objects.requireNonNull(file.getOriginalFilename()));
+                String originalFilename = file.getOriginalFilename();
+                if (originalFilename != null && originalFilename.contains("/")) {
+                    // 如果文件名包含路径，则需要创建相应的文件夹
+                    String[] folders = originalFilename.split("/");
+                    Path folderPath = destFolderPath;
+                    for (int i = 0; i < folders.length - 1; i++) {
+                        folderPath = folderPath.resolve(folders[i]);
+                        if (!Files.exists(folderPath)) {
+                            Files.createDirectories(folderPath);
+                        }
+                    }
+                }
+                Path destFilePath = destFolderPath.resolve(originalFilename);
                 try (OutputStream outputStream = Files.newOutputStream(destFilePath)) {
                     outputStream.write(file.getBytes());
                 }
             }
             return success("文件上传成功");
         } catch (IOException e) {
-            // 可以根据具体情况做出更合理的异常处理，比如记录日志
-            e.printStackTrace();
+
             return error("文件上传失败: " + e.getMessage());
         }
     }

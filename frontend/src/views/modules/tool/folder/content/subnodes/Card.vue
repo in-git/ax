@@ -1,13 +1,14 @@
 <template>
-  <div class="card">
+  <div class="card" data-selection-area>
     <a-card v-if="currentFolder" :loading="folderLoading" :bordered="false">
       <ul>
         <li
+          :data-selection="item.key"
           v-for="(item, key) in currentFolder"
           :key="key"
           :class="{ active: selectedFolders.includes(item.key) }"
           @click="selectItem(item)"
-          @dblclick="open(item)"
+          @dblclick="openFile(item)"
         >
           <FileRender v-bind="item" :width="58" />
           <div class="folder-title">
@@ -22,29 +23,26 @@
 </template>
 
 <script setup lang="ts">
+import { selectionKeys } from '@/components/selection/data';
 import type { DataNode } from 'ant-design-vue/es/tree';
-import { loadPath, openFile } from '../../data/action';
-import {
-  currentFolder,
-  currentPath,
-  folderLoading,
-  selectedFolders,
-  selectedPaths,
-} from '../../data/data';
+import { openFile } from '../../data/action';
+import { currentFolder, folderLoading, selectedFolders } from '../../data/data';
 import FileRender from './FileRender.vue';
+
 const selectItem = (item: DataNode) => {
   selectedFolders.value = [item.key];
 };
 
-const open = (item: DataNode) => {
-  if (item.type === 'folder') {
-    selectedPaths.value = [item.key];
-    currentPath.value = `${item.key}`;
-    loadPath(`${item.key}`);
-  } else {
-    openFile(item);
-  }
-};
+watch(
+  selectionKeys,
+  () => {
+    selectedFolders.value = Array.from(selectionKeys.value);
+  },
+  {
+    immediate: true,
+    deep: true,
+  },
+);
 </script>
 
 <style lang="scss" scoped>

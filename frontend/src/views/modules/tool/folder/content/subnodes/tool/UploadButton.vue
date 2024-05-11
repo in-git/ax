@@ -22,16 +22,17 @@ const { files, open, reset, onChange } = useFileDialog({
 const upload = () => {
   open();
 };
-watch(files, async () => {
+
+onChange(async () => {
   const http = axios.create();
+  const host = getHost();
+  const token = getToken();
   if (!files.value || files.value?.length <= 0) return;
   const formData = new FormData();
   Array.from(files.value).forEach(file => {
-    formData.append('files', file, file.name);
+    formData.append('files', file, file.webkitRelativePath);
   });
 
-  const host = getHost();
-  const token = getToken();
   // 通过 axios 发送 POST 请求
   const response = await http.post(`${host}system/file/upload`, formData, {
     params: {
@@ -45,7 +46,10 @@ watch(files, async () => {
   if (response.data.code === 200) {
     message.success(response.data.msg);
     loadPath();
+  } else {
+    message.warning(response.data.msg);
   }
+  reset();
 });
 </script>
 

@@ -25,16 +25,7 @@
           <ReloadOutlined />
         </a-button>
         <a-button :disabled="selectedFolders.length !== 1" @click="updateName">重命名</a-button>
-        <a-popconfirm
-          :disabled="selectedFolders.length === 0"
-          title="确认删除这些文件（夹）吗"
-          @confirm="delFile"
-          placement="bottom"
-        >
-          <a-button :disabled="selectedFolders.length === 0">
-            <DeleteOutlined />
-          </a-button>
-        </a-popconfirm>
+
         <a-tooltip title="复制">
           <a-button @click="copyFile" :disabled="selectedFolders.length === 0">
             <CopyOutlined />
@@ -47,7 +38,17 @@
         </a-tooltip>
       </a-flex>
 
-      <div>
+      <a-flex :gap="4">
+        <a-popconfirm
+          :disabled="selectedFolders.length === 0"
+          title="确认删除这些文件（夹）吗"
+          @confirm="delFile"
+          placement="bottom"
+        >
+          <a-button :disabled="selectedFolders.length === 0">
+            <DeleteOutlined />
+          </a-button>
+        </a-popconfirm>
         <a-tooltip title="卡片模式" v-if="mode === 'card'">
           <a-button @click="mode = 'table'">
             <OrderedListOutlined />
@@ -59,7 +60,7 @@
             <AppstoreAddOutlined />
           </a-button>
         </a-tooltip>
-      </div>
+      </a-flex>
     </a-flex>
     <a-modal
       width="340px"

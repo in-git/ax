@@ -2,10 +2,20 @@ import { deleteFiles, getSystemPath } from '@/api/modules/tool/file/file';
 import { settleFile } from '@/global/window/file';
 import { response } from '@/utils/table/table';
 import type { DataNode } from 'ant-design-vue/es/tree';
-import { currentFolder, currentPath, folderLoading, selectedFolders } from './data';
+import { currentFolder, currentPath, folderLoading, selectedFolders, selectedPaths } from './data';
 
+/**
+ * @description: 打开一个文件或文件夹
+ * @param {DataNode} item
+ */
 export const openFile = (item: DataNode) => {
-  settleFile(`${item.type}`, item.src);
+  if (item.type === 'folder') {
+    selectedPaths.value = [item.key];
+    currentPath.value = `${item.key}`;
+    loadPath(`${item.key}`);
+  } else {
+    settleFile(`${item.type}`, item.src);
+  }
 };
 
 /**
