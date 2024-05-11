@@ -24,15 +24,29 @@
         <a-button @click="loadPath()">
           <ReloadOutlined />
         </a-button>
-        <a-popconfirm title="确认删除这些文件（夹）吗" @confirm="delFile" placement="bottom">
-          <a-button>
+        <a-button :disabled="selectedFolders.length !== 1" @click="updateName">重命名</a-button>
+        <a-popconfirm
+          :disabled="selectedFolders.length === 0"
+          title="确认删除这些文件（夹）吗"
+          @confirm="delFile"
+          placement="bottom"
+        >
+          <a-button :disabled="selectedFolders.length === 0">
             <DeleteOutlined />
           </a-button>
         </a-popconfirm>
-        <a-button @click="updateName">重命名</a-button>
-        <a-button @click="copyFile">复制</a-button>
-        <a-button @click="pasteFile">粘贴</a-button>
+        <a-tooltip title="复制">
+          <a-button @click="copyFile" :disabled="selectedFolders.length === 0">
+            <CopyOutlined />
+          </a-button>
+        </a-tooltip>
+        <a-tooltip title="粘贴">
+          <a-button @click="pasteFile" :disabled="copiedPaths.length === 0">
+            <SnippetsOutlined />
+          </a-button>
+        </a-tooltip>
       </a-flex>
+
       <div>
         <a-tooltip title="卡片模式" v-if="mode === 'card'">
           <a-button @click="mode = 'table'">
@@ -78,6 +92,7 @@
 <script setup lang="ts">
 import { clonedFiles, createFile, renameFile } from '@/api/modules/tool/file/file';
 import { response } from '@/utils/table/table';
+import { SnippetsOutlined } from '@ant-design/icons-vue';
 import { useCloned } from '@vueuse/core';
 import { message } from 'ant-design-vue';
 import { delFile, loadPath } from '../../../data/action';
@@ -123,6 +138,7 @@ const copyFile = () => {
 };
 
 const pasteFile = async () => {
+  if (copiedPaths.value.length === 0) return;
   await clonedFiles(
     currentPath.value,
     copiedPaths.value.map(e => `${e}`),

@@ -23,7 +23,13 @@ import { FileOutlined, FolderOutlined } from '@ant-design/icons-vue';
 import type { TreeProps } from 'ant-design-vue';
 import type { DataNode, EventDataNode } from 'ant-design-vue/es/tree';
 import type { Key } from 'ant-design-vue/es/vc-tree-select/interface';
-import { currentFolder, currentPath, folderLoading, selectedPaths } from '../data/data';
+import {
+  currentFolder,
+  currentPath,
+  folderLoading,
+  selectedFolders,
+  selectedPaths,
+} from '../data/data';
 
 const treeData = ref<DataNode[]>([]);
 const emit = defineEmits(['update:modelValue']);
@@ -45,6 +51,7 @@ const getData = async () => {
 
 const onLoadData: TreeProps['loadData'] = (treeNode: EventDataNode) => {
   folderLoading.value = true;
+  selectedFolders.value = [];
   return new Promise<void>(async resolve => {
     if (!treeNode.dataRef) return;
     const { data } = await getSystemPath(`${treeNode.key}`);
@@ -60,7 +67,7 @@ const onLoadData: TreeProps['loadData'] = (treeNode: EventDataNode) => {
 
 const selectPath = (selectedKeys: Key[], info: any) => {
   const path = selectedKeys[0];
-
+  selectedFolders.value = [];
   if (path) {
     currentPath.value = `${path}`;
     onLoadData(info.node);

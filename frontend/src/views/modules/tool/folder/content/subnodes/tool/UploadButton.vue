@@ -8,7 +8,9 @@
 import { getHost } from '@/store/system/utils';
 import { getToken } from '@/store/user/utils';
 import { useFileDialog } from '@vueuse/core';
+import { message } from 'ant-design-vue';
 import axios from 'axios';
+import { loadPath } from '../../../data/action';
 import { currentPath } from '../../../data/data';
 
 const { files, open, reset, onChange } = useFileDialog({
@@ -40,6 +42,10 @@ watch(files, async () => {
       Authorization: `Bearer ${token}`,
     },
   });
+  if (response.data.code === 200) {
+    message.success(response.data.msg);
+    loadPath();
+  }
 });
 </script>
 

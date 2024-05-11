@@ -16,15 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class SysFileManagementServiceImpl implements ISysFileManagementService {
@@ -144,6 +139,13 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
         return allDeleted;
     }
 
+
+    /**
+     * 浏览文件，暂时未调用，用于浏览媒体专用
+     *
+     * @param path 路径
+     * @return 是否成功
+     */
     public ResponseEntity<byte[]> viewFile(String path) throws IOException {
         // 根据文件路径创建文件对象
         File file = new File(path);
@@ -222,57 +224,70 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
      */
     @Override
     public boolean cloneFiles(String targetPath, String files) {
-        File targetDirectory = new File(targetPath);
-        if (!targetDirectory.exists() || !targetDirectory.isDirectory()) {
-            System.err.println("目标路径不存在或不是一个有效的目录。");
+
+        if (!FileUtil.isDirectory(targetPath)) {
             return false;
         }
 
-        File sourceFile = new File(files);
-        if (!sourceFile.exists() || !sourceFile.isFile()) {
-            System.err.println("要复制的文件不存在或不是一个有效的文件。");
-            return false;
-        }
-
-        String fileName = sourceFile.getName();
-        File targetFile = new File(targetPath + File.separator + fileName);
-
-        try (InputStream inputStream = Files.newInputStream(sourceFile.toPath());
-             OutputStream outputStream = Files.newOutputStream(targetFile.toPath())) {
-
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = inputStream.read(buffer)) > 0) {
-                outputStream.write(buffer, 0, length);
+        String[] fileArray = files.split(",");
+        for (String filePath : fileArray) {
+            File sourceFile = new File(filePath.trim());
+            if (!sourceFile.isFile() || !sourceFile.exists()) {
+                return false;
             }
-            System.out.println("文件复制成功。");
-            return true;
 
-        } catch (IOException e) {
-            System.err.println("文件复制失败：" + e.getMessage());
-            return false;
+            File targetFile = new File(targetPath, sourceFile.getName());
+
+            try {
+                System.out.println(targetFile.getName()+sourceFile.getName());
+                FileUtil.copy(sourceFile, targetFile, true);
+            } catch (Exception e) {
+                return false;
+            }
         }
+
+        return true;
     }
 
 
+
     /**
-     * 获取系统根目录
+     * 获取系统根目录，根据不同操作系统
      */
     public static List<FileInfoVo> getRootDirectoryPath() {
         List<FileInfoVo> rootPaths = new ArrayList<>();
-        File[] roots = File.listRoots();
-        for (File root : roots) {
-            FileInfoVo fileInfo = new FileInfoVo();
-            fileInfo.setTitle(root.getPath());
-            fileInfo.setType("folder");
-            fileInfo.setKey(root.getPath());
-            fileInfo.setIsLeaf(false);
-            // 将 FileInfoVo 对象添加到列表中
-            rootPaths.add(fileInfo);
+        String osName = System.getProperty("os.name");
+        if (osName.startsWith("Windows")) {
+            File[] roots = File.listRoots();
+            for (File root : roots) {
+                rootPaths.add(createFileInfo(root.getPath()));
+            }
+        } else {
+            File rootDirectory = new File("/");
+            if (rootDirectory.exists() && rootDirectory.isDirectory()) {
+                File[] directories = rootDirectory.listFiles(File::isDirectory);
+                if (directories != null) {
+                    for (File directory : directories) {
+                        rootPaths.add(createFileInfo(directory.getAbsolutePath()));
+                    }
+                }
+            }
         }
         return rootPaths;
     }
 
-
+    /**
+     *
+     * @param path 路径
+     * @return fileInfo 文件相关信息
+     */
+    private static FileInfoVo createFileInfo(String path) {
+        FileInfoVo fileInfo = new FileInfoVo();
+        fileInfo.setTitle(path);
+        fileInfo.setType("folder");
+        fileInfo.setKey(path);
+        fileInfo.setIsLeaf(false);
+        return fileInfo;
+    }
 
 }

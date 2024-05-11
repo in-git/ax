@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 import static com.ruoyi.common.core.domain.AjaxResult.error;
 import static com.ruoyi.common.core.domain.AjaxResult.success;
@@ -74,7 +76,8 @@ public class SysFileManagementController {
 
     @PostMapping("/upload")
     public AjaxResult uploadFile(@RequestParam("files") MultipartFile[] files, @RequestParam("path") String path) {
-        if (files.length == 0) {
+
+        if (files == null || files.length == 0) {
             return error("请选择要上传的文件");
         }
         try {
@@ -82,14 +85,16 @@ public class SysFileManagementController {
             if (!Files.exists(destFolderPath)) {
                 Files.createDirectories(destFolderPath);
             }
-            for (MultipartFile file : files) {;
-                if (!file.isEmpty()) {
-                    Path destFilePath = destFolderPath.resolve(file.getOriginalFilename());
-                    file.transferTo(destFilePath);
+            for (MultipartFile file : files) {
+                Path destFilePath = destFolderPath.resolve(Objects.requireNonNull(file.getOriginalFilename()));
+                try (OutputStream outputStream = Files.newOutputStream(destFilePath)) {
+                    outputStream.write(file.getBytes());
                 }
             }
             return success("文件上传成功");
         } catch (IOException e) {
+            // 可以根据具体情况做出更合理的异常处理，比如记录日志
+            e.printStackTrace();
             return error("文件上传失败: " + e.getMessage());
         }
     }
