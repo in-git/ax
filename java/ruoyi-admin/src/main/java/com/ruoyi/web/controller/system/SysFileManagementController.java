@@ -77,36 +77,6 @@ public class SysFileManagementController {
     @PostMapping("/upload")
     public AjaxResult uploadFile(@RequestParam("files") MultipartFile[] files, @RequestParam("path") String path) {
 
-        if (files == null || files.length == 0) {
-            return error("请选择要上传的文件");
-        }
-        try {
-            Path destFolderPath = Paths.get(path);
-            if (!Files.exists(destFolderPath)) {
-                Files.createDirectories(destFolderPath);
-            }
-            for (MultipartFile file : files) {
-                String originalFilename = file.getOriginalFilename();
-                if (originalFilename != null && originalFilename.contains("/")) {
-                    // 如果文件名包含路径，则需要创建相应的文件夹
-                    String[] folders = originalFilename.split("/");
-                    Path folderPath = destFolderPath;
-                    for (int i = 0; i < folders.length - 1; i++) {
-                        folderPath = folderPath.resolve(folders[i]);
-                        if (!Files.exists(folderPath)) {
-                            Files.createDirectories(folderPath);
-                        }
-                    }
-                }
-                Path destFilePath = destFolderPath.resolve(originalFilename);
-                try (OutputStream outputStream = Files.newOutputStream(destFilePath)) {
-                    outputStream.write(file.getBytes());
-                }
-            }
-            return success("文件上传成功");
-        } catch (IOException e) {
-
-            return error("文件上传失败: " + e.getMessage());
-        }
+       return success(fileManagementService.upload(files,path)) ;
     }
 }

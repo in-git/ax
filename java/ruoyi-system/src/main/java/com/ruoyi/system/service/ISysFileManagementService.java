@@ -2,6 +2,7 @@ package com.ruoyi.system.service;
 
 import com.ruoyi.system.domain.vo.FileInfoVo;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,4 +49,5 @@ public interface ISysFileManagementService {
      * @return 是否成功
      */
     public boolean  cloneFiles(String targetPath,String files);
+    public boolean  upload(MultipartFile[] files, String path);
 }

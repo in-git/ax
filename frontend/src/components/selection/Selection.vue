@@ -45,12 +45,11 @@ const onmousedown = (event: MouseEvent) => {
   const startY = event.y;
   document.body.style.userSelect = 'none';
   const targetDom = event.target as HTMLElement;
-  if (!targetDom.hasAttribute('data-selection')) {
-    selectionKeys.value.clear();
-  }
 
-  if (!targetDom.hasAttribute('data-selection-area')) {
+  if (!targetDom.closest('[data-selection-area]')) {
     return;
+  } else {
+    selectionKeys.value.clear();
   }
   selectionConfig.value.show = true;
   const onmousemove = (e: MouseEvent) => {

@@ -1,6 +1,10 @@
 <template>
   <div class="card" data-selection-area>
-    <a-card v-if="currentFolder" :loading="folderLoading" :bordered="false">
+    <a-card
+      v-if="currentFolder && currentFolder.length > 0"
+      :loading="folderLoading"
+      :bordered="false"
+    >
       <ul>
         <li
           :data-selection="item.key"

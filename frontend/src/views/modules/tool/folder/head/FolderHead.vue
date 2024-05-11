@@ -1,6 +1,6 @@
 <template>
   <a-flex class="folder-head" :justify="'space-between'" :align="'center'">
-    <a-flex :align="'center'" :gap="8">
+    <a-flex :align="'center'" :gap="8" v-if="currentPath">
       <a-button type="text" @click="goBack">
         <LeftOutlined class="text-12" />
       </a-button>
@@ -64,21 +64,25 @@ const goBack = () => {
   loadPath();
 };
 
+/**
+ * @description: 选择面包屑上的路径，不同操作系统，路径不同，索引也不同
+ * @param {*} index 索引
+ */
 const selectPath = (index: number) => {
   const pathParts = currentPath.value.split(getSeparator()).filter(e => e);
+  const isWindows = getSeparator() === '/';
+
+  const i = !isWindows ? index + 1 : index;
   if (index < 0 || index >= pathParts.length) {
     return;
   }
   // 选择路径的一部分并更新当前路径状态
-  const selectedPath = pathParts.slice(0, index).join(getSeparator());
+  const selectedPath = pathParts.slice(0, i).join(getSeparator());
   if (selectedPath) {
     currentPath.value = selectedPath;
-    console.log(getSeparator());
-
-    if (getSeparator() === '/') {
+    if (isWindows) {
       currentPath.value = `/${selectedPath}`;
     }
-
     loadPath();
   }
 };

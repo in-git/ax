@@ -24,6 +24,9 @@
         <a-button @click="loadPath()">
           <ReloadOutlined />
         </a-button>
+      </a-flex>
+
+      <a-flex :gap="4">
         <a-button :disabled="selectedFolders.length !== 1" @click="updateName">重命名</a-button>
 
         <a-tooltip title="复制">
@@ -36,9 +39,6 @@
             <SnippetsOutlined />
           </a-button>
         </a-tooltip>
-      </a-flex>
-
-      <a-flex :gap="4">
         <a-popconfirm
           :disabled="selectedFolders.length === 0"
           title="确认删除这些文件（夹）吗"

@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -249,6 +251,39 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
         return true;
     }
 
+    @Override
+    public boolean upload(MultipartFile[] files, String path) {
+        if (files == null || files.length == 0) {
+            return false;
+        }
+        try {
+            Path destFolderPath = Paths.get(path);
+            if (!Files.exists(destFolderPath)) {
+                Files.createDirectories(destFolderPath);
+            }
+            for (MultipartFile file : files) {
+                String originalFilename = file.getOriginalFilename();
+                if (originalFilename != null && originalFilename.contains("/")) {
+                    // 如果文件名包含路径，则需要创建相应的文件夹
+                    String[] folders = originalFilename.split("/");
+                    Path folderPath = destFolderPath;
+                    for (int i = 0; i < folders.length - 1; i++) {
+                        folderPath = folderPath.resolve(folders[i]);
+                        if (!Files.exists(folderPath)) {
+                            Files.createDirectories(folderPath);
+                        }
+                    }
+                }
+                Path destFilePath = destFolderPath.resolve(originalFilename);
+                try (OutputStream outputStream = Files.newOutputStream(destFilePath)) {
+                    outputStream.write(file.getBytes());
+                }
+            }
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
 
 
     /**
