@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import { bytesToSize } from '@/utils/common/format';
 import { message } from 'ant-design-vue';
-import { uploadCancelToken, uploadProgressConfig } from './data';
+import { uploadCancelToken, uploadProgressConfig } from '../data/config';
 
 const format = (percent: number | undefined) => {
   return `${percent}%`;

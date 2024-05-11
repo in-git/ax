@@ -3,11 +3,14 @@
     <div>
       <a-popover trigger="click" placement="topLeft">
         <a-button type="text" @click="getInfo">
-          <EllipsisOutlined />
+          <span class="text-12">
+            属性
+            <EllipsisOutlined />
+          </span>
         </a-button>
         <template #content>
           <a-card style="width: 400px">
-            <a-descriptions title="文件(夹)信息" :column="1">
+            <a-descriptions title="文件(夹)信息" :column="1" :size="'small'">
               <a-descriptions-item
                 v-for="(value, key) in fileInfo"
                 :key="key"

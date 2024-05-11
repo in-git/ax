@@ -18,10 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -257,37 +254,36 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
     }
 
     @Override
-    public boolean upload(MultipartFile[] files, String path) {
-        if (files == null || files.length == 0) {
-            return false;
-        }
-        try {
-            Path destFolderPath = Paths.get(path);
-            if (!Files.exists(destFolderPath)) {
-                Files.createDirectories(destFolderPath);
-            }
-            for (MultipartFile file : files) {
-                String originalFilename = file.getOriginalFilename();
-                if (originalFilename != null && originalFilename.contains("/")) {
-                    // 如果文件名包含路径，则需要创建相应的文件夹
-                    String[] folders = originalFilename.split("/");
-                    Path folderPath = destFolderPath;
-                    for (int i = 0; i < folders.length - 1; i++) {
-                        folderPath = folderPath.resolve(folders[i]);
-                        if (!Files.exists(folderPath)) {
-                            Files.createDirectories(folderPath);
-                        }
+    public boolean upload(MultipartFile[] files, String rootPath) {
+        for (MultipartFile file : files) {
+            String originalFilename = file.getOriginalFilename();
+            if (originalFilename != null && !originalFilename.isEmpty()) {
+                try {
+                    // 根据操作系统类型获取文件分隔符
+                    String fileSeparator = File.separator;
+
+                    // 构建文件保存的绝对路径
+                    String relativePath = originalFilename;
+                    String absolutePath = rootPath + fileSeparator + relativePath;
+
+                    // 创建文件的父目录
+                    File parentDirectory = new File(absolutePath).getParentFile();
+                    if (!parentDirectory.exists()) {
+                        parentDirectory.mkdirs();
                     }
-                }
-                Path destFilePath = destFolderPath.resolve(originalFilename);
-                try (OutputStream outputStream = Files.newOutputStream(destFilePath)) {
-                    outputStream.write(file.getBytes());
+
+                    // 保存文件
+                    File destFile = new File(absolutePath);
+                    file.transferTo(destFile);
+
+                    System.out.println("文件上传成功：" + destFile.getAbsolutePath());
+                } catch (IOException e) {
+                    System.out.println("文件上传失败：" + e.getMessage());
+                    return false;
                 }
             }
-            return true;
-        } catch (IOException e) {
-            return false;
         }
+        return true;
     }
 
     /**
