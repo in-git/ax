@@ -14,7 +14,10 @@ export const settleFile = async (type: string, data: string) => {
       title: '没有找到合适的程序',
       content: '是否用记事本强制打开,如果文件内容是二进制,则会乱码',
       onOk() {
-        openNotepad(data);
+        openNotepad({
+          data,
+          allowSave: true,
+        });
       },
       centered: true,
     });
@@ -27,7 +30,10 @@ type Map = {
 
 const fileMap: Map = {
   text(text: string) {
-    openNotepad(text);
+    openNotepad({
+      data: text,
+      allowSave: true,
+    });
   },
   image(src: string) {
     openImage(src);

@@ -68,7 +68,7 @@
           ></a-image>
           <a-button>选择图片</a-button>
           <template #content>
-            <Gallery type="wallpaper" v-model:value="gallery" />
+            <Gallery type="wallpaper" v-model="gallery" />
           </template>
         </a-popover>
       </a-card>
