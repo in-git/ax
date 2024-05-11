@@ -29,7 +29,7 @@ export const staticOptions = [
     label: 'GITHUB',
   },
   {
-    value: `http://150.158.14.110:8002`,
+    value: `http://150.158.14.110:8002/images`,
     label: 'AX测试服务器',
   },
 ];

@@ -30,8 +30,9 @@
                     </span>
                     <template #content>
                       <div>
-                        <IconSelector
-                          @update:model-value="visible = false"
+                        <Gallery
+                          type="image-icon"
+                          @update="visible = false"
                           v-model="menuForm.icon"
                         />
                       </div>
@@ -90,7 +91,7 @@
 import { createMenu, updateMenu } from '@/api/modules/system/menu/menu';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { statusOptions, visibleOptions } from '@/global/options/system';
-import IconSelector from '@/views/selector/icon/IconSelector.vue';
+import Gallery from '@/views/selector/gallery/Gallery.vue';
 import type { SmileOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
 import { loadMenuData } from '../data/curd';
