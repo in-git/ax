@@ -1,3 +1,4 @@
+import { staticHost } from '@/api/utils/image';
 import { defineStore } from 'pinia';
 import { baseUrlOptions } from './options';
 import type { SystemStore } from './types';
@@ -10,7 +11,7 @@ const useSystemStore = defineStore('system', {
       baseURL,
       urlSelection: baseUrlOptions,
       timeout: 8,
-      resourceHost: 'http://150.158.14.110:8002',
+      resourceHost: staticHost,
     },
   }),
   persist: true,

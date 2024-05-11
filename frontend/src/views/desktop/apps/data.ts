@@ -24,6 +24,7 @@ export const getUserRouters = async () => {
 /* 兼容若依的图标和自定义图标 */
 export const getIconByName = (item: Routers) => {
   let image = '';
+  console.log(item);
 
   if (item.meta.icon.startsWith('http')) {
     return item.meta.icon;

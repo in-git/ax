@@ -1,3 +1,5 @@
+import { staticHost } from '@/api/utils/image';
+
 export const baseUrlOptions = [
   {
     label: '本地',
@@ -29,7 +31,7 @@ export const staticOptions = [
     label: 'GITHUB',
   },
   {
-    value: `http://150.158.14.110:8002/images`,
+    value: staticHost,
     label: 'AX测试服务器',
   },
 ];

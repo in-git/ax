@@ -5,7 +5,7 @@
         <div class="preview">
           <a-carousel autoplay>
             <div v-for="item in 5" :key="item">
-              <a-image :src="getStaticImage(`public/cover-${item}.webp`)"></a-image>
+              <a-image :src="getStaticImage(`/public/cover-${item}.webp`)"></a-image>
             </div>
           </a-carousel>
 
