@@ -1,6 +1,6 @@
 <template>
   <a-card class="system__module system__notepad" :body-style="{ height: '100%' }">
-    <ToolbarVue :allow-save="allowSave">
+    <ToolbarVue :allow-save="data?.allowSave">
       <a-dropdown trigger="click">
         <div class="menu-button">模式切换</div>
         <template #overlay>
@@ -60,10 +60,14 @@ const items: Items[] = [
     key: 'markdown',
   },
 ];
-const props = defineProps<{
-  data?: string;
-  id: string;
+
+type Props = {
+  data: string;
   allowSave?: boolean;
+};
+const props = defineProps<{
+  data?: Props;
+  id: string;
 }>();
 
 const content = ref<string>('');
@@ -73,7 +77,9 @@ provide('data', props.id || '');
 watch(
   props,
   () => {
-    content.value = props.data || '';
+    console.log(props.data);
+
+    content.value = props.data?.data || '';
   },
   {
     deep: true,
