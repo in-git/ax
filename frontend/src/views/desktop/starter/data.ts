@@ -3,6 +3,7 @@ import aiPng from '@/assets/apps/gpt.png';
 import { openWindow } from '@/global/window/window';
 import AI from '@/views/widget/ai/AI.vue';
 import Browser from '@/views/widget/browser/Browser.vue';
+
 import Help from '@/views/widget/help/Help.vue';
 import ImageVue from '@/views/widget/image/Image.vue';
 import Notepad from '@/views/widget/notepad/Notepad.vue';
@@ -93,6 +94,7 @@ export const plugins: Plugin[] = [
       showStarter.value = false;
     },
   },
+
   {
     title: '测试',
     id: 'test',

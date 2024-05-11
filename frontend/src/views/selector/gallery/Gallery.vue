@@ -29,7 +29,7 @@ import localforage from 'localforage';
 const props = withDefaults(
   defineProps<{
     limit?: number;
-    value: string;
+    modelValue: string;
     type: IconType;
   }>(),
   {
@@ -39,7 +39,7 @@ const props = withDefaults(
   },
 );
 
-const emit = defineEmits(['update:value']);
+const emit = defineEmits(['update:modelValue']);
 
 const selectedSet = ref<string[]>([]);
 
@@ -54,32 +54,42 @@ const selectItem = (item: string) => {
 
 const confirm = () => {
   if (props.limit === 1) {
-    emit('update:value', `${selectedSet.value[0]}`);
+    emit('update:modelValue', `${selectedSet.value[0]}`);
     return;
   }
-  emit('update:value', selectedSet.value);
+  emit('update:modelValue', selectedSet.value);
 };
 
-onMounted(async () => {
-  const data = await localforage.getItem('images');
-  const arr = imageTypes.map(async e => {
-    if (props.type === e) {
-      galleryData.value = JSON.parse(JSON.stringify(data))[e];
-    }
-    return e;
-  });
-  Promise.all(arr);
-});
+watch(
+  props,
+  async () => {
+    const data = await localforage.getItem('images');
+    console.log(props.type);
+
+    imageTypes.map(async e => {
+      if (props.type === e) {
+        galleryData.value = JSON.parse(JSON.stringify(data))[e];
+        console.log(galleryData.value);
+      }
+      return e;
+    });
+  },
+  {
+    deep: true,
+    immediate: true,
+  },
+);
 </script>
 
 <style lang="scss" scoped>
-.sys-icon,
+.image-icon,
 .avatar {
   grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(64px, 1fr));
   li {
     width: 100%;
     height: 100%;
+    min-height: 64px;
   }
 }
 .wallpaper {

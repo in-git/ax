@@ -79,7 +79,9 @@ const getBas64 = () => {
         `image/${downloadConfig.value.format}`,
         downloadConfig.value.compress,
       );
-      openNotepad(base64);
+      openNotepad({
+        data: base64,
+      });
     }
   });
 };

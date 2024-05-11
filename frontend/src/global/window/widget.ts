@@ -5,15 +5,22 @@ import Notepad from '@/views/widget/notepad/Notepad.vue';
 import Video from '@/views/widget/video/Video.vue';
 import { openWindow } from './window';
 
+type Notepad = {
+  data: string;
+  allowSave?: boolean;
+};
 /* 打开记事本 */
-export const openNotepad = (text: string) => {
+export const openNotepad = (config: Notepad) => {
   openWindow({
     title: '记事本',
     component: markRaw(Notepad),
     id: 'notepad',
     icon: getStaticImage('image-icon/notepad.png'),
     dark: true,
-    data: text,
+    data: {
+      data: config.data,
+      allowSave: config.allowSave,
+    },
   });
 };
 
