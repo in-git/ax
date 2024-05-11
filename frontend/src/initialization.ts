@@ -19,6 +19,7 @@ export const loadSystemIcons = async () => {
 
   try {
     const result = await localforage.getItem('images');
+
     if (!result) {
       const response = await fetch(`${staticHost.replace('/images', '')}/data.json`);
       const data = await response.json();
