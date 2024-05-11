@@ -32,7 +32,7 @@
         <a-flex :align="'top'">
           <textarea v-model="textarea"></textarea>
           <div>
-            <button @click="openNotepad">打开记事本</button>
+            <button @click="showNotepad">打开记事本</button>
           </div>
         </a-flex>
       </a-card>
@@ -78,13 +78,12 @@
 
 <script setup lang="ts">
 import { getStaticImage } from '@/api/utils/image';
-import { openBrowser } from '@/global/window/widget';
+import { openBrowser, openNotepad } from '@/global/window/widget';
 import { openWindow } from '@/global/window/window';
 import Gallery from '@/views/selector/gallery/Gallery.vue';
 import IconSelector from '@/views/selector/icon/IconSelector.vue';
 import Memo from '@/views/selector/memo/Memo.vue';
 import Image from '../image/Image.vue';
-import Notepad from '../notepad/Notepad.vue';
 import Video from '../video/Video.vue';
 
 const videoSrc = ref('https://media.w3.org/2010/05/sintel/trailer.mp4');
@@ -109,13 +108,8 @@ const openVideo = () => {
   });
 };
 
-const openNotepad = () => {
-  openWindow({
-    title: '记事本',
-    component: markRaw(Notepad),
-    id: 'notepad',
-    icon: getStaticImage('image-icon/notepad.png'),
-    dark: true,
+const showNotepad = () => {
+  openNotepad({
     data: textarea.value,
   });
 };
