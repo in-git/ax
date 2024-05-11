@@ -10,18 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Objects;
 
-import static com.ruoyi.common.core.domain.AjaxResult.error;
 import static com.ruoyi.common.core.domain.AjaxResult.success;
 
 @RestController
 @RequestMapping("/system/file")
-public class SysFileManagementController {
+    class SysFileManagementController {
     @Autowired
     private SysFileManagementServiceImpl fileManagementService;
 
@@ -73,10 +67,17 @@ public class SysFileManagementController {
         return success(fileManagementService.cloneFiles(cloneFile.getTargetPath(), cloneFile.getFiles()));
     }
 
-
+    @PreAuthorize("@ss.hasPermi('tool:file:upload')")
     @PostMapping("/upload")
     public AjaxResult uploadFile(@RequestParam("files") MultipartFile[] files, @RequestParam("path") String path) {
 
        return success(fileManagementService.upload(files,path)) ;
     }
+
+    @PreAuthorize("@ss.hasPermi('tool:file:attr')")
+    @GetMapping("/fileAttr")
+    public AjaxResult fileAttr(@RequestParam String path) {
+        return success(fileManagementService.fileInfo(path));
+    }
+
 }

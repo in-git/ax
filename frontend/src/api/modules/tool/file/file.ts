@@ -3,6 +3,7 @@ import useSystemStore from '@/store/system';
 import { getToken } from '@/store/user/utils';
 import type { DataNode } from 'ant-design-vue/es/tree';
 import axios from 'axios';
+import type { FileAttr } from './types';
 /**
  * @param path 需要查询的路径，如果为空，则查询系统根目录
  * @param onlyFolder 仅查询文件夹
@@ -80,5 +81,13 @@ export const clonedFiles = (targetPath: string, files: string[]) => {
   return axios.post<Response>(`system/file/cloneFile`, {
     targetPath,
     files: files.join(','),
+  });
+};
+
+export const fileAttr = (path: string) => {
+  return axios.get<Response<FileAttr>>(`system/file/fileAttr`, {
+    params: {
+      path,
+    },
   });
 };

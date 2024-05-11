@@ -1,11 +1,11 @@
 package com.ruoyi.system.service;
 
+import com.ruoyi.system.domain.vo.FileAttr;
 import com.ruoyi.system.domain.vo.FileInfoVo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public interface ISysFileManagementService {
@@ -49,5 +49,17 @@ public interface ISysFileManagementService {
      * @return 是否成功
      */
     public boolean  cloneFiles(String targetPath,String files);
+
+    /**
+     * 上传文件的接口
+     * @param files 上传的文件们
+     * @param path 路径
+     */
     public boolean  upload(MultipartFile[] files, String path);
+
+    /**
+     * 查询文件信息
+     * @param path 文件的路径
+     */
+    public FileAttr fileInfo(String path);
 }

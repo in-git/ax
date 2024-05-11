@@ -3,6 +3,7 @@ package com.ruoyi.system.service.impl;
 import cn.hutool.core.io.FileUtil;
 import com.ruoyi.common.utils.file.FileUtils;
 import com.ruoyi.common.utils.file.ImageUtils;
+import com.ruoyi.system.domain.vo.FileAttr;
 import com.ruoyi.system.domain.vo.FileInfoVo;
 import com.ruoyi.system.service.ISysFileManagementService;
 import org.springframework.http.HttpHeaders;
@@ -12,16 +13,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 @Service
 public class SysFileManagementServiceImpl implements ISysFileManagementService {
@@ -241,7 +246,7 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
             File targetFile = new File(targetPath, sourceFile.getName());
 
             try {
-                System.out.println(targetFile.getName()+sourceFile.getName());
+                System.out.println(targetFile.getName() + sourceFile.getName());
                 FileUtil.copy(sourceFile, targetFile, true);
             } catch (Exception e) {
                 return false;
@@ -285,6 +290,54 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
         }
     }
 
+    /**
+     * 查询文件信息
+     *
+     * @param path 文件的路径
+     */
+    @Override
+    public FileAttr fileInfo(String path) {
+        File file = new File(path);
+
+        // 检查文件是否存在
+        if (!file.exists()) {
+            System.out.println("文件不存在");
+            return null;
+        }
+
+        // 创建一个FileInfo对象，用于存储文件信息
+        FileAttr fileInfo = new FileAttr();
+
+        // 设置文件名
+        fileInfo.setName(file.getName());
+
+        // 设置文件路径
+        fileInfo.setAbsolutePath(file.getAbsolutePath());
+
+        // 设置文件大小（以字节为单位）
+        fileInfo.setSize(file.length());
+
+        // 设置文件是否可读
+        fileInfo.setReadable(file.canRead());
+
+        // 设置文件是否可写
+        fileInfo.setWritable(file.canWrite());
+
+        // 设置文件是否是目录
+        fileInfo.setDirectory(file.isDirectory());
+
+        // 设置文件是否是隐藏文件
+        fileInfo.setHidden(file.isHidden());
+
+        // 设置文件最后修改时间
+        fileInfo.setLastModified(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(file.lastModified()));
+
+        // 设置文件创建时间
+        fileInfo.setCreateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(file.lastModified()));
+
+        return fileInfo;
+    }
+
 
     /**
      * 获取系统根目录，根据不同操作系统
@@ -312,7 +365,6 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
     }
 
     /**
-     *
      * @param path 路径
      * @return fileInfo 文件相关信息
      */
