@@ -6,7 +6,7 @@ import lombok.Data;
 public class FileAttr {
     private String name; // 文件名
     private String absolutePath; // 文件路径
-    private long size; // 文件大小（以字节为单位）
+    private String size; // 文件大小（以字节为单位）
     private boolean readable; // 是否可读
     private boolean writable; // 是否可写
     private boolean directory; // 是否是目录

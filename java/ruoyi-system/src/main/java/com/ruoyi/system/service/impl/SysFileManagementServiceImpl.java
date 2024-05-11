@@ -14,18 +14,11 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.*;
 
 @Service
@@ -71,26 +64,23 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
      * @param imagePath 图片路径
      */
     public static String convertImageToBase64(String imagePath) throws IOException {
-        // 读取图片文件
-        BufferedImage image = ImageIO.read(new File(imagePath));
 
-        // 压缩图片
-        int newWidth = image.getWidth() / 2; // 压缩到原始宽度的一半
-        int newHeight = image.getHeight() / 2; // 压缩到原始高度的一半
-        BufferedImage compressedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g = compressedImage.createGraphics();
-        g.drawImage(image, 0, 0, newWidth, newHeight, null);
-        g.dispose();
 
-        // 将压缩后的图片转换为字节数组
+
+        File inputFile = new File(imagePath);
+        FileInputStream inputStream = new FileInputStream(inputFile);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ImageIO.write(compressedImage, "jpg", outputStream);
+        byte[] buffer = new byte[4096];
+        int bytesRead;
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead);
+        }
         byte[] imageBytes = outputStream.toByteArray();
-
+        String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+        inputStream.close();
+        outputStream.close();
         // 对字节数组进行Base64编码，并添加前缀
-        return "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(imageBytes);
-
-
+        return "data:image/jpeg;base64," +base64Image;
 
     }
     public static void sortFileInfoList(List<FileInfoVo> fileInfoList) {
@@ -153,19 +143,18 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
                         if (isImage) {
                             fileInfo.setSrc(convertImageToBase64(file.getPath()));
                             fileInfo.setType("image");
-                        } else if (file.getName().endsWith(".txt") || FileUtils.isCodeFile(file)) {
+                        } else if (FileUtils.isTextFile(file.getPath())  ) {
                             String strings = FileUtils.readFileAsString(file.getPath());
-                            // 当为文本类型的时候，读取内容
-                            if (file.getName().endsWith(".txt")) {
-                                fileInfo.setType("text");
-                            } else if (FileUtils.isCodeFile(file)) {
-                                String type = FileUtils.getFileExtension(file.getName());
-                                fileInfo.setType(type);
-                            }
                             fileInfo.setSrc(strings);
-                        } else if (isVideo) {
+                        }
+                        else if (isVideo) {
                             fileInfo.setType("video");
-                        } else {
+                        }
+                        else if (FileUtils.isCodeFile(file)) {
+                            String type = FileUtils.getFileExtension(file.getName());
+                            fileInfo.setType(type);
+                        }
+                        else {
                             fileInfo.setType("file");
                         }
                         fileList.add(fileInfo);
@@ -330,8 +319,7 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
                     String fileSeparator = File.separator;
 
                     // 构建文件保存的绝对路径
-                    String relativePath = originalFilename;
-                    String absolutePath = rootPath + fileSeparator + relativePath;
+                    String absolutePath = rootPath + fileSeparator + originalFilename;
 
                     // 创建文件的父目录
                     File parentDirectory = new File(absolutePath).getParentFile();
@@ -376,7 +364,7 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
         fileInfo.setAbsolutePath(file.getAbsolutePath());
 
         // 设置文件大小（以字节为单位）
-        fileInfo.setSize(Long.parseLong(fileInfo.formatFileSize(file.length())));
+        fileInfo.setSize(fileInfo.formatFileSize(file.length()));
 
         // 设置文件是否可读
         fileInfo.setReadable(file.canRead());
