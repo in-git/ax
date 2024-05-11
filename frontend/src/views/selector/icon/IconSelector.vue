@@ -37,10 +37,8 @@ const confirm = () => {
 onMounted(async () => {
   const data = await localforage.getItem('images');
   if (data) {
-    const jsonData = JSON.parse(JSON.stringify(data));
-    console.log(jsonData);
-
-    imageIcons.value = jsonData['image-icon'];
+    const { avatar } = JSON.parse(JSON.stringify(data));
+    imageIcons.value = avatar;
   }
 });
 const selectItem = (iconPath: string) => {

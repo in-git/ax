@@ -1,6 +1,6 @@
 <template>
   <a-card class="system__module system__notepad" :body-style="{ height: '100%' }">
-    <ToolbarVue>
+    <ToolbarVue :allow-save="allowSave">
       <a-dropdown trigger="click">
         <div class="menu-button">模式切换</div>
         <template #overlay>
@@ -63,6 +63,7 @@ const items: Items[] = [
 const props = defineProps<{
   data?: string;
   id: string;
+  allowSave?: boolean;
 }>();
 
 const content = ref<string>('');

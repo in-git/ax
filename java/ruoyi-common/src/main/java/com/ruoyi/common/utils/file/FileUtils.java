@@ -252,6 +252,7 @@ public class FileUtils {
         return baseName;
     }
 
+<<<<<<< HEAD
     public static String readFileAsString(String filePath) throws IOException {
         StringBuilder content = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -330,4 +331,7 @@ public class FileUtils {
         }
         return extension;
     }
+=======
+
+>>>>>>> master
 }

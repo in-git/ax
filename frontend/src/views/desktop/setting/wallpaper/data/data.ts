@@ -6,13 +6,14 @@ export const galleryType = ref<'video' | 'image'>('image');
 export const galleryLoading = ref(false);
 
 export const changeGalleryType = async () => {
-  const data = await localforage.getItem('wallpaper');
-  const wallpaperList = JSON.parse(JSON.stringify(data));
+  const data = await localforage.getItem('images');
+
+  const { wallpaper } = JSON.parse(JSON.stringify(data));
   galleryData.value = [];
   if (galleryType.value === 'image') {
-    galleryData.value = wallpaperList;
+    galleryData.value = wallpaper || [];
   } else {
-    galleryData.value = videoWallpaperList;
+    galleryData.value = videoWallpaperList || [];
   }
 };
 
