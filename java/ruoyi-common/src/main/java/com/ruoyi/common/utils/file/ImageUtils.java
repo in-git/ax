@@ -7,16 +7,12 @@ import org.apache.poi.util.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Base64;
 
 /**
  * 图片处理工具类
@@ -79,35 +75,6 @@ public class ImageUtils {
         } finally {
             IOUtils.closeQuietly(in);
         }
-    }
-
-    public static boolean isImage(File file) {
-        if (file != null && file.exists() && file.isFile()) {
-            try {
-                BufferedImage bi = ImageIO.read(file);
-                if (bi != null) {
-                    return true;
-                }
-            } catch (IOException e) {
-                return false;
-            }
-
-        }
-        return false;
-    }
-
-    public static String convertImageToBase64(String imagePath) throws IOException {
-        File imageFile = new File(imagePath);
-        byte[] imageData = new byte[(int) imageFile.length()];
-
-        try (FileInputStream fileInputStream = new FileInputStream(imageFile)) {
-            fileInputStream.read(imageData);
-        }
-
-        Base64.Encoder encoder = Base64.getEncoder();
-        String base64Image = encoder.encodeToString(imageData);
-        String mimeType = Files.probeContentType(imageFile.toPath());
-        return "data:" + mimeType + ";base64," + base64Image;
     }
 
 

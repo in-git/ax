@@ -2,7 +2,6 @@ package com.ruoyi.system.service.impl;
 
 import cn.hutool.core.io.FileUtil;
 import com.ruoyi.common.utils.file.FileUtils;
-import com.ruoyi.common.utils.file.ImageUtils;
 import com.ruoyi.system.domain.vo.FileAttr;
 import com.ruoyi.system.domain.vo.FileInfoVo;
 import com.ruoyi.system.service.ISysFileManagementService;
@@ -15,19 +14,85 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import java.util.*;
 
 @Service
 public class SysFileManagementServiceImpl implements ISysFileManagementService {
 
+    public static boolean isVideoFile(String filePath) {
+        // 视频文件的扩展名
+        String[] videoExtensions = {"mp4", "avi", "mov", "mkv", "wmv", "flv", "m4v", "mpeg", "mpg"};
+
+        // 获取文件扩展名
+        String extension = FileUtil.getSuffix(filePath);
+
+        // 检查扩展名是否在视频文件扩展名列表中
+        for (String videoExtension : videoExtensions) {
+            if (extension.equalsIgnoreCase(videoExtension)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean isImage(File file) {
+        if (!file.exists() || file.isDirectory()) {
+            return false;
+        }
+
+        // 获取文件的MIME类型
+        try {
+            Path path = Paths.get(file.getPath());
+            String mimeType = Files.probeContentType(path);
+            if (mimeType != null && mimeType.startsWith("image")) {
+                return true; // 如果MIME类型以"image"开头，则视为图片
+            }
+        } catch (IOException e) {
+
+        }
+
+        return false;
+    }
+    /**
+     * 压缩且转成base64
+     * @param imagePath 图片路径
+     */
+    public static String convertImageToBase64(String imagePath) throws IOException {
+        // 读取图片文件
+        BufferedImage image = ImageIO.read(new File(imagePath));
+
+        // 压缩图片
+        int newWidth = image.getWidth() / 2; // 压缩到原始宽度的一半
+        int newHeight = image.getHeight() / 2; // 压缩到原始高度的一半
+        BufferedImage compressedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g = compressedImage.createGraphics();
+        g.drawImage(image, 0, 0, newWidth, newHeight, null);
+        g.dispose();
+
+        // 将压缩后的图片转换为字节数组
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ImageIO.write(compressedImage, "jpg", outputStream);
+        byte[] imageBytes = outputStream.toByteArray();
+
+        // 对字节数组进行Base64编码，并添加前缀
+        return "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(imageBytes);
+
+
+
+    }
     public static void sortFileInfoList(List<FileInfoVo> fileInfoList) {
         Collections.sort(fileInfoList, new Comparator<FileInfoVo>() {
             @Override
@@ -68,7 +133,8 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
             File[] files = directory.listFiles();
             if (files != null) {
                 for (File file : files) {
-                    boolean isImage = ImageUtils.isImage(file);
+                    boolean isImage =isImage(file);
+                    boolean isVideo = isVideoFile(file.getName());
 
                     // 创建 FileInfoVo 对象
                     FileInfoVo fileInfo = new FileInfoVo();
@@ -85,7 +151,7 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
                         fileInfo.setIsLeaf(true);
 
                         if (isImage) {
-                            fileInfo.setSrc(ImageUtils.convertImageToBase64(file.getPath()));
+                            fileInfo.setSrc(convertImageToBase64(file.getPath()));
                             fileInfo.setType("image");
                         } else if (file.getName().endsWith(".txt") || FileUtils.isCodeFile(file)) {
                             String strings = FileUtils.readFileAsString(file.getPath());
@@ -97,6 +163,8 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
                                 fileInfo.setType(type);
                             }
                             fileInfo.setSrc(strings);
+                        } else if (isVideo) {
+                            fileInfo.setType("video");
                         } else {
                             fileInfo.setType("file");
                         }
@@ -243,7 +311,6 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
             File targetFile = new File(targetPath, sourceFile.getName());
 
             try {
-                System.out.println(targetFile.getName() + sourceFile.getName());
                 FileUtil.copy(sourceFile, targetFile, true);
             } catch (Exception e) {
                 return false;
@@ -276,9 +343,8 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
                     File destFile = new File(absolutePath);
                     file.transferTo(destFile);
 
-                    System.out.println("文件上传成功：" + destFile.getAbsolutePath());
                 } catch (IOException e) {
-                    System.out.println("文件上传失败：" + e.getMessage());
+
                     return false;
                 }
             }
@@ -297,7 +363,6 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
 
         // 检查文件是否存在
         if (!file.exists()) {
-            System.out.println("文件不存在");
             return null;
         }
 
