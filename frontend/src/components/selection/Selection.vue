@@ -1,7 +1,7 @@
 <template>
   <div v-if="selectionConfig.show">
     <div ref="selectionRef" class="selection" :style="style">
-      <!-- 
+      <!--
      使用：
      在父元素添加 data-selection-area 属性
      在子元素添加 data-selection =${id}
@@ -25,7 +25,6 @@ type Selection = {
 };
 
 const selectionRef = ref<HTMLDivElement>();
-const emit = defineEmits(['update:selectionKeys', 'start', 'end']);
 const selectionConfig = ref<Selection>({
   left: 0,
   top: 0,
@@ -34,7 +33,6 @@ const selectionConfig = ref<Selection>({
   height: 0,
 });
 
-const props = defineProps();
 const clear = () => {
   document.onmouseup = null;
   document.onmousemove = null;
@@ -47,14 +45,12 @@ const onmousedown = (event: MouseEvent) => {
   const startY = event.y;
   document.body.style.userSelect = 'none';
   const targetDom = event.target as HTMLElement;
-  if (!targetDom.hasAttribute('data-selection')) {
+
+  if (!targetDom.closest('[data-selection-area]')) {
+    return;
+  } else {
     selectionKeys.value.clear();
   }
-
-  if (!targetDom.hasAttribute('data-selection-area')) {
-    return;
-  }
-  emit('start');
   selectionConfig.value.show = true;
   const onmousemove = (e: MouseEvent) => {
     const width = e.x - startX;
@@ -96,8 +92,6 @@ const onmousedown = (event: MouseEvent) => {
     selectionConfig.value.left = 0;
     selectionConfig.value.top = 0;
 
-    emit('update:selectionKeys', Array.from(selectionKeys.value));
-    emit('end', Array.from(selectionKeys.value));
     document.body.style.userSelect = 'initial';
   };
   document.addEventListener('mousemove', onmousemove);

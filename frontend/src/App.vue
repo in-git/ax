@@ -42,9 +42,12 @@
   </ConfigProvider>
   <!-- 通用右键菜单 -->
   <Contextmenu />
+  <!-- 框选 -->
+  <Selection />
 </template>
 
 <script setup lang="ts">
+import Selection from '@/components/selection/Selection.vue';
 import { closeWindow, windowList } from '@/global/window/window';
 import { ConfigProvider, theme } from 'ant-design-vue';
 import zh_CN from 'ant-design-vue/es/locale/zh_CN';
@@ -77,6 +80,7 @@ nextTick(async () => {
   loadSystemIcons();
   /* 初始化系统本地组件 */
   loadSystemComponents();
+
   /* 初始化事件 */
   setEvent();
   /* 设置主题变量 */

@@ -39,5 +39,4 @@ export const resetUserForm = async () => {
     ...userFormObj,
   };
   await editUserConfig();
-  console.log(userRoles.value);
 };

@@ -6,7 +6,7 @@ export const getStaticImage = (path: string): string => {
     return '';
   }
   const systemStore = localStorage.getItem('system');
-  if (!systemStore) return `http://150.158.14.110:8002/${path}`;
+  if (!systemStore) return `http://150.158.14.110:8002/images/${path}`;
   const { developer } = JSON.parse(systemStore) as SystemStore;
   if (!developer) return '';
   const resourceUrl = developer.resourceHost;

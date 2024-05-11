@@ -32,14 +32,15 @@ defineProps<{
 }>();
 
 const confirm = () => {
-  emit('update:modelValue', `image-icon/${active.value}`);
+  emit('update:modelValue', `${active.value}`);
 };
 onMounted(async () => {
-  const data = await localforage.getItem('image-icon');
-  console.log(data);
-
+  const data = await localforage.getItem('images');
   if (data) {
-    imageIcons.value = JSON.parse(JSON.stringify(data));
+    const jsonData = JSON.parse(JSON.stringify(data));
+    console.log(jsonData);
+
+    imageIcons.value = jsonData['image-icon'];
   }
 });
 const selectItem = (iconPath: string) => {

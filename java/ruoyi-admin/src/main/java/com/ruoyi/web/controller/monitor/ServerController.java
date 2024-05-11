@@ -1,5 +1,6 @@
 package com.ruoyi.web.controller.monitor;
 
+import lombok.Data;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,4 +25,21 @@ public class ServerController
         server.copyTo();
         return AjaxResult.success(server);
     }
+
+    @Data
+
+    private  class SysInfo {
+        String osName;
+        String fileSeparator;
+    }
+
+    @GetMapping("sys")
+    public AjaxResult getSystemInfo() throws Exception
+    {
+        SysInfo sysInfo = new SysInfo();
+        sysInfo.setOsName( System.getProperty("os.name"));
+        sysInfo.setFileSeparator(  System.getProperty("file.separator"));
+        return AjaxResult.success(sysInfo);
+    }
+
 }

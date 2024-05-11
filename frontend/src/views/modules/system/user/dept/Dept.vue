@@ -49,7 +49,6 @@ watch(
       await loadDeptTree();
     }
     treeData.value = deptTreeData.value;
-    console.log(treeData.value);
   },
   {
     immediate: true,

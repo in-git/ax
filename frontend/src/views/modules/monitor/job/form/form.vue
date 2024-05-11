@@ -63,7 +63,6 @@ import { jobGroupOptions, misfirePolicyOptions } from '../data/options';
 
 onMounted(async () => {
   await getDict();
-  console.log(jobGroupOptions.value);
 });
 </script>
 

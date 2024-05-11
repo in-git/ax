@@ -14,8 +14,6 @@
       </div>
       <!-- 底部分页信息 -->
       <FooterVue></FooterVue>
-
-      <!-- 绝对定位模块 -->
       <!-- 表单编辑 -->
       <FormVue />
     </a-flex>

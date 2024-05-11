@@ -53,9 +53,7 @@ interface SortConfig {
 nextTick(() => {
   useSortable(cardRef, roleCardData.value, {
     animation: 200,
-    onUpdate(e: SortConfig) {
-      // console.log(e.oldIndex, e.newIndex);
-    },
+    onUpdate(e: SortConfig) {},
   });
 });
 </script>

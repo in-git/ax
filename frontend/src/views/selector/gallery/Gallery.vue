@@ -60,12 +60,11 @@ const confirm = () => {
   emit('update:value', selectedSet.value);
 };
 
-onMounted(() => {
+onMounted(async () => {
+  const data = await localforage.getItem('images');
   const arr = imageTypes.map(async e => {
     if (props.type === e) {
-      const data = await localforage.getItem(e);
-      const json = JSON.parse(JSON.stringify(data));
-      galleryData.value = json;
+      galleryData.value = JSON.parse(JSON.stringify(data))[e];
     }
     return e;
   });
@@ -103,6 +102,7 @@ ul {
     border: 1px solid transparent;
     padding: 4px;
     border-radius: var(--radius);
+    background: #f8f8f89d;
   }
   img {
     width: 100%;

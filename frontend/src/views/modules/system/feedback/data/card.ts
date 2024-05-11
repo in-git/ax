@@ -12,14 +12,10 @@ interface CardData {
 }
 
 /* 当前拖拽的元素 */
-export const dragstart = (item: CardData) => {
-  console.log('dragstart==', item.id);
-};
+export const dragstart = (item: CardData) => {};
 
 /* 目标元素，鼠标放下 */
-export const drop = (item: CardData) => {
-  console.log('drop==', item.id);
-};
+export const drop = (item: CardData) => {};
 
 /* 选择卡片 */
 export const selectSystemFeedback = (item: CardData) => {

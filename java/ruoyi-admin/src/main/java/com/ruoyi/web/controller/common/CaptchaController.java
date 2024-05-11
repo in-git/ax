@@ -26,7 +26,7 @@ import com.ruoyi.system.service.ISysConfigService;
  * @author ruoyi
  */
 @RestController
-public class CaptchaController
+class CaptchaController
 {
     @Resource(name = "captchaProducer")
     private Producer captchaProducer;

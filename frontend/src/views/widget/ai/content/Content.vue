@@ -28,7 +28,7 @@ const resize = (data: any[]) => {
 </script>
 
 <style lang="scss" scoped>
-::v-deep(.splitpanes) {
+:deep(.splitpanes) {
   height: calc(100% - 32px);
   .splitpanes__splitter {
     height: 4px !important;

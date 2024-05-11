@@ -60,8 +60,6 @@ import { dictDataForm, dictDataShowForm } from '../data/form';
 
 const loading = ref(false);
 const submit = async () => {
-  console.log(dictDataForm.value);
-
   if (!dictDataForm.value.createTime) {
     await response(createDictData, dictDataForm.value);
   } else {

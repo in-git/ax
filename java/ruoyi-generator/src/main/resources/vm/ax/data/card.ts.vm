@@ -13,12 +13,12 @@ interface CardData {
 
 /* 当前拖拽的元素 */
 export const dragstart = (item: CardData) => {
-  console.log('dragstart==', item.id);
+  // 鼠标拖拽触发
 };
 
 /* 目标元素，鼠标放下 */
 export const drop = (item: CardData) => {
-  console.log('drop==', item.id);
+  // 鼠标拖拽放下触发
 };
 
 /* 选择卡片 */

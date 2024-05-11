@@ -1,3 +1,6 @@
+/*
+ * @LastEditors: 吴文龙
+ */
 export const baseUrlOptions = [
   {
     label: '本地',
@@ -17,7 +20,7 @@ export const baseUrlOptions = [
 ];
 export const staticOptions = [
   {
-    value: `https://in-git.gitee.io/ax-resource/images`,
+    value: `http://in-git.gitee.io/ax-resource/images`,
     label: 'GITEE',
   },
   {
@@ -29,7 +32,7 @@ export const staticOptions = [
     label: 'GITHUB',
   },
   {
-    value: `http://150.158.14.110:8002`,
+    value: `http://150.158.14.110:8002/images`,
     label: 'AX测试服务器',
   },
 ];
