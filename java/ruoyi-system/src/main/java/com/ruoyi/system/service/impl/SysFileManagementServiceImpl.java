@@ -376,7 +376,7 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
         fileInfo.setAbsolutePath(file.getAbsolutePath());
 
         // 设置文件大小（以字节为单位）
-        fileInfo.setSize(file.length());
+        fileInfo.setSize(Long.parseLong(fileInfo.formatFileSize(file.length())));
 
         // 设置文件是否可读
         fileInfo.setReadable(file.canRead());

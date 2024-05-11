@@ -8,7 +8,7 @@
         <a-breadcrumb-item
           class="cursor-pointer"
           @click.stop="selectPath(key)"
-          v-for="(item, key) in currentPath.split(getSeparator())"
+          v-for="(item, key) in path"
         >
           {{ item }}
         </a-breadcrumb-item>
@@ -31,22 +31,11 @@
 
 <script setup lang="ts">
 import type { LeftOutlined } from '@ant-design/icons-vue';
-import { loadPath } from '../data/action';
+import { getSeparator, isWindows, loadPath } from '../data/action';
 import { currentPath } from '../data/data';
 
 /* 激活：input，未激活：面包屑导航 */
 const isActive = ref(false);
-
-/**
- * @description: 获取系统分隔符
- */
-const getSeparator = (): string => {
-  let separator = '/';
-  if (currentPath.value.includes('\\')) {
-    separator = '\\';
-  }
-  return separator;
-};
 
 const getParentPath = (currentPath: string): string => {
   const parts = currentPath.split(getSeparator());
@@ -70,17 +59,15 @@ const goBack = () => {
  */
 const selectPath = (index: number) => {
   const pathParts = currentPath.value.split(getSeparator()).filter(e => e);
-  const isWindows = getSeparator() === '/';
 
-  const i = !isWindows ? index + 1 : index;
   if (index < 0 || index >= pathParts.length) {
     return;
   }
   // 选择路径的一部分并更新当前路径状态
-  const selectedPath = pathParts.slice(0, i).join(getSeparator());
+  const selectedPath = pathParts.slice(0, index + 1).join(getSeparator());
   if (selectedPath) {
     currentPath.value = selectedPath;
-    if (isWindows) {
+    if (isWindows()) {
       currentPath.value = `/${selectedPath}`;
     }
     loadPath();
@@ -91,12 +78,16 @@ const search = () => {
   isActive.value = !isActive.value;
   loadPath();
 };
+
+const path = computed(() => {
+  return currentPath.value.split(getSeparator()).filter(e => e);
+});
 </script>
 
 <style lang="scss" scoped>
 .folder-head {
-  height: 30px;
-  line-height: 30px;
+  height: 32px;
+  line-height: 32px;
   box-sizing: content-box;
   border-bottom: 1px solid #ddd;
   padding: 0 8px;

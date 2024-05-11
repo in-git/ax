@@ -1,8 +1,16 @@
+import { getSystemInfo } from '@/api/modules/monitor/server/server';
 import { deleteFiles, getSystemPath } from '@/api/modules/tool/file/file';
 import { settleFile } from '@/global/window/file';
 import { response } from '@/utils/table/table';
 import type { DataNode } from 'ant-design-vue/es/tree';
-import { currentFolder, currentPath, folderLoading, selectedFolders, selectedPaths } from './data';
+import {
+  currentFolder,
+  currentPath,
+  folderLoading,
+  selectedFolders,
+  selectedPaths,
+  sysInfo,
+} from './data';
 
 /**
  * @description: 打开一个文件或文件夹
@@ -42,4 +50,28 @@ export const delFile = async () => {
     selectedFolders.value.map(e => `${e}`),
   );
   loadPath();
+};
+
+/**
+ * @description: 获取系统信息
+ */
+export const getSys = async () => {
+  if (!sysInfo.value) {
+    const { data } = await getSystemInfo();
+    if (data.data) sysInfo.value = data.data;
+  }
+};
+
+/**
+ * @description: 获取系统分隔符
+ */
+export const getSeparator = (): string => {
+  let separator = '/';
+  return sysInfo.value?.fileSeparator || separator;
+};
+
+export const isWindows = () => {
+  console.log(sysInfo.value?.osName);
+
+  return sysInfo.value?.osName;
 };

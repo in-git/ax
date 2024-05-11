@@ -66,7 +66,7 @@
       width="340px"
       centered
       get-container=".tool-container"
-      v-model:visible="createModal"
+      v-model:open="createModal"
       title="新建文件"
       :footer="false"
     >
@@ -96,7 +96,7 @@ import { response } from '@/utils/table/table';
 import { SnippetsOutlined } from '@ant-design/icons-vue';
 import { useCloned } from '@vueuse/core';
 import { message } from 'ant-design-vue';
-import { delFile, loadPath } from '../../../data/action';
+import { delFile, getSeparator, loadPath } from '../../../data/action';
 import { copiedPaths, currentPath, mode, selectedFolders } from '../../../data/data';
 import UploadButton from './UploadButton.vue';
 import { fileTypeOptions } from './options';
@@ -125,7 +125,7 @@ const updateName = () => {
   const file = selectedFolders.value[0];
   if (file) {
     createModal.value = true;
-    const getName = file.toString().split('\\').pop();
+    const getName = file.toString().split(getSeparator()).pop();
     if (getName) {
       newFileForm.value.name = getName;
       newFileForm.value.newName = getName;

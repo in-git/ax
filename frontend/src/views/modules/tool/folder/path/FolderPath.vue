@@ -81,7 +81,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .folder-path {
-  height: 100%;
+  height: calc(100%);
   overflow-y: auto;
   overflow-x: hidden;
 }

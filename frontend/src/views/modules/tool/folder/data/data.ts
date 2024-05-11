@@ -1,3 +1,4 @@
+import type { SysInfo } from '@/api/modules/monitor/server/server';
 import type { Key } from 'ant-design-vue/es/_util/type';
 /* 当前选中的文件夹 */
 export const currentFolder = ref();
@@ -12,3 +13,5 @@ export const selectedPaths = ref();
 /* 已复制的文件夹 */
 export const copiedPaths = ref<Key[]>([]);
 export const folderLoading = ref(false);
+
+export const sysInfo = ref<SysInfo>();
