@@ -45,19 +45,6 @@
         </a-flex>
       </a-card>
 
-      <a-card title="图标选择器">
-        <a-input v-model:value="icon" style="width: 200px">
-          <template #addonAfter>
-            <a-popover title="图标选择器" trigger="click">
-              <smile-outlined />
-              <template #content>
-                <IconSelector v-model="icon" />
-              </template>
-            </a-popover>
-          </template>
-        </a-input>
-      </a-card>
-
       <a-card title="图片选择器">
         <a-popover trigger="click">
           <a-image
@@ -81,7 +68,6 @@ import { getStaticImage } from '@/api/utils/image';
 import { openBrowser, openNotepad } from '@/global/window/widget';
 import { openWindow } from '@/global/window/window';
 import Gallery from '@/views/selector/gallery/Gallery.vue';
-import IconSelector from '@/views/selector/icon/IconSelector.vue';
 import Memo from '@/views/selector/memo/Memo.vue';
 import Image from '../image/Image.vue';
 import Video from '../video/Video.vue';

@@ -68,7 +68,7 @@
               <a-popover trigger="click" v-model:open="visible">
                 <SmileOutlined />
                 <template #content>
-                  <IconSelector v-model="websiteForm.icon" @update:model-value="visible = false" />
+                  <Gallery v-model="websiteForm.icon" @update:model-value="visible = false" />
                 </template>
               </a-popover>
             </template>
@@ -90,7 +90,7 @@ import { getStaticImage } from '@/api/utils/image';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { extractDomain } from '@/utils/common/format';
 import { response } from '@/utils/table/table';
-import IconSelector from '@/views/selector/icon/IconSelector.vue';
+import Gallery from '@/views/selector/gallery/Gallery.vue';
 import { SmileOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
 import { websiteList } from '../../data/curd';
