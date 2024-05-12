@@ -6,7 +6,6 @@ import AutoImport from 'unplugin-auto-import/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
 import { defineConfig } from 'vite';
-import { viteMockServe } from 'vite-plugin-mock';
 import OptimizationPersist from 'vite-plugin-optimize-persist';
 import PkgConfig from 'vite-plugin-package-config';
 
@@ -18,11 +17,6 @@ export default defineConfig(() => {
     base: '/',
     plugins: [
       vue(),
-      viteMockServe({
-        mockPath: './src/mock/mock',
-        enable: true,
-        logger: true,
-      }),
       AutoImport({
         dts: 'src/auto-imports.d.ts',
         imports: ['vue', 'vue-router'],

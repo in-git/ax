@@ -7,7 +7,6 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import './api/config/interceptor';
 import directive from './directive';
-import './mock/mock';
 // import router from './router';
 import 'animate.css';
 import './style/index.scss';
