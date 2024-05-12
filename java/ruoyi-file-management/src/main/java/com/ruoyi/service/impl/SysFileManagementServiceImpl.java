@@ -14,6 +14,10 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import javax.imageio.ImageWriter;
+import javax.imageio.stream.ImageOutputStream;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -61,29 +65,56 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
     }
 
     /**
+     * 将图片转换为 WebP 格式
+     *
+     * @param image 输入图片
+     * @return WebP 数据
+     * @throws IOException 如果转换失败
+     */
+    private static byte[] convertToWebP(BufferedImage image) throws IOException {
+        // 创建字节数组输出流
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+        // 获取 WebP 图片写入器
+        Iterator<ImageWriter> writers = ImageIO.getImageWritersByMIMEType("image/webp");
+        ImageWriter writer = null;
+        if (writers.hasNext()) {
+            writer = writers.next();
+        }
+
+        // 将图片写入输出流
+        try (ImageOutputStream ios = ImageIO.createImageOutputStream(outputStream)) {
+            writer.setOutput(ios);
+            writer.write(image);
+        } finally {
+            // 关闭写入器
+            if (writer != null) {
+                writer.dispose();
+            }
+        }
+
+        // 返回 WebP 数据
+        return outputStream.toByteArray();
+    }
+
+
+    /**
      * 压缩且转成base64
      *
      * @param imagePath 图片路径
      */
     public static String convertImageToBase64(String imagePath) throws IOException {
 
-
-        File inputFile = new File(imagePath);
-        FileInputStream inputStream = new FileInputStream(inputFile);
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        byte[] buffer = new byte[4096];
-        int bytesRead;
-        while ((bytesRead = inputStream.read(buffer)) != -1) {
-            outputStream.write(buffer, 0, bytesRead);
-        }
-        byte[] imageBytes = outputStream.toByteArray();
-        String base64Image = Base64.getEncoder().encodeToString(imageBytes);
-        inputStream.close();
-        outputStream.close();
-        // 对字节数组进行Base64编码，并添加前缀
-        return "data:image/jpeg;base64," + base64Image;
-
+        // 读取图片文件并转换为字节数组
+        File file = new File(imagePath);
+        FileInputStream fileInputStream = new FileInputStream(file);
+        byte[] bytes = new byte[(int) file.length()];
+        fileInputStream.read(bytes);
+        fileInputStream.close();
+            // 将字节数组转换为Base64编码字符串
+        return "data:image/webp;base64," + Base64.getEncoder().encodeToString(bytes);
     }
+
 
     public static void sortFileInfoList(List<FileInfoVo> fileInfoList) {
         Collections.sort(fileInfoList, new Comparator<FileInfoVo>() {
