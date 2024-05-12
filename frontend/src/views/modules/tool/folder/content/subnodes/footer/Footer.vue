@@ -30,8 +30,8 @@
 </template>
 
 <script setup lang="ts">
-import { fileAttr } from '@/api/modules/tool/file/file';
-import type { FileAttr } from '@/api/modules/tool/file/types';
+import { fileAttr } from '@/api/modules/file/file';
+import type { FileAttr } from '@/api/modules/file/types';
 import { EllipsisOutlined } from '@ant-design/icons-vue';
 import { selectedFolders } from '../../../data/data';
 import UploadProgress from './UploadProgress.vue';

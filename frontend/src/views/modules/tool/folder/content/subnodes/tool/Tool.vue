@@ -91,7 +91,7 @@
 </template>
 
 <script setup lang="ts">
-import { clonedFiles, createFile, renameFile } from '@/api/modules/tool/file/file';
+import { clonedFiles, createFile, renameFile } from '@/api/modules/file/file';
 import { response } from '@/utils/table/table';
 import { SnippetsOutlined } from '@ant-design/icons-vue';
 import { useCloned } from '@vueuse/core';

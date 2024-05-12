@@ -1,5 +1,5 @@
+import { deleteFiles, getSystemPath } from '@/api/modules/file/file';
 import { getSystemInfo } from '@/api/modules/monitor/server/server';
-import { deleteFiles, getSystemPath } from '@/api/modules/tool/file/file';
 import { settleFile } from '@/global/window/file';
 import { response } from '@/utils/table/table';
 import type { DataNode } from 'ant-design-vue/es/tree';

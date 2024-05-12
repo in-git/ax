@@ -158,6 +158,8 @@
                 <version>${ruoyi.version}</version>
             </dependency>
 
+
+
             <!-- 通用工具-->
             <dependency>
                 <groupId>com.ruoyi</groupId>
@@ -178,6 +180,15 @@
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
+
+            <!-- 文件管理-->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>ruoyi-file-management</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
@@ -188,6 +199,7 @@
         <module>ruoyi-quartz</module>
         <module>ruoyi-generator</module>
         <module>ruoyi-common</module>
+        <module>ruoyi-file-management</module>
     </modules>
     <packaging>pom</packaging>
 

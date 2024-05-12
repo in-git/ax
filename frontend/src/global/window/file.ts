@@ -1,4 +1,4 @@
-import { viewFile } from '@/api/modules/tool/file/file';
+import { viewFile } from '@/api/modules/file/file';
 import { Modal } from 'ant-design-vue';
 import type { DataNode } from 'ant-design-vue/es/tree';
 import { openImage, openNotepad } from './widget';

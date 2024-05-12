@@ -22,6 +22,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+
         <!-- spring-boot-devtools -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -68,6 +69,11 @@
             <artifactId>ruoyi-generator</artifactId>
         </dependency>
 
+        <!-- 文件管理系统-->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>ruoyi-file-management</artifactId>
+        </dependency>
 
     </dependencies>
 

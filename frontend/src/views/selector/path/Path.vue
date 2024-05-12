@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { getSystemPath } from '@/api/modules/tool/file/file';
+import { getSystemPath } from '@/api/modules/file/file';
 import { FileOutlined, FolderOutlined } from '@ant-design/icons-vue';
 import type { TreeProps } from 'ant-design-vue';
 import type { DataNode, EventDataNode } from 'ant-design-vue/es/tree';
