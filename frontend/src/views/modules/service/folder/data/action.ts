@@ -72,8 +72,6 @@ export const getSeparator = (): string => {
 };
 
 export const isWindows = () => {
-  console.log(sysInfo.value?.osName);
-
   return sysInfo.value?.osName;
 };
 

@@ -30,6 +30,7 @@ import {
   selectedFolders,
   selectedPaths,
 } from '../data/data';
+import { getSeparator } from '../data/action';
 
 const treeData = ref<DataNode[]>([]);
 const emit = defineEmits(['update:modelValue']);
@@ -54,7 +55,11 @@ const onLoadData: TreeProps['loadData'] = (treeNode: EventDataNode) => {
   selectedFolders.value = [];
   return new Promise<void>(async resolve => {
     if (!treeNode.dataRef) return;
-    const { data } = await getSystemPath(`${treeNode.key}`);
+    let path = `${treeNode.key}`;
+    if (getSeparator() === '/') {
+      path = `/${treeNode.key}`;
+    }
+    const { data } = await getSystemPath(path);
     currentFolder.value = data.data;
     treeNode.dataRef.children = data.data?.filter(e => {
       if (e.type === 'folder') return e;
@@ -69,8 +74,9 @@ const selectPath = (selectedKeys: Key[], info: any) => {
   const path = selectedKeys[0];
   selectedFolders.value = [];
   if (path) {
+    const separator = getSeparator();
     currentPath.value = `${path}`;
-    onLoadData(info.node);
+    // onLoadData(info.node);
   }
 };
 

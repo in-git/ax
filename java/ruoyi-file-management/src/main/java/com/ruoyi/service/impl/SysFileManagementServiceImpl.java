@@ -435,7 +435,7 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
                 File[] directories = rootDirectory.listFiles(File::isDirectory);
                 if (directories != null) {
                     for (File directory : directories) {
-                        rootPaths.add(createFileInfo(directory.getAbsolutePath().replace("/", "")));
+                        rootPaths.add(createFileInfo(directory.getAbsolutePath()));
                     }
                 }
             }
