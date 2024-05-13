@@ -2,17 +2,11 @@
   <a-card class="form card__content" :bordered="false">
     <div class="form-container">
       <a-space direction="vertical" class="w-100">
-        <a-flex class="mb-24" :gap="24">
+        <a-flex :gap="24">
           <h4 @click="changeMode('login')">登录</h4>
           <h1 class="text-bold mb-0">注册</h1>
         </a-flex>
-        <a-form
-          :rules="loginRules"
-          layout="vertical"
-          size="large"
-          @finish="finish"
-          :model="loginForm"
-        >
+        <a-form :rules="loginRules" layout="vertical" @finish="finish" :model="loginForm">
           <a-form-item label="账号" required name="username">
             <a-input
               allow-clear
@@ -31,14 +25,16 @@
           <a-form-item label="验证码" name="code" required>
             <div class="flex gc-12">
               <a-input placeholder="请输入验证码" :maxlength="2" v-model:value="loginForm.code" />
-              <a-image
-                @click="getCaptcha"
-                :preview="false"
-                loading="lazy"
-                class="cursor-pointer"
-                :src="captchaImage"
-                width="100"
-              />
+              <div>
+                <a-image
+                  @click="getCaptcha"
+                  :preview="false"
+                  loading="lazy"
+                  class="cursor-pointer"
+                  :src="captchaImage"
+                  width="80px"
+                />
+              </div>
             </div>
           </a-form-item>
 

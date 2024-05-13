@@ -1,5 +1,5 @@
 .form {
-	padding: 24px;
+	padding: 8px 16px;
 	min-width: 400px;
 	width: 30%;
 	overflow-y: auto;
@@ -11,17 +11,20 @@
 	}
 	h4 {
 		font-size: 16px;
-		line-height: 44px;
+		line-height: 24px;
 		cursor: pointer;
 	}
 	h1 {
-		line-height: 44px;
+		line-height: 24px;
 		color: var(--primary);
 		border-bottom: 4px solid var(--primary);
 		cursor: pointer;
+		padding-bottom: 8px;
+		font-size: 20px;
 	}
 }
 .card__content {
-	height: 100vh;
+	height: 100%;
 	overflow-y: auto;
+	box-shadow: none;
 }

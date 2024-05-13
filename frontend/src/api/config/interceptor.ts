@@ -1,3 +1,4 @@
+import { openLogin } from '@/global/window/widget';
 import useUserStore from '@/store/user';
 import { convertParamsToFormat } from '@/utils/common/format';
 import { notify } from '@/views/desktop/notice/data';
@@ -41,6 +42,7 @@ axios.interceptors.response.use(
       throw new Error(res.msg || '没有权限');
     } else if (res.code === 401) {
       userLogout();
+      openLogin();
     }
     return response;
   },

@@ -1,4 +1,5 @@
 import { getStaticImage } from '@/api/utils/image';
+import Login from '@/views/desktop/login/Login.vue';
 import Browser from '@/views/widget/browser/Browser.vue';
 import ImageVue from '@/views/widget/image/Image.vue';
 import Notepad from '@/views/widget/notepad/Notepad.vue';
@@ -8,6 +9,20 @@ import { openWindow } from './window';
 type Notepad = {
   data: string;
   allowSave?: boolean;
+};
+
+/**
+ * @description: 打开登陆窗口
+ */
+export const openLogin = () => {
+  openWindow({
+    title: '登陆',
+    component: markRaw(Login),
+    icon: getStaticImage('image-icon/user.png'),
+    id: 'login',
+    w: 400,
+    h: 600,
+  });
 };
 /* 打开记事本 */
 export const openNotepad = (config: Notepad) => {

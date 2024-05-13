@@ -1,8 +1,11 @@
 <template>
   <div>
+    <!--  -->
     <a-popover trigger="click" placement="bottomRight" v-model:open="popoverVisible">
-      <div class="system__icon icon">
-        <span class="text-12">用户中心</span>
+      <div class="system__icon icon" v-if="getToken()">
+        <span class="text-12" v-if="user.$state.userInfo">
+          {{ user.$state.userInfo.userName }}
+        </span>
         <DownOutlined class="text-12 ml-8" />
       </div>
       <template #content>
@@ -45,6 +48,11 @@
         </div>
       </template>
     </a-popover>
+
+    <!--  -->
+    <div class="system__icon icon" v-if="!getToken()" @click="openLogin">
+      <UserOutlined />
+    </div>
   </div>
 </template>
 
@@ -53,16 +61,19 @@ import type { UserProfileData } from '@/api/modules/system/user/types';
 import { userLogout } from '@/api/modules/system/user/utils';
 import { getStaticImage } from '@/api/utils/image';
 import { sexOptions } from '@/global/options/system';
+import { openLogin } from '@/global/window/widget';
 import { openWindow } from '@/global/window/window';
+import useUserStore from '@/store/user';
+import { getToken } from '@/store/user/utils';
 import { getLabel } from '@/utils/common/utils';
-import { Modal } from 'ant-design-vue';
+import { UserOutlined } from '@ant-design/icons-vue';
+import { message, Modal } from 'ant-design-vue';
 import ProFileForm from '../profile-form/ProfileForm.vue';
 import { getProfile, userProfile } from './data';
-
 const popoverVisible = ref(false);
 const userData = ref<UserProfileData>();
 const loading = ref(false);
-
+const user = useUserStore();
 onMounted(async () => {
   loading.value = true;
   userData.value = await getProfile();
@@ -84,7 +95,9 @@ const logout = async () => {
   Modal.confirm({
     title: '警告',
     async onOk() {
-      userLogout();
+      await userLogout();
+      message.success('已退出');
+      openLogin();
     },
     centered: true,
     content: '将会退出登录',

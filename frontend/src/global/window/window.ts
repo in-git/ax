@@ -4,6 +4,7 @@ import { message } from 'ant-design-vue';
 
 /*    */
 export const windowList = ref<SystemWindow[]>([]);
+
 /**
  * @author 吴文龙
  * @param config.component是必填项
@@ -15,19 +16,21 @@ export const openWindow = (config: SystemWindow) => {
     config.id = 'system-default-window';
     message.warn('窗口没有设置ID');
   }
-
-  config.hidden = false;
-
   const { width, height, x, y } = initModuleWH(config.id);
-  config.w = width;
-  config.h = height;
-  /* 如果之前有记录，则提取坐标 */
-  if (x) {
+  if (!config.x && x) {
+    /* 如果之前有记录，则提取坐标 */
     config.x = x;
   }
-  if (y) {
+  if (!config.y && y) {
     config.y = y;
   }
+  if (!config.w) {
+    config.w = width;
+  }
+  if (!config.h) {
+    config.h = height;
+  }
+  config.hidden = false;
 
   config.z = windowList.value.length;
 

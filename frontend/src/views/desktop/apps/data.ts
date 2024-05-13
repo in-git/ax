@@ -10,12 +10,18 @@ import FolderVue from '@/views/selector/folder/Folder.vue';
 export const appLoading = ref(false);
 
 export const userRouters = ref<Routers[]>([]);
+
 export const getUserRouters = async () => {
   appLoading.value = true;
   const { data } = await getRouters();
 
   if (data.data) {
-    userRouters.value = data.data;
+    userRouters.value = data.data.map(e => {
+      if (e.children?.length === 1) {
+        e = e.children[0];
+      }
+      return e;
+    });
   }
   appLoading.value = false;
   return data.data || [];

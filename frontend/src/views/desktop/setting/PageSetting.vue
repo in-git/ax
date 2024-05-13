@@ -90,6 +90,7 @@ const selectNav = (item: Nav) => {
   }
 }
 .content {
+  overflow: hidden;
   overflow-y: auto;
 }
 </style>

@@ -46,6 +46,7 @@
       </a-card>
 
       <a-card title="图片选择器">
+        <a-select style="width: 120px" v-model:value="imageType" :options="imageOptions"></a-select>
         <a-popover trigger="click">
           <a-image
             v-if="gallery"
@@ -55,7 +56,7 @@
           ></a-image>
           <a-button>选择图片</a-button>
           <template #content>
-            <Gallery type="wallpaper" v-model="gallery" />
+            <Gallery :type="imageType" v-model="gallery" />
           </template>
         </a-popover>
       </a-card>
@@ -78,7 +79,22 @@ const base64 = ref(
   `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAAXNSR0IArs4c6QAAACpJREFUGFdjZLbp//+PkYHh////DMwMjAyMzDYT//9jQABsAv3/kRQwAABSkg05zdHXzgAAAABJRU5ErkJggg==`,
 );
 const link = ref('https://win11.blueedge.me/');
-const icon = ref();
+const imageOptions = [
+  {
+    label: '图片图标',
+    value: 'image-icon',
+  },
+  {
+    label: '壁纸',
+    value: 'wallpaper',
+  },
+  {
+    label: '头像',
+    value: 'avatar',
+  },
+];
+
+const imageType = ref<any>('image-icon');
 const gallery = ref();
 const memo = ref();
 const openVideo = () => {

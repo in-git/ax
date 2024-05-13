@@ -2,17 +2,11 @@
   <a-card class="form card__content" :bordered="false">
     <div class="form-container">
       <a-space direction="vertical" class="w-100">
-        <a-flex class="mb-24" :gap="24">
+        <a-flex :gap="24">
           <h1 class="text-bold mb-0">登录</h1>
           <h4 @click="changeMode('register')">注册</h4>
         </a-flex>
-        <a-form
-          :rules="loginRules"
-          layout="vertical"
-          size="large"
-          @finish="enter"
-          :model="loginForm"
-        >
+        <a-form :rules="loginRules" layout="vertical" @finish="enter" :model="loginForm">
           <LoginHistory />
 
           <a-form-item label="密码" required name="password">
@@ -30,15 +24,22 @@
             v-if="requiredCaptcha"
           >
             <div class="flex gc-12">
-              <a-input placeholder="请输入验证码" :maxlength="2" v-model:value="loginForm.code" />
-              <a-image
-                @click="getCaptcha"
-                :preview="false"
-                loading="lazy"
-                class="cursor-pointer"
-                :src="captchaImage"
-                width="100"
+              <a-input
+                size="small"
+                placeholder="请输入验证码"
+                :maxlength="2"
+                v-model:value="loginForm.code"
               />
+              <div>
+                <a-image
+                  @click="getCaptcha"
+                  :preview="false"
+                  loading="lazy"
+                  class="cursor-pointer"
+                  :src="captchaImage"
+                  width="80px"
+                />
+              </div>
             </div>
           </a-form-item>
           <a-form-item label="选择服务器">
@@ -56,12 +57,7 @@
             <InfoCircleFilled />
             若依官网账号:admin；密码:admin123
           </div>
-          <div class="system__subtitle">
-            <InfoCircleFilled />
-            登录成功后，可在历史记录
-            <HistoryOutlined />
-            中切换账号
-          </div>
+
           <a-button type="primary" html-type="submit" class="mt-24" :loading="loginLoading" block>
             登录
           </a-button>
@@ -73,7 +69,6 @@
 
 <script setup lang="ts">
 import useSystemStore from '@/store/system';
-import { HistoryOutlined } from '@ant-design/icons-vue';
 import {
   captchaImage,
   changeMode,
