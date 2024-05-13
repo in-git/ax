@@ -12,11 +12,11 @@ type Notepad = {
 };
 
 /**
- * @description: 打开登陆窗口
+ * @description: 打开登录窗口
  */
 export const openLogin = () => {
   openWindow({
-    title: '登陆',
+    title: '登录',
     component: markRaw(Login),
     icon: getStaticImage('image-icon/user.png'),
     id: 'login',

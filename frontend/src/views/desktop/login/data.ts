@@ -8,6 +8,13 @@ import { getUserRouters } from '../apps/data';
 import { getProfile } from '../toolbar/profile/data';
 import type { Mode } from './types';
 
+let formObject = {
+  username: 'observer',
+  password: 'axobserver',
+  uuid: '',
+  code: '',
+};
+export const serverType = ref<'ax' | 'ry'>('ax');
 export const requiredCaptcha = ref<boolean>(true);
 export const captchaImage = ref();
 
@@ -15,13 +22,6 @@ export const loginLoading = ref<boolean>(false);
 export const loginMode = ref<Mode>('quick-login');
 
 export const resetForm = () => {};
-
-let formObject = {
-  username: 'observer',
-  password: 'axobserver',
-  uuid: '',
-  code: '',
-};
 
 export const loginForm = ref({
   ...formObject,
@@ -37,7 +37,7 @@ export const getCaptcha = async () => {
   loginForm.value.uuid = data.uuid;
 };
 
-/* 修改登陆注册模式 */
+/* 修改登录注册模式 */
 export const changeMode = (mode: Mode) => {
   if (mode === 'register') {
     loginForm.value = {
@@ -58,7 +58,7 @@ const onError = () => {
   getCaptcha();
 };
 
-/* 登录,登陆成功后，会记住账号密码 */
+/* 登录,登录成功后，会记住账号密码 */
 export const enter = async () => {
   try {
     loginLoading.value = true;
@@ -71,7 +71,7 @@ export const enter = async () => {
     const store = useUserStore();
 
     loginLoading.value = false;
-    message.success('登陆成功');
+    message.success('登录成功');
     const index = store.$state.history.findIndex(e => {
       return e.username === loginForm.value.username && loginForm.value.password === e.password;
     });

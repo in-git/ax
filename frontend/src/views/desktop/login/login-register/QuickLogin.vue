@@ -11,22 +11,26 @@
           {{ item.label }}
         </div>
       </a-flex>
-
-      <div class="mt-8">
-        <a-card title="快速登陆">
+      <a-flex vertical :gap="8" class="mt-12">
+        <a-card title="选择服务器">
+          <Server class="p-12" />
+        </a-card>
+        <a-card title="快速登录">
           <ul>
-            <li v-for="item in accountList" :key="item.account" @click="selectItem(item)">
+            <li v-for="item in account" :key="item.account" @click="selectItem(item)">
               <a-avatar :size="48" :src="getStaticImage('image-icon/user.png')"></a-avatar>
               <div>
                 {{ item.nickname }}
               </div>
+
               <div class="system__subtitle">
                 {{ item.desc }}
               </div>
             </li>
           </ul>
         </a-card>
-      </div>
+      </a-flex>
+      <div class="mt-8"></div>
     </a-card>
 
     <a-modal
@@ -35,6 +39,7 @@
       title="快捷登录"
       :footer="false"
       get-container=".card__content"
+      centered
     >
       <a-form :model="loginForm" @finish="enter" layout="vertical">
         <a-form-item>
@@ -59,6 +64,7 @@
 
 <script setup lang="ts">
 import { getStaticImage } from '@/api/utils/image';
+import useSystemStore from '@/store/system';
 import {
   captchaImage,
   changeMode,
@@ -69,6 +75,9 @@ import {
   loginMode,
 } from '../data';
 import { modeList } from '../options';
+import Server from './Server.vue';
+
+const store = useSystemStore();
 const codeModal = ref();
 
 const selectItem = (item: Account) => {
@@ -81,24 +90,36 @@ interface Account {
   password: string;
   nickname: string;
   desc: string;
+  server: 'ax' | 'ry';
 }
-const accountList: Account[] = [
+const accountList = ref<Account[]>([
   {
     account: 'observer',
     password: 'axobserver',
     nickname: '观察员',
     desc: '能看到整个系统的功能',
+    server: 'ax',
   },
   {
     account: 'test02',
     password: '123456',
     nickname: '测试账号',
     desc: '可以创建一些数据',
+    server: 'ax',
   },
-];
+  {
+    account: 'admin',
+    password: 'admin123',
+    nickname: '若依官网',
+    desc: '若依官网账号',
+    server: 'ry',
+  },
+]);
 
-onMounted(() => {
-  getCaptcha();
+const account = computed(() => {
+  return accountList.value.filter(e => {
+    return e.server === (store.$state.developer.baseURL.includes('ruoyi') ? 'ry' : 'ax');
+  });
 });
 </script>
 
@@ -107,12 +128,12 @@ onMounted(() => {
   border-radius: 0 !important;
 }
 ul {
-  display: flex;
+  display: grid;
   padding: 12px;
-  gap: 12px;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(46%, 0.5fr));
   li {
     text-align: center;
-    flex: 1;
     padding: 4px 14px;
     border: 1px solid #ddd;
     border-radius: var(--radius);

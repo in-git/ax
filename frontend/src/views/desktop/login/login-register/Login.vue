@@ -43,13 +43,7 @@
             </div>
           </div>
         </a-form-item>
-        <a-form-item label="选择服务器">
-          <a-select
-            v-model:value="store.$state.developer.baseURL"
-            :options="store.$state.developer.urlSelection"
-            @change="onChange"
-          ></a-select>
-        </a-form-item>
+        <Server />
         <div class="system__subtitle">
           <InfoCircleFilled />
           如果使用的是AX体验服务器，请务必在http下使用
@@ -68,7 +62,6 @@
 </template>
 
 <script setup lang="ts">
-import useSystemStore from '@/store/system';
 import {
   captchaImage,
   changeMode,
@@ -82,14 +75,7 @@ import {
 } from '../data';
 import LoginHistory from '../history/LoginHistory.vue';
 import { modeList } from '../options';
-
-const store = useSystemStore();
-const onChange = () => {
-  window.location.reload();
-};
-onMounted(() => {
-  getCaptcha();
-});
+import Server from './Server.vue';
 </script>
 
 <style lang="scss" scoped>

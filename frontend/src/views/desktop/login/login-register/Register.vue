@@ -67,8 +67,8 @@ import {
   loginLoading,
   loginMode,
   loginRules,
-  modeList,
 } from '../data';
+import { modeList } from '../options';
 
 onMounted(() => {
   getCaptcha();

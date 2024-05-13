@@ -7,11 +7,14 @@
 </template>
 
 <script setup lang="ts">
-import { loginMode } from './data';
+import { getCaptcha, loginMode } from './data';
 import LoginVue from './login-register/Login.vue';
 import QuickLogin from './login-register/QuickLogin.vue';
 import RegisterVue from './login-register/Register.vue';
 
+onMounted(() => {
+  getCaptcha();
+});
 onUnmounted(() => {
   loginMode.value = 'quick-login';
 });

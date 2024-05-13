@@ -1,6 +1,6 @@
 <template>
   <div class="table__head">
-    <a-card title="登陆日志">
+    <a-card title="登录日志">
       <div class="flex">
         <div class="flex gc-4">
           <a-input
