@@ -14,7 +14,7 @@
       title="选择头像"
       :body-style="{ padding: '0' }"
     >
-      <Gallery type="avatar" @update:value="uploadFile" v-model:value="userProfile.avatar" />
+      <Gallery type="avatar" @update="uploadFile" v-model="userProfile.avatar" />
     </a-modal>
   </div>
 </template>
