@@ -1,3 +1,9 @@
+#foreach($column in $columns)
+#if($column.isPk == "1")
+#set($Key=$column.javaField)
+#end
+#end
+
 import { ${businessName}Columns } from './column';
 import { ${businessName}Keys, ${businessName}Table } from './table';
 import type {  ${ModuleName}${BusinessName} } from '@/api/modules/${moduleName}/${businessName}/types';
@@ -45,11 +51,7 @@ export const ${businessName}CardData = computed(() => {
       });
     });
     arr.push({
-    #foreach($column in $columns)
-    #if($column.isPk == "1")
-      id: e['$column.javaField'],
-    #end
-    #end
+      id: e['$Key'],
       items,
       raw: e,
     });

@@ -25,11 +25,7 @@
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'operation'">
           <a-dropdown-button trigger="click"
-          #foreach($column in $columns)
-          #if($column.isPk == "1")
-          @click="${businessName}Edit(record.$column.javaField)"
-          #end
-          #end
+          @click="${businessName}Edit(record.$Key)"
           @open-change="openChange(record as ${ModuleName}${BusinessName})">
             <EditOutlined />
             <template #overlay>

@@ -1,7 +1,7 @@
+import logoPng from '@/assets/logo.png';
 import { initModuleWH } from '@/store/page/utils';
 import type { SystemWindow } from '@/types/system';
 import { message } from 'ant-design-vue';
-
 /*    */
 export const windowList = ref<SystemWindow[]>([]);
 
@@ -15,6 +15,9 @@ export const openWindow = (config: SystemWindow) => {
   if (!config.id) {
     config.id = 'system-default-window';
     message.warn('窗口没有设置ID');
+  }
+  if (!config.icon) {
+    config.icon = logoPng;
   }
   const { width, height, x, y } = initModuleWH(config.id);
   if (!config.x && x) {

@@ -1,30 +1,28 @@
 import type { IQuery, TableConfig } from '@/api/config/types';
 
-export const typeTable = ref<TableConfig<SystemDict>>({
+export const dataTable = ref<TableConfig<SystemDictData>>({
   //作用：勾选的唯一标识
-  rowKey: 'dictId',
+  rowKey: 'dictCode',
   data: [],
   loading: false,
-  moduleName: 'type',
+  moduleName: 'data',
 });
 //查询参数接口
-interface typeQuery {
-  dictName: '';
-  dictType: '';
-  status: '';
+interface dataQuery {
+  dictType: string;
+  status: string;
 }
 // 预览模式:卡片|表格
 export const viewMode = ref<'card' | 'table'>('table');
 
 //查询参数
-export const typeQuery = ref<IQuery<typeQuery>>({
+export const dataQuery = ref<IQuery<dataQuery>>({
   pageNum: 1,
   pageSize: 10,
   total: 0,
-  dictName: '',
-  dictType: '',
   status: '',
+  dictType: '',
 });
 
 // 已选中的元素数组
-export const typeKeys = ref<number[]>([]);
+export const dataKeys = ref<number[]>([]);
