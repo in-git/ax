@@ -6,12 +6,15 @@ import type { Rule } from 'ant-design-vue/es/form';
 import { nanoid } from 'nanoid';
 import { getUserRouters } from '../apps/data';
 import { getProfile } from '../toolbar/profile/data';
+import type { Mode } from './types';
 
 export const requiredCaptcha = ref<boolean>(true);
 export const captchaImage = ref();
-type Mode = 'login' | 'register';
+
 export const loginLoading = ref<boolean>(false);
-export const loginMode = ref<Mode>('login');
+export const loginMode = ref<Mode>('quick-login');
+
+export const resetForm = () => {};
 
 let formObject = {
   username: 'observer',
