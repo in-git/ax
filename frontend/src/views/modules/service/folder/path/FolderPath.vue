@@ -23,6 +23,7 @@ import { FileOutlined, FolderOutlined } from '@ant-design/icons-vue';
 import type { TreeProps } from 'ant-design-vue';
 import type { DataNode, EventDataNode } from 'ant-design-vue/es/tree';
 import type { Key } from 'ant-design-vue/es/vc-tree-select/interface';
+import { isWindows } from '../data/action';
 import {
   currentFolder,
   currentPath,
@@ -30,7 +31,6 @@ import {
   selectedFolders,
   selectedPaths,
 } from '../data/data';
-import { getSeparator } from '../data/action';
 
 const treeData = ref<DataNode[]>([]);
 const emit = defineEmits(['update:modelValue']);
@@ -56,8 +56,10 @@ const onLoadData: TreeProps['loadData'] = (treeNode: EventDataNode) => {
   return new Promise<void>(async resolve => {
     if (!treeNode.dataRef) return;
     let path = `${treeNode.key}`;
-    if (getSeparator() === '/') {
-      path = `/${treeNode.key}`;
+
+    /* 给linux加上前缀 */
+    if (!isWindows()) {
+      path = `/${treeNode.key}/`;
     }
     const { data } = await getSystemPath(path);
     currentFolder.value = data.data;
@@ -74,9 +76,8 @@ const selectPath = (selectedKeys: Key[], info: any) => {
   const path = selectedKeys[0];
   selectedFolders.value = [];
   if (path) {
-    const separator = getSeparator();
     currentPath.value = `${path}`;
-    // onLoadData(info.node);
+    onLoadData(info.node);
   }
 };
 

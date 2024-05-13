@@ -27,7 +27,9 @@
       </a-flex>
 
       <a-flex :gap="4">
-        <a-button :disabled="selectedFolders.length !== 1" @click="updateName">重命名</a-button>
+        <a-button :disabled="selectedFolders.length !== 1" @click="showRenameModal">
+          重命名
+        </a-button>
 
         <a-tooltip title="复制">
           <a-button @click="copyFile" :disabled="selectedFolders.length === 0">
@@ -67,7 +69,7 @@
       centered
       get-container=".tool-container"
       v-model:open="createModal"
-      title="新建文件"
+      title="新建文件(夹)"
       :footer="false"
     >
       <a-card :body-style="{ padding: '16px' }">
@@ -92,11 +94,10 @@
 
 <script setup lang="ts">
 import { clonedFiles, createFile, renameFile } from '@/api/modules/file/file';
-import { response } from '@/utils/table/table';
 import { SnippetsOutlined } from '@ant-design/icons-vue';
 import { useCloned } from '@vueuse/core';
 import { message } from 'ant-design-vue';
-import { delFile, getSeparator, loadPath } from '../../../data/action';
+import { concatWithSeparator, delFile, getFileNameFromPath, loadPath } from '../../../data/action';
 import { copiedPaths, currentPath, mode, selectedFolders } from '../../../data/data';
 import UploadButton from './UploadButton.vue';
 import { fileTypeOptions } from './options';
@@ -120,15 +121,15 @@ const resetForm = () => {
   };
 };
 
-const updateName = () => {
+const showRenameModal = () => {
   updateMode.value = 'update';
   const file = selectedFolders.value[0];
   if (file) {
     createModal.value = true;
-    const getName = file.toString().split(getSeparator()).pop();
-    if (getName) {
-      newFileForm.value.name = getName;
-      newFileForm.value.newName = getName;
+    const fileName = getFileNameFromPath(file.toString());
+    if (fileName) {
+      newFileForm.value.name = fileName;
+      newFileForm.value.newName = fileName;
     }
   }
 };
@@ -153,16 +154,19 @@ const openModal = (item: FileOptions) => {
   newFileForm.value.type = item.type;
 };
 
+/**
+ * @description: 新增/保存文件（夹）
+ */
 const submit = async () => {
   loading.value = true;
   try {
     if (updateMode.value === 'create') {
-      const path = `${currentPath.value}/${newFileForm.value.name}`;
-      await response(createFile, path, newFileForm.value.type);
+      const fullPath = concatWithSeparator(currentPath.value, newFileForm.value.name);
+      await createFile(fullPath, newFileForm.value.type);
     } else {
-      const newName = `${currentPath.value}\\${newFileForm.value.name}`;
-      const oldName = `${currentPath.value}\\${newFileForm.value.newName!}`;
-      await response(renameFile, newName, oldName);
+      const newName = concatWithSeparator(currentPath.value, newFileForm.value.name);
+      const oldName = concatWithSeparator(currentPath.value, newFileForm.value.newName!);
+      await renameFile(newName, oldName);
     }
     await loadPath();
     loading.value = false;

@@ -286,7 +286,7 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
     }
 
     /**
-     * 根据路径创建文件
+     * 根据路径重命名文件或文件夹
      *
      * @param oldPath 旧的路径
      * @param newPath 新的路径
@@ -296,14 +296,7 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
     public boolean renameFile(String oldPath, String newPath) {
         File oldFile = new File(oldPath);
         File newFile = new File(newPath);
-        // 检查旧文件是否存在
-        if (!oldFile.exists() || !oldFile.isFile()) {
-            return false;
-        }
-        if (newFile.exists()) {
-            return false;
-        }
-        return oldFile.renameTo(newFile);
+        return oldFile.exists() && oldFile.renameTo(newFile);
     }
 
     /**

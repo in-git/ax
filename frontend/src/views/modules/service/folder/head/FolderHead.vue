@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 import type { LeftOutlined } from '@ant-design/icons-vue';
-import { getSeparator, loadPath } from '../data/action';
+import { getSeparator, isWindows, loadPath } from '../data/action';
 import { currentPath } from '../data/data';
 
 /* 激活：input，未激活：面包屑导航 */
@@ -65,10 +65,15 @@ const selectPath = (index: number) => {
     return;
   }
   // 选择路径的一部分并更新当前路径状态
-  const selectedPath = pathParts.slice(0, index + 1).join(getSeparator());
+  let selectedPath = pathParts.slice(0, index + 1).join(getSeparator());
+  console.log(selectedPath);
+  if (!isWindows()) {
+    selectedPath = `/${selectedPath}/`;
+  }
+  console.log(selectedPath);
+
   if (selectedPath) {
     currentPath.value = selectedPath;
-
     loadPath();
   }
 };
@@ -87,7 +92,6 @@ const path = computed(() => {
 .folder-head {
   height: 32px;
   line-height: 32px;
-  box-sizing: content-box;
   border-bottom: 1px solid #ddd;
   padding: 0 8px;
 }

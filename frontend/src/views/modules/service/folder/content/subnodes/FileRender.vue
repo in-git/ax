@@ -1,6 +1,6 @@
 <template>
   <a-flex :justify="'center'" class="inline-block">
-    <div :style="style">
+    <div :style="style" class="flex flex-s">
       <a-image :preview="type === 'image'" :src="getImageSource(type)" />
     </div>
   </a-flex>
@@ -17,7 +17,6 @@ interface SystemFile {
   width: number;
 }
 import { getStaticImage } from '@/api/utils/image';
-import logo from '@/assets/logo.png';
 const props = defineProps<SystemFile>();
 
 const style = computed(() => {
@@ -41,7 +40,6 @@ const getImageSource = (type?: string) => {
   if (!type) {
     return defaultIcon;
   }
-
   // 如果type不在映射中，则使用默认图片路径
   return imageMap[type] || defaultIcon;
 };

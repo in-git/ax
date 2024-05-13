@@ -72,7 +72,7 @@ export const getSeparator = (): string => {
 };
 
 export const isWindows = () => {
-  return sysInfo.value?.osName;
+  return sysInfo.value?.osName.startsWith('win');
 };
 
 /* 查询单个文件信息 */
@@ -82,4 +82,18 @@ export const getInfo = async () => {
     const { data } = await fileAttr(`${path}`);
     fileInfo.value = data.data;
   }
+};
+/**
+ * @description: 根据不同操作系统链接两个路径
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ */
+export const concatWithSeparator = (a: string, b: string): string => {
+  return a + getSeparator() + b;
+};
+export const getFileNameFromPath = (filePath: string): string => {
+  const pathSegments = filePath.split(getSeparator());
+  const fileNameWithExtension = pathSegments[pathSegments.length - 1];
+  return fileNameWithExtension;
 };

@@ -1,43 +1,29 @@
 <template>
-  <a-flex
-    class="upload-progress"
-    :align="'center'"
-    :gap="4"
-    v-if="uploadProgressConfig.progress !== 0"
-  >
-    <a-flex class="px-4">
-      <span>速率</span>
-      <span class="text-000">{{ bytesToSize(uploadProgressConfig.rate) }}</span>
-    </a-flex>
-    <a-progress
-      style="width: 80px"
-      :percent="uploadProgressConfig.progress"
-      :format="format"
-      class="mb-0"
-    ></a-progress>
-    <span v-if="uploadCancelToken">
-      <a-tooltip title="取消传输">
-        <close-outlined class="icon-close" @click="cancel" />
+  <a-flex class="upload-progress" :align="'center'" :gap="4">
+    <span v-if="uploadStatus === 'ready'">
+      <a-badge dot status="default"></a-badge>
+      准备就绪
+    </span>
+    <span v-else-if="uploadStatus === 'loading'">
+      <loading-outlined spin />
+      正在上传中....
+      <a-tooltip title="取消">
+        <close-outlined @click="cancel" />
       </a-tooltip>
     </span>
+    <span v-else class="finished">
+      <a-badge :status="'success'"></a-badge>
+      已完成
+    </span>
   </a-flex>
-  <div v-else class="system__subtitle">未开始上传</div>
 </template>
 
 <script setup lang="ts">
-import { bytesToSize } from '@/utils/common/format';
-import { message } from 'ant-design-vue';
-import { uploadCancelToken, uploadProgressConfig } from '../data/config';
+import { uploadCancelToken, uploadStatus } from '../data/config';
 
-const format = (percent: number | undefined) => {
-  return `${percent}%`;
-};
 const cancel = () => {
   if (uploadCancelToken.value) {
-    uploadCancelToken.value.cancel('已取消');
-    uploadProgressConfig.value.progress = 0;
-    uploadProgressConfig.value.rate = 0;
-    message.success('已取消');
+    uploadCancelToken.value.cancel();
     uploadCancelToken.value = null;
   }
 };
@@ -50,5 +36,8 @@ const cancel = () => {
 }
 .icon-close {
   color: #ff6262;
+}
+.finished {
+  color: #1f861f;
 }
 </style>

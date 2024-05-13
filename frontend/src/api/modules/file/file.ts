@@ -43,7 +43,10 @@ export const viewFile = async (path: string) => {
 };
 
 type FolderType = 'folder' | 'file';
+
 /**
+ * @params {path} 文件完整路径
+ * @params {type} 文件类型
  * @description 创建文件或文件夹，文件夹也是特殊的文件
  */
 export const createFile = (path: string, type: FolderType) => {

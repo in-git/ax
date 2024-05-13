@@ -14,7 +14,7 @@
         <div class="attr">
           <span>创建时间</span>
           <span>
-            {{ useTimeAgo(fileInfo.createTime) }}
+            {{ useTimeAgo(fileInfo.createTime).value }}
           </span>
         </div>
       </a-flex>
@@ -26,12 +26,9 @@
 </template>
 
 <script setup lang="ts">
-import { fileAttr } from '@/api/modules/file/file';
-import type { FileAttr } from '@/api/modules/file/types';
-import { EllipsisOutlined } from '@ant-design/icons-vue';
-import { selectedFolders, fileInfo } from '../../../data/data';
-import UploadProgress from './UploadProgress.vue';
 import { useTimeAgo } from '@vueuse/core';
+import { fileInfo } from '../../../data/data';
+import UploadProgress from './UploadProgress.vue';
 </script>
 
 <style lang="scss" scoped>
