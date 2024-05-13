@@ -49,7 +49,7 @@
 
 <script setup lang="ts">
 import { openNotepad } from '@/global/window/widget';
-import { downloadBase64Image } from '@/utils/file/file';
+import { downloadBase64Image } from '@/utils/file/image';
 import { ExportOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
 import { nanoid } from 'nanoid';
