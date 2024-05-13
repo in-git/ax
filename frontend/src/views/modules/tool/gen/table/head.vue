@@ -24,8 +24,6 @@
               <ReloadOutlined />
             </a-button>
           </a-tooltip>
-          <a-divider type="vertical" />
-          <a-input-search allow-clear @search="codeList"></a-input-search>
         </a-flex>
       </a-flex>
       <a-flex>

@@ -1,5 +1,5 @@
 <template>
-  <a-card class="system__template" :body-style="{ height: '100%' }">
+  <a-card class="system__template" :body-style="{ height: '100%', overflowY: 'auto' }">
     <Animation>
       <TableVue v-if="!editDictConfig"></TableVue>
       <DictData v-else-if="editDictConfig"></DictData>
