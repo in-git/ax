@@ -80,3 +80,37 @@ export const imageToBase64 = (src: string, type?: string, quality?: number): Pro
     };
   });
 };
+export function downloadBase64Image(base64: string, fileName: string) {
+  // 分割 Base64 字符串
+  const parts = base64.split(',');
+  const mimeType = parts[0].split(':')[1];
+  const data = window.atob(parts[1]);
+
+  // 创建 Uint8Array 缓冲区
+  const buffer = new Uint8Array(data.length);
+  for (let i = 0; i < data.length; i++) {
+    buffer[i] = data.charCodeAt(i);
+  }
+
+  // 创建 Blob 对象
+  const blob = new Blob([buffer], { type: mimeType });
+
+  // 创建临时链接
+  const url = URL.createObjectURL(blob);
+
+  // 创建下载链接并设置属性
+  const link = document.createElement('a');
+  link.href = url;
+  // eslint-disable-next-line prefer-destructuring
+  link.download = fileName.split('.')[0];
+
+  // 触发点击事件开始下载
+  document.body.appendChild(link);
+  link.click();
+
+  // 释放临时链接
+  URL.revokeObjectURL(url);
+
+  // 删除<a>元素
+  document.body.removeChild(link);
+}

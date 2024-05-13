@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 import { nanoid } from 'nanoid';
 
 export interface UploadType {
@@ -101,43 +100,9 @@ export const toBinary = (file: File): Promise<ArrayBuffer | any> => {
     };
   });
 };
-export function downloadBase64Image(base64: string, fileName: string) {
-  // 分割 Base64 字符串
-  const parts = base64.split(',');
-  const mimeType = parts[0].split(':')[1];
-  const data = window.atob(parts[1]);
-
-  // 创建 Uint8Array 缓冲区
-  const buffer = new Uint8Array(data.length);
-  for (let i = 0; i < data.length; i++) {
-    buffer[i] = data.charCodeAt(i);
-  }
-
-  // 创建 Blob 对象
-  const blob = new Blob([buffer], { type: mimeType });
-
-  // 创建临时链接
-  const url = URL.createObjectURL(blob);
-
-  // 创建下载链接并设置属性
-  const link = document.createElement('a');
-  link.href = url;
-  // eslint-disable-next-line prefer-destructuring
-  link.download = fileName.split('.')[0];
-
-  // 触发点击事件开始下载
-  document.body.appendChild(link);
-  link.click();
-
-  // 释放临时链接
-  URL.revokeObjectURL(url);
-
-  // 删除<a>元素
-  document.body.removeChild(link);
-}
 
 // type:文件类型
-export function base64ToBlob(urlData: string, type: string) {
+export const base64ToBlob = (urlData: string, type: string) => {
   const arr = urlData.split(',');
   const array = arr[0].match(/:(.*?);/);
   const mime = (array && array.length > 1 ? array[1] : type) || type;
@@ -154,7 +119,7 @@ export function base64ToBlob(urlData: string, type: string) {
   return new Blob([ab], {
     type: mime,
   });
-}
+};
 export function downloadFile(text: string, fileName: string) {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', text, true);
@@ -226,14 +191,15 @@ export function fetchText(url: string) {
 export function getFileExtension(fileName: string) {
   return fileName.match(/\.([^.]+)$/)?.[1];
 }
-export function arrayBufferToFile(
+
+export const arrayBufferToFile = (
   arrayBuffer: ArrayBuffer,
   fileName: string = nanoid().slice(0, 8),
-) {
+) => {
   const blob = new Blob([arrayBuffer]);
   const file = new File([blob], fileName);
   return file;
-}
+};
 
 export function base64toFile(base64String: string, filename: string = nanoid()): File {
   const arr = base64String.split(',');
@@ -257,6 +223,7 @@ export function blobToBase64(blob: Blob): Promise<string> {
     reader.readAsDataURL(blob);
   });
 }
+
 export const downloadText = (text: string, filename = '', suffix = '') => {
   const element = document.createElement('a');
   let file = '';
@@ -275,7 +242,7 @@ export const downloadText = (text: string, filename = '', suffix = '') => {
 };
 
 // 检测视频是否能够播放
-export function canPlayVideo(video: HTMLVideoElement): boolean {
+export const canPlayVideo = (video: HTMLVideoElement): boolean => {
   const supportedFormats: string[] = ['video/mp4', 'video/webm', 'video/ogg']; // 支持的视频格式
 
   for (let i = 0; i < supportedFormats.length; i++) {
@@ -286,8 +253,8 @@ export function canPlayVideo(video: HTMLVideoElement): boolean {
   }
 
   return false;
-}
-export function isBase64(str: string): boolean {
+};
+export const isBase64 = (str: string): boolean => {
   const base64Regex = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
   return base64Regex.test(str);
-}
+};
