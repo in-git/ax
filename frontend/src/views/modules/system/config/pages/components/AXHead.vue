@@ -24,23 +24,14 @@
         ></a-input>
       </div>
       <div>
-        <a-input
-          @blur="configList"
-          v-model:value="configQuery.configValue"
-          style="width: 160px"
-          placeholder="请输入参数键值"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-select
+        系统内置
+        <a-radio-group
           v-model:value="configQuery.configType"
           style="width: 160px"
-          placeholder="请选择系统内置（Y是 N否）"
           allow-clear
           @blur="configList"
           :options="configTypeOptions"
-        ></a-select>
+        ></a-radio-group>
       </div>
       <a-button type="primary" @click="configList">搜索</a-button>
     </a-flex>

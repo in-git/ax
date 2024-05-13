@@ -20,15 +20,15 @@
             v-model:value="configForm.configValue"
           ></a-textarea>
         </a-form-item>
-        <a-form-item label="系统内置（Y是 N否）" name="configType">
-          <a-select
+        <a-form-item label="系统内置" name="configType">
+          <a-radio-group
             v-model:value="configForm.configType"
             class="w-100"
-            placeholder="请选择系统内置（Y是 N否）"
+            placeholder="请选择系统内置"
             allow-clear
             @change="configList"
             :options="configTypeOptions"
-          ></a-select>
+          ></a-radio-group>
         </a-form-item>
         <a-form-item label="备注" name="remark">
           <a-textarea placeholder="请输入备注" v-model:value="configForm.remark"></a-textarea>

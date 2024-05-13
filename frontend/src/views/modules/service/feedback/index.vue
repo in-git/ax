@@ -16,7 +16,7 @@
         <a-flex vertical :gap="8">
           <a-card v-for="item in feedbackData">
             <template #title>
-              <a-avatar :size="24" :src="getStaticImage(`avatar/${item.avatar}`)"></a-avatar>
+              <a-avatar :size="24" :src="getStaticImage(item.avatar)"></a-avatar>
               {{ item.nickname }}
             </template>
             {{ item.feedbackContent }}

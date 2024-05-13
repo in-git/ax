@@ -13,7 +13,9 @@ export const codeTable = ref<TableConfig>({
   moduleName: 'code',
 });
 
-interface codeQuery {}
+interface codeQuery {
+  functionName: string;
+}
 
 export const codeQuery = ref<IQuery<codeQuery>>({
   pageNum: 1,
@@ -21,6 +23,7 @@ export const codeQuery = ref<IQuery<codeQuery>>({
   total: 0,
   orderByColumn: 'create_time',
   isAsc: 'desc',
+  functionName: '',
 });
 export const codeKeys = ref<string[]>([]);
 
