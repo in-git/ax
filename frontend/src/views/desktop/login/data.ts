@@ -1,8 +1,10 @@
 import { captcha, login, register } from '@/api/modules/system/user/user';
+import { closeWindow } from '@/global/window/window';
 import useUserStore from '@/store/user';
 import { message } from 'ant-design-vue';
 import type { Rule } from 'ant-design-vue/es/form';
 import { nanoid } from 'nanoid';
+import { getUserRouters } from '../apps/data';
 import { getProfile } from '../toolbar/profile/data';
 
 export const requiredCaptcha = ref<boolean>(true);
@@ -36,8 +38,12 @@ export const getCaptcha = async () => {
 export const changeMode = (mode: Mode) => {
   if (mode === 'register') {
     loginForm.value = {
-      ...formObject,
+      username: '',
+      password: '',
+      uuid: '',
+      code: '',
     };
+  } else {
   }
 
   loginMode.value = mode;
@@ -77,6 +83,8 @@ export const enter = async () => {
     store.$state.token = data.token;
     await getProfile();
     changeMode('login');
+    closeWindow('login');
+    getUserRouters();
   } catch (error) {
     onError();
   }

@@ -1,6 +1,5 @@
 import useUserStore from '.';
 
-export const getToken = () => {
-  const userStore = useUserStore();
-  return userStore.$state.token;
+export const getToken = (): string | null => {
+  return useUserStore().$state.token;
 };

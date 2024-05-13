@@ -1,23 +1,24 @@
 <template>
-  <div class="login flex-1">
-    <a-flex class="login-container">
-      <Welcome />
-      <LoginVue v-if="loginMode === 'login'"></LoginVue>
-      <RegisterVue v-else></RegisterVue>
-    </a-flex>
-  </div>
+  <a-card class="system__template card__container" :bordered="false">
+    <LoginVue v-if="loginMode === 'login'"></LoginVue>
+    <RegisterVue v-else></RegisterVue>
+  </a-card>
 </template>
 
 <script setup lang="ts">
-import Welcome from './Welcome.vue';
 import { loginMode } from './data';
 import LoginVue from './login-register/Login.vue';
 import RegisterVue from './login-register/Register.vue';
 </script>
 
 <style lang="scss" scoped>
-.login-container {
+.card__container {
   display: flex;
   height: 100%;
+  :deep(.ant-card-body) {
+    overflow-y: auto;
+    padding: 0;
+    overflow-x: hidden;
+  }
 }
 </style>

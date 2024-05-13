@@ -62,8 +62,12 @@ const items: Items[] = [
 ];
 
 type Props = {
+  // 内容;
   data: string;
+  /* 保存，用于修改文件 */
   allowSave?: boolean;
+  /* 模式 */
+  mode?: TextType;
 };
 const props = defineProps<{
   data?: Props;
@@ -77,9 +81,10 @@ provide('data', props.id || '');
 watch(
   props,
   () => {
-    console.log(props.data);
-
     content.value = props.data?.data || '';
+    if (props.data?.mode) {
+      content.value = props.data.mode;
+    }
   },
   {
     deep: true,

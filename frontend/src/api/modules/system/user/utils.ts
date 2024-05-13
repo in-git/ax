@@ -1,6 +1,7 @@
 import { windowList } from '@/global/window/window';
 import useSystemStore from '@/store/system';
 import useUserStore from '@/store/user';
+import { userRouters } from '@/views/desktop/apps/data';
 import { logout } from './user';
 
 export const userLogout = async () => {
@@ -9,6 +10,7 @@ export const userLogout = async () => {
   userStore.$state.token = '';
   userStore.$state.userInfo = undefined;
   windowList.value = [];
+  userRouters.value = [];
   systemStore.$state.readMessages = [];
   await logout();
 };

@@ -13,32 +13,6 @@
     <!-- PC显示 -->
     <Desktop />
     <PhoneVue />
-    <!--  -->
-    <div class="windows">
-      <Draggable
-        v-for="item in windowList"
-        :key="item.id"
-        :w="item.w"
-        :h="item.h"
-        :z="item.z"
-        :x="item.x"
-        :y="item.y"
-        :title="item.title"
-        v-show="!item.hidden"
-        :id="item.id"
-        @close="closeWindow(item.id || '')"
-        :icon="item.icon"
-        :dark="item.dark"
-      >
-        <Animation
-          appear
-          enter-active-class="animate__animated animate__fadeIn"
-          leave-active-class="animate__animated animate__fadeOut"
-        >
-          <component :data="item.data" :id="item.id" :is="item.component"></component>
-        </Animation>
-      </Draggable>
-    </div>
   </ConfigProvider>
   <!-- 通用右键菜单 -->
   <Contextmenu />
@@ -47,8 +21,6 @@
 </template>
 
 <script setup lang="ts">
-import Selection from '@/components/selection/Selection.vue';
-import { closeWindow, windowList } from '@/global/window/window';
 import { ConfigProvider, theme } from 'ant-design-vue';
 import zh_CN from 'ant-design-vue/es/locale/zh_CN';
 import {
@@ -60,7 +32,6 @@ import {
 } from './initialization';
 import usePageStore from './store/page';
 import Contextmenu from './views/components/contextmenu/Contextmenu.vue';
-import Draggable from './views/components/draggable/Draggable.vue';
 import Desktop from './views/desktop/Desktop.vue';
 import PhoneVue from './views/phone/Phone.vue';
 /* 设置Dayjs，用于日期选择 */
@@ -107,13 +78,6 @@ const localTheme = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-.windows {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 60;
-}
-
 @media screen and (max-width: 875px) {
   .desktop {
     display: none;

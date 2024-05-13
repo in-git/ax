@@ -3,7 +3,7 @@
     <div class="flex h-100">
       <ul ref="appRef">
         <li
-          v-for="item in menuList"
+          v-for="item in userRouters"
           :key="item.name"
           :class="{ selected: item.name === selected || item.meta.title === selected }"
           @click="select(item)"
@@ -34,11 +34,11 @@ import logoPng from '@/assets/logo.png';
 import usePageStore from '@/store/page';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import { appContextMenu, openContextMenu } from './contextmenu';
-import { getIconByName, getUserRouters, openApp } from './data';
+import { getIconByName, getUserRouters, openApp, userRouters } from './data';
 
 const selected = ref<string>('');
 const appRef = ref();
-const menuList = ref<Routers[]>([]);
+
 const apps = ref<HTMLElement>();
 
 const onError = (item: Routers) => {
@@ -47,19 +47,14 @@ const onError = (item: Routers) => {
 
 onMounted(async () => {
   const data = await getUserRouters();
-  menuList.value = data.map(e => {
-    if (e.children?.length === 1) {
-      e = e.children[0];
-    }
-    return e;
-  });
 
   nextTick(() => {
-    useSortable(appRef, menuList, {
+    useSortable(appRef, userRouters, {
       animation: 200,
     });
   });
 });
+
 const select = (item: Routers) => {
   selected.value = item.name || item.meta.title;
 };
