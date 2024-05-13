@@ -1,10 +1,5 @@
-import type { SegmentedOption } from 'ant-design-vue/es/segmented/src/segmented';
-
-export const misfirePolicyOptions = [
-  {
-    label: '默认策略',
-    value: '0',
-  },
+// 从系统字典中获取字段数据
+export const executionOptions = [
   {
     label: '立即执行',
     value: '1',
@@ -18,4 +13,23 @@ export const misfirePolicyOptions = [
     value: '3',
   },
 ];
-export const jobGroupOptions = ref<SegmentedOption[]>([]);
+export const allowConcurrent = [
+  {
+    label: '允许并发执行',
+    value: '0',
+  },
+  {
+    label: '禁止并发执行',
+    value: '1',
+  },
+];
+export const executionStatus = [
+  {
+    label: '正常执行',
+    value: '0',
+  },
+  {
+    label: '暂停执行',
+    value: '1',
+  },
+];

@@ -3,10 +3,15 @@
     :rules="testRules"
     :model="testForm"
     @finish="submit"
-    :wrapper-col="{ span: 8 }"
-    :label-col="{ span: 4, offset: 4 }"
+    :label-col="{ span: 6 }"
+    label-align="left"
   >
-    <SystemModal title="系统测试表" v-model:visible="testShowForm">
+    <a-modal
+      :footer="false"
+      title="字典类型"
+      v-model:open="testShowForm"
+      get-container=".system__template"
+    >
       <a-card title="编辑/新增" class="form__head">
         <template #extra>
           <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
@@ -88,13 +93,12 @@
           </a-input>
         </a-form-item>
       </a-card>
-    </SystemModal>
+    </a-modal>
   </a-form>
 </template>
 
 <script setup lang="ts">
 import { createTest, updateTest } from '@/api/modules/system/test/test';
-import SystemModal from '@/components/modal/SysModal.vue';
 import { response } from '@/utils/table/table';
 import Memo from '@/views/selector/memo/Memo.vue';
 import { testList } from '../../data/curd';

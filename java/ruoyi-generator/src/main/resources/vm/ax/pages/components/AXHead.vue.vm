@@ -47,7 +47,7 @@
          </div>
 
          <div v-perm="'${moduleName}:${businessName}:edit'">
-              <a-tooltip title="编辑(双击)">
+              <a-tooltip title="编辑">
                 <a-button type="link" @click="${businessName}Edit()" :disabled="${businessName}Keys.length !== 1">
                   <EditOutlined />
                 </a-button>

@@ -1,32 +1,49 @@
 import type { IQuery, Response, TableResponse } from '@/api/config/types';
+import { exportFile } from '@/api/utils/file';
+import { message } from 'ant-design-vue';
 import axios from 'axios';
 
-export const listDict = (query: IQuery) => {
+// 查询字典类型列表
+export const fetchTypeList = (query: IQuery) => {
   return axios.get<TableResponse<SystemDict>>(`system/dict/type/list`, {
     params: query,
   });
 };
-
-export const deleteDict = (ids: number[]) => {
-  return axios.delete<Response>(`system/dict/type/${ids.join(',')}`);
+// 查询字典类型详细
+export const fetchTypeById = (dictId: number) => {
+  return axios.get<Response<SystemDict>>(`system/dict/type/${dictId}`);
 };
 
-export const selectDict = (id: number) => {
-  return axios.get<Response>(`system/dict/type/${id}`);
+// 新增字典类型
+export const createType = (data: SystemDict) => {
+  return axios.post<Response<SystemDict>>(`system/dict/type`, data);
 };
 
-export const updateDict = (data: SystemDict) => {
-  return axios.put<Response>(`system/dict/type`, data);
+// 修改字典类型
+export const updateType = (data: SystemDict) => {
+  return axios.put<Response<SystemDict>>(`system/dict/type`, data);
 };
 
-export const createDict = (data: SystemDict) => {
-  return axios.post<Response>(`system/dict/type`, data);
+// 删除字典类型
+export const deleteType = (dictIds: number[]) => {
+  return axios.delete<Response<SystemDict>>(`system/dict/type/${dictIds.join(',')}`);
 };
-
-export const selectDictData = (id: number) => {
-  return axios.get<Response>(`system/dict/type/${id}`);
-};
-
 export const optionSelect = () => {
-  return axios.get<Response<SystemDict[]>>(`system/dict/type/optionselect`);
+  return axios.get(`system/dict/type/optionselect`);
+};
+
+type Page = {
+  pageSize: number;
+  pageNum: number;
+};
+
+// 导出字典类型
+export const exportType = async (page: Page) => {
+  await exportFile({
+    url: 'system/dict/type/export',
+    data: page,
+    fileName: '字典类型.xls',
+    method: 'POST',
+  });
+  message.success(`成功下载`);
 };

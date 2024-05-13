@@ -8,14 +8,19 @@
      :rules="${businessName}Rules"
      :model="${businessName}Form"
      @finish="submit"
-     :wrapper-col="{ span: 8, offset: 1 }"
-     :label-col="{ span: 4, offset: 4 }">
-    <SystemModal title="$functionName" v-model:visible="${businessName}ShowForm">
+     :label-col="{ span: 6 }"
+     label-align="left">
+
+     <a-modal
+       :footer="false"
+       title="$functionName"
+       v-model:open="${businessName}ShowForm"
+       get-container=".system__template"
+     >
       <a-card title="编辑/新增" class="form__head">
         <template #extra>
           <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
         </template>
-      <a-card class="mt-8">
 #foreach($column in $columns)
 #set($comment=$column.columnComment)
 #set($field=$column.javaField)
@@ -35,7 +40,7 @@
            <a-form-item label="${comment}" name="$field">
              <a-input placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}">
                 <template #addonAfter>
-                  <a-popover trigger="click" title="快速录入">
+                  <a-popover trigger="click" >
                     <BookOutlined />
                     <template #content>
                       <Memo v-model:value="${businessName}Form.${column.javaField}" />
@@ -85,7 +90,7 @@
          #end
 
          </a-card>
-    </SystemModal>
+    </a-modal>
   </a-form>
 </template>
 
@@ -98,7 +103,6 @@ import {
 #end
 #end
 } from '../../data/options';
-import SystemModal from '@/components/modal/SysModal.vue';
 import {
   ${businessName}Form,
   ${businessName}ShowForm,

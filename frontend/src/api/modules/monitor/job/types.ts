@@ -1,4 +1,4 @@
-interface SystemJob {
+export interface SystemJob {
   createBy: string;
   createTime: string;
   updateBy?: any;
@@ -11,6 +11,6 @@ interface SystemJob {
   cronExpression: string;
   misfirePolicy: string;
   concurrent: string;
-  status: string;
+  status: '0' | '1';
   nextValidTime: string;
 }
