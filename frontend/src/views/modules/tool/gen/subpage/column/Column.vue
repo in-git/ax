@@ -1,10 +1,31 @@
 <template>
   <a-card
     class="system__template"
-    :body-style="{ height: '100%', overflow: 'hidden', paddingBottom: '0' }"
-  ></a-card>
+    :body-style="{ height: '100%', overflow: 'hidden', padding: '0 12px' }"
+  >
+    <a-flex :gap="4" class="h-100">
+      <Sidebar />
+      <div class="flex-1">
+        <template v-if="currentStep.type === 'base'">
+          <Base />
+        </template>
+        <template v-else-if="currentStep.type === 'backend'">
+          <Backend />
+        </template>
+        <template v-else>
+          <Field />
+        </template>
+      </div>
+    </a-flex>
+  </a-card>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { currentStep } from './data/config';
+import Backend from './dynamic-components/Backend.vue';
+import Base from './dynamic-components/Base.vue';
+import Field from './dynamic-components/Field.vue';
+import Sidebar from './pages/Sidebar.vue';
+</script>
 
 <style lang="scss" scoped></style>

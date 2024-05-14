@@ -11,4 +11,8 @@ export const noticeTypeOptions = [
     label: '网络',
     value: 'net',
   },
+  {
+    label: '临时',
+    value: 'temp',
+  },
 ];

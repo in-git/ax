@@ -1,6 +1,8 @@
+import { triggerNotice } from '@/views/desktop/missions/notice/data/data';
 import { useCssVar, useEventListener } from '@vueuse/core';
 import axios from 'axios';
 import localforage from 'localforage';
+import { nanoid } from 'nanoid';
 import usePageStore from './store/page';
 import useSystemStore from './store/system';
 
@@ -81,6 +83,13 @@ export const setCssVar = () => {
 export const screenDetection = () => {
   if (devicePixelRatio > 1) {
     /* 启用了缩放 */
-    document.body.style.zoom = `${1 / devicePixelRatio}`;
+    triggerNotice({
+      content: `你的设备/页面启用了缩放`,
+      title: '提示',
+      type: 'temp',
+      id: nanoid(),
+      time: new Date().toDateString(),
+      color: 'gray',
+    });
   }
 };

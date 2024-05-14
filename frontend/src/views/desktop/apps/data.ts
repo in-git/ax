@@ -6,11 +6,14 @@ import { openWindow, setCurrentWindow } from '@/global/window/window';
 import { systemComponents } from '@/initialization';
 import { openLink } from '@/utils/common/utils';
 import FolderVue from '@/views/selector/folder/Folder.vue';
+import { message } from 'ant-design-vue';
 
 export const appLoading = ref(false);
 
 export const userRouters = ref<Routers[]>([]);
-
+/**
+ * @description: 获取用户路由，多处复用
+ */
 export const getUserRouters = async () => {
   appLoading.value = true;
   const { data } = await getRouters();
@@ -25,8 +28,12 @@ export const getUserRouters = async () => {
   appLoading.value = false;
   return data.data || [];
 };
-
-/* 兼容若依的图标和自定义图标 */
+/**
+ * @description:
+ * 兼容若依的图标和自定义图标
+ * 多处复用
+ */
+/*  */
 export const getIconByName = (item: Routers) => {
   let image = '';
   if (item.meta.icon.startsWith('http')) {
@@ -46,7 +53,11 @@ export const getIconByName = (item: Routers) => {
   }
   return logo;
 };
-
+/**
+ * @description:
+ *  核心功能，打开菜单
+ * @param {Routers} item
+ */
 export const openApp = (item: Routers) => {
   if (item.children && item.children.length > 0) {
     openWindow({
@@ -62,7 +73,7 @@ export const openApp = (item: Routers) => {
     if (item.path === '/') {
       return;
     }
-    systemComponents.value.forEach(e => {
+    const isExist = systemComponents.value.find(e => {
       if (e.path.includes(item.component)) {
         openWindow({
           title: item.meta.title,
@@ -70,8 +81,15 @@ export const openApp = (item: Routers) => {
           id: item.name,
           icon: getIconByName(item),
         });
+        return e;
       }
+      return null;
     });
+    if (!isExist) {
+      message.warn(`当前版本不支持这个功能`);
+      return;
+    }
   }
+
   setCurrentWindow(item.name);
 };

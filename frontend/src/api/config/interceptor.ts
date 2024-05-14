@@ -41,6 +41,8 @@ axios.interceptors.response.use(
     } else if (res.code === 401) {
       userLogout();
       openLogin();
+    } else if (res.code === 404) {
+      message.warn(`当前版本不支持这个功能`);
     }
     return response;
   },
