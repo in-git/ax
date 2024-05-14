@@ -3,13 +3,9 @@ import Login from '@/views/desktop/login/Login.vue';
 import Browser from '@/views/widget/browser/Browser.vue';
 import ImageVue from '@/views/widget/image/Image.vue';
 import Notepad from '@/views/widget/notepad/Notepad.vue';
+import type { NotepadViewMode } from '@/views/widget/notepad/types';
 import Video from '@/views/widget/video/Video.vue';
 import { openWindow } from './window';
-
-type Notepad = {
-  data: string;
-  allowSave?: boolean;
-};
 
 /**
  * @description: 打开登录窗口
@@ -24,17 +20,22 @@ export const openLogin = () => {
     h: 600,
   });
 };
+type NotepadConfig = {
+  data: string;
+  allowSave?: boolean;
+  mode: NotepadViewMode;
+};
 /* 打开记事本 */
-export const openNotepad = (config: Notepad) => {
+export const openNotepad = (config: NotepadConfig) => {
   openWindow({
     title: '记事本',
     component: markRaw(Notepad),
     id: 'notepad',
     icon: getStaticImage('image-icon/notepad.png'),
-    dark: true,
     data: {
       data: config.data,
       allowSave: config.allowSave,
+      mode: config.mode || 'text',
     },
   });
 };

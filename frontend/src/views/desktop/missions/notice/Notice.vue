@@ -1,19 +1,25 @@
 <template>
-  <div class="notice flex gc-4">
+  <div class="notice">
     <div class="system__icon" @click="showNotice = true">
       <a-badge :dot="noticeList.length > 0">
         <BellOutlined class="icon" />
       </a-badge>
     </div>
+
+    <Popover />
   </div>
 </template>
 
 <script setup lang="ts">
 import { BellOutlined } from '@ant-design/icons-vue';
-import { noticeList, showNotice } from '../../notice/data';
+import { noticeList, showNotice } from './data/data';
+import Popover from './subpage/Popover.vue';
 </script>
 
 <style lang="scss" scoped>
+.notice {
+  position: relative;
+}
 .system__icon {
   width: 40px;
   color: white;

@@ -38,12 +38,12 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { MdPreview } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
 import ToolbarVue from './toolbar/Toolbar.vue';
+import type { NotepadViewMode } from './types';
 
-type TextType = 'text' | 'rich-text' | 'markdown';
-const mode = ref<TextType[]>(['text']);
+const mode = ref<NotepadViewMode[]>(['text']);
 
 type Items = {
-  key: TextType;
+  key: NotepadViewMode;
   label: string;
 };
 const items: Items[] = [
@@ -67,11 +67,13 @@ type Props = {
   /* 保存，用于修改文件 */
   allowSave?: boolean;
   /* 模式 */
-  mode?: TextType;
+  mode?: NotepadViewMode;
 };
+
 const props = defineProps<{
   data?: Props;
   id: string;
+  mode?: NotepadViewMode;
 }>();
 
 const content = ref<string>('');
@@ -81,10 +83,9 @@ provide('data', props.id || '');
 watch(
   props,
   () => {
-    content.value = props.data?.data || '';
-    if (props.data?.mode) {
-      content.value = props.data.mode;
-    }
+    if (!props.data) return;
+    content.value = props.data.data || '';
+    mode.value = [props.data.mode || 'text'];
   },
   {
     deep: true,
