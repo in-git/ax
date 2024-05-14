@@ -5,8 +5,9 @@
         <BellOutlined class="icon" />
       </a-badge>
     </div>
-
-    <Popover />
+    <Teleport to="body">
+      <Popover />
+    </Teleport>
   </div>
 </template>
 

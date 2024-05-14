@@ -82,6 +82,7 @@ const list = computed(() => {
   position: absolute;
   bottom: 40px;
   right: 0;
+  z-index: 100;
   border-radius: var(--radius);
   :deep(.ant-card-body) {
     height: calc(100% - 38px);
