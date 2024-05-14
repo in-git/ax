@@ -136,7 +136,7 @@ const changeResourceHost = () => {
 const setBaseurl = (url: string) => {
   Modal.confirm({
     title: '切换服务器',
-    content: '这将会刷新页面,且会清空登陆信息',
+    content: '这将会刷新页面,且会清空登录信息',
     centered: true,
     async onOk() {
       developer.$state.developer.baseURL = url;

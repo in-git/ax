@@ -6,7 +6,7 @@
           <a-popover
             trigger="click"
             placement="bottomRight"
-            title="历史登陆账号"
+            title="历史登录账号"
             v-model:open="visible"
           >
             <div>

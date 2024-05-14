@@ -9,38 +9,8 @@
 </template>
 
 <script setup lang="ts">
-import { fetchNoticeList } from '@/api/modules/system/notice/notice';
-import useSystemStore from '@/store/system';
 import { BellOutlined } from '@ant-design/icons-vue';
 import { noticeList, showNotice } from '../../notice/data';
-
-const systemStore = useSystemStore();
-const getSystemNotice = async () => {
-  noticeList.value = [];
-  try {
-    const { data } = await fetchNoticeList({
-      pageNum: 1,
-      pageSize: 20,
-      total: 0,
-      noticeType: '1',
-    });
-    data.rows.forEach(e => {
-      const isIncludes = systemStore.$state.readMessages.includes(e.noticeId);
-      if (!isIncludes) {
-        noticeList.value.push({
-          content: e.noticeContent,
-          title: e.noticeTitle,
-          type: 'notice',
-          id: e.noticeId,
-        });
-      }
-    });
-  } catch (error) {}
-};
-
-onMounted(() => {
-  getSystemNotice();
-});
 </script>
 
 <style lang="scss" scoped>

@@ -1,4 +1,4 @@
-package com.ruoyi.generator.controller;
+package com.ruoyi.web.controller.system;
 
 import com.ruoyi.common.core.domain.AjaxResult;
 import org.springframework.http.HttpEntity;

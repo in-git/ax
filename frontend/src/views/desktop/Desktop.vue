@@ -37,7 +37,6 @@
 </template>
 
 <script setup lang="ts">
-import useUserStore from '@/store/user';
 import Apps from './apps/Apps.vue';
 import Background from './background/Background.vue';
 import Missions from './missions/Missions.vue';
@@ -46,11 +45,14 @@ import Toolbar from './toolbar/Toolbar.vue';
 
 import { closeWindow, windowList } from '@/global/window/window';
 
+import { openLogin } from '@/global/window/widget';
+import { getToken } from '@/store/user/utils';
 import Draggable from '../../views/components/draggable/Draggable.vue';
-const store = useUserStore();
 
-const tokens = computed(() => {
-  return store.$state.token;
+onMounted(() => {
+  if (!getToken()) {
+    openLogin();
+  }
 });
 </script>
 

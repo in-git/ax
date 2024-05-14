@@ -75,6 +75,9 @@ const userData = ref<UserProfileData>();
 const loading = ref(false);
 const user = useUserStore();
 onMounted(async () => {
+  if (!getToken()) {
+    return;
+  }
   loading.value = true;
   userData.value = await getProfile();
   loading.value = false;
