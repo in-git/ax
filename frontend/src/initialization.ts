@@ -4,12 +4,13 @@ import localforage from 'localforage';
 import usePageStore from './store/page';
 import useSystemStore from './store/system';
 
-let modules = import.meta.glob('./views/modules/**/index.vue');
-
 interface DynamicComponents {
   component: any;
   path: string;
 }
+let modules = import.meta.glob('./views/modules/**/index.vue');
+
+export const systemComponents = ref<DynamicComponents[]>([]);
 
 export const loadSystemIcons = async () => {
   const systemStore = useSystemStore();
@@ -26,8 +27,6 @@ export const loadSystemIcons = async () => {
     console.error('Error fetching avatar data:', error);
   }
 };
-
-export const systemComponents = ref<DynamicComponents[]>([]);
 
 /**
  * @description: 加载系统组件
@@ -60,9 +59,6 @@ export const setAxios = () => {
 export const setEvent = () => {
   const wheelEvent = (e: WheelEvent) => {
     if (e.ctrlKey) {
-      console.log(devicePixelRatio);
-
-      //
     }
   };
   useEventListener('wheel', wheelEvent, {

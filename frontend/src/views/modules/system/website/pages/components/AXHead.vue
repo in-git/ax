@@ -6,16 +6,12 @@
 
     <a-flex class="mb-12" wrap="wrap" justify="space-between">
       <div>
-        <a-radio-group
-          v-model:value="websiteQuery.type"
-          placeholder="请选择网页类型"
+        <a-segmented
           allow-clear
           @change="selectType"
-        >
-          <a-radio-button v-for="item in typeOptions" :value="item.value">
-            {{ item.label }}
-          </a-radio-button>
-        </a-radio-group>
+          v-model:value="websiteQuery.type"
+          :options="typeOptions"
+        ></a-segmented>
       </div>
       <a-flex :gap="12">
         <div>
