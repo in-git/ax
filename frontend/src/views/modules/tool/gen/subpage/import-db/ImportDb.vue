@@ -1,7 +1,14 @@
 <template>
-  <a-card :body-style="{ overflowY: 'hidden' }" class="system__module">
-    <AXHead />
-    <TableVue></TableVue>
+  <a-card
+    class="system__template"
+    :body-style="{ height: '100%', overflow: 'hidden', paddingBottom: '0' }"
+  >
+    <a-flex vertical class="h-100" :gap="8">
+      <AXHead />
+      <div class="data__content">
+        <TableVue></TableVue>
+      </div>
+    </a-flex>
   </a-card>
 </template>
 

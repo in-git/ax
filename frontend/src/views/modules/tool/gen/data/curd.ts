@@ -1,7 +1,8 @@
-import { batchGenCode, deleteCodeByIds, fetchCodeList } from '@/api/modules/tool/gen/gen';
+import { batchGenCode, deleteCodeByIds, fetchCodeList, synchDb } from '@/api/modules/tool/gen/gen';
 import { openWindow } from '@/global/window/window';
 import { response } from '@/utils/table/table';
 import { nanoid } from 'nanoid';
+import Column from '../subpage/column/Column.vue';
 import ImportDb from '../subpage/import-db/ImportDb.vue';
 import { codeKeys, codeQuery, codeTable } from './table';
 
@@ -17,7 +18,14 @@ export const codeList = async () => {
  * @description: 编辑表信息
  * @param {string} id
  */
-export const editCode = async (id?: string) => {};
+export const editTable = async (id?: string) => {
+  openWindow({
+    title: '低代码配置',
+    component: markRaw(Column),
+    id: nanoid(),
+    data: id,
+  });
+};
 
 /**
  * @description: 删除单张表
@@ -44,4 +52,13 @@ export const importDb = () => {
     component: markRaw(ImportDb),
     id: nanoid(),
   });
+};
+
+/**
+ * @description: 同步数据库
+ * @param {string} tableName 数据表名
+ */
+export const asyncTable = async (tableName: string) => {
+  await response(synchDb, tableName);
+  codeList();
 };

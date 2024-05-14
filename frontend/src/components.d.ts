@@ -83,6 +83,7 @@ declare module 'vue' {
     EyeOutlined: typeof import('@ant-design/icons-vue')['EyeOutlined']
     FilterOutlined: typeof import('@ant-design/icons-vue')['FilterOutlined']
     FormFooter: typeof import('./components/table/form/FormFooter.vue')['default']
+    GoogleOutlined: typeof import('@ant-design/icons-vue')['GoogleOutlined']
     HomeOutlined: typeof import('@ant-design/icons-vue')['HomeOutlined']
     ImportOutlined: typeof import('@ant-design/icons-vue')['ImportOutlined']
     InfoCircleFilled: typeof import('@ant-design/icons-vue')['InfoCircleFilled']

@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <TableHeadVue />
+  <div class="flex-1">
     <a-table
       @change="pageChange"
       table-layout="fixed"
@@ -21,12 +20,12 @@
     >
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'operation'">
-          <a-dropdown-button trigger="click" @click="editCode(record.tableId)">
+          <a-dropdown-button trigger="click" @click="editTable(record.tableId)">
             <EditOutlined />
             <template #overlay>
               <a-menu>
                 <div>
-                  <a-menu-item @click="synchDb(record.tableName)">同步</a-menu-item>
+                  <a-menu-item @click="asyncTable(record.tableName)">同步</a-menu-item>
                   <a-menu-item @click="downloadCode">下载</a-menu-item>
                   <a-menu-item @click="deleteTable(record.tableId)">删除</a-menu-item>
                 </div>
@@ -40,14 +39,10 @@
 </template>
 
 <script setup lang="ts">
-import TableHeadVue from './head.vue';
-
-import { synchDb } from '@/api/modules/tool/gen/gen';
-
 import { formatColumns } from '@/utils/table/table';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import { codeColumns } from '../data/column';
-import { codeList, deleteTable, downloadCode, editCode } from '../data/curd';
+import { asyncTable, codeList, deleteTable, downloadCode, editTable } from '../data/curd';
 import { codeKeys, codeQuery, codeTable } from '../data/table';
 
 const pageChange = (pagination: TablePaginationConfig) => {

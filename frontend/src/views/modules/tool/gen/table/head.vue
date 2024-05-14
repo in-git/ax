@@ -15,12 +15,12 @@
             </a-button>
           </a-tooltip>
           <a-tooltip title="编辑">
-            <a-button type="link" @click="editCode()" :disabled="codeKeys.length !== 1">
+            <a-button type="link" @click="editTable()" :disabled="codeKeys.length !== 1">
               <EditOutlined />
             </a-button>
           </a-tooltip>
           <a-tooltip title="刷新">
-            <a-button type="link" @click="codeList">
+            <a-button type="link" @click="codeList" :disabled="codeTable.loading">
               <ReloadOutlined />
             </a-button>
           </a-tooltip>
@@ -35,9 +35,15 @@
 import FieldVue from '@/views/components/table/Field.vue';
 import type { ReloadOutlined } from '@ant-design/icons-vue';
 import { codeColumns } from '../data/column';
-import { codeList, downloadCode, editCode, importDb } from '../data/curd';
+import { codeList, downloadCode, editTable, importDb } from '../data/curd';
 
 import { codeKeys, codeTable } from '../data/table';
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.table__head {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+</style>

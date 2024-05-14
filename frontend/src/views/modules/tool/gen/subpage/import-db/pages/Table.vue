@@ -1,32 +1,30 @@
 <template>
-  <div>
-    <a-table
-      @change="pageChange"
-      table-layout="fixed"
-      sticky
-      :pagination="{
-        pageSize: dbQuery.pageSize,
-        current: dbQuery.pageNum,
-        total: dbQuery.total,
-      }"
-      :row-selection="{
-        selectedRowKeys: dbKeys,
-        onChange,
-      }"
-      :custom-row="customRow"
-      :rowKey="dbTable.rowKey"
-      :columns="formatColumns(dbColumns)"
-      :data-source="dbTable.data"
-    >
-      <template #bodyCell="{ column, record }">
-        <template v-if="column.dataIndex === 'operation'">
-          <a-button type="ghost" @click="importDb(record.tableName)">
-            <DownloadOutlined />
-          </a-button>
-        </template>
+  <a-table
+    @change="pageChange"
+    table-layout="fixed"
+    sticky
+    :pagination="{
+      pageSize: dbQuery.pageSize,
+      current: dbQuery.pageNum,
+      total: dbQuery.total,
+    }"
+    :row-selection="{
+      selectedRowKeys: dbKeys,
+      onChange,
+    }"
+    :custom-row="customRow"
+    :rowKey="dbTable.rowKey"
+    :columns="formatColumns(dbColumns)"
+    :data-source="dbTable.data"
+  >
+    <template #bodyCell="{ column, record }">
+      <template v-if="column.dataIndex === 'operation'">
+        <a-button type="ghost" @click="importDb(record.tableName)">
+          <DownloadOutlined />
+        </a-button>
       </template>
-    </a-table>
-  </div>
+    </template>
+  </a-table>
 </template>
 
 <script setup lang="ts">

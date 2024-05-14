@@ -35,7 +35,6 @@ export const loadSystemIcons = async () => {
 export const loadSystemComponents = () => {
   for (const path in modules) {
     const result = path.match(/.*\/(.+).vue$/);
-
     if (result) {
       const component: any = modules[path];
       systemComponents.value.push({

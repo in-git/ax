@@ -20,5 +20,6 @@ export const dbList = async () => {
 export const importDb = async (tableName?: string) => {
   let list = tableName ? [tableName] : dbKeys.value;
   await response(importDbByDbs, list);
+  dbKeys.value = [];
   dbList();
 };
