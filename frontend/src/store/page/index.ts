@@ -1,8 +1,6 @@
 import { defineStore } from 'pinia';
 import type { PageSettings } from './types';
 
-const maxWidth = window.innerWidth * 0.7;
-const maxHeight = window.innerHeight * 0.7;
 const usePageStore = defineStore('page', {
   state: (): PageSettings => ({
     theme: {
@@ -19,7 +17,6 @@ const usePageStore = defineStore('page', {
     desktop: {
       background: {
         type: 'image',
-        src: '',
         brightness: 0,
         blur: 0,
         grayscale: 0,

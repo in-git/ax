@@ -25,17 +25,23 @@
 </template>
 
 <script setup lang="ts">
+import { EventBusEnum } from '@/global/enum/eventBus';
+import { LocalforageEnum } from '@/global/enum/localforage';
 import usePageStore from '@/store/page';
 import { setBackground } from '@/store/page/utils';
 import { toBase64 } from '@/utils/file/file';
 import { UploadOutlined } from '@ant-design/icons-vue';
-import { useFileDialog } from '@vueuse/core';
+import { useEventBus, useFileDialog } from '@vueuse/core';
+import localforage from 'localforage';
 import { changeGalleryType, currentGallery, galleryType } from './data/data';
 
-const { files, open, onChange } = useFileDialog({
+const { files, open, onChange, reset } = useFileDialog({
   accept: 'image/*',
   directory: false,
 });
+
+const bus = useEventBus(EventBusEnum.UPDATE_BACKGROUND);
+
 const use = () => {
   if (currentGallery.value) {
     setBackground(`${currentGallery.value}`, galleryType.value);
@@ -57,13 +63,18 @@ const upload = async () => {
   open();
 };
 
+/**
+ * @description: 用户上传自定义的图片
+ */
 onChange(async () => {
   if (!files.value) return;
   const file = files.value[0];
   const image = await toBase64(file);
+  await localforage.setItem(LocalforageEnum.BACKGROUND_SRC, image);
   const store = usePageStore();
-  store.$state.desktop.background.src = image;
   store.$state.desktop.background.type = 'image';
+  bus.emit();
+  reset();
 });
 
 onMounted(() => {

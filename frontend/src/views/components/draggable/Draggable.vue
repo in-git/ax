@@ -13,6 +13,7 @@
     :minHeight="400"
     enableNativeDrag
     @resizestop="resizestop"
+    @mouseup="onMouseup"
     :class="[dark ? 'window-dark' : '']"
     :id="id"
   >
@@ -95,8 +96,11 @@ const props = withDefaults(
     dark: false,
   },
 );
-
+const onMouseup = () => {
+  document.body.style.userSelect = 'initial';
+};
 const moveTop = () => {
+  document.body.style.userSelect = 'none';
   if (props.id) {
     setCurrentWindow(props.id);
     toTop(props.id);

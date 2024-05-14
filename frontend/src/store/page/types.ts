@@ -11,7 +11,6 @@ export interface Theme {
 }
 export interface DesktopBackground {
   type: 'image' | 'video';
-  src: string;
   brightness: number;
   blur: number;
   grayscale: number;

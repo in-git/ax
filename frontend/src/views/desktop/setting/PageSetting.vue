@@ -32,6 +32,7 @@ import DesktopSetting from './desktop/DesktopSetting.vue';
 import Net from './net/Net.vue';
 import ThemeVue from './theme/Theme.vue';
 import GalleryBody from './wallpaper/GalleryBody.vue';
+
 interface Nav {
   title: string;
   icon: any;

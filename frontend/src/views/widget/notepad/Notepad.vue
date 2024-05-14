@@ -13,7 +13,11 @@
       </a-dropdown>
     </ToolbarVue>
 
-    <div style="height: calc(100% - 32px)" class="relative">
+    <a-card
+      :body-style="{ padding: '0', height: '100%' }"
+      style="height: calc(100% - 32px)"
+      class="relative"
+    >
       <textarea v-if="mode.includes('text')" v-model="content" v-focus @input="onChange"></textarea>
       <QuillEditor
         :style="{ height: 'calc(100% - 42px)' }"
@@ -27,7 +31,7 @@
         v-else-if="mode.includes('markdown')"
       />
       <div class="count">字数 {{ content.length }}</div>
-    </div>
+    </a-card>
   </a-card>
 </template>
 
