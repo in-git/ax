@@ -88,7 +88,8 @@ const style = computed((): CSSProperties => {
   height: 100vh;
   width: 100vw;
   z-index: 10;
-
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   left: 0;

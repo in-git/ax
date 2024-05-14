@@ -21,7 +21,13 @@
         ></a-segmented>
       </div>
 
-      <a-list item-layout="horizontal" :data-source="list" size="small" bordered>
+      <a-list
+        item-layout="horizontal"
+        :data-source="list"
+        size="small"
+        bordered
+        :loading="noticeLoading"
+      >
         <template #renderItem="{ item }">
           <a-list-item>
             <a-list-item-meta>
@@ -54,7 +60,14 @@
 <script setup lang="ts">
 import { openNotepad } from '@/global/window/widget';
 import { getLabel } from '@/utils/common/utils';
-import { currentNoticeType, getSystemNotice, noticeList, showNotice } from '../data/data';
+import { nanoid } from 'nanoid';
+import {
+  currentNoticeType,
+  getSystemNotice,
+  noticeList,
+  noticeLoading,
+  showNotice,
+} from '../data/data';
 import { noticeTypeOptions } from '../data/options';
 import type { DesktopNotice } from '../data/type';
 
@@ -62,6 +75,7 @@ const view = (item: DesktopNotice) => {
   openNotepad({
     data: item.content,
     mode: 'markdown',
+    id: nanoid(),
   });
 };
 

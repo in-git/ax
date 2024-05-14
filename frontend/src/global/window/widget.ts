@@ -7,6 +7,15 @@ import type { NotepadViewMode } from '@/views/widget/notepad/types';
 import Video from '@/views/widget/video/Video.vue';
 import { openWindow } from './window';
 
+type BrowserProps = { src?: string; html?: string; title?: string };
+type NotepadConfig = {
+  data: string;
+  allowSave?: boolean;
+  mode?: NotepadViewMode;
+  /* 传入ID则多开记事本 */
+  id?: string;
+};
+
 /**
  * @description: 打开登录窗口
  */
@@ -20,17 +29,13 @@ export const openLogin = () => {
     h: 600,
   });
 };
-type NotepadConfig = {
-  data: string;
-  allowSave?: boolean;
-  mode?: NotepadViewMode;
-};
+
 /* 打开记事本 */
 export const openNotepad = (config: NotepadConfig) => {
   openWindow({
     title: '记事本',
     component: markRaw(Notepad),
-    id: 'notepad',
+    id: config.id ? config.id : 'notepad',
     icon: getStaticImage('image-icon/notepad.png'),
     data: {
       data: config.data,
@@ -65,8 +70,6 @@ export const openVideo = (src: string) => {
     },
   });
 };
-
-type BrowserProps = { src?: string; html?: string; title?: string };
 
 export const openBrowser = (config: BrowserProps) => {
   openWindow({

@@ -62,11 +62,17 @@ onMounted(() => {
   position: relative;
   height: 100vh;
   overflow: hidden;
+  height: 100%;
 }
 .windows {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 60;
+}
+@media screen and (max-width: 700px) {
+  .desktop {
+    display: none;
+  }
 }
 </style>

@@ -1,4 +1,4 @@
-import { useCssVar } from '@vueuse/core';
+import { useCssVar, useEventListener } from '@vueuse/core';
 import axios from 'axios';
 import localforage from 'localforage';
 import usePageStore from './store/page';
@@ -11,19 +11,15 @@ interface DynamicComponents {
   path: string;
 }
 
-export const systemComponents = ref<DynamicComponents[]>([]);
-
 export const loadSystemIcons = async () => {
   const systemStore = useSystemStore();
   const staticHost = systemStore.$state.developer.resourceHost;
 
   try {
     const result = await localforage.getItem('images');
-
     if (!result) {
       const response = await fetch(`${staticHost.replace('/images', '')}/data.json`);
       const data = await response.json();
-
       await localforage.setItem('images', data);
     }
   } catch (error) {
@@ -31,7 +27,11 @@ export const loadSystemIcons = async () => {
   }
 };
 
-/* 加载系统组件 */
+export const systemComponents = ref<DynamicComponents[]>([]);
+
+/**
+ * @description: 加载系统组件
+ */
 export const loadSystemComponents = () => {
   for (const path in modules) {
     const result = path.match(/.*\/(.+).vue$/);
@@ -45,27 +45,46 @@ export const loadSystemComponents = () => {
   }
 };
 
-/* 设置请求 */
+/**
+ * @description: AXIOS配置
+ */
 export const setAxios = () => {
   const store = useSystemStore();
-  /*  */
   axios.defaults.baseURL = store.$state.developer.baseURL;
   axios.defaults.timeout = store.$state.developer.timeout * 1000;
 };
 
-/* 设置事件 */
+/**
+ * @description: 禁止鼠标滚动缩放页面
+ */
 export const setEvent = () => {
-  /* 禁止鼠标滚动缩放页面 */
   const wheelEvent = (e: WheelEvent) => {
     if (e.ctrlKey) {
-      e.preventDefault();
+      console.log(devicePixelRatio);
+
+      //
     }
   };
-  document.addEventListener('wheel', wheelEvent, { passive: false });
+  useEventListener('wheel', wheelEvent, {
+    passive: false,
+  });
 };
-/* 设置主题变量 */
+
+/**
+ * @description: 设置主题变量
+ */
 export const setCssVar = () => {
   const store = usePageStore();
   const cssVar = useCssVar('--font-size', document.body);
   cssVar.value = `${store.$state.theme.fontSize}px`;
+};
+
+/**
+ * @description: 屏幕检测
+ */
+export const screenDetection = () => {
+  if (devicePixelRatio > 1) {
+    /* 启用了缩放 */
+    document.body.style.zoom = `${1 / devicePixelRatio}`;
+  }
 };
