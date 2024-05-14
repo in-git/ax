@@ -4,13 +4,13 @@
       <a-flex :justify="'center'">
         <a-flex :gap="4" :justify="'space-between'" :align="'center'">
           <a-tooltip title="导入数据库">
-            <a-button @click="showDbForm = true" type="primary">
+            <a-button @click="importDb" type="primary">
               <ImportOutlined />
               导入
             </a-button>
           </a-tooltip>
           <a-tooltip title="下载代码">
-            <a-button type="link" @click="download" :disabled="codeKeys.length !== 1">
+            <a-button type="link" @click="downloadCode" :disabled="codeKeys.length !== 1">
               <DownloadOutlined />
             </a-button>
           </a-tooltip>
@@ -26,36 +26,18 @@
           </a-tooltip>
         </a-flex>
       </a-flex>
-      <a-flex>
-        <a-popconfirm
-          title="确定要删除吗"
-          placement="bottomRight"
-          @confirm="codeDelete()"
-          :disabled="codeKeys.length === 0"
-        >
-          <a-button danger type="link" :disabled="codeKeys.length === 0">
-            <DeleteOutlined />
-          </a-button>
-        </a-popconfirm>
-        <FieldVue :columns="codeColumns" :module-name="codeTable.moduleName" />
-      </a-flex>
+      <FieldVue :columns="codeColumns" :module-name="codeTable.moduleName" />
     </a-flex>
   </a-card>
 </template>
 
 <script setup lang="ts">
-import { batchGenCode } from '@/api/modules/tool/gen/gen';
-import { response } from '@/utils/table/table';
 import FieldVue from '@/views/components/table/Field.vue';
-import type { DeleteOutlined, ReloadOutlined } from '@ant-design/icons-vue';
+import type { ReloadOutlined } from '@ant-design/icons-vue';
 import { codeColumns } from '../data/column';
-import { codeDelete, codeList, editCode } from '../data/curd';
-import { showDbForm } from '../data/form';
-import { codeKeys, codeTable } from '../data/table';
+import { codeList, downloadCode, editCode, importDb } from '../data/curd';
 
-const download = () => {
-  response(batchGenCode, codeKeys.value);
-};
+import { codeKeys, codeTable } from '../data/table';
 </script>
 
 <style lang="scss" scoped></style>

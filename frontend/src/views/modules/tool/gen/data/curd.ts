@@ -1,30 +1,47 @@
-import { deleteCodeByIds, fetchCodeById, fetchCodeList } from '@/api/modules/tool/gen/gen';
+import { batchGenCode, deleteCodeByIds, fetchCodeList } from '@/api/modules/tool/gen/gen';
+import { openWindow } from '@/global/window/window';
 import { response } from '@/utils/table/table';
-import { codeFormData, codeShowForm, currentCode } from './form';
+import { nanoid } from 'nanoid';
+import ImportDb from '../subpage/import-db/ImportDb.vue';
 import { codeKeys, codeQuery, codeTable } from './table';
 
 export const codeList = async () => {
   codeTable.value.loading = true;
-  /* GET LIST */
   const { data } = await fetchCodeList(codeQuery.value);
   codeTable.value.data = data.rows;
   codeQuery.value.total = data.total;
   codeTable.value.loading = false;
 };
 
-export const editCode = async (id?: string) => {
-  codeTable.value.loading = true;
-  let targetId = id ? id : codeKeys.value[0];
-  const { data } = await fetchCodeById(targetId);
-  if (data.data) codeFormData.value = data.data;
-  codeTable.value.loading = false;
-  codeShowForm.value = true;
-};
-export const codeDelete = async () => {
-  let ids = currentCode.value?.tableId ? [currentCode.value?.tableId] : codeKeys.value;
-  await response(deleteCodeByIds, ids);
+/**
+ * @description: 编辑表信息
+ * @param {string} id
+ */
+export const editCode = async (id?: string) => {};
+
+/**
+ * @description: 删除单张表
+ * @param {string} name
+ */
+export const deleteTable = async (name: string) => {
+  await response(deleteCodeByIds, name);
   codeList();
 };
-export const createCode = () => {
-  codeShowForm.value = true;
+
+/**
+ * @description: 下载代码
+ */
+export const downloadCode = () => {
+  response(batchGenCode, codeKeys.value);
+};
+
+/**
+ * @description: 打开导入数据库的窗口
+ */
+export const importDb = () => {
+  openWindow({
+    title: '导入数据库',
+    component: markRaw(ImportDb),
+    id: nanoid(),
+  });
 };

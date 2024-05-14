@@ -23,7 +23,7 @@ export const openLogin = () => {
 type NotepadConfig = {
   data: string;
   allowSave?: boolean;
-  mode: NotepadViewMode;
+  mode?: NotepadViewMode;
 };
 /* 打开记事本 */
 export const openNotepad = (config: NotepadConfig) => {
