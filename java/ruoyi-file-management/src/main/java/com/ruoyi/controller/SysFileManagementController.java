@@ -2,7 +2,7 @@ package com.ruoyi.controller;
 
 
 import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.service.impl.SysFileManagementServiceImpl;
+import com.ruoyi.service.ISysFileManagementService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +16,9 @@ import static com.ruoyi.common.core.domain.AjaxResult.success;
 
 @RestController
 @RequestMapping("/afm/file")
-class SysFileManagementController {
+public class SysFileManagementController {
     @Autowired
-    private SysFileManagementServiceImpl fileManagementService;
+    private ISysFileManagementService fileManagementService;
 
     @PreAuthorize("@ss.hasPermi('tool:file:view')")
     @GetMapping("/path")
