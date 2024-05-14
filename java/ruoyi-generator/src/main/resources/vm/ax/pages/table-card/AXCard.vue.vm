@@ -14,7 +14,7 @@
         @dragover="e => e.preventDefault()"
       >
         <a-card>
-          <div class="active" v-if="jobKeys.includes(item.id)">
+          <div class="active" v-if="${businessName}Keys.includes(item.id)">
               <check-outlined class="text-12" />
           </div>
           <div :draggable="true" class="mb-8 cursor-move">

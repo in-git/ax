@@ -8,26 +8,36 @@ import { ${businessName}Columns } from './column';
 import { ${businessName}Keys, ${businessName}Table } from './table';
 import type {  ${ModuleName}${BusinessName} } from '@/api/modules/${moduleName}/${businessName}/types';
 
+type CardItem = {
+  label: string;
+  value: any;
+};
 interface CardData {
   id: number;
-  raw?: ${ModuleName}${BusinessName};
-  items: {
-    label: string;
-    value: any;
-  }[];
+  raw?: SystemTest;
+  items: CardItem[];
 }
 
-/* 当前拖拽的元素 */
+/**
+ * @description: 拖拽开始，用于设置拖拽前的值
+ * @param {CardData} item
+ */
 export const dragstart = (item: CardData) => {
-  // 鼠标拖拽触发
+  // 待完善逻辑
 };
 
-/* 目标元素，鼠标放下 */
+/**
+ * @description: 拖拽结束
+ * @param {CardData} item
+ */
 export const drop = (item: CardData) => {
-  // 鼠标拖拽放下触发
+  // 待完善逻辑
 };
 
-/* 选择卡片 */
+/**
+ * @description: 单击选择卡片
+ * @param {CardData} item 当前选择的值
+ */
 export const select${ModuleName}${BusinessName} = (item: CardData) => {
   if (!${businessName}Keys.value.includes(item.id)) {
     ${businessName}Keys.value.push(item.id);
@@ -36,7 +46,12 @@ export const select${ModuleName}${BusinessName} = (item: CardData) => {
   }
 };
 
-/* 渲染卡片的内容 */
+/**
+ * @description:
+ *  卡片的内容，以ID作为唯一索引
+ *  最多展示4项
+ *  这段代码不建议修改，有需要则重写
+ */
 export const ${businessName}CardData = computed(() => {
   let arr: CardData[] = [];
   ${businessName}Table.value.data.map((e: ${ModuleName}${BusinessName} | any, i) => {
@@ -45,10 +60,12 @@ export const ${businessName}CardData = computed(() => {
       const label = v.title;
       const value = e[v.dataIndex as any];
       if (v.dataIndex === 'operation') return;
-      items.push({
-        label,
-        value,
-      });
+      if (k < 4) {
+           items.push({
+             label,
+             value,
+           });
+         }
     });
     arr.push({
       id: e['$Key'],
