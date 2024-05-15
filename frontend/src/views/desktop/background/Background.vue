@@ -3,21 +3,20 @@
     <div class="app-background flex-1 flex flex-col" v-if="comBackground.type === 'video'">
       <VideoBackground class="h-100" :src="backgroundSrc"></VideoBackground>
     </div>
-    <div v-else-if="comBackground.type === 'image'" class="app-background">
+    <div
+      v-else-if="comBackground.type === 'image' || comBackground.type === 'base64'"
+      class="app-background"
+    >
       <div class="w-100 h-100 background" :style="style"></div>
-      <Loading v-if="backgroundLoading" desc="正在加载背景图片"></Loading>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { getStaticImage } from '@/api/utils/image';
-import Loading from '@/components/loading/Loading.vue';
 import { EventBusEnum } from '@/global/enum/eventBus';
 import { LocalforageEnum } from '@/global/enum/localforage';
 import usePageStore from '@/store/page';
-import { backgroundLoading } from '@/store/page/utils';
-import { isBase64 } from '@/utils/file/file';
 import { useEventBus } from '@vueuse/core';
 import { message } from 'ant-design-vue';
 import localforage from 'localforage';
@@ -39,15 +38,16 @@ const comBackground = computed(() => {
 const getLocalBackground = async () => {
   let src: any = await localforage.getItem(LocalforageEnum.BACKGROUND_SRC);
   const type = comBackground.value.type;
+  let bg = '';
+
   if (src) {
-    if (isBase64(src.toString())) {
-      backgroundSrc.value = src;
+    if (type === 'base64' || type === 'video') {
+      bg = src;
     } else {
-      if (type === 'image') backgroundSrc.value = getStaticImage(src) || defaultBackground;
-      else {
-        backgroundSrc.value = src;
-      }
+      bg = getStaticImage(src) || defaultBackground;
     }
+
+    backgroundSrc.value = bg;
   } else {
     message.warn('资源路径出了点问题，请重新设置壁纸');
   }
@@ -64,7 +64,8 @@ onMounted(async () => {
 });
 
 const style = computed((): CSSProperties => {
-  if (comBackground.value.type === 'image' && backgroundLoading) {
+  console.log(comBackground.value.type);
+  if (comBackground.value.type === 'image' || comBackground.value.type === 'base64') {
     return {
       background: `url('${backgroundSrc.value}')`,
       filter: `
@@ -72,9 +73,7 @@ const style = computed((): CSSProperties => {
       grayscale(${comBackground.value.grayscale}%)`,
     };
   }
-  return {
-    background: '#333',
-  };
+  return {};
 });
 </script>
 

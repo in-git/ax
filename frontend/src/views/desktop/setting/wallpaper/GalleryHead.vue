@@ -25,22 +25,16 @@
 </template>
 
 <script setup lang="ts">
-import { EventBusEnum } from '@/global/enum/eventBus';
-import { LocalforageEnum } from '@/global/enum/localforage';
 import usePageStore from '@/store/page';
 import { setBackground } from '@/store/page/utils';
-import { toBase64 } from '@/utils/file/file';
 import { UploadOutlined } from '@ant-design/icons-vue';
-import { useEventBus, useFileDialog } from '@vueuse/core';
-import localforage from 'localforage';
-import { changeGalleryType, currentGallery, galleryType } from './data/data';
+import { useFileDialog } from '@vueuse/core';
+import { changeGalleryType, currentGallery, galleryType, setBase64Background } from './data/data';
 
 const { files, open, onChange, reset } = useFileDialog({
   accept: 'image/*',
   directory: false,
 });
-
-const bus = useEventBus(EventBusEnum.UPDATE_BACKGROUND);
 
 const use = () => {
   if (currentGallery.value) {
@@ -57,6 +51,10 @@ const typeOptions = [
     label: '视频',
     value: 'video',
   },
+  {
+    label: '本地',
+    value: 'base64',
+  },
 ];
 
 const upload = async () => {
@@ -68,12 +66,7 @@ const upload = async () => {
  */
 onChange(async () => {
   if (!files.value) return;
-  const file = files.value[0];
-  const image = await toBase64(file);
-  await localforage.setItem(LocalforageEnum.BACKGROUND_SRC, image);
-  const store = usePageStore();
-  store.$state.desktop.background.type = 'image';
-  bus.emit();
+  setBase64Background(files.value[0]);
   reset();
 });
 
