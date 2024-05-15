@@ -1,11 +1,12 @@
 <template>
-  <div class="sidebar pr-12">
-    <div class="mb-12">流程说明</div>
+  <div class="sidebar">
+    <div class="sidebar-head">流程说明</div>
     <a-steps
       @change="onChange"
       direction="vertical"
       v-model:current="currentStep.key"
       :items="items"
+      class="px-12"
     ></a-steps>
   </div>
 </template>
@@ -37,5 +38,11 @@ const onChange = (current: number) => {
 .sidebar {
   border-right: 1px solid #ddd;
   height: 100%;
+  .sidebar-head {
+    border-bottom: 1px solid #ddd;
+    line-height: 36px;
+    margin-bottom: 12px;
+    padding: 0 12px;
+  }
 }
 </style>

@@ -1,6 +1,9 @@
 <template>
   <div>
-    <a-card :title="currentStep.title"></a-card>
+    <div class="field-head">
+      {{ currentStep.title }}
+    </div>
+    <a-card :bordered="false"></a-card>
   </div>
 </template>
 
@@ -8,4 +11,13 @@
 import { currentStep } from '../data/config';
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.field-head {
+  line-height: 36px;
+  border-bottom: 1px solid #ddd;
+  padding: 0 12px;
+}
+:deep(.ant-card-body) {
+  box-shadow: none;
+}
+</style>

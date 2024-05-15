@@ -1,9 +1,9 @@
 <template>
   <a-card
     class="system__template"
-    :body-style="{ height: '100%', overflow: 'hidden', padding: '0 12px' }"
+    :body-style="{ height: '100%', overflow: 'hidden', padding: '0 ' }"
   >
-    <a-flex :gap="4" class="h-100">
+    <a-flex class="h-100">
       <Sidebar />
       <div class="flex-1">
         <template v-if="currentStep.type === 'base'">
