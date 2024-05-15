@@ -7,7 +7,7 @@
     :label-col="{ span: 4, offset: 4 }"
   >
     <a-modal
-      get-container=".system__template"
+      get-container=".ax__template"
       width="70%"
       title="通知公告"
       v-model:visible="noticeShowForm"

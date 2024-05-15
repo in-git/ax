@@ -5,14 +5,9 @@
 }
 
 /* 代码下载模板 */
-.system__template {
-	width: 100%;
+.ax__template {
 	height: 100%;
-	position: relative;
-	display: flex;
-	flex-direction: column;
 	overflow: hidden;
-	border-radius: 0;
 	.data__content {
 		flex: 1;
 		overflow-y: auto;
@@ -30,8 +25,8 @@
 		overflow-y: auto;
 		overflow-x: hidden;
 		place-content: start;
-		grid-template-columns: repeat(auto-fill, minmax($width, 1fr));
 		flex: 1;
+		grid-template-columns: repeat(auto-fill, minmax($width, 1fr));
 		div.active {
 			$wh: 20px;
 			position: absolute;
@@ -48,20 +43,13 @@
 		}
 	}
 }
-.card__footer {
-	box-shadow: 0 0 1px transparent !important;
-	border-radius: 0;
-}
-.table__head,
-.form__head {
+
+.ax_sticky_top {
 	position: sticky;
 	top: 0;
 	z-index: 10;
 }
-.card__container {
+.ax_plain_card {
 	border-radius: 0 !important;
-	box-shadow: none !important;
-}
-.table__card {
 	box-shadow: none !important;
 }

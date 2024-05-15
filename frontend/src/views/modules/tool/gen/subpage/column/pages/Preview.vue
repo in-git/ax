@@ -1,5 +1,5 @@
 <template>
-  <a-card class="system__template">
+  <a-card class="ax__template">
     <a-tabs
       size="small"
       v-model:active-key="active"
@@ -91,7 +91,7 @@ onMounted(() => {
     white-space: pre-wrap;
   }
 }
-.system__template {
+.ax__template {
   :deep(.ant-card-body) {
     height: 100%;
     overflow-y: hidden;

@@ -1,5 +1,5 @@
 <template>
-  <a-card class="system__module card__container">
+  <a-card class="system__module ax_plain_card">
     <a-flex class="h-100">
       <Dept />
       <UserTable />
@@ -15,7 +15,7 @@ import UserTable from './table/UserTable.vue';
 </script>
 
 <style lang="scss" scoped>
-.card__container {
+.ax_plain_card {
   overflow: hidden;
 }
 </style>

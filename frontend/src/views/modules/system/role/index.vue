@@ -1,5 +1,5 @@
 <template>
-  <a-card class="system__template role">
+  <a-card class="ax__template role">
     <a-flex vertical class="h-100">
       <!-- 顶部筛选，查询选项 -->
       <HeadVue />

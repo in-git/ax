@@ -1,35 +1,34 @@
-import { noticeResetForm, noticeShowForm,noticeForm } from './form';
-import { noticeKeys, noticeQuery, noticeTable } from './table';
 import {
   deleteNotice,
-  fetchNoticeById ,
+  exportNotice,
+  fetchNoticeById,
   fetchNoticeList,
-  exportNotice
 } from '@/api/modules/system/notice/notice';
 import { response } from '@/utils/table/table';
+import { noticeForm, noticeResetForm, noticeShowForm } from './form';
+import { noticeKeys, noticeQuery, noticeTable } from './table';
 
 export const noticeList = async () => {
   try {
-     noticeTable.value.loading = true;
-      const { data } = await fetchNoticeList(noticeQuery.value);
-      noticeTable.value.data = data.rows;
-      noticeQuery.value.total = data.total;
-      noticeTable.value.loading = false;
+    noticeTable.value.loading = true;
+    const { data } = await fetchNoticeList(noticeQuery.value);
+    noticeTable.value.data = data.rows;
+    noticeQuery.value.total = data.total;
+    noticeTable.value.loading = false;
   } catch (error) {
     noticeTable.value.loading = false;
   }
-
 };
 
 export const noticeEdit = async (id?: number) => {
-    let targetId: number = id ? id : noticeKeys.value[0];
-    noticeTable.value.loading = true;
-    const { data } = await fetchNoticeById(targetId);
-    if (data.data) {
-        noticeForm.value = data.data;
-        noticeShowForm.value = true;
-    }
-    noticeTable.value.loading = false;
+  let targetId: number = id ? id : noticeKeys.value[0];
+  noticeTable.value.loading = true;
+  const { data } = await fetchNoticeById(targetId);
+  if (data.data) {
+    noticeForm.value = data.data;
+    noticeShowForm.value = true;
+  }
+  noticeTable.value.loading = false;
 };
 
 export const noticeCreate = async () => {
@@ -41,7 +40,7 @@ export const noticeDelete = async (id?: number) => {
   let ids = id ? [id] : noticeKeys.value;
   await response(deleteNotice, ids);
   await noticeList();
-   noticeKeys.value=[]
+  noticeKeys.value = [];
 };
 // 导出EXCEL文件
 export const noticeExport = () => {

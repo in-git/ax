@@ -1,5 +1,5 @@
 <template>
-  <a-card :body-style="{ overflowY: 'hidden' }" class="system__template">
+  <a-card :body-style="{ overflowY: 'hidden' }" class="ax__template">
     <a-flex vertical class="h-100">
       <TableHeadVue />
       <TableVue />

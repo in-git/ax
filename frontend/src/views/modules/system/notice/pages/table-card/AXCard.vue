@@ -1,6 +1,6 @@
 <template>
-  <a-card class="table__card" :bordered="false" :body-style="{ padding: '0' }">
-    <ul class="table_card_list flex-1" ref="cardRef">
+  <a-card class="ax_plain_card" :bordered="false" :body-style="{ padding: '0' }">
+    <ul class="table_card_list" ref="cardRef">
       <li
         v-for="(item, key) in noticeCardData"
         :key="key"

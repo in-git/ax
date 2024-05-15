@@ -9,7 +9,7 @@
     >
       <div v-if="roleForm" class="h-100 flex flex-col">
         <div class="flex-1">
-          <a-card class="table__head">
+          <a-card class="ax_sticky_top">
             <a-flex justify="space-between">
               <div>身份管理</div>
               <a-button type="primary" :loading="loading" htmlType="submit">保存</a-button>

@@ -1,15 +1,15 @@
-
+import type { SystemNotice } from '@/api/modules/system/notice/types';
 import { noticeColumns } from './column';
 import { noticeKeys, noticeTable } from './table';
-import type {  SystemNotice } from '@/api/modules/system/notice/types';
 
+type CardItem = {
+  label: string;
+  value: any;
+};
 interface CardData {
   id: number;
   raw?: SystemNotice;
-  items: {
-    label: string;
-    value: any;
-  }[];
+  items: CardItem[];
 }
 
 /* 当前拖拽的元素 */

@@ -1,5 +1,5 @@
 <template>
-  <a-card class="card__container" :bordered="false" :bodyStyle="{ padding: '0' }">
+  <a-card class="ax_plain_card" :bordered="false" :bodyStyle="{ padding: '0' }">
     <div class="system__head">
       <div>壁纸选择</div>
     </div>
@@ -78,7 +78,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.card__container {
+.ax_plain_card {
   position: sticky;
   top: 0;
   z-index: 100;

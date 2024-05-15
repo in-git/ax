@@ -1,8 +1,5 @@
 <template>
-  <a-card
-    class="system__template"
-    :body-style="{ height: '100%', overflow: 'hidden', padding: '0 ' }"
-  >
+  <a-card class="ax__template" :body-style="{ height: '100%', overflow: 'hidden', padding: '0 ' }">
     <a-flex class="h-100">
       <Sidebar />
       <div class="flex-1">

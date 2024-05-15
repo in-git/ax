@@ -1,5 +1,5 @@
 <template>
-  <a-card class="table__head mb-8" title="数据库列表">
+  <a-card class="ax_sticky_top mb-8" title="数据库列表">
     <a-flex :justify="'space-between'">
       <a-flex :justify="'center'">
         <a-flex :gap="4" :justify="'space-between'" :align="'center'">
@@ -41,7 +41,7 @@ import { codeKeys, codeTable } from '../data/table';
 </script>
 
 <style lang="scss" scoped>
-.table__head {
+.ax_sticky_top {
   position: sticky;
   top: 0;
   z-index: 10;

@@ -6,7 +6,7 @@
         <a-card
           :body-style="{ padding: '0' }"
           :bordered="false"
-          class="card__container"
+          class="ax_plain_card"
           :loading="loading"
         >
           <a-menu :items="menuList" style="width: 120px"></a-menu>

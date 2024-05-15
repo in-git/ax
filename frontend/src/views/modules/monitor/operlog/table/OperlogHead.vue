@@ -1,5 +1,5 @@
 <template>
-  <div class="table__head">
+  <div class="ax_sticky_top">
     <a-card title="操作日志">
       <a-flex justify="space-between" :align="'center'">
         <a-flex :gap="8" align="center">
@@ -64,7 +64,7 @@ const change = (page: number, pageSize: number) => {
 </script>
 
 <style lang="scss" scoped>
-.table__head {
+.ax_sticky_top {
   padding-bottom: 12px;
 }
 </style>

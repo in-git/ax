@@ -1,5 +1,5 @@
 <template>
-  <a-card class="card__container" :bordered="false">
+  <a-card class="ax_plain_card" :bordered="false">
     <template #title>
       <div class="system__subtitle">选择服务器</div>
     </template>
@@ -38,7 +38,7 @@
       </a-card>
     </a-flex>
   </a-card>
-  <a-card :bordered="false" class="card__container">
+  <a-card :bordered="false" class="ax_plain_card">
     <a-flex :justify="'space-between'">
       <div>资源服务器</div>
       <a-flex style="width: 200px" :align="'center'" :gap="12">

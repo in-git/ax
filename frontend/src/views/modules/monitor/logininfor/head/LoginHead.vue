@@ -1,5 +1,5 @@
 <template>
-  <div class="table__head">
+  <div class="ax_sticky_top">
     <a-card title="登录日志">
       <div class="flex">
         <div class="flex gc-4">

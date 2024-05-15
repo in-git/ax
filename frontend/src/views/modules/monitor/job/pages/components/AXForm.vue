@@ -10,9 +10,9 @@
       :footer="false"
       title="定时任务调度"
       v-model:open="jobShowForm"
-      get-container=".system__template"
+      get-container=".ax__template"
     >
-      <a-card title="编辑/新增" class="form__head">
+      <a-card title="编辑/新增" class="ax_sticky_top">
         <template #extra>
           <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
         </template>

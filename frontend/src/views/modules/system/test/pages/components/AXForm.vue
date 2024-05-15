@@ -1,16 +1,16 @@
 <template>
-  <a-form
-    :rules="testRules"
-    :model="testForm"
-    @finish="submit"
-    :label-col="{ span: 6 }"
-    label-align="left"
+  <a-modal
+    :footer="false"
+    title="系统测试表"
+    v-model:open="testShowForm"
+    get-container=".ax__template"
   >
-    <a-modal
-      :footer="false"
-      title="系统测试表"
-      v-model:open="testShowForm"
-      get-container=".system__template"
+    <a-form
+      :rules="testRules"
+      :model="testForm"
+      @finish="submit"
+      :label-col="{ span: 6 }"
+      label-align="left"
     >
       <a-card title="编辑/新增" class="form__head">
         <template #extra>
@@ -89,8 +89,8 @@
           </a-input>
         </a-form-item>
       </a-card>
-    </a-modal>
-  </a-form>
+    </a-form>
+  </a-modal>
 </template>
 
 <script setup lang="ts">
