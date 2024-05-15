@@ -26,6 +26,6 @@ export const codeFormData = ref<CodeResponse>({
     updateBy: '',
   },
 });
-export const currentCode = ref<SystemCode>();
+export const currentCode = ref<SystemTable>();
 
 export const showDbForm = ref(false);

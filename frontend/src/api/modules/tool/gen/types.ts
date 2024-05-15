@@ -1,4 +1,4 @@
-interface SystemCode {
+interface SystemTable {
   createBy: string;
   createTime: string;
   updateBy: string;
@@ -69,42 +69,7 @@ interface CodeColumn {
   capJavaField?: any;
 }
 interface CodeResponse {
-  tables: SystemDb[];
+  tables: SystemTable[];
   rows: CodeColumn[];
-  info: SystemCode;
-}
-
-interface SystemDb {
-  createBy?: any;
-  createTime?: any;
-  updateBy?: any;
-  updateTime?: any;
-  remark?: any;
-  tableId: number;
-  tableName: string;
-  tableComment: string;
-  subTableName?: string;
-  subTableFkName?: string;
-  className: string;
-  tplCategory: string;
-  tplWebType: string;
-  packageName: string;
-  moduleName: string;
-  businessName: string;
-  functionName: string;
-  functionAuthor: string;
-  genType?: any;
-  genPath?: any;
-  pkColumn?: any;
-  subTable?: any;
-  columns: CodeColumn[];
-  options?: string;
-  treeCode?: any;
-  treeParentCode?: any;
-  treeName?: any;
-  parentMenuId?: any;
-  parentMenuName?: any;
-  sub: boolean;
-  tree: boolean;
-  crud: boolean;
+  info: SystemTable;
 }

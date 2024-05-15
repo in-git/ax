@@ -64,7 +64,6 @@ onMounted(async () => {
 });
 
 const style = computed((): CSSProperties => {
-  console.log(comBackground.value.type);
   if (comBackground.value.type === 'image' || comBackground.value.type === 'base64') {
     return {
       background: `url('${backgroundSrc.value}')`,

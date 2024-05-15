@@ -1,5 +1,5 @@
 interface FieldTable {
-  data: SystemCode[];
+  data: SystemTable[];
   selectedKeys: string[];
 }
 export const fieldTable = ref<FieldTable>({

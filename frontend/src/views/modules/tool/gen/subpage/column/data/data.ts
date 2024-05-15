@@ -1,6 +1,5 @@
 export const codeShowForm = ref(false);
-
-export const codeFormData = ref<CodeResponse>({
+let obj = {
   tables: [],
   rows: [],
   info: {
@@ -25,7 +24,11 @@ export const codeFormData = ref<CodeResponse>({
     createTime: '',
     updateBy: '',
   },
-});
-export const currentCode = ref<SystemCode>();
+};
+export const codeFormData = ref<CodeResponse>({ ...obj });
+export const currentCode = ref<SystemTable>();
 
 export const showDbForm = ref(false);
+export const resetCodeFormData = () => {
+  codeFormData.value = { ...obj };
+};

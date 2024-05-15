@@ -54,7 +54,7 @@ const onChange = (keys: any[]) => {
   codeKeys.value = keys;
 };
 
-const customRow = (record: SystemCode) => {
+const customRow = (record: SystemTable) => {
   return {
     onClick() {
       if (!codeKeys.value.includes(record.tableName)) {

@@ -21,11 +21,33 @@
 </template>
 
 <script setup lang="ts">
-import { currentStep } from './data/config';
+import { currentStep, resetStep } from './data/config';
+import { getTableInfo } from './data/curd';
+import { resetCodeFormData } from './data/data';
 import Backend from './dynamic-components/Backend.vue';
 import Base from './dynamic-components/Base.vue';
 import Field from './dynamic-components/Field.vue';
 import Sidebar from './pages/Sidebar.vue';
+
+const props = defineProps<{
+  data: number;
+}>();
+
+watch(
+  props,
+  () => {
+    getTableInfo(props.data);
+  },
+  {
+    deep: true,
+    immediate: true,
+  },
+);
+
+onUnmounted(() => {
+  resetStep();
+  resetCodeFormData();
+});
 </script>
 
 <style lang="scss" scoped></style>

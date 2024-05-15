@@ -1,18 +1,12 @@
 <template>
   <div class="sidebar">
     <div class="sidebar-head">流程说明</div>
-    <a-steps
-      @change="onChange"
-      direction="vertical"
-      v-model:current="currentStep.key"
-      :items="items"
-      class="px-12"
-    ></a-steps>
+    <a-steps direction="vertical" :current="currentStep.key" :items="items" class="px-12"></a-steps>
   </div>
 </template>
 
 <script setup lang="ts">
-import { currentStep, genStepList } from '../data/config';
+import { currentStep } from '../data/config';
 
 const items = [
   {
@@ -28,10 +22,6 @@ const items = [
     description: '后端打包配置',
   },
 ];
-
-const onChange = (current: number) => {
-  currentStep.value = genStepList[current];
-};
 </script>
 
 <style lang="scss" scoped>

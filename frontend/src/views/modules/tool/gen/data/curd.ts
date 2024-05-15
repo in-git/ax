@@ -5,7 +5,9 @@ import { nanoid } from 'nanoid';
 import Column from '../subpage/column/Column.vue';
 import ImportDb from '../subpage/import-db/ImportDb.vue';
 import { codeKeys, codeQuery, codeTable } from './table';
-
+/**
+ * @description: 加载代码列表
+ */
 export const codeList = async () => {
   codeTable.value.loading = true;
   const { data } = await fetchCodeList(codeQuery.value);

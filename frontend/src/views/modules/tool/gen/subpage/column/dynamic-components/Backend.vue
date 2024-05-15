@@ -17,7 +17,7 @@ import { currentStep } from '../data/config';
   border-bottom: 1px solid #ddd;
   padding: 0 12px;
 }
-:deep(.ant-card-body) {
+:deep(.ant-card) {
   box-shadow: none;
 }
 </style>

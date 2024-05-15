@@ -3,7 +3,7 @@ import { exportFile } from '@/api/utils/file';
 import axios from 'axios';
 
 export const fetchCodeList = (query: IQuery) => {
-  return axios.get<TableResponse<SystemCode>>(`tool/gen/list`, { params: query });
+  return axios.get<TableResponse<SystemTable>>(`tool/gen/list`, { params: query });
 };
 
 export const fetchCodeById = (id: number) => {

@@ -30,3 +30,11 @@ export const genStepList: GenStepItem[] = [
 ];
 
 export const currentStep = ref<GenStepItem>({ ...genStepList[0] });
+
+export const nextStep = (step: number) => {
+  currentStep.value = genStepList[step];
+};
+
+export const resetStep = () => {
+  currentStep.value = { ...genStepList[0] };
+};
