@@ -1,7 +1,9 @@
 <template>
   <a-card :body-style="{ overflowY: 'hidden' }" class="system__template">
-    <TableHeadVue />
-    <TableVue />
+    <a-flex vertical class="h-100">
+      <TableHeadVue />
+      <TableVue />
+    </a-flex>
   </a-card>
 </template>
 

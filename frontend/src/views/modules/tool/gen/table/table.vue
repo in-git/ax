@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1">
+  <div class="flex-1 overflow-auto">
     <a-table
       @change="pageChange"
       table-layout="fixed"
@@ -69,4 +69,8 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.overflow-auto {
+  overflow-y: auto;
+}
+</style>

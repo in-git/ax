@@ -1,14 +1,11 @@
 <template>
-  <a-card class="system__module">
+  <a-card class="system__module menu" :body-style="{ padding: '0' }">
     <MenuTable></MenuTable>
-    <Animation>
-      <MenuForm v-if="showMenuForm"></MenuForm>
-    </Animation>
+    <MenuForm></MenuForm>
   </a-card>
 </template>
 
 <script setup lang="ts">
-import { showMenuForm } from './data/form';
 import MenuForm from './form/MenuForm.vue';
 
 import MenuTable from './table/MenuTable.vue';

@@ -46,7 +46,7 @@ export const batchGenCode = (tables: string[]) => {
   return exportFile({
     url: `tool/gen/batchGenCode?tables=${tables.join(',')}`,
     data: undefined,
-    fileName: `ax-${tables.join(',')}.zip`,
+    fileName: `ax_${tables.join(',')}.zip`,
     method: 'GET',
   });
 };

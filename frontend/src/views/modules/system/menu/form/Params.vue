@@ -4,10 +4,10 @@
 
     <!-- 公共选项 -->
     <template v-if="menuForm.menuType === 'C' || menuForm.menuType === 'M'">
-      <a-form-item label="是否为链接" name="isFrame">
+      <a-form-item label="是否链接" name="isFrame">
         <a-radio-group v-model:value="menuForm.isFrame" :options="isOptions"></a-radio-group>
       </a-form-item>
-      <a-form-item :label="menuForm.isFrame !== '0' ? '路径' : '链接'" name="path">
+      <a-form-item :label="menuForm.isFrame !== '0' ? '组件路径' : '组件链接'" name="path">
         <a-input v-model:value="menuForm.path"></a-input>
         <div class="system__subtitle text-12">
           <InfoCircleFilled />

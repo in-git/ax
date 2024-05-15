@@ -26,7 +26,14 @@
       <!--  -->
     </a-spin>
 
-    <a-modal v-model:open="open" get-container="#Cache" centered width="600px" title="缓存列表">
+    <a-modal
+      :footer="false"
+      v-model:open="open"
+      get-container="#Cache"
+      centered
+      width="600px"
+      title="缓存列表"
+    >
       <Content :data="kvData" />
     </a-modal>
   </a-card>

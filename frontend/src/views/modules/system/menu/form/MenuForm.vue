@@ -1,5 +1,11 @@
 <template>
-  <SystemModal v-model:visible="showMenuForm" title="菜单配置">
+  <a-modal
+    :footer="false"
+    v-model:open="showMenuForm"
+    title="菜单配置"
+    get-container=".menu"
+    width="70%"
+  >
     <a-form
       :model="menuForm"
       :label-col="{
@@ -11,17 +17,17 @@
       label-align="left"
       @finish="submit"
     >
-      <a-card class="flex-1" :body-style="{ height: `500px`, overflowY: 'auto' }" title="基础配置">
+      <a-card class="flex-1" title="基础配置">
         <template #extra>
           <a-button type="primary" :loading="loading" htmlType="submit">保存</a-button>
         </template>
         <a-row :gutter="16">
-          <a-col :span="14">
-            <a-form-item label="菜单名" name="menuName" required>
+          <a-col :span="12">
+            <a-form-item label="菜单名称" name="menuName" required>
               <a-input v-model:value="menuForm.menuName"></a-input>
             </a-form-item>
 
-            <a-form-item label="图标" name="icon">
+            <a-form-item label="选择图标" name="icon">
               <a-input allow-clear v-model:value="menuForm.icon">
                 <template #addonAfter>
                   <a-popover trigger="click" placement="bottom" v-model:open="visible">
@@ -42,7 +48,7 @@
               </a-input>
             </a-form-item>
 
-            <a-form-item label="选择父级菜单" name="parentId" required>
+            <a-form-item label="父级菜单" name="parentId" required>
               <a-tree-select
                 v-model:value="menuForm.parentId"
                 :field-names="{
@@ -66,30 +72,29 @@
               ></a-radio-group>
             </a-form-item>
 
-            <a-form-item label="排序" name="orderNum" required>
+            <a-form-item label="菜单排序" name="orderNum" required>
               <a-input-number class="w-100" v-model:value="menuForm.orderNum"></a-input-number>
             </a-form-item>
           </a-col>
 
-          <a-col :span="10">
-            <a-tabs v-model:active-key="menuForm.menuType">
-              <a-tab-pane
-                :key="item.value"
-                :tab="item.label"
-                v-for="item in menuTypeOptions"
-              ></a-tab-pane>
-            </a-tabs>
-            <ParamVue />
+          <a-col :span="12">
+            <a-radio-group
+              v-model:value="menuForm.menuType"
+              :options="menuTypeOptions"
+              option-type="button"
+            ></a-radio-group>
+            <a-card class="mt-8">
+              <ParamVue />
+            </a-card>
           </a-col>
         </a-row>
       </a-card>
     </a-form>
-  </SystemModal>
+  </a-modal>
 </template>
 
 <script setup lang="ts">
 import { createMenu, updateMenu } from '@/api/modules/system/menu/menu';
-import SystemModal from '@/components/modal/SysModal.vue';
 import { statusOptions, visibleOptions } from '@/global/options/system';
 import Gallery from '@/views/selector/gallery/Gallery.vue';
 import type { SmileOutlined } from '@ant-design/icons-vue';
