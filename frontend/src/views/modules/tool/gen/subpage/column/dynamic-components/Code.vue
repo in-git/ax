@@ -38,13 +38,42 @@
             </div>
           </a-col>
         </a-row>
+        <a-row>
+          <a-col :span="12">
+            <a-form-item label="上级菜单" name="parentMenuId">
+              <a-tree-select
+                v-model:value="codeFormData.info.parentMenuId"
+                :field-names="{
+                  value: 'menuId',
+                  label: 'menuName',
+                }"
+                placeholder="请选择上级菜单"
+                :tree-data="menuData"
+                allowClear
+              ></a-tree-select>
+            </a-form-item>
+          </a-col>
+          <a-col :span="12">
+            <div class="system__subtitle pl-12">
+              <info-circle-filled />
+              影响SQL生成,挂载的上级菜单
+            </div>
+          </a-col>
+        </a-row>
+        <a-divider></a-divider>
         <!-- 提交 -->
         <a-row>
-          <a-col :span="9" :offset="3">
-            <div class="text-right">
-              <a-button @click="preview" class="mx-4">预览</a-button>
-              <a-button htmlType="submit" type="primary">保存</a-button>
-            </div>
+          <a-col :span="9" :offset="4">
+            <a-flex :gap="4">
+              <a-button @click="download">
+                下载
+                <template #icon>
+                  <DownloadOutlined />
+                </template>
+              </a-button>
+              <a-button @click="preview">预览</a-button>
+              <a-button htmlType="submit" type="primary" :loading="loading">保存</a-button>
+            </a-flex>
           </a-col>
         </a-row>
       </a-form>
@@ -53,14 +82,46 @@
 </template>
 
 <script setup lang="ts">
-import { previewCode } from '@/api/modules/tool/gen/gen';
+import { getParentMenus } from '@/api/modules/system/menu/utils';
+import { batchGenCode, previewCode, updateCode } from '@/api/modules/tool/gen/gen';
 import { getTempId, openWindow } from '@/global/window/window';
+import { response } from '@/utils/table/table';
 import type { Rule } from 'ant-design-vue/es/form/interface';
 import { currentStep, nextStep } from '../data/config';
 import { codeFormData } from '../data/data';
 import PreviewVue from '../pages/Preview.vue';
 
 const getCode: any = inject('code')!;
+
+const menuData = ref();
+const loading = ref(false);
+
+const preview = async () => {
+  const code = getCode();
+  const { data } = await previewCode(code);
+  openWindow({
+    title: '代码预览',
+    component: markRaw(PreviewVue),
+    data: data.data,
+    id: getTempId(),
+  });
+};
+onMounted(async () => {
+  menuData.value = await getParentMenus();
+});
+
+const goBack = () => {
+  nextStep(1);
+};
+const finish = async () => {
+  loading.value = true;
+  await response(updateCode, codeFormData.value.info);
+  loading.value = false;
+};
+
+const download = () => {
+  response(batchGenCode, [codeFormData.value.info.tableName]);
+};
 const formItems = [
   {
     label: '包路径',
@@ -87,16 +148,7 @@ const formItems = [
     maxLength: 48,
   },
 ];
-const preview = async () => {
-  const code = getCode();
-  const { data } = await previewCode(code);
-  openWindow({
-    title: '代码预览',
-    component: markRaw(PreviewVue),
-    data: data.data,
-    id: getTempId(),
-  });
-};
+
 const rules: Record<string, Rule[]> = {
   tableName: [
     {
@@ -109,11 +161,6 @@ const rules: Record<string, Rule[]> = {
     },
   ],
 };
-
-const goBack = () => {
-  nextStep(1);
-};
-const finish = () => {};
 </script>
 
 <style lang="scss" scoped>

@@ -41,12 +41,12 @@ export const importDbByDbs = (dbs: string[]) => {
   return axios.post(`tool/gen/importTable?tables=${dbs.join(',')}`);
 };
 
-/* 导入表的数据 */
+/* 下载代码 */
 export const batchGenCode = (tables: string[]) => {
   return exportFile({
     url: `tool/gen/batchGenCode?tables=${tables.join(',')}`,
     data: undefined,
-    fileName: `code-${new Date().getTime()}.zip`,
+    fileName: `ax-${tables.join(',')}.zip`,
     method: 'GET',
   });
 };
