@@ -1,6 +1,7 @@
-import type { SystemNotice } from '@/api/modules/system/notice/types';
+
 import { noticeColumns } from './column';
 import { noticeKeys, noticeTable } from './table';
+import type {  SystemNotice } from '@/api/modules/system/notice/types';
 
 interface CardData {
   id: number;
@@ -12,10 +13,14 @@ interface CardData {
 }
 
 /* 当前拖拽的元素 */
-export const dragstart = (item: CardData) => {};
+export const dragstart = (item: CardData) => {
+  // 鼠标拖拽触发
+};
 
 /* 目标元素，鼠标放下 */
-export const drop = (item: CardData) => {};
+export const drop = (item: CardData) => {
+  // 鼠标拖拽放下触发
+};
 
 /* 选择卡片 */
 export const selectSystemNotice = (item: CardData) => {
@@ -41,7 +46,7 @@ export const noticeCardData = computed(() => {
       });
     });
     arr.push({
-      id: e.websiteId,
+      id: e['noticeId'],
       items,
       raw: e,
     });

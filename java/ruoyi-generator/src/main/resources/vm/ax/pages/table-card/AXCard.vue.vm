@@ -20,11 +20,11 @@
           <div :draggable="true" class="mb-8 cursor-move">
               <a-card-meta :draggable="true" :title="item.items[0].value"></a-card-meta>
           </div>
-          <a-descriptions
-            :column="1"
-            layout="horizontal"
-            :labelStyle="{ width: '80px', color: '#666', whiteSpace: 'wrap' }"
-          >
+           <a-descriptions
+              :column="1"
+              layout="horizontal"
+              :labelStyle="{ width: '80px', color: '#666', whiteSpace: 'nowrap' }"
+            >
             <a-descriptions-item
               :label="v.label"
               :contentStyle="{ fontWeight: k === 0 ? 'bold' : '' }"

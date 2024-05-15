@@ -1,5 +1,5 @@
 <template>
-  <a-card :bordered="false" :body-style="{ padding: '0' }">
+  <a-card class="table__card" :bordered="false" :body-style="{ padding: '0' }">
     <ul class="table_card_list flex-1" ref="cardRef">
       <li
         v-for="(item, key) in noticeCardData"
@@ -14,15 +14,16 @@
         @dragover="e => e.preventDefault()"
       >
         <a-card>
-          <div class="index">{{ key + 1 }}</div>
-
-          <a-card-meta title="Europe Street beat" class="mb-8">
-            <template #description>详细信息</template>
-          </a-card-meta>
+          <div class="active" v-if="noticeKeys.includes(item.id)">
+            <check-outlined class="text-12" />
+          </div>
+          <div :draggable="true" class="mb-8 cursor-move">
+            <a-card-meta :draggable="true" :title="item.items[0].value"></a-card-meta>
+          </div>
           <a-descriptions
             :column="1"
             layout="horizontal"
-            :labelStyle="{ width: '80px', color: '#666' }"
+            :labelStyle="{ width: '80px', color: '#666', whiteSpace: 'nowrap' }"
           >
             <a-descriptions-item
               :label="v.label"
@@ -54,7 +55,10 @@ interface SortConfig {
 nextTick(() => {
   useSortable(cardRef, noticeCardData.value, {
     animation: 200,
-    onUpdate(e: SortConfig) {},
+    handle: '.cursor-move',
+    onUpdate(e: SortConfig) {
+      // 拖拽结束触发
+    },
   });
 });
 </script>

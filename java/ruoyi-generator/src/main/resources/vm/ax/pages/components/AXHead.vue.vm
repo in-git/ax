@@ -53,12 +53,13 @@
                 </a-button>
               </a-tooltip>
           </div>
-
-          <a-tooltip title="刷新">
-            <a-button type="link" @click="${businessName}List">
-              <ReloadOutlined />
-            </a-button>
-          </a-tooltip>
+          <div v-perm="'system:notice:list'">
+              <a-tooltip title="刷新">
+                <a-button type="link" @click="${businessName}List">
+                  <ReloadOutlined />
+                </a-button>
+              </a-tooltip>
+          </div>
          </a-flex>
 
         </a-flex>

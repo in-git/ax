@@ -3,6 +3,7 @@
 	align-items: center;
 	justify-content: space-between;
 }
+
 /* 代码下载模板 */
 .system__template {
 	width: 100%;
@@ -12,15 +13,14 @@
 	flex-direction: column;
 	overflow: hidden;
 	border-radius: 0;
-
-	/* 避免出现滚动条 */
-	&::-webkit-scrollbar {
-		display: none;
-	}
 	.data__content {
 		flex: 1;
 		overflow-y: auto;
 		margin-top: 8px;
+	}
+	/* 避免出现滚动条 */
+	&::-webkit-scrollbar {
+		display: none;
 	}
 
 	$width: 200px;
@@ -64,16 +64,4 @@
 }
 .table__card {
 	box-shadow: none !important;
-}
-.form__tips {
-	height: fit-content;
-	background-color: var(--color-primary-bg);
-	padding: 8px;
-	margin-bottom: 12px;
-	border-radius: var(--radius);
-	.form__title {
-		font-size: 14px;
-		font-weight: bold;
-		color: #333;
-	}
 }

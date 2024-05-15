@@ -44,6 +44,7 @@ declare module 'vue' {
     APagination: typeof import('ant-design-vue/es')['Pagination']
     APopconfirm: typeof import('ant-design-vue/es')['Popconfirm']
     APopover: typeof import('ant-design-vue/es')['Popover']
+    AppstoreAddOutlined: typeof import('@ant-design/icons-vue')['AppstoreAddOutlined']
     AQrcode: typeof import('ant-design-vue/es')['QRCode']
     ARadioButton: typeof import('ant-design-vue/es')['RadioButton']
     ARadioGroup: typeof import('ant-design-vue/es')['RadioGroup']
@@ -90,6 +91,7 @@ declare module 'vue' {
     Loading3QuartersOutlined: typeof import('@ant-design/icons-vue')['Loading3QuartersOutlined']
     LoadingOutlined: typeof import('@ant-design/icons-vue')['LoadingOutlined']
     LogoutOutlined: typeof import('@ant-design/icons-vue')['LogoutOutlined']
+    OrderedListOutlined: typeof import('@ant-design/icons-vue')['OrderedListOutlined']
     PlusOutlined: typeof import('@ant-design/icons-vue')['PlusOutlined']
     PoweroffOutlined: typeof import('@ant-design/icons-vue')['PoweroffOutlined']
     QrcodeOutlined: typeof import('@ant-design/icons-vue')['QrcodeOutlined']
@@ -103,5 +105,6 @@ declare module 'vue' {
     SysModal: typeof import('./components/modal/SysModal.vue')['default']
     TableHead: typeof import('./components/table/table-head/TableHead.vue')['default']
     UnorderedListOutlined: typeof import('@ant-design/icons-vue')['UnorderedListOutlined']
+    UserAddOutlined: typeof import('@ant-design/icons-vue')['UserAddOutlined']
   }
 }

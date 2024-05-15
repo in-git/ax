@@ -6,7 +6,12 @@
     :wrapper-col="{ span: 8, offset: 1 }"
     :label-col="{ span: 4, offset: 4 }"
   >
-    <SystemModal title="通知公告" v-model:visible="noticeShowForm">
+    <a-modal
+      get-container=".system__template"
+      width="70%"
+      title="通知公告"
+      v-model:visible="noticeShowForm"
+    >
       <a-card title="编辑/新增">
         <template #extra>
           <a-button type="primary" htmlType="submit">保存</a-button>
@@ -41,13 +46,12 @@
           />
         </div>
       </a-card>
-    </SystemModal>
+    </a-modal>
   </a-form>
 </template>
 
 <script setup lang="ts">
 import { createNotice, updateNotice } from '@/api/modules/system/notice/notice';
-import SystemModal from '@/components/modal/SysModal.vue';
 import { statusOptions } from '@/global/options/system';
 import { response } from '@/utils/table/table';
 import { QuillEditor } from '@vueup/vue-quill';
