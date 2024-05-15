@@ -2,6 +2,7 @@ import logoPng from '@/assets/logo.png';
 import { initModuleWH } from '@/store/page/utils';
 import type { SystemWindow } from '@/types/system';
 import { message } from 'ant-design-vue';
+import { nanoid } from 'nanoid';
 /*    */
 export const windowList = ref<SystemWindow[]>([]);
 
@@ -13,7 +14,7 @@ export const windowList = ref<SystemWindow[]>([]);
  */
 export const openWindow = (config: SystemWindow) => {
   if (!config.id) {
-    config.id = 'system-default-window';
+    config.id = getTempId();
     message.warn('窗口没有设置ID');
   }
   if (!config.icon) {
@@ -90,6 +91,7 @@ export const setAttr = (id: string, key: string, value: any) => {
     }
   });
 };
+
 export const getData = (id: string) => {
   let result: any;
   windowList.value.forEach(e => {
@@ -121,4 +123,14 @@ export const minWindow = () => {
 
 export const windowIsExist = (id: string) => {
   return windowList.value.findIndex(e => e.id === id) > -1;
+};
+
+/**
+ * @description:
+ * 获取临时ID,方便清除
+ * 这类窗口将不会记录它的大小，位置
+ * @return {string}
+ */
+export const getTempId = (): string => {
+  return `TEMP_ID:${nanoid()}`;
 };

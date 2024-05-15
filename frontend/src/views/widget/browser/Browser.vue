@@ -6,8 +6,8 @@
 </template>
 
 <script setup lang="ts">
+import { getTempId } from '@/global/window/window';
 import { useTimeout } from '@vueuse/core';
-import { nanoid } from 'nanoid';
 import { browserLoading } from './data/browser';
 import { createBrowserTab } from './data/browser.methods';
 import BrowserHead from './head/BrowserHead.vue';
@@ -24,7 +24,7 @@ watch(
     if (props.data && props.data.src) {
       createBrowserTab({
         title: props.data.title || '新标签页',
-        id: nanoid(),
+        id: getTempId(),
         url: props.data.src,
         history: [],
         pointer: 0,

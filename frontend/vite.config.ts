@@ -8,6 +8,7 @@ import Components from 'unplugin-vue-components/vite';
 import { defineConfig } from 'vite';
 import OptimizationPersist from 'vite-plugin-optimize-persist';
 import PkgConfig from 'vite-plugin-package-config';
+import { prismjsPlugin } from 'vite-plugin-prismjs';
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
@@ -17,10 +18,15 @@ export default defineConfig(() => {
     base: '/',
     plugins: [
       vue(),
+      prismjsPlugin({
+        languages: 'all', // 语言
+        plugins: ['show-language', 'copy-to-clipboard', 'inline-color'],
+        theme: 'okaidia', // 主题
+        css: true,
+      }),
       AutoImport({
         dts: 'src/auto-imports.d.ts',
         imports: ['vue', 'vue-router'],
-
         eslintrc: {
           enabled: true,
           filepath: './.eslintrc-auto-import.json',

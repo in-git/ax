@@ -7,7 +7,6 @@ import { codeFormData } from './data';
  */
 export const getTableInfo = async (code: number) => {
   const { data } = await fetchCodeById(code);
-  console.log(data);
   if (data.data) {
     codeFormData.value = data.data;
   }

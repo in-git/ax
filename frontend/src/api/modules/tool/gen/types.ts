@@ -73,3 +73,27 @@ interface CodeResponse {
   rows: CodeColumn[];
   info: SystemTable;
 }
+interface GenCode {
+  'vm/java/domain.java.vm': string;
+  'vm/java/mapper.java.vm': string;
+  'vm/java/service.java.vm': string;
+  'vm/java/serviceImpl.java.vm': string;
+  'vm/java/controller.java.vm': string;
+  'vm/xml/mapper.xml.vm': string;
+  'vm/sql/sql.vm': string;
+  'vm/js/api.ts.vm': string;
+  'vm/js/types.ts.vm': string;
+  'vm/ax/data/column.ts.vm': string;
+  'vm/ax/data/card.ts.vm': string;
+  'vm/ax/data/form.ts.vm': string;
+  'vm/ax/data/table.ts.vm': string;
+  'vm/ax/data/curd.ts.vm': string;
+  'vm/ax/data/options.ts.vm': string;
+  'vm/ax/pages/components/AXForm.vue.vm': string;
+  'vm/ax/pages/components/AXFooter.vue.vm': string;
+  'vm/ax/pages/components/AXHead.vue.vm': string;
+  'vm/ax/pages/table-card/AXCard.vue.vm': string;
+  'vm/ax/pages/table-card/AXTable.vue.vm': string;
+  'vm/ax/index.vue.vm': string;
+  'vm/ax/readme.md.vm': string;
+}

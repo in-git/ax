@@ -59,8 +59,8 @@
 
 <script setup lang="ts">
 import { openNotepad } from '@/global/window/widget';
+import { getTempId } from '@/global/window/window';
 import { getLabel } from '@/utils/common/utils';
-import { nanoid } from 'nanoid';
 import {
   currentNoticeType,
   getSystemNotice,
@@ -75,7 +75,7 @@ const view = (item: DesktopNotice) => {
   openNotepad({
     data: item.content,
     mode: 'markdown',
-    id: nanoid(),
+    id: getTempId(),
   });
 };
 

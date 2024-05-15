@@ -1,19 +1,23 @@
 <template>
   <div>
-    <div class="field-head">
+    <a-flex :align="'center'" class="step-head">
+      <div class="system__icon" @click="goBack">
+        <LeftOutlined />
+      </div>
+      <a-divider type="vertical"></a-divider>
       {{ currentStep.title }}
-    </div>
+    </a-flex>
     <a-card :bordered="false">
       <a-form
         size="middle"
         :label-col="{ span: 8 }"
         :model="codeFormData.info"
         :rules="rules"
-        @finish="next"
+        @finish="finish"
       >
         <div class="p-12">
-          <h3>基础信息设置</h3>
-          <div class="system__subtitle mt-12">这里的配置不会影响生成的代码的业务逻辑</div>
+          <h3>配置生成的代码</h3>
+          <div class="system__subtitle mt-12">这里的配置将会完全映射到代码中,请谨慎修改</div>
         </div>
         <a-divider />
         <a-row v-for="(item, key) in formItems" :key="key">
@@ -38,7 +42,8 @@
         <a-row>
           <a-col :span="9" :offset="3">
             <div class="text-right">
-              <a-button htmlType="submit" type="primary" size="middle">下一步</a-button>
+              <a-button @click="preview" class="mx-4">预览</a-button>
+              <a-button htmlType="submit" type="primary">保存</a-button>
             </div>
           </a-col>
         </a-row>
@@ -48,36 +53,50 @@
 </template>
 
 <script setup lang="ts">
+import { previewCode } from '@/api/modules/tool/gen/gen';
+import { getTempId, openWindow } from '@/global/window/window';
 import type { Rule } from 'ant-design-vue/es/form/interface';
 import { currentStep, nextStep } from '../data/config';
 import { codeFormData } from '../data/data';
-codeFormData.value.info.functionAuthor;
+import PreviewVue from '../pages/Preview.vue';
+
+const getCode: any = inject('code')!;
 const formItems = [
   {
-    label: '表的别名',
-    desc: `相当于表的别名,不会对数据库产生影响`,
-    name: 'tableName',
+    label: '包路径',
+    desc: `配置JAVA包路径,com.ax.text,生成的SERVICE,CONTROLLER等都会以这个路径导入`,
+    name: 'packageName',
     maxLength: 16,
   },
   {
-    label: '作者名称',
-    desc: `标注是谁创建/更新的`,
-    name: 'functionAuthor',
-    maxLength: 16,
+    label: '模块名',
+    desc: ``,
+    name: 'moduleName',
+    maxLength: 48,
   },
   {
-    label: '描述信息',
-    desc: `用于标识该表的作用,不会对数据库产生影响`,
-    name: 'tableComment',
-    maxLength: 50,
+    label: '业务名',
+    desc: ``,
+    name: 'businessName',
+    maxLength: 48,
   },
   {
-    label: '表的备注',
-    desc: '如有特殊备注,在这里填写',
-    name: 'remark',
-    maxLength: 140,
+    label: '功能名',
+    desc: `影响前端的API的名称，后端Controller 的名称`,
+    name: 'functionName',
+    maxLength: 48,
   },
 ];
+const preview = async () => {
+  const code = getCode();
+  const { data } = await previewCode(code);
+  openWindow({
+    title: '代码预览',
+    component: markRaw(PreviewVue),
+    data: data.data,
+    id: getTempId(),
+  });
+};
 const rules: Record<string, Rule[]> = {
   tableName: [
     {
@@ -91,18 +110,17 @@ const rules: Record<string, Rule[]> = {
   ],
 };
 
-const next = () => {
+const goBack = () => {
   nextStep(1);
 };
+const finish = () => {};
 </script>
 
 <style lang="scss" scoped>
+@import './common.scss';
 .field-head {
   line-height: 36px;
   border-bottom: 1px solid #ddd;
   padding: 0 12px;
-}
-:deep(.ant-card) {
-  box-shadow: none;
 }
 </style>

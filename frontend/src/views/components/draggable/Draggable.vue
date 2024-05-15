@@ -114,8 +114,8 @@ const maxHeight = window.innerHeight;
 const isFullscreen = ref(false);
 
 const windowProps = ref<DragType>({
-  x: window.innerWidth / 2 - props.w / 2 + offset - 32,
-  y: window.innerHeight / 2 - props.h / 2 + offset,
+  x: Math.floor(window.innerWidth / 2 - props.w / 2 + offset - 32),
+  y: Math.floor(window.innerHeight / 2 - props.h / 2 + offset),
   w: 1,
   h: 1,
 });

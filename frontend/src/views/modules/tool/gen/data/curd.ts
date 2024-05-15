@@ -1,5 +1,5 @@
 import { batchGenCode, deleteCodeByIds, fetchCodeList, synchDb } from '@/api/modules/tool/gen/gen';
-import { openWindow } from '@/global/window/window';
+import { getTempId, openWindow } from '@/global/window/window';
 import { response } from '@/utils/table/table';
 import { nanoid } from 'nanoid';
 import Column from '../subpage/column/Column.vue';
@@ -24,8 +24,9 @@ export const editTable = async (id?: string) => {
   openWindow({
     title: '低代码配置',
     component: markRaw(Column),
-    id: nanoid(),
+    id: getTempId(),
     data: id,
+    w: 900,
   });
 };
 

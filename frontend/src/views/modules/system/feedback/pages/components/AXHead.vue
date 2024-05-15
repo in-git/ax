@@ -111,7 +111,7 @@ import {
   feedbackExport,
   feedbackList,
 } from '../../data/curd';
-import {} from '../../data/options';
+
 import { feedbackKeys, feedbackQuery, feedbackTable, viewMode } from '../../data/table';
 </script>
 
