@@ -17,16 +17,21 @@
     :class="[dark ? 'window-dark' : '']"
     :id="id"
   >
-    <a-card :bordered="false" :bodyStyle="{ padding: 0 }" class="drag-header">
-      <div class="flex justify-between align-center">
-        <div class="flex align-center">
-          <div class="win-icon flex flex-s">
+    <a-card
+      :bordered="false"
+      :bodyStyle="{ padding: 0 }"
+      class="drag-header"
+      @dblclick="switchover"
+    >
+      <a-flex :align="'center'" :justify="'space-between'">
+        <a-flex :align="'center'">
+          <a-flex :align="'center'" :justify="'center'" class="win-icon">
             <img :draggable="false" :src="icon" width="20" height="20" v-if="icon" />
-          </div>
+          </a-flex>
 
           <div>{{ title }}</div>
-        </div>
-        <div class="flex">
+        </a-flex>
+        <a-flex>
           <div class="system__icon" @click="hidden">
             <MinusOutlined />
           </div>
@@ -40,8 +45,8 @@
           <div class="system__icon close" @click="close">
             <CloseOutlined />
           </div>
-        </div>
-      </div>
+        </a-flex>
+      </a-flex>
     </a-card>
     <div class="drag-content">
       <slot>
@@ -140,6 +145,10 @@ const expand = () => {
 const minimize = () => {
   windowProps.value = beforeExpandData;
   isFullscreen.value = !isFullscreen.value;
+};
+
+const switchover = () => {
+  !isFullscreen.value ? expand() : minimize();
 };
 /* 窗口隐藏 */
 const hidden = () => {

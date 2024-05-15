@@ -12,14 +12,17 @@ const items = [
   {
     title: '基础配置',
     description: '配置基础信息',
+    disabled: true,
   },
   {
     title: '字段配置',
     description: '对每个字段进行配置',
+    disabled: true,
   },
   {
     title: '后端配置',
     description: '后端打包配置',
+    disabled: true,
   },
 ];
 </script>

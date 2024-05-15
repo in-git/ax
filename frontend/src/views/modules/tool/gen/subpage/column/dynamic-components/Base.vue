@@ -1,16 +1,22 @@
 <template>
   <div>
-    <div class="field-head">
-      {{ currentStep.title }}
-    </div>
-    <a-card :bordered="false">
-      <a-form
-        size="middle"
-        :label-col="{ span: 8 }"
-        :model="codeFormData.info"
-        :rules="rules"
-        @finish="next"
-      >
+    <a-form
+      size="middle"
+      :label-col="{ span: 8 }"
+      :model="codeFormData.info"
+      :rules="rules"
+      @finish="next"
+    >
+      <a-flex justify="space-between" class="step-head" :align="'center'">
+        <a-flex :gap="8">
+          <div class="system__icon">
+            <HomeOutlined />
+          </div>
+          {{ currentStep.title }}
+        </a-flex>
+        <a-button size="small" htmlType="submit" type="primary"><RightOutlined /></a-button>
+      </a-flex>
+      <a-card :bordered="false">
         <div class="p-12">
           <h3>基础信息设置</h3>
           <div class="system__subtitle mt-12">这里的配置不会影响生成的代码的业务逻辑</div>
@@ -37,13 +43,11 @@
         <!-- 提交 -->
         <a-row>
           <a-col :span="9" :offset="3">
-            <div class="text-right">
-              <a-button htmlType="submit" type="primary" size="middle">下一步</a-button>
-            </div>
+            <div class="text-right"></div>
           </a-col>
         </a-row>
-      </a-form>
-    </a-card>
+      </a-card>
+    </a-form>
   </div>
 </template>
 
@@ -97,11 +101,8 @@ const next = () => {
 </script>
 
 <style lang="scss" scoped>
-.field-head {
-  line-height: 36px;
-  border-bottom: 1px solid #ddd;
-  padding: 0 12px;
-}
+@import './common.scss';
+
 :deep(.ant-card) {
   box-shadow: none;
 }

@@ -63,7 +63,7 @@
         <a-divider></a-divider>
         <!-- 提交 -->
         <a-row>
-          <a-col :span="9" :offset="4">
+          <a-col :span="8" :offset="4">
             <a-flex :gap="4">
               <a-button @click="download">
                 下载
@@ -72,7 +72,7 @@
                 </template>
               </a-button>
               <a-button @click="preview">预览</a-button>
-              <a-button htmlType="submit" type="primary" :loading="loading">保存</a-button>
+              <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
             </a-flex>
           </a-col>
         </a-row>
@@ -104,6 +104,7 @@ const preview = async () => {
     component: markRaw(PreviewVue),
     data: data.data,
     id: getTempId(),
+    dark: true,
   });
 };
 onMounted(async () => {
