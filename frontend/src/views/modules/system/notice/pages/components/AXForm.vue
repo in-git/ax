@@ -1,20 +1,21 @@
 <template>
-  <a-form
-    :rules="noticeRules"
-    :model="noticeForm"
-    @finish="submit"
-    :wrapper-col="{ span: 8, offset: 1 }"
-    :label-col="{ span: 4, offset: 4 }"
+  <a-modal
+    get-container=".ax__template"
+    width="70%"
+    title="通知公告"
+    :footer="false"
+    v-model:open="noticeShowForm"
   >
-    <a-modal
-      get-container=".ax__template"
-      width="70%"
-      title="通知公告"
-      v-model:visible="noticeShowForm"
+    <a-form
+      :rules="noticeRules"
+      :model="noticeForm"
+      @finish="submit"
+      :wrapper-col="{ span: 8, offset: 1 }"
+      :label-col="{ span: 4, offset: 4 }"
     >
       <a-card title="编辑/新增">
         <template #extra>
-          <a-button type="primary" htmlType="submit">保存</a-button>
+          <a-button type="primary" htmlType="submit" :loading="loading">保存</a-button>
         </template>
         <a-flex justify="space-between" wrap="wrap" class="mb-8">
           <a-flex :gap="12" wrap="wrap">
@@ -43,11 +44,12 @@
             theme="snow"
             v-model:content="noticeForm.noticeContent"
             style="height: 390px"
+            :key="noticeForm.noticeId"
           />
         </div>
       </a-card>
-    </a-modal>
-  </a-form>
+    </a-form>
+  </a-modal>
 </template>
 
 <script setup lang="ts">
@@ -59,6 +61,7 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { noticeList } from '../../data/curd';
 import { noticeForm, noticeRules, noticeShowForm } from '../../data/form';
 import { noticeTypeOptions } from '../../data/options';
+
 const loading = ref(false);
 
 const submit = async () => {

@@ -25,20 +25,21 @@
 #end
 import { bodyStyle } from '@/global/config/gen';
 import { ${businessName}List } from './data/curd';
-import { viewMode } from './data/table';
+import { reset${BusinessName}Query,viewMode } from './data/table';
 import FooterVue from './pages/components/AXFooter.vue';
 import FormVue from './pages/components/AXForm.vue';
 import HeadVue from './pages/components/AXHead.vue';
 import CardVue from './pages/table-card/AXCard.vue';
 import TableVue from './pages/table-card/AXTable.vue';
- import {
+import { ${businessName}ShowForm, ${businessName}ResetForm } from './data/form';
+import {
 #foreach($column in $columns)
 #set($dictType=$column.dictType)
 #set($javaField=$column.javaField)
 #if($dictType != "")
   ${javaField}OptionsFetch,
 #end
-#end} from './data/options';
+#end}from './data/options';
 
 onMounted(async() => {
   await ${businessName}List();
@@ -49,6 +50,12 @@ onMounted(async() => {
   await ${column.javaField}OptionsFetch();
   #end
   #end
+});
+
+onUnmounted(() => {
+  ${businessName}ShowForm.value = false;
+  ${businessName}ResetForm();
+  reset${BusinessName}Query()
 });
 </script>
 

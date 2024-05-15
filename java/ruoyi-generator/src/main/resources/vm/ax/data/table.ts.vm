@@ -3,33 +3,19 @@
 #set($Key=$column.javaField)
 #end
 #end
-
 import type { IQuery, TableConfig } from '@/api/config/types';
-import { DeleteOutlined } from '@ant-design/icons-vue';
-import type { ItemType } from 'ant-design-vue';
-import { ${businessName}Delete, ${businessName}List } from './curd';
 import type {  ${ModuleName}${BusinessName} } from '@/api/modules/${moduleName}/${businessName}/types';
 
-export const ${businessName}Table = ref<TableConfig<${ModuleName}${BusinessName}>>({
-  //作用：勾选的唯一标识
-  rowKey: '$Key',
-  data: [],
-  loading: false,
-  moduleName: '${businessName}',
-});
 //查询参数接口
 interface ${businessName}Query {
   #foreach($column in $columns)
   #if($column.isQuery == '1')
-  $column.javaField:#if($column.javaType == "String") "" #elseif($column.javaType == "Integer") 0 #elseif($column.javaType == "Long") 0 #elseif($column.javaType == "Double") 0.0 #elseif($column.javaType == "Boolean") false #else null #end;
+  $column.javaField:#if($column.javaType == "String") string #elseif($column.javaType == "Integer") 0 #elseif($column.javaType == "Long") 0 #elseif($column.javaType == "Double") 0.0 #elseif($column.javaType == "Boolean") false #else null #end;
   #end
   #end
 }
-// 预览模式:卡片|表格
-export const viewMode = ref<'card' | 'table'>('table');
 
-//查询参数
-export const ${businessName}Query = ref<IQuery<${businessName}Query>>({
+let queryObj: IQuery<noticeQuery> = {
   pageNum: 1,
   pageSize: 10,
   total: 0,
@@ -38,8 +24,33 @@ export const ${businessName}Query = ref<IQuery<${businessName}Query>>({
   $column.javaField:#if($column.javaType == "String") "" #elseif($column.javaType == "Integer") 0 #elseif($column.javaType == "Long") 0 #elseif($column.javaType == "Double") 0.0 #elseif($column.javaType == "Boolean") false #else null #end,
   #end
   #end
-});
+};
+
+// 预览模式:卡片|表格
+export const viewMode = ref<'card' | 'table'>('table');
 
 // 已选中的元素数组
 export const ${businessName}Keys = ref<number[]>([]);
+
+export const ${businessName}Table = ref<TableConfig<${ModuleName}${BusinessName}>>({
+  //勾选的唯一标识,数据库主键
+  rowKey: '$Key',
+  data: [],
+  loading: false,
+  //必须唯一，存储窗口位置，表头等
+  moduleName: '${ModuleName}${BusinessName}',
+});
+
+
+
+//查询参数
+export const ${businessName}Query = ref<IQuery<${businessName}Query>>({
+ ...queryObj,
+});
+
+export const reset${BusinessName}Query = () => {
+  noticeQuery.value = {
+    ...queryObj,
+  };
+};
 

@@ -1,7 +1,7 @@
-export const ${businessName}ShowForm = ref(false);
 import type {  ${ModuleName}${BusinessName} } from '@/api/modules/${moduleName}/${businessName}/types';
 import type { Rule } from 'ant-design-vue/es/form/interface';
 
+export const ${businessName}ShowForm = ref(false);
 const form:  ${ModuleName}${BusinessName} = {
 #foreach($column in $columns)
     $column.javaField:#if($column.javaType == "String") "" #elseif($column.javaType == "Integer") 0 #elseif($column.javaType == "Long") 0 #elseif($column.javaType == "Double") 0.0 #elseif($column.javaType == "Boolean") false #else null #end,

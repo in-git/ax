@@ -19,8 +19,9 @@
 <script setup lang="ts">
 import { bodyStyle } from '@/global/config/gen';
 import { noticeList } from './data/curd';
+import { noticeResetForm, noticeShowForm } from './data/form';
 import { noticeTypeOptionsFetch, statusOptionsFetch } from './data/options';
-import { viewMode } from './data/table';
+import { resetNoticeQuery, viewMode } from './data/table';
 import FooterVue from './pages/components/AXFooter.vue';
 import FormVue from './pages/components/AXForm.vue';
 import HeadVue from './pages/components/AXHead.vue';
@@ -31,6 +32,12 @@ onMounted(async () => {
   await noticeList();
   await noticeTypeOptionsFetch();
   await statusOptionsFetch();
+});
+
+onUnmounted(() => {
+  noticeShowForm.value = false;
+  noticeResetForm();
+  resetNoticeQuery();
 });
 </script>
 
