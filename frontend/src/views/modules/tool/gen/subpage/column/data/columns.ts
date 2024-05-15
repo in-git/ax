@@ -20,10 +20,6 @@ export const fieldColumns = [
     dataIndex: 'isInsert',
   },
   {
-    title: '编辑',
-    dataIndex: 'isEdit',
-  },
-  {
     title: '列表',
     dataIndex: 'isList',
   },

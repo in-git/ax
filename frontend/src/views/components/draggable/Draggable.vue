@@ -49,15 +49,12 @@
       </a-flex>
     </a-card>
     <div class="drag-content">
-      <slot>
-        <Loading class="w-100 h-100" />
-      </slot>
+      <slot></slot>
     </div>
   </VueDraggable>
 </template>
 
 <script setup lang="ts">
-import Loading from '@/components/loading/Loading.vue';
 import { hiddenWindow, setCurrentWindow, toTop, windowList } from '@/global/window/window';
 import usePageStore from '@/store/page';
 import { initModuleWH } from '@/store/page/utils';
@@ -102,7 +99,7 @@ const props = withDefaults(
   },
 );
 const onMouseup = () => {
-  document.body.style.userSelect = 'initial';
+  document.body.style.userSelect = 'text';
 };
 const moveTop = () => {
   document.body.style.userSelect = 'none';
@@ -210,10 +207,7 @@ $hh: 36px;
 .drag-content {
   height: calc(100% - $hh);
   position: relative;
-  background-repeat: no-repeat;
-  background-size: 400px 400px;
-  background-position: center;
-  background-color: #e2e2e2a1;
+  background: white;
 }
 
 .close {

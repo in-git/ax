@@ -8,15 +8,16 @@
       @finish="next"
     >
       <a-flex justify="space-between" class="step-head" :align="'center'">
-        <a-flex :gap="8">
+        <a-flex :align="'center'">
           <div class="system__icon">
             <HomeOutlined />
           </div>
+          <a-divider type="vertical"></a-divider>
           {{ currentStep.title }}
         </a-flex>
         <a-button size="small" htmlType="submit" type="primary"><RightOutlined /></a-button>
       </a-flex>
-      <a-card :bordered="false">
+      <a-card :bordered="false" :body-style="{ padding: '12px' }">
         <div class="p-12">
           <h3>基础信息设置</h3>
           <div class="system__subtitle mt-12">这里的配置不会影响生成的代码的业务逻辑</div>

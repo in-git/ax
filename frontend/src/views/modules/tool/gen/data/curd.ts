@@ -36,6 +36,7 @@ export const editTable = async (id?: string) => {
  */
 export const deleteTable = async (name: string) => {
   await response(deleteCodeByIds, name);
+  codeKeys.value = [];
   codeList();
 };
 
