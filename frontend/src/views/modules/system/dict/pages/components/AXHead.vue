@@ -7,7 +7,7 @@
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="typeList"
+          @press-enter="typeList"
           v-model:value="typeQuery.dictName"
           style="width: 160px"
           placeholder="请输入字典名称"
@@ -16,7 +16,7 @@
       </div>
       <div>
         <a-input
-          @blur="typeList"
+          @press-enter="typeList"
           v-model:value="typeQuery.dictType"
           style="width: 160px"
           placeholder="请输入字典类型"

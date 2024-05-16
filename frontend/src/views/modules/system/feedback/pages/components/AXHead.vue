@@ -7,7 +7,7 @@
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="feedbackList"
+          @press-enter="feedbackList"
           v-model:value="feedbackQuery.feedbackContent"
           style="width: 160px"
           placeholder="请输入反馈内容"
@@ -16,7 +16,7 @@
       </div>
       <div>
         <a-input
-          @blur="feedbackList"
+          @press-enter="feedbackList"
           v-model:value="feedbackQuery.nickname"
           style="width: 160px"
           placeholder="请输入用户昵称"

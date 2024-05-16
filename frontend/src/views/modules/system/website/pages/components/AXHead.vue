@@ -16,7 +16,7 @@
       <a-flex :gap="12">
         <div>
           <a-input
-            @blur="websiteList"
+            @press-enter="websiteList"
             v-model:value="websiteQuery.name"
             style="width: 160px"
             placeholder="请输入网页名称"
@@ -25,7 +25,7 @@
         </div>
         <div>
           <a-input
-            @blur="websiteList"
+            @press-enter="websiteList"
             v-model:value="websiteQuery.url"
             style="width: 160px"
             placeholder="请输入网页URL"

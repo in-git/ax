@@ -7,7 +7,7 @@
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="dataList"
+          @press-enter="dataList"
           v-model:value="dataQuery.dictType"
           style="width: 160px"
           placeholder="请输入字典标签"

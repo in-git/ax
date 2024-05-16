@@ -7,7 +7,7 @@
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="memoList"
+          @press-enter="memoList"
           v-model:value="memoQuery.title"
           style="width: 160px"
           placeholder="请输入备忘录标题"
@@ -96,10 +96,10 @@
 <script setup lang="ts">
 import FieldVue from '@/views/components/table/Field.vue';
 import {
-  AppstoreAddOutlined,
-  OrderedListOutlined,
-  type DeleteOutlined,
-  type ReloadOutlined,
+AppstoreAddOutlined,
+OrderedListOutlined,
+type DeleteOutlined,
+type ReloadOutlined,
 } from '@ant-design/icons-vue';
 import { memoColumns } from '../../data/column';
 import { memoCreate, memoDelete, memoEdit, memoExport, memoList } from '../../data/curd';

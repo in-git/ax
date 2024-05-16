@@ -1,8 +1,5 @@
 <template>
-  <a-card
-    class="ax__template"
-    :body-style="{ height: '100%', overflow: 'hidden', paddingBottom: '0' }"
-  >
+  <a-card class="ax__template SystemDictData" :body-style="bodyStyle">
     <a-flex vertical class="h-100">
       <!-- 顶部筛选，查询选项 -->
       <HeadVue />
@@ -25,6 +22,7 @@
 </template>
 
 <script setup lang="ts">
+import { bodyStyle } from '@/global/config/gen';
 import { dataList } from './data/curd';
 import { dataQuery, viewMode } from './data/table';
 import FooterVue from './pages/components/AXFooter.vue';
@@ -37,6 +35,7 @@ const props = defineProps<{
   id: string;
   data: SystemDict;
 }>();
+
 onMounted(async () => {
   console.log(props);
   dataQuery.value.dictType = props.data.dictType;

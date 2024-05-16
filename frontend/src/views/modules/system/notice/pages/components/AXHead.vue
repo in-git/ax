@@ -7,7 +7,7 @@
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="noticeList"
+          @press-enter="noticeList"
           v-model:value="noticeQuery.noticeTitle"
           style="width: 160px"
           placeholder="请输入公告标题"
@@ -20,7 +20,7 @@
           style="width: 160px"
           placeholder="请选择公告类型"
           allow-clear
-          @blur="noticeList"
+          @press-enter="noticeList"
           :options="noticeTypeOptions"
         ></a-select>
       </div>

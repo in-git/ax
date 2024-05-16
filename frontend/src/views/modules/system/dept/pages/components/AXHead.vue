@@ -7,7 +7,7 @@
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="deptList"
+          @press-enter="deptList"
           v-model:value="deptQuery.deptName"
           style="width: 160px"
           placeholder="请输入部门名称"
@@ -16,7 +16,7 @@
       </div>
       <div>
         <a-input
-          @blur="deptList"
+          @press-enter="deptList"
           v-model:value="deptQuery.leader"
           style="width: 160px"
           placeholder="请输入负责人"
@@ -25,7 +25,7 @@
       </div>
       <div>
         <a-input
-          @blur="deptList"
+          @press-enter="deptList"
           v-model:value="deptQuery.phone"
           style="width: 160px"
           placeholder="请输入联系电话"
@@ -38,7 +38,7 @@
           style="width: 160px"
           placeholder="请选择部门状态（0正常 1停用）"
           allow-clear
-          @blur="deptList"
+          @press-enter="deptList"
           :options="statusOptions"
         ></a-select>
       </div>

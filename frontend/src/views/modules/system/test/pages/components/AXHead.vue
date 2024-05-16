@@ -7,7 +7,7 @@
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="testList"
+          @press-enter="testList"
           v-model:value="testQuery.textareaField"
           style="width: 160px"
           placeholder="请输入文本域"
@@ -16,7 +16,7 @@
       </div>
       <div>
         <a-input
-          @blur="testList"
+          @press-enter="testList"
           v-model:value="testQuery.treeField"
           style="width: 160px"
           placeholder="请输入树形选择器"

@@ -16,7 +16,7 @@
       </div>
       <div>
         <a-input
-          @blur="postList"
+          @press-enter="postList"
           v-model:value="postQuery.postName"
           placeholder="请输入岗位名称"
           allow-clear
