@@ -1,20 +1,25 @@
 <template>
   <div>
-    <a-flex :align="'center'" class="step-head">
-      <div class="system__icon" @click="goBack">
-        <LeftOutlined />
-      </div>
-      <a-divider type="vertical"></a-divider>
-      {{ currentStep.title }}
-    </a-flex>
-    <a-card :bordered="false">
-      <a-form
-        size="middle"
-        :label-col="{ span: 8 }"
-        :model="codeFormData.info"
-        :rules="rules"
-        @finish="finish"
-      >
+    <a-form
+      size="middle"
+      :label-col="{ span: 8 }"
+      :model="codeFormData.info"
+      :rules="rules"
+      @finish="finish"
+    >
+      <TopTool>
+        <template #left>
+          <div class="system__icon" @click="goBack">
+            <LeftOutlined />
+          </div>
+        </template>
+        <template #right>
+          <a-button htmlType="submit" type="primary" size="small" :loading="loading" block>
+            保存
+          </a-button>
+        </template>
+      </TopTool>
+      <a-card :bordered="false">
         <div class="p-12">
           <h3>配置生成的代码</h3>
           <div class="system__subtitle mt-12">这里的配置将会完全映射到代码中,请谨慎修改</div>
@@ -60,53 +65,23 @@
             </div>
           </a-col>
         </a-row>
-        <a-divider></a-divider>
-        <!-- 提交 -->
-        <a-row>
-          <a-col :span="8" :offset="4">
-            <a-flex :gap="4">
-              <a-button @click="download">
-                下载
-                <template #icon>
-                  <DownloadOutlined />
-                </template>
-              </a-button>
-              <a-button @click="preview">预览</a-button>
-              <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
-            </a-flex>
-          </a-col>
-        </a-row>
-      </a-form>
-    </a-card>
+      </a-card>
+    </a-form>
   </div>
 </template>
 
 <script setup lang="ts">
 import { getParentMenus } from '@/api/modules/system/menu/utils';
-import { batchGenCode, previewCode, updateCode } from '@/api/modules/tool/gen/gen';
-import { getTempId, openWindow } from '@/global/window/window';
+import { updateCode } from '@/api/modules/tool/gen/gen';
 import { response } from '@/utils/table/table';
 import type { Rule } from 'ant-design-vue/es/form/interface';
-import { currentStep, nextStep } from '../data/config';
+import { nextStep } from '../data/config';
 import { codeFormData } from '../data/data';
-import PreviewVue from '../pages/Preview.vue';
-
-const getCode: any = inject('code')!;
+import TopTool from './components/TopTool.vue';
 
 const menuData = ref();
 const loading = ref(false);
 
-const preview = async () => {
-  const code = getCode();
-  const { data } = await previewCode(code);
-  openWindow({
-    title: '代码预览',
-    component: markRaw(PreviewVue),
-    data: data.data,
-    id: getTempId(),
-    dark: true,
-  });
-};
 onMounted(async () => {
   menuData.value = await getParentMenus();
 });
@@ -120,9 +95,6 @@ const finish = async () => {
   loading.value = false;
 };
 
-const download = () => {
-  response(batchGenCode, [codeFormData.value.info.tableName]);
-};
 const formItems = [
   {
     label: '包路径',

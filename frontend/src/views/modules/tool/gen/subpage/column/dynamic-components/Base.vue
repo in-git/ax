@@ -7,16 +7,17 @@
       :rules="rules"
       @finish="next"
     >
-      <a-flex justify="space-between" class="step-head" :align="'center'">
-        <a-flex :align="'center'">
+      <TopTool>
+        <template #left>
           <div class="system__icon">
             <HomeOutlined />
           </div>
-          <a-divider type="vertical"></a-divider>
-          {{ currentStep.title }}
-        </a-flex>
-        <a-button size="small" htmlType="submit" type="primary"><RightOutlined /></a-button>
-      </a-flex>
+        </template>
+        <template #right>
+          <a-button size="small" htmlType="submit" type="primary"><RightOutlined /></a-button>
+        </template>
+      </TopTool>
+
       <a-card :bordered="false" :body-style="{ padding: '12px' }">
         <div class="p-12">
           <h3>基础信息设置</h3>
@@ -54,8 +55,10 @@
 
 <script setup lang="ts">
 import type { Rule } from 'ant-design-vue/es/form/interface';
-import { currentStep, nextStep } from '../data/config';
+import { nextStep } from '../data/config';
 import { codeFormData } from '../data/data';
+import TopTool from './components/TopTool.vue';
+
 codeFormData.value.info.functionAuthor;
 const formItems = [
   {

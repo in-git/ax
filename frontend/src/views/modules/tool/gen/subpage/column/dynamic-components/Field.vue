@@ -1,19 +1,17 @@
 <template>
   <div class="field-table">
-    <a-flex justify="space-between" class="step-head" :align="'center'">
-      <a-flex :align="'center'">
+    <TopTool>
+      <template #left>
         <div class="system__icon" @click="goBack">
           <LeftOutlined />
         </div>
-        <a-divider type="vertical"></a-divider>
-        {{ currentStep.title }}
-      </a-flex>
-      <div>
+      </template>
+      <template #right>
         <a-button type="primary" @click="next">
           <RightOutlined />
         </a-button>
-      </div>
-    </a-flex>
+      </template>
+    </TopTool>
     <a-card :bordered="false" class="flex-1 table-container">
       <a-table
         :columns="formatColumns(fieldColumns, false)"
@@ -117,10 +115,11 @@
 import { optionSelect } from '@/api/modules/system/dict/dict';
 import { dictToOptions, formatColumns } from '@/utils/table/table';
 import { fieldColumns } from '../data/columns';
-import { currentStep, nextStep } from '../data/config';
+import { nextStep } from '../data/config';
 import { codeFormData } from '../data/data';
 import { htmlTypeOptions, javaTypeOptions, queryOptions } from '../data/options';
-import CheckboxVue from './Checkbox.vue';
+import CheckboxVue from './components/Checkbox.vue';
+import TopTool from './components/TopTool.vue';
 
 const switchKeys = ['isInsert', 'isEdit', 'isList', 'isQuery', 'isRequired', 'isPk'];
 

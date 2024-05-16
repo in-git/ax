@@ -45,7 +45,7 @@
           size="large"
           allow-clear
           v-model:value="AIStore.$state.qianFan.access_token"
-          placeholder="前往百度千帆大模型获取token"
+          placeholder="请根SK,AK获取到token"
         >
           <template #suffix>
             <a-tooltip title="复制">

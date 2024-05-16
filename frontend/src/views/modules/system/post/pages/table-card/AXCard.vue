@@ -1,6 +1,6 @@
 <template>
-  <a-card class="ax_plain_card" :bordered="false" :body-style="{ padding: '0' }">
-    <ul class="table_card_list flex-1" ref="cardRef">
+    <a-card class="ax_plain_card" :bordered="false" :body-style="{ padding: '0' }">
+    <ul class="table_card_list" ref="cardRef">
       <li
         v-for="(item, key) in postCardData"
         :key="key"
@@ -14,15 +14,17 @@
         @dragover="e => e.preventDefault()"
       >
         <a-card>
-          <div class="active" v-if="postKeys.includes(item.id)">{{ key + 1 }}</div>
-          <a-card-meta :title="item.items[0].value" class="mb-8">
-            <template #description>详细信息</template>
-          </a-card-meta>
-          <a-descriptions
-            :column="1"
-            layout="horizontal"
-            :labelStyle="{ width: '80px', color: '#666' }"
-          >
+          <div class="active" v-if="postKeys.includes(item.id)">
+              <check-outlined class="text-12" />
+          </div>
+          <div :draggable="true" class="mb-8 cursor-move">
+              <a-card-meta :draggable="true" :title="item.items[0].value"></a-card-meta>
+          </div>
+           <a-descriptions
+              :column="1"
+              layout="horizontal"
+              :labelStyle="{ width: '80px', color: '#666', whiteSpace: 'nowrap' }"
+            >
             <a-descriptions-item
               :label="v.label"
               :contentStyle="{ fontWeight: k === 0 ? 'bold' : '' }"
@@ -34,12 +36,12 @@
         </a-card>
       </li>
     </ul>
-  </a-card>
+   </a-card>
 </template>
 
 <script setup lang="ts">
 import { useSortable } from '@vueuse/integrations/useSortable';
-import { dragstart, drop, postCardData, selectSystemPost } from '../../data/card';
+import { dragstart, drop, selectSystemPost, postCardData } from '../../data/card';
 import { postEdit } from '../../data/curd';
 import { postKeys } from '../../data/table';
 
@@ -53,7 +55,10 @@ interface SortConfig {
 nextTick(() => {
   useSortable(cardRef, postCardData.value, {
     animation: 200,
-    onUpdate(e: SortConfig) {},
+    handle: '.cursor-move',
+    onUpdate(e: SortConfig) {
+   // 拖拽结束触发
+    },
   });
 });
 </script>

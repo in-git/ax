@@ -23,15 +23,6 @@
           allow-clear
         ></a-input>
       </div>
-      <div>
-        <a-input
-          @blur="typeList"
-          v-model:value="typeQuery.status"
-          style="width: 160px"
-          placeholder="请输入状态（0正常 1停用）"
-          allow-clear
-        ></a-input>
-      </div>
       <a-button type="primary" @click="typeList">搜索</a-button>
     </a-flex>
 
