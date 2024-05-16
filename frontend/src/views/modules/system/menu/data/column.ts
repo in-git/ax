@@ -1,25 +1,26 @@
 import type { TableColumnProps } from 'ant-design-vue';
 
-export const menuColumns: TableColumnProps[] = [
-  {
-    title: '菜单名',
-    dataIndex: 'menuName',
-  },
-  {
-    title: '顺序',
-    dataIndex: 'orderNum',
-    width: 100,
-  },
-  {
-    title: '是否为链接',
-    dataIndex: 'isFrame',
-  },
-  {
-    title: '菜单类型',
-    dataIndex: 'menuType',
-  },
-  {
-    title: '组件路径',
-    dataIndex: 'component',
-  },
-];
+const menuColumns = ref<TableColumnProps[]>([
+{
+    title:"菜单名称",
+    dataIndex:"menuName"
+},
+{
+    title:"显示顺序",
+    dataIndex:"orderNum"
+},
+{
+    title:"路由地址",
+    dataIndex:"path"
+},
+{
+    title:"组件路径",
+    dataIndex:"component"
+},
+{
+    title:"路由参数",
+    dataIndex:"query"
+},
+]);
+
+export { menuColumns };

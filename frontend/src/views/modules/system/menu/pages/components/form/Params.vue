@@ -7,7 +7,7 @@
       <a-form-item label="是否链接" name="isFrame">
         <a-radio-group v-model:value="menuForm.isFrame" :options="isOptions"></a-radio-group>
       </a-form-item>
-      <a-form-item :label="menuForm.isFrame !== '0' ? '组件路径' : '组件链接'" name="path">
+      <a-form-item :label="menuForm.isFrame !== '0' ? '路由路径' : '组件链接'" name="path">
         <a-input v-model:value="menuForm.path"></a-input>
         <div class="system__subtitle text-12">
           <InfoCircleFilled />
@@ -68,7 +68,7 @@
 <script setup lang="ts">
 import { isOptions } from '@/global/options/system';
 import { InfoCircleFilled } from '@ant-design/icons-vue';
-import { menuForm } from '../data/form';
+import { menuForm } from '../../../data/form';
 </script>
 
 <style lang="scss" scoped></style>

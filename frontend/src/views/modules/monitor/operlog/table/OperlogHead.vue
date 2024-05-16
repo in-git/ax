@@ -22,6 +22,13 @@
           />
         </a-flex>
         <div class="flex gc-4">
+          <a-pagination
+            @change="change"
+            v-model:current="logQuery.pageNum"
+            :total="logQuery.total"
+            show-less-items
+            :page-size="logQuery.pageSize"
+          />
           <a-popconfirm title="将会清空所有日志" @confirm="clear" placement="bottomRight">
             <a-button danger>
               <delete-outlined />
@@ -29,16 +36,6 @@
           </a-popconfirm>
         </div>
       </a-flex>
-
-      <div class="flex justify-right mt-12">
-        <a-pagination
-          @change="change"
-          v-model:current="logQuery.pageNum"
-          :total="logQuery.total"
-          show-less-items
-          :page-size="logQuery.pageSize"
-        />
-      </div>
     </a-card>
   </div>
 </template>

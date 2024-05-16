@@ -24,6 +24,12 @@
               <ReloadOutlined />
             </a-button>
           </a-tooltip>
+          <a-input-search
+            v-model:value="codeQuery.tableName"
+            placeholder="请输入表名"
+            @search="codeList"
+            allow-clear
+          ></a-input-search>
         </a-flex>
       </a-flex>
       <FieldVue :columns="codeColumns" :module-name="codeTable.moduleName" />
@@ -37,7 +43,7 @@ import type { ReloadOutlined } from '@ant-design/icons-vue';
 import { codeColumns } from '../data/column';
 import { codeList, downloadCode, editTable, importDb } from '../data/curd';
 
-import { codeKeys, codeTable } from '../data/table';
+import { codeKeys, codeQuery, codeTable } from '../data/table';
 </script>
 
 <style lang="scss" scoped>

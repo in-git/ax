@@ -2,7 +2,7 @@ import type { SystemMenu } from '@/api/modules/system/menu/types';
 import type { Routers } from '@/api/modules/system/user/types';
 
 /* 线性结构转树形结构 */
-export const convertToTree = (data: SystemMenu[]): SystemMenu[] => {
+export const convertMenuDataToTree = (data: SystemMenu[]): SystemMenu[] => {
   const map = new Map<number, SystemMenu>();
   const result: SystemMenu[] = [];
 

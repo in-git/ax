@@ -1,9 +1,9 @@
 <template>
   <a-modal
     :footer="false"
-    v-model:open="showMenuForm"
+    v-model:open="menuShowForm"
     title="菜单配置"
-    get-container=".menu"
+    get-container=".SystemMenu"
     width="70%"
   >
     <a-form
@@ -99,11 +99,11 @@ import { statusOptions, visibleOptions } from '@/global/options/system';
 import Gallery from '@/views/selector/gallery/Gallery.vue';
 import type { SmileOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
-import { loadMenuData } from '../data/curd';
-import { listMenu, menuTableConfig } from '../data/data';
-import { menuForm, showMenuForm } from '../data/form';
-import { menuTypeOptions } from '../data/options';
-import ParamVue from './Params.vue';
+import { menuList } from '../../data/curd';
+import { listMenu, menuTableConfig } from '../../data/data';
+import { menuForm, menuShowForm } from '../../data/form';
+import { menuTypeOptions } from '../../data/options';
+import ParamVue from './form/Params.vue';
 
 const treeSelected = ref<number[]>([]);
 const loading = ref(false);
@@ -123,8 +123,8 @@ const submit = async () => {
   }
   loading.value = false;
   message.success(msg);
-  showMenuForm.value = !showMenuForm.value;
-  loadMenuData();
+  menuShowForm.value = !menuShowForm.value;
+  menuList();
 };
 watch(
   listMenu,

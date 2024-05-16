@@ -1,4 +1,4 @@
-// 菜单类型（M目录 C菜单 F按钮）
+
 export const menuTypeOptions = [
   {
     label: '文件',
@@ -13,3 +13,6 @@ export const menuTypeOptions = [
     value: 'F',
   },
 ];
+
+export { };
+
