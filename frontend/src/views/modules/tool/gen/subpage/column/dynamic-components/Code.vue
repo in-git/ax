@@ -1,12 +1,6 @@
 <template>
   <div>
-    <a-form
-      size="middle"
-      :label-col="{ span: 8 }"
-      :model="codeFormData.info"
-      :rules="rules"
-      @finish="finish"
-    >
+    <a-form :label-col="{ span: 8 }" :model="codeFormData.info" :rules="rules" @finish="finish">
       <TopTool>
         <template #left>
           <div class="system__icon" @click="goBack">
@@ -14,7 +8,10 @@
           </div>
         </template>
         <template #right>
-          <a-button htmlType="submit" type="primary" size="small" :loading="loading" block>
+          <a-button htmlType="submit" type="primary" size="small" :loading="loading">
+            <template #icon>
+              <SaveOutlined />
+            </template>
             保存
           </a-button>
         </template>
@@ -75,7 +72,7 @@ import { getParentMenus } from '@/api/modules/system/menu/utils';
 import { updateCode } from '@/api/modules/tool/gen/gen';
 import { response } from '@/utils/table/table';
 import type { Rule } from 'ant-design-vue/es/form/interface';
-import { nextStep } from '../data/config';
+import { GenStepEnum, nextStep } from '../data/config';
 import { codeFormData } from '../data/data';
 import TopTool from './components/TopTool.vue';
 
@@ -87,20 +84,25 @@ onMounted(async () => {
 });
 
 const goBack = () => {
-  nextStep(1);
+  nextStep(GenStepEnum.FIELD);
 };
 const finish = async () => {
   loading.value = true;
   await response(updateCode, codeFormData.value.info);
   loading.value = false;
 };
-
 const formItems = [
   {
     label: '包路径',
     desc: `配置JAVA包路径,com.ax.text,生成的SERVICE,CONTROLLER等都会以这个路径导入`,
     name: 'packageName',
     maxLength: 16,
+  },
+  {
+    label: 'JAVA类名',
+    desc: `将会修改Java的类名`,
+    name: 'className',
+    maxLength: 48,
   },
   {
     label: '模块名',
@@ -137,7 +139,6 @@ const rules: Record<string, Rule[]> = {
 </script>
 
 <style lang="scss" scoped>
-@import './common.scss';
 .field-head {
   line-height: 36px;
   border-bottom: 1px solid #ddd;

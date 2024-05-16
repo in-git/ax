@@ -99,6 +99,7 @@ declare module 'vue' {
     RightOutlined: typeof import('@ant-design/icons-vue')['RightOutlined']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SaveOutlined: typeof import('@ant-design/icons-vue')['SaveOutlined']
     Selection: typeof import('./components/selection/Selection.vue')['default']
     SmileOutlined: typeof import('@ant-design/icons-vue')['SmileOutlined']
     StarOutlined: typeof import('@ant-design/icons-vue')['StarOutlined']

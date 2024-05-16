@@ -24,6 +24,7 @@
          v-model:value="${businessName}Query.$column.javaField"
          style="width: 160px"
          placeholder="请输入$column.columnComment"
+         @press-enter="${businessName}List"
          allow-clear
        ></a-input>
      </div>

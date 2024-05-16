@@ -1,31 +1,38 @@
 import Base from '../dynamic-components/Base.vue';
+import Code from '../dynamic-components/Code.vue';
 import Field from '../dynamic-components/Field.vue';
-export type GenStepType = 'base' | 'backend' | 'field';
+export type GenStepType = 'base' | 'code' | 'field';
 
+export enum GenStepEnum {
+  BASE = 0,
+  FIELD = 1,
+  CODE = 2,
+}
 export type GenStepItem = {
   type: GenStepType;
   component: any;
   title: string;
-  key: number;
+  key: GenStepEnum;
 };
+
 export const genStepList: GenStepItem[] = [
   {
     type: 'base',
     component: markRaw(Base),
     title: '基本信息',
-    key: 0,
+    key: GenStepEnum.BASE,
   },
   {
     type: 'field',
     component: markRaw(Field),
     title: '基础字段',
-    key: 1,
+    key: GenStepEnum.FIELD,
   },
   {
-    type: 'backend',
-    component: markRaw(Field),
-    title: '后端配置',
-    key: 2,
+    type: 'code',
+    component: markRaw(Code),
+    title: '代码配置',
+    key: GenStepEnum.CODE,
   },
 ];
 

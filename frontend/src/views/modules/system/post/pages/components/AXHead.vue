@@ -7,7 +7,7 @@
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="postList"
+          @press-enter="postList"
           v-model:value="postQuery.postCode"
           style="width: 160px"
           placeholder="请输入岗位编码"
@@ -18,30 +18,11 @@
         <a-input
           @blur="postList"
           v-model:value="postQuery.postName"
-          style="width: 160px"
           placeholder="请输入岗位名称"
           allow-clear
         ></a-input>
       </div>
-      <div>
-        <a-input
-          @blur="postList"
-          v-model:value="postQuery.postSort"
-          style="width: 160px"
-          placeholder="请输入显示顺序"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-select
-          v-model:value="postQuery.status"
-          style="width: 160px"
-          placeholder="请选择状态"
-          allow-clear
-          @blur="postList"
-          :options="statusOptions"
-        ></a-select>
-      </div>
+
       <a-button type="primary" @click="postList">搜索</a-button>
     </a-flex>
 
@@ -125,7 +106,6 @@ import {
 } from '@ant-design/icons-vue';
 import { postColumns } from '../../data/column';
 import { postCreate, postDelete, postEdit, postExport, postList } from '../../data/curd';
-import { statusOptions } from '../../data/options';
 import { postKeys, postQuery, postTable, viewMode } from '../../data/table';
 </script>
 

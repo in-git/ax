@@ -6,7 +6,7 @@
         <template v-if="currentStep.type === 'base'">
           <Base />
         </template>
-        <template v-else-if="currentStep.type === 'backend'">
+        <template v-else-if="currentStep.type === 'code'">
           <CodeVue />
         </template>
         <template v-else>

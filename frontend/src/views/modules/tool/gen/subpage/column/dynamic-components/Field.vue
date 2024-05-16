@@ -115,7 +115,7 @@
 import { optionSelect } from '@/api/modules/system/dict/dict';
 import { dictToOptions, formatColumns } from '@/utils/table/table';
 import { fieldColumns } from '../data/columns';
-import { nextStep } from '../data/config';
+import { GenStepEnum, nextStep } from '../data/config';
 import { codeFormData } from '../data/data';
 import { htmlTypeOptions, javaTypeOptions, queryOptions } from '../data/options';
 import CheckboxVue from './components/Checkbox.vue';
@@ -135,15 +135,14 @@ onMounted(() => {
   getOptions();
 });
 const next = () => {
-  nextStep(2);
+  nextStep(GenStepEnum.CODE);
 };
 const goBack = () => {
-  nextStep(0);
+  nextStep(GenStepEnum.BASE);
 };
 </script>
 
 <style lang="scss" scoped>
-@import './common.scss';
 :deep(.ant-card) {
   box-shadow: none;
 }

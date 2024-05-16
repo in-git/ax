@@ -1,12 +1,6 @@
 <template>
   <div>
-    <a-form
-      size="middle"
-      :label-col="{ span: 8 }"
-      :model="codeFormData.info"
-      :rules="rules"
-      @finish="next"
-    >
+    <a-form :label-col="{ span: 8 }" :model="codeFormData.info" :rules="rules" @finish="next">
       <TopTool>
         <template #left>
           <div class="system__icon">
@@ -14,7 +8,7 @@
           </div>
         </template>
         <template #right>
-          <a-button size="small" htmlType="submit" type="primary"><RightOutlined /></a-button>
+          <a-button htmlType="submit" type="primary"><RightOutlined /></a-button>
         </template>
       </TopTool>
 
@@ -32,6 +26,7 @@
                 :placeholder="`请输入${item.label}`"
                 :maxLength="140"
                 allow-clear
+                :disabled="item.disabled"
               />
             </a-form-item>
           </a-col>
@@ -55,17 +50,17 @@
 
 <script setup lang="ts">
 import type { Rule } from 'ant-design-vue/es/form/interface';
-import { nextStep } from '../data/config';
+import { GenStepEnum, nextStep } from '../data/config';
 import { codeFormData } from '../data/data';
 import TopTool from './components/TopTool.vue';
 
-codeFormData.value.info.functionAuthor;
 const formItems = [
   {
-    label: '表的别名',
-    desc: `相当于表的别名,不会对数据库产生影响`,
+    label: '表的名称',
+    desc: `数据库中表的名字`,
     name: 'tableName',
     maxLength: 16,
+    disabled: true,
   },
   {
     label: '作者名称',
@@ -100,13 +95,11 @@ const rules: Record<string, Rule[]> = {
 };
 
 const next = () => {
-  nextStep(1);
+  nextStep(GenStepEnum.FIELD);
 };
 </script>
 
 <style lang="scss" scoped>
-@import './common.scss';
-
 :deep(.ant-card) {
   box-shadow: none;
 }

@@ -4,9 +4,13 @@
       <a-flex :align="'center'">
         <slot name="left"></slot>
         <a-divider type="vertical"></a-divider>
+        <a-tag>
+          {{ codeFormData.info.tableName }}
+        </a-tag>
         {{ currentStep.title }}
-        <a-divider type="vertical"></a-divider>
-        <a-flex>
+      </a-flex>
+      <a-flex :align="'center'">
+        <a-flex :align="'center'">
           <a-button @click="download" type="text">
             下载
             <template #icon>
@@ -20,10 +24,9 @@
             </template>
           </a-button>
         </a-flex>
-      </a-flex>
-      <div>
+        <a-divider type="vertical"></a-divider>
         <slot name="right"></slot>
-      </div>
+      </a-flex>
     </a-flex>
   </div>
 </template>
