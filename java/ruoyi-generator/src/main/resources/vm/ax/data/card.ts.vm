@@ -14,7 +14,7 @@ type CardItem = {
 };
 interface CardData {
   id: number;
-  raw?: SystemTest;
+  raw?: ${ModuleName}${BusinessName};
   items: CardItem[];
 }
 

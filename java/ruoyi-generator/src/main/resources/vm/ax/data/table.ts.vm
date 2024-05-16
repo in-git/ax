@@ -7,7 +7,7 @@ import type { IQuery, TableConfig } from '@/api/config/types';
 import type {  ${ModuleName}${BusinessName} } from '@/api/modules/${moduleName}/${businessName}/types';
 
 //查询参数接口
-interface ${businessName}Query {
+interface ${BusinessName}Query {
   #foreach($column in $columns)
   #if($column.isQuery == '1')
   $column.javaField:#if($column.javaType == "String") string #elseif($column.javaType == "Integer") 0 #elseif($column.javaType == "Long") 0 #elseif($column.javaType == "Double") 0.0 #elseif($column.javaType == "Boolean") false #else null #end;
@@ -15,7 +15,7 @@ interface ${businessName}Query {
   #end
 }
 
-let queryObj: IQuery<noticeQuery> = {
+let queryObj: IQuery<${BusinessName}Query> = {
   pageNum: 1,
   pageSize: 10,
   total: 0,
@@ -41,15 +41,13 @@ export const ${businessName}Table = ref<TableConfig<${ModuleName}${BusinessName}
   moduleName: '${ModuleName}${BusinessName}',
 });
 
-
-
 //查询参数
-export const ${businessName}Query = ref<IQuery<${businessName}Query>>({
+export const ${businessName}Query = ref<IQuery<${BusinessName}Query>>({
  ...queryObj,
 });
 
 export const reset${BusinessName}Query = () => {
-  noticeQuery.value = {
+  ${businessName}Query.value = {
     ...queryObj,
   };
 };

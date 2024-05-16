@@ -1,7 +1,6 @@
-
+import type { SystemPost } from '@/api/modules/system/post/types';
 import { postColumns } from './column';
 import { postKeys, postTable } from './table';
-import type {  SystemPost } from '@/api/modules/system/post/types';
 
 type CardItem = {
   label: string;
@@ -9,7 +8,7 @@ type CardItem = {
 };
 interface CardData {
   id: number;
-  raw?: SystemTest;
+  raw?: SystemPost;
   items: CardItem[];
 }
 
@@ -56,11 +55,11 @@ export const postCardData = computed(() => {
       const value = e[v.dataIndex as any];
       if (v.dataIndex === 'operation') return;
       if (k < 4) {
-           items.push({
-             label,
-             value,
-           });
-         }
+        items.push({
+          label,
+          value,
+        });
+      }
     });
     arr.push({
       id: e['postId'],

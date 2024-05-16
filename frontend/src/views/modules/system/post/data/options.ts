@@ -1,13 +1,8 @@
-import { getOptionsByName } from '@/api/modules/system/dict/dict';
-import { dictDataToOptions } from '@/utils/table/table';
+import { getDictOption } from '@/global/data/dict';
 
-export const statusOptions = ref()
+export const statusOptions = ref();
 
-export const statusOptionsFetch = async () => {
-  const { data } = await getOptionsByName('sys_common_status');
-  if (data.data) {
-    statusOptions.value = dictDataToOptions(data.data);
-  }
+export const fetchStatusOptions = async () => {
+  statusOptions.value = await getDictOption('sys_common_status');
 };
-
-export {}
+export {};

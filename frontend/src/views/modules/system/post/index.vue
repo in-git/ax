@@ -1,5 +1,5 @@
 <template>
-  <a-card class="ax__template" :body-style="bodyStyle">
+  <a-card class="ax__template SystemPost" :body-style="bodyStyle">
     <a-flex vertical class="h-100">
       <!-- 顶部筛选，查询选项 -->
       <HeadVue />
@@ -19,26 +19,24 @@
 <script setup lang="ts">
 import { bodyStyle } from '@/global/config/gen';
 import { postList } from './data/curd';
-import { resetPostQuery,viewMode } from './data/table';
+import { postResetForm, postShowForm } from './data/form';
+import { fetchStatusOptions } from './data/options';
+import { resetPostQuery, viewMode } from './data/table';
 import FooterVue from './pages/components/AXFooter.vue';
 import FormVue from './pages/components/AXForm.vue';
 import HeadVue from './pages/components/AXHead.vue';
 import CardVue from './pages/table-card/AXCard.vue';
 import TableVue from './pages/table-card/AXTable.vue';
-import { postShowForm, postResetForm } from './data/form';
-import {
-  statusOptionsFetch,
-}from './data/options';
 
-onMounted(async() => {
+onMounted(async () => {
   await postList();
-  await statusOptionsFetch();
+  await fetchStatusOptions();
 });
 
 onUnmounted(() => {
   postShowForm.value = false;
   postResetForm();
-  resetPostQuery()
+  resetPostQuery();
 });
 </script>
 

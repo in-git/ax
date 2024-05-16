@@ -39,7 +39,7 @@
                     </a-menu-item>
                  </div>
                  <div v-perm="'system:notice:remove'">
-                    <a-menu-item @click="noticeDelete(record.$Key)">
+                    <a-menu-item @click="${businessName}Delete(record.$Key)">
                       <template #icon>
                         <DeleteOutlined />
                       </template>

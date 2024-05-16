@@ -15,14 +15,12 @@
           style="width: 160px"
           placeholder="请选择$column.columnComment"
           allow-clear
-          @blur="${businessName}List"
           :options="${javaField}Options"
         ></a-select>
       </div>
    #elseif($column.isQuery == "1")
     <div>
        <a-input
-         @blur="${businessName}List"
          v-model:value="${businessName}Query.$column.javaField"
          style="width: 160px"
          placeholder="请输入$column.columnComment"

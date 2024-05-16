@@ -15,7 +15,7 @@
        :footer="false"
        title="$functionName"
        v-model:open="${businessName}ShowForm"
-       get-container=".ax__template"
+       get-container=".${ModuleName}${BusinessName}"
      >
       <a-card title="编辑/新增" class="form__head">
         <template #extra>

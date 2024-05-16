@@ -1,22 +1,22 @@
 import type { IQuery, TableConfig } from '@/api/config/types';
-import type {  SystemPost } from '@/api/modules/system/post/types';
+import type { SystemPost } from '@/api/modules/system/post/types';
 
 //查询参数接口
-interface postQuery {
-  postCode: string ;
-  postName: string ;
-  postSort: 0 ;
-  status: string ;
+interface PostQuery {
+  postCode: string;
+  postName: string;
+  postSort: 0;
+  status: string;
 }
 
-let queryObj: IQuery<noticeQuery> = {
+let queryObj: IQuery<PostQuery> = {
   pageNum: 1,
   pageSize: 10,
   total: 0,
-  postCode: "" ,
-  postName: "" ,
-  postSort: 0 ,
-  status: "" ,
+  postCode: '',
+  postName: '',
+  postSort: 0,
+  status: '',
 };
 
 // 预览模式:卡片|表格
@@ -34,16 +34,13 @@ export const postTable = ref<TableConfig<SystemPost>>({
   moduleName: 'SystemPost',
 });
 
-
-
 //查询参数
-export const postQuery = ref<IQuery<postQuery>>({
- ...queryObj,
+export const postQuery = ref<IQuery<PostQuery>>({
+  ...queryObj,
 });
 
 export const resetPostQuery = () => {
-  noticeQuery.value = {
+  postQuery.value = {
     ...queryObj,
   };
 };
-

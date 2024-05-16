@@ -1,4 +1,3 @@
-
 <template>
   <a-card :style="{ boxShadow: 'none' }" :bordered="false" :bodyStyle="{ padding: '0' }">
     <a-table
@@ -19,28 +18,30 @@
     >
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'operation'">
-          <a-dropdown-button trigger="click"
-          @click="postEdit(record.postId)"
-          @open-change="openChange(record as SystemPost)">
+          <a-dropdown-button
+            trigger="click"
+            @click="postEdit(record.postId)"
+            @open-change="openChange(record as SystemPost)"
+          >
             <EditOutlined />
             <template #overlay>
               <a-menu>
-                 <div v-perm="'system:post:export'">
-                    <a-menu-item @click="postExport">
-                      <template #icon>
-                        <ExportOutlined />
-                      </template>
-                      导出
-                    </a-menu-item>
-                 </div>
-                 <div v-perm="'system:notice:remove'">
-                    <a-menu-item @click="noticeDelete(record.postId)">
-                      <template #icon>
-                        <DeleteOutlined />
-                      </template>
-                      删除
-                    </a-menu-item>
-                 </div>
+                <div v-perm="'system:post:export'">
+                  <a-menu-item @click="postExport">
+                    <template #icon>
+                      <ExportOutlined />
+                    </template>
+                    导出
+                  </a-menu-item>
+                </div>
+                <div v-perm="'system:notice:remove'">
+                  <a-menu-item @click="postDelete(record.postId)">
+                    <template #icon>
+                      <DeleteOutlined />
+                    </template>
+                    删除
+                  </a-menu-item>
+                </div>
               </a-menu>
             </template>
           </a-dropdown-button>
@@ -53,14 +54,13 @@
 <script setup lang="ts">
 import type { SystemPost } from '@/api/modules/system/post/types';
 import { formatColumns } from '@/utils/table/table';
-import { useArrayFilter } from '@vueuse/core';
+import { useArrayFilter, useCloned } from '@vueuse/core';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { postColumns } from '../../data/column';
-import { postEdit,postDelete,postExport } from '../../data/curd';
+import { postDelete, postEdit, postExport } from '../../data/curd';
 import { postForm } from '../../data/form';
-import { postKeys,  postQuery, postTable } from '../../data/table';
-import { useCloned } from '@vueuse/core';
+import { postKeys, postQuery, postTable } from '../../data/table';
 
 const openChange = (record: SystemPost) => {
   postForm.value = useCloned(record).cloned.value;
@@ -70,17 +70,17 @@ const openChange = (record: SystemPost) => {
 const customRow = (record: SystemPost) => {
   return {
     onClick() {
-      const id= (record as any)[postTable.value.rowKey]
-      postForm .value = record;
+      const id = (record as any)[postTable.value.rowKey];
+      postForm.value = record;
       if (!postKeys.value.includes(id)) {
-         postKeys.value.push(id);
+        postKeys.value.push(id);
       } else {
-         postKeys.value = useArrayFilter(postKeys.value, e => e !== id).value;
-     }
-     postKeys.value = [record.postId];
+        postKeys.value = useArrayFilter(postKeys.value, e => e !== id).value;
+      }
+      postKeys.value = [record.postId];
     },
     onDblclick() {
-       postEdit(record.postId);
+      postEdit(record.postId);
     },
   };
 };

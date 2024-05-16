@@ -37,7 +37,7 @@ export const optionSelect = () => {
  * @param {string} name
  */
 export const getOptionsByName = (name: string) => {
-  return axios.get(`system/dict/data/type/${name}`);
+  return axios.get<Response<SystemDictData[]>>(`system/dict/data/type/${name}`);
 };
 type Page = {
   pageSize: number;
