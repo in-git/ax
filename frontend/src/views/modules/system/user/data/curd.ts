@@ -1,12 +1,13 @@
 import {
   deleteUser,
+  deptTree,
   exportUser,
   fetchUserById,
   fetchUserList,
 } from '@/api/modules/system/user/user';
 import { response } from '@/utils/table/table';
 import { userForm, userResetForm, userShowForm, userWithAuthForm } from './form';
-import { userKeys, userQuery, userTable } from './table';
+import { deptTreeData, userKeys, userQuery, userTable } from './table';
 
 export const userList = async () => {
   try {
@@ -55,4 +56,14 @@ export const userExport = () => {
     pageNum: userQuery.value.pageNum,
     pageSize: userQuery.value.pageSize,
   });
+};
+
+/**
+ * @description: 加载部门
+ */
+export const loadDeptTree = async () => {
+  const { data } = await deptTree();
+  if (data.data) {
+    deptTreeData.value = data.data;
+  }
 };

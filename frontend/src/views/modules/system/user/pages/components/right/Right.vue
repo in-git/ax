@@ -51,9 +51,9 @@
 </template>
 
 <script setup lang="ts">
+import { loadDeptTree } from '../../../data/curd';
 import { userForm, userWithAuthForm } from '../../../data/form';
-import { deptTreeData, loadDeptTree } from '../../../dept/data';
-
+import { deptTreeData } from '../../../data/table';
 const treeData = ref();
 
 const selectedKeys = ref<number[]>([]);

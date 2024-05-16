@@ -43,6 +43,7 @@ export const userResetForm = () => {
     ...form,
   };
 };
+export const passwordModal = ref(false);
 
 // 表格校验
 export const userRules: Record<string, Rule[]> = {

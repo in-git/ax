@@ -27,6 +27,14 @@
             <template #overlay>
               <a-menu>
                 <div v-perm="'system:user:export'">
+                  <a-menu-item @click="updatePwd">
+                    <template #icon>
+                      <ExportOutlined />
+                    </template>
+                    修改密码
+                  </a-menu-item>
+                </div>
+                <div v-perm="'system:user:export'">
                   <a-menu-item @click="userExport">
                     <template #icon>
                       <ExportOutlined />
@@ -48,6 +56,7 @@
         </template>
       </template>
     </a-table>
+    <ChangePassword />
   </a-card>
 </template>
 
@@ -59,8 +68,9 @@ import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { userColumns } from '../../data/column';
 import { userDelete, userEdit, userExport } from '../../data/curd';
-import { userForm } from '../../data/form';
+import { passwordModal, userForm } from '../../data/form';
 import { userKeys, userQuery, userTable } from '../../data/table';
+import ChangePassword from '../components/change-password/ChangePassword.vue';
 
 const openChange = (record: UserProfileData) => {
   userForm.value = useCloned(record).cloned.value;
@@ -93,6 +103,10 @@ const pageChange = (
 ) => {
   userQuery.value.pageNum = pagination.current!;
   userQuery.value.pageSize = pagination.pageSize!;
+};
+
+const updatePwd = () => {
+  passwordModal.value = true;
 };
 </script>
 

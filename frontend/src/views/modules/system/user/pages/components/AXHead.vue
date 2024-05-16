@@ -1,10 +1,9 @@
 <template>
   <a-card class="ax_sticky_top">
-    <template #title>
-      <h3 class="text-14">用户信息</h3>
-    </template>
+    <template #title>用户信息</template>
 
     <a-flex class="mb-12" :gap="12" wrap="wrap">
+      <Dept />
       <div>
         <a-input
           v-model:value="userQuery.userName"
@@ -25,36 +24,9 @@
       </div>
       <div>
         <a-input
-          v-model:value="userQuery.email"
-          style="width: 160px"
-          placeholder="请输入用户邮箱"
-          @press-enter="userList"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-input
           v-model:value="userQuery.phonenumber"
           style="width: 160px"
           placeholder="请输入手机号码"
-          @press-enter="userList"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-input
-          v-model:value="userQuery.sex"
-          style="width: 160px"
-          placeholder="请输入用户性别（0男 1女 2未知）"
-          @press-enter="userList"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-input
-          v-model:value="userQuery.status"
-          style="width: 160px"
-          placeholder="请输入帐号状态（0正常 1停用）"
           @press-enter="userList"
           allow-clear
         ></a-input>
@@ -143,6 +115,7 @@ import { userColumns } from '../../data/column';
 import { userCreate, userDelete, userEdit, userExport, userList } from '../../data/curd';
 import {} from '../../data/options';
 import { userKeys, userQuery, userTable, viewMode } from '../../data/table';
+import Dept from './dept/Dept.vue';
 </script>
 
 <style lang="scss" scoped></style>

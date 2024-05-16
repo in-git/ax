@@ -1,5 +1,5 @@
 import type { IQuery, TableConfig } from '@/api/config/types';
-import type { UserProfileData } from '@/api/modules/system/user/types';
+import type { UserDept, UserProfileData } from '@/api/modules/system/user/types';
 
 //查询参数接口
 interface UserQuery {
@@ -9,6 +9,7 @@ interface UserQuery {
   phonenumber: string;
   sex: string;
   status: string;
+  deptId: number | undefined;
 }
 
 let queryObj: IQuery<UserQuery> = {
@@ -21,6 +22,7 @@ let queryObj: IQuery<UserQuery> = {
   phonenumber: '',
   sex: '',
   status: '',
+  deptId: undefined,
 };
 
 // 预览模式:卡片|表格
@@ -48,3 +50,5 @@ export const resetUserQuery = () => {
     ...queryObj,
   };
 };
+
+export const deptTreeData = ref<UserDept[]>([]);

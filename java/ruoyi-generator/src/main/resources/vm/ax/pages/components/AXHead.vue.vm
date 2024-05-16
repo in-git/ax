@@ -1,7 +1,7 @@
 <template>
   <a-card class="ax_sticky_top">
     <template #title>
-      <h3 class="text-14">${functionName}</h3>
+      ${functionName}列表
     </template>
 
    <a-flex class="mb-12" :gap="12" wrap="wrap">

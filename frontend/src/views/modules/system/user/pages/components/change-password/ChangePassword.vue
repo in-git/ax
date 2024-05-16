@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SystemModal v-model:visible="passwordModal" w="300px" h="200px" title="修改密码">
+    <a-modal v-model:open="passwordModal" :footer="false" title="修改密码">
       <a-card :bordered="false">
         <a-form :model="form" layout="vertical" @submit="submit">
           <a-form-item required name="password" label="新的密码" :rules="rules">
@@ -14,17 +14,15 @@
           <a-button type="primary" block htmlType="submit">确定</a-button>
         </a-form>
       </a-card>
-    </SystemModal>
+    </a-modal>
   </div>
 </template>
 
 <script setup lang="ts">
 import { resetPwd } from '@/api/modules/system/user/user';
-import SystemModal from '@/components/modal/SysModal.vue';
 import { message } from 'ant-design-vue';
 import type { RuleObject } from 'ant-design-vue/es/form';
-import { userForm } from '../../data/form';
-import { passwordModal } from './data';
+import { passwordModal, userForm } from '../../../data/form';
 
 const form = ref({
   password: '',
@@ -49,4 +47,4 @@ const rules: RuleObject = {
   box-shadow: none;
 }
 </style>
-../../form/form
+../../form/form ../../../data/form
