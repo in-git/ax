@@ -8,8 +8,12 @@ import type { SystemMenu } from './types';
  * @description: 查询菜单权限列表
  * @param {IQuery} query 系统通用查询对象
  */
-export const fetchMenuList = () => {
-  return axios.get<Response<SystemMenu[]>>(`system/menu/list`);
+export const fetchMenuList = (menuName?: string) => {
+  return axios.get<Response<SystemMenu[]>>(`system/menu/list`, {
+    params: {
+      menuName,
+    },
+  });
 };
 
 /**

@@ -8,7 +8,7 @@ export interface SystemMenu {
   component: string;
   query: string;
   isFrame: '0' | '1';
-  isCache: number;
+  isCache: '0' | '1';
   menuType: MenuType;
   visible: string;
   status: string;
