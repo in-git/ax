@@ -6,7 +6,7 @@
         <a-card
           :body-style="{ padding: '0' }"
           :bordered="false"
-          class="card__container"
+          class="ax_plain_card"
           :loading="loading"
         >
           <a-menu :items="menuList" style="width: 120px"></a-menu>
@@ -34,9 +34,8 @@
 import { createMemo } from '@/api/modules/system/memo/memo';
 import { getStaticImage } from '@/api/utils/image';
 import SystemModal from '@/components/modal/SysModal.vue';
-import { getData, openWindow } from '@/global/window/window';
+import { getData, getTempId, openWindow } from '@/global/window/window';
 import { response } from '@/utils/table/table';
-import { nanoid } from 'nanoid';
 import NotepadVue from '../../Notepad.vue';
 
 const notepadId = inject<string>('data')!;
@@ -55,7 +54,7 @@ const menuList = [
       openWindow({
         component: markRaw(NotepadVue),
         title: '记事本',
-        id: `notepad${nanoid(8)}`,
+        id: getTempId(),
         icon: getStaticImage('image-icon/notepad.png'),
       });
     },

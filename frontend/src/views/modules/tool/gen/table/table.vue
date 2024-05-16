@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <TableHeadVue />
+  <div class="flex-1 overflow-auto">
     <a-table
       @change="pageChange"
       table-layout="fixed"
@@ -21,12 +20,18 @@
     >
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'operation'">
-          <Operation
-            :loading="codeTable.loading"
-            @open-change="openChange(record as any)"
-            @on-click="editCode(record.tableId)"
-            :items="codeOperationList"
-          />
+          <a-dropdown-button trigger="click" @click="editTable(record.tableId)">
+            <EditOutlined />
+            <template #overlay>
+              <a-menu>
+                <div>
+                  <a-menu-item @click="asyncTable(record.tableName)">同步</a-menu-item>
+                  <a-menu-item @click="downloadCode">下载</a-menu-item>
+                  <a-menu-item @click="deleteTable(record.tableId)">删除</a-menu-item>
+                </div>
+              </a-menu>
+            </template>
+          </a-dropdown-button>
         </template>
       </template>
     </a-table>
@@ -34,20 +39,12 @@
 </template>
 
 <script setup lang="ts">
-import TableHeadVue from './head.vue';
-
 import { formatColumns } from '@/utils/table/table';
-import Operation from '@/views/components/table/Operation.vue';
-import { useArrayFilter } from '@vueuse/core';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import { codeColumns } from '../data/column';
-import { codeList, editCode } from '../data/curd';
-import { currentCode } from '../data/form';
-import { codeKeys, codeOperationList, codeQuery, codeTable } from '../data/table';
+import { asyncTable, codeList, deleteTable, downloadCode, editTable } from '../data/curd';
+import { codeKeys, codeQuery, codeTable } from '../data/table';
 
-const openChange = (data: SystemCode) => {
-  currentCode.value = data;
-};
 const pageChange = (pagination: TablePaginationConfig) => {
   codeQuery.value.pageNum = pagination.current!;
   codeQuery.value.pageSize = pagination.pageSize!;
@@ -57,13 +54,11 @@ const onChange = (keys: any[]) => {
   codeKeys.value = keys;
 };
 
-const customRow = (record: SystemCode) => {
+const customRow = (record: SystemTable) => {
   return {
     onClick() {
       if (!codeKeys.value.includes(record.tableName)) {
         codeKeys.value.push(record.tableName);
-      } else {
-        codeKeys.value = useArrayFilter(codeKeys.value, e => e !== record.tableName).value;
       }
     },
   };
@@ -74,4 +69,8 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.overflow-auto {
+  overflow-y: auto;
+}
+</style>

@@ -1,7 +1,7 @@
-export const roleShowForm = ref(false);
 import type { SystemRole } from '@/api/modules/system/role/types';
 import type { Rule } from 'ant-design-vue/es/form/interface';
 
+export const roleShowForm = ref(false);
 const form: SystemRole = {
   roleId: undefined,
   roleName: '',

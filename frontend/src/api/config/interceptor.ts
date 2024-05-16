@@ -1,11 +1,9 @@
 import { openLogin } from '@/global/window/widget';
 import useUserStore from '@/store/user';
 import { convertParamsToFormat } from '@/utils/common/format';
-import { notify } from '@/views/desktop/notice/data';
 import { message } from 'ant-design-vue';
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
-import { nanoid } from 'nanoid';
 import { userLogout } from '../modules/system/user/utils';
 
 /* 取消请求列表 */
@@ -43,18 +41,14 @@ axios.interceptors.response.use(
     } else if (res.code === 401) {
       userLogout();
       openLogin();
+    } else if (res.code === 404) {
+      message.warn(`当前版本不支持这个功能`);
     }
     return response;
   },
   error => {
     const errMsg: string = error.toString();
     if (errMsg.includes('Network Error')) {
-      notify({
-        content: `和服务器失去链接，具体信息:${error.toString()}`,
-        title: '网络错误',
-        type: 'error',
-        id: nanoid(),
-      });
       message.warn('网络错误');
     } else if (errMsg.includes('canceled')) {
       // 用户取消请求

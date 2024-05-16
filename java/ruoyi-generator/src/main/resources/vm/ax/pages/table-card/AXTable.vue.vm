@@ -38,6 +38,14 @@
                       导出
                     </a-menu-item>
                  </div>
+                 <div v-perm="'system:notice:remove'">
+                    <a-menu-item @click="${businessName}Delete(record.$Key)">
+                      <template #icon>
+                        <DeleteOutlined />
+                      </template>
+                      删除
+                    </a-menu-item>
+                 </div>
               </a-menu>
             </template>
           </a-dropdown-button>

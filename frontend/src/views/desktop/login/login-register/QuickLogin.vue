@@ -30,7 +30,6 @@
           </ul>
         </a-card>
       </a-flex>
-      <div class="mt-8"></div>
     </a-card>
 
     <a-modal
@@ -56,7 +55,7 @@
           <a-input placeholder="请输入验证码" v-model:value="loginForm.code"></a-input>
         </a-form-item>
 
-        <a-button htmlType="submit" :loading="loginLoading">登录</a-button>
+        <a-button htmlType="submit" :loading="loginLoading" block type="primary">登录</a-button>
       </a-form>
     </a-modal>
   </div>

@@ -1,15 +1,14 @@
 <template>
-  <a-card :body-style="{ overflowY: 'hidden' }" class="system__module">
-    <TableVue />
-    <FormVue />
-    <DbVue />
-    <!--  -->
+  <a-card :body-style="{ overflowY: 'hidden' }" class="ax__template">
+    <a-flex vertical class="h-100">
+      <TableHeadVue />
+      <TableVue />
+    </a-flex>
   </a-card>
 </template>
 
 <script setup lang="ts">
-import DbVue from './db/db.vue';
-import FormVue from './form/form.vue';
+import TableHeadVue from './table/head.vue';
 import TableVue from './table/table.vue';
 </script>
 

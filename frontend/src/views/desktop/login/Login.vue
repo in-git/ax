@@ -1,5 +1,5 @@
 <template>
-  <a-card class="system__template card__container" :bordered="false">
+  <a-card class="ax__template ax_plain_card" :bordered="false">
     <LoginVue v-if="loginMode === 'login'" />
     <RegisterVue v-else-if="loginMode === 'register'" />
     <QuickLogin v-else />
@@ -21,7 +21,7 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.card__container {
+.ax_plain_card {
   display: flex;
   height: 100%;
   :deep(.ant-card-body) {

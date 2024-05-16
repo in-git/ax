@@ -3,3 +3,4 @@ export interface Notepad {
   content: string;
   id?: string;
 }
+export type NotepadViewMode = 'text' | 'rich-text' | 'markdown';

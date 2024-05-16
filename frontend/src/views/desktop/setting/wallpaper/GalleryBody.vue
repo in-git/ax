@@ -1,43 +1,81 @@
 <template>
   <a-card class="gallery-body h-100" :body-style="{ paddingTop: '0' }">
     <GalleryHead />
-    <template v-if="galleryData.length > 0">
-      <div class="list">
-        <div
-          class="source-item"
-          :bordered="false"
-          v-for="(item, key) in galleryData"
-          :key="item"
-          @click="selectItem(item)"
-          justify="center"
-        >
-          <div class="selected" v-if="currentGallery === item">
-            <CheckOutlined />
+    <template v-if="galleryType !== 'base64'">
+      <template v-if="galleryData.length > 0">
+        <div class="list">
+          <div
+            class="source-item"
+            :bordered="false"
+            v-for="(item, key) in galleryData"
+            :key="item"
+            @click="selectItem(item)"
+            justify="center"
+          >
+            <div class="selected" v-if="currentGallery === item">
+              <CheckOutlined />
+            </div>
+            <img
+              :src="getStaticImage(item)"
+              v-if="galleryType === 'image'"
+              :alt="item"
+              height="80"
+            />
+            <video
+              muted
+              controlslist="nodownload"
+              v-else
+              ref="videoRefs"
+              @mouseenter="mouseenter(key)"
+              @mouseleave="mouseleave(key)"
+              :src="item"
+              height="80"
+            ></video>
           </div>
-          <img :src="getStaticImage(item)" v-if="galleryType === 'image'" :alt="item" height="80" />
-          <video
-            muted
-            controlslist="nodownload"
-            v-else
-            ref="videoRefs"
-            @mouseenter="mouseenter(key)"
-            @mouseleave="mouseleave(key)"
-            :src="item"
-            height="80"
-          ></video>
         </div>
-      </div>
-    </template>
+      </template>
 
-    <a-empty v-else></a-empty>
+      <a-empty v-else></a-empty>
+    </template>
+    <template v-else>
+      <a-card :body-style="{ position: 'relative' }">
+        <a-upload-dragger
+          @change="upload"
+          :customRequest="() => false"
+          :max-count="1"
+          :file-list="fileList"
+        >
+          <div class="bg-image">
+            <a-image :src="backgroundSrc"></a-image>
+          </div>
+          <div class="upload-info">
+            <p class="ant-upload-drag-icon">
+              <inbox-outlined></inbox-outlined>
+            </p>
+            <p class="ant-upload-text">拖拽图片到此上传</p>
+            <p class="ant-upload-hint">图片不限大小，但会占用计算机的存储空间</p>
+          </div>
+        </a-upload-dragger>
+      </a-card>
+    </template>
   </a-card>
 </template>
 
 <script setup lang="ts">
 import { getStaticImage } from '@/api/utils/image';
-import { currentGallery, galleryData, galleryType } from './data/data';
+import { LocalforageEnum } from '@/global/enum/localforage';
+import usePageStore from '@/store/page';
+import localforage from 'localforage';
+import { currentGallery, galleryData, galleryType, setBase64Background } from './data/data';
 import GalleryHead from './GalleryHead.vue';
 
+const store = usePageStore();
+const fileList = ref([]);
+const comBackground = computed(() => {
+  return store.$state.desktop.background;
+});
+
+const backgroundSrc = ref();
 const videoRefs = ref<HTMLVideoElement[]>();
 
 const selectItem = (item: string) => {
@@ -55,63 +93,15 @@ const mouseleave = (index: number) => {
     videoRefs.value[index].pause();
   }
 };
+const upload = async (config: any) => {
+  setBase64Background(config.file.originFileObj);
+};
+onMounted(async () => {
+  const data: any = await localforage.getItem(LocalforageEnum.BACKGROUND_SRC);
+  backgroundSrc.value = data;
+});
 </script>
 
 <style lang="scss" scoped>
-.gallery-body {
-  margin-left: 8px;
-  .list {
-    display: grid;
-    gap: 8px;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    place-items: start;
-    height: 90px;
-    text-align: center;
-  }
-  :deep(.ant-card) {
-    box-shadow: none;
-    overflow: hidden;
-  }
-  :deep(.ant-card-body) {
-    padding: 12px;
-    height: 100%;
-  }
-
-  .selected {
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    color: white;
-    width: 24px;
-    height: 24px;
-    text-align: center;
-    line-height: 24px;
-    border-radius: 50%;
-    font-size: 12px;
-    background-color: var(--primary);
-    z-index: 10;
-  }
-
-  .source-item {
-    position: relative;
-    text-align: center;
-    padding: 4px;
-    width: 100%;
-    overflow: hidden;
-    height: 80px;
-    background-image: url('../assets/loading.png');
-    background-position: center;
-    background-size: 64px 64px;
-    background-repeat: no-repeat;
-    video,
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid #b4b4b473;
-    }
-  }
-}
+@import './body.scss';
 </style>
-@/global/data/resource.list

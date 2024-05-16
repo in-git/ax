@@ -1,51 +1,78 @@
 <template>
   <div class="fixed">
-    <div class="app-background flex-1 flex flex-col" v-if="backgroundType.type === 'video'">
-      <VideoBackground class="h-100" :src="backgroundType.src"></VideoBackground>
+    <div class="app-background flex-1 flex flex-col" v-if="comBackground.type === 'video'">
+      <VideoBackground class="h-100" :src="backgroundSrc"></VideoBackground>
     </div>
-    <div v-else-if="backgroundType.type === 'image'" class="app-background">
+    <div
+      v-else-if="comBackground.type === 'image' || comBackground.type === 'base64'"
+      class="app-background"
+    >
       <div class="w-100 h-100 background" :style="style"></div>
-      <Loading v-if="backgroundLoading" desc="正在加载背景图片"></Loading>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { getStaticImage } from '@/api/utils/image';
-import Loading from '@/components/loading/Loading.vue';
+import { EventBusEnum } from '@/global/enum/eventBus';
+import { LocalforageEnum } from '@/global/enum/localforage';
 import usePageStore from '@/store/page';
-import { backgroundLoading } from '@/store/page/utils';
+import { useEventBus } from '@vueuse/core';
+import { message } from 'ant-design-vue';
+import localforage from 'localforage';
 import type { CSSProperties } from 'vue';
 import VideoBackground from 'vue-responsive-video-background-player';
 import defaultBackground from '../assets/background.webp';
 
 const pageStore = usePageStore();
+const bus = useEventBus(EventBusEnum.UPDATE_BACKGROUND);
+const backgroundSrc = ref<string>('');
 
-const backgroundType = computed(() => {
+const comBackground = computed(() => {
   return pageStore.$state.desktop.background;
 });
 
-const style = computed((): CSSProperties => {
-  /* 判断是否有背景图片，有就加载，没有就设置默认背景 */
-  let background = '';
-  if (backgroundType.value.src.startsWith('data:image')) {
-    background = backgroundType.value.src;
+/**
+ * @description: 获取本地壁纸
+ */
+const getLocalBackground = async () => {
+  let src: any = await localforage.getItem(LocalforageEnum.BACKGROUND_SRC);
+  const type = comBackground.value.type;
+  let bg = '';
+
+  if (src) {
+    if (type === 'base64' || type === 'video') {
+      bg = src;
+    } else {
+      bg = getStaticImage(src) || defaultBackground;
+    }
+
+    backgroundSrc.value = bg;
   } else {
-    background = backgroundType.value.src
-      ? getStaticImage(`${backgroundType.value.src}`)
-      : defaultBackground;
+    message.warn('资源路径出了点问题，请重新设置壁纸');
   }
-  if (backgroundType.value.type === 'image' && backgroundLoading) {
+};
+/**
+ * @description: 设置壁纸后更新
+ */
+bus.on(() => {
+  getLocalBackground();
+});
+
+onMounted(async () => {
+  getLocalBackground();
+});
+
+const style = computed((): CSSProperties => {
+  if (comBackground.value.type === 'image' || comBackground.value.type === 'base64') {
     return {
-      background: `url('${background}')`,
+      background: `url('${backgroundSrc.value}')`,
       filter: `
-      brightness(${100 - backgroundType.value.brightness}%)
-      grayscale(${backgroundType.value.grayscale}%)`,
+      brightness(${100 - comBackground.value.brightness}%)
+      grayscale(${comBackground.value.grayscale}%)`,
     };
   }
-  return {
-    background: '#333',
-  };
+  return {};
 });
 </script>
 
@@ -59,7 +86,8 @@ const style = computed((): CSSProperties => {
   height: 100vh;
   width: 100vw;
   z-index: 10;
-
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   left: 0;

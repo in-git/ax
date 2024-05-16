@@ -9,13 +9,16 @@ export interface Theme {
   algorithm: 'compact' | 'default' | 'dark';
   autoInsertSpaceInButton: boolean;
 }
+
+export type BackgroundType = 'image' | 'video' | 'base64';
+
 export interface DesktopBackground {
-  type: 'image' | 'video';
-  src: string;
+  type: BackgroundType;
   brightness: number;
   blur: number;
   grayscale: number;
 }
+
 export interface PageSettings {
   theme: Theme;
   desktop: {

@@ -1,15 +1,9 @@
 <template>
-  <a-form :model="roleForm" @finish="submit" :label-col="{ span: 6 }" label-align="left">
-    <SystemModal
-      w="90%"
-      h="90%"
-      v-model:visible="showRoleForm"
-      title="管理身份"
-      @update:visible="showRoleForm = false"
-    >
+  <a-modal width="90%" v-model:open="showRoleForm" title="管理身份" get-container=".SystemRole">
+    <a-form :model="roleForm" @finish="submit" :label-col="{ span: 6 }" label-align="left">
       <div v-if="roleForm" class="h-100 flex flex-col">
         <div class="flex-1">
-          <a-card class="table__head">
+          <a-card class="ax_sticky_top">
             <a-flex justify="space-between">
               <div>身份管理</div>
               <a-button type="primary" :loading="loading" htmlType="submit">保存</a-button>
@@ -84,13 +78,12 @@
           </a-card>
         </div>
       </div>
-    </SystemModal>
-  </a-form>
+    </a-form>
+  </a-modal>
 </template>
 
 <script setup lang="ts">
 import { createRole, updateRole } from '@/api/modules/system/role/role';
-import SystemModal from '@/components/modal/SysModal.vue';
 import { setOptions } from '@/global/options/system';
 import { message } from 'ant-design-vue';
 
@@ -148,29 +141,6 @@ watch(
 </script>
 
 <style lang="scss" scoped>
-.role-info {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #33333356;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .info-container {
-    width: 90%;
-    height: 90%;
-    overflow-y: auto;
-    background: white;
-    border-radius: var(--radius);
-  }
-}
-.page-head {
-  top: 0;
-  z-index: 100;
-  background: white;
-  border-bottom: 1px solid #ddd;
-}
 :deep(.ant-card) {
   box-shadow: none;
 }

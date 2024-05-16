@@ -6,7 +6,6 @@
       <Missions />
     </div>
     <Background></Background>
-    <NoticeVue />
     <!--  -->
     <div class="windows">
       <Draggable
@@ -40,7 +39,6 @@
 import Apps from './apps/Apps.vue';
 import Background from './background/Background.vue';
 import Missions from './missions/Missions.vue';
-import NoticeVue from './notice/Notice.vue';
 import Toolbar from './toolbar/Toolbar.vue';
 
 import { closeWindow, windowList } from '@/global/window/window';
@@ -48,10 +46,13 @@ import { closeWindow, windowList } from '@/global/window/window';
 import { openLogin } from '@/global/window/widget';
 import { getToken } from '@/store/user/utils';
 import Draggable from '../../views/components/draggable/Draggable.vue';
+import { getUserRouters } from './apps/data';
 
 onMounted(() => {
   if (!getToken()) {
     openLogin();
+  } else {
+    getUserRouters();
   }
 });
 </script>
@@ -61,11 +62,17 @@ onMounted(() => {
   position: relative;
   height: 100vh;
   overflow: hidden;
+  height: 100%;
 }
 .windows {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 60;
+}
+@media screen and (max-width: 700px) {
+  .desktop {
+    display: none;
+  }
 }
 </style>

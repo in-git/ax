@@ -1,6 +1,6 @@
-import { getOptionsByName } from '@/api/modules/system/dict/dict.data';
+import { getOptionsByName } from '@/api/modules/system/dict/dict';
 import { dictDataToOptions } from '@/utils/table/table';
-// 从系统字典中获取字段数据
+
 #foreach($column in $columns)
 #set($dictType=$column.dictType)
 #set($javaField=$column.javaField)
@@ -15,3 +15,5 @@ export const ${javaField}OptionsFetch = async () => {
 };
 #end
 #end
+
+export {}

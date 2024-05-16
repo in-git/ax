@@ -1,5 +1,5 @@
 <template>
-  <a-card class="table__head">
+  <a-card class="ax_sticky_top">
     <template #title>
       <h3 class="text-14">{{ title }}</h3>
     </template>
@@ -16,7 +16,7 @@ defineProps<{
 </script>
 
 <style lang="scss" scoped>
-.table__head {
+.ax_sticky_top {
   position: sticky !important;
   top: 0px;
   z-index: 10;

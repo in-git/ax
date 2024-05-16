@@ -32,6 +32,13 @@ export const optionSelect = () => {
   return axios.get(`system/dict/type/optionselect`);
 };
 
+/**
+ * @description: 根据字典名查询
+ * @param {string} name
+ */
+export const getOptionsByName = (name: string) => {
+  return axios.get<Response<SystemDictData[]>>(`system/dict/data/type/${name}`);
+};
 type Page = {
   pageSize: number;
   pageNum: number;

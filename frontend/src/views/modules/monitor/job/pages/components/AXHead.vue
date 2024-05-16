@@ -1,5 +1,5 @@
 <template>
-  <a-card class="table__head">
+  <a-card class="ax_sticky_top">
     <template #title>
       <h3 class="text-14">定时任务调度</h3>
     </template>
@@ -7,7 +7,7 @@
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="jobList"
+          @press-enter="jobList"
           v-model:value="jobQuery.misfirePolicy"
           style="width: 160px"
           placeholder="请输入计划执行错误策略"
@@ -16,7 +16,7 @@
       </div>
       <div>
         <a-input
-          @blur="jobList"
+          @press-enter="jobList"
           v-model:value="jobQuery.concurrent"
           style="width: 160px"
           placeholder="请输入是否并发执行"
@@ -25,7 +25,7 @@
       </div>
       <div>
         <a-input
-          @blur="jobList"
+          @press-enter="jobList"
           v-model:value="jobQuery.status"
           style="width: 160px"
           placeholder="请输入状态"

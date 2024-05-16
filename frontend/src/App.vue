@@ -24,6 +24,7 @@ import zh_CN from 'ant-design-vue/es/locale/zh_CN';
 import {
   loadSystemComponents,
   loadSystemIcons,
+  screenDetection,
   setAxios,
   setCssVar,
   setEvent,
@@ -45,7 +46,7 @@ const store = usePageStore();
 setAxios();
 /*  */
 nextTick(async () => {
-  /* 加载本地图标，与下面组件配合使用 */
+  /* 加载系统的图标 */
   loadSystemIcons();
   /* 初始化系统本地组件 */
   loadSystemComponents();
@@ -53,6 +54,8 @@ nextTick(async () => {
   setEvent();
   /* 设置主题变量 */
   setCssVar();
+  /* 屏幕检测 */
+  screenDetection();
 });
 /* 设置本地主题 */
 const localTheme = computed(() => {
@@ -74,15 +77,4 @@ const localTheme = computed(() => {
 });
 </script>
 
-<style lang="scss" scoped>
-@media screen and (max-width: 875px) {
-  .desktop {
-    display: none;
-  }
-}
-@media screen and (min-width: 874px) {
-  .phone {
-    display: none;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

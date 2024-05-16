@@ -2,19 +2,22 @@ import type { SystemTest } from '@/api/modules/system/test/types';
 import { testColumns } from './column';
 import { testKeys, testTable } from './table';
 
+type CardItem = {
+  label: string;
+  value: any;
+};
 interface CardData {
   id: number;
   raw?: SystemTest;
-  items: {
-    label: string;
-    value: any;
-  }[];
+  items: CardItem[];
 }
 
-/* 当前拖拽的元素 */
+/**
+ * @description: 拖拽开始，用于设置拖拽前的值
+ * @param {CardData} item
+ */
 export const dragstart = (item: CardData) => {};
 
-/* 目标元素，鼠标放下 */
 export const drop = (item: CardData) => {};
 
 /* 选择卡片 */
@@ -35,10 +38,12 @@ export const testCardData = computed(() => {
       const label = v.title;
       const value = e[v.dataIndex as any];
       if (v.dataIndex === 'operation') return;
-      items.push({
-        label,
-        value,
-      });
+      if (k < 4) {
+        items.push({
+          label,
+          value,
+        });
+      }
     });
     arr.push({
       id: e['testId'],

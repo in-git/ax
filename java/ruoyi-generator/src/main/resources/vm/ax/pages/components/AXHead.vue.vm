@@ -1,7 +1,7 @@
 <template>
-  <a-card class="table__head">
+  <a-card class="ax_sticky_top">
     <template #title>
-      <h3 class="text-14">${functionName}</h3>
+      ${functionName}列表
     </template>
 
    <a-flex class="mb-12" :gap="12" wrap="wrap">
@@ -15,17 +15,16 @@
           style="width: 160px"
           placeholder="请选择$column.columnComment"
           allow-clear
-          @blur="${businessName}List"
           :options="${javaField}Options"
         ></a-select>
       </div>
    #elseif($column.isQuery == "1")
     <div>
        <a-input
-         @blur="${businessName}List"
          v-model:value="${businessName}Query.$column.javaField"
          style="width: 160px"
          placeholder="请输入$column.columnComment"
+         @press-enter="${businessName}List"
          allow-clear
        ></a-input>
      </div>
@@ -53,12 +52,27 @@
                 </a-button>
               </a-tooltip>
           </div>
-
-          <a-tooltip title="刷新">
-            <a-button type="link" @click="${businessName}List">
-              <ReloadOutlined />
-            </a-button>
-          </a-tooltip>
+          <div v-perm="'system:notice:list'">
+              <a-tooltip title="刷新">
+                <a-button type="link" @click="${businessName}List">
+                  <ReloadOutlined />
+                </a-button>
+              </a-tooltip>
+          </div>
+          <div v-perm="'${moduleName}:${businessName}:remove'">
+              <a-popconfirm
+                title="确定要删除吗"
+                :disabled="${businessName}Keys.length === 0"
+                placement="bottomRight"
+                @confirm="${businessName}Delete()"
+              >
+                <a-tooltip title="批量删除">
+                  <a-button danger type="link" :disabled="${businessName}Keys.length === 0">
+                    <DeleteOutlined />
+                  </a-button>
+                </a-tooltip>
+              </a-popconfirm>
+           </div>
          </a-flex>
 
         </a-flex>
@@ -72,20 +86,7 @@
          </a-tooltip>
        </div>
 
-       <div v-perm="'${moduleName}:${businessName}:remove'">
-        <a-popconfirm
-          title="确定要删除吗"
-          :disabled="${businessName}Keys.length === 0"
-          placement="bottomRight"
-          @confirm="${businessName}Delete()"
-        >
-          <a-tooltip title="批量删除">
-            <a-button danger type="link" :disabled="${businessName}Keys.length === 0">
-              <DeleteOutlined />
-            </a-button>
-          </a-tooltip>
-        </a-popconfirm>
-        </div>
+
 
         <FieldVue :columns="${businessName}Columns" :module-name="${businessName}Table.moduleName" />
         <div>

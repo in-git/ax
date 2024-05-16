@@ -1,12 +1,6 @@
 <template>
   <div>
-    <SystemModal
-      w="90%"
-      h="90%"
-      v-model:visible="unAssignModal"
-      title="取消授权"
-      @update:visible="unAssignModal = false"
-    >
+    <a-modal width="90%" v-model:open="unAssignModal" title="管理身份" get-container=".SystemRole">
       <div>
         <a-card title="取消授权" :body-style="{ overflow: 'auto' }">
           <template #extra>
@@ -59,12 +53,11 @@
           </a-table>
         </div>
       </div>
-    </SystemModal>
+    </a-modal>
   </div>
 </template>
 
 <script setup lang="ts">
-import SystemModal from '@/components/modal/SysModal.vue';
 import { formatColumns } from '@/utils/table/table';
 import type { PaginationProps } from 'ant-design-vue/es/pagination';
 import { userColumns } from './columns';

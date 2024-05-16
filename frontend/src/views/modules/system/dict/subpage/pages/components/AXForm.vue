@@ -6,7 +6,12 @@
     :wrapper-col="{ span: 8, offset: 1 }"
     :label-col="{ span: 4, offset: 4 }"
   >
-    <SystemModal title="字典数据" v-model:visible="dataShowForm">
+    <a-modal
+      get-container=".SystemDictData"
+      title="字典数据"
+      :footer="false"
+      v-model:open="dataShowForm"
+    >
       <a-card title="编辑/新增" class="form__head">
         <template #extra>
           <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
@@ -90,13 +95,12 @@
           <a-textarea placeholder="请输入备注" v-model:value="dataForm.remark"></a-textarea>
         </a-form-item>
       </a-card>
-    </SystemModal>
+    </a-modal>
   </a-form>
 </template>
 
 <script setup lang="ts">
 import { createData, updateData } from '@/api/modules/system/dict/dict.data';
-import SystemModal from '@/components/modal/SysModal.vue';
 import { isOptions } from '@/global/options/system';
 import { response } from '@/utils/table/table';
 import Memo from '@/views/selector/memo/Memo.vue';

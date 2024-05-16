@@ -1,6 +1,6 @@
 <template>
   <PageContainer title="桌面配置">
-    <a-card class="card__container" :bordered="false">
+    <a-card class="ax_plain_card" :bordered="false">
       <template #title>
         <div class="text-12 system__subtitle">顶部导航</div>
       </template>
@@ -53,7 +53,7 @@
       </a-form>
     </a-card>
 
-    <a-card class="card__container" :bordered="false">
+    <a-card class="ax_plain_card" :bordered="false">
       <template #title>
         <div class="text-12 system__subtitle">桌面配置</div>
       </template>

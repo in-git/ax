@@ -2,8 +2,8 @@ import type { IQuery, TableConfig } from '@/api/config/types';
 import { response } from '@/utils/table/table';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons-vue';
 import type { ItemType } from 'ant-design-vue';
-import { delMenu } from './curd';
-import { menuForm, resetMenuForm, showMenuForm } from './form';
+import { menuDelete } from './curd';
+import { menuForm, menuResetForm, menuShowForm } from './form';
 
 interface MenuQuery {
   menuName: string;
@@ -34,9 +34,9 @@ export const menuItems: ItemType[] = [
     icon: h(PlusOutlined),
     onClick() {
       let parentId = menuForm.value.menuId;
-      resetMenuForm();
+      menuResetForm();
       menuForm.value.parentId = parentId;
-      showMenuForm.value = true;
+      menuShowForm.value = true;
     },
   },
   {
@@ -44,7 +44,7 @@ export const menuItems: ItemType[] = [
     key: 'delete',
     icon: h(DeleteOutlined),
     onClick() {
-      response(delMenu, menuKeys.value);
+      response(menuDelete, menuKeys.value);
     },
   },
 ];

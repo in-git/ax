@@ -4,7 +4,7 @@ import { response } from '@/utils/table/table';
 import { deptForm, deptResetForm, deptShowForm } from './form';
 import { deptKeys, deptQuery, deptTable } from './table';
 
-function convertToTree(data: SystemDept[]): SystemDept[] {
+function convertMenuDataToTree(data: SystemDept[]): SystemDept[] {
   const map: { [key: number]: SystemDept } = {};
   const tree: SystemDept[] = [];
   data.forEach(item => {
@@ -23,7 +23,7 @@ export const deptList = async () => {
   deptTable.value.loading = true;
   const { data } = await fetchDeptList(deptQuery.value);
   if (data.data) {
-    deptTable.value.data = convertToTree(data.data);
+    deptTable.value.data = convertMenuDataToTree(data.data);
     deptQuery.value.total = data.data?.length;
   }
   deptTable.value.loading = false;

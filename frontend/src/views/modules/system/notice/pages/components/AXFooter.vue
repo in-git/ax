@@ -1,5 +1,5 @@
 <template>
-  <a-card :bordered="false" class="card__footer">
+  <a-card :bordered="false" :bodyStyle="{ padding: '4px 12px' }" class="ax_plain_card">
     <a-flex justify="space-between" :align="'center'">
       <div>
         <span>已选:</span>

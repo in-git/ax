@@ -58,7 +58,15 @@ const onError = () => {
   getCaptcha();
 };
 
-/* 登录,登录成功后，会记住账号密码 */
+/**
+ * @description:
+ *    登录账号
+ *   1. 设置token
+ *   2. 获取动态路由
+ *   3. 关闭登录窗口
+ *   4. 获取用户信息
+ *   5. 获取系统通知
+ */
 export const enter = async () => {
   try {
     loginLoading.value = true;
@@ -85,9 +93,9 @@ export const enter = async () => {
     }
     store.$state.token = data.token;
     await getProfile();
+    await getUserRouters();
     changeMode('login');
     closeWindow('login');
-    getUserRouters();
   } catch (error) {
     onError();
   }

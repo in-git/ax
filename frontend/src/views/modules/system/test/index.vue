@@ -1,9 +1,12 @@
 <template>
-  <a-card class="system__template test">
+  <a-card
+    class="ax__template"
+    :body-style="{ height: '100%', overflow: 'hidden', paddingBottom: '0' }"
+  >
     <a-flex vertical class="h-100">
       <!-- 顶部筛选，查询选项 -->
       <HeadVue />
-      <!-- 中间数据 -->
+      <!-- 表单数据 -->
       <div class="data__content">
         <TableVue v-if="viewMode === 'table'"></TableVue>
         <CardVue v-else></CardVue>
@@ -13,8 +16,6 @@
       <!-- 表单编辑 -->
       <FormVue />
     </a-flex>
-
-    <!-- end -->
   </a-card>
 </template>
 
@@ -32,12 +33,4 @@ onMounted(async () => {
 });
 </script>
 
-<style lang="scss" scoped>
-.test {
-  height: 100%;
-  overflow-y: hidden;
-  :deep(.ant-card-body) {
-    height: 100%;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

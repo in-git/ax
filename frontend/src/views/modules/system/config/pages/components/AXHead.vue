@@ -1,5 +1,5 @@
 <template>
-  <a-card class="table__head">
+  <a-card class="ax_sticky_top">
     <template #title>
       <h3 class="text-14">系统配置列表</h3>
     </template>
@@ -7,7 +7,7 @@
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="configList"
+          @press-enter="configList"
           v-model:value="configQuery.configName"
           style="width: 160px"
           placeholder="请输入参数名称"
@@ -16,7 +16,7 @@
       </div>
       <div>
         <a-input
-          @blur="configList"
+          @press-enter="configList"
           v-model:value="configQuery.configKey"
           style="width: 160px"
           placeholder="请输入参数键名"
@@ -29,7 +29,7 @@
           v-model:value="configQuery.configType"
           style="width: 160px"
           allow-clear
-          @blur="configList"
+          @press-enter="configList"
           :options="configTypeOptions"
         ></a-radio-group>
       </div>

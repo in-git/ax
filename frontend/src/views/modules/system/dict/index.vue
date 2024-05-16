@@ -1,8 +1,5 @@
 <template>
-  <a-card
-    class="system__template"
-    :body-style="{ height: '100%', overflow: 'hidden', paddingBottom: '0' }"
-  >
+  <a-card class="ax__template SystemDict" :body-style="bodyStyle">
     <a-flex vertical class="h-100">
       <HeadVue />
       <div class="data__content">
@@ -16,6 +13,7 @@
 </template>
 
 <script setup lang="ts">
+import { bodyStyle } from '@/global/config/gen';
 import { typeList } from './data/curd';
 import { viewMode } from './data/table';
 import FooterVue from './pages/components/AXFooter.vue';

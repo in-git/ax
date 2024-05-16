@@ -1,7 +1,7 @@
 <template>
   <PageContainer title="网络设置">
     <BaseURL />
-    <a-card class="mt-8 h-100 card__container" :body-style="{ height: '100%' }" :bordered="false">
+    <a-card class="mt-8 h-100 ax_plain_card" :body-style="{ height: '100%' }" :bordered="false">
       <template #title>
         <div class="system__subtitle">其他配置</div>
       </template>

@@ -14,9 +14,6 @@
         }"
         :customRow="customRow"
         rowKey="userId"
-        :scroll="{
-          x: 100,
-        }"
       >
         <template #bodyCell="{ column, record }">
           <template v-if="column.dataIndex === 'operation'">

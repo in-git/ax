@@ -37,12 +37,13 @@ export interface Meta {
   noCache: boolean;
   link?: string;
 }
+
 export interface UserProfileRes {
   msg: string;
-  postGroup: string;
+  postGroup: SystemPost[];
   code: number;
   data: UserProfileData;
-  roleGroup: string;
+  roleGroup: SystemRole[];
 }
 
 export interface UserProfileData {

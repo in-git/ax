@@ -2,6 +2,11 @@ import type { ColumnProps } from '@/types/system';
 import { message } from 'ant-design-vue';
 import { compareDateStrings } from '../common/utils';
 
+/**
+ * @description: 统一请求反馈,响应后端返回的消息
+ * @param {function} request API请求
+ * @param {array} arg 参数列表
+ */
 export const response = async (request: (...arg: any) => any, ...arg: any) => {
   try {
     const { data } = await request(...arg);
