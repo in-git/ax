@@ -1,5 +1,10 @@
 <template>
-  <a-modal v-model:open="resourceModal" title="管理身份" get-container=".SystemRole">
+  <a-modal
+    v-model:open="resourceModal"
+    title="管理身份"
+    get-container=".SystemRole"
+    :footer="false"
+  >
     <a-form :model="roleForm" @finish="submit" :label-col="{ span: 4 }">
       <a-card>
         <a-flex :justify="'space-between'">
@@ -77,6 +82,7 @@ const submit = async () => {
   if (!(roleForm.value.deptIds instanceof Array)) {
     roleForm.value.deptIds = treeSelectData.checked.concat(treeSelectData.halfChecked);
   }
+
   const { data } = await roleDataScope(roleForm.value);
   message.success(data.msg);
   resourceModal.value = false;

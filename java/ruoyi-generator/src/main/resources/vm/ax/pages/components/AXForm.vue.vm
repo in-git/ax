@@ -19,7 +19,7 @@
      >
       <a-card title="编辑/新增" class="form__head">
         <template #extra>
-          <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
+          <a-button htmlType="submit" type="primary" :loading="${businessName}Table.loading" block>保存</a-button>
         </template>
 #foreach($column in $columns)
 #set($comment=$column.columnComment)
@@ -114,19 +114,17 @@ import {
   create${BusinessName},
   update${BusinessName}} from
 '@/api/modules/${moduleName}/${businessName}/${businessName}';
+import { ${businessName}Table } from '../../data/table';
 
-const loading = ref(false)
 
 const submit = async () => {
-  loading.value = true
+  ${businessName}Table.value.loading = true
     if (${businessName}Form.value.$Key) {
     await response(update${BusinessName}, ${businessName}Form.value);
   } else {
     await response(create${BusinessName}, ${businessName}Form.value);
   }
   await ${businessName}List();
-  loading.value = false
-  ${businessName}ShowForm.value = false;
 };
 </script>
 

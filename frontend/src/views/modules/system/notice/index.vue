@@ -1,5 +1,5 @@
 <template>
-  <a-card class="ax__template" :body-style="bodyStyle">
+  <a-card class="ax__template SystemNotice" :body-style="bodyStyle">
     <a-flex vertical class="h-100">
       <!-- 顶部筛选，查询选项 -->
       <HeadVue />

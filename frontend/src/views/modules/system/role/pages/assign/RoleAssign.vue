@@ -5,6 +5,7 @@
       v-model:open="allocateUserModal"
       title="管理身份"
       get-container=".SystemRole"
+      :footer="false"
     >
       <div>
         <a-card title="新增授权" :body-style="{ height: '100%' }">

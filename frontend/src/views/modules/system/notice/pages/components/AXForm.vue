@@ -1,6 +1,6 @@
 <template>
   <a-modal
-    get-container=".ax__template"
+    get-container=".SystemNotice"
     width="70%"
     title="通知公告"
     :footer="false"

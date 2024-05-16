@@ -19,7 +19,7 @@
     >
       <a-card class="flex-1" title="基础配置">
         <template #extra>
-          <a-button type="primary" :loading="loading" htmlType="submit">保存</a-button>
+          <a-button type="primary" :loading="menuTable.loading" htmlType="submit">保存</a-button>
         </template>
         <a-row :gutter="16">
           <a-col :span="12">
@@ -96,34 +96,31 @@
 <script setup lang="ts">
 import { createMenu, updateMenu } from '@/api/modules/system/menu/menu';
 import { statusOptions, visibleOptions } from '@/global/options/system';
+import { response } from '@/utils/table/table';
 import Gallery from '@/views/selector/gallery/Gallery.vue';
 import type { SmileOutlined } from '@ant-design/icons-vue';
-import { message } from 'ant-design-vue';
 import { menuList } from '../../data/curd';
 import { listMenu, menuTableConfig } from '../../data/data';
 import { menuForm, menuShowForm } from '../../data/form';
 import { menuTypeOptions } from '../../data/options';
+import { menuTable } from '../../data/table';
 import ParamVue from './form/Params.vue';
 
 const treeSelected = ref<number[]>([]);
-const loading = ref(false);
+// 图片选择器
 const visible = ref(false);
 const treeData = ref<any[]>([]);
 
 const submit = async () => {
-  let msg = '';
-  loading.value = true;
+  menuTable.value.loading = true;
   /* update */
   if (menuForm.value.menuId) {
-    const { data } = await updateMenu(menuForm.value);
-    msg = data.msg;
+    await response(updateMenu, menuForm.value);
   } else {
-    const { data } = await createMenu(menuForm.value);
-    msg = data.msg;
+    await response(createMenu, menuForm.value);
   }
-  loading.value = false;
-  message.success(msg);
-  menuShowForm.value = !menuShowForm.value;
+  menuTable.value.loading = false;
+  menuShowForm.value = false;
   menuList();
 };
 watch(

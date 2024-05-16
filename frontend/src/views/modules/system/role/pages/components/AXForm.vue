@@ -1,5 +1,11 @@
 <template>
-  <a-modal width="90%" v-model:open="showRoleForm" title="管理身份" get-container=".SystemRole">
+  <a-modal
+    width="90%"
+    :footer="false"
+    v-model:open="showRoleForm"
+    title="管理身份"
+    get-container=".SystemRole"
+  >
     <a-form :model="roleForm" @finish="submit" :label-col="{ span: 6 }" label-align="left">
       <div v-if="roleForm" class="h-100 flex flex-col">
         <div class="flex-1">

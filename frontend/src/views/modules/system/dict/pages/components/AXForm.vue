@@ -51,14 +51,18 @@ const loading = ref(false);
 
 const submit = async () => {
   loading.value = true;
-  if (typeForm.value.dictId) {
-    await response(updateType, typeForm.value);
-  } else {
-    await response(createType, typeForm.value);
+  try {
+    if (typeForm.value.dictId) {
+      await response(updateType, typeForm.value);
+    } else {
+      await response(createType, typeForm.value);
+    }
+    await typeList();
+    loading.value = false;
+    typeShowForm.value = false;
+  } catch (error) {
+    loading.value = false;
   }
-  await typeList();
-  loading.value = false;
-  typeShowForm.value = false;
 };
 </script>
 

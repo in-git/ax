@@ -14,7 +14,9 @@
     >
       <a-card title="编辑/新增" class="form__head">
         <template #extra>
-          <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
+          <a-button htmlType="submit" type="primary" :loading="testTable.loading" block>
+            保存
+          </a-button>
         </template>
         <a-form-item label="文本字段" name="textField">
           <a-input placeholder="请输入文本字段" v-model:value="testForm.textField">
@@ -99,19 +101,16 @@ import { response } from '@/utils/table/table';
 import Memo from '@/views/selector/memo/Memo.vue';
 import { testList } from '../../data/curd';
 import { testForm, testRules, testShowForm } from '../../data/form';
-
-const loading = ref(false);
+import { testTable } from '../../data/table';
 
 const submit = async () => {
-  loading.value = true;
+  testTable.value.loading = true;
   if (testForm.value.testId) {
     await response(updateTest, testForm.value);
   } else {
     await response(createTest, testForm.value);
   }
   await testList();
-  loading.value = false;
-  testShowForm.value = false;
 };
 </script>
 

@@ -117,7 +117,7 @@ const isFullscreen = ref(false);
 
 const windowProps = ref<DragType>({
   x: Math.floor(window.innerWidth / 2 - props.w / 2 + offset - 32),
-  y: Math.floor(window.innerHeight / 2 - props.h / 2 + offset),
+  y: Math.floor(window.innerHeight / 2 - props.h / 2 + offset / 2),
   w: 1,
   h: 1,
 });
