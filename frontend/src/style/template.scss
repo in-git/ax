@@ -12,6 +12,7 @@
 		flex: 1;
 		overflow-y: auto;
 		margin-top: 8px;
+		height: 100%;
 	}
 	/* 避免出现滚动条 */
 	&::-webkit-scrollbar {

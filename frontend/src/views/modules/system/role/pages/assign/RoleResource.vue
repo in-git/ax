@@ -1,12 +1,6 @@
 <template>
-  <a-form :model="roleForm" @finish="submit" :wrapper-col="{ span: 8 }" :label-col="{ span: 4 }">
-    <SystemModal
-      w="90%"
-      h="90%"
-      v-model:visible="resourceModal"
-      title="身份资源分配"
-      @update:visible="resourceModal = false"
-    >
+  <a-modal v-model:open="resourceModal" title="管理身份" get-container=".SystemRole">
+    <a-form :model="roleForm" @finish="submit" :label-col="{ span: 4 }">
       <a-card>
         <a-flex :justify="'space-between'">
           <div>
@@ -62,13 +56,12 @@
           </template>
         </a-card>
       </div>
-    </SystemModal>
-  </a-form>
+    </a-form>
+  </a-modal>
 </template>
 
 <script setup lang="ts">
 import { roleDataScope } from '@/api/modules/system/role/role';
-import SystemModal from '@/components/modal/SysModal.vue';
 import { message, TreeSelect } from 'ant-design-vue';
 import { allocatingResource, roleList } from '../../data/curd';
 import { resourceModal, roleForm } from '../../data/form';

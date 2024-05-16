@@ -11,9 +11,9 @@
     <SystemModal
       w="90%"
       h="90%"
-      v-model:visible="showUserForm"
+      v-model:visible="userShowForm"
       title="用户中心"
-      @update:visible="showUserForm = false"
+      @update:visible="userShowForm = false"
     >
       <div>
         <div class="mb-8 px-12 py-8">
@@ -84,8 +84,8 @@ import { createUser, updateUser } from '@/api/modules/system/user/user';
 import SystemModal from '@/components/modal/SysModal.vue';
 import { sexOptions, statusOptions } from '@/global/options/system';
 import { message } from 'ant-design-vue';
-import { loadUserData } from '../data/curd';
-import { showUserForm, userForm } from '../data/form';
+import { userList } from '../../data/curd';
+import { userForm, userShowForm } from '../../data/form';
 import RightVue from './right/Right.vue';
 
 const loading = ref(false);
@@ -102,8 +102,8 @@ const submit = async () => {
     }
     loading.value = false;
     message.success(result);
-    showUserForm.value = false;
-    loadUserData();
+    userShowForm.value = false;
+    userList();
   } catch (error) {
     loading.value = false;
   }

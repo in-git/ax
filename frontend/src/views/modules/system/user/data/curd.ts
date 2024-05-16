@@ -1,50 +1,58 @@
-import { deleteUsers, getUser, userList } from '@/api/modules/system/user/user';
-import { message, Modal } from 'ant-design-vue';
-import { userConfig, userQuery } from './data';
-import { resetUserForm, showUserForm, userForm, userPosts, userRoles } from './form';
+import {
+  deleteUser,
+  exportUser,
+  fetchUserById,
+  fetchUserList,
+} from '@/api/modules/system/user/user';
+import { response } from '@/utils/table/table';
+import { userForm, userResetForm, userShowForm, userWithAuthForm } from './form';
+import { userKeys, userQuery, userTable } from './table';
 
-export const delUser = (id?: number) => {
-  Modal.confirm({
-    title: '警告',
-    content: '是否要删除用户',
-    async onOk() {
-      let ids = [];
-      if (id) {
-        ids = [id];
-      } else {
-        ids = userConfig.value.selectedKeys;
-      }
-      const { data } = await deleteUsers(ids);
-
-      await loadUserData();
-      message.success(data.msg);
-    },
-  });
+export const userList = async () => {
+  try {
+    userTable.value.loading = true;
+    const { data } = await fetchUserList(userQuery.value);
+    userTable.value.data = data.rows;
+    userQuery.value.total = data.total;
+    userTable.value.loading = false;
+  } catch (error) {
+    userTable.value.loading = false;
+  }
 };
-export const editUserConfig = async (id?: string) => {
-  const { data } = await getUser(id || '');
 
+export const userEdit = async (id?: number) => {
+  let targetId: number = id ? id : userKeys.value[0];
+  userTable.value.loading = true;
+  const { data } = await fetchUserById(targetId || '');
+
+  userWithAuthForm.value = data;
   if (data.data) {
     userForm.value = data.data;
-
-    userForm.value.roleIds = data.roleIds;
-    userForm.value.postIds = data.postIds;
   }
-  userRoles.value = data.roles;
-  userPosts.value = data.posts;
 
-  showUserForm.value = true;
+  userShowForm.value = true;
+  userForm.value.roleIds = data.roleIds;
+  userForm.value.postIds = data.postIds;
+  userTable.value.loading = false;
 };
 
-export const createUser = () => {
-  showUserForm.value = false;
-  resetUserForm();
+export const userCreate = async () => {
+  userResetForm();
+  await userEdit();
+  userShowForm.value = true;
 };
 
-export const loadUserData = async () => {
-  userConfig.value.loading = true;
-  const { data } = await userList(userQuery.value);
-  userConfig.value.data = data.rows;
-  userQuery.value.total = data.total;
-  userConfig.value.loading = false;
+export const userDelete = async (id?: number) => {
+  let ids = id ? [id] : userKeys.value;
+  await response(deleteUser, ids);
+  await userList();
+  userKeys.value = [];
+};
+
+// 导出EXCEL文件
+export const userExport = () => {
+  return exportUser({
+    pageNum: userQuery.value.pageNum,
+    pageSize: userQuery.value.pageSize,
+  });
 };

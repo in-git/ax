@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-card title="权限分配">
+    <a-card title="权限分配" v-if="userWithAuthForm">
       <a-space class="w-100" direction="vertical" :size="20">
         <div class="flex justify-between">
           <div>角色分配</div>
@@ -13,7 +13,7 @@
             }"
             allowClear
             mode="multiple"
-            :options="userRoles"
+            :options="userWithAuthForm.roles"
           ></a-select>
         </div>
 
@@ -28,11 +28,11 @@
               label: 'postName',
               value: 'postId',
             }"
-            :options="userPosts"
+            :options="userWithAuthForm.posts"
           ></a-select>
         </div>
 
-        <div class="flex justify-between">
+        <a-flex class="flex justify-between">
           <div>部门分配</div>
           <a-directory-tree
             style="width: 200px"
@@ -44,15 +44,15 @@
             :fieldNames="{ children: 'children', title: 'label', key: 'id' }"
             @select="onSelect"
           ></a-directory-tree>
-        </div>
+        </a-flex>
       </a-space>
     </a-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import { userForm, userPosts, userRoles } from '../../data/form';
-import { deptTreeData, loadDeptTree } from '../../dept/data';
+import { userForm, userWithAuthForm } from '../../../data/form';
+import { deptTreeData, loadDeptTree } from '../../../dept/data';
 
 const treeData = ref();
 
