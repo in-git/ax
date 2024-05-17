@@ -48,3 +48,25 @@
 		transform: scale(1.1);
 	}
 }
+/* 文本渐变色 */
+.text-linear-gradient {
+	background: var(--linear-gradient);
+	-webkit-background-clip: text;
+	color: transparent;
+	text-align: center;
+	animation: text-linear-gradient 2s ease infinite;
+	background-size: 200% 200%;
+	@keyframes text-linear-gradient {
+		0% {
+			background-position: 0 12%;
+		}
+
+		50% {
+			background-position: 100% 100%;
+		}
+
+		100% {
+			background-position: 0 12%;
+		}
+	}
+}

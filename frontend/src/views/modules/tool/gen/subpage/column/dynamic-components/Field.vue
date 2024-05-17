@@ -113,7 +113,7 @@
 
 <script setup lang="ts">
 import { optionSelect } from '@/api/modules/system/dict/dict';
-import { dictToOptions, formatColumns } from '@/utils/table/table';
+import { formatColumns } from '@/utils/table/table';
 import { fieldColumns } from '../data/columns';
 import { GenStepEnum, nextStep } from '../data/config';
 import { codeFormData } from '../data/data';
@@ -122,6 +122,15 @@ import CheckboxVue from './components/Checkbox.vue';
 import TopTool from './components/TopTool.vue';
 
 const switchKeys = ['isInsert', 'isEdit', 'isList', 'isQuery', 'isRequired', 'isPk'];
+/* 字典类型转下拉框数据 */
+const dictToOptions = (dict: SystemDict[]) => {
+  return dict.map(e => {
+    return {
+      label: e.dictName,
+      value: e.dictType,
+    };
+  });
+};
 
 const options = ref();
 const getOptions = async () => {
