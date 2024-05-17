@@ -1,18 +1,27 @@
 <template>
-  <a-card class="table__head" :body-style="{ height: 'fit-content' }">
+  <a-card class="ax_sticky_top">
     <template #title>
       <h3 class="text-14">系统测试表</h3>
     </template>
 
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
-        <a-range-picker
-          @change="onChange"
-          v-model:value="date"
-          class="w-100"
-          :format="dateFormat"
-          :locale="locale"
-        ></a-range-picker>
+        <a-input
+          @press-enter="testList"
+          v-model:value="testQuery.textareaField"
+          style="width: 160px"
+          placeholder="请输入文本域"
+          allow-clear
+        ></a-input>
+      </div>
+      <div>
+        <a-input
+          @press-enter="testList"
+          v-model:value="testQuery.treeField"
+          style="width: 160px"
+          placeholder="请输入树形选择器"
+          allow-clear
+        ></a-input>
       </div>
       <a-button type="primary" @click="testList">搜索</a-button>
     </a-flex>
@@ -94,23 +103,9 @@ import {
   type DeleteOutlined,
   type ReloadOutlined,
 } from '@ant-design/icons-vue';
-import locale from 'ant-design-vue/es/date-picker/locale/zh_CN';
-import type { Dayjs } from 'dayjs';
 import { testColumns } from '../../data/column';
 import { testCreate, testDelete, testEdit, testExport, testList } from '../../data/curd';
 import { testKeys, testQuery, testTable, viewMode } from '../../data/table';
-
-const dateFormat = 'YYYY-MM-DD';
-type RangeValue = [Dayjs, Dayjs];
-const date = ref<RangeValue>();
-
-const onChange = (_: any, dateStrings: [string, string]) => {
-  testQuery.value.params = {
-    beginTime: dateStrings[0],
-    endTime: dateStrings[1],
-  };
-  testList();
-};
 </script>
 
 <style lang="scss" scoped></style>

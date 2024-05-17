@@ -27,11 +27,11 @@
             <template #overlay>
               <a-menu>
                 <div v-perm="'system:type:export'">
-                  <a-menu-item @click="typeExport">
+                  <a-menu-item @click="typeDelete()">
                     <template #icon>
-                      <ExportOutlined />
+                      <DeleteOutlined />
                     </template>
-                    导出
+                    删除
                   </a-menu-item>
                 </div>
               </a-menu>
@@ -54,7 +54,7 @@ import { useArrayFilter, useCloned } from '@vueuse/core';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { typeColumns } from '../../data/column';
-import { editType, typeEdit, typeExport } from '../../data/curd';
+import { editType, typeDelete, typeEdit } from '../../data/curd';
 import { typeForm } from '../../data/form';
 import { typeKeys, typeQuery, typeTable } from '../../data/table';
 

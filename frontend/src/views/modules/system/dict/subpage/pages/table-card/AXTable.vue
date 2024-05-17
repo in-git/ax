@@ -27,11 +27,11 @@
             <template #overlay>
               <a-menu>
                 <div v-perm="'system:data:export'">
-                  <a-menu-item @click="dataExport">
+                  <a-menu-item @click="dataDelete(record.dictCode)">
                     <template #icon>
-                      <ExportOutlined />
+                      <DeleteOutlined />
                     </template>
-                    导出
+                    删除
                   </a-menu-item>
                 </div>
               </a-menu>
@@ -49,7 +49,7 @@ import { useArrayFilter, useCloned } from '@vueuse/core';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { dataColumns } from '../../data/column';
-import { dataEdit, dataExport } from '../../data/curd';
+import { dataDelete, dataEdit } from '../../data/curd';
 import { dataForm } from '../../data/form';
 import { dataKeys, dataQuery, dataTable } from '../../data/table';
 

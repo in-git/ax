@@ -1,5 +1,5 @@
 <template>
-  <a-flex justify="center" :align="'center'" class="h-100 w-100">
+  <a-flex justify="center" :align="'center'" class="system__loading">
     <a-flex class="text-center gr-8" vertical>
       <div class="text-linear-gradient">AX 管理系统</div>
       <div class="system__subtitle">
@@ -25,5 +25,7 @@ withDefaults(
 <style lang="scss" scoped>
 .system__loading {
   text-align: center;
+  width: 100%;
+  height: 100%;
 }
 </style>

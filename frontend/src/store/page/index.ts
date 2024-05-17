@@ -17,7 +17,6 @@ const usePageStore = defineStore('page', {
     desktop: {
       background: {
         type: 'image',
-        src: '',
         brightness: 0,
         blur: 0,
         grayscale: 0,

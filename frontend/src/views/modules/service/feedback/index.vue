@@ -1,5 +1,5 @@
 <template>
-  <a-card class="system__template">
+  <a-card class="ax__template">
     <template #extra>
       <a-button @click="getData" :loading="loading">刷新</a-button>
     </template>
@@ -94,7 +94,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.system__template {
+.ax__template {
   :deep(.ant-card-body) {
     height: calc(100% - 38px);
     display: flex;

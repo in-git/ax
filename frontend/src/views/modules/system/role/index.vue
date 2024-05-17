@@ -1,5 +1,5 @@
 <template>
-  <a-card class="system__template role">
+  <a-card class="ax__template SystemRole" :body-style="bodyStyle">
     <a-flex vertical class="h-100">
       <!-- 顶部筛选，查询选项 -->
       <HeadVue />
@@ -20,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import { bodyStyle } from '@/global/config/gen';
 import { roleList } from './data/curd';
 import { viewMode } from './data/table';
 import RoleAssign from './pages/assign/RoleAssign.vue';
@@ -37,7 +38,7 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-.role {
+.ax__template {
   :deep(.ant-card-body) {
     height: 100%;
   }

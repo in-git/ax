@@ -1,29 +1,46 @@
 import type { SystemMenu } from '@/api/modules/system/menu/types';
+import type { Rule } from 'ant-design-vue/es/form/interface';
 
-let object: SystemMenu = {
-  createTime: '',
+export const menuShowForm = ref(false);
+const form: SystemMenu = {
   menuId: 0,
   menuName: '',
   parentId: 0,
   orderNum: 0,
   path: '',
+  component: '',
   query: '',
   isFrame: '1',
   isCache: '1',
-  menuType: 'C',
-  visible: '0',
+  menuType: 'M',
+  visible: '1',
   status: '0',
   perms: '',
   icon: '',
-  children: [],
+  createBy: '',
+  createTime: null,
+  updateBy: '',
+  updateTime: null,
+  remark: '',
 };
+
+// 当前选中的一项，用于删除，编辑
 export const menuForm = ref<SystemMenu>({
-  ...object,
+  ...form,
 });
 
-export const showMenuForm = ref(false);
-export const resetMenuForm = () => {
+// 重置表格
+export const menuResetForm = () => {
   menuForm.value = {
-    ...object,
+    ...form,
   };
+};
+
+// 表格校验
+export const menuRules: Record<string, Rule[]> = {
+  menuName: [{ required: true, trigger: 'change' }],
+  orderNum: [{ required: false, trigger: 'change' }],
+  path: [{ required: false, trigger: 'change' }],
+  component: [{ required: false, trigger: 'change' }],
+  query: [{ required: false, trigger: 'change' }],
 };

@@ -3,20 +3,25 @@ import Login from '@/views/desktop/login/Login.vue';
 import Browser from '@/views/widget/browser/Browser.vue';
 import ImageVue from '@/views/widget/image/Image.vue';
 import Notepad from '@/views/widget/notepad/Notepad.vue';
+import type { NotepadViewMode } from '@/views/widget/notepad/types';
 import Video from '@/views/widget/video/Video.vue';
 import { openWindow } from './window';
 
-type Notepad = {
+type BrowserProps = { src?: string; html?: string; title?: string };
+type NotepadConfig = {
   data: string;
   allowSave?: boolean;
+  mode?: NotepadViewMode;
+  /* 传入ID则多开记事本 */
+  id?: string;
 };
 
 /**
- * @description: 打开登陆窗口
+ * @description: 打开登录窗口
  */
 export const openLogin = () => {
   openWindow({
-    title: '登陆',
+    title: '登录',
     component: markRaw(Login),
     icon: getStaticImage('image-icon/user.png'),
     id: 'login',
@@ -24,17 +29,18 @@ export const openLogin = () => {
     h: 600,
   });
 };
+
 /* 打开记事本 */
-export const openNotepad = (config: Notepad) => {
+export const openNotepad = (config: NotepadConfig) => {
   openWindow({
     title: '记事本',
     component: markRaw(Notepad),
-    id: 'notepad',
+    id: config.id ? config.id : 'notepad',
     icon: getStaticImage('image-icon/notepad.png'),
-    dark: true,
     data: {
       data: config.data,
       allowSave: config.allowSave,
+      mode: config.mode || 'text',
     },
   });
 };
@@ -64,8 +70,6 @@ export const openVideo = (src: string) => {
     },
   });
 };
-
-type BrowserProps = { src?: string; html?: string; title?: string };
 
 export const openBrowser = (config: BrowserProps) => {
   openWindow({

@@ -1,15 +1,5 @@
 <template>
-  <div class="qf-container flex flex-col">
-    <Transition enter-active-class="animate__animated animate__fadeIn">
-      <div class="banner" v-if="activeKey === 'token'">
-        <a-flex class="banner-text" :align="'center'" vertical justify="space-around">
-          <h3 class="text-36 text-bold text-center">千帆大模型</h3>
-          <div class="text-12 text-center my-24 w-40">
-            百度自研的旗舰级大规模⼤语⾔模型，覆盖海量中英文语料，具有强大的通用能力，可满足绝大部分对话问答、创作生成、插件应用场景要求
-          </div>
-        </a-flex>
-      </div>
-    </Transition>
+  <a-flex class="qf-container flex-col">
     <a-card :bordered="false">
       <a-tabs v-model:active-key="activeKey">
         <a-tab-pane key="token" tab="获取Token">
@@ -20,7 +10,7 @@
         </a-tab-pane>
       </a-tabs>
     </a-card>
-  </div>
+  </a-flex>
 </template>
 
 <script setup lang="ts">

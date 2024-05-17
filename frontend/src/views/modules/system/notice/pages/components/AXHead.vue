@@ -1,13 +1,13 @@
 <template>
-  <a-card class="table__head">
+  <a-card class="ax_sticky_top">
     <template #title>
-      <h3 class="text-14">公告列表</h3>
+      <h3 class="text-14">通知公告</h3>
     </template>
 
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="noticeList"
+          @press-enter="noticeList"
           v-model:value="noticeQuery.noticeTitle"
           style="width: 160px"
           placeholder="请输入公告标题"
@@ -20,19 +20,11 @@
           style="width: 160px"
           placeholder="请选择公告类型"
           allow-clear
-          @blur="noticeList"
+          @press-enter="noticeList"
           :options="noticeTypeOptions"
         ></a-select>
       </div>
-      <div>
-        <a-input
-          @blur="noticeList"
-          v-model:value="noticeQuery.status"
-          style="width: 160px"
-          placeholder="请输入公告状态"
-          allow-clear
-        ></a-input>
-      </div>
+
       <a-button type="primary" @click="noticeList">搜索</a-button>
     </a-flex>
 
@@ -55,14 +47,24 @@
             </a-tooltip>
           </div>
 
-          <a-tooltip title="刷新">
-            <a-button type="link" @click="noticeList">
-              <ReloadOutlined />
-            </a-button>
-          </a-tooltip>
+          <div v-perm="'system:notice:list'">
+            <a-tooltip title="刷新">
+              <a-button type="link" @click="noticeList">
+                <ReloadOutlined />
+              </a-button>
+            </a-tooltip>
+          </div>
         </a-flex>
       </a-flex>
       <a-flex>
+        <div v-perm="'system:notice:export'">
+          <a-tooltip title="导出">
+            <a-button type="link" @click="noticeExport">
+              <ExportOutlined />
+            </a-button>
+          </a-tooltip>
+        </div>
+
         <div v-perm="'system:notice:remove'">
           <a-popconfirm
             title="确定要删除吗"
@@ -79,17 +81,19 @@
         </div>
 
         <FieldVue :columns="noticeColumns" :module-name="noticeTable.moduleName" />
-        <a-tooltip title="卡片模式" @click="viewMode = 'card'" v-if="viewMode === 'table'">
-          <a-button type="link">
-            <OrderedListOutlined />
-          </a-button>
-        </a-tooltip>
+        <div>
+          <a-tooltip title="卡片模式" @click="viewMode = 'card'" v-if="viewMode === 'table'">
+            <a-button type="link">
+              <OrderedListOutlined />
+            </a-button>
+          </a-tooltip>
 
-        <a-tooltip title="表格模式" @click="viewMode = 'table'" v-else>
-          <a-button type="link">
-            <AppstoreAddOutlined />
-          </a-button>
-        </a-tooltip>
+          <a-tooltip title="表格模式" @click="viewMode = 'table'" v-else>
+            <a-button type="link">
+              <AppstoreAddOutlined />
+            </a-button>
+          </a-tooltip>
+        </div>
       </a-flex>
     </a-flex>
   </a-card>
@@ -104,7 +108,7 @@ import {
   type ReloadOutlined,
 } from '@ant-design/icons-vue';
 import { noticeColumns } from '../../data/column';
-import { noticeCreate, noticeDelete, noticeEdit, noticeList } from '../../data/curd';
+import { noticeCreate, noticeDelete, noticeEdit, noticeExport, noticeList } from '../../data/curd';
 import { noticeTypeOptions } from '../../data/options';
 import { noticeKeys, noticeQuery, noticeTable, viewMode } from '../../data/table';
 </script>

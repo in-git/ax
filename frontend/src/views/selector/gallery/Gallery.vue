@@ -79,7 +79,7 @@ watch(
 </script>
 
 <style lang="scss" scoped>
-$wh: 64px;
+$wh: 48px;
 .image-icon,
 .avatar {
   grid-template-columns: repeat(auto-fit, minmax($wh, 1fr));

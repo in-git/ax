@@ -3,10 +3,10 @@
     :rules="typeRules"
     :model="typeForm"
     @finish="submit"
-    :wrapper-col="{ span: 8, offset: 1 }"
+    :wrapper-col="{ offset: 1 }"
     :label-col="{ span: 4, offset: 4 }"
   >
-    <a-modal title="字典类型" v-model:open="typeShowForm" get-container=".system__template">
+    <a-modal title="字典类型" v-model:open="typeShowForm" get-container=".SystemDict">
       <a-card title="编辑/新增" class="form__head">
         <template #extra>
           <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
@@ -51,14 +51,18 @@ const loading = ref(false);
 
 const submit = async () => {
   loading.value = true;
-  if (typeForm.value.dictId) {
-    await response(updateType, typeForm.value);
-  } else {
-    await response(createType, typeForm.value);
+  try {
+    if (typeForm.value.dictId) {
+      await response(updateType, typeForm.value);
+    } else {
+      await response(createType, typeForm.value);
+    }
+    await typeList();
+    loading.value = false;
+    typeShowForm.value = false;
+  } catch (error) {
+    loading.value = false;
   }
-  await typeList();
-  loading.value = false;
-  typeShowForm.value = false;
 };
 </script>
 

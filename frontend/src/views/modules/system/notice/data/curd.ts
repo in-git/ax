@@ -1,14 +1,23 @@
-import { deleteNotice, fetchNoticeById, fetchNoticeList } from '@/api/modules/system/notice/notice';
+import {
+  deleteNotice,
+  exportNotice,
+  fetchNoticeById,
+  fetchNoticeList,
+} from '@/api/modules/system/notice/notice';
 import { response } from '@/utils/table/table';
 import { noticeForm, noticeResetForm, noticeShowForm } from './form';
 import { noticeKeys, noticeQuery, noticeTable } from './table';
 
 export const noticeList = async () => {
-  noticeTable.value.loading = true;
-  const { data } = await fetchNoticeList(noticeQuery.value);
-  noticeTable.value.data = data.rows;
-  noticeQuery.value.total = data.total;
-  noticeTable.value.loading = false;
+  try {
+    noticeTable.value.loading = true;
+    const { data } = await fetchNoticeList(noticeQuery.value);
+    noticeTable.value.data = data.rows;
+    noticeQuery.value.total = data.total;
+    noticeTable.value.loading = false;
+  } catch (error) {
+    noticeTable.value.loading = false;
+  }
 };
 
 export const noticeEdit = async (id?: number) => {
@@ -32,4 +41,11 @@ export const noticeDelete = async (id?: number) => {
   await response(deleteNotice, ids);
   await noticeList();
   noticeKeys.value = [];
+};
+// 导出EXCEL文件
+export const noticeExport = () => {
+  return exportNotice({
+    pageNum: noticeQuery.value.pageNum,
+    pageSize: noticeQuery.value.pageSize,
+  });
 };

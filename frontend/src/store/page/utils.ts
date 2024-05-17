@@ -1,27 +1,24 @@
-import { getStaticImage } from '@/api/utils/image';
-import { useTimeout } from '@vueuse/core';
+import { EventBusEnum } from '@/global/enum/eventBus';
+import { LocalforageEnum } from '@/global/enum/localforage';
+import { useEventBus } from '@vueuse/core';
+import localforage from 'localforage';
 import usePageStore from '.';
+import type { BackgroundType } from './types';
 /* 桌面背景加载 */
-export const backgroundLoading = ref(false);
+const bus = useEventBus(EventBusEnum.UPDATE_BACKGROUND);
 
-export const setBackground = (src: string, type: 'image' | 'video') => {
+/**
+ * @description: 统一设置壁纸，方法复用，谨慎修改
+ * @param {string} src
+ * @param {*} type
+ */
+export const setBackground = async (src: string, type: BackgroundType) => {
   const store = usePageStore();
   store.$state.desktop.background.type = type;
-  if (type === 'image') {
-    store.$state.desktop.background.src = `wallpaper/${src}`;
-    const img = new Image();
-    img.src = getStaticImage(`wallpaper/${src}`);
-    const closeLoading = () => {
-      backgroundLoading.value = false;
-    };
-    img.onload = () => closeLoading;
-    useTimeout(5000, {
-      callback: closeLoading,
-    });
-  } else {
-    store.$state.desktop.background.src = src;
-  }
-  backgroundLoading.value = true;
+  console.log(src);
+
+  await localforage.setItem(LocalforageEnum.BACKGROUND_SRC, `${src}`);
+  bus.emit();
 };
 
 /* 初始化模块宽高 ,在打开窗口和拖拽停止两个地方调用 */

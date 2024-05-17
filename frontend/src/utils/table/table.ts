@@ -2,6 +2,11 @@ import type { ColumnProps } from '@/types/system';
 import { message } from 'ant-design-vue';
 import { compareDateStrings } from '../common/utils';
 
+/**
+ * @description: 统一请求反馈,响应后端返回的消息
+ * @param {function} request API请求
+ * @param {array} arg 参数列表
+ */
 export const response = async (request: (...arg: any) => any, ...arg: any) => {
   try {
     const { data } = await request(...arg);
@@ -18,7 +23,12 @@ export const response = async (request: (...arg: any) => any, ...arg: any) => {
   }
 };
 
-export const formatColumns = (data: ColumnProps[], operationSlot = true) => {
+/**
+ * @description: 格式化表头，多处复用
+ * @param {ColumnProps} data 表头
+ * @param {*} operationSlot 是否有操作选项
+ */
+export const formatColumns = (data: ColumnProps[], operationSlot: boolean = true) => {
   let operation: ColumnProps = {
     title: '操作',
     dataIndex: 'operation',
@@ -55,15 +65,6 @@ export const dictDataToOptions = (dict: SystemDictData[]) => {
     return {
       label: e.dictLabel,
       value: e.dictValue,
-    };
-  });
-};
-/* 字典数据转下拉框数据 */
-export const dictToOptions = (dict: SystemDict[]) => {
-  return dict.map(e => {
-    return {
-      label: e.dictName,
-      value: e.dictType,
     };
   });
 };

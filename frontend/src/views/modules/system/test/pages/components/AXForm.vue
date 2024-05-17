@@ -1,44 +1,42 @@
 <template>
-  <a-form
-    :rules="testRules"
-    :model="testForm"
-    @finish="submit"
-    :label-col="{ span: 6 }"
-    label-align="left"
+  <a-modal
+    :footer="false"
+    title="系统测试表"
+    v-model:open="testShowForm"
+    get-container=".ax__template"
   >
-    <a-modal
-      :footer="false"
-      title="字典类型"
-      v-model:open="testShowForm"
-      get-container=".system__template"
+    <a-form
+      :rules="testRules"
+      :model="testForm"
+      @finish="submit"
+      :label-col="{ span: 6 }"
+      label-align="left"
     >
       <a-card title="编辑/新增" class="form__head">
         <template #extra>
-          <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
+          <a-button htmlType="submit" type="primary" :loading="testTable.loading" block>
+            保存
+          </a-button>
         </template>
-      </a-card>
-      <a-card class="mt-8">
         <a-form-item label="文本字段" name="textField">
           <a-input placeholder="请输入文本字段" v-model:value="testForm.textField">
             <template #addonAfter>
-              <a-flex :gap="8">
-                <a-popover trigger="click" title="快速录入">
-                  <BookOutlined />
-                  <template #content>
-                    <Memo v-model:value="testForm.textField" />
-                  </template>
-                </a-popover>
-              </a-flex>
+              <a-popover trigger="click" v-model:open="popVisible">
+                <BookOutlined />
+                <template #content>
+                  <Memo v-model:value="testForm.textField" @update:value="popVisible = false" />
+                </template>
+              </a-popover>
             </template>
           </a-input>
         </a-form-item>
         <a-form-item label="数字字段" name="numberField">
           <a-input placeholder="请输入数字字段" v-model:value="testForm.numberField">
             <template #addonAfter>
-              <a-popover trigger="click">
+              <a-popover trigger="click" v-model:open="popVisible">
                 <BookOutlined />
                 <template #content>
-                  <Memo v-model:value="testForm.numberField" />
+                  <Memo @update:value="popVisible = false" v-model:value="testForm.numberField" />
                 </template>
               </a-popover>
             </template>
@@ -59,7 +57,7 @@
         <a-form-item label="布尔字段" name="booleanField">
           <a-input placeholder="请输入布尔字段" v-model:value="testForm.booleanField">
             <template #addonAfter>
-              <a-popover trigger="click" title="快速录入">
+              <a-popover trigger="click">
                 <BookOutlined />
                 <template #content>
                   <Memo v-model:value="testForm.booleanField" />
@@ -83,7 +81,7 @@
         <a-form-item label="树形选择器" name="treeField">
           <a-input placeholder="请输入树形选择器" v-model:value="testForm.treeField">
             <template #addonAfter>
-              <a-popover trigger="click" title="快速录入">
+              <a-popover trigger="click">
                 <BookOutlined />
                 <template #content>
                   <Memo v-model:value="testForm.treeField" />
@@ -93,8 +91,8 @@
           </a-input>
         </a-form-item>
       </a-card>
-    </a-modal>
-  </a-form>
+    </a-form>
+  </a-modal>
 </template>
 
 <script setup lang="ts">
@@ -103,20 +101,19 @@ import { response } from '@/utils/table/table';
 import Memo from '@/views/selector/memo/Memo.vue';
 import { testList } from '../../data/curd';
 import { testForm, testRules, testShowForm } from '../../data/form';
-import {} from '../../data/options';
+import { testTable } from '../../data/table';
 
-const loading = ref(false);
+const popVisible = ref(false);
 
 const submit = async () => {
-  loading.value = true;
+  testTable.value.loading = true;
   if (testForm.value.testId) {
     await response(updateTest, testForm.value);
   } else {
     await response(createTest, testForm.value);
   }
-  await testList();
-  loading.value = false;
   testShowForm.value = false;
+  await testList();
 };
 </script>
 

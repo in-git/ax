@@ -6,12 +6,7 @@ import type { Rule } from 'ant-design-vue/es/form';
 import { nanoid } from 'nanoid';
 import { getUserRouters } from '../apps/data';
 import { getProfile } from '../toolbar/profile/data';
-
-export const requiredCaptcha = ref<boolean>(true);
-export const captchaImage = ref();
-type Mode = 'login' | 'register';
-export const loginLoading = ref<boolean>(false);
-export const loginMode = ref<Mode>('login');
+import type { Mode } from './types';
 
 let formObject = {
   username: 'observer',
@@ -19,6 +14,14 @@ let formObject = {
   uuid: '',
   code: '',
 };
+export const serverType = ref<'ax' | 'ry'>('ax');
+export const requiredCaptcha = ref<boolean>(true);
+export const captchaImage = ref();
+
+export const loginLoading = ref<boolean>(false);
+export const loginMode = ref<Mode>('quick-login');
+
+export const resetForm = () => {};
 
 export const loginForm = ref({
   ...formObject,
@@ -34,7 +37,7 @@ export const getCaptcha = async () => {
   loginForm.value.uuid = data.uuid;
 };
 
-/* 修改登陆注册模式 */
+/* 修改登录注册模式 */
 export const changeMode = (mode: Mode) => {
   if (mode === 'register') {
     loginForm.value = {
@@ -55,7 +58,15 @@ const onError = () => {
   getCaptcha();
 };
 
-/* 登录,登陆成功后，会记住账号密码 */
+/**
+ * @description:
+ *    登录账号
+ *   1. 设置token
+ *   2. 获取动态路由
+ *   3. 关闭登录窗口
+ *   4. 获取用户信息
+ *   5. 获取系统通知
+ */
 export const enter = async () => {
   try {
     loginLoading.value = true;
@@ -68,7 +79,7 @@ export const enter = async () => {
     const store = useUserStore();
 
     loginLoading.value = false;
-    message.success('登陆成功');
+    message.success('登录成功');
     const index = store.$state.history.findIndex(e => {
       return e.username === loginForm.value.username && loginForm.value.password === e.password;
     });
@@ -82,9 +93,9 @@ export const enter = async () => {
     }
     store.$state.token = data.token;
     await getProfile();
+    await getUserRouters();
     changeMode('login');
     closeWindow('login');
-    getUserRouters();
   } catch (error) {
     onError();
   }

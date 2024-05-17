@@ -1,5 +1,5 @@
 <template>
-    <a-card class="table__card" :bordered="false" :body-style="{ padding: '0' }">
+  <a-card class="ax_plain_card" :bordered="false" :body-style="{ padding: '0' }">
     <ul class="table_card_list flex-1" ref="cardRef">
       <li
         v-for="(item, key) in typeCardData"
@@ -34,7 +34,7 @@
         </a-card>
       </li>
     </ul>
-   </a-card>
+  </a-card>
 </template>
 
 <script setup lang="ts">
@@ -54,7 +54,7 @@ nextTick(() => {
   useSortable(cardRef, typeCardData.value, {
     animation: 200,
     onUpdate(e: SortConfig) {
-   // 拖拽结束触发
+      // 拖拽结束触发
     },
   });
 });

@@ -1,17 +1,15 @@
 <template>
-  <a-card class="system-memo" title="备忘录列表" :body-style="{ overflow: 'auto' }">
-    <template #extra>
-      <a-button @click="getList">
-        <reload-outlined />
-      </a-button>
-    </template>
+  <a-card class="system-memo" :body-style="{ overflow: 'auto' }">
     <a-flex :gap="2" class="px-4 py-8" :justify="'space-between'">
       <a-segmented
         @change="getList"
         :options="memoTypeOptions"
         v-model:value="query.type"
       ></a-segmented>
-      <a-flex>
+      <a-flex :gap="4">
+        <a-button @click="getList">
+          <reload-outlined />
+        </a-button>
         <a-button type="primary" @click="confirm" :disabled="!currentRow">确定</a-button>
       </a-flex>
     </a-flex>

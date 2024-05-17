@@ -29,10 +29,6 @@ export const deleteData = (dictCodes: number[]) => {
   return axios.delete<Response<SystemDictData>>(`system/dict/data/${dictCodes.join(',')}`);
 };
 
-export const getOptionsByName = (name: string) => {
-  return axios.get(``);
-};
-
 type Page = {
   pageSize: number;
   pageNum: number;

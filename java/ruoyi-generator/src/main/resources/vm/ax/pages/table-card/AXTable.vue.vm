@@ -30,12 +30,13 @@
             <EditOutlined />
             <template #overlay>
               <a-menu>
-                 <div v-perm="'${moduleName}:${businessName}:export'">
-                    <a-menu-item @click="${businessName}Export">
+
+                 <div v-perm="'system:notice:remove'">
+                    <a-menu-item @click="${businessName}Delete(record.$Key)">
                       <template #icon>
-                        <ExportOutlined />
+                        <DeleteOutlined />
                       </template>
-                      导出
+                      删除
                     </a-menu-item>
                  </div>
               </a-menu>

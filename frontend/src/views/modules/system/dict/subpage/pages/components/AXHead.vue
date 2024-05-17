@@ -1,5 +1,5 @@
 <template>
-  <a-card class="table__head">
+  <a-card class="ax_sticky_top">
     <template #title>
       <h3 class="text-14">字典数据</h3>
     </template>
@@ -7,7 +7,7 @@
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="dataList"
+          @press-enter="dataList"
           v-model:value="dataQuery.dictType"
           style="width: 160px"
           placeholder="请输入字典标签"

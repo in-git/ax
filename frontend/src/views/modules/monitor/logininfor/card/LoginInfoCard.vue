@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-8">
+  <div class="mt-8 flex-1">
     <a-card>
       <a-spin :spinning="loginLogData.loading">
         <ul class="list" v-if="loginLogData.data.length > 0">
@@ -29,7 +29,7 @@
     </a-card>
   </div>
 
-  <a-card :bodyStyle="{ padding: '0' }" class="footer text-right">
+  <a-card :bodyStyle="{ padding: '0' }" class="footer">
     <a-pagination
       :total="loginLogQuery.total"
       v-model:current="loginLogQuery.pageNum"
@@ -73,5 +73,6 @@ ul.list {
   width: 100%;
   z-index: 100;
   padding: 8px 12px;
+  text-align: right;
 }
 </style>

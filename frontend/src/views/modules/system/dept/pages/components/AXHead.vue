@@ -1,5 +1,5 @@
 <template>
-  <a-card class="table__head">
+  <a-card class="ax_sticky_top">
     <template #title>
       <h3 class="text-14">部门列表</h3>
     </template>
@@ -7,7 +7,7 @@
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="deptList"
+          @press-enter="deptList"
           v-model:value="deptQuery.deptName"
           style="width: 160px"
           placeholder="请输入部门名称"
@@ -16,7 +16,7 @@
       </div>
       <div>
         <a-input
-          @blur="deptList"
+          @press-enter="deptList"
           v-model:value="deptQuery.leader"
           style="width: 160px"
           placeholder="请输入负责人"
@@ -25,7 +25,7 @@
       </div>
       <div>
         <a-input
-          @blur="deptList"
+          @press-enter="deptList"
           v-model:value="deptQuery.phone"
           style="width: 160px"
           placeholder="请输入联系电话"
@@ -33,14 +33,13 @@
         ></a-input>
       </div>
       <div>
-        <a-select
+        <a-radio-group
           v-model:value="deptQuery.status"
           style="width: 160px"
-          placeholder="请选择部门状态（0正常 1停用）"
           allow-clear
-          @blur="deptList"
+          @change="deptList"
           :options="statusOptions"
-        ></a-select>
+        ></a-radio-group>
       </div>
       <a-button type="primary" @click="deptList">搜索</a-button>
     </a-flex>

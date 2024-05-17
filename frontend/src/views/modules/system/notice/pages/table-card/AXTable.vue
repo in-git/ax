@@ -1,43 +1,90 @@
 <template>
-  <SystemTable
-    :columns="noticeColumns"
-    :table="noticeTable"
-    v-model:query="noticeQuery"
-    v-model:selected-keys="noticeKeys"
-    v-model:form="noticeForm"
-    @dblclick="onDblclick"
-  >
-    <template v-slot="{ value }">
-      <template v-if="value.column.dataIndex === 'operation'">
-        <div v-perm="'sys-notice-edit'">
-          <Operation
-            :loading="noticeTable.loading"
-            @open-change="openChange(value.record as SystemNotice)"
-            @on-click="noticeEdit(value.record.noticeId)"
-            :items="noticeOperationList"
-          />
-        </div>
+  <a-card :style="{ boxShadow: 'none' }" :bordered="false" :bodyStyle="{ padding: '0' }">
+    <a-table
+      @change="pageChange"
+      table-layout="fixed"
+      sticky
+      :row-selection="{
+        selectedRowKeys: noticeKeys,
+        onChange: (k: any[]) => (noticeKeys = k),
+      }"
+      bordered
+      :loading="noticeTable.loading"
+      :pagination="false"
+      :customRow="customRow"
+      :rowKey="noticeTable.rowKey"
+      :columns="formatColumns(noticeColumns)"
+      :data-source="noticeTable.data"
+    >
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.key === 'operation'">
+          <a-dropdown-button
+            trigger="click"
+            @click="noticeEdit(record.noticeId)"
+            @open-change="openChange(record as SystemNotice)"
+          >
+            <EditOutlined />
+            <template #overlay>
+              <a-menu>
+                <div v-perm="'system:notice:remove'">
+                  <a-menu-item @click="noticeDelete(record.noticeId)">
+                    <template #icon>
+                      <DeleteOutlined />
+                    </template>
+                    删除
+                  </a-menu-item>
+                </div>
+              </a-menu>
+            </template>
+          </a-dropdown-button>
+        </template>
       </template>
-    </template>
-  </SystemTable>
+    </a-table>
+  </a-card>
 </template>
 
 <script setup lang="ts">
-import Operation from '@/views/components/table/Operation.vue';
-import SystemTable from '@/views/components/table/SystemTable.vue';
-import { noticeColumns } from '../../data/column';
-import { noticeEdit } from '../../data/curd';
-import { noticeForm } from '../../data/form';
-
 import type { SystemNotice } from '@/api/modules/system/notice/types';
-import { noticeKeys, noticeOperationList, noticeQuery, noticeTable } from '../../data/table';
+import { formatColumns } from '@/utils/table/table';
+import { useArrayFilter, useCloned } from '@vueuse/core';
+import type { TablePaginationConfig } from 'ant-design-vue';
+import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
+import { noticeColumns } from '../../data/column';
+import { noticeDelete, noticeEdit } from '../../data/curd';
+import { noticeForm } from '../../data/form';
+import { noticeKeys, noticeQuery, noticeTable } from '../../data/table';
 
 const openChange = (record: SystemNotice) => {
-  noticeForm.value = record;
+  noticeForm.value = useCloned(record).cloned.value;
 };
 
-const onDblclick = (id: number) => {
-  noticeEdit(id);
+/* 行事件 */
+const customRow = (record: SystemNotice) => {
+  return {
+    onClick() {
+      const id = (record as any)[noticeTable.value.rowKey];
+      noticeForm.value = record;
+      if (!noticeKeys.value.includes(id)) {
+        noticeKeys.value.push(id);
+      } else {
+        noticeKeys.value = useArrayFilter(noticeKeys.value, e => e !== id).value;
+      }
+      noticeKeys.value = [record.noticeId];
+    },
+    onDblclick() {
+      noticeEdit(record.noticeId);
+    },
+  };
+};
+
+/* 分页事件触发 */
+const pageChange = (
+  pagination: TablePaginationConfig,
+  filters: Record<string, FilterValue>,
+  sorter: SorterResult<SystemNotice> | SorterResult<SystemNotice>[],
+) => {
+  noticeQuery.value.pageNum = pagination.current!;
+  noticeQuery.value.pageSize = pagination.pageSize!;
 };
 </script>
 

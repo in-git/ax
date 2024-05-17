@@ -1,5 +1,5 @@
 <template>
-  <a-card class="table__head">
+  <a-card class="ax_sticky_top">
     <template #title>
       <h3 class="text-14">字典类型</h3>
     </template>
@@ -7,7 +7,7 @@
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="typeList"
+          @press-enter="typeList"
           v-model:value="typeQuery.dictName"
           style="width: 160px"
           placeholder="请输入字典名称"
@@ -16,19 +16,10 @@
       </div>
       <div>
         <a-input
-          @blur="typeList"
+          @press-enter="typeList"
           v-model:value="typeQuery.dictType"
           style="width: 160px"
           placeholder="请输入字典类型"
-          allow-clear
-        ></a-input>
-      </div>
-      <div>
-        <a-input
-          @blur="typeList"
-          v-model:value="typeQuery.status"
-          style="width: 160px"
-          placeholder="请输入状态（0正常 1停用）"
           allow-clear
         ></a-input>
       </div>

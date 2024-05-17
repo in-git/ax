@@ -1,8 +1,5 @@
 <template>
-  <a-card
-    class="system__template"
-    :body-style="{ height: '100%', overflow: 'hidden', paddingBottom: '0' }"
-  >
+  <a-card class="ax__template SystemFeedback" :body-style="bodyStyle">
     <a-flex vertical class="h-100">
       <!-- 顶部筛选，查询选项 -->
       <HeadVue />
@@ -25,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-
+import { bodyStyle } from '@/global/config/gen';
 import { feedbackList } from './data/curd';
 import { viewMode } from './data/table';
 import FooterVue from './pages/components/AXFooter.vue';
@@ -33,10 +30,8 @@ import FormVue from './pages/components/AXForm.vue';
 import HeadVue from './pages/components/AXHead.vue';
 import CardVue from './pages/table-card/AXCard.vue';
 import TableVue from './pages/table-card/AXTable.vue';
- import {
-} from './data/options';
 
-onMounted(async() => {
+onMounted(async () => {
   await feedbackList();
 });
 </script>

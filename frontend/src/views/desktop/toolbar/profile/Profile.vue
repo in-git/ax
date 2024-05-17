@@ -3,7 +3,7 @@
     <!--  -->
     <a-popover trigger="click" placement="bottomRight" v-model:open="popoverVisible">
       <div class="system__icon icon" v-if="getToken()">
-        <span class="text-12" v-if="user.$state.userInfo">
+        <span v-if="user.$state.userInfo">
           {{ user.$state.userInfo.userName }}
         </span>
         <DownOutlined class="text-12 ml-8" />
@@ -75,6 +75,9 @@ const userData = ref<UserProfileData>();
 const loading = ref(false);
 const user = useUserStore();
 onMounted(async () => {
+  if (!getToken()) {
+    return;
+  }
   loading.value = true;
   userData.value = await getProfile();
   loading.value = false;

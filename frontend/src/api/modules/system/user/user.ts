@@ -43,9 +43,14 @@ interface UpdateProfileData {
   sex: string;
   avatar: string;
 }
+
 export const updateProfile = (data: UpdateProfileData) => {
   return axios.put<Response>(`/system/user/profile`, data);
 };
+export const fetchUserById = (id: number | '') => {
+  return axios.get<UserInfoData>(`system/user/${id}`);
+};
+
 export const updatePassword = (newPassword: string, oldPassword: string) => {
   return axios.put<Response>(
     `/system/user/profile/updatePwd?oldPassword=${oldPassword}&newPassword=${newPassword}`,
@@ -56,18 +61,23 @@ export const deptTree = () => {
   return axios.get<Response<UserDept[]>>(`system/user/deptTree`);
 };
 
-export const userList = (query: IQuery) => {
+export const fetchUserList = (query: IQuery) => {
   return axios.get<TableResponse<UserProfileData>>(`system/user/list`, {
     params: query,
   });
 };
 
-export const deleteUsers = (ids: number[]) => {
+export const deleteUser = (ids: number[]) => {
   return axios.delete<Response>(`system/user/${ids.join(',')}`);
 };
 
-export const exportExcel = (data: IQuery) => {
-  return axios.post<Response>(`system/user/export`, data);
+type Page = {
+  pageSize: number;
+  pageNum: number;
+};
+
+export const exportUser = (page: Page) => {
+  return axios.post<Response>(`system/user/export`, page);
 };
 
 export const getUser = (id: string) => {

@@ -14,11 +14,11 @@ const configColumns = ref<TableColumnProps[]>([
     dataIndex: 'configValue',
   },
   {
-    title: '是否系统内置',
+    title: '系统内置',
     dataIndex: 'configType',
   },
   {
-    title: '备注',
+    title: '参数备注',
     dataIndex: 'remark',
   },
 ]);

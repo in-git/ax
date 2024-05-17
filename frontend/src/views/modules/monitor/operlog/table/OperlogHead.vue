@@ -1,5 +1,5 @@
 <template>
-  <div class="table__head">
+  <div class="ax_sticky_top">
     <a-card title="操作日志">
       <a-flex justify="space-between" :align="'center'">
         <a-flex :gap="8" align="center">
@@ -22,6 +22,13 @@
           />
         </a-flex>
         <div class="flex gc-4">
+          <a-pagination
+            @change="change"
+            v-model:current="logQuery.pageNum"
+            :total="logQuery.total"
+            show-less-items
+            :page-size="logQuery.pageSize"
+          />
           <a-popconfirm title="将会清空所有日志" @confirm="clear" placement="bottomRight">
             <a-button danger>
               <delete-outlined />
@@ -29,16 +36,6 @@
           </a-popconfirm>
         </div>
       </a-flex>
-
-      <div class="flex justify-right mt-12">
-        <a-pagination
-          @change="change"
-          v-model:current="logQuery.pageNum"
-          :total="logQuery.total"
-          show-less-items
-          :page-size="logQuery.pageSize"
-        />
-      </div>
     </a-card>
   </div>
 </template>
@@ -64,7 +61,7 @@ const change = (page: number, pageSize: number) => {
 </script>
 
 <style lang="scss" scoped>
-.table__head {
+.ax_sticky_top {
   padding-bottom: 12px;
 }
 </style>

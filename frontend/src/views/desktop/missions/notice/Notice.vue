@@ -1,49 +1,31 @@
 <template>
-  <div class="notice flex gc-4">
-    <div class="system__icon" @click="showNotice = true">
+  <div class="notice">
+    <div class="system__icon" @click="open">
       <a-badge :dot="noticeList.length > 0">
         <BellOutlined class="icon" />
       </a-badge>
     </div>
+    <Teleport to="body">
+      <Popover />
+    </Teleport>
   </div>
 </template>
 
 <script setup lang="ts">
-import { fetchNoticeList } from '@/api/modules/system/notice/notice';
-import useSystemStore from '@/store/system';
 import { BellOutlined } from '@ant-design/icons-vue';
-import { noticeList, showNotice } from '../../notice/data';
+import { getSystemNotice, noticeList, showNotice } from './data/data';
+import Popover from './subpage/Popover.vue';
 
-const systemStore = useSystemStore();
-const getSystemNotice = async () => {
-  noticeList.value = [];
-  try {
-    const { data } = await fetchNoticeList({
-      pageNum: 1,
-      pageSize: 20,
-      total: 0,
-      noticeType: '1',
-    });
-    data.rows.forEach(e => {
-      const isIncludes = systemStore.$state.readMessages.includes(e.noticeId);
-      if (!isIncludes) {
-        noticeList.value.push({
-          content: e.noticeContent,
-          title: e.noticeTitle,
-          type: 'notice',
-          id: e.noticeId,
-        });
-      }
-    });
-  } catch (error) {}
-};
-
-onMounted(() => {
+const open = () => {
+  showNotice.value = true;
   getSystemNotice();
-});
+};
 </script>
 
 <style lang="scss" scoped>
+.notice {
+  position: relative;
+}
 .system__icon {
   width: 40px;
   color: white;

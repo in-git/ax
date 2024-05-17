@@ -1,5 +1,5 @@
 <template>
-  <a-card class="table__head">
+  <a-card class="ax_sticky_top">
     <template #title>
       <h3 class="text-14">系统反馈</h3>
     </template>
@@ -7,7 +7,7 @@
     <a-flex class="mb-12" :gap="12" wrap="wrap">
       <div>
         <a-input
-          @blur="feedbackList"
+          @press-enter="feedbackList"
           v-model:value="feedbackQuery.feedbackContent"
           style="width: 160px"
           placeholder="请输入反馈内容"
@@ -16,7 +16,7 @@
       </div>
       <div>
         <a-input
-          @blur="feedbackList"
+          @press-enter="feedbackList"
           v-model:value="feedbackQuery.nickname"
           style="width: 160px"
           placeholder="请输入用户昵称"
@@ -111,7 +111,7 @@ import {
   feedbackExport,
   feedbackList,
 } from '../../data/curd';
-import {} from '../../data/options';
+
 import { feedbackKeys, feedbackQuery, feedbackTable, viewMode } from '../../data/table';
 </script>
 

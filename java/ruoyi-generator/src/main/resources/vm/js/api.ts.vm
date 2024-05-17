@@ -5,28 +5,45 @@ import type {${ModuleName}${BusinessName}} from "./types"
 import { message } from 'ant-design-vue';
 import { exportFile } from '@/api/utils/file';
 
-// 查询${functionName}列表
+/**
+ * @description: 查询${functionName}列表
+ * @param {IQuery} query 系统通用查询对象
+ */
 export const fetch${BusinessName}List = (query: IQuery) => {
   return axios.get<TableResponse<${ModuleName}${BusinessName}>>(`${moduleName}/${businessName}/list`, {
     params: query,
   });
 };
-// 查询${functionName}详细
+
+/**
+ * @description: 查询${functionName}详细
+ * @param {${pkColumn.javaField}} ${pkColumn.javaField} 主键ID
+ */
 export const fetch${BusinessName}ById = (${pkColumn.javaField}: number) => {
   return axios.get<Response<${ModuleName}${BusinessName}>>(`${moduleName}/${businessName}/${${pkColumn.javaField}}`);
 };
 
-// 新增${functionName}
+/**
+ * @description: 新增${functionName}
+ * @param {${ModuleName}${BusinessName}} data 需要添加的数据
+ */
 export const create${BusinessName}= (data: ${ModuleName}${BusinessName}) => {
   return axios.post<Response<${ModuleName}${BusinessName}>>(`${moduleName}/${businessName}`, data);
 };
 
-// 修改${functionName}
+
+/**
+ * @description: 更新${functionName}
+ * @param {${ModuleName}${BusinessName}} data 更新数据
+ */
 export const update${BusinessName} = (data: ${ModuleName}${BusinessName}) => {
   return axios.put<Response<${ModuleName}${BusinessName}>>(`${moduleName}/${businessName}`, data);
 };
 
-// 删除${functionName}
+/**
+ * @description: 删除${functionName}
+ * @param {${pkColumn.javaField}s} ${pkColumn.javaField}s 传入ID数组,可以删除多个
+ */
 export const delete${BusinessName} = (${pkColumn.javaField}s:number[]) => {
   return axios.delete<Response<${ModuleName}${BusinessName}>>(`${moduleName}/${businessName}/${${pkColumn.javaField}s.join(',')}`);
 };
@@ -36,13 +53,21 @@ type Page = {
   pageNum: number;
 };
 
-// 导出${functionName}
+/**
+ * @description: 导出${functionName}
+ * @param {Page} page 根据页码导出表格
+ */
+
 export const export${BusinessName} = async (page: Page) => {
+ try{
   await exportFile({
-    url: '${moduleName}/${businessName}/export',
-    data: page,
-    fileName: '${functionName}.xls',
-    method: 'POST',
-  });
-  message.success(`成功下载`);
+     url: '${moduleName}/${businessName}/export',
+     data: page,
+     fileName: '${functionName}.xls',
+     method: 'POST',
+   });
+   message.success(`成功下载`);
+ }catch(e){
+   message.success(`下载失败`);
+ }
 };

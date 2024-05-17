@@ -1,12 +1,18 @@
 <template>
-  <a-form
-    :rules="configRules"
-    :model="configForm"
-    @finish="submit"
-    :wrapper-col="{ span: 8, offset: 1 }"
-    :label-col="{ span: 4, offset: 4 }"
+  <a-modal
+    get-container=".SystemConfig"
+    title="参数配置"
+    v-model:open="configShowForm"
+    :footer="false"
   >
-    <SystemModal title="参数配置" v-model:visible="configShowForm">
+    <a-form
+      :rules="configRules"
+      :model="configForm"
+      @finish="submit"
+      :wrapper-col="{ offset: 1 }"
+      :label-col="{ span: 6 }"
+      label-align="right"
+    >
       <a-card title="编辑/新增">
         <a-form-item label="参数名称" name="configName">
           <a-input placeholder="请输入参数名称" v-model:value="configForm.configName"></a-input>
@@ -37,13 +43,12 @@
           <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
         </template>
       </a-card>
-    </SystemModal>
-  </a-form>
+    </a-form>
+  </a-modal>
 </template>
 
 <script setup lang="ts">
 import { createConfig, updateConfig } from '@/api/modules/system/config/config';
-import SystemModal from '@/components/modal/SysModal.vue';
 import { response } from '@/utils/table/table';
 import { configList } from '../../data/curd';
 import { configForm, configRules, configShowForm } from '../../data/form';

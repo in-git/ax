@@ -1,56 +1,73 @@
-import { deleteMenu, getMenu, menuList } from '@/api/modules/system/menu/menu';
-import type { SystemMenu } from '@/api/modules/system/menu/types';
-import { convertToTree } from '@/utils/common/tree';
-import { message, Modal } from 'ant-design-vue';
-import { menuKeys, menuTableConfig } from './data';
-import { menuForm, resetMenuForm, showMenuForm } from './form';
+import {
+  deleteMenu,
+  exportMenu,
+  fetchMenuById,
+  fetchMenuList,
+} from '@/api/modules/system/menu/menu';
+import { convertMenuDataToTree } from '@/utils/common/tree';
+import { response } from '@/utils/table/table';
+import { menuForm, menuResetForm, menuShowForm } from './form';
+import { menuKeys, menuQuery, menuTable, menuTree } from './table';
 
-export const editMenu = async (item?: SystemMenu) => {
-  let menuId = 0;
-  if (item) {
-    menuId = item.menuId;
-    menuForm.value = item;
-  } else if (menuKeys.value.length === 1) {
-    menuId = menuKeys.value[0];
+export const menuList = async () => {
+  try {
+    menuTable.value.loading = true;
+    const { data } = await fetchMenuList();
+    if (data.data) {
+      let treeData = convertMenuDataToTree(data.data);
+      menuTable.value.data = treeData;
+      menuQuery.value.total = treeData.length;
+      menuTable.value.loading = false;
+    }
+  } catch (error) {
+    menuTable.value.loading = false;
   }
+};
 
-  const { data } = await getMenu(menuId);
+export const menuEdit = async (id?: number) => {
+  let targetId: number = id ? id : menuKeys.value[0];
+  menuTable.value.loading = true;
+  const { data } = await fetchMenuById(targetId);
   if (data.data) {
     menuForm.value = data.data;
+    menuShowForm.value = true;
   }
-  showMenuForm.value = !showMenuForm.value;
+  menuTable.value.loading = false;
 };
 
-export const createMenuData = () => {
-  resetMenuForm();
-  showMenuForm.value = !showMenuForm.value;
-};
-
-export const delMenu = (id?: string) => {
-  Modal.confirm({
-    title: '警告',
-    content: '该操作可能影响系统运行',
-    centered: true,
-    async onOk() {
-      let targetIds: string = '';
-      if (id) {
-        targetIds = id;
-      } else {
-        targetIds = `${menuKeys.value[0]}`;
-      }
-      try {
-        const { data } = await deleteMenu(targetIds);
-        message.success(data.msg);
-        loadMenuData();
-      } catch (error) {}
+/**
+ * @description: 创建菜单，构建父目录
+ */
+export const menuCreate = async () => {
+  menuResetForm();
+  const { data } = await fetchMenuList();
+  menuTree.value = [
+    {
+      menuId: 0,
+      menuName: '主目录',
+      path: '',
+      children: convertMenuDataToTree(data.data || []),
     },
+  ];
+  menuShowForm.value = true;
+};
+
+export const menuDelete = async (id?: number) => {
+  let ids = id ? [id] : menuKeys.value;
+  await response(deleteMenu, ids);
+  await menuList();
+  menuKeys.value = [];
+};
+
+// 导出EXCEL文件
+export const menuExport = () => {
+  return exportMenu({
+    pageNum: menuQuery.value.pageNum,
+    pageSize: menuQuery.value.pageSize,
   });
 };
-export const loadMenuData = async () => {
-  menuTableConfig.value.loading = true;
-  const { data } = await menuList();
-  if (data.data) {
-    menuTableConfig.value.data = convertToTree(data.data);
-  }
-  menuTableConfig.value.loading = false;
+export const createSubMenu = async (parentId: number) => {
+  menuCreate();
+
+  menuForm.value.parentId = parentId;
 };

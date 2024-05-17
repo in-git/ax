@@ -1,5 +1,5 @@
 <template>
-  <a-card class="h-100 card__container" :bordered="false" :body-style="{ height: '100%' }">
+  <a-card class="h-100 ax_plain_card" :bordered="false" :body-style="{ height: '100%' }">
     <a-flex class="settings flex h-100 w-100">
       <a-card :body-style="{ height: '100%' }">
         <a-menu v-model:selectedKeys="selectedKeys">
@@ -32,6 +32,7 @@ import DesktopSetting from './desktop/DesktopSetting.vue';
 import Net from './net/Net.vue';
 import ThemeVue from './theme/Theme.vue';
 import GalleryBody from './wallpaper/GalleryBody.vue';
+
 interface Nav {
   title: string;
   icon: any;

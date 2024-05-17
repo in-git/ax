@@ -34,7 +34,7 @@ import logoPng from '@/assets/logo.png';
 import usePageStore from '@/store/page';
 import { useSortable } from '@vueuse/integrations/useSortable';
 import { appContextMenu, openContextMenu } from './contextmenu';
-import { getIconByName, getUserRouters, openApp, userRouters } from './data';
+import { getIconByName, openApp, userRouters } from './data';
 
 const selected = ref<string>('');
 const appRef = ref();
@@ -46,8 +46,6 @@ const onError = (item: Routers) => {
 };
 
 onMounted(async () => {
-  const data = await getUserRouters();
-
   nextTick(() => {
     useSortable(appRef, userRouters, {
       animation: 200,

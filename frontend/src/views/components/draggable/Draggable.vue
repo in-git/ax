@@ -13,19 +13,25 @@
     :minHeight="400"
     enableNativeDrag
     @resizestop="resizestop"
+    @mouseup="onMouseup"
     :class="[dark ? 'window-dark' : '']"
     :id="id"
   >
-    <a-card :bordered="false" :bodyStyle="{ padding: 0 }" class="drag-header">
-      <div class="flex justify-between align-center">
-        <div class="flex align-center">
-          <div class="win-icon flex flex-s">
+    <a-card
+      :bordered="false"
+      :bodyStyle="{ padding: 0 }"
+      class="drag-header"
+      @dblclick="switchover"
+    >
+      <a-flex :align="'center'" :justify="'space-between'">
+        <a-flex :align="'center'">
+          <a-flex :align="'center'" :justify="'center'" class="win-icon">
             <img :draggable="false" :src="icon" width="20" height="20" v-if="icon" />
-          </div>
+          </a-flex>
 
           <div>{{ title }}</div>
-        </div>
-        <div class="flex">
+        </a-flex>
+        <a-flex>
           <div class="system__icon" @click="hidden">
             <MinusOutlined />
           </div>
@@ -39,19 +45,16 @@
           <div class="system__icon close" @click="close">
             <CloseOutlined />
           </div>
-        </div>
-      </div>
+        </a-flex>
+      </a-flex>
     </a-card>
     <div class="drag-content">
-      <slot>
-        <Loading class="w-100 h-100" />
-      </slot>
+      <slot></slot>
     </div>
   </VueDraggable>
 </template>
 
 <script setup lang="ts">
-import Loading from '@/components/loading/Loading.vue';
 import { hiddenWindow, setCurrentWindow, toTop, windowList } from '@/global/window/window';
 import usePageStore from '@/store/page';
 import { initModuleWH } from '@/store/page/utils';
@@ -95,8 +98,11 @@ const props = withDefaults(
     dark: false,
   },
 );
-
+const onMouseup = () => {
+  document.body.style.userSelect = 'text';
+};
 const moveTop = () => {
+  document.body.style.userSelect = 'none';
   if (props.id) {
     setCurrentWindow(props.id);
     toTop(props.id);
@@ -110,8 +116,8 @@ const maxHeight = window.innerHeight;
 const isFullscreen = ref(false);
 
 const windowProps = ref<DragType>({
-  x: window.innerWidth / 2 - props.w / 2 + offset - 32,
-  y: window.innerHeight / 2 - props.h / 2 + offset,
+  x: Math.floor(window.innerWidth / 2 - props.w / 2 + offset - 32),
+  y: Math.floor(window.innerHeight / 2 - props.h / 2 + offset / 2),
   w: 1,
   h: 1,
 });
@@ -136,6 +142,10 @@ const expand = () => {
 const minimize = () => {
   windowProps.value = beforeExpandData;
   isFullscreen.value = !isFullscreen.value;
+};
+
+const switchover = () => {
+  !isFullscreen.value ? expand() : minimize();
 };
 /* 窗口隐藏 */
 const hidden = () => {
@@ -197,10 +207,7 @@ $hh: 36px;
 .drag-content {
   height: calc(100% - $hh);
   position: relative;
-  background-repeat: no-repeat;
-  background-size: 400px 400px;
-  background-position: center;
-  background-color: #e2e2e2a1;
+  background: white;
 }
 
 .close {

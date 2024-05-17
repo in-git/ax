@@ -1,70 +1,67 @@
 <template>
-  <div>
-    <SystemModal
-      w="90%"
-      h="90%"
-      v-model:visible="unAssignModal"
-      title="取消授权"
-      @update:visible="unAssignModal = false"
-    >
-      <div>
-        <a-card title="取消授权" :body-style="{ overflow: 'auto' }">
-          <template #extra>
-            <div>
-              <a-input-search
-                v-model:value="userQuery.userName"
-                placeholder="请输入用户名"
-                allow-clear
-                @search="unassignUsers"
-              ></a-input-search>
-            </div>
-          </template>
-        </a-card>
-        <div class="py-8 px-12 flex justify-between">
-          <a-button
-            type="primary"
-            :disabled="userData.selectedKeys.length === 0"
-            @click="unassign()"
-            danger
-          >
-            批量取消
-          </a-button>
-        </div>
-        <div class="user-list p-8">
-          <a-table
-            :columns="formatColumns(userColumns)"
-            :loading="loading"
-            :data-source="userData.data"
-            :pagination="{
-              total: userQuery.total,
-              current: userQuery.pageNum,
-              pageSize: userQuery.pageSize,
-            }"
-            :row-selection="{
-              selectedRowKeys: userData.selectedKeys,
-              onChange,
-            }"
-            @change="pageChange"
-            row-key="userId"
-          >
-            <template #bodyCell="{ column, record }">
-              <template v-if="column.dataIndex === 'operation'">
-                <a-tooltip title="">
-                  <a-button type="link" style="color: #fc6d6d" @click="unassign(record.userId)">
-                    取消授权
-                  </a-button>
-                </a-tooltip>
-              </template>
-            </template>
-          </a-table>
-        </div>
+  <a-modal
+    :footer="false"
+    width="90%"
+    v-model:open="unAssignModal"
+    title="取消授权"
+    get-container=".SystemRole"
+  >
+    <div>
+      <a-card title="取消授权" :body-style="{ overflow: 'auto' }">
+        <template #extra>
+          <div>
+            <a-input-search
+              v-model:value="userQuery.userName"
+              placeholder="请输入用户名"
+              allow-clear
+              @search="unassignUsers"
+            ></a-input-search>
+          </div>
+        </template>
+      </a-card>
+      <div class="py-8 px-12 flex justify-between">
+        <a-button
+          type="primary"
+          :disabled="userData.selectedKeys.length === 0"
+          @click="unassign()"
+          danger
+        >
+          批量取消
+        </a-button>
       </div>
-    </SystemModal>
-  </div>
+      <div class="user-list p-8">
+        <a-table
+          :columns="formatColumns(userColumns)"
+          :loading="loading"
+          :data-source="userData.data"
+          :pagination="{
+            total: userQuery.total,
+            current: userQuery.pageNum,
+            pageSize: userQuery.pageSize,
+          }"
+          :row-selection="{
+            selectedRowKeys: userData.selectedKeys,
+            onChange,
+          }"
+          @change="pageChange"
+          row-key="userId"
+        >
+          <template #bodyCell="{ column, record }">
+            <template v-if="column.dataIndex === 'operation'">
+              <a-tooltip title="">
+                <a-button type="link" style="color: #fc6d6d" @click="unassign(record.userId)">
+                  取消授权
+                </a-button>
+              </a-tooltip>
+            </template>
+          </template>
+        </a-table>
+      </div>
+    </div>
+  </a-modal>
 </template>
 
 <script setup lang="ts">
-import SystemModal from '@/components/modal/SysModal.vue';
 import { formatColumns } from '@/utils/table/table';
 import type { PaginationProps } from 'ant-design-vue/es/pagination';
 import { userColumns } from './columns';

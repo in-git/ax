@@ -3,10 +3,10 @@ import { exportFile } from '@/api/utils/file';
 import axios from 'axios';
 
 export const fetchCodeList = (query: IQuery) => {
-  return axios.get<TableResponse<SystemCode>>(`tool/gen/list`, { params: query });
+  return axios.get<TableResponse<SystemTable>>(`tool/gen/list`, { params: query });
 };
 
-export const fetchCodeById = (id: string) => {
+export const fetchCodeById = (id: number) => {
   return axios.get<Response<CodeResponse>>(`tool/gen/${id}`);
 };
 
@@ -32,17 +32,21 @@ export const fetchGenDbList = (query: IQuery) => {
   });
 };
 
+export const previewCode = (code: number) => {
+  return axios.get<Response<GenCode>>(`tool/gen/preview/${code}`);
+};
+
 /* 导入表的数据 */
 export const importDbByDbs = (dbs: string[]) => {
   return axios.post(`tool/gen/importTable?tables=${dbs.join(',')}`);
 };
 
-/* 导入表的数据 */
+/* 下载代码 */
 export const batchGenCode = (tables: string[]) => {
   return exportFile({
     url: `tool/gen/batchGenCode?tables=${tables.join(',')}`,
     data: undefined,
-    fileName: `code-${new Date().getTime()}.zip`,
+    fileName: `ax_${tables.join(',')}.zip`,
     method: 'GET',
   });
 };

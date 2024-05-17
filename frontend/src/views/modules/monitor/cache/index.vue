@@ -17,7 +17,9 @@
         >
           <a-card>
             <a-descriptions :title="item.cacheName.replace(':', '')" :column="1">
-              <a-descriptions-item label="缓存名字">{{ item.cacheName }}</a-descriptions-item>
+              <a-descriptions-item label="缓存名字">
+                {{ item.cacheName.replace(':', '') }}
+              </a-descriptions-item>
               <a-descriptions-item label="备注">{{ item.remark }}</a-descriptions-item>
             </a-descriptions>
           </a-card>
@@ -26,7 +28,14 @@
       <!--  -->
     </a-spin>
 
-    <a-modal v-model:open="open" get-container="#Cache" centered width="600px" title="缓存列表">
+    <a-modal
+      :footer="false"
+      v-model:open="open"
+      get-container="#Cache"
+      centered
+      width="600px"
+      title="缓存列表"
+    >
       <Content :data="kvData" />
     </a-modal>
   </a-card>

@@ -1,6 +1,6 @@
 <template>
   <a-card
-    class="system__template"
+    class="ax__template SystemDept"
     :body-style="{ height: '100%', overflow: 'hidden', paddingBottom: '0' }"
   >
     <a-flex vertical class="h-100">
@@ -25,18 +25,15 @@
 </template>
 
 <script setup lang="ts">
-
 import { deptList } from './data/curd';
+import { statusOptionsFetch } from './data/options';
 import { viewMode } from './data/table';
 import FooterVue from './pages/components/AXFooter.vue';
 import FormVue from './pages/components/AXForm.vue';
 import HeadVue from './pages/components/AXHead.vue';
 import CardVue from './pages/table-card/AXCard.vue';
 import TableVue from './pages/table-card/AXTable.vue';
- import {
-  statusOptionsFetch,
-} from './data/options';
-onMounted(async() => {
+onMounted(async () => {
   await deptList();
   await statusOptionsFetch();
 });
