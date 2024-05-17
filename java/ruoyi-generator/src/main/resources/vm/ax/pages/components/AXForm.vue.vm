@@ -39,10 +39,10 @@
            <a-form-item label="${comment}" name="$field">
              <a-input placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}">
                 <template #addonAfter>
-                  <a-popover trigger="click" >
+                  <a-popover trigger="click" v-model:open="popVisible" >
                     <BookOutlined />
                     <template #content>
-                      <Memo v-model:value="${businessName}Form.${column.javaField}" />
+                      <Memo @update:value="popVisible = false" v-model:value="${businessName}Form.${column.javaField}" />
                     </template>
                   </a-popover>
                 </template>
@@ -114,7 +114,7 @@ import {
   update${BusinessName}} from
 '@/api/modules/${moduleName}/${businessName}/${businessName}';
 import { ${businessName}Table } from '../../data/table';
-
+const popVisible = ref(false);
 
 const submit = async () => {
   ${businessName}Table.value.loading = true
@@ -123,7 +123,9 @@ const submit = async () => {
   } else {
     await response(create${BusinessName}, ${businessName}Form.value);
   }
+   ${businessName}Table.value.loading = false
   await ${businessName}List();
+  ${businessName}ShowForm.value=false
 };
 </script>
 

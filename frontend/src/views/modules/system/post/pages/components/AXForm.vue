@@ -50,14 +50,13 @@
           </a-input>
         </a-form-item>
         <a-form-item label="状态" name="status">
-          <a-select
+          <a-radio-group
             v-model:value="postForm.status"
             class="w-100"
             placeholder="请选择状态"
             allow-clear
-            @change="postList"
             :options="statusOptions"
-          ></a-select>
+          ></a-radio-group>
         </a-form-item>
         <a-form-item label="备注" name="remark">
           <a-textarea placeholder="请输入备注" v-model:value="postForm.remark"></a-textarea>

@@ -1,12 +1,17 @@
 <template>
-  <a-form
-    :rules="feedbackRules"
-    :model="feedbackForm"
-    @finish="submit"
-    :wrapper-col="{ span: 8, offset: 1 }"
-    :label-col="{ span: 4, offset: 4 }"
+  <a-modal
+    title="系统反馈"
+    v-model:open="feedbackShowForm"
+    :footer="false"
+    get-container=".SystemFeedback"
   >
-    <SystemModal title="系统反馈" v-model:visible="feedbackShowForm">
+    <a-form
+      :rules="feedbackRules"
+      :model="feedbackForm"
+      @finish="submit"
+      :wrapper-col="{ offset: 1 }"
+      :label-col="{ span: 4, offset: 4 }"
+    >
       <a-card title="编辑/新增">
         <a-form-item label="反馈内容" name="feedbackContent">
           <a-textarea
@@ -26,13 +31,12 @@
           </a-button>
         </template>
       </a-card>
-    </SystemModal>
-  </a-form>
+    </a-form>
+  </a-modal>
 </template>
 
 <script setup lang="ts">
 import { createFeedback, updateFeedback } from '@/api/modules/system/feedback/feedback';
-import SystemModal from '@/components/modal/SysModal.vue';
 import { response } from '@/utils/table/table';
 import { feedbackList } from '../../data/curd';
 import { feedbackForm, feedbackRules, feedbackShowForm } from '../../data/form';

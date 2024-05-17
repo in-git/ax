@@ -15,7 +15,13 @@
     </a-dropdown>
   </div>
 
-  <SystemModal w="300px" h="260px" v-model:visible="visible" title="保存记事本" position="fixed">
+  <a-modal
+    get-container=".system__notepad"
+    :footer="false"
+    v-model:open="visible"
+    title="保存记事本"
+    position="fixed"
+  >
     <a-form @finish="saveText" layout="vertical" :model="form" class="p-12">
       <a-form-item label="记事本标题" name="title" required>
         <a-input :maxlength="16" placeholder="请输入标题" v-model:value="form.title" />
@@ -27,13 +33,12 @@
         <a-button html-type="submit" block type="primary">保存</a-button>
       </div>
     </a-form>
-  </SystemModal>
+  </a-modal>
 </template>
 
 <script setup lang="ts">
 import { createMemo } from '@/api/modules/system/memo/memo';
 import { getStaticImage } from '@/api/utils/image';
-import SystemModal from '@/components/modal/SysModal.vue';
 import { getData, getTempId, openWindow } from '@/global/window/window';
 import { response } from '@/utils/table/table';
 import NotepadVue from '../../Notepad.vue';

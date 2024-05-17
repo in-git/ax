@@ -1,12 +1,17 @@
 <template>
-  <a-form
-    :rules="websiteRules"
-    :model="websiteForm"
-    @finish="submit"
-    :wrapper-col="{ span: 8 }"
-    :label-col="{ span: 4, offset: 4 }"
+  <a-modal
+    :footer="false"
+    get-container=".SystemWebsite"
+    title="网页收藏"
+    v-model:open="websiteShowForm"
   >
-    <SystemModal title="网页收藏" v-model:visible="websiteShowForm">
+    <a-form
+      :rules="websiteRules"
+      :model="websiteForm"
+      @finish="submit"
+      :wrapper-col="{ span: 8 }"
+      :label-col="{ span: 4, offset: 4 }"
+    >
       <a-card title="编辑/新增">
         <a-form-item label="网页URL" name="url">
           <a-input-search
@@ -79,15 +84,14 @@
           <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
         </template>
       </a-card>
-    </SystemModal>
-  </a-form>
+    </a-form>
+  </a-modal>
 </template>
 
 <script setup lang="ts">
 import { cancelAllRequest } from '@/api/config/interceptor';
 import { createWebsite, getSiteInfo, updateWebsite } from '@/api/modules/system/website/website';
 import { getStaticImage } from '@/api/utils/image';
-import SystemModal from '@/components/modal/SysModal.vue';
 import { extractDomain } from '@/utils/common/format';
 import { response } from '@/utils/table/table';
 import Gallery from '@/views/selector/gallery/Gallery.vue';

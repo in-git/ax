@@ -21,10 +21,10 @@
         <a-form-item label="文本字段" name="textField">
           <a-input placeholder="请输入文本字段" v-model:value="testForm.textField">
             <template #addonAfter>
-              <a-popover trigger="click">
+              <a-popover trigger="click" v-model:open="popVisible">
                 <BookOutlined />
                 <template #content>
-                  <Memo v-model:value="testForm.textField" />
+                  <Memo v-model:value="testForm.textField" @update:value="popVisible = false" />
                 </template>
               </a-popover>
             </template>
@@ -33,10 +33,10 @@
         <a-form-item label="数字字段" name="numberField">
           <a-input placeholder="请输入数字字段" v-model:value="testForm.numberField">
             <template #addonAfter>
-              <a-popover trigger="click">
+              <a-popover trigger="click" v-model:open="popVisible">
                 <BookOutlined />
                 <template #content>
-                  <Memo v-model:value="testForm.numberField" />
+                  <Memo @update:value="popVisible = false" v-model:value="testForm.numberField" />
                 </template>
               </a-popover>
             </template>
@@ -103,6 +103,8 @@ import { testList } from '../../data/curd';
 import { testForm, testRules, testShowForm } from '../../data/form';
 import { testTable } from '../../data/table';
 
+const popVisible = ref(false);
+
 const submit = async () => {
   testTable.value.loading = true;
   if (testForm.value.testId) {
@@ -110,6 +112,7 @@ const submit = async () => {
   } else {
     await response(createTest, testForm.value);
   }
+  testShowForm.value = false;
   await testList();
 };
 </script>
