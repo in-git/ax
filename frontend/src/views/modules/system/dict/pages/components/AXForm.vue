@@ -3,7 +3,7 @@
     :rules="typeRules"
     :model="typeForm"
     @finish="submit"
-    :wrapper-col="{ span: 8, offset: 1 }"
+    :wrapper-col="{ offset: 1 }"
     :label-col="{ span: 4, offset: 4 }"
   >
     <a-modal title="字典类型" v-model:open="typeShowForm" get-container=".SystemDict">

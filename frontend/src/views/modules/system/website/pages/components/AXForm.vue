@@ -9,8 +9,8 @@
       :rules="websiteRules"
       :model="websiteForm"
       @finish="submit"
-      :wrapper-col="{ span: 8 }"
-      :label-col="{ span: 4, offset: 4 }"
+      :wrapper-col="{ offset: 1 }"
+      :label-col="{ span: 6 }"
     >
       <a-card title="编辑/新增">
         <a-form-item label="网页URL" name="url">

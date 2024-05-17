@@ -11,9 +11,6 @@
       :label-col="{
         span: 8,
       }"
-      :wrapper-col="{
-        span: 16,
-      }"
       label-align="left"
       @finish="submit"
     >

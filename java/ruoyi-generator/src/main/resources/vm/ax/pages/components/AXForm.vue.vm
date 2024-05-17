@@ -9,8 +9,8 @@
      :model="${businessName}Form"
      @finish="submit"
      :label-col="{ span: 6 }"
+     :wrapper-col="{ offset: 1 }"
      label-align="right">
-
      <a-modal
        :footer="false"
        title="$functionName"

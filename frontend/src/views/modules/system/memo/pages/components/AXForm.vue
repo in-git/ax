@@ -4,7 +4,7 @@
       :rules="memoRules"
       :model="memoForm"
       @finish="submit"
-      :wrapper-col="{ span: 8, offset: 1 }"
+      :wrapper-col="{ offset: 1 }"
       :label-col="{ span: 4, offset: 4 }"
     >
       <a-card title="编辑/新增">
