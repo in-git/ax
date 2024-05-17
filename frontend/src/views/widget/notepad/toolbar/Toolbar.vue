@@ -15,12 +15,13 @@
 </template>
 
 <script setup lang="ts">
+import { EventBusEnum } from '@/global/enum/eventBus';
 import { useEventBus } from '@vueuse/core';
 import FileVue from './file/File.vue';
 import List from './list/List.vue';
 import Tool from './tool/Tool.vue';
 
-const bus = useEventBus('window:notepad');
+const bus = useEventBus(EventBusEnum.UPDATE_NOTEPAD);
 defineProps<{
   allowSave?: boolean;
 }>();

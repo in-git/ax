@@ -62,4 +62,13 @@ public interface ISysFileManagementService {
      * @param path 文件的路径
      */
     public FileAttr fileInfo(String path);
+
+
+    /**
+     * 保存文件
+     * @param path 文件路径
+     * @param content 文件内容
+     * @return 结果
+     */
+    public boolean saveFile(String path,String content);
 }

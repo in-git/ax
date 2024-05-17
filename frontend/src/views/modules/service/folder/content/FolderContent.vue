@@ -14,6 +14,8 @@
 </template>
 
 <script setup lang="ts">
+import { EventBusEnum } from '@/global/enum/eventBus';
+import { useEventBus } from '@vueuse/core';
 import { mode } from '../data/data';
 import Card from './subnodes/Card.vue';
 import type { UploadFile } from './subnodes/data/types';
@@ -21,6 +23,8 @@ import { uploadFiles } from './subnodes/data/upload';
 import FooterVue from './subnodes/footer/Footer.vue';
 import Table from './subnodes/Table.vue';
 import Tool from './subnodes/tool/Tool.vue';
+
+const bus = useEventBus(EventBusEnum.UPDATE_NOTEPAD);
 
 const dragover = (e: DragEvent) => {
   e.preventDefault();
@@ -69,6 +73,9 @@ const drop = async (e: DragEvent) => {
 
   uploadFiles(files);
 };
+bus.on(() => {
+  console.log('save');
+});
 </script>
 
 <style lang="scss" scoped>

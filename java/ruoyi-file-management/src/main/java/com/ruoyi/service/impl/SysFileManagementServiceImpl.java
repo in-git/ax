@@ -15,6 +15,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -24,6 +25,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.*;
 
 @Service
@@ -66,7 +68,6 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
     }
 
 
-
     /**
      * 压缩且转成base64
      *
@@ -74,24 +75,26 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
      */
     public static String convertImageToBase64(String imagePath) throws IOException {
 
+        // 读取原始图片
         BufferedImage originalImage = ImageIO.read(new File(imagePath));
 
-        // 创建一个白色背景的BufferedImage对象
+        // 创建一个新的带白色背景的图片
         BufferedImage newImage = new BufferedImage(originalImage.getWidth(), originalImage.getHeight(), BufferedImage.TYPE_INT_RGB);
-        newImage.createGraphics().drawImage(originalImage, 0, 0, null);
+        Graphics2D graphics = newImage.createGraphics();
+        graphics.setColor(Color.WHITE);
+        graphics.fillRect(0, 0, newImage.getWidth(), newImage.getHeight());
+        graphics.drawImage(originalImage, 0, 0, null);
+        graphics.dispose();
 
-        // 将新图像保存为JPEG格式
-        File outputfile = new File("output.jpg");
-        ImageIO.write(newImage, "jpg", outputfile);
+        // 将图片转换为JPEG格式
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ImageIO.write(newImage, "jpg", outputStream);
 
-        // 将JPEG图像转换为Base64字符串
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
- 
-        baos.flush();
-        byte[] imageBytes = baos.toByteArray();
-        baos.close();
-            // 将字节数组转换为Base64编码字符串
-        return "data:image/jpg;base64," + Base64.getEncoder().encodeToString(imageBytes);
+        // 将JPEG图片转换为Base64字符串
+        byte[] imageBytes = outputStream.toByteArray();
+        String base64String = Base64.getEncoder().encodeToString(imageBytes);
+        // 将字节数组转换为Base64编码字符串
+        return "data:image/jpg;base64," + base64String;
     }
 
 
@@ -155,17 +158,17 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
                         if (isImage) {
                             fileInfo.setSrc(convertImageToBase64(file.getPath()));
                             fileInfo.setType("image");
-                        } else if (FileUtils.isTextFile(file.getPath())) {
-                            String strings = FileUtils.readFileAsString(file.getPath());
-                            fileInfo.setSrc(strings);
                         } else if (isVideo) {
                             fileInfo.setType("video");
                         } else if (FileUtils.isCodeFile(file)) {
                             String type = FileUtils.getFileExtension(file.getName());
                             fileInfo.setType(type);
+                        } else if (FileUtils.isTextFile(file.getPath())) {
+                            fileInfo.setType("text");
                         } else {
                             fileInfo.setType("file");
                         }
+
                         fileList.add(fileInfo);
                     }
                 }
@@ -387,6 +390,19 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
         fileInfo.setCreateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(file.lastModified()));
 
         return fileInfo;
+    }
+
+    /**
+     * 保存文件
+     *
+     * @param path    文件路径
+     * @param content 文件内容
+     * @return 结果
+     */
+    @Override
+    public boolean saveFile(String path, String content) {
+        FileUtil.writeUtf8String(content, path);
+        return true;
     }
 
 

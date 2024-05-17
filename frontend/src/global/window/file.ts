@@ -2,6 +2,7 @@ import { viewFile } from '@/api/modules/file/file';
 import { Modal } from 'ant-design-vue';
 import type { DataNode } from 'ant-design-vue/es/tree';
 import { openImage, openNotepad } from './widget';
+import { getTempId } from './window';
 
 /**
  * @description: 处理文件，根据不同的类型，调用不同的程序
@@ -24,7 +25,7 @@ export const settleFile = async (item: DataNode) => {
 type Map = {
   [key: string]: (content: DataNode) => any;
 };
-function blobToText(blob: Blob): Promise<string> {
+const blobToText = (blob: Blob): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
 
@@ -44,15 +45,15 @@ function blobToText(blob: Blob): Promise<string> {
     // 读取Blob对象中的数据为文本
     reader.readAsText(blob);
   });
-}
+};
+/**
+ * @description: 文件列表
+ */
 const fileMap: Map = {
   async text(data: DataNode) {
-    console.log(data);
-
     const resp = await viewFile(`${data.key}`);
-    console.log(resp);
     const text = await blobToText(resp);
-    openNotepad({ data: text, allowSave: true });
+    openNotepad({ data: text, allowSave: true, id: getTempId() });
   },
   image(data: DataNode) {
     openImage(data.src);

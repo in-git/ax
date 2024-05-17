@@ -4,12 +4,13 @@
       <a-flex class="folder-head system__subtitle" :justify="'space-between'" :align="'center'">
         <div>文件夹列表</div>
         <a-tooltip title="刷新">
-          <reload-outlined @click="getData" />
+          <reload-outlined @click="forceUpdate" />
         </a-tooltip>
       </a-flex>
     </a-card>
     <a-directory-tree
       @select="selectPath"
+      :key="updateKey"
       :tree-data="treeData"
       v-model:selected-keys="selectedPaths"
       :load-data="onLoadData"
@@ -31,10 +32,15 @@ import {
   selectedFolders,
   selectedPaths,
 } from '../data/data';
+const updateKey = ref(0);
 
 const treeData = ref<DataNode[]>([]);
 const emit = defineEmits(['update:modelValue']);
 
+const forceUpdate = () => {
+  updateKey.value++;
+  getData();
+};
 const getData = async () => {
   const { data } = await getSystemPath('');
 

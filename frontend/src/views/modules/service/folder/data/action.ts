@@ -83,6 +83,7 @@ export const getInfo = async () => {
     fileInfo.value = data.data;
   }
 };
+
 /**
  * @description: 根据不同操作系统链接两个路径
  * @param {string} a
@@ -92,6 +93,11 @@ export const getInfo = async () => {
 export const concatWithSeparator = (a: string, b: string): string => {
   return a + getSeparator() + b;
 };
+/**
+ * @description: 根据路径获取文件名
+ * @param {string} filePath
+ * @return {string} 字符串
+ */
 export const getFileNameFromPath = (filePath: string): string => {
   const pathSegments = filePath.split(getSeparator());
   const fileNameWithExtension = pathSegments[pathSegments.length - 1];

@@ -81,4 +81,16 @@ public class SysFileManagementController {
         return success(fileManagementService.fileInfo(path));
     }
 
+
+    @Data
+    class SaveFileVo{
+        String path;
+        String Content;
+    }
+
+    @PreAuthorize("@ss.hasPermi('tool:file:save')")
+    @PostMapping("/saveFile")
+    public AjaxResult saveFile(@RequestBody SaveFileVo fileVo){
+        return success(fileManagementService.saveFile(fileVo.getPath(),fileVo.getContent()));
+    }
 }

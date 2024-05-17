@@ -94,3 +94,12 @@ export const fileAttr = (path: string) => {
     },
   });
 };
+
+export const fileSave = (path: string, content: string) => {
+  return axios.post(`afm/file/save`, {
+    data: {
+      path,
+      content,
+    },
+  });
+};
