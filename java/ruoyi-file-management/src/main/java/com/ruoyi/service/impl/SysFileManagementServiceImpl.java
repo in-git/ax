@@ -15,10 +15,11 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
-import javax.imageio.ImageWriter;
-import javax.imageio.stream.ImageOutputStream;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -64,38 +65,6 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
         return false;
     }
 
-    /**
-     * 将图片转换为 WebP 格式
-     *
-     * @param image 输入图片
-     * @return WebP 数据
-     * @throws IOException 如果转换失败
-     */
-    private static byte[] convertToWebP(BufferedImage image) throws IOException {
-        // 创建字节数组输出流
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
-        // 获取 WebP 图片写入器
-        Iterator<ImageWriter> writers = ImageIO.getImageWritersByMIMEType("image/webp");
-        ImageWriter writer = null;
-        if (writers.hasNext()) {
-            writer = writers.next();
-        }
-
-        // 将图片写入输出流
-        try (ImageOutputStream ios = ImageIO.createImageOutputStream(outputStream)) {
-            writer.setOutput(ios);
-            writer.write(image);
-        } finally {
-            // 关闭写入器
-            if (writer != null) {
-                writer.dispose();
-            }
-        }
-
-        // 返回 WebP 数据
-        return outputStream.toByteArray();
-    }
 
 
     /**
@@ -105,14 +74,24 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
      */
     public static String convertImageToBase64(String imagePath) throws IOException {
 
-        // 读取图片文件并转换为字节数组
-        File file = new File(imagePath);
-        FileInputStream fileInputStream = new FileInputStream(file);
-        byte[] bytes = new byte[(int) file.length()];
-        fileInputStream.read(bytes);
-        fileInputStream.close();
+        BufferedImage originalImage = ImageIO.read(new File(imagePath));
+
+        // 创建一个白色背景的BufferedImage对象
+        BufferedImage newImage = new BufferedImage(originalImage.getWidth(), originalImage.getHeight(), BufferedImage.TYPE_INT_RGB);
+        newImage.createGraphics().drawImage(originalImage, 0, 0, null);
+
+        // 将新图像保存为JPEG格式
+        File outputfile = new File("output.jpg");
+        ImageIO.write(newImage, "jpg", outputfile);
+
+        // 将JPEG图像转换为Base64字符串
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+ 
+        baos.flush();
+        byte[] imageBytes = baos.toByteArray();
+        baos.close();
             // 将字节数组转换为Base64编码字符串
-        return "data:image/webp;base64," + Base64.getEncoder().encodeToString(bytes);
+        return "data:image/jpg;base64," + Base64.getEncoder().encodeToString(imageBytes);
     }
 
 
