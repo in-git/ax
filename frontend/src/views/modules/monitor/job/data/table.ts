@@ -3,7 +3,7 @@ import type { SystemJob } from '@/api/modules/monitor/job/types';
 
 export const jobTable = ref<TableConfig<SystemJob>>({
   //作用：勾选的唯一标识
-  rowKey: 'jobGroup',
+  rowKey: 'jobId',
   data: [],
   loading: false,
   moduleName: 'job',

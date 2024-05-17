@@ -33,14 +33,13 @@
         ></a-input>
       </div>
       <div>
-        <a-select
+        <a-radio-group
           v-model:value="deptQuery.status"
           style="width: 160px"
-          placeholder="请选择部门状态（0正常 1停用）"
           allow-clear
-          @press-enter="deptList"
+          @change="deptList"
           :options="statusOptions"
-        ></a-select>
+        ></a-radio-group>
       </div>
       <a-button type="primary" @click="deptList">搜索</a-button>
     </a-flex>

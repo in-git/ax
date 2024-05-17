@@ -1,6 +1,11 @@
 <template>
   <div>
-    <a-modal v-model:open="passwordModal" :footer="false" title="修改密码">
+    <a-modal
+      v-model:open="passwordModal"
+      get-container=".SystemUser"
+      :footer="false"
+      title="修改密码"
+    >
       <a-card :bordered="false">
         <a-form :model="form" layout="vertical" @submit="submit">
           <a-form-item required name="password" label="新的密码" :rules="rules">

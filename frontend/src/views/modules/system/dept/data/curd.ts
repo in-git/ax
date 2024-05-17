@@ -12,7 +12,7 @@ function convertMenuDataToTree(data: SystemDept[]): SystemDept[] {
   });
   data.forEach(item => {
     if (item.parentId !== 0) {
-      map[item.parentId!].children.push(map[item.deptId]);
+      map[item.parentId!].children!.push(map[item.deptId]);
     } else {
       tree.push(map[item.deptId]);
     }
@@ -50,4 +50,8 @@ export const deptDelete = async (id?: number) => {
   await response(deleteDept, ids);
   await deptList();
   deptKeys.value = [];
+};
+export const createSubDept = (parentId: number) => {
+  deptCreate();
+  deptForm.value.parentId = parentId;
 };

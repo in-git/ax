@@ -8,11 +8,14 @@
   >
     <a-form
       :model="userForm"
-      label-align="left"
+      label-align="right"
       class="form"
       @finish="submit"
       :label-col="{
-        span: 8,
+        span: 6,
+      }"
+      :wrapper-col="{
+        offset: 2,
       }"
     >
       <a-card title="编辑用户信息">
@@ -89,13 +92,13 @@ const submit = async () => {
   menuTable.value.loading = true;
   try {
     if (!userForm.value.userId) {
-      response(createUser, userForm.value);
+      await response(createUser, userForm.value);
     } else {
-      response(updateUser, userForm.value);
+      await response(updateUser, userForm.value);
     }
+    await userList();
     menuTable.value.loading = false;
     userShowForm.value = false;
-    userList();
   } catch (error) {
     menuTable.value.loading = false;
   }

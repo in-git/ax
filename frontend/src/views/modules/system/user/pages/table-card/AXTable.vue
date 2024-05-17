@@ -29,17 +29,9 @@
                 <div v-perm="'system:user:export'">
                   <a-menu-item @click="updatePwd">
                     <template #icon>
-                      <ExportOutlined />
+                      <LockOutlined />
                     </template>
                     修改密码
-                  </a-menu-item>
-                </div>
-                <div v-perm="'system:user:export'">
-                  <a-menu-item @click="userExport">
-                    <template #icon>
-                      <ExportOutlined />
-                    </template>
-                    导出
                   </a-menu-item>
                 </div>
                 <div v-perm="'system:notice:remove'">
@@ -67,7 +59,7 @@ import { useArrayFilter, useCloned } from '@vueuse/core';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { userColumns } from '../../data/column';
-import { userDelete, userEdit, userExport } from '../../data/curd';
+import { userDelete, userEdit } from '../../data/curd';
 import { passwordModal, userForm } from '../../data/form';
 import { userKeys, userQuery, userTable } from '../../data/table';
 import ChangePassword from '../components/change-password/ChangePassword.vue';
