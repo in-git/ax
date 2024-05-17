@@ -31,7 +31,6 @@
           @keydown.enter="enter"
           class="flex-1"
         />
-        <StarVue />
       </div>
       <a-tooltip title="外部链接打开">
         <div class="system__icon" @click="open">
@@ -52,7 +51,6 @@ import { browserLoading, currentBrowserTab, homePage } from '../data/browser';
 import { createBrowserTab, enterUrl } from '../data/browser.methods';
 import { activeTab, browserTabs, removeById } from '../data/browser.tabs';
 import QrcodeVue from './Qrcode.vue';
-import StarVue from './star/Star.vue';
 const inputRef = ref<HTMLInputElement>();
 
 const src = ref('');
