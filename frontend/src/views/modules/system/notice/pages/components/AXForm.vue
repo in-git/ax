@@ -1,6 +1,6 @@
 <template>
   <a-modal
-    get-container=".ax__template"
+    get-container=".SystemNotice"
     width="70%"
     title="通知公告"
     :footer="false"
@@ -10,7 +10,7 @@
       :rules="noticeRules"
       :model="noticeForm"
       @finish="submit"
-      :wrapper-col="{ span: 8, offset: 1 }"
+      :wrapper-col="{ offset: 1 }"
       :label-col="{ span: 4, offset: 4 }"
     >
       <a-card title="编辑/新增">

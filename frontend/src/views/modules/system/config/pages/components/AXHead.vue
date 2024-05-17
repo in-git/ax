@@ -25,13 +25,13 @@
       </div>
       <div>
         系统内置
-        <a-radio-group
+        <a-select
           v-model:value="configQuery.configType"
           style="width: 160px"
           allow-clear
-          @press-enter="configList"
+          @change="configList"
           :options="configTypeOptions"
-        ></a-radio-group>
+        ></a-select>
       </div>
       <a-button type="primary" @click="configList">搜索</a-button>
     </a-flex>

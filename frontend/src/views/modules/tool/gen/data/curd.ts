@@ -21,11 +21,12 @@ export const codeList = async () => {
  * @param {string} id
  */
 export const editTable = async (id?: string) => {
+  const targeId = id ? id : codeKeys.value[0];
   openWindow({
     title: '低代码配置',
     component: markRaw(Column),
     id: getTempId(),
-    data: id,
+    data: targeId,
     w: 900,
   });
 };

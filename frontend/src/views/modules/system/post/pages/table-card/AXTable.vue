@@ -26,14 +26,6 @@
             <EditOutlined />
             <template #overlay>
               <a-menu>
-                <div v-perm="'system:post:export'">
-                  <a-menu-item @click="postExport">
-                    <template #icon>
-                      <ExportOutlined />
-                    </template>
-                    导出
-                  </a-menu-item>
-                </div>
                 <div v-perm="'system:notice:remove'">
                   <a-menu-item @click="postDelete(record.postId)">
                     <template #icon>
@@ -58,7 +50,7 @@ import { useArrayFilter, useCloned } from '@vueuse/core';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { postColumns } from '../../data/column';
-import { postDelete, postEdit, postExport } from '../../data/curd';
+import { postDelete, postEdit } from '../../data/curd';
 import { postForm } from '../../data/form';
 import { postKeys, postQuery, postTable } from '../../data/table';
 

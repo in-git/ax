@@ -1,8 +1,5 @@
 <template>
-  <a-card
-    class="ax__template"
-    :body-style="{ height: '100%', overflow: 'hidden', paddingBottom: '0' }"
-  >
+  <a-card class="ax__template SystemWebsite" :body-style="bodyStyle">
     <a-flex vertical class="h-100">
       <!-- 顶部筛选，查询选项 -->
       <HeadVue />
@@ -25,6 +22,7 @@
 </template>
 
 <script setup lang="ts">
+import { bodyStyle } from '@/global/config/gen';
 import { websiteList } from './data/curd';
 import { typeOptionsFetch } from './data/options';
 import { viewMode } from './data/table';
@@ -33,6 +31,7 @@ import FormVue from './pages/components/AXForm.vue';
 import HeadVue from './pages/components/AXHead.vue';
 import CardVue from './pages/table-card/AXCard.vue';
 import TableVue from './pages/table-card/AXTable.vue';
+
 onMounted(async () => {
   await websiteList();
   await typeOptionsFetch();

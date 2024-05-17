@@ -92,6 +92,7 @@ declare module 'vue' {
     Loading: typeof import('./components/loading/Loading.vue')['default']
     Loading3QuartersOutlined: typeof import('@ant-design/icons-vue')['Loading3QuartersOutlined']
     LoadingOutlined: typeof import('@ant-design/icons-vue')['LoadingOutlined']
+    LockOutlined: typeof import('@ant-design/icons-vue')['LockOutlined']
     LogoutOutlined: typeof import('@ant-design/icons-vue')['LogoutOutlined']
     OrderedListOutlined: typeof import('@ant-design/icons-vue')['OrderedListOutlined']
     PlusOutlined: typeof import('@ant-design/icons-vue')['PlusOutlined']

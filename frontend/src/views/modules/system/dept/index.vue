@@ -1,6 +1,6 @@
 <template>
   <a-card
-    class="ax__template"
+    class="ax__template SystemDept"
     :body-style="{ height: '100%', overflow: 'hidden', paddingBottom: '0' }"
   >
     <a-flex vertical class="h-100">

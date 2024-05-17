@@ -18,7 +18,6 @@ import { EventBusEnum } from '@/global/enum/eventBus';
 import { LocalforageEnum } from '@/global/enum/localforage';
 import usePageStore from '@/store/page';
 import { useEventBus } from '@vueuse/core';
-import { message } from 'ant-design-vue';
 import localforage from 'localforage';
 import type { CSSProperties } from 'vue';
 import VideoBackground from 'vue-responsive-video-background-player';
@@ -49,7 +48,7 @@ const getLocalBackground = async () => {
 
     backgroundSrc.value = bg;
   } else {
-    message.warn('资源路径出了点问题，请重新设置壁纸');
+    backgroundSrc.value = defaultBackground;
   }
 };
 /**

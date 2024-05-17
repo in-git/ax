@@ -15,6 +15,7 @@
           style="width: 160px"
           placeholder="请选择$column.columnComment"
           allow-clear
+          @change="${businessName}List"
           :options="${javaField}Options"
         ></a-select>
       </div>

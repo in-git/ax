@@ -10,10 +10,6 @@ const userColumns = ref<TableColumnProps[]>([
     dataIndex: 'nickName',
   },
   {
-    title: '用户邮箱',
-    dataIndex: 'email',
-  },
-  {
     title: '手机号码',
     dataIndex: 'phonenumber',
   },
@@ -26,7 +22,7 @@ const userColumns = ref<TableColumnProps[]>([
     dataIndex: 'avatar',
   },
   {
-    title: '帐号状态（0正常 1停用）',
+    title: '帐号状态',
     dataIndex: 'status',
   },
   {

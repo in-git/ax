@@ -58,10 +58,10 @@ export interface UserProfileData {
   nickName: string;
   email: string;
   phonenumber: string;
-  sex: string;
+  sex: '0' | '1' | '2';
   avatar: string;
   password: string;
-  status: string;
+  status: '0' | '1';
   delFlag: string;
   loginIp: string;
   loginDate: string;

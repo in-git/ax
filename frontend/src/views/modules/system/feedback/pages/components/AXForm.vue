@@ -1,12 +1,17 @@
 <template>
-  <a-form
-    :rules="feedbackRules"
-    :model="feedbackForm"
-    @finish="submit"
-    :wrapper-col="{ span: 8, offset: 1 }"
-    :label-col="{ span: 4, offset: 4 }"
+  <a-modal
+    title="系统反馈"
+    v-model:open="feedbackShowForm"
+    :footer="false"
+    get-container=".SystemFeedback"
   >
-    <SystemModal title="系统反馈" v-model:visible="feedbackShowForm">
+    <a-form
+      :rules="feedbackRules"
+      :model="feedbackForm"
+      @finish="submit"
+      :wrapper-col="{ offset: 1 }"
+      :label-col="{ span: 4, offset: 4 }"
+    >
       <a-card title="编辑/新增">
         <a-form-item label="反馈内容" name="feedbackContent">
           <a-textarea
@@ -21,31 +26,31 @@
           <a-input placeholder="请输入用户昵称" v-model:value="feedbackForm.nickname"></a-input>
         </a-form-item>
         <template #extra>
-          <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
+          <a-button htmlType="submit" type="primary" :loading="feedbackTable.loading" block>
+            保存
+          </a-button>
         </template>
       </a-card>
-    </SystemModal>
-  </a-form>
+    </a-form>
+  </a-modal>
 </template>
 
 <script setup lang="ts">
 import { createFeedback, updateFeedback } from '@/api/modules/system/feedback/feedback';
-import SystemModal from '@/components/modal/SysModal.vue';
 import { response } from '@/utils/table/table';
 import { feedbackList } from '../../data/curd';
 import { feedbackForm, feedbackRules, feedbackShowForm } from '../../data/form';
-
-const loading = ref(false);
+import { feedbackTable } from '../../data/table';
 
 const submit = async () => {
-  loading.value = true;
+  feedbackTable.value.loading = true;
   if (feedbackForm.value.feedbackId) {
     await response(updateFeedback, feedbackForm.value);
   } else {
     await response(createFeedback, feedbackForm.value);
   }
   await feedbackList();
-  loading.value = false;
+  feedbackTable.value.loading = false;
   feedbackShowForm.value = false;
 };
 </script>

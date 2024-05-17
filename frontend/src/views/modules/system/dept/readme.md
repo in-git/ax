@@ -1,17 +1,66 @@
 
-```vue
-data:	放置表单相关数据
-
-pages:	放置表单相关的所有页面
-	pages/components:公共的表头，表尾文件
-	pages/table-card:表格和卡片的vue文件
-	pages/form:表单添加和编辑
-
-sub-pages:	子页面,用新窗口打开
+<div align="center"><h1 align="center">AX</h3></div>
+<div align="center"><h3 align="center">Windows 操作风格的后台管理系统</h3>
+</div>
+<p align="center">     
+    <p align="center">
+        <a>
+            <img src="https://img.shields.io/badge/AX-V1.0-green" alt="AX">
+        </a>
+        <a href="https://gitee.com/in-git/ax-view.git">
+            <img src="https://gitee.com/in-git/ax-view/badge/star.svg?theme=dark" alt="Gitee star">
+        </a>
+        <a href="https://gitee.com/in-git/ax-view">
+            <img src="https://gitee.com/in-git/ax-view/badge/fork.svg?theme=dark" alt="Gitee fork">
+        </a>
+    </p>
+</p>
+```
+如果你需要对这个模块进行说明，在这里填写，提倡
 ```
 
 
-- 卡片模式是比较自由的风格,需要自己去写额外的代码，不能完全自动生成
-- 支持拖拽排序，节点拖拽行为
-- 卡片有更强的交互能力，如拖拽分配角色，拖拽分配资源等等
+
+### 路径说明
+
+#### DATA
+
+- ### /data/card.ts
+
+  - 存放卡片相关操作：拖拽事件，数据渲染，数据选择
+
+- /data/column.ts
+
+  - 存放表头，会存储到本地，记录上一次用户勾选的表头
+
+- /data/curd.ts
+
+  - 存放增删改查的逻辑
+
+- /data/form.ts
+
+  - 编辑数据相关逻辑
+
+- /data/options.ts
+
+  - 下拉框相关数据
+
+- /data/table.ts
+
+  - 数据中心，页面数据，加载，查询模块名都在这，谨慎修改
+
+#### PAGES
+
+- /pages/components/AXFooter.vue
+  - 页面底部，负责分页
+- /pages/components/AXForm.vue
+  - 表单弹出层，负责页面表单编辑创建
+- /pages/components/AXHead.vue
+  - 表头，负责增删改查
+- /pages/table-card/AXTable.vue
+  - 表格，负责数据展示，选择，传统风格
+- /pages/table-card/AXCard.vue
+  - 卡片风格，负责数据展示，选择
+
+
 

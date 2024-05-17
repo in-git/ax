@@ -17,10 +17,6 @@ const deptColumns = ref<TableColumnProps[]>([
     title: '联系电话',
     dataIndex: 'phone',
   },
-  {
-    title: '部门状态',
-    dataIndex: 'status',
-  },
 ]);
 
 export { deptColumns };

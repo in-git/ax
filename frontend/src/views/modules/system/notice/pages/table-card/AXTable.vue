@@ -26,14 +26,6 @@
             <EditOutlined />
             <template #overlay>
               <a-menu>
-                <div v-perm="'system:notice:export'">
-                  <a-menu-item @click="noticeExport">
-                    <template #icon>
-                      <ExportOutlined />
-                    </template>
-                    导出
-                  </a-menu-item>
-                </div>
                 <div v-perm="'system:notice:remove'">
                   <a-menu-item @click="noticeDelete(record.noticeId)">
                     <template #icon>
@@ -58,7 +50,7 @@ import { useArrayFilter, useCloned } from '@vueuse/core';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { noticeColumns } from '../../data/column';
-import { noticeDelete, noticeEdit, noticeExport } from '../../data/curd';
+import { noticeDelete, noticeEdit } from '../../data/curd';
 import { noticeForm } from '../../data/form';
 import { noticeKeys, noticeQuery, noticeTable } from '../../data/table';
 

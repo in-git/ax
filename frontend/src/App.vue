@@ -12,6 +12,7 @@
   >
     <!-- PC显示 -->
     <Desktop />
+    <!-- 移动端 -->
     <PhoneVue />
   </ConfigProvider>
   <!-- 通用右键菜单 -->

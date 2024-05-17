@@ -14,15 +14,17 @@
     >
       <a-card title="编辑/新增" class="form__head">
         <template #extra>
-          <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
+          <a-button htmlType="submit" type="primary" :loading="testTable.loading" block>
+            保存
+          </a-button>
         </template>
         <a-form-item label="文本字段" name="textField">
           <a-input placeholder="请输入文本字段" v-model:value="testForm.textField">
             <template #addonAfter>
-              <a-popover trigger="click">
+              <a-popover trigger="click" v-model:open="popVisible">
                 <BookOutlined />
                 <template #content>
-                  <Memo v-model:value="testForm.textField" />
+                  <Memo v-model:value="testForm.textField" @update:value="popVisible = false" />
                 </template>
               </a-popover>
             </template>
@@ -31,10 +33,10 @@
         <a-form-item label="数字字段" name="numberField">
           <a-input placeholder="请输入数字字段" v-model:value="testForm.numberField">
             <template #addonAfter>
-              <a-popover trigger="click">
+              <a-popover trigger="click" v-model:open="popVisible">
                 <BookOutlined />
                 <template #content>
-                  <Memo v-model:value="testForm.numberField" />
+                  <Memo @update:value="popVisible = false" v-model:value="testForm.numberField" />
                 </template>
               </a-popover>
             </template>
@@ -99,19 +101,19 @@ import { response } from '@/utils/table/table';
 import Memo from '@/views/selector/memo/Memo.vue';
 import { testList } from '../../data/curd';
 import { testForm, testRules, testShowForm } from '../../data/form';
+import { testTable } from '../../data/table';
 
-const loading = ref(false);
+const popVisible = ref(false);
 
 const submit = async () => {
-  loading.value = true;
+  testTable.value.loading = true;
   if (testForm.value.testId) {
     await response(updateTest, testForm.value);
   } else {
     await response(createTest, testForm.value);
   }
-  await testList();
-  loading.value = false;
   testShowForm.value = false;
+  await testList();
 };
 </script>
 

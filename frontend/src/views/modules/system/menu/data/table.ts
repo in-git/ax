@@ -1,18 +1,18 @@
 import type { IQuery, TableConfig } from '@/api/config/types';
-import type {  SystemMenu } from '@/api/modules/system/menu/types';
+import type { SystemMenu } from '@/api/modules/system/menu/types';
 
 //查询参数接口
 interface MenuQuery {
-  menuName: string ;
-  component: string ;
+  menuName: string;
+  component: string;
 }
 
 let queryObj: IQuery<MenuQuery> = {
   pageNum: 1,
   pageSize: 10,
   total: 0,
-  menuName: "" ,
-  component: "" ,
+  menuName: '',
+  component: '',
 };
 
 // 预览模式:卡片|表格
@@ -32,7 +32,7 @@ export const menuTable = ref<TableConfig<SystemMenu>>({
 
 //查询参数
 export const menuQuery = ref<IQuery<MenuQuery>>({
- ...queryObj,
+  ...queryObj,
 });
 
 export const resetMenuQuery = () => {
@@ -41,3 +41,4 @@ export const resetMenuQuery = () => {
   };
 };
 
+export const menuTree = ref();

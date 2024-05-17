@@ -29,7 +29,7 @@
                 @click="selectItem(item.url)"
                 :class="{ active: currentSrc === item.url }"
               >
-                <img :src="getStaticImage(item.icon) || getFavicon(item.url)" width="32" />
+                <img :src="getIcon(item)" width="32" />
               </li>
             </a-tooltip>
           </template>
@@ -44,7 +44,8 @@ import type { IQuery } from '@/api/config/types';
 import type { SystemWebsite } from '@/api/modules/system/website/types';
 import { fetchWebsiteList } from '@/api/modules/system/website/website';
 import { getFavicon, getStaticImage } from '@/api/utils/image';
-import { typeOptions, typeOptionsFetch } from '@/views/modules/system/website/data/options';
+import { getDictOption } from '@/global/data/dict';
+import { typeOptions } from '@/views/modules/system/website/data/options';
 import { enterUrl } from '../../data/browser.methods';
 
 const currentSrc = ref<string>('');
@@ -59,18 +60,21 @@ const query = ref<IQuery>({
   type: 'image',
 });
 
+const getIcon = (item: SystemWebsite) => {
+  if (item.icon) {
+    return getStaticImage(item.icon);
+  }
+  return getFavicon(item.url);
+};
 const pageChange = (pageNum: number, pageSize: number) => {
   query.value.pageNum = pageNum;
   query.value.pageSize = pageSize;
   getList();
 };
 onMounted(async () => {
-  if (!typeOptions.value) {
-    await typeOptionsFetch();
-  }
+  typeOptions.value = await getDictOption('website_type');
 });
 const openLink = (item: SystemWebsite) => {
-  //
   enterUrl(item.url, item.name);
   visible.value = false;
 };
@@ -81,6 +85,8 @@ const changeType = () => {
 const getList = async () => {
   const { data } = await fetchWebsiteList(query.value);
   if (data.rows) {
+    console.log(list.value);
+
     list.value = data.rows;
     query.value.total = data.total;
   }

@@ -9,8 +9,8 @@
      :model="${businessName}Form"
      @finish="submit"
      :label-col="{ span: 6 }"
-     label-align="left">
-
+     :wrapper-col="{ offset: 1 }"
+     label-align="right">
      <a-modal
        :footer="false"
        title="$functionName"
@@ -19,7 +19,7 @@
      >
       <a-card title="编辑/新增" class="form__head">
         <template #extra>
-          <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
+          <a-button htmlType="submit" type="primary" :loading="${businessName}Table.loading" block>保存</a-button>
         </template>
 #foreach($column in $columns)
 #set($comment=$column.columnComment)
@@ -32,7 +32,6 @@
                class="w-100"
                placeholder="请选择$column.columnComment"
                allow-clear
-               @change="${businessName}List"
                :options="${column.javaField}Options"
              ></a-select>
             </a-form-item>
@@ -40,10 +39,10 @@
            <a-form-item label="${comment}" name="$field">
              <a-input placeholder="请输入$comment" v-model:value="${businessName}Form.${column.javaField}">
                 <template #addonAfter>
-                  <a-popover trigger="click" >
+                  <a-popover trigger="click" v-model:open="popVisible" >
                     <BookOutlined />
                     <template #content>
-                      <Memo v-model:value="${businessName}Form.${column.javaField}" />
+                      <Memo @update:value="popVisible = false" v-model:value="${businessName}Form.${column.javaField}" />
                     </template>
                   </a-popover>
                 </template>
@@ -114,19 +113,19 @@ import {
   create${BusinessName},
   update${BusinessName}} from
 '@/api/modules/${moduleName}/${businessName}/${businessName}';
-
-const loading = ref(false)
+import { ${businessName}Table } from '../../data/table';
+const popVisible = ref(false);
 
 const submit = async () => {
-  loading.value = true
+  ${businessName}Table.value.loading = true
     if (${businessName}Form.value.$Key) {
     await response(update${BusinessName}, ${businessName}Form.value);
   } else {
     await response(create${BusinessName}, ${businessName}Form.value);
   }
+   ${businessName}Table.value.loading = false
   await ${businessName}List();
-  loading.value = false
-  ${businessName}ShowForm.value = false;
+  ${businessName}ShowForm.value=false
 };
 </script>
 

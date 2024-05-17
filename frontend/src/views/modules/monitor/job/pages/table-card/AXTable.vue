@@ -27,11 +27,11 @@
             <template #overlay>
               <a-menu>
                 <div v-perm="'system:job:export'">
-                  <a-menu-item @click="jobExport">
+                  <a-menu-item @click="jobDelete(record.jobId)">
                     <template #icon>
-                      <ExportOutlined />
+                      <DeleteOutlined />
                     </template>
-                    导出
+                    删除
                   </a-menu-item>
                 </div>
               </a-menu>
@@ -50,15 +50,17 @@ import { useArrayFilter, useCloned } from '@vueuse/core';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import type { FilterValue, SorterResult } from 'ant-design-vue/es/table/interface';
 import { jobColumns } from '../../data/column';
-import { jobEdit, jobExport } from '../../data/curd';
+import { jobDelete, jobEdit } from '../../data/curd';
 import { jobForm } from '../../data/form';
 import { jobKeys, jobQuery, jobTable } from '../../data/table';
 
 const openChange = (record: SystemJob) => {
   jobForm.value = useCloned(record).cloned.value;
 };
-
-/* 行事件 */
+/**
+ * @description: 点击行触发
+ * @param {*} record
+ */
 const customRow = (record: SystemJob) => {
   return {
     onClick() {

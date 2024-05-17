@@ -10,8 +10,8 @@ export interface SystemMenu {
   isFrame: '0' | '1';
   isCache: '0' | '1';
   menuType: MenuType;
-  visible: string;
-  status: string;
+  visible: '0' | '1';
+  status: '0' | '1';
   perms: string;
   icon: string;
   createBy: string;

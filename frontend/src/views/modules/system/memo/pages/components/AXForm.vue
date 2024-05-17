@@ -1,12 +1,12 @@
 <template>
-  <a-form
-    :rules="memoRules"
-    :model="memoForm"
-    @finish="submit"
-    :wrapper-col="{ span: 8, offset: 1 }"
-    :label-col="{ span: 4, offset: 4 }"
-  >
-    <SystemModal title="备忘录" v-model:visible="memoShowForm">
+  <a-modal :footer="false" title="备忘录" v-model:open="memoShowForm" get-container=".SystemMemo">
+    <a-form
+      :rules="memoRules"
+      :model="memoForm"
+      @finish="submit"
+      :wrapper-col="{ offset: 1 }"
+      :label-col="{ span: 6 }"
+    >
       <a-card title="编辑/新增">
         <a-form-item label="备忘录标题" name="title">
           <a-input placeholder="请输入备忘录标题" v-model:value="memoForm.title">
@@ -37,13 +37,12 @@
           <a-button htmlType="submit" type="primary" :loading="loading" block>保存</a-button>
         </template>
       </a-card>
-    </SystemModal>
-  </a-form>
+    </a-form>
+  </a-modal>
 </template>
 
 <script setup lang="ts">
 import { createMemo, updateMemo } from '@/api/modules/system/memo/memo';
-import SystemModal from '@/components/modal/SysModal.vue';
 import { response } from '@/utils/table/table';
 import Memo from '@/views/selector/memo/Memo.vue';
 import { memoList } from '../../data/curd';
