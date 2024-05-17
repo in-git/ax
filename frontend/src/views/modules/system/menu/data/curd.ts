@@ -12,7 +12,7 @@ import { menuKeys, menuQuery, menuTable, menuTree } from './table';
 export const menuList = async () => {
   try {
     menuTable.value.loading = true;
-    const { data } = await fetchMenuList();
+    const { data } = await fetchMenuList(menuQuery.value.menuName);
     if (data.data) {
       let treeData = convertMenuDataToTree(data.data);
       menuTable.value.data = treeData;
