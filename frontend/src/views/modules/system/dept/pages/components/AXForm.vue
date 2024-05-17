@@ -99,6 +99,7 @@ const submit = async () => {
     await response(createDept, deptForm.value);
   }
   await deptList();
+  deptShowForm.value = false;
 };
 </script>
 

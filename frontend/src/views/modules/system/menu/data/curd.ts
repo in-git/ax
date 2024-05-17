@@ -7,7 +7,7 @@ import {
 import { convertMenuDataToTree } from '@/utils/common/tree';
 import { response } from '@/utils/table/table';
 import { menuForm, menuResetForm, menuShowForm } from './form';
-import { menuKeys, menuQuery, menuTable } from './table';
+import { menuKeys, menuQuery, menuTable, menuTree } from './table';
 
 export const menuList = async () => {
   try {
@@ -35,8 +35,20 @@ export const menuEdit = async (id?: number) => {
   menuTable.value.loading = false;
 };
 
+/**
+ * @description: 创建菜单，构建父目录
+ */
 export const menuCreate = async () => {
   menuResetForm();
+  const { data } = await fetchMenuList();
+  menuTree.value = [
+    {
+      menuId: 0,
+      menuName: '主目录',
+      path: '',
+      children: convertMenuDataToTree(data.data || []),
+    },
+  ];
   menuShowForm.value = true;
 };
 
@@ -53,4 +65,9 @@ export const menuExport = () => {
     pageNum: menuQuery.value.pageNum,
     pageSize: menuQuery.value.pageSize,
   });
+};
+export const createSubMenu = async (parentId: number) => {
+  menuCreate();
+
+  menuForm.value.parentId = parentId;
 };

@@ -1,7 +1,7 @@
 <template>
   <a-modal
     v-model:open="resourceModal"
-    title="管理身份"
+    title="资源分配"
     get-container=".SystemRole"
     :footer="false"
   >

@@ -52,7 +52,7 @@
                   value: 'menuId',
                   label: 'menuName',
                 }"
-                :tree-data="treeData"
+                :tree-data="menuTree"
               ></a-tree-select>
             </a-form-item>
             <a-form-item label="菜单状态" name="status" required>
@@ -97,16 +97,14 @@ import { response } from '@/utils/table/table';
 import Gallery from '@/views/selector/gallery/Gallery.vue';
 import type { SmileOutlined } from '@ant-design/icons-vue';
 import { menuList } from '../../data/curd';
-import { listMenu, menuTableConfig } from '../../data/data';
 import { menuForm, menuShowForm } from '../../data/form';
 import { menuTypeOptions } from '../../data/options';
-import { menuTable } from '../../data/table';
+import { menuTable, menuTree } from '../../data/table';
 import ParamVue from './form/Params.vue';
 
 const treeSelected = ref<number[]>([]);
 // 图片选择器
 const visible = ref(false);
-const treeData = ref<any[]>([]);
 
 const submit = async () => {
   menuTable.value.loading = true;
@@ -120,24 +118,6 @@ const submit = async () => {
   menuShowForm.value = false;
   menuList();
 };
-watch(
-  listMenu,
-  () => {
-    treeSelected.value = [menuForm.value.parentId];
-    treeData.value = [
-      {
-        menuId: 0,
-        menuName: '主目录',
-        path: '',
-      },
-      ...menuTableConfig.value.data,
-    ];
-  },
-  {
-    deep: true,
-    immediate: true,
-  },
-);
 </script>
 
 <style lang="scss" scoped></style>

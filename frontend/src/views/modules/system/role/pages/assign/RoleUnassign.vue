@@ -3,7 +3,7 @@
     :footer="false"
     width="90%"
     v-model:open="unAssignModal"
-    title="管理身份"
+    title="取消授权"
     get-container=".SystemRole"
   >
     <div>

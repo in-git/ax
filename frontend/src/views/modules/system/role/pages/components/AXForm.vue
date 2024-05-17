@@ -3,7 +3,7 @@
     width="90%"
     :footer="false"
     v-model:open="showRoleForm"
-    title="管理身份"
+    title="身份管理"
     get-container=".SystemRole"
   >
     <a-form :model="roleForm" @finish="submit" :label-col="{ span: 6 }" label-align="left">
@@ -62,7 +62,6 @@
                         <a-switch v-model:checked="roleForm.menuCheckStrictly"></a-switch>
                       </div>
                     </template>
-
                     <a-tree
                       :treeData="treeData"
                       checkable
