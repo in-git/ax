@@ -60,7 +60,7 @@ node_modules
 .DS_Store
 dist-ssr
 coverage
-/java/**/application-local.yml
+
 
 /cypress/videos/
 /cypress/screenshots/
@@ -75,10 +75,16 @@ coverage
 *.sln
 *.sw?
 
+frontend/src/components
 
-# nodejs
-nodejs/src/assets/
-/resource/
+# 排除资源目录
+/resource/*
+!/resource/readme.md
+
 application-local.yml
 application-build.yml
+
+# 排除后端
+/backend/*
+!/backend/readme.md
 dist
