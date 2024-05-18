@@ -1,5 +1,0 @@
-export interface ${ModuleName}${BusinessName}{
-#foreach($column in $columns)
-    $column.javaField:#if($column.javaType == "String") string #elseif($column.javaType == "Integer") number #elseif($column.javaType == "Long") number #elseif($column.javaType == "Double") number #elseif($column.javaType == "Boolean") boolean #else any #end;
-#end
-}
