@@ -28,14 +28,9 @@
 
 <script setup lang="ts">
 import { selectionKeys } from '@/components/selection/data';
-import type { DataNode } from 'ant-design-vue/es/tree';
-import { getInfo, openFile } from '../../data/action';
+import { openFile, selectItem } from '../../data/action';
 import { currentFolder, folderLoading, selectedFolders } from '../../data/data';
 import FileRender from './FileRender.vue';
-const selectItem = async (item: DataNode) => {
-  selectedFolders.value = [item.key];
-  await getInfo();
-};
 
 watch(
   selectionKeys,

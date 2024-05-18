@@ -27,6 +27,7 @@
         <CheckOutlined v-else />
       </a-button>
     </a-flex>
+    <HeadRight></HeadRight>
   </a-flex>
 </template>
 
@@ -34,7 +35,7 @@
 import type { LeftOutlined } from '@ant-design/icons-vue';
 import { getSeparator, isWindows, loadPath } from '../data/action';
 import { currentPath } from '../data/data';
-
+import HeadRight from './HeadRight.vue';
 /* 激活：input，未激活：面包屑导航 */
 const isActive = ref(false);
 

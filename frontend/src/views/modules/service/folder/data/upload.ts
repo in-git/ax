@@ -3,9 +3,9 @@ import { getToken } from '@/store/user/utils';
 import { joinUrl } from '@/utils/file/format';
 import { message } from 'ant-design-vue';
 import axios from 'axios';
-import { loadPath } from '../../../data/action';
-import { currentPath } from '../../../data/data';
-import { uploadCancelToken, uploadStatus } from './config';
+import { uploadCancelToken, uploadStatus } from '../content/subnodes/data/config';
+import { loadPath } from './action';
+import { currentPath } from './data';
 import type { UploadFile } from './types';
 
 export const uploadFiles = async (files: UploadFile[]) => {
@@ -21,7 +21,6 @@ export const uploadFiles = async (files: UploadFile[]) => {
     formData.append('files', file.file, file.path || file.file.name);
   });
   try {
-    message.success('正在上传,请稍后，完成后会发送通知');
     uploadStatus.value = 'loading';
     const response = await http.post(joinUrl(host, `afm/file/upload`), formData, {
       params: {

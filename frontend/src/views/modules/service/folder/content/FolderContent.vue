@@ -17,9 +17,9 @@
 import { EventBusEnum } from '@/global/enum/eventBus';
 import { useEventBus } from '@vueuse/core';
 import { mode } from '../data/data';
+import type { UploadFile } from '../data/types';
+import { uploadFiles } from '../data/upload';
 import Card from './subnodes/Card.vue';
-import type { UploadFile } from './subnodes/data/types';
-import { uploadFiles } from './subnodes/data/upload';
 import FooterVue from './subnodes/footer/Footer.vue';
 import Table from './subnodes/Table.vue';
 import Tool from './subnodes/tool/Tool.vue';

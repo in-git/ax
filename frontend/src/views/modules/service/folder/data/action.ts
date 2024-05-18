@@ -8,6 +8,7 @@ import {
   currentPath,
   fileInfo,
   folderLoading,
+  selectedFile,
   selectedFolders,
   selectedPaths,
   sysInfo,
@@ -17,14 +18,26 @@ import {
  * @description: 打开一个文件或文件夹
  * @param {DataNode} item
  */
-export const openFile = (item: DataNode) => {
-  if (item.type === 'folder') {
-    selectedPaths.value = [item.key];
-    currentPath.value = `${item.key}`;
-    loadPath(`${item.key}`);
+export const openFile = (item?: DataNode) => {
+  if (!selectedFile.value) return;
+  let file = item ? item : selectedFile.value;
+  if (file.type === 'folder') {
+    selectedPaths.value = [file.key];
+    currentPath.value = `${file.key}`;
+    loadPath(`${file.key}`);
   } else {
-    settleFile(item);
+    settleFile(file);
   }
+};
+
+/**
+ * @description:单击选中某个文件
+ */
+
+export const selectItem = async (item: DataNode) => {
+  selectedFolders.value = [item.key];
+  selectedFile.value = item;
+  await getInfo();
 };
 
 /**

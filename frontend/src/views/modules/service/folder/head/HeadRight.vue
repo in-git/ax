@@ -1,12 +1,22 @@
 <template>
   <div>
-    <a-button @click="upload" type="primary" :disabled="!currentPath">上传</a-button>
+    <a-dropdown placement="bottomRight">
+      <a-button type="primary">
+        上传
+        <DownOutlined class="text-12" />
+      </a-button>
+      <template #overlay>
+        <a-menu style="height: fit-content">
+          <a-menu-item @click="upload" :disabled="!currentPath">上传文件夹</a-menu-item>
+        </a-menu>
+      </template>
+    </a-dropdown>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useFileDialog } from '@vueuse/core';
-import { currentPath } from '../../../data/data';
+import { currentPath } from '../data/data';
 import type { UploadFile } from '../data/types';
 import { uploadFiles } from '../data/upload';
 

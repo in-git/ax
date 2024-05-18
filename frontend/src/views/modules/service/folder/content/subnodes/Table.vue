@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import type { DataNode } from 'ant-design-vue/es/tree';
-import { openFile } from '../../data/action';
+import { openFile, selectItem } from '../../data/action';
 import { fileColumns } from '../../data/columns';
 import { currentFolder, folderLoading, selectedFolders } from '../../data/data';
 import FileRender from './FileRender.vue';
@@ -35,6 +35,7 @@ const customRow = (record: DataNode) => {
   return {
     onClick() {
       selectedFolders.value = [record.key!];
+      selectItem(record);
     },
     onDblclick() {
       openFile(record);

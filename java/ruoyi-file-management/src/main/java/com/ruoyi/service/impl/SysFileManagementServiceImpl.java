@@ -75,26 +75,32 @@ public class SysFileManagementServiceImpl implements ISysFileManagementService {
      */
     public static String convertImageToBase64(String imagePath) throws IOException {
 
-        // 读取原始图片
-        BufferedImage originalImage = ImageIO.read(new File(imagePath));
+        try {
+            // 读取原始图片
+            BufferedImage originalImage = ImageIO.read(new File(imagePath));
+            if (originalImage == null) {
+                return "";
+            }
+            // 创建一个新的带白色背景的图片
+            BufferedImage newImage = new BufferedImage(originalImage.getWidth(), originalImage.getHeight(), BufferedImage.TYPE_INT_RGB);
+            Graphics2D graphics = newImage.createGraphics();
+            graphics.setColor(Color.WHITE);
+            graphics.fillRect(0, 0, newImage.getWidth(), newImage.getHeight());
+            graphics.drawImage(originalImage, 0, 0, null);
+            graphics.dispose();
 
-        // 创建一个新的带白色背景的图片
-        BufferedImage newImage = new BufferedImage(originalImage.getWidth(), originalImage.getHeight(), BufferedImage.TYPE_INT_RGB);
-        Graphics2D graphics = newImage.createGraphics();
-        graphics.setColor(Color.WHITE);
-        graphics.fillRect(0, 0, newImage.getWidth(), newImage.getHeight());
-        graphics.drawImage(originalImage, 0, 0, null);
-        graphics.dispose();
+            // 将图片转换为JPEG格式
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            ImageIO.write(newImage, "jpg", outputStream);
 
-        // 将图片转换为JPEG格式
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ImageIO.write(newImage, "jpg", outputStream);
-
-        // 将JPEG图片转换为Base64字符串
-        byte[] imageBytes = outputStream.toByteArray();
-        String base64String = Base64.getEncoder().encodeToString(imageBytes);
-        // 将字节数组转换为Base64编码字符串
-        return "data:image/jpg;base64," + base64String;
+            // 将JPEG图片转换为Base64字符串
+            byte[] imageBytes = outputStream.toByteArray();
+            String base64String = Base64.getEncoder().encodeToString(imageBytes);
+            // 将字节数组转换为Base64编码字符串
+            return "data:image/jpg;base64," + base64String;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

@@ -2,7 +2,7 @@
   <div class="tool-container">
     <a-flex class="tool w-100" :justify="'space-between'" :align="'center'">
       <a-flex :gap="4">
-        <UploadButton />
+        <a-button type="primary" @click="openFile()">打开</a-button>
         <a-dropdown trigger="click">
           <a-button :disabled="!currentPath">
             新建
@@ -97,9 +97,14 @@ import { clonedFiles, createFile, renameFile } from '@/api/modules/file/file';
 import { SnippetsOutlined } from '@ant-design/icons-vue';
 import { useCloned } from '@vueuse/core';
 import { message } from 'ant-design-vue';
-import { concatWithSeparator, delFile, getFileNameFromPath, loadPath } from '../../../data/action';
+import {
+  concatWithSeparator,
+  delFile,
+  getFileNameFromPath,
+  loadPath,
+  openFile,
+} from '../../../data/action';
 import { copiedPaths, currentPath, mode, selectedFolders } from '../../../data/data';
-import UploadButton from './UploadButton.vue';
 import { fileTypeOptions } from './options';
 import type { FileOptions } from './types';
 
