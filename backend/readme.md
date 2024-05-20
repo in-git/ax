@@ -14,3 +14,9 @@
         </a>
     </p>
 </p>
+#### 获取代码
+
+```
+git clone  https://gitee.com/in-git/ax-backend.git
+```
+
