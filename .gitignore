@@ -88,4 +88,7 @@ coverage
 /web-vue3/*
 !/web-vue3/readme.md
 
+# 排除NODEJS
+/nodejs/*
+!/nodejs/readme.md
 dist
