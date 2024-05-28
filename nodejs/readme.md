@@ -6,11 +6,11 @@
         <a>
             <img src="https://img.shields.io/badge/AX-V1.0-green" alt="AX">
         </a>
-        <a href="https://gitee.com/in-git/ax-view.git">
-            <img src="https://gitee.com/in-git/ax-view/badge/star.svg?theme=dark" alt="Gitee star">
+        <a href="https://gitee.com/in-git/ax.git">
+            <img src="https://gitee.com/in-git/ax/badge/star.svg?theme=dark" alt="Gitee star">
         </a>
-        <a href="https://gitee.com/in-git/ax-view">
-            <img src="https://gitee.com/in-git/ax-view/badge/fork.svg?theme=dark" alt="Gitee fork">
+        <a href="https://gitee.com/in-git/ax">
+            <img src="https://gitee.com/in-git/ax/badge/fork.svg?theme=dark" alt="Gitee fork">
         </a>
     </p>
 </p>
