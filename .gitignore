@@ -84,7 +84,7 @@ coverage
 /backend/*
 !/backend/readme.md
 
-# 排除后端
+# 排除前端
 /web-vue3/*
 !/web-vue3/readme.md
 
