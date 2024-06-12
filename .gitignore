@@ -88,6 +88,10 @@ coverage
 /web-vue3/*
 !/web-vue3/readme.md
 
+# 排除前端
+/mobile/*
+!/mobile/readme.md
+
 # 排除NODEJS
 /nodejs/*
 !/nodejs/readme.md
