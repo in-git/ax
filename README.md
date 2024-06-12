@@ -1,40 +1,59 @@
-
-
 <div align="center"><h1 align="center">AX</h3></div>
 <div align="center"><h3 align="center">Windows 操作风格的后台管理系统</h3>
 </div>
-
 <p align="center">     
     <p align="center">
-        <a>
-            <img src="https://img.shields.io/badge/AX-V1.0-green" alt="AX">
-        </a>
-        <a href="https://gitee.com/in-git/ax.git">
-            <img src="https://gitee.com/in-git/ax/badge/star.svg?theme=dark" alt="Gitee star">
-        </a>
-        <a href="https://gitee.com/in-git/ax">
-            <img src="https://gitee.com/in-git/ax/badge/fork.svg?theme=dark" alt="Gitee fork">
-        </a>
+        <img src="https://img.shields.io/badge/AX-V1.0-green" alt="AX">
+        <img src="https://img.shields.io/badge/AX-权限管理-red" alt="Gitee star">
+        <img src="https://img.shields.io/badge/AX-可视化-blue" alt="Gitee fork">
     </p>
 </p>
 
 
 
-#### 前言
 
-AX是一款具备windows操作风格，而且具备完整权限的后端管理系统。当前为基础版，没有绑定任何业务，将会在此基础上派生其他子系统。
+#### 项目前言
+
+AX是浏览器上的 `Windows `，可管理远程服务器上的文件，具备完整的权限管理。使用Vue3/Java实现，后端fork自若依，快速生成增删改查代码
 
 #### 在线体验
 
 <a href=http://150.158.14.110:8000/ target=_blank>直接打开</a>
 
-可以自己创建账号
+####  内置功能
 
-#### 安装
+1. 用户管理：用户是系统操作者，该功能主要完成系统用户配置。
+2. 部门管理：配置系统组织机构（公司、部门、小组），树结构展现支持数据权限。
+3. 岗位管理：配置系统用户所属担任职务。
+4. 菜单管理：配置系统菜单，操作权限，按钮权限标识等。
+5. 角色管理：角色菜单权限分配、设置角色按机构进行数据范围权限划分。
+6. 字典管理：对系统中经常使用的一些较为固定的数据进行维护。
+7. 参数管理：对系统动态配置常用参数。
+8. 通知公告：系统通知公告信息发布维护。
+9. 操作日志：系统正常操作日志记录和查询；系统异常信息日志记录和查询。
+10. 登录日志：系统登录日志记录查询包含登录异常。
+11. 在线用户：当前系统中活跃用户状态监控。
+12. 定时任务：在线（添加、修改、删除)任务调度包含执行结果日志。
+13. 代码生成：前后端代码的生成，支持CRUD下载 。
+14. 服务监控：监视当前系统CPU、内存、磁盘、堆栈等相关信息。
+15. 缓存监控：对系统的缓存信息查询，命令统计等。
+16. 在线构建器：拖动表单元素生成相应的HTML代码。
+
+#### 关于仓库
+
+##### GITCODE 安装
+
+```
+git clone https://gitcode.com/in-git/ax.git
+```
+
+##### GITEE 安装
 
 ```
 git clone https://gitee.com/in-git/ax.git
 ```
+
+##### 子仓库
 
 - 该项目下有多个子仓库，按需克隆下载
 - resource：静态资源，图片，帮助信息目录
@@ -42,25 +61,42 @@ git clone https://gitee.com/in-git/ax.git
 - backend：后端java代码
 - nodejs：辅助开发后端
 
->如果是首次接触这种类型的项目，可以先装前端，后端可以在界面上切换
+>如果是首次接触AX，可以先装前端。后端地址、静态资源地址能在界面切换
 
-#### 关于网络
+#### 项目预览
 
-AX的图片资源，代码，后端是完全分离的，能托管到github或者nginx服务器上，使用可视化界面进行重定向。为什么要这么做？因为子系统需要复用图片资源
+<img src="public/文件操作.gif" width="50%"><img src="public/cover-1.webp" width="50%">
 
-#### 功能
+<img src="public/cover-2.webp" width="50%"><img src="public/cover-3.webp"  width="50%">
 
-1. 后端fork自若依，数据有所改动，前端界面，交互完全重构
-2. 新注册的用户为访客，能使用备忘录，网页收藏，反馈功能，用户数据独立
-3. 配置可视化，开发者不用再关注配置相关的问题，在界面上即可完成
+<img src="public/壁纸设置.gif" width="50%"><img src="public/拖拽列表.gif" width="50%">
 
-#### 预览
 
-<img src="public/cover-1.webp">
 
-<img src="public/cover-2.webp">
+#### 关于后端
 
-<img src="public/cover-3.webp">
+1. 后端在若依的源码上有增加，基本兼容若依
+2. 数据库选择  ax/backend/sql/ax.sql，开放派，解封AX所有能力
+3. 数据库选择  ax/backend/sql/ry.sql，保守派，仅有若依的功能
+4. 暂时没有做低代码生成的教程，流程与若依一致，前往查看 https://doc.ruoyi.vip/
+
+
+
+#### 关于前端
+
+1. 尽可能的不更改系统内置的功能代码
+2. 窗口传值项目中有示例，暂不支持多窗口，目前没法降低代码复杂程度，如有需要，参照记事本的实现。
+3. 代码生成参照系统测试表，根据菜单管理中的组件路径读取对应文件，目录正确即可，无需手动导入
+4. 任何业务逻辑都需要写到窗口中
+
+#### 关于资源
+
+- AX的图片资源，前端代码，后端代码是完全分离的，这是一次大胆的尝试
+- 图片资源能托管到github、nginx、自定义服务器上，在界面能自由切换
+- 图片，头像等资源可任意添加，删除，修改，前端能选择，读取
+- 静态资源将被头像选择器，背景选择，图片选择器使用
+- 如果对版权有要求，请务必将 resource 仓库中所有图片替换成自定义的图片，再重新生成JSON
+- 所有图片资源来源于网络
 
 
 
@@ -88,10 +124,6 @@ AX的图片资源，代码，后端是完全分离的，能托管到github或者
 
      1. 背景模糊，透明度，明亮度配置
 
-  4. 第三方接口
-
-     - [x] pexels:配置壁纸
-
   5. AI配置
 
      > 实验性功能，前端可视化配置AI接口，可用AI发送请求，处理业务
@@ -109,7 +141,8 @@ AX的图片资源，代码，后端是完全分离的，能托管到github或者
 
 - ###### 记事本
 
-  - [x] 任务多开：可打开多个记事本，其他系统应用一般为单开，主要原因是多开的程序组件传值较为麻烦，目前没法降低代码的复杂度
+  - [x] 任务多开：可打开多个记事本，其他系统应用一般为单开
+  
 - [x] AI调用：可调用AI
   - [x] 二维码生成
 
