@@ -32,16 +32,6 @@ AX是浏览器上的 `Windows `，可管理远程服务器上的文件，具备�
 
 
 
-
-
-#### 关于仓库
-
-##### GITCODE 安装
-
-```
-git clone https://gitcode.com/in-git/ax.git
-```
-
 ##### GITEE 安装
 
 ```
@@ -60,9 +50,9 @@ git clone https://gitee.com/in-git/ax.git
 
 #### 项目预览
 
-<img src="public/phone-3.webp" width="50%">
+#### 
 
-<img src="public/phone-4.webp" width="50%">
+<img src="public/phone-4.webp" width="48%"><img src="public/phone-3.webp" width="48%">
 
 <img src="public/phone-1.webp" width="50%"><img src="public/phone-2.webp" width="50%">
 
