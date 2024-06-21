@@ -6,12 +6,25 @@
    <img src="https://img.shields.io/badge/AX-权限管理-red" alt="Gitee star">
    <img src="https://img.shields.io/badge/AX-可视化-blue" alt="Gitee fork">
 </p>
+### 安装
 
 #### 获取代码
 
 ```
 git clone  https://gitee.com/in-git/ax-backend.git
 ```
+
+#### 导入SQL
+
+- ry.sql是若依的源文件
+- quartz.sql是定时任务的sql
+- ax.sql是经过改造后的sql
+
+```
+建议导入ax.sql+quartz.sql
+```
+
+
 
 #### 代码生成
 
